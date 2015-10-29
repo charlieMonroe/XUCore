@@ -8,7 +8,7 @@
 
 import Cocoa
 
-let FCLoggingStatusChangedNotification = "FCLoggingStatusChangedNotification"
+public let FCLoggingStatusChangedNotification = "FCLoggingStatusChangedNotification"
 
 private var _cachedPreferences = false
 private var _didCachePreferences = false
@@ -91,7 +91,7 @@ private func _FCLogInitializer() {
 }
 
 
-func FCLogFilePath() -> String {
+public func FCLogFilePath() -> String {
 	let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo().processName
 	
 	let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).stringByExpandingTildeInPath
@@ -100,14 +100,14 @@ func FCLogFilePath() -> String {
 	return logFile
 }
 
-func FCForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func FCForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	let originalPreferences = _cachedPreferences
 	_cachedPreferences = true
 	FCLog(string, method: method, file: file, line: line)
 	_cachedPreferences = originalPreferences
 }
 
-func FCLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func FCLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	if !_didCachePreferences {
 		_FCLogInitializer()
 	}
@@ -119,7 +119,7 @@ func FCLog(@autoclosure string: () -> String, method: String = __FUNCTION__, fil
 	}
 }
 
-func FCForceSetDebugging(debug: Bool) {
+public func FCForceSetDebugging(debug: Bool) {
 	if debug && !_didRedirectToLogFile {
 		_FCRedirectToLogFile()
 		_FCStartNewSession()
@@ -134,11 +134,11 @@ func FCForceSetDebugging(debug: Bool) {
 		NSNotificationCenter.defaultCenter().postNotificationName(FCLoggingStatusChangedNotification, object: nil)
 	}
 }
-func FCShouldLog() -> Bool {
+public func FCShouldLog() -> Bool {
 	return _cachedPreferences
 }
 
-func FCClearLog() {
+public func FCClearLog() {
 	if (_logFile != nil){
 		fclose(_logFile!);
 		_logFile = nil;

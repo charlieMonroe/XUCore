@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072AFA2B1BE2155900DBCB0C /* FCAppNameTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		072AFA2C1BE2155900DBCB0C /* FCAppNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */; };
+		072AFA311BE2167E00DBCB0C /* FCMenuButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		072AFA321BE2167E00DBCB0C /* FCMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AFA301BE2167E00DBCB0C /* FCMenuButton.m */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -151,6 +155,18 @@
 		073E6B4E1BE1FE0A00706283 /* NSData+CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */; };
 		073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
+		073E6B521BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
+		073E6B531BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
+		073E6B601BE2040400706283 /* FCSwitchableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B561BE2040400706283 /* FCSwitchableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073E6B621BE2040400706283 /* FCSwitchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B571BE2040400706283 /* FCSwitchableView.m */; };
+		073E6B641BE2040400706283 /* XUPositionedWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B581BE2040400706283 /* XUPositionedWindowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073E6B661BE2040400706283 /* XUPositionedWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B591BE2040400706283 /* XUPositionedWindowView.m */; };
+		073E6B681BE2040400706283 /* XUTopCenterWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073E6B6A1BE2040400706283 /* XUTopCenterWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */; };
+		073E6B6C1BE2040400706283 /* XUTopLeftWindowCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073E6B6E1BE2040400706283 /* XUTopLeftWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */; };
+		073E6B701BE2040400706283 /* XUTopRightWindowCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073E6B721BE2040400706283 /* XUTopRightWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */; };
 		077A00011BBD101400872A48 /* FCGameCenterSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE591BBD101400872A48 /* FCGameCenterSupport.h */; };
 		077A00031BBD101400872A48 /* FCGameCenterSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE5A1BBD101400872A48 /* FCGameCenterSupport.m */; };
 		077A00051BBD101400872A48 /* FCiPhoneDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */; };
@@ -398,6 +414,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAppNameTextField.h; sourceTree = "<group>"; };
+		072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAppNameTextField.m; sourceTree = "<group>"; };
+		072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMenuButton.h; sourceTree = "<group>"; };
+		072AFA301BE2167E00DBCB0C /* FCMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMenuButton.m; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
@@ -470,6 +490,17 @@
 		073E6B441BE1FD7E00706283 /* NSData+CommonCryptoSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCryptoSwift.m"; sourceTree = "<group>"; };
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		073E6B511BE2026600706283 /* FCLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCLog.swift; sourceTree = "<group>"; };
+		073E6B561BE2040400706283 /* FCSwitchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSwitchableView.h; sourceTree = "<group>"; };
+		073E6B571BE2040400706283 /* FCSwitchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSwitchableView.m; sourceTree = "<group>"; };
+		073E6B581BE2040400706283 /* XUPositionedWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUPositionedWindowView.h; sourceTree = "<group>"; };
+		073E6B591BE2040400706283 /* XUPositionedWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUPositionedWindowView.m; sourceTree = "<group>"; };
+		073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopCenterWindowView.h; sourceTree = "<group>"; };
+		073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopCenterWindowView.m; sourceTree = "<group>"; };
+		073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopLeftWindowCornerView.h; sourceTree = "<group>"; };
+		073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopLeftWindowCornerView.m; sourceTree = "<group>"; };
+		073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopRightWindowCornerView.h; sourceTree = "<group>"; };
+		073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopRightWindowCornerView.m; sourceTree = "<group>"; };
 		077A00A81BBD107500872A48 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		077A00AF1BBD335B00872A48 /* FCInAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCInAppPurchaseManager.h; sourceTree = "<group>"; };
 		077A00B01BBD335B00872A48 /* FCInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCInAppPurchaseManager.m; sourceTree = "<group>"; };
@@ -651,6 +682,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072AFA281BE2155900DBCB0C /* textfields */ = {
+			isa = PBXGroup;
+			children = (
+				072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */,
+				072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */,
+			);
+			path = textfields;
+			sourceTree = "<group>";
+		};
+		072AFA2E1BE2167E00DBCB0C /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */,
+				072AFA301BE2167E00DBCB0C /* FCMenuButton.m */,
+			);
+			path = buttons;
+			sourceTree = "<group>";
+		};
 		073E6A7C1BE1F84600706283 /* regex */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +784,33 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		073E6B541BE203E800706283 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				072AFA2E1BE2167E00DBCB0C /* buttons */,
+				072AFA281BE2155900DBCB0C /* textfields */,
+				073E6B551BE203E800706283 /* views */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		073E6B551BE203E800706283 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				073E6B561BE2040400706283 /* FCSwitchableView.h */,
+				073E6B571BE2040400706283 /* FCSwitchableView.m */,
+				073E6B581BE2040400706283 /* XUPositionedWindowView.h */,
+				073E6B591BE2040400706283 /* XUPositionedWindowView.m */,
+				073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */,
+				073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */,
+				073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */,
+				073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */,
+				073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */,
+				073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		077AFD851BBD0E5300872A48 = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +845,7 @@
 				077AFE781BBD101400872A48 /* network */,
 				073E6A7C1BE1F84600706283 /* regex */,
 				077AFEAD1BBD101400872A48 /* transformers */,
+				073E6B541BE203E800706283 /* ui */,
 				077AFD941BBD0E5300872A48 /* Info.plist */,
 				077A00A81BBD107500872A48 /* Cocoa.framework */,
 			);
@@ -932,6 +1009,7 @@
 		077AFE231BBD101400872A48 /* debug */ = {
 			isa = PBXGroup;
 			children = (
+				073E6B511BE2026600706283 /* FCLog.swift */,
 				077AFE241BBD101400872A48 /* FCLog.h */,
 				077AFE251BBD101400872A48 /* FCLog.m */,
 				077AFE261BBD101400872A48 /* FCRedView.h */,
@@ -1053,7 +1131,9 @@
 				073E6B0B1BE1F86D00706283 /* random.h in Headers */,
 				077AFECC1BBD101400872A48 /* NSBundleAdditions.h in Headers */,
 				073E6AE11BE1F86D00706283 /* regexp.h in Headers */,
+				073E6B6C1BE2040400706283 /* XUTopLeftWindowCornerView.h in Headers */,
 				077AFFA41BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */,
+				072AFA2B1BE2155900DBCB0C /* FCAppNameTextField.h in Headers */,
 				077A001A1BBD101400872A48 /* NSWindowLocalizationSupport.h in Headers */,
 				077AFF7A1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */,
 				073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */,
@@ -1061,8 +1141,10 @@
 				077AFF0C1BBD101400872A48 /* NSNotificationAdditions.h in Headers */,
 				077AFF4C1BBD101400872A48 /* NSWindow-NoodleEffects.h in Headers */,
 				077AFF081BBD101400872A48 /* NSMutableURLRequestAdditions.h in Headers */,
+				072AFA311BE2167E00DBCB0C /* FCMenuButton.h in Headers */,
 				073E6AFB1BE1F86D00706283 /* benchmark.h in Headers */,
 				077AFFA81BBD101400872A48 /* FCLog.h in Headers */,
+				073E6B641BE2040400706283 /* XUPositionedWindowView.h in Headers */,
 				077A00A41BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */,
 				077AFEF01BBD101400872A48 /* NSEventAdditions.h in Headers */,
 				077AFF481BBD101400872A48 /* NSViewAdditions.h in Headers */,
@@ -1089,6 +1171,7 @@
 				073E6ADD1BE1F86D00706283 /* re2.h in Headers */,
 				077A00481BBD101400872A48 /* FCCURLConnection.h in Headers */,
 				073E6AC31BE1F86D00706283 /* filtered_re2.h in Headers */,
+				073E6B681BE2040400706283 /* XUTopCenterWindowView.h in Headers */,
 				073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */,
 				077AFF661BBD101400872A48 /* FCAppStoreMenuCleaner.h in Headers */,
 				077A00A01BBD101400872A48 /* FCTrimmingTransformer.h in Headers */,
@@ -1117,6 +1200,7 @@
 				077AFF2C1BBD101400872A48 /* NSTextFieldAdditions.h in Headers */,
 				073E6B111BE1F86D00706283 /* sparse_set.h in Headers */,
 				077AFED81BBD101400872A48 /* NSColorAdditions.h in Headers */,
+				073E6B601BE2040400706283 /* FCSwitchableView.h in Headers */,
 				073E6AE51BE1F86D00706283 /* set.h in Headers */,
 				077AFF3C1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */,
 				073E6B1F1BE1F86D00706283 /* utf.h in Headers */,
@@ -1133,6 +1217,7 @@
 				073E6AD11BE1F86D00706283 /* prefilter.h in Headers */,
 				073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */,
 				073E6B011BE1F86D00706283 /* logging.h in Headers */,
+				073E6B701BE2040400706283 /* XUTopRightWindowCornerView.h in Headers */,
 				077AFF541BBD101400872A48 /* NSXMLAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1331,6 +1416,7 @@
 				077A00B31BBD335B00872A48 /* FCInAppPurchaseManager.m in Sources */,
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
+				073E6B621BE2040400706283 /* FCSwitchableView.m in Sources */,
 				077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */,
 				077A00181BBD101400872A48 /* NSViewLocalizationSupport.m in Sources */,
 				077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */,
@@ -1339,6 +1425,7 @@
 				077A001C1BBD101400872A48 /* NSWindowLocalizationSupport.m in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
+				073E6B6E1BE2040400706283 /* XUTopLeftWindowCornerView.m in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
 				073E6B1B1BE1F86D00706283 /* thread.cc in Sources */,
 				077AFF2A1BBD101400872A48 /* NSTabViewAdditions.m in Sources */,
@@ -1351,12 +1438,15 @@
 				077AFEEA1BBD101400872A48 /* NSDecimalNumberAdditions.m in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
 				077AFF2E1BBD101400872A48 /* NSTextFieldAdditions.m in Sources */,
+				072AFA321BE2167E00DBCB0C /* FCMenuButton.m in Sources */,
 				077A00961BBD101400872A48 /* FCArrayNotEmpty.m in Sources */,
 				077AFED61BBD101400872A48 /* NSButtonCellAdditions.m in Sources */,
 				077AFF021BBD101400872A48 /* NSLockAdditions.m in Sources */,
+				073E6B721BE2040400706283 /* XUTopRightWindowCornerView.m in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
 				077AFED21BBD101400872A48 /* NSButtonAdditions.m in Sources */,
 				077A00341BBD101400872A48 /* FCUniqueStringManager.m in Sources */,
+				073E6B6A1BE2040400706283 /* XUTopCenterWindowView.m in Sources */,
 				073E6B231BE1F86D00706283 /* valgrind.cc in Sources */,
 				077AFF9E1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				077A004A1BBD101400872A48 /* FCCURLConnection.m in Sources */,
@@ -1421,9 +1511,12 @@
 				077AFF0E1BBD101400872A48 /* NSNotificationAdditions.m in Sources */,
 				073E6ACD1BE1F86D00706283 /* perl_groups.cc in Sources */,
 				073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */,
+				073E6B661BE2040400706283 /* XUPositionedWindowView.m in Sources */,
+				072AFA2C1BE2155900DBCB0C /* FCAppNameTextField.m in Sources */,
 				077AFEC61BBD101400872A48 /* NSAttributedStringAdditions.m in Sources */,
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
+				073E6B521BE2026600706283 /* FCLog.swift in Sources */,
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				073E6ACB1BE1F86D00706283 /* parse.cc in Sources */,
 				077AFF3E1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */,
@@ -1516,6 +1609,7 @@
 				073E6AE81BE1F86D00706283 /* simplify.cc in Sources */,
 				073E6AC81BE1F86D00706283 /* nfa.cc in Sources */,
 				073E6B2C1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
+				073E6B531BE2026600706283 /* FCLog.swift in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,
 				077AFEEF1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,

@@ -107,3 +107,16 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "FCTrimmingTransformer.h"
 #import "FCZeroBasedIndexTransformer.h"
 
+/** UI - Buttons. */
+#import "FCMenuButton.h"
+
+/** UI - Text Fields. */
+#import "FCAppNameTextField.h"
+
+/** UI - Views. */
+#import "FCSwitchableView.h"
+#import "XUPositionedWindowView.h"
+#import "XUTopCenterWindowView.h"
+#import "XUTopLeftWindowCornerView.h"
+#import "XUTopRightWindowCornerView.h"
+
