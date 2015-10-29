@@ -1,0 +1,123 @@
+// 
+// NSDataAdditions.m
+// 
+// Created by Charlie Monroe
+// 
+// Copyright (c) 2010-14 Charlie Monroe Software. All rights reserved.
+// 
+
+
+#import "NSDataAdditions.h"
+
+#import <CommonCrypto/CommonCrypto.h>
+
+@implementation NSData (NSDataAdditions)
+
++(char)_hexValueOfChar:(unichar)c{
+	char result = 0;
+	if (c >= '0' && c <= '9'){
+		result *= 16;
+		result += (c - '0');
+	}else if (c >= 'a' && c <= 'f'){
+		result *= 16;
+		result += (c - 'a') + 10;
+	}else if (c >= 'A' && c <= 'F'){
+		result *= 16;
+		result += (c - 'A') + 10;
+	}else{
+		return 0;
+	}
+	return result;
+}
+
++(instancetype)dataWithHexEncodedString:(NSString *)hexString{
+	if ([hexString length] % 2 != 0){
+		return [NSData data];
+	}
+	
+	NSMutableData *data = [NSMutableData data];
+	for (NSUInteger i = 0; i < [hexString length]; i += 2){
+		char byte = ([self _hexValueOfChar:[hexString characterAtIndex:i]] << 4) | [self _hexValueOfChar:[hexString characterAtIndex:i + 1]];
+		[data appendBytes:&byte length:1];
+	}
+	return data;
+
+}
+
++(NSData*)dataFromBase64String:(NSString *)aString{
+	return [self dataWithBase64String:aString];
+}
++(NSData *)dataWithBase64String:(NSString *)aString{
+	if (aString == nil){
+		return nil;
+	}
+	
+	if ([self instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]){
+		return [[self alloc] initWithBase64EncodedString:aString options:0];
+	}
+	
+	if ([aString length] % 4 != 0)
+	return nil;
+	
+	NSString *plist = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><plist version=\"1.0\"><data>%@</data></plist>", aString];
+	return [NSPropertyListSerialization propertyListWithData:[plist dataUsingEncoding:NSASCIIStringEncoding] options:0 format:NULL error:NULL];
+}
+
+-(NSString*)base64EncodedString{
+	if ([self respondsToSelector:@selector(base64EncodedStringWithOptions:)]){
+		return [self base64EncodedStringWithOptions:0];
+	}
+	
+	NSData *plist = [NSPropertyListSerialization dataWithPropertyList:self format:NSPropertyListXMLFormat_v1_0 options:0 error:NULL];
+	NSRange fullRange = NSMakeRange(0, [plist length]);
+	NSRange startRange = [plist rangeOfData:[@"<data>" dataUsingEncoding:NSASCIIStringEncoding] options:0 range:fullRange];
+	NSRange endRange = [plist rangeOfData:[@"</data>" dataUsingEncoding:NSASCIIStringEncoding] options:NSDataSearchBackwards range:fullRange];
+	if (startRange.location == NSNotFound || endRange.location == NSNotFound)
+		return nil;
+	
+	NSUInteger base64Location = startRange.location + startRange.length;
+	NSUInteger base64length = endRange.location - base64Location;
+	NSData *base64Data = [NSData dataWithBytesNoCopy:(void *)((uintptr_t)base64Location + (uintptr_t)[plist bytes]) length:base64length freeWhenDone:NO];
+	NSString *base64Encoding = [[NSString alloc] initWithData:base64Data encoding:NSASCIIStringEncoding];
+	
+	base64Encoding = [base64Encoding stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	base64Encoding = [base64Encoding stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	return base64Encoding;
+}
+-(NSMutableArray*)byteArrayWithZerosIncluded:(BOOL)includeZeros{
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self length]];
+	for (NSUInteger i = 0; i < [self length]; ++i){
+		char c = ((const char*)[self bytes])[i];
+		if (c == 0 && !includeZeros){
+			continue;
+		}
+		[result addObject:@(c)];
+	}
+	return result;
+}
+-(NSUInteger)indexOfFirstOccurrenceOfBytes:(const char *)bytes ofLength:(NSUInteger)length{
+	return [self rangeOfData:[NSData dataWithBytesNoCopy:(void*)bytes length:length freeWhenDone:NO] options:0 range:NSMakeRange(0, [self length])].location;
+}
+-(NSString *)MD5Digest{
+	unsigned char result[16];
+	CC_MD5([self bytes], (CC_LONG)[self length], result);
+	
+	return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+			result[0], result[1], result[2], result[3],
+			result[4], result[5], result[6], result[7],
+			result[8], result[9], result[10], result[11],
+			result[12], result[13], result[14], result[15]
+		];
+}
+-(NSUInteger)readIntegerOfLength:(size_t)length startingAtIndex:(NSUInteger)index{
+	NSAssert(length <= sizeof(NSUInteger), @"This is a way too big of an int!");
+	char buffer[sizeof(NSUInteger)] = { 0 };
+	for (NSUInteger i = 0; i < length; ++i){
+		char c = (((const char*)[self bytes])[index + i]);
+		buffer[length - i - 1] = c;
+	}
+	return *(NSUInteger*)buffer;
+}
+
+@end
+
