@@ -63,20 +63,18 @@ public extension Dictionary {
 	
 	// MARK: first[*] family of methods
 	
-	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilObjectForKeys<T>(keys: Key..., ofClass aClass: T.Type) -> T? {
-		for k in keys {
-			if let v = self[k] as? T {
-				return v
-			}
-		}
-		return nil
-	}
+	/********** THIS METHOD CAUSES THE COMPILER TO CRASH. *******************/
+	/// See objectForKeyPath - this method attempts to find the first non-nil
+	/// object of class. Works as something between objectForKeyPath and
+	/// firstNonNilObjectForKeys.
+	//public func firstNonNilObjectForKeyPaths<T>(keyPaths: String..., ofClass aClass: T.Type) -> T? {
+	//	return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: aClass)
+	//}
 	
 	/// See objectForKeyPath - this method attempts to find the first non-nil
 	/// object of class. Works as something between objectForKeyPath and
 	/// firstNonNilObjectForKeys.
-	public func firstNonNilObjectForKeyPaths<T>(keyPaths: String..., ofClass aClass: T.Type) -> T? {
+	public func firstNonNilObjectForKeyPaths<T>(keyPaths: [String], ofClass aClass: T.Type) -> T? {
 		for path in keyPaths {
 			if let v = self.objectForKeyPath(path) as? T {
 				return v
@@ -88,6 +86,16 @@ public extension Dictionary {
 	/// A convenience method for firstNonNilObjectForKeyPaths defaulting to AnyObject
 	public func firstNonNilObjectForKeyPaths(keyPaths: String...) -> AnyObject? {
 		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
+	}
+	
+	/// Returns first non-nil value of a certain class under one of the keys.
+	public func firstNonNilObjectForKeys<T>(keys: [Key], ofClass aClass: T.Type) -> T? {
+		for k in keys {
+			if let v = self[k] as? T {
+				return v
+			}
+		}
+		return nil
 	}
 
 	/// Returns first non-nil string value for key paths.
