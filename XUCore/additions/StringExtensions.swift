@@ -10,11 +10,12 @@ import Foundation
 
 public extension String {
 	
+	/// Returns first line of string. Always non-nil
 	public var firstLine: String {
 		return self.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())[0]
 	}
 	
-	
+	/// This converts string to UInt as a fourCharCode
 	public var fourCharCodeValue: UInt {
 		var result: UInt = 0
 		if let data = self.dataUsingEncoding(NSMacOSRomanStringEncoding) {
@@ -26,33 +27,37 @@ public extension String {
 		return result
 	}
 	
-	/** Returns hexValue of the string. */
+	/// Returns hexValue of the string.
 	public var hexValue: UInt {
 		return (self as NSString).hexValue()
 	}
 	
-	/** Replaces & -> &amp; etc. */
+	/// Replaces & -> &amp; etc.
 	public var HTMLEscapedString: String {
 		return (self as NSString).HTMLEscapedString()
 	}
 	
-	/** Replaces &amp; -> & etc. */
+	/// Replaces &amp; -> & etc.
 	public var HTMLUnescapedString: String {
 		return (self as NSString).HTMLUnescapedString()
 	}
 	
+	///
 	public var JSDecodedString: String {
 		return (self as NSString).JSDecodedString()
 	}
 	
+	/// Computes MD5 digest of self
 	public var MD5Digest: String {
 		return (self as NSString).MD5Digest()
 	}
 	
+	/// Returns a reverse string.
 	public var reverseString: String {
 		return String(self.characters.reverse())
 	}
 	
+	/// Capitalizes the first letter of the string.
 	public var stringByCapitalizingFirstLetter: String {
 		if self.characters.count == 0 {
 			return self
@@ -64,7 +69,7 @@ public extension String {
 		return firstLetter.uppercaseString + restOfString
 	}
 	
-	/** Removes the prefix from the string. */
+	/// Removes the prefix from the string.
 	public func stringByDeletingPrefix(prefix: String) -> String {
 		if !self.hasPrefix(prefix) {
 			return self
@@ -73,7 +78,7 @@ public extension String {
 		return self.substringFromIndex(self.startIndex.advancedBy(prefix.characters.count))
 	}
 	
-	/** Removes the suffix from the string. */
+	/// Removes the suffix from the string.
 	public func stringByDeletingSuffix(suffix: String) -> String {
 		if !self.hasSuffix(suffix) {
 			return self
@@ -120,9 +125,8 @@ public extension String {
 /// Numeric methods
 public extension String {
 	
-	/** This will return double value of the string, kind of like NSString in ObjC;
-	* if the string cannot be parsed, 0.0 is returned.
-	*/
+	/// This will return double value of the string, kind of like NSString in ObjC;
+	/// if the string cannot be parsed, 0.0 is returned.
 	public var doubleValue: Double {
 		let doubleValue = Double(self)
 		if doubleValue != nil {
@@ -151,9 +155,8 @@ public extension String {
 		return Double(numberString) ?? 0.0
 	}
 	
-	/** This will return integer value of the string, kind of like NSString in ObjC;
-	* if the string cannot be parsed, 0 is returned.
-	*/
+	/// This will return integer value of the string, kind of like NSString in ObjC;
+	/// if the string cannot be parsed, 0 is returned.
 	public var integerValue: Int {
 		if let intValue = Int(self) {
 			return intValue

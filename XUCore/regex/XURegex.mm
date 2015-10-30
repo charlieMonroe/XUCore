@@ -28,7 +28,7 @@ static NSLock *_evaluationLock;
 	return [[self alloc] initWithPattern:pattern andOptions:options];
 }
 
--(NSArray *)allOccurencesInString:(NSString *)string{
+-(NSArray *)allOccurrencesInString:(NSString *)string{
 	[_evaluationLock lock];
 	
 	NSMutableArray *result = [NSMutableArray array];
@@ -50,13 +50,13 @@ static NSLock *_evaluationLock;
 	
 	return result;
 }
--(NSArray *)allOccurencesOfVariableNamed:(NSString *)varName inString:(NSString *)string{
-	return [[self allOccurencesInString:string] map:^id(NSString *match) {
+-(NSArray *)allOccurrencesOfVariableNamed:(NSString *)varName inString:(NSString *)string{
+	return [[self allOccurrencesInString:string] map:^id(NSString *match) {
 		return [self getVariableNamed:varName inString:match];
 	}];
 }
 -(NSDictionary *)allVariablePairsInString:(NSString *)string{
-	NSArray *matches = [self allOccurencesInString:string];
+	NSArray *matches = [self allOccurrencesInString:string];
 	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[matches count]];
 	for (NSString *match in matches){
 		NSString *key = [self getVariableNamed:@"VARNAME" inString:match];

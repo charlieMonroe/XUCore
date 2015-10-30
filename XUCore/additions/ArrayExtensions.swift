@@ -12,26 +12,17 @@ public extension SequenceType {
 	
 	public typealias XUFilter = (Self.Generator.Element) -> Bool
 	
-	public func all(filter: (Self.Generator.Element) -> Bool) -> Bool {
-		for obj in self {
-			if !filter(obj) {
-				return false
-			}
-		}
-		
-		return true
+	/// Returns true if all of the elements in self match the filter
+	public func all(filter: XUFilter) -> Bool {
+		return self.find({ !filter($0) }) == nil
 	}
 	
-	public func any(filter: (Self.Generator.Element) -> Bool) -> Bool {
-		for obj in self {
-			if filter(obj) {
-				return true
-			}
-		}
-		
-		return false
+	/// Returns true if any of the elements in self matches the filter
+	public func any(filter: XUFilter) -> Bool {
+		return self.find(filter) != nil
 	}
 	
+	/// Returns a new array by removing objects that match the filter
 	public func arrayByRemovingObjectsMatching(filter: XUFilter) -> [Self.Generator.Element] {
 		var arr: [Self.Generator.Element] = [ ]
 		for obj in self {
@@ -42,16 +33,16 @@ public extension SequenceType {
 		return arr
 	}
 	
-	public func count(filter: (Self.Generator.Element) -> Bool) -> UInt {
+	/// Counts elements that match the filter
+	public func count(filter: XUFilter) -> UInt {
 		let count =  self.sum({ (obj) -> Int in
 			return filter(obj) ? 1 : 0
 		})
 		return UInt(count)
 	}
 	
-	/** Unlike map, this allows you to return nil, in which case the value
-	 * will be ommitted.
-	 */
+	/// Unlike map, this allows you to return nil, in which case the value
+	/// will be ommitted.
 	public func filterMap<U>(transform: (Self.Generator.Element) -> U?) -> [U] {
 		var result: Array<U> = [ ]
 		for obj in self {
@@ -63,7 +54,8 @@ public extension SequenceType {
 		return result
 	}
 	
-	public func find(filter: (Self.Generator.Element) -> Bool) -> Self.Generator.Element? {
+	/// Returns the first element in self that matches the filter
+	public func find(filter: XUFilter) -> Self.Generator.Element? {
 		for obj in self {
 			if filter(obj) {
 				return obj
@@ -72,6 +64,9 @@ public extension SequenceType {
 		return nil
 	}
 	
+	/// Finds a mapped value. When `filter` returns a non-nil value, that value
+	/// is returned. This way you can do some computation in the block and return
+	/// the value without the need of doing the computation again
 	public func findMapped<U>(filter: (Self.Generator.Element) -> U?) -> U? {
 		for obj in self {
 			let val = filter(obj)
@@ -82,13 +77,15 @@ public extension SequenceType {
 		return nil
 	}
 	
+	/// Finds a maximum value within self. For non-empty arrays, always returns
+	/// a non-nil value.
 	public func findMax(valuator: (Self.Generator.Element) -> UInt) -> Self.Generator.Element? {
 		var maxElement: Self.Generator.Element? = nil
 		var maxValue: UInt = 0
 		
 		for obj in self {
 			let value = valuator(obj)
-			if value > maxValue {
+			if value > maxValue || maxElement == nil {
 				maxValue = value
 				maxElement = obj
 			}
@@ -97,13 +94,15 @@ public extension SequenceType {
 		return maxElement
 	}
 	
+	/// Finds a minimum value within self. For non-empty arrays, always returns
+	/// a non-nil value.
 	public func findMin(valuator: (Self.Generator.Element) -> Int) -> Self.Generator.Element? {
 		var minElement: Self.Generator.Element? = nil
 		var minValue: Int = Int.max
 		
 		for obj in self {
 			let value = valuator(obj)
-			if value > minValue {
+			if value > minValue || minElement == nil {
 				minValue = value
 				minElement = obj
 			}
@@ -112,6 +111,7 @@ public extension SequenceType {
 		return minElement
 	}
 	
+	/// Sums up values of elements in self.
 	public func sum<T: SignedIntegerType>(numerator: (Self.Generator.Element) -> T) -> T {
 		var result: T = 0
 		for obj in self {
@@ -119,6 +119,8 @@ public extension SequenceType {
 		}
 		return result
 	}
+	
+	/// Sums up values of elements in self.
 	public func sum<T: UnsignedIntegerType>(numerator: (Self.Generator.Element) -> T) -> T {
 		var result: T = 0
 		for obj in self {
@@ -126,6 +128,8 @@ public extension SequenceType {
 		}
 		return result
 	}
+	
+	/// Sums up values of elements in self.
 	public func sum(numerator: (Self.Generator.Element) -> Double) -> Double {
 		var result: Double = 0.0
 		for obj in self {
@@ -139,6 +143,8 @@ public extension SequenceType {
 
 public extension SequenceType where Generator.Element : Equatable {
 	
+	/// Returns a distinct array. This means that it will toss away any duplicate
+	/// items in self
 	public func distinct() -> [Self.Generator.Element] {
 		var unique: [Self.Generator.Element] = [ ]
 		for item in self {
@@ -153,6 +159,9 @@ public extension SequenceType where Generator.Element : Equatable {
 
 public extension Array {
 	
+	/// Interlaces arrays. First, it takes the first elements of all arrays,
+	/// then second, and so on. Doesn't take into account various array length
+	/// in regards to element distribution.
 	public init(interlacedArrays: [[Generator.Element]]) {
 		self.init()
 		
@@ -179,6 +188,8 @@ public extension Array {
 
 public extension CollectionType {
 	
+	/// This is the same as distinct(), but takes in a custom comparator for arrays
+	/// that do not contain equatable elements.
 	public func distinct(customComparator: (obj1: Self.Generator.Element, obj2: Self.Generator.Element) -> Bool) -> [Self.Generator.Element] {
 		var unique: [Self.Generator.Element] = [ ]
 		for var i: Self.Index.Distance = 0; i < self.count; ++i {

@@ -136,3 +136,17 @@ public extension XURegex {
 	
 }
 
+public extension String {
+	
+	/// Returns a value of a meta HTML field in self. This cannot be achieved by
+	/// a single regex, since the name can be either before or after content,
+	/// and there is no way to ensure that at least one of the conditions is met.
+	public func valueOfMetaFieldNamed(fieldName: String) -> String? {
+		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+			"<meta[^>]+(itemprop|name|property)=\"\(fieldName)\"[^>]+content=\"(?P<VALUE>[^\"]+)\"",
+			"<meta[^>]+content=\"(?P<VALUE>[^\"]+)\"[^>]+(itemprop|name|property)=\"\(fieldName)\""
+		)
+	}
+	
+}
+

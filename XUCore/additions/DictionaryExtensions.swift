@@ -22,6 +22,11 @@ public func += <KeyType, ValueType> (inout left: Dictionary<KeyType, ValueType>,
 
 public extension Dictionary {
 	
+	/// A convenience method for retrieving an array of dictionaries
+	public func arrayOfDictionariesForKeyPath(keyPath: String) -> [XUJSONDictionary]? {
+		return self.objectForKeyPath(keyPath) as? [XUJSONDictionary]
+	}
+	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
 	/// If the value is NSNumber, boolean value of it is returned. False is
 	/// returned otherwise.
@@ -55,8 +60,11 @@ public extension Dictionary {
 		return self.objectForKeyPath(keyPath) as? XUJSONDictionary
 	}
 	
-	/// Returns first non-nil value of a certain class.
-	public func firstNonNilObjectForKeys<T>(keys: [Key], ofClass aClass: T.Type) -> T? {
+	
+	// MARK: first[*] family of methods
+	
+	/// Returns first non-nil value of a certain class under one of the keys.
+	public func firstNonNilObjectForKeys<T>(keys: Key..., ofClass aClass: T.Type) -> T? {
 		for k in keys {
 			if let v = self[k] as? T {
 				return v
@@ -65,25 +73,10 @@ public extension Dictionary {
 		return nil
 	}
 	
-	/// Returns first non-nil string value.
-	public func firstNonNilStringForKeys(keys: [Key]) -> String? {
-		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
-	}
-	public func firstNonNilStringForKeys(keys: Key...) -> String? {
-		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
-	}
-	
-	public func firstNonNilObjectForKeyPaths(keyPaths: String...) -> AnyObject? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
-	}
-	public func firstNonNilObjectForKeyPaths(keyPaths: [String]) -> AnyObject? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
-	}
-	
 	/// See objectForKeyPath - this method attempts to find the first non-nil
 	/// object of class. Works as something between objectForKeyPath and
-	/// firstNonNilStringForKey.
-	public func firstNonNilObjectForKeyPaths<T>(keyPaths: [String], ofClass aClass: T.Type) -> T? {
+	/// firstNonNilObjectForKeys.
+	public func firstNonNilObjectForKeyPaths<T>(keyPaths: String..., ofClass aClass: T.Type) -> T? {
 		for path in keyPaths {
 			if let v = self.objectForKeyPath(path) as? T {
 				return v
@@ -92,15 +85,30 @@ public extension Dictionary {
 		return nil
 	}
 	
-	
-	/// Returns first non-nil string value.
+	/// A convenience method for firstNonNilObjectForKeyPaths defaulting to AnyObject
+	public func firstNonNilObjectForKeyPaths(keyPaths: String...) -> AnyObject? {
+		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
+	}
+
+	/// Returns first non-nil string value for key paths.
 	public func firstNonNilStringForKeyPaths(keyPaths: [String]) -> String? {
 		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: String.self)
 	}
+	
+	/// Returns first non-nil string value for key paths.
 	public func firstNonNilStringForKeyPaths(keyPaths: String...) -> String? {
 		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: String.self)
 	}
 	
+	/// Returns first non-nil string value for keys.
+	public func firstNonNilStringForKeys(keys: [Key]) -> String? {
+		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
+	}
+	
+	/// Returns first non-nil string value for keys.
+	public func firstNonNilStringForKeys(keys: Key...) -> String? {
+		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
+	}
 	
 	/// In a lot of cases, currently we need to get an int from whatever is under
 	/// the key in the dictionary. Unfortunately, getting an optional UInt? sucks
@@ -135,7 +143,7 @@ public extension Dictionary {
 		return 0
 	}
 	
-	/// This method returns an object at keypath, safely, by casting and doing
+	/// This method returns an object at keyPath, safely, by casting and doing
 	/// bounds checking. This works pretty much the same as info extraction
 	/// in XUDownloader.
 	///
