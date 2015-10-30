@@ -73,6 +73,13 @@ public extension Dictionary {
 		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
 	}
 	
+	public func firstNonNilObjectForKeyPaths(keyPaths: String...) -> AnyObject? {
+		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
+	}
+	public func firstNonNilObjectForKeyPaths(keyPaths: [String]) -> AnyObject? {
+		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
+	}
+	
 	/// See objectForKeyPath - this method attempts to find the first non-nil
 	/// object of class. Works as something between objectForKeyPath and
 	/// firstNonNilStringForKey.
@@ -84,6 +91,7 @@ public extension Dictionary {
 		}
 		return nil
 	}
+	
 	
 	/// Returns first non-nil string value.
 	public func firstNonNilStringForKeyPaths(keyPaths: [String]) -> String? {

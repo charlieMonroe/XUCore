@@ -28,5 +28,20 @@ public extension NSURL {
 		return dict
 	}
 	
+	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.
+	public var URLByDeletingFragment: NSURL {
+		if self.fragment == nil {
+			return self
+		}
+		
+		guard let URLComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+			return self
+		}
+		
+		URLComponents.fragment = nil
+		
+		return URLComponents.URL ?? self
+	}
+	
 }
 

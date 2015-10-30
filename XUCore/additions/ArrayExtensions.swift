@@ -183,12 +183,8 @@ public extension CollectionType {
 		var unique: [Self.Generator.Element] = [ ]
 		for var i: Self.Index.Distance = 0; i < self.count; ++i {
 			var found = false
-			for var o: Self.Index.Distance = 0; o < self.count; ++o {
-				if i == o {
-					continue // Don't compare the same indexes!
-				}
-				
-				if customComparator(obj1: self[self.startIndex.advancedBy(i)], obj2: self[self.startIndex.advancedBy(o)]) {
+			for var o: Int = 0; o < unique.count; ++o {
+				if customComparator(obj1: self[self.startIndex.advancedBy(i)], obj2: unique[unique.startIndex.advancedBy(o)]) {
 					found = true
 					break
 				}
