@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 public func XUPreferencesBoolForKey(key: String) -> Bool {
 	return NSUserDefaults.standardUserDefaults().boolForKey(key)

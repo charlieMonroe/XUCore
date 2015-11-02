@@ -13,7 +13,7 @@
 	NSInteger _cachedSize;
 }
 
-@property (readwrite, assign) NSInteger maximumSize; // In bytes
+@property (readwrite, assign) long long maximumSize; // In bytes
 
 @end
 

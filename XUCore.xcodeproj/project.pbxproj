@@ -16,65 +16,65 @@
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
 		073E6A6F1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
 		073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7E1BE1F86D00706283 /* bitstate.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ABC1BE1F86D00706283 /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7E1BE1F86D00706283 /* bitstate.cc */; };
+		073E6ABC1BE1F86D00706283 /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7E1BE1F86D00706283 /* bitstate.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ABD1BE1F86D00706283 /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7F1BE1F86D00706283 /* compile.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ABE1BE1F86D00706283 /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7F1BE1F86D00706283 /* compile.cc */; };
+		073E6ABE1BE1F86D00706283 /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7F1BE1F86D00706283 /* compile.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A801BE1F86D00706283 /* dfa.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AC01BE1F86D00706283 /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A801BE1F86D00706283 /* dfa.cc */; };
+		073E6AC01BE1F86D00706283 /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A801BE1F86D00706283 /* dfa.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A811BE1F86D00706283 /* filtered_re2.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A811BE1F86D00706283 /* filtered_re2.cc */; };
+		073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A811BE1F86D00706283 /* filtered_re2.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AC31BE1F86D00706283 /* filtered_re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A821BE1F86D00706283 /* filtered_re2.h */; };
 		073E6AC41BE1F86D00706283 /* filtered_re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A821BE1F86D00706283 /* filtered_re2.h */; };
 		073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A831BE1F86D00706283 /* mimics_pcre.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A831BE1F86D00706283 /* mimics_pcre.cc */; };
+		073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A831BE1F86D00706283 /* mimics_pcre.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AC71BE1F86D00706283 /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A841BE1F86D00706283 /* nfa.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AC81BE1F86D00706283 /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A841BE1F86D00706283 /* nfa.cc */; };
+		073E6AC81BE1F86D00706283 /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A841BE1F86D00706283 /* nfa.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AC91BE1F86D00706283 /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A851BE1F86D00706283 /* onepass.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ACA1BE1F86D00706283 /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A851BE1F86D00706283 /* onepass.cc */; };
+		073E6ACA1BE1F86D00706283 /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A851BE1F86D00706283 /* onepass.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ACB1BE1F86D00706283 /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A861BE1F86D00706283 /* parse.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ACC1BE1F86D00706283 /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A861BE1F86D00706283 /* parse.cc */; };
+		073E6ACC1BE1F86D00706283 /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A861BE1F86D00706283 /* parse.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ACD1BE1F86D00706283 /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A871BE1F86D00706283 /* perl_groups.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ACE1BE1F86D00706283 /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A871BE1F86D00706283 /* perl_groups.cc */; };
+		073E6ACE1BE1F86D00706283 /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A871BE1F86D00706283 /* perl_groups.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A881BE1F86D00706283 /* prefilter.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A881BE1F86D00706283 /* prefilter.cc */; };
+		073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A881BE1F86D00706283 /* prefilter.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AD11BE1F86D00706283 /* prefilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A891BE1F86D00706283 /* prefilter.h */; };
 		073E6AD21BE1F86D00706283 /* prefilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A891BE1F86D00706283 /* prefilter.h */; };
 		073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8A1BE1F86D00706283 /* prefilter_tree.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AD41BE1F86D00706283 /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8A1BE1F86D00706283 /* prefilter_tree.cc */; };
+		073E6AD41BE1F86D00706283 /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8A1BE1F86D00706283 /* prefilter_tree.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AD51BE1F86D00706283 /* prefilter_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8B1BE1F86D00706283 /* prefilter_tree.h */; };
 		073E6AD61BE1F86D00706283 /* prefilter_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8B1BE1F86D00706283 /* prefilter_tree.h */; };
 		073E6AD71BE1F86D00706283 /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8C1BE1F86D00706283 /* prog.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AD81BE1F86D00706283 /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8C1BE1F86D00706283 /* prog.cc */; };
+		073E6AD81BE1F86D00706283 /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8C1BE1F86D00706283 /* prog.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AD91BE1F86D00706283 /* prog.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8D1BE1F86D00706283 /* prog.h */; };
 		073E6ADA1BE1F86D00706283 /* prog.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8D1BE1F86D00706283 /* prog.h */; };
 		073E6ADB1BE1F86D00706283 /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8E1BE1F86D00706283 /* re2.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6ADC1BE1F86D00706283 /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8E1BE1F86D00706283 /* re2.cc */; };
+		073E6ADC1BE1F86D00706283 /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A8E1BE1F86D00706283 /* re2.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6ADD1BE1F86D00706283 /* re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8F1BE1F86D00706283 /* re2.h */; };
 		073E6ADE1BE1F86D00706283 /* re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A8F1BE1F86D00706283 /* re2.h */; };
 		073E6ADF1BE1F86D00706283 /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A901BE1F86D00706283 /* regexp.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AE01BE1F86D00706283 /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A901BE1F86D00706283 /* regexp.cc */; };
+		073E6AE01BE1F86D00706283 /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A901BE1F86D00706283 /* regexp.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AE11BE1F86D00706283 /* regexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A911BE1F86D00706283 /* regexp.h */; };
 		073E6AE21BE1F86D00706283 /* regexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A911BE1F86D00706283 /* regexp.h */; };
 		073E6AE31BE1F86D00706283 /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A921BE1F86D00706283 /* set.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AE41BE1F86D00706283 /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A921BE1F86D00706283 /* set.cc */; };
+		073E6AE41BE1F86D00706283 /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A921BE1F86D00706283 /* set.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AE51BE1F86D00706283 /* set.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A931BE1F86D00706283 /* set.h */; };
 		073E6AE61BE1F86D00706283 /* set.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A931BE1F86D00706283 /* set.h */; };
 		073E6AE71BE1F86D00706283 /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A941BE1F86D00706283 /* simplify.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AE81BE1F86D00706283 /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A941BE1F86D00706283 /* simplify.cc */; };
+		073E6AE81BE1F86D00706283 /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A941BE1F86D00706283 /* simplify.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AE91BE1F86D00706283 /* stringpiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A951BE1F86D00706283 /* stringpiece.h */; };
 		073E6AEA1BE1F86D00706283 /* stringpiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A951BE1F86D00706283 /* stringpiece.h */; };
 		073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A961BE1F86D00706283 /* tostring.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AEC1BE1F86D00706283 /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A961BE1F86D00706283 /* tostring.cc */; };
+		073E6AEC1BE1F86D00706283 /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A961BE1F86D00706283 /* tostring.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AED1BE1F86D00706283 /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A971BE1F86D00706283 /* unicode_casefold.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A971BE1F86D00706283 /* unicode_casefold.cc */; };
+		073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A971BE1F86D00706283 /* unicode_casefold.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A981BE1F86D00706283 /* unicode_casefold.h */; };
 		073E6AF01BE1F86D00706283 /* unicode_casefold.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A981BE1F86D00706283 /* unicode_casefold.h */; };
 		073E6AF11BE1F86D00706283 /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A991BE1F86D00706283 /* unicode_groups.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AF21BE1F86D00706283 /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A991BE1F86D00706283 /* unicode_groups.cc */; };
+		073E6AF21BE1F86D00706283 /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A991BE1F86D00706283 /* unicode_groups.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A9A1BE1F86D00706283 /* unicode_groups.h */; };
 		073E6AF41BE1F86D00706283 /* unicode_groups.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A9A1BE1F86D00706283 /* unicode_groups.h */; };
 		073E6AF51BE1F86D00706283 /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A9C1BE1F86D00706283 /* arena.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6AF61BE1F86D00706283 /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A9C1BE1F86D00706283 /* arena.cc */; };
+		073E6AF61BE1F86D00706283 /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A9C1BE1F86D00706283 /* arena.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6AF71BE1F86D00706283 /* arena.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A9D1BE1F86D00706283 /* arena.h */; };
 		073E6AF81BE1F86D00706283 /* arena.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A9D1BE1F86D00706283 /* arena.h */; };
 		073E6AF91BE1F86D00706283 /* atomicops.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6A9E1BE1F86D00706283 /* atomicops.h */; };
@@ -84,35 +84,35 @@
 		073E6AFD1BE1F86D00706283 /* flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA01BE1F86D00706283 /* flags.h */; };
 		073E6AFE1BE1F86D00706283 /* flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA01BE1F86D00706283 /* flags.h */; };
 		073E6AFF1BE1F86D00706283 /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA11BE1F86D00706283 /* hash.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B001BE1F86D00706283 /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA11BE1F86D00706283 /* hash.cc */; };
+		073E6B001BE1F86D00706283 /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA11BE1F86D00706283 /* hash.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B011BE1F86D00706283 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA21BE1F86D00706283 /* logging.h */; };
 		073E6B021BE1F86D00706283 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA21BE1F86D00706283 /* logging.h */; };
 		073E6B031BE1F86D00706283 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA31BE1F86D00706283 /* mutex.h */; };
 		073E6B041BE1F86D00706283 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA31BE1F86D00706283 /* mutex.h */; };
 		073E6B051BE1F86D00706283 /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA41BE1F86D00706283 /* pcre.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B061BE1F86D00706283 /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA41BE1F86D00706283 /* pcre.cc */; };
+		073E6B061BE1F86D00706283 /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA41BE1F86D00706283 /* pcre.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B071BE1F86D00706283 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA51BE1F86D00706283 /* pcre.h */; };
 		073E6B081BE1F86D00706283 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA51BE1F86D00706283 /* pcre.h */; };
 		073E6B091BE1F86D00706283 /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA61BE1F86D00706283 /* random.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B0A1BE1F86D00706283 /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA61BE1F86D00706283 /* random.cc */; };
+		073E6B0A1BE1F86D00706283 /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA61BE1F86D00706283 /* random.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B0B1BE1F86D00706283 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA71BE1F86D00706283 /* random.h */; };
 		073E6B0C1BE1F86D00706283 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA71BE1F86D00706283 /* random.h */; };
 		073E6B0D1BE1F86D00706283 /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA81BE1F86D00706283 /* rune.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B0E1BE1F86D00706283 /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA81BE1F86D00706283 /* rune.cc */; };
+		073E6B0E1BE1F86D00706283 /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AA81BE1F86D00706283 /* rune.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B0F1BE1F86D00706283 /* sparse_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA91BE1F86D00706283 /* sparse_array.h */; };
 		073E6B101BE1F86D00706283 /* sparse_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AA91BE1F86D00706283 /* sparse_array.h */; };
 		073E6B111BE1F86D00706283 /* sparse_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AAA1BE1F86D00706283 /* sparse_set.h */; };
 		073E6B121BE1F86D00706283 /* sparse_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AAA1BE1F86D00706283 /* sparse_set.h */; };
 		073E6B131BE1F86D00706283 /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAB1BE1F86D00706283 /* stringpiece.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAB1BE1F86D00706283 /* stringpiece.cc */; };
+		073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAB1BE1F86D00706283 /* stringpiece.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B151BE1F86D00706283 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAC1BE1F86D00706283 /* stringprintf.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAC1BE1F86D00706283 /* stringprintf.cc */; };
+		073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAC1BE1F86D00706283 /* stringprintf.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B171BE1F86D00706283 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAD1BE1F86D00706283 /* strutil.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B181BE1F86D00706283 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAD1BE1F86D00706283 /* strutil.cc */; };
+		073E6B181BE1F86D00706283 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAD1BE1F86D00706283 /* strutil.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B191BE1F86D00706283 /* test.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AAE1BE1F86D00706283 /* test.h */; };
 		073E6B1A1BE1F86D00706283 /* test.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AAE1BE1F86D00706283 /* test.h */; };
 		073E6B1B1BE1F86D00706283 /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAF1BE1F86D00706283 /* thread.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B1C1BE1F86D00706283 /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAF1BE1F86D00706283 /* thread.cc */; };
+		073E6B1C1BE1F86D00706283 /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AAF1BE1F86D00706283 /* thread.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B1D1BE1F86D00706283 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB01BE1F86D00706283 /* thread.h */; };
 		073E6B1E1BE1F86D00706283 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB01BE1F86D00706283 /* thread.h */; };
 		073E6B1F1BE1F86D00706283 /* utf.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB11BE1F86D00706283 /* utf.h */; };
@@ -120,7 +120,7 @@
 		073E6B211BE1F86D00706283 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB21BE1F86D00706283 /* util.h */; };
 		073E6B221BE1F86D00706283 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB21BE1F86D00706283 /* util.h */; };
 		073E6B231BE1F86D00706283 /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AB31BE1F86D00706283 /* valgrind.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
-		073E6B241BE1F86D00706283 /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AB31BE1F86D00706283 /* valgrind.cc */; };
+		073E6B241BE1F86D00706283 /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AB31BE1F86D00706283 /* valgrind.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
 		073E6B251BE1F86D00706283 /* valgrind.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB41BE1F86D00706283 /* valgrind.h */; };
 		073E6B261BE1F86D00706283 /* valgrind.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB41BE1F86D00706283 /* valgrind.h */; };
 		073E6B271BE1F86D00706283 /* variadic_function.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6AB51BE1F86D00706283 /* variadic_function.h */; };
@@ -136,9 +136,7 @@
 		073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */; };
 		073E6B321BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */; };
 		073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B331BE1F8FC00706283 /* NSStringGeometrics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B361BE1F8FC00706283 /* NSStringGeometrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B331BE1F8FC00706283 /* NSStringGeometrics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */; };
-		073E6B381BE1F8FC00706283 /* NSStringGeometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */; };
 		073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B391BE1F9D500706283 /* CharacterExtensions.swift */; };
 		073E6B3B1BE1F9D500706283 /* CharacterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B391BE1F9D500706283 /* CharacterExtensions.swift */; };
 		073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B3C1BE1FA2700706283 /* NSURLExtensions.swift */; };
@@ -167,8 +165,6 @@
 		073E6B6E1BE2040400706283 /* XUTopLeftWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */; };
 		073E6B701BE2040400706283 /* XUTopRightWindowCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073E6B721BE2040400706283 /* XUTopRightWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */; };
-		077A00011BBD101400872A48 /* FCGameCenterSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE591BBD101400872A48 /* FCGameCenterSupport.h */; };
-		077A00031BBD101400872A48 /* FCGameCenterSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE5A1BBD101400872A48 /* FCGameCenterSupport.m */; };
 		077A00051BBD101400872A48 /* FCiPhoneDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */; };
 		077A00071BBD101400872A48 /* FCiPhoneDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE5C1BBD101400872A48 /* FCiPhoneDrawing.m */; };
 		077A00091BBD101400872A48 /* UIColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE5D1BBD101400872A48 /* UIColorAdditions.h */; };
@@ -620,8 +616,6 @@
 		077AFE271BBD101400872A48 /* FCRedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRedView.m; sourceTree = "<group>"; };
 		077AFE461BBD101400872A48 /* FCCSVDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCCSVDocument.h; sourceTree = "<group>"; };
 		077AFE471BBD101400872A48 /* FCCSVDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCCSVDocument.m; sourceTree = "<group>"; };
-		077AFE591BBD101400872A48 /* FCGameCenterSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameCenterSupport.h; sourceTree = "<group>"; };
-		077AFE5A1BBD101400872A48 /* FCGameCenterSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameCenterSupport.m; sourceTree = "<group>"; };
 		077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCiPhoneDrawing.h; sourceTree = "<group>"; };
 		077AFE5C1BBD101400872A48 /* FCiPhoneDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCiPhoneDrawing.m; sourceTree = "<group>"; };
 		077AFE5D1BBD101400872A48 /* UIColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorAdditions.h; sourceTree = "<group>"; };
@@ -1030,8 +1024,6 @@
 		077AFE581BBD101400872A48 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				077AFE591BBD101400872A48 /* FCGameCenterSupport.h */,
-				077AFE5A1BBD101400872A48 /* FCGameCenterSupport.m */,
 				077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */,
 				077AFE5C1BBD101400872A48 /* FCiPhoneDrawing.m */,
 				077AFE5D1BBD101400872A48 /* UIColorAdditions.h */,
@@ -1236,7 +1228,6 @@
 				077A00171BBD101400872A48 /* NSViewLocalizationSupport.h in Headers */,
 				073E6AC41BE1F86D00706283 /* filtered_re2.h in Headers */,
 				077AFF8F1BBD101400872A48 /* XUBlockThreading.h in Headers */,
-				077A00011BBD101400872A48 /* FCGameCenterSupport.h in Headers */,
 				073E6AF01BE1F86D00706283 /* unicode_casefold.h in Headers */,
 				077AFF9D1BBD101400872A48 /* FCDataEntity.h in Headers */,
 				073E6B481BE1FD7E00706283 /* NSData+CommonCryptoSwift.h in Headers */,
@@ -1251,7 +1242,6 @@
 				073E6B2A1BE1F86D00706283 /* walker-inl.h in Headers */,
 				077AFF091BBD101400872A48 /* NSMutableURLRequestAdditions.h in Headers */,
 				073E6B261BE1F86D00706283 /* valgrind.h in Headers */,
-				073E6B361BE1F8FC00706283 /* NSStringGeometrics.h in Headers */,
 				077A00AD1BBD122700872A48 /* UIView+Enclosing.h in Headers */,
 				077AFFA91BBD101400872A48 /* FCLog.h in Headers */,
 				073E6AE21BE1F86D00706283 /* regexp.h in Headers */,
@@ -1564,7 +1554,6 @@
 				077AFEE71BBD101400872A48 /* NSDateAdditions.m in Sources */,
 				077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */,
 				077AFF811BBD101400872A48 /* FCKeychain.m in Sources */,
-				073E6B381BE1F8FC00706283 /* NSStringGeometrics.m in Sources */,
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				077AFF0B1BBD101400872A48 /* NSMutableURLRequestAdditions.m in Sources */,
 				077AFF331BBD101400872A48 /* NSTimerAdditions.m in Sources */,
@@ -1619,7 +1608,6 @@
 				077AFF3F1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */,
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				077AFF971BBD101400872A48 /* XUString.m in Sources */,
-				077A00031BBD101400872A48 /* FCGameCenterSupport.m in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
 				073E6ABE1BE1F86D00706283 /* compile.cc in Sources */,
 				077A00AE1BBD122700872A48 /* UIView+Enclosing.m in Sources */,

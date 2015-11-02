@@ -50,3 +50,17 @@
 
 @end
 
+@interface NSDictionary (XMLAdditions)
+
+/** This creates a NSXMLElement instance from the contents of the dictionary.
+ * This assumes that the dictionary only contains plist-friendly content.
+ *
+ * Requires keys to be strings.
+ *
+ * All arrays require to consist of dictionaries.
+ */
+-(nonnull NSXMLElement *)XMLElementWithName:(nonnull NSString *)elementName;
+
+@end
+
+
