@@ -171,26 +171,6 @@
 		077A00241BBD101400872A48 /* FCHardwareInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE6D1BBD101400872A48 /* FCHardwareInfo.m */; };
 		077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE6E1BBD101400872A48 /* FCMouseTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE6F1BBD101400872A48 /* FCMouseTracker.m */; };
-		077A00941BBD101400872A48 /* FCArrayNotEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00951BBD101400872A48 /* FCArrayNotEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00961BBD101400872A48 /* FCArrayNotEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */; };
-		077A00971BBD101400872A48 /* FCArrayNotEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */; };
-		077A00981BBD101400872A48 /* FCAttributedStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB01BBD101400872A48 /* FCAttributedStringTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00991BBD101400872A48 /* FCAttributedStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB01BBD101400872A48 /* FCAttributedStringTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A009A1BBD101400872A48 /* FCAttributedStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB11BBD101400872A48 /* FCAttributedStringTransformer.m */; };
-		077A009B1BBD101400872A48 /* FCAttributedStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB11BBD101400872A48 /* FCAttributedStringTransformer.m */; };
-		077A009C1BBD101400872A48 /* FCFileSizeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB21BBD101400872A48 /* FCFileSizeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A009D1BBD101400872A48 /* FCFileSizeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB21BBD101400872A48 /* FCFileSizeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A009E1BBD101400872A48 /* FCFileSizeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB31BBD101400872A48 /* FCFileSizeTransformer.m */; };
-		077A009F1BBD101400872A48 /* FCFileSizeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB31BBD101400872A48 /* FCFileSizeTransformer.m */; };
-		077A00A01BBD101400872A48 /* FCTrimmingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB41BBD101400872A48 /* FCTrimmingTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00A11BBD101400872A48 /* FCTrimmingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB41BBD101400872A48 /* FCTrimmingTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00A21BBD101400872A48 /* FCTrimmingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB51BBD101400872A48 /* FCTrimmingTransformer.m */; };
-		077A00A31BBD101400872A48 /* FCTrimmingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB51BBD101400872A48 /* FCTrimmingTransformer.m */; };
-		077A00A41BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB61BBD101400872A48 /* FCZeroBasedIndexTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00A51BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEB61BBD101400872A48 /* FCZeroBasedIndexTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00A61BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB71BBD101400872A48 /* FCZeroBasedIndexTransformer.m */; };
-		077A00A71BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEB71BBD101400872A48 /* FCZeroBasedIndexTransformer.m */; };
 		077A00A91BBD107500872A48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00A81BBD107500872A48 /* Cocoa.framework */; };
 		077A00AA1BBD107F00872A48 /* NSAlertAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDAA1BBD101400872A48 /* NSAlertAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -381,6 +361,11 @@
 		07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */; };
 		07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */; };
 		07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */; };
+		07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */; };
+		07C3FA231BECB2A3008A4200 /* XUAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA221BECB2A3008A4200 /* XUAttributedStringTransformer.swift */; };
+		07C3FA251BECB3C3008A4200 /* XUFileSizeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */; };
+		07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */; };
+		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -593,16 +578,6 @@
 		077AFE6D1BBD101400872A48 /* FCHardwareInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCHardwareInfo.m; sourceTree = "<group>"; };
 		077AFE6E1BBD101400872A48 /* FCMouseTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMouseTracker.h; sourceTree = "<group>"; };
 		077AFE6F1BBD101400872A48 /* FCMouseTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMouseTracker.m; sourceTree = "<group>"; };
-		077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCArrayNotEmpty.h; sourceTree = "<group>"; };
-		077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCArrayNotEmpty.m; sourceTree = "<group>"; };
-		077AFEB01BBD101400872A48 /* FCAttributedStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAttributedStringTransformer.h; sourceTree = "<group>"; };
-		077AFEB11BBD101400872A48 /* FCAttributedStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAttributedStringTransformer.m; sourceTree = "<group>"; };
-		077AFEB21BBD101400872A48 /* FCFileSizeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCFileSizeTransformer.h; sourceTree = "<group>"; };
-		077AFEB31BBD101400872A48 /* FCFileSizeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCFileSizeTransformer.m; sourceTree = "<group>"; };
-		077AFEB41BBD101400872A48 /* FCTrimmingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTrimmingTransformer.h; sourceTree = "<group>"; };
-		077AFEB51BBD101400872A48 /* FCTrimmingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTrimmingTransformer.m; sourceTree = "<group>"; };
-		077AFEB61BBD101400872A48 /* FCZeroBasedIndexTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCZeroBasedIndexTransformer.h; sourceTree = "<group>"; };
-		077AFEB71BBD101400872A48 /* FCZeroBasedIndexTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCZeroBasedIndexTransformer.m; sourceTree = "<group>"; };
 		07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCURLHandlingCenter.swift; sourceTree = "<group>"; };
 		07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCURLConnection.swift; sourceTree = "<group>"; };
 		07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUTimeUtilities.swift; sourceTree = "<group>"; };
@@ -611,6 +586,11 @@
 		07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppNameTextField.swift; sourceTree = "<group>"; };
 		07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPositionedWindowView.swift; sourceTree = "<group>"; };
 		07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSwitchableView.swift; sourceTree = "<group>"; };
+		07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUArrayNotEmptyTransformer.swift; sourceTree = "<group>"; };
+		07C3FA221BECB2A3008A4200 /* XUAttributedStringTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAttributedStringTransformer.swift; sourceTree = "<group>"; };
+		07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFileSizeTransformer.swift; sourceTree = "<group>"; };
+		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
+		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1020,16 +1000,11 @@
 		077AFEAD1BBD101400872A48 /* transformers */ = {
 			isa = PBXGroup;
 			children = (
-				077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */,
-				077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */,
-				077AFEB01BBD101400872A48 /* FCAttributedStringTransformer.h */,
-				077AFEB11BBD101400872A48 /* FCAttributedStringTransformer.m */,
-				077AFEB21BBD101400872A48 /* FCFileSizeTransformer.h */,
-				077AFEB31BBD101400872A48 /* FCFileSizeTransformer.m */,
-				077AFEB41BBD101400872A48 /* FCTrimmingTransformer.h */,
-				077AFEB51BBD101400872A48 /* FCTrimmingTransformer.m */,
-				077AFEB61BBD101400872A48 /* FCZeroBasedIndexTransformer.h */,
-				077AFEB71BBD101400872A48 /* FCZeroBasedIndexTransformer.m */,
+				07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */,
+				07C3FA221BECB2A3008A4200 /* XUAttributedStringTransformer.swift */,
+				07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */,
+				07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */,
+				07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */,
 			);
 			path = transformers;
 			sourceTree = "<group>";
@@ -1044,7 +1019,6 @@
 				073E6B0F1BE1F86D00706283 /* sparse_array.h in Headers */,
 				073E6B031BE1F86D00706283 /* mutex.h in Headers */,
 				077AFEEC1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
-				077A00941BBD101400872A48 /* FCArrayNotEmpty.h in Headers */,
 				073E6B251BE1F86D00706283 /* valgrind.h in Headers */,
 				077A00161BBD101400872A48 /* NSViewLocalizationSupport.h in Headers */,
 				077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */,
@@ -1069,7 +1043,6 @@
 				077AFF081BBD101400872A48 /* NSMutableURLRequestAdditions.h in Headers */,
 				073E6AFB1BE1F86D00706283 /* benchmark.h in Headers */,
 				077AFFA81BBD101400872A48 /* FCLog.h in Headers */,
-				077A00A41BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */,
 				077AFEF01BBD101400872A48 /* NSEventAdditions.h in Headers */,
 				077AFF481BBD101400872A48 /* NSViewAdditions.h in Headers */,
 				073E6B2D1BE1F86D00706283 /* XURegex.h in Headers */,
@@ -1094,7 +1067,6 @@
 				073E6AC31BE1F86D00706283 /* filtered_re2.h in Headers */,
 				073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */,
 				077AFF661BBD101400872A48 /* FCAppStoreMenuCleaner.h in Headers */,
-				077A00A01BBD101400872A48 /* FCTrimmingTransformer.h in Headers */,
 				077A00B11BBD335B00872A48 /* FCInAppPurchaseManager.h in Headers */,
 				077AFF821BBD101400872A48 /* FCSubclassCollector.h in Headers */,
 				077A00121BBD101400872A48 /* NSMenuLocalizationSupport.h in Headers */,
@@ -1104,7 +1076,6 @@
 				077AFF001BBD101400872A48 /* NSLockAdditions.h in Headers */,
 				077AFED01BBD101400872A48 /* NSButtonAdditions.h in Headers */,
 				077A00AA1BBD107F00872A48 /* NSAlertAdditions.h in Headers */,
-				077A00981BBD101400872A48 /* FCAttributedStringTransformer.h in Headers */,
 				077AFEE81BBD101400872A48 /* NSDecimalNumberAdditions.h in Headers */,
 				077AFF281BBD101400872A48 /* NSTabViewAdditions.h in Headers */,
 				077AFF1C1BBD101400872A48 /* NSStringAdditions.h in Headers */,
@@ -1129,7 +1100,6 @@
 				077AFF941BBD101400872A48 /* XUString.h in Headers */,
 				073E6AF91BE1F86D00706283 /* atomicops.h in Headers */,
 				077AFEE01BBD101400872A48 /* NSDataAdditions.h in Headers */,
-				077A009C1BBD101400872A48 /* FCFileSizeTransformer.h in Headers */,
 				077AFEC01BBD101400872A48 /* NSArrayAdditions.h in Headers */,
 				073E6B211BE1F86D00706283 /* util.h in Headers */,
 				073E6AD11BE1F86D00706283 /* prefilter.h in Headers */,
@@ -1145,7 +1115,6 @@
 			files = (
 				073E6AF81BE1F86D00706283 /* arena.h in Headers */,
 				077AFEED1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
-				077A00951BBD101400872A48 /* FCArrayNotEmpty.h in Headers */,
 				073E6B121BE1F86D00706283 /* sparse_set.h in Headers */,
 				077A00B21BBD335B00872A48 /* FCInAppPurchaseManager.h in Headers */,
 				077A00171BBD101400872A48 /* NSViewLocalizationSupport.h in Headers */,
@@ -1168,7 +1137,6 @@
 				077A00AD1BBD122700872A48 /* UIView+Enclosing.h in Headers */,
 				077AFFA91BBD101400872A48 /* FCLog.h in Headers */,
 				073E6AE21BE1F86D00706283 /* regexp.h in Headers */,
-				077A00A51BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */,
 				073E6AFC1BE1F86D00706283 /* benchmark.h in Headers */,
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFFA11BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
@@ -1182,7 +1150,6 @@
 				077AFEC51BBD101400872A48 /* NSAttributedStringAdditions.h in Headers */,
 				077AFF8B1BBD101400872A48 /* XUAbstract.h in Headers */,
 				077AFFE31BBD101400872A48 /* FCCSVDocument.h in Headers */,
-				077A00A11BBD101400872A48 /* FCTrimmingTransformer.h in Headers */,
 				073E6B221BE1F86D00706283 /* util.h in Headers */,
 				077AFF831BBD101400872A48 /* FCSubclassCollector.h in Headers */,
 				077A00051BBD101400872A48 /* FCiPhoneDrawing.h in Headers */,
@@ -1193,7 +1160,6 @@
 				077A00091BBD101400872A48 /* UIColorAdditions.h in Headers */,
 				077AFF871BBD101400872A48 /* iOSCommon.h in Headers */,
 				077A000D1BBD101400872A48 /* UIImageAdditions.h in Headers */,
-				077A00991BBD101400872A48 /* FCAttributedStringTransformer.h in Headers */,
 				073E6B2E1BE1F86D00706283 /* XURegex.h in Headers */,
 				077AFEE91BBD101400872A48 /* NSDecimalNumberAdditions.h in Headers */,
 				073E6B281BE1F86D00706283 /* variadic_function.h in Headers */,
@@ -1218,7 +1184,6 @@
 				077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */,
 				073E6AEA1BE1F86D00706283 /* stringpiece.h in Headers */,
 				073E6ADE1BE1F86D00706283 /* re2.h in Headers */,
-				077A009D1BBD101400872A48 /* FCFileSizeTransformer.h in Headers */,
 				077AFEC11BBD101400872A48 /* NSArrayAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1323,13 +1288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00A21BBD101400872A48 /* FCTrimmingTransformer.m in Sources */,
 				077A00B31BBD335B00872A48 /* FCInAppPurchaseManager.m in Sources */,
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */,
 				077A00181BBD101400872A48 /* NSViewLocalizationSupport.m in Sources */,
 				077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */,
+				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				077A001C1BBD101400872A48 /* NSWindowLocalizationSupport.m in Sources */,
@@ -1345,9 +1310,9 @@
 				073E6AE31BE1F86D00706283 /* set.cc in Sources */,
 				073E6B051BE1F86D00706283 /* pcre.cc in Sources */,
 				077AFEEA1BBD101400872A48 /* NSDecimalNumberAdditions.m in Sources */,
+				07C3FA251BECB3C3008A4200 /* XUFileSizeTransformer.swift in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
 				077AFF2E1BBD101400872A48 /* NSTextFieldAdditions.m in Sources */,
-				077A00961BBD101400872A48 /* FCArrayNotEmpty.m in Sources */,
 				077AFED61BBD101400872A48 /* NSButtonCellAdditions.m in Sources */,
 				077AFF021BBD101400872A48 /* NSLockAdditions.m in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
@@ -1364,6 +1329,7 @@
 				077AFECA1BBD101400872A48 /* NSBezierPathAdditions.m in Sources */,
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				077AFFAE1BBD101400872A48 /* FCRedView.m in Sources */,
+				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				077AFF0A1BBD101400872A48 /* NSMutableURLRequestAdditions.m in Sources */,
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
@@ -1386,6 +1352,7 @@
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				077AFFA61BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
 				073E6B151BE1F86D00706283 /* stringprintf.cc in Sources */,
+				07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				077AFF681BBD101400872A48 /* FCAppStoreMenuCleaner.m in Sources */,
 				077AFEDA1BBD101400872A48 /* NSColorAdditions.m in Sources */,
@@ -1393,7 +1360,7 @@
 				073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */,
 				077AFF7C1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */,
-				077A009E1BBD101400872A48 /* FCFileSizeTransformer.m in Sources */,
+				07C3FA231BECB2A3008A4200 /* XUAttributedStringTransformer.swift in Sources */,
 				077AFEFA1BBD101400872A48 /* NSHTTPURLResponse.m in Sources */,
 				073E6AF51BE1F86D00706283 /* arena.cc in Sources */,
 				077AFF841BBD101400872A48 /* FCSubclassCollector.m in Sources */,
@@ -1404,7 +1371,6 @@
 				077AFF4E1BBD101400872A48 /* NSWindow-NoodleEffects.m in Sources */,
 				077AFF8C1BBD101400872A48 /* XUAbstract.swift in Sources */,
 				077AFF561BBD101400872A48 /* NSXMLAdditions.m in Sources */,
-				077A009A1BBD101400872A48 /* FCAttributedStringTransformer.m in Sources */,
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				077AFECE1BBD101400872A48 /* NSBundleAdditions.m in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
@@ -1435,7 +1401,6 @@
 				073E6B401BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				077AFF921BBD101400872A48 /* XUPowerAssertion.m in Sources */,
 				07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */,
-				077A00A61BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1444,7 +1409,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00A31BBD101400872A48 /* FCTrimmingTransformer.m in Sources */,
 				073E6AE01BE1F86D00706283 /* regexp.cc in Sources */,
 				077AFEC31BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				077AFFE51BBD101400872A48 /* FCCSVDocument.m in Sources */,
@@ -1456,7 +1420,6 @@
 				077AFEEB1BBD101400872A48 /* NSDecimalNumberAdditions.m in Sources */,
 				073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */,
 				073E6ACE1BE1F86D00706283 /* perl_groups.cc in Sources */,
-				077A00971BBD101400872A48 /* FCArrayNotEmpty.m in Sources */,
 				077AFF031BBD101400872A48 /* NSLockAdditions.m in Sources */,
 				073E6ADC1BE1F86D00706283 /* re2.cc in Sources */,
 				073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */,
@@ -1490,7 +1453,6 @@
 				073E6B3E1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				073E6AE41BE1F86D00706283 /* set.cc in Sources */,
 				077AFF7D1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */,
-				077A009F1BBD101400872A48 /* FCFileSizeTransformer.m in Sources */,
 				077AFEFB1BBD101400872A48 /* NSHTTPURLResponse.m in Sources */,
 				073E6B241BE1F86D00706283 /* valgrind.cc in Sources */,
 				077AFF851BBD101400872A48 /* FCSubclassCollector.m in Sources */,
@@ -1505,7 +1467,6 @@
 				077AFF8D1BBD101400872A48 /* XUAbstract.swift in Sources */,
 				073E6ACA1BE1F86D00706283 /* onepass.cc in Sources */,
 				073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
-				077A009B1BBD101400872A48 /* FCAttributedStringTransformer.m in Sources */,
 				073E6B3B1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
 				077AFECF1BBD101400872A48 /* NSBundleAdditions.m in Sources */,
 				073E6AE81BE1F86D00706283 /* simplify.cc in Sources */,
@@ -1526,7 +1487,6 @@
 				077A00AE1BBD122700872A48 /* UIView+Enclosing.m in Sources */,
 				077AFF171BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */,
 				073E6B4A1BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
-				077A00A71BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */,
 				073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				073E6B321BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
 				073E6AF61BE1F86D00706283 /* arena.cc in Sources */,

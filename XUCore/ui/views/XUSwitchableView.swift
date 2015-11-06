@@ -65,7 +65,10 @@ public class XUSwitchableView: NSView {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_frameChanged:", name: NSViewFrameDidChangeNotification, object: self)
 	}
 	public required init?(coder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
+		super.init(coder: coder)
+		
+		self.postsFrameChangedNotifications = true
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_frameChanged:", name: NSViewFrameDidChangeNotification, object: self)
 	}
 	
 	/// Switches to a new view in direction specified. Doesn't adjust window size.
@@ -174,7 +177,7 @@ public class XUSwitchableView: NSView {
 @objc(FCSwitchableView) public class FCSwitchableView: XUSwitchableView {
 	
 	public override func awakeFromNib() {
-		FCLog("WARNING: Depreacated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+		FCLog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
 		
 		super.awakeFromNib()
 	}

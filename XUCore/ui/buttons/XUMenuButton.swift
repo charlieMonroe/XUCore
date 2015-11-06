@@ -38,7 +38,7 @@ public class XUMenuButton: NSButton {
 @objc(FCMenuButton) public class FCMenuButton: XUMenuButton {
 	
 	public override func awakeFromNib() {
-		FCLog("WARNING: Depreacated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+		FCLog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
 		
 		super.awakeFromNib()
 	}

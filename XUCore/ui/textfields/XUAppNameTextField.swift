@@ -27,7 +27,7 @@ public class XUAppNameTextField: NSTextField {
 @objc(FCAppNameTextField) public class FCAppNameTextField: XUAppNameTextField {
 	
 	public override func awakeFromNib() {
-		FCLog("WARNING: Depreacated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+		FCLog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
 		
 		super.awakeFromNib()
 	}

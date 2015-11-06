@@ -92,10 +92,3 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Regex. */
 #import "XURegex.h"
-
-/** Transformers. */
-#import "FCArrayNotEmpty.h"
-#import "FCAttributedStringTransformer.h"
-#import "FCFileSizeTransformer.h"
-#import "FCTrimmingTransformer.h"
-#import "FCZeroBasedIndexTransformer.h"
