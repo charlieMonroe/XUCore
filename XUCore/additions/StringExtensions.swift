@@ -47,6 +47,10 @@ public extension String {
 		return (self as NSString).JSDecodedString()
 	}
 	
+	public var lines: [String] {
+		return self.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+	}
+	
 	/// Computes MD5 digest of self
 	public var MD5Digest: String {
 		return (self as NSString).MD5Digest()

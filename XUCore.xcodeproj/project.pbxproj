@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		072AFA2B1BE2155900DBCB0C /* FCAppNameTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		072AFA2C1BE2155900DBCB0C /* FCAppNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */; };
-		072AFA311BE2167E00DBCB0C /* FCMenuButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		072AFA321BE2167E00DBCB0C /* FCMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AFA301BE2167E00DBCB0C /* FCMenuButton.m */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -155,16 +151,6 @@
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B521BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
 		073E6B531BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
-		073E6B601BE2040400706283 /* FCSwitchableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B561BE2040400706283 /* FCSwitchableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B621BE2040400706283 /* FCSwitchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B571BE2040400706283 /* FCSwitchableView.m */; };
-		073E6B641BE2040400706283 /* XUPositionedWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B581BE2040400706283 /* XUPositionedWindowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B661BE2040400706283 /* XUPositionedWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B591BE2040400706283 /* XUPositionedWindowView.m */; };
-		073E6B681BE2040400706283 /* XUTopCenterWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B6A1BE2040400706283 /* XUTopCenterWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */; };
-		073E6B6C1BE2040400706283 /* XUTopLeftWindowCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B6E1BE2040400706283 /* XUTopLeftWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */; };
-		073E6B701BE2040400706283 /* XUTopRightWindowCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B721BE2040400706283 /* XUTopRightWindowCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */; };
 		077A00051BBD101400872A48 /* FCiPhoneDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */; };
 		077A00071BBD101400872A48 /* FCiPhoneDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE5C1BBD101400872A48 /* FCiPhoneDrawing.m */; };
 		077A00091BBD101400872A48 /* UIColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE5D1BBD101400872A48 /* UIColorAdditions.h */; };
@@ -185,26 +171,6 @@
 		077A00241BBD101400872A48 /* FCHardwareInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE6D1BBD101400872A48 /* FCHardwareInfo.m */; };
 		077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE6E1BBD101400872A48 /* FCMouseTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE6F1BBD101400872A48 /* FCMouseTracker.m */; };
-		077A002A1BBD101400872A48 /* FCRandomGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE701BBD101400872A48 /* FCRandomGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A002B1BBD101400872A48 /* FCRandomGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE701BBD101400872A48 /* FCRandomGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A002C1BBD101400872A48 /* FCRandomGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE711BBD101400872A48 /* FCRandomGenerator.m */; };
-		077A002D1BBD101400872A48 /* FCRandomGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE711BBD101400872A48 /* FCRandomGenerator.m */; };
-		077A002E1BBD101400872A48 /* FCTimeUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE721BBD101400872A48 /* FCTimeUtilities.c */; };
-		077A002F1BBD101400872A48 /* FCTimeUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE721BBD101400872A48 /* FCTimeUtilities.c */; };
-		077A00301BBD101400872A48 /* FCTimeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE731BBD101400872A48 /* FCTimeUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00311BBD101400872A48 /* FCTimeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE731BBD101400872A48 /* FCTimeUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00321BBD101400872A48 /* FCUniqueStringManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE741BBD101400872A48 /* FCUniqueStringManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00331BBD101400872A48 /* FCUniqueStringManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE741BBD101400872A48 /* FCUniqueStringManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00341BBD101400872A48 /* FCUniqueStringManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE751BBD101400872A48 /* FCUniqueStringManager.m */; };
-		077A00351BBD101400872A48 /* FCUniqueStringManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE751BBD101400872A48 /* FCUniqueStringManager.m */; };
-		077A00361BBD101400872A48 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE761BBD101400872A48 /* md5.c */; };
-		077A00371BBD101400872A48 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE761BBD101400872A48 /* md5.c */; };
-		077A00381BBD101400872A48 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE771BBD101400872A48 /* md5.h */; };
-		077A00391BBD101400872A48 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE771BBD101400872A48 /* md5.h */; };
-		077A00481BBD101400872A48 /* FCCURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE801BBD101400872A48 /* FCCURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A004A1BBD101400872A48 /* FCCURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE811BBD101400872A48 /* FCCURLConnection.m */; };
-		077A004C1BBD101400872A48 /* FCURLHandlingCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE821BBD101400872A48 /* FCURLHandlingCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A004E1BBD101400872A48 /* FCURLHandlingCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE831BBD101400872A48 /* FCURLHandlingCenter.m */; };
 		077A00941BBD101400872A48 /* FCArrayNotEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00951BBD101400872A48 /* FCArrayNotEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00961BBD101400872A48 /* FCArrayNotEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */; };
@@ -407,13 +373,17 @@
 		077AFFE31BBD101400872A48 /* FCCSVDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE461BBD101400872A48 /* FCCSVDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE471BBD101400872A48 /* FCCSVDocument.m */; };
 		077AFFE51BBD101400872A48 /* FCCSVDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE471BBD101400872A48 /* FCCSVDocument.m */; };
+		07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */; };
+		07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */; };
+		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
+		07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */; };
+		07C3FA121BEBB619008A4200 /* XUMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA111BEBB619008A4200 /* XUMenuButton.swift */; };
+		07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */; };
+		07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */; };
+		07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAppNameTextField.h; sourceTree = "<group>"; };
-		072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAppNameTextField.m; sourceTree = "<group>"; };
-		072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMenuButton.h; sourceTree = "<group>"; };
-		072AFA301BE2167E00DBCB0C /* FCMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMenuButton.m; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
@@ -487,16 +457,6 @@
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* FCLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCLog.swift; sourceTree = "<group>"; };
-		073E6B561BE2040400706283 /* FCSwitchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSwitchableView.h; sourceTree = "<group>"; };
-		073E6B571BE2040400706283 /* FCSwitchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSwitchableView.m; sourceTree = "<group>"; };
-		073E6B581BE2040400706283 /* XUPositionedWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUPositionedWindowView.h; sourceTree = "<group>"; };
-		073E6B591BE2040400706283 /* XUPositionedWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUPositionedWindowView.m; sourceTree = "<group>"; };
-		073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopCenterWindowView.h; sourceTree = "<group>"; };
-		073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopCenterWindowView.m; sourceTree = "<group>"; };
-		073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopLeftWindowCornerView.h; sourceTree = "<group>"; };
-		073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopLeftWindowCornerView.m; sourceTree = "<group>"; };
-		073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUTopRightWindowCornerView.h; sourceTree = "<group>"; };
-		073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUTopRightWindowCornerView.m; sourceTree = "<group>"; };
 		077A00A81BBD107500872A48 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		077A00AF1BBD335B00872A48 /* FCInAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCInAppPurchaseManager.h; sourceTree = "<group>"; };
 		077A00B01BBD335B00872A48 /* FCInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCInAppPurchaseManager.m; sourceTree = "<group>"; };
@@ -633,18 +593,6 @@
 		077AFE6D1BBD101400872A48 /* FCHardwareInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCHardwareInfo.m; sourceTree = "<group>"; };
 		077AFE6E1BBD101400872A48 /* FCMouseTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMouseTracker.h; sourceTree = "<group>"; };
 		077AFE6F1BBD101400872A48 /* FCMouseTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMouseTracker.m; sourceTree = "<group>"; };
-		077AFE701BBD101400872A48 /* FCRandomGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCRandomGenerator.h; sourceTree = "<group>"; };
-		077AFE711BBD101400872A48 /* FCRandomGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRandomGenerator.m; sourceTree = "<group>"; };
-		077AFE721BBD101400872A48 /* FCTimeUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FCTimeUtilities.c; sourceTree = "<group>"; };
-		077AFE731BBD101400872A48 /* FCTimeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTimeUtilities.h; sourceTree = "<group>"; };
-		077AFE741BBD101400872A48 /* FCUniqueStringManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUniqueStringManager.h; sourceTree = "<group>"; };
-		077AFE751BBD101400872A48 /* FCUniqueStringManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUniqueStringManager.m; sourceTree = "<group>"; };
-		077AFE761BBD101400872A48 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
-		077AFE771BBD101400872A48 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		077AFE801BBD101400872A48 /* FCCURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCCURLConnection.h; sourceTree = "<group>"; };
-		077AFE811BBD101400872A48 /* FCCURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCCURLConnection.m; sourceTree = "<group>"; };
-		077AFE821BBD101400872A48 /* FCURLHandlingCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCURLHandlingCenter.h; sourceTree = "<group>"; };
-		077AFE831BBD101400872A48 /* FCURLHandlingCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCURLHandlingCenter.m; sourceTree = "<group>"; };
 		077AFEAE1BBD101400872A48 /* FCArrayNotEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCArrayNotEmpty.h; sourceTree = "<group>"; };
 		077AFEAF1BBD101400872A48 /* FCArrayNotEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCArrayNotEmpty.m; sourceTree = "<group>"; };
 		077AFEB01BBD101400872A48 /* FCAttributedStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAttributedStringTransformer.h; sourceTree = "<group>"; };
@@ -655,6 +603,14 @@
 		077AFEB51BBD101400872A48 /* FCTrimmingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTrimmingTransformer.m; sourceTree = "<group>"; };
 		077AFEB61BBD101400872A48 /* FCZeroBasedIndexTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCZeroBasedIndexTransformer.h; sourceTree = "<group>"; };
 		077AFEB71BBD101400872A48 /* FCZeroBasedIndexTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCZeroBasedIndexTransformer.m; sourceTree = "<group>"; };
+		07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCURLHandlingCenter.swift; sourceTree = "<group>"; };
+		07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCURLConnection.swift; sourceTree = "<group>"; };
+		07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUTimeUtilities.swift; sourceTree = "<group>"; };
+		07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURandomGenerator.swift; sourceTree = "<group>"; };
+		07C3FA111BEBB619008A4200 /* XUMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMenuButton.swift; sourceTree = "<group>"; };
+		07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppNameTextField.swift; sourceTree = "<group>"; };
+		07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPositionedWindowView.swift; sourceTree = "<group>"; };
+		07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSwitchableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,8 +635,7 @@
 		072AFA281BE2155900DBCB0C /* textfields */ = {
 			isa = PBXGroup;
 			children = (
-				072AFA291BE2155900DBCB0C /* FCAppNameTextField.h */,
-				072AFA2A1BE2155900DBCB0C /* FCAppNameTextField.m */,
+				07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */,
 			);
 			path = textfields;
 			sourceTree = "<group>";
@@ -688,8 +643,7 @@
 		072AFA2E1BE2167E00DBCB0C /* buttons */ = {
 			isa = PBXGroup;
 			children = (
-				072AFA2F1BE2167E00DBCB0C /* FCMenuButton.h */,
-				072AFA301BE2167E00DBCB0C /* FCMenuButton.m */,
+				07C3FA111BEBB619008A4200 /* XUMenuButton.swift */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -791,16 +745,8 @@
 		073E6B551BE203E800706283 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				073E6B561BE2040400706283 /* FCSwitchableView.h */,
-				073E6B571BE2040400706283 /* FCSwitchableView.m */,
-				073E6B581BE2040400706283 /* XUPositionedWindowView.h */,
-				073E6B591BE2040400706283 /* XUPositionedWindowView.m */,
-				073E6B5A1BE2040400706283 /* XUTopCenterWindowView.h */,
-				073E6B5B1BE2040400706283 /* XUTopCenterWindowView.m */,
-				073E6B5C1BE2040400706283 /* XUTopLeftWindowCornerView.h */,
-				073E6B5D1BE2040400706283 /* XUTopLeftWindowCornerView.m */,
-				073E6B5E1BE2040400706283 /* XUTopRightWindowCornerView.h */,
-				073E6B5F1BE2040400706283 /* XUTopRightWindowCornerView.m */,
+				07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */,
+				07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1056,14 +1002,8 @@
 				077AFE6D1BBD101400872A48 /* FCHardwareInfo.m */,
 				077AFE6E1BBD101400872A48 /* FCMouseTracker.h */,
 				077AFE6F1BBD101400872A48 /* FCMouseTracker.m */,
-				077AFE701BBD101400872A48 /* FCRandomGenerator.h */,
-				077AFE711BBD101400872A48 /* FCRandomGenerator.m */,
-				077AFE731BBD101400872A48 /* FCTimeUtilities.h */,
-				077AFE721BBD101400872A48 /* FCTimeUtilities.c */,
-				077AFE741BBD101400872A48 /* FCUniqueStringManager.h */,
-				077AFE751BBD101400872A48 /* FCUniqueStringManager.m */,
-				077AFE761BBD101400872A48 /* md5.c */,
-				077AFE771BBD101400872A48 /* md5.h */,
+				07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */,
+				07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -1071,10 +1011,8 @@
 		077AFE781BBD101400872A48 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				077AFE801BBD101400872A48 /* FCCURLConnection.h */,
-				077AFE811BBD101400872A48 /* FCCURLConnection.m */,
-				077AFE821BBD101400872A48 /* FCURLHandlingCenter.h */,
-				077AFE831BBD101400872A48 /* FCURLHandlingCenter.m */,
+				07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */,
+				07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -1108,8 +1046,6 @@
 				077AFEEC1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
 				077A00941BBD101400872A48 /* FCArrayNotEmpty.h in Headers */,
 				073E6B251BE1F86D00706283 /* valgrind.h in Headers */,
-				077A002A1BBD101400872A48 /* FCRandomGenerator.h in Headers */,
-				077A00321BBD101400872A48 /* FCUniqueStringManager.h in Headers */,
 				077A00161BBD101400872A48 /* NSViewLocalizationSupport.h in Headers */,
 				077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */,
 				073E6B071BE1F86D00706283 /* pcre.h in Headers */,
@@ -1123,9 +1059,7 @@
 				073E6B0B1BE1F86D00706283 /* random.h in Headers */,
 				077AFECC1BBD101400872A48 /* NSBundleAdditions.h in Headers */,
 				073E6AE11BE1F86D00706283 /* regexp.h in Headers */,
-				073E6B6C1BE2040400706283 /* XUTopLeftWindowCornerView.h in Headers */,
 				077AFFA41BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */,
-				072AFA2B1BE2155900DBCB0C /* FCAppNameTextField.h in Headers */,
 				077A001A1BBD101400872A48 /* NSWindowLocalizationSupport.h in Headers */,
 				077AFF7A1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */,
 				073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */,
@@ -1133,19 +1067,15 @@
 				077AFF0C1BBD101400872A48 /* NSNotificationAdditions.h in Headers */,
 				077AFF4C1BBD101400872A48 /* NSWindow-NoodleEffects.h in Headers */,
 				077AFF081BBD101400872A48 /* NSMutableURLRequestAdditions.h in Headers */,
-				072AFA311BE2167E00DBCB0C /* FCMenuButton.h in Headers */,
 				073E6AFB1BE1F86D00706283 /* benchmark.h in Headers */,
 				077AFFA81BBD101400872A48 /* FCLog.h in Headers */,
-				073E6B641BE2040400706283 /* XUPositionedWindowView.h in Headers */,
 				077A00A41BBD101400872A48 /* FCZeroBasedIndexTransformer.h in Headers */,
 				077AFEF01BBD101400872A48 /* NSEventAdditions.h in Headers */,
 				077AFF481BBD101400872A48 /* NSViewAdditions.h in Headers */,
 				073E6B2D1BE1F86D00706283 /* XURegex.h in Headers */,
 				077AFFA01BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
 				077AFEC81BBD101400872A48 /* NSBezierPathAdditions.h in Headers */,
-				077A00381BBD101400872A48 /* md5.h in Headers */,
 				077AFD931BBD0E5300872A48 /* XUCore.h in Headers */,
-				077A00301BBD101400872A48 /* FCTimeUtilities.h in Headers */,
 				077A00101BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
 				073E6B1D1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B291BE1F86D00706283 /* walker-inl.h in Headers */,
@@ -1161,9 +1091,7 @@
 				073E6B271BE1F86D00706283 /* variadic_function.h in Headers */,
 				077AFF181BBD101400872A48 /* NSShadowAdditions.h in Headers */,
 				073E6ADD1BE1F86D00706283 /* re2.h in Headers */,
-				077A00481BBD101400872A48 /* FCCURLConnection.h in Headers */,
 				073E6AC31BE1F86D00706283 /* filtered_re2.h in Headers */,
-				073E6B681BE2040400706283 /* XUTopCenterWindowView.h in Headers */,
 				073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */,
 				077AFF661BBD101400872A48 /* FCAppStoreMenuCleaner.h in Headers */,
 				077A00A01BBD101400872A48 /* FCTrimmingTransformer.h in Headers */,
@@ -1188,11 +1116,9 @@
 				077AFF041BBD101400872A48 /* NSMutableDictionaryAdditions.h in Headers */,
 				077AFF981BBD101400872A48 /* FCContextHolder.h in Headers */,
 				077AFF301BBD101400872A48 /* NSTimerAdditions.h in Headers */,
-				077A004C1BBD101400872A48 /* FCURLHandlingCenter.h in Headers */,
 				077AFF2C1BBD101400872A48 /* NSTextFieldAdditions.h in Headers */,
 				073E6B111BE1F86D00706283 /* sparse_set.h in Headers */,
 				077AFED81BBD101400872A48 /* NSColorAdditions.h in Headers */,
-				073E6B601BE2040400706283 /* FCSwitchableView.h in Headers */,
 				073E6AE51BE1F86D00706283 /* set.h in Headers */,
 				077AFF3C1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */,
 				073E6B1F1BE1F86D00706283 /* utf.h in Headers */,
@@ -1209,7 +1135,6 @@
 				073E6AD11BE1F86D00706283 /* prefilter.h in Headers */,
 				073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */,
 				073E6B011BE1F86D00706283 /* logging.h in Headers */,
-				073E6B701BE2040400706283 /* XUTopRightWindowCornerView.h in Headers */,
 				077AFF541BBD101400872A48 /* NSXMLAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1222,9 +1147,7 @@
 				077AFEED1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
 				077A00951BBD101400872A48 /* FCArrayNotEmpty.h in Headers */,
 				073E6B121BE1F86D00706283 /* sparse_set.h in Headers */,
-				077A002B1BBD101400872A48 /* FCRandomGenerator.h in Headers */,
 				077A00B21BBD335B00872A48 /* FCInAppPurchaseManager.h in Headers */,
-				077A00331BBD101400872A48 /* FCUniqueStringManager.h in Headers */,
 				077A00171BBD101400872A48 /* NSViewLocalizationSupport.h in Headers */,
 				073E6AC41BE1F86D00706283 /* filtered_re2.h in Headers */,
 				077AFF8F1BBD101400872A48 /* XUBlockThreading.h in Headers */,
@@ -1249,9 +1172,7 @@
 				073E6AFC1BE1F86D00706283 /* benchmark.h in Headers */,
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFFA11BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
-				077A00391BBD101400872A48 /* md5.h in Headers */,
 				077AFDA21BBD0ED200872A48 /* XUCoreMobile.h in Headers */,
-				077A00311BBD101400872A48 /* FCTimeUtilities.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B1A1BE1F86D00706283 /* test.h in Headers */,
 				077A00111BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
@@ -1406,7 +1327,6 @@
 				077A00B31BBD335B00872A48 /* FCInAppPurchaseManager.m in Sources */,
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
-				073E6B621BE2040400706283 /* FCSwitchableView.m in Sources */,
 				077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */,
 				077A00181BBD101400872A48 /* NSViewLocalizationSupport.m in Sources */,
 				077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */,
@@ -1415,7 +1335,6 @@
 				077A001C1BBD101400872A48 /* NSWindowLocalizationSupport.m in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
-				073E6B6E1BE2040400706283 /* XUTopLeftWindowCornerView.m in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
 				073E6B1B1BE1F86D00706283 /* thread.cc in Sources */,
 				077AFF2A1BBD101400872A48 /* NSTabViewAdditions.m in Sources */,
@@ -1428,20 +1347,15 @@
 				077AFEEA1BBD101400872A48 /* NSDecimalNumberAdditions.m in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
 				077AFF2E1BBD101400872A48 /* NSTextFieldAdditions.m in Sources */,
-				072AFA321BE2167E00DBCB0C /* FCMenuButton.m in Sources */,
 				077A00961BBD101400872A48 /* FCArrayNotEmpty.m in Sources */,
 				077AFED61BBD101400872A48 /* NSButtonCellAdditions.m in Sources */,
 				077AFF021BBD101400872A48 /* NSLockAdditions.m in Sources */,
-				073E6B721BE2040400706283 /* XUTopRightWindowCornerView.m in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
+				07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */,
 				077AFED21BBD101400872A48 /* NSButtonAdditions.m in Sources */,
-				077A00341BBD101400872A48 /* FCUniqueStringManager.m in Sources */,
-				073E6B6A1BE2040400706283 /* XUTopCenterWindowView.m in Sources */,
 				073E6B231BE1F86D00706283 /* valgrind.cc in Sources */,
 				077AFF9E1BBD101400872A48 /* FCDataEntity.m in Sources */,
-				077A004A1BBD101400872A48 /* FCCURLConnection.m in Sources */,
 				077A00241BBD101400872A48 /* FCHardwareInfo.m in Sources */,
-				077A002C1BBD101400872A48 /* FCRandomGenerator.m in Sources */,
 				077AFF421BBD101400872A48 /* NSUserDefaultsAdditions.m in Sources */,
 				077AFEE61BBD101400872A48 /* NSDateAdditions.m in Sources */,
 				073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
@@ -1451,8 +1365,10 @@
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				077AFFAE1BBD101400872A48 /* FCRedView.m in Sources */,
 				077AFF0A1BBD101400872A48 /* NSMutableURLRequestAdditions.m in Sources */,
+				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				073E6ADB1BE1F86D00706283 /* re2.cc in Sources */,
+				07C3FA121BEBB619008A4200 /* XUMenuButton.swift in Sources */,
 				077AFF361BBD101400872A48 /* NSToolbarAdditions.m in Sources */,
 				077AFF321BBD101400872A48 /* NSTimerAdditions.m in Sources */,
 				077A00141BBD101400872A48 /* NSMenuLocalizationSupport.m in Sources */,
@@ -1464,11 +1380,11 @@
 				077AFEFE1BBD101400872A48 /* NSImageAdditions.m in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
+				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
 				077AFF061BBD101400872A48 /* NSMutableDictionaryAdditions.m in Sources */,
 				073E6AF11BE1F86D00706283 /* unicode_groups.cc in Sources */,
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				077AFFA61BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
-				077A004E1BBD101400872A48 /* FCURLHandlingCenter.m in Sources */,
 				073E6B151BE1F86D00706283 /* stringprintf.cc in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				077AFF681BBD101400872A48 /* FCAppStoreMenuCleaner.m in Sources */,
@@ -1485,7 +1401,6 @@
 				077AFF3A1BBD101400872A48 /* NSURL+NSURLAdditions.m in Sources */,
 				077AFEBE1BBD101400872A48 /* NSAlertAdditions.m in Sources */,
 				077AFF1A1BBD101400872A48 /* NSShadowAdditions.m in Sources */,
-				077A002E1BBD101400872A48 /* FCTimeUtilities.c in Sources */,
 				077AFF4E1BBD101400872A48 /* NSWindow-NoodleEffects.m in Sources */,
 				077AFF8C1BBD101400872A48 /* XUAbstract.swift in Sources */,
 				077AFF561BBD101400872A48 /* NSXMLAdditions.m in Sources */,
@@ -1496,17 +1411,17 @@
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
 				077AFEEE1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,
 				077AFF781BBD101400872A48 /* FCApplication.m in Sources */,
+				07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */,
 				077AFF261BBD101400872A48 /* NSTableColumnAdditions.m in Sources */,
 				073E6AC71BE1F86D00706283 /* nfa.cc in Sources */,
 				077AFF0E1BBD101400872A48 /* NSNotificationAdditions.m in Sources */,
 				073E6ACD1BE1F86D00706283 /* perl_groups.cc in Sources */,
 				073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */,
-				073E6B661BE2040400706283 /* XUPositionedWindowView.m in Sources */,
-				072AFA2C1BE2155900DBCB0C /* FCAppNameTextField.m in Sources */,
 				077AFEC61BBD101400872A48 /* NSAttributedStringAdditions.m in Sources */,
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
 				073E6B521BE2026600706283 /* FCLog.swift in Sources */,
+				07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */,
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				073E6ACB1BE1F86D00706283 /* parse.cc in Sources */,
 				077AFF3E1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */,
@@ -1516,11 +1431,12 @@
 				077AFF161BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */,
 				073E6B131BE1F86D00706283 /* stringpiece.cc in Sources */,
 				077AFEF21BBD101400872A48 /* NSEventAdditions.m in Sources */,
-				077A00361BBD101400872A48 /* md5.c in Sources */,
 				073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
 				073E6B401BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				077AFF921BBD101400872A48 /* XUPowerAssertion.m in Sources */,
+				07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */,
 				077A00A61BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */,
+				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1545,10 +1461,8 @@
 				073E6ADC1BE1F86D00706283 /* re2.cc in Sources */,
 				073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */,
 				077A000F1BBD101400872A48 /* UIImageAdditions.m in Sources */,
-				077A00351BBD101400872A48 /* FCUniqueStringManager.m in Sources */,
 				073E6B461BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				077AFF9F1BBD101400872A48 /* FCDataEntity.m in Sources */,
-				077A002D1BBD101400872A48 /* FCRandomGenerator.m in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
 				077AFF431BBD101400872A48 /* NSUserDefaultsAdditions.m in Sources */,
 				077AFEE71BBD101400872A48 /* NSDateAdditions.m in Sources */,
@@ -1588,7 +1502,6 @@
 				073E6ABC1BE1F86D00706283 /* bitstate.cc in Sources */,
 				077A00B41BBD335B00872A48 /* FCInAppPurchaseManager.m in Sources */,
 				073E6B181BE1F86D00706283 /* strutil.cc in Sources */,
-				077A002F1BBD101400872A48 /* FCTimeUtilities.c in Sources */,
 				077AFF8D1BBD101400872A48 /* XUAbstract.swift in Sources */,
 				073E6ACA1BE1F86D00706283 /* onepass.cc in Sources */,
 				073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
@@ -1613,7 +1526,6 @@
 				077A00AE1BBD122700872A48 /* UIView+Enclosing.m in Sources */,
 				077AFF171BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */,
 				073E6B4A1BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
-				077A00371BBD101400872A48 /* md5.c in Sources */,
 				077A00A71BBD101400872A48 /* FCZeroBasedIndexTransformer.m in Sources */,
 				073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				073E6B321BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,

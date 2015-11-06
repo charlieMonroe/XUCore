@@ -10,7 +10,7 @@
 #import "NSArrayAdditions.h"
 #import "FCLog.h"
 
-#import "FCRandomGenerator.h"
+#import <XUCore/XUCore-Swift.h>
 
 @implementation NSArray (NSArrayAdditions)
 
@@ -240,8 +240,8 @@
 -(NSArray *)randomizedArray{
 	NSMutableArray *result = [self mutableCopy];
 	for (int i = 0; i < 4 * [self count]; ++i){
-		unsigned char randByte = [[FCRandomGenerator randomGenerator] randomByte] % [self count];
-		unsigned char randByte2 = [[FCRandomGenerator randomGenerator] randomByte]  % [self count];
+		unsigned char randByte = [[XURandomGenerator sharedGenerator] randomByte] % [self count];
+		unsigned char randByte2 = [[XURandomGenerator sharedGenerator] randomByte]  % [self count];
 		if (randByte != randByte2){
 			[result exchangeObjectAtIndex:randByte withObjectAtIndex:randByte2];
 		}

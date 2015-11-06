@@ -13,6 +13,22 @@ static CGFloat kFCColorSampleItemWidth = 24.0;
 static CGFloat kFCColorSampleItemHeight = 24.0;
 
 
+@interface _XU_NSColorDraggingSource : NSObject <NSDraggingSource>
+
+@end
+
+@implementation _XU_NSColorDraggingSource
+
+-(NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
+	return NSDragOperationCopy;
+}
+
+@end
+
+
+static _XU_NSColorDraggingSource *_source;
+
+
 @implementation NSColor (NSColorAdditions)
 
 -(NSImage*)_imagePreview{
@@ -49,13 +65,24 @@ static CGFloat kFCColorSampleItemHeight = 24.0;
 	NSImage *bmapImage = [[NSImage alloc] initWithData:TIFFData];
 	[dP writeObjects:[NSArray arrayWithObject:bmapImage]];
 	
-	[self writeToPasteboard:dP];
-	
 	NSPoint p = [view convertPoint:[event locationInWindow] fromView:nil];
 	p.x -= 6.0;
 	p.y -= 6.0;
 	
-	[view dragImage:image at:p offset:NSMakeSize(0.0, 0.0) event:event pasteboard:dP source:view slideBack:NO];
+	NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:self];
+	[item setImageComponentsProvider:^NSArray<NSDraggingImageComponent *> * _Nonnull{
+		NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:@"Color"];
+		[component setContents:image];
+		return @[ component ];
+	}];
+	[item setDraggingFrame:CGRectMake(p.x, p.y, 12.0, 12.0)];
+	
+	
+	if (_source == nil) {
+		_source = [[_XU_NSColorDraggingSource alloc] init];
+	}
+	[view beginDraggingSessionWithItems:@[ item ] event:event source:_source];
+	
 }
 
 @end
