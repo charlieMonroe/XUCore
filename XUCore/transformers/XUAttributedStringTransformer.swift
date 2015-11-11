@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 /// Transformed value returns an attributed string, reverse transformed value
 /// returns a plain string. Always returns non-null value.

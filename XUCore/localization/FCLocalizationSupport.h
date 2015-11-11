@@ -12,6 +12,10 @@
 
 #import <Foundation/Foundation.h>
 
+/** We cannot migrare this file to Swift yet, since the compiler doesn't include
+ * functions in XUCore-Swift.h...
+ */
+
 #ifndef LOCALIZATION_TESTING
 	#define LOCALIZATION_TESTING 0
 #endif
@@ -33,11 +37,3 @@
 #endif
 
 #define FCLocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]
-
-/* Automatic view, menu and window localization (OS X only). */
-#if !TARGET_OS_IPHONE
-	#import "NSViewLocalizationSupport.h"
-	#import "NSMenuLocalizationSupport.h"
-	#import "NSWindowLocalizationSupport.h"
-#endif
-

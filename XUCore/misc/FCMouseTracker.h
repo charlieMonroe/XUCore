@@ -11,19 +11,18 @@
 
 @protocol FCMouseTrackingObserver <NSObject>
 @optional
+
 -(void)mouseClickedAtPoint:(CGPoint)point atDisplay:(CGDirectDisplayID)displayID withEventFlags:(CGEventFlags)flags;
 -(void)mouseMovedToPoint:(CGPoint)point atDisplay:(CGDirectDisplayID)displayID withEventFlags:(CGEventFlags)flags;
 
 @end
 
-@interface FCMouseTracker : NSObject {
-	NSMutableArray *_observers;
-}
+@interface FCMouseTracker : NSObject
 
-+(FCMouseTracker*)sharedMouseTracker;
++(nonnull instancetype)sharedMouseTracker;
 
--(void)addObserver:(id<FCMouseTrackingObserver>)observer;
--(void)removeObserver:(id<FCMouseTrackingObserver>)observer;
+-(void)addObserver:(nonnull id<FCMouseTrackingObserver>)observer;
+-(void)removeObserver:(nonnull id<FCMouseTrackingObserver>)observer;
 
 @end
 

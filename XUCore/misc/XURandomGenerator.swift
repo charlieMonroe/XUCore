@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 /// Random number generator based on random() - where the seed is set in init
 /// to something random

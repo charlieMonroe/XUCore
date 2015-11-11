@@ -10,7 +10,11 @@
 #import "NSArrayAdditions.h"
 #import "FCLog.h"
 
-#import <XUCore/XUCore-Swift.h>
+#if TARGET_OS_IPHONE
+	#import <XUCoreMobile/XUCoreMobile-Swift.h>
+#else
+	#import <XUCore/XUCore-Swift.h>
+#endif
 
 @implementation NSArray (NSArrayAdditions)
 

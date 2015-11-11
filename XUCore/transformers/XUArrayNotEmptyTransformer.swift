@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 /// Transforms the value into Bool. If the value is an array and it is not empty,
 /// true is returned, false otherwise.

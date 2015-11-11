@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *
+ *	NOTE: This entire file is deprecated and will be removed soon.
+ *
+ */
+
+
 typedef enum {
 	UIAlertViewReturnDefault,
 	UIAlertViewReturnAlternate,
@@ -26,9 +33,9 @@ typedef void(^XUAlertViewHandler)(UIAlertView *alertView, NSInteger clickedButto
 
 @interface UIAlertView (BlocksAdditions)
 
-+(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle;
-+(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle andSecondButtonTitle:(NSString*)secondButtonTitle;
-+(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle secondButtonTitle:(NSString*)secondButtonTitle andThirdButtonTitle:(NSString*)thirdButtonTitle;
++(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
++(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle andSecondButtonTitle:(NSString*)secondButtonTitle DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
++(instancetype)alertWithTitle:(NSString *)title message:(NSString *)message handler:(XUAlertViewHandler)handler cancelButtonTitle:(NSString *)cancelButtonTitle secondButtonTitle:(NSString*)secondButtonTitle andThirdButtonTitle:(NSString*)thirdButtonTitle DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
 
 @end
 
@@ -38,7 +45,7 @@ typedef void(^XUAlertViewHandler)(UIAlertView *alertView, NSInteger clickedButto
 /** Calls -show on main thread and waits for the alert to be dismissed. Must be 
  * called from non-main thread.
  */
--(UIAlertViewReturnType)runModalOnMainThread;
+-(UIAlertViewReturnType)runModalOnMainThread DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
 
 @end
 

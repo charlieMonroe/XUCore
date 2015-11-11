@@ -17,38 +17,18 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 /** Additions. */
 #import "NSAlertAdditions.h"
 #import "NSArrayAdditions.h"
-#import "NSAttributedStringAdditions.h"
 #import "NSBezierPathAdditions.h"
-#import "NSBundleAdditions.h"
-#import "NSButtonAdditions.h"
-#import "NSButtonCellAdditions.h"
 #import "NSColorAdditions.h"
 #import "NSData+CommonCryptoSwift.h"
 #import "NSDataAdditions.h"
-#import "NSDateAdditions.h"
-#import "NSDecimalNumberAdditions.h"
 #import "NSDictionaryAdditions.h"
-#import "NSEventAdditions.h"
-#import "NSHTTPURLResponse.h"
 #import "NSImageAdditions.h"
-#import "NSLockAdditions.h"
 #import "NSMutableDictionaryAdditions.h"
-#import "NSMutableURLRequestAdditions.h"
-#import "NSNotificationAdditions.h"
-#import "NSOpenPanelAdditions.h"
 #import "NSRecursiveLockAdditions.h"
-#import "NSShadowAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSStringGeometrics.h"
-#import "NSTableColumnAdditions.h"
-#import "NSTabViewAdditions.h"
-#import "NSTextFieldAdditions.h"
 #import "NSTimerAdditions.h"
-#import "NSToolbarAdditions.h"
-#import "NSURL+NSURLAdditions.h"
 #import "NSURLConnectionAdditions.h"
-#import "NSUserDefaultsAdditions.h"
-#import "NSViewAdditions.h"
 #import "NSWindow-NoodleEffects.h"
 #import "NSXMLAdditions.h"
 
@@ -58,10 +38,8 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "FCInAppPurchaseManager.h"
 
 /** Core. */
-#import "FCApplication.h"
 #import "FCAppScopeBookmarksManager.h"
 #import "FCKeychain.h"
-#import "FCSubclassCollector.h"
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
 #import "XUPowerAssertion.h"
@@ -82,12 +60,8 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Localization. */
 #import "FCLocalizationSupport.h"
-#import "NSMenuLocalizationSupport.h"
-#import "NSViewLocalizationSupport.h"
-#import "NSWindowLocalizationSupport.h"
 
 /** Misc. */
-#import "FCHardwareInfo.h"
 #import "FCMouseTracker.h"
 
 /** Regex. */

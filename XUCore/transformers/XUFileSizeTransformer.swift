@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 /// Defaults key that allows you to switch between 1024 and 1000 base.
 public let XUUseBinarySizesDefaultsKey = "XUFileSizeTransformerUseBinarySizes"

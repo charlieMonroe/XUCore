@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Charlie Monroe Software. All rights reserved.
 //
 
-#import "NSLockAdditions.h"
+#import "NSRecursiveLockAdditions.h"
 
 @implementation NSRecursiveLock (Additions)
 

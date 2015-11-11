@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 /// Converts the value (must be NSNumber) as +1 and reverse -1.
 public class XUZeroBasedIndexTransformer: NSValueTransformer {

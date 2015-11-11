@@ -41,7 +41,9 @@ static CGEventRef FCMouseMovementEventCallback(CGEventTapProxy proxy, CGEventTyp
 	return event;
 }
 
-@implementation FCMouseTracker
+@implementation FCMouseTracker {
+	NSMutableArray *_observers;
+}
 
 +(FCMouseTracker *)sharedMouseTracker{
 	static FCMouseTracker *_sharedTracker;

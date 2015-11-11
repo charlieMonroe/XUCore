@@ -136,31 +136,31 @@ extern int gNSStringGeometricsTypesetterBehavior ;
 @interface NSAttributedString (Geometrics) 
 
 // Measuring Attributed Strings
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height ;
-- (float)heightForWidth:(float)width ;
-- (float)widthForHeight:(float)height ;
+- (NSSize)sizeForWidth:(CGFloat)width
+				height:(CGFloat)height ;
+- (CGFloat)heightForWidth:(CGFloat)width ;
+- (CGFloat)widthForHeight:(CGFloat)height ;
 
 @end
 
 @interface NSString (Geometrics)
 
 // Measuring a String With Attributes
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height
+- (NSSize)sizeForWidth:(CGFloat)width
+				height:(CGFloat)height
 			attributes:(NSDictionary*)attributes ;
-- (float)heightForWidth:(float)width
+- (CGFloat)heightForWidth:(CGFloat)width
 			 attributes:(NSDictionary*)attributes ;
-- (float)widthForHeight:(float)height
+- (CGFloat)widthForHeight:(CGFloat)height
 			 attributes:(NSDictionary*)attributes ;
 
 // Measuring a String with a constant Font
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height
+- (NSSize)sizeForWidth:(CGFloat)width
+				height:(CGFloat)height
 				  font:(NSFont*)font ;
-- (float)heightForWidth:(float)width
+- (CGFloat)heightForWidth:(CGFloat)width
 				   font:(NSFont*)font ;
-- (float)widthForHeight:(float)height
+- (CGFloat)widthForHeight:(CGFloat)height
 				   font:(NSFont*)font ;
 
 @end

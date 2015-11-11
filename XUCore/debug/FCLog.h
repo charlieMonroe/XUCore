@@ -17,7 +17,7 @@
 
 #ifndef  __valist_nonnull
 	#if TARGET_OS_IPHONE
-		#define __valist_nonnull __nonnull
+		#define __valist_nonnull
 	#else
 		#define __valist_nonnull
 	#endif
