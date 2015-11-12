@@ -32,7 +32,7 @@ public class XUStringTrimmingTransformer: NSValueTransformer {
 	
 	
 	public override func transformedValue(value: AnyObject?) -> AnyObject? {
-		FCLog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
 		
 		return super.transformedValue(value)
 	}

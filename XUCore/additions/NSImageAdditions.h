@@ -22,7 +22,7 @@
 @interface NSImage (FCAdditions) 
 
 #if !TARGET_OS_IPHONE
-+(nonnull instancetype)thumbnailOfFileAtURL:(nonnull NSURL *)url withSize:(CGSize)size;
++(nullable instancetype)thumbnailOfFileAtURL:(nonnull NSURL *)url withSize:(CGSize)size;
 
 -(nonnull instancetype)blackAndWhiteImage;
 

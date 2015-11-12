@@ -44,46 +44,7 @@
 
 }
 
-+(NSData*)dataFromBase64String:(NSString *)aString{
-	return [self dataWithBase64String:aString];
-}
-+(NSData *)dataWithBase64String:(NSString *)aString{
-	if (aString == nil){
-		return nil;
-	}
-	
-	if ([self instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]){
-		return [[self alloc] initWithBase64EncodedString:aString options:0];
-	}
-	
-	if ([aString length] % 4 != 0)
-	return nil;
-	
-	NSString *plist = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><plist version=\"1.0\"><data>%@</data></plist>", aString];
-	return [NSPropertyListSerialization propertyListWithData:[plist dataUsingEncoding:NSASCIIStringEncoding] options:0 format:NULL error:NULL];
-}
 
--(NSString*)base64EncodedString{
-	if ([self respondsToSelector:@selector(base64EncodedStringWithOptions:)]){
-		return [self base64EncodedStringWithOptions:0];
-	}
-	
-	NSData *plist = [NSPropertyListSerialization dataWithPropertyList:self format:NSPropertyListXMLFormat_v1_0 options:0 error:NULL];
-	NSRange fullRange = NSMakeRange(0, [plist length]);
-	NSRange startRange = [plist rangeOfData:[@"<data>" dataUsingEncoding:NSASCIIStringEncoding] options:0 range:fullRange];
-	NSRange endRange = [plist rangeOfData:[@"</data>" dataUsingEncoding:NSASCIIStringEncoding] options:NSDataSearchBackwards range:fullRange];
-	if (startRange.location == NSNotFound || endRange.location == NSNotFound)
-		return nil;
-	
-	NSUInteger base64Location = startRange.location + startRange.length;
-	NSUInteger base64length = endRange.location - base64Location;
-	NSData *base64Data = [NSData dataWithBytesNoCopy:(void *)((uintptr_t)base64Location + (uintptr_t)[plist bytes]) length:base64length freeWhenDone:NO];
-	NSString *base64Encoding = [[NSString alloc] initWithData:base64Data encoding:NSASCIIStringEncoding];
-	
-	base64Encoding = [base64Encoding stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	base64Encoding = [base64Encoding stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-	return base64Encoding;
-}
 -(NSMutableArray*)byteArrayWithZerosIncluded:(BOOL)includeZeros{
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self length]];
 	for (NSUInteger i = 0; i < [self length]; ++i){
@@ -96,7 +57,7 @@
 	return result;
 }
 -(NSUInteger)indexOfFirstOccurrenceOfBytes:(const char *)bytes ofLength:(NSUInteger)length{
-	return [self rangeOfData:[NSData dataWithBytesNoCopy:(void*)bytes length:length freeWhenDone:NO] options:0 range:NSMakeRange(0, [self length])].location;
+	return [self rangeOfData:[NSData dataWithBytesNoCopy:(void *)bytes length:length freeWhenDone:NO] options:0 range:NSMakeRange(0, [self length])].location;
 }
 -(NSString *)MD5Digest{
 	unsigned char result[16];

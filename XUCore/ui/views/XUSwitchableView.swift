@@ -72,13 +72,13 @@ public class XUSwitchableView: NSView {
 	}
 	
 	/// Switches to a new view in direction specified. Doesn't adjust window size.
-	public func switchToView(view: NSView, inDirection direction: FCDirection) {
+	public func switchToView(view: NSView, inDirection direction: XUDirection) {
 		self.switchToView(view, inDirection: direction, adjustWindow: false)
 	}
 	
 	/// Switches to a new view in direction specified and if adjustWindow is true,
 	/// the window size is adjusted as well.
-	public func switchToView(view: NSView, inDirection direction: FCDirection, adjustWindow: Bool) {
+	public func switchToView(view: NSView, inDirection direction: XUDirection, adjustWindow: Bool) {
 		_isAnimating = true
 		
 		// Make sure the view isn't hidden
@@ -132,19 +132,19 @@ public class XUSwitchableView: NSView {
 		
 		// The rect where the current view should move out to make place for the new view
 		switch direction {
-			case .Left:
+			case .LeftToRight:
 				// From left to right
 				newViewRect = CGRectMake(oldViewSize.width, oldViewSize.height - newViewSize.height, targetSize.width, targetSize.height)
 				toBeMoved = CGRectMake(-oldViewSize.width, 0, oldViewSize.width, oldViewSize.height)
-			case .Right:
+			case .RightToLeft:
 				// From right to left
 				newViewRect = CGRectMake(-newViewSize.width, oldViewSize.height - newViewSize.height, newViewSize.width, newViewSize.height)
 				toBeMoved = CGRectMake(oldViewSize.width, 0, oldViewSize.width, oldViewSize.height)
-			case .Bottom:
+			case .TopToBottom:
 				// From up to down
 				newViewRect = CGRectMake(0, r.size.height, r.size.width, r.size.height)
 				toBeMoved = CGRectMake(0, -r.size.height, r.size.width, r.size.height)
-			case .Top:
+			case .BottomToTop:
 				// FCTop - from down to up
 				newViewRect = CGRectMake(0, -r.size.height, r.size.width, r.size.height)
 				toBeMoved = CGRectMake(0, r.size.height, r.size.width, r.size.height)
@@ -177,7 +177,7 @@ public class XUSwitchableView: NSView {
 @objc(FCSwitchableView) public class FCSwitchableView: XUSwitchableView {
 	
 	public override func awakeFromNib() {
-		FCLog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
 		
 		super.awakeFromNib()
 	}

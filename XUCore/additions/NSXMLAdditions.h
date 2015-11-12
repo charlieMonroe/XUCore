@@ -19,26 +19,6 @@
  */
 -(nonnull NSArray<NSXMLNode *> *)nodesForXPath:(nonnull NSString *)xpath;
 
--(NSInteger)integerValue;
--(nullable NSXMLNode *)firstNodeOnXPath:(nonnull NSString *)xpath;
--(NSInteger)integerValueOfFirstNodeOnXPath:(nonnull NSString *)xpath;
--(NSInteger)integerValueOfFirstNodeOnXPaths:(nonnull NSArray<NSString *> *)xpaths;
--(nullable NSXMLNode *)lastNodeOnXPath:(nonnull NSString *)xpath;
--(nullable NSString *)stringValueOfFirstNodeOnXPath:(nonnull NSString *)xpath;
--(nullable NSString *)stringValueOfFirstNodeOnXPaths:(nonnull NSArray<NSString *> *)xpaths;
--(nullable NSString *)stringValueOfLastNodeOnXPath:(nonnull NSString *)xpath;
-
-/** Will return NULL or nil, if the node isn't NSXMLElement. */
--(NSInteger)integerValueOfAttributeNamed:(nonnull NSString *)attributeName;
--(nullable NSString *)stringValueOfAttributeNamed:(nonnull NSString *)attributeName;
-
-@end
-
-@interface NSXMLElement (XUAdditions)
-
--(NSInteger)integerValueOfAttributeNamed:(nonnull NSString *)attributeName;
--(nullable NSString *)stringValueOfAttributeNamed:(nonnull NSString *)attributeName;
-
 @end
 
 @interface NSXMLDocument (XUAdditions)

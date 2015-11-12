@@ -12,8 +12,6 @@
 
 #import "FCLog.h"
 
-#import <CommonCrypto/CommonCryptor.h>
-
 static NSString *FCInAppPurchasesDefaultsKey = @"FCInAppPurchases";
 NSString *FCInAppPurchaseManagerPurchasesChangedNotification = @"FCInAppPurchaseManagerPurchasesChangedNotification";
 NSString *FCInAppPurchaseManagerAvailableProductsGotLoadedNotification = @"FCInAppPurchaseManagerAvailableProductsGotLoadedNotification";

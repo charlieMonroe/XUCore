@@ -23,11 +23,8 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "NSDataAdditions.h"
 #import "NSDictionaryAdditions.h"
 #import "NSImageAdditions.h"
-#import "NSMutableDictionaryAdditions.h"
-#import "NSRecursiveLockAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSStringGeometrics.h"
-#import "NSTimerAdditions.h"
 #import "NSURLConnectionAdditions.h"
 #import "NSWindow-NoodleEffects.h"
 #import "NSXMLAdditions.h"
@@ -38,10 +35,10 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "FCInAppPurchaseManager.h"
 
 /** Core. */
-#import "FCAppScopeBookmarksManager.h"
 #import "FCKeychain.h"
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
+#import "XUExceptionHandler.h"
 #import "XUPowerAssertion.h"
 #import "XUString.h"
 
@@ -53,16 +50,12 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Debug. */
 #import "FCLog.h"
-#import "FCRedView.h"
 
 /** Documents. */
 #import "FCCSVDocument.h"
 
 /** Localization. */
 #import "FCLocalizationSupport.h"
-
-/** Misc. */
-#import "FCMouseTracker.h"
 
 /** Regex. */
 #import "XURegex.h"

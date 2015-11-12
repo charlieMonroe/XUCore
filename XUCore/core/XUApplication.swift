@@ -88,13 +88,13 @@ public class XUApplication: NSApplication {
 	
 	/// Registers a new key events observer.
 	public func registerArrowKeyEventsObserver(observer: XUArrowKeyEventsObserver) {
-		FCLog("registering \(observer) as arrow key event observer")
+		XULog("registering \(observer) as arrow key event observer")
 		_arrowKeyEventObserver = observer
 	}
 	
 	/// Unregisters current key events observer.
 	public func unregisterArrowKeyEventsObserver() {
-		FCLog("unregistering \(_arrowKeyEventObserver) as arrow key event observer")
+		XULog("unregistering \(_arrowKeyEventObserver) as arrow key event observer")
 		_arrowKeyEventObserver = nil
 	}
 	
@@ -193,7 +193,7 @@ public class XUApplication: NSApplication {
 	
 	override func sendEvent(theEvent: NSEvent) {
 		if !_warnedDeprecation {
-			FCLog("WARNING: Use XUCore.XUApplication!")
+			XULog("WARNING: Use XUCore.XUApplication!")
 		}
 		
 		super.sendEvent(theEvent)

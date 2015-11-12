@@ -197,7 +197,7 @@ public extension String {
 		return regex.firstMatchInString(self)
 	}
 	
-	/// The most basic usage - first regex match. 
+	/// The most basic usage - first regex match.
 	///
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
@@ -205,6 +205,30 @@ public extension String {
 	public func firstOccurrenceOfRegexString(regexString: String) -> String? {
 		return self.firstOccurrenceOfRegex(XURegex(pattern: regexString, andOptions: .Caseless))
 	}
+	
+	/// Iterates regex strings and returns the first one to return a nonnull match.
+	///
+	/// Convenience method that takes String as an argument rather than XURegex.
+	/// Note that as the rest of these functions, all regex strings are compiled
+	/// as caseless by default.
+	public func firstOccurrenceOfRegexStrings(regexStrings: [String]) -> String? {
+		for str in regexStrings {
+			if let match = self.firstOccurrenceOfRegexString(str) {
+				return match
+			}
+		}
+		return nil
+	}
+	
+	/// Iterates regex strings and returns the first one to return a nonnull match.
+	///
+	/// Convenience method that takes String as an argument rather than XURegex.
+	/// Note that as the rest of these functions, all regex strings are compiled
+	/// as caseless by default.
+	public func firstOccurrenceOfRegexStrings(regexStrings: String...) -> String? {
+		return self.firstOccurrenceOfRegexStrings(regexStrings)
+	}
+	
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".

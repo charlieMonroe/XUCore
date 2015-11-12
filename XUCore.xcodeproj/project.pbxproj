@@ -149,8 +149,8 @@
 		073E6B4E1BE1FE0A00706283 /* NSData+CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */; };
 		073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
-		073E6B521BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
-		073E6B531BE2026600706283 /* FCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* FCLog.swift */; };
+		073E6B521BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
+		073E6B531BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
 		07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */; };
 		07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */; };
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
@@ -180,8 +180,6 @@
 		0779E1891BF2334600832858 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 		0779E18A1BF2340800832858 /* NSViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A301BEFC6B6004B29A8 /* NSViewAdditions.swift */; };
 		0779E18D1BF2348D00832858 /* UIViewLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E18B1BF2348D00832858 /* UIViewLocalizationSupport.swift */; };
-		0779E1941BF23B0A00832858 /* NSXMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF61BBD101400872A48 /* NSXMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0779E1951BF23B0A00832858 /* NSXMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDF71BBD101400872A48 /* NSXMLAdditions.m */; };
 		0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1961BF23B6000832858 /* NSMutableURLRequestAdditions.swift */; };
 		0779E1981BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1961BF23B6000832858 /* NSMutableURLRequestAdditions.swift */; };
 		0779E19A1BF23C8C00832858 /* NSShadowAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */; };
@@ -196,8 +194,6 @@
 		077A000F1BBD101400872A48 /* UIImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE601BBD101400872A48 /* UIImageAdditions.m */; };
 		077A00101BBD101400872A48 /* FCLocalizationSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE621BBD101400872A48 /* FCLocalizationSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00111BBD101400872A48 /* FCLocalizationSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE621BBD101400872A48 /* FCLocalizationSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE6E1BBD101400872A48 /* FCMouseTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE6F1BBD101400872A48 /* FCMouseTracker.m */; };
 		077A00A91BBD107500872A48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00A81BBD107500872A48 /* Cocoa.framework */; };
 		077A00AA1BBD107F00872A48 /* NSAlertAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDAA1BBD101400872A48 /* NSAlertAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -233,22 +229,10 @@
 		077AFEFD1BBD101400872A48 /* NSImageAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDCA1BBD101400872A48 /* NSImageAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFEFE1BBD101400872A48 /* NSImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDCB1BBD101400872A48 /* NSImageAdditions.m */; };
 		077AFEFF1BBD101400872A48 /* NSImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDCB1BBD101400872A48 /* NSImageAdditions.m */; };
-		077AFF041BBD101400872A48 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDCE1BBD101400872A48 /* NSMutableDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF051BBD101400872A48 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDCE1BBD101400872A48 /* NSMutableDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF061BBD101400872A48 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDCF1BBD101400872A48 /* NSMutableDictionaryAdditions.m */; };
-		077AFF071BBD101400872A48 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDCF1BBD101400872A48 /* NSMutableDictionaryAdditions.m */; };
-		077AFF141BBD101400872A48 /* NSRecursiveLockAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDD61BBD101400872A48 /* NSRecursiveLockAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF151BBD101400872A48 /* NSRecursiveLockAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDD61BBD101400872A48 /* NSRecursiveLockAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF161BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDD71BBD101400872A48 /* NSRecursiveLockAdditions.m */; };
-		077AFF171BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDD71BBD101400872A48 /* NSRecursiveLockAdditions.m */; };
 		077AFF1C1BBD101400872A48 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDDA1BBD101400872A48 /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF1D1BBD101400872A48 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDDA1BBD101400872A48 /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF1E1BBD101400872A48 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDDB1BBD101400872A48 /* NSStringAdditions.m */; };
 		077AFF1F1BBD101400872A48 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDDB1BBD101400872A48 /* NSStringAdditions.m */; };
-		077AFF301BBD101400872A48 /* NSTimerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDE41BBD101400872A48 /* NSTimerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF311BBD101400872A48 /* NSTimerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDE41BBD101400872A48 /* NSTimerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF321BBD101400872A48 /* NSTimerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDE51BBD101400872A48 /* NSTimerAdditions.m */; };
-		077AFF331BBD101400872A48 /* NSTimerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDE51BBD101400872A48 /* NSTimerAdditions.m */; };
 		077AFF3C1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDEA1BBD101400872A48 /* NSURLConnectionAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF3D1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDEA1BBD101400872A48 /* NSURLConnectionAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF3E1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDEB1BBD101400872A48 /* NSURLConnectionAdditions.m */; };
@@ -261,10 +245,6 @@
 		077AFF641BBD101400872A48 /* FCAppStoreHidingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDFF1BBD101400872A48 /* FCAppStoreHidingView.m */; };
 		077AFF661BBD101400872A48 /* FCAppStoreMenuCleaner.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE001BBD101400872A48 /* FCAppStoreMenuCleaner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF681BBD101400872A48 /* FCAppStoreMenuCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE011BBD101400872A48 /* FCAppStoreMenuCleaner.m */; };
-		077AFF7A1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE0B1BBD101400872A48 /* FCAppScopeBookmarksManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF7B1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE0B1BBD101400872A48 /* FCAppScopeBookmarksManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFF7C1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE0C1BBD101400872A48 /* FCAppScopeBookmarksManager.m */; };
-		077AFF7D1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE0C1BBD101400872A48 /* FCAppScopeBookmarksManager.m */; };
 		077AFF7E1BBD101400872A48 /* FCKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE0D1BBD101400872A48 /* FCKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF7F1BBD101400872A48 /* FCKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE0D1BBD101400872A48 /* FCKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF801BBD101400872A48 /* FCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE0E1BBD101400872A48 /* FCKeychain.m */; };
@@ -304,12 +284,24 @@
 		077AFFA91BBD101400872A48 /* FCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE241BBD101400872A48 /* FCLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFFAA1BBD101400872A48 /* FCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE251BBD101400872A48 /* FCLog.m */; };
 		077AFFAB1BBD101400872A48 /* FCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE251BBD101400872A48 /* FCLog.m */; };
-		077AFFAC1BBD101400872A48 /* FCRedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE261BBD101400872A48 /* FCRedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFFAE1BBD101400872A48 /* FCRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE271BBD101400872A48 /* FCRedView.m */; };
 		077AFFE21BBD101400872A48 /* FCCSVDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE461BBD101400872A48 /* FCCSVDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFFE31BBD101400872A48 /* FCCSVDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE461BBD101400872A48 /* FCCSVDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE471BBD101400872A48 /* FCCSVDocument.m */; };
 		077AFFE51BBD101400872A48 /* FCCSVDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE471BBD101400872A48 /* FCCSVDocument.m */; };
+		07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
+		07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */; };
+		07B908241BF3AC19008D254A /* NSRecursiveLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */; };
+		07B908281BF3B908008D254A /* NSXMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF61BBD101400872A48 /* NSXMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDF71BBD101400872A48 /* NSXMLAdditions.m */; };
+		07B9082A1BF3BB62008D254A /* NSXMLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1911BF2362B00832858 /* NSXMLAdditions.swift */; };
+		07B9082C1BF3BC84008D254A /* NSTimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */; };
+		07B9082D1BF3BC87008D254A /* NSTimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */; };
+		07B9082F1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */; };
+		07B908311BF3C4A9008D254A /* XURedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908301BF3C4A9008D254A /* XURedView.swift */; };
+		07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908321BF3C602008D254A /* XUMouseTracker.swift */; };
+		07B908351BF3DA10008D254A /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
 		07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */; };
 		07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */; };
 		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
@@ -398,7 +390,7 @@
 		073E6B441BE1FD7E00706283 /* NSData+CommonCryptoSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCryptoSwift.m"; sourceTree = "<group>"; };
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
-		073E6B511BE2026600706283 /* FCLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCLog.swift; sourceTree = "<group>"; };
+		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
 		07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTabViewAdditions.swift; sourceTree = "<group>"; };
@@ -423,7 +415,7 @@
 		0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTextFieldAdditions.swift; sourceTree = "<group>"; };
 		077A00A81BBD107500872A48 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		077A00AF1BBD335B00872A48 /* FCInAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCInAppPurchaseManager.h; sourceTree = "<group>"; };
-		077A00B01BBD335B00872A48 /* FCInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCInAppPurchaseManager.m; sourceTree = "<group>"; };
+		077A00B01BBD335B00872A48 /* FCInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FCInAppPurchaseManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		077AFD8F1BBD0E5300872A48 /* XUCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		077AFD921BBD0E5300872A48 /* XUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCore.h; sourceTree = "<group>"; };
 		077AFD941BBD0E5300872A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -435,7 +427,7 @@
 		077AFDAA1BBD101400872A48 /* NSAlertAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAlertAdditions.h; sourceTree = "<group>"; };
 		077AFDAB1BBD101400872A48 /* NSAlertAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAlertAdditions.m; sourceTree = "<group>"; };
 		077AFDAC1BBD101400872A48 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
-		077AFDAD1BBD101400872A48 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
+		077AFDAD1BBD101400872A48 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSArrayAdditions.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		077AFDB01BBD101400872A48 /* NSBezierPathAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBezierPathAdditions.h; sourceTree = "<group>"; };
 		077AFDB11BBD101400872A48 /* NSBezierPathAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBezierPathAdditions.m; sourceTree = "<group>"; };
 		077AFDB81BBD101400872A48 /* NSColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSColorAdditions.h; sourceTree = "<group>"; };
@@ -446,14 +438,8 @@
 		077AFDC31BBD101400872A48 /* NSDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryAdditions.m; sourceTree = "<group>"; };
 		077AFDCA1BBD101400872A48 /* NSImageAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSImageAdditions.h; sourceTree = "<group>"; };
 		077AFDCB1BBD101400872A48 /* NSImageAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImageAdditions.m; sourceTree = "<group>"; };
-		077AFDCE1BBD101400872A48 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
-		077AFDCF1BBD101400872A48 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
-		077AFDD61BBD101400872A48 /* NSRecursiveLockAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRecursiveLockAdditions.h; sourceTree = "<group>"; };
-		077AFDD71BBD101400872A48 /* NSRecursiveLockAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRecursiveLockAdditions.m; sourceTree = "<group>"; };
 		077AFDDA1BBD101400872A48 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		077AFDDB1BBD101400872A48 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		077AFDE41BBD101400872A48 /* NSTimerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTimerAdditions.h; sourceTree = "<group>"; };
-		077AFDE51BBD101400872A48 /* NSTimerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTimerAdditions.m; sourceTree = "<group>"; };
 		077AFDEA1BBD101400872A48 /* NSURLConnectionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURLConnectionAdditions.h; sourceTree = "<group>"; };
 		077AFDEB1BBD101400872A48 /* NSURLConnectionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURLConnectionAdditions.m; sourceTree = "<group>"; };
 		077AFDF21BBD101400872A48 /* NSWindow-NoodleEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow-NoodleEffects.h"; sourceTree = "<group>"; };
@@ -467,8 +453,6 @@
 		077AFDFF1BBD101400872A48 /* FCAppStoreHidingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAppStoreHidingView.m; sourceTree = "<group>"; };
 		077AFE001BBD101400872A48 /* FCAppStoreMenuCleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAppStoreMenuCleaner.h; sourceTree = "<group>"; };
 		077AFE011BBD101400872A48 /* FCAppStoreMenuCleaner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAppStoreMenuCleaner.m; sourceTree = "<group>"; };
-		077AFE0B1BBD101400872A48 /* FCAppScopeBookmarksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAppScopeBookmarksManager.h; sourceTree = "<group>"; };
-		077AFE0C1BBD101400872A48 /* FCAppScopeBookmarksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAppScopeBookmarksManager.m; sourceTree = "<group>"; };
 		077AFE0D1BBD101400872A48 /* FCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCKeychain.h; sourceTree = "<group>"; };
 		077AFE0E1BBD101400872A48 /* FCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCKeychain.m; sourceTree = "<group>"; };
 		077AFE111BBD101400872A48 /* iOSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCommon.h; sourceTree = "<group>"; };
@@ -481,17 +465,15 @@
 		077AFE181BBD101400872A48 /* XUString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUString.h; sourceTree = "<group>"; };
 		077AFE191BBD101400872A48 /* XUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUString.m; sourceTree = "<group>"; };
 		077AFE1B1BBD101400872A48 /* FCContextHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCContextHolder.h; sourceTree = "<group>"; };
-		077AFE1C1BBD101400872A48 /* FCContextHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCContextHolder.m; sourceTree = "<group>"; };
+		077AFE1C1BBD101400872A48 /* FCContextHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FCContextHolder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		077AFE1D1BBD101400872A48 /* FCDataEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCDataEntity.h; sourceTree = "<group>"; };
 		077AFE1E1BBD101400872A48 /* FCDataEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCDataEntity.m; sourceTree = "<group>"; };
 		077AFE1F1BBD101400872A48 /* FCPersistentDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCPersistentDataStorage.h; sourceTree = "<group>"; };
 		077AFE201BBD101400872A48 /* FCPersistentDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPersistentDataStorage.m; sourceTree = "<group>"; };
 		077AFE211BBD101400872A48 /* FCTemporaryDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTemporaryDataStorage.h; sourceTree = "<group>"; };
 		077AFE221BBD101400872A48 /* FCTemporaryDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTemporaryDataStorage.m; sourceTree = "<group>"; };
-		077AFE241BBD101400872A48 /* FCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLog.h; sourceTree = "<group>"; };
-		077AFE251BBD101400872A48 /* FCLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLog.m; sourceTree = "<group>"; };
-		077AFE261BBD101400872A48 /* FCRedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCRedView.h; sourceTree = "<group>"; };
-		077AFE271BBD101400872A48 /* FCRedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRedView.m; sourceTree = "<group>"; };
+		077AFE241BBD101400872A48 /* FCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FCLog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		077AFE251BBD101400872A48 /* FCLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FCLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		077AFE461BBD101400872A48 /* FCCSVDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCCSVDocument.h; sourceTree = "<group>"; };
 		077AFE471BBD101400872A48 /* FCCSVDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCCSVDocument.m; sourceTree = "<group>"; };
 		077AFE5B1BBD101400872A48 /* FCiPhoneDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCiPhoneDrawing.h; sourceTree = "<group>"; };
@@ -501,10 +483,16 @@
 		077AFE5F1BBD101400872A48 /* UIImageAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageAdditions.h; sourceTree = "<group>"; };
 		077AFE601BBD101400872A48 /* UIImageAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageAdditions.m; sourceTree = "<group>"; };
 		077AFE621BBD101400872A48 /* FCLocalizationSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLocalizationSupport.h; sourceTree = "<group>"; };
-		077AFE6E1BBD101400872A48 /* FCMouseTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMouseTracker.h; sourceTree = "<group>"; };
-		077AFE6F1BBD101400872A48 /* FCMouseTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMouseTracker.m; sourceTree = "<group>"; };
-		07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCURLHandlingCenter.swift; sourceTree = "<group>"; };
-		07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCURLConnection.swift; sourceTree = "<group>"; };
+		07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionHandler.h; sourceTree = "<group>"; };
+		07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionHandler.m; sourceTree = "<group>"; };
+		07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRecursiveLockAdditions.swift; sourceTree = "<group>"; };
+		07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTimerAdditions.swift; sourceTree = "<group>"; };
+		07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppScopeBookmarksManager.swift; sourceTree = "<group>"; };
+		07B908301BF3C4A9008D254A /* XURedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURedView.swift; sourceTree = "<group>"; };
+		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
+		07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableDictionaryAdditions.swift; sourceTree = "<group>"; };
+		07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FCURLHandlingCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FCCURLConnection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUTimeUtilities.swift; sourceTree = "<group>"; };
 		07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURandomGenerator.swift; sourceTree = "<group>"; };
 		07C3FA111BEBB619008A4200 /* XUMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMenuButton.swift; sourceTree = "<group>"; };
@@ -737,12 +725,10 @@
 				077AFDCB1BBD101400872A48 /* NSImageAdditions.m */,
 				073E6B421BE1FD7E00706283 /* NSInputStream+Reading.swift */,
 				07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */,
-				077AFDCE1BBD101400872A48 /* NSMutableDictionaryAdditions.h */,
-				077AFDCF1BBD101400872A48 /* NSMutableDictionaryAdditions.m */,
+				07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */,
 				0779E1961BF23B6000832858 /* NSMutableURLRequestAdditions.swift */,
 				07758A2C1BEFC5D8004B29A8 /* NSOpenPanelAdditions.swift */,
-				077AFDD61BBD101400872A48 /* NSRecursiveLockAdditions.h */,
-				077AFDD71BBD101400872A48 /* NSRecursiveLockAdditions.m */,
+				07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */,
 				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				077AFDDA1BBD101400872A48 /* NSStringAdditions.h */,
 				077AFDDB1BBD101400872A48 /* NSStringAdditions.m */,
@@ -750,8 +736,7 @@
 				073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */,
 				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
 				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
-				077AFDE41BBD101400872A48 /* NSTimerAdditions.h */,
-				077AFDE51BBD101400872A48 /* NSTimerAdditions.m */,
+				07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */,
 				07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */,
 				0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */,
 				077AFDEA1BBD101400872A48 /* NSURLConnectionAdditions.h */,
@@ -787,8 +772,6 @@
 		077AFE081BBD101400872A48 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				077AFE0B1BBD101400872A48 /* FCAppScopeBookmarksManager.h */,
-				077AFE0C1BBD101400872A48 /* FCAppScopeBookmarksManager.m */,
 				077AFE0D1BBD101400872A48 /* FCKeychain.h */,
 				077AFE0E1BBD101400872A48 /* FCKeychain.m */,
 				077AFE111BBD101400872A48 /* iOSCommon.h */,
@@ -796,8 +779,11 @@
 				077AFE131BBD101400872A48 /* XUAbstract.h */,
 				077AFE141BBD101400872A48 /* XUAbstract.swift */,
 				0779E16F1BF07E3B00832858 /* XUApplication.swift */,
+				07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */,
 				077AFE151BBD101400872A48 /* XUBlockThreading.h */,
 				073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */,
+				07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */,
+				07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */,
 				077AFE161BBD101400872A48 /* XUPowerAssertion.h */,
 				077AFE171BBD101400872A48 /* XUPowerAssertion.m */,
 				073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */,
@@ -826,11 +812,10 @@
 		077AFE231BBD101400872A48 /* debug */ = {
 			isa = PBXGroup;
 			children = (
-				073E6B511BE2026600706283 /* FCLog.swift */,
+				073E6B511BE2026600706283 /* XULog.swift */,
 				077AFE241BBD101400872A48 /* FCLog.h */,
 				077AFE251BBD101400872A48 /* FCLog.m */,
-				077AFE261BBD101400872A48 /* FCRedView.h */,
-				077AFE271BBD101400872A48 /* FCRedView.m */,
+				07B908301BF3C4A9008D254A /* XURedView.swift */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -873,8 +858,7 @@
 		077AFE691BBD101400872A48 /* misc */ = {
 			isa = PBXGroup;
 			children = (
-				077AFE6E1BBD101400872A48 /* FCMouseTracker.h */,
-				077AFE6F1BBD101400872A48 /* FCMouseTracker.m */,
+				07B908321BF3C602008D254A /* XUMouseTracker.swift */,
 				07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */,
 				07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */,
 			);
@@ -909,11 +893,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */,
 				073E6B0F1BE1F86D00706283 /* sparse_array.h in Headers */,
 				073E6B031BE1F86D00706283 /* mutex.h in Headers */,
 				077AFEEC1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
 				073E6B251BE1F86D00706283 /* valgrind.h in Headers */,
-				077A00261BBD101400872A48 /* FCMouseTracker.h in Headers */,
 				073E6B071BE1F86D00706283 /* pcre.h in Headers */,
 				073E6AFD1BE1F86D00706283 /* flags.h in Headers */,
 				077AFF8E1BBD101400872A48 /* XUBlockThreading.h in Headers */,
@@ -923,7 +907,6 @@
 				073E6B0B1BE1F86D00706283 /* random.h in Headers */,
 				073E6AE11BE1F86D00706283 /* regexp.h in Headers */,
 				077AFFA41BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */,
-				077AFF7A1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */,
 				073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */,
 				073E6AD91BE1F86D00706283 /* prog.h in Headers */,
 				077AFF4C1BBD101400872A48 /* NSWindow-NoodleEffects.h in Headers */,
@@ -931,6 +914,7 @@
 				077AFFA81BBD101400872A48 /* FCLog.h in Headers */,
 				073E6B2D1BE1F86D00706283 /* XURegex.h in Headers */,
 				077AFFA01BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
+				07B908281BF3B908008D254A /* NSXMLAdditions.h in Headers */,
 				077AFEC81BBD101400872A48 /* NSBezierPathAdditions.h in Headers */,
 				077AFD931BBD0E5300872A48 /* XUCore.h in Headers */,
 				077A00101BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
@@ -945,24 +929,19 @@
 				073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */,
 				077AFF661BBD101400872A48 /* FCAppStoreMenuCleaner.h in Headers */,
 				077A00B11BBD335B00872A48 /* FCInAppPurchaseManager.h in Headers */,
-				0779E1941BF23B0A00832858 /* NSXMLAdditions.h in Headers */,
 				077AFF621BBD101400872A48 /* FCAppStoreHidingView.h in Headers */,
 				073E6AE91BE1F86D00706283 /* stringpiece.h in Headers */,
 				077A00AA1BBD107F00872A48 /* NSAlertAdditions.h in Headers */,
 				077AFF1C1BBD101400872A48 /* NSStringAdditions.h in Headers */,
 				073E6B4D1BE1FE0A00706283 /* NSData+CommonCrypto.h in Headers */,
-				077AFF141BBD101400872A48 /* NSRecursiveLockAdditions.h in Headers */,
 				077AFEFC1BBD101400872A48 /* NSImageAdditions.h in Headers */,
 				073E6AF71BE1F86D00706283 /* arena.h in Headers */,
-				077AFF041BBD101400872A48 /* NSMutableDictionaryAdditions.h in Headers */,
 				077AFF981BBD101400872A48 /* FCContextHolder.h in Headers */,
-				077AFF301BBD101400872A48 /* NSTimerAdditions.h in Headers */,
 				073E6B111BE1F86D00706283 /* sparse_set.h in Headers */,
 				077AFED81BBD101400872A48 /* NSColorAdditions.h in Headers */,
 				073E6AE51BE1F86D00706283 /* set.h in Headers */,
 				077AFF3C1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */,
 				073E6B1F1BE1F86D00706283 /* utf.h in Headers */,
-				077AFFAC1BBD101400872A48 /* FCRedView.h in Headers */,
 				077AFF901BBD101400872A48 /* XUPowerAssertion.h in Headers */,
 				073E6B471BE1FD7E00706283 /* NSData+CommonCryptoSwift.h in Headers */,
 				077AFF941BBD101400872A48 /* XUString.h in Headers */,
@@ -994,12 +973,12 @@
 				073E6AD61BE1F86D00706283 /* prefilter_tree.h in Headers */,
 				073E6AF41BE1F86D00706283 /* unicode_groups.h in Headers */,
 				077AFFA51BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */,
-				077AFF7B1BBD101400872A48 /* FCAppScopeBookmarksManager.h in Headers */,
 				073E6B2A1BE1F86D00706283 /* walker-inl.h in Headers */,
 				073E6B261BE1F86D00706283 /* valgrind.h in Headers */,
 				077AFFA91BBD101400872A48 /* FCLog.h in Headers */,
 				073E6AE21BE1F86D00706283 /* regexp.h in Headers */,
 				073E6AFC1BE1F86D00706283 /* benchmark.h in Headers */,
+				07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */,
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFFA11BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
 				077AFDA21BBD0ED200872A48 /* XUCoreMobile.h in Headers */,
@@ -1019,16 +998,13 @@
 				073E6B2E1BE1F86D00706283 /* XURegex.h in Headers */,
 				073E6B281BE1F86D00706283 /* variadic_function.h in Headers */,
 				077AFF1D1BBD101400872A48 /* NSStringAdditions.h in Headers */,
-				077AFF151BBD101400872A48 /* NSRecursiveLockAdditions.h in Headers */,
 				073E6AFA1BE1F86D00706283 /* atomicops.h in Headers */,
 				077AFEFD1BBD101400872A48 /* NSImageAdditions.h in Headers */,
 				073E6B201BE1F86D00706283 /* utf.h in Headers */,
 				073E6B101BE1F86D00706283 /* sparse_array.h in Headers */,
-				077AFF051BBD101400872A48 /* NSMutableDictionaryAdditions.h in Headers */,
 				077AFF991BBD101400872A48 /* FCContextHolder.h in Headers */,
 				073E6B4E1BE1FE0A00706283 /* NSData+CommonCrypto.h in Headers */,
 				073E6AFE1BE1F86D00706283 /* flags.h in Headers */,
-				077AFF311BBD101400872A48 /* NSTimerAdditions.h in Headers */,
 				077AFF3D1BBD101400872A48 /* NSURLConnectionAdditions.h in Headers */,
 				073E6AE61BE1F86D00706283 /* set.h in Headers */,
 				077AFF911BBD101400872A48 /* XUPowerAssertion.h in Headers */,
@@ -1146,7 +1122,6 @@
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				077AFFE41BBD101400872A48 /* FCCSVDocument.m in Sources */,
-				077A00281BBD101400872A48 /* FCMouseTracker.m in Sources */,
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
@@ -1163,6 +1138,8 @@
 				07C3FA251BECB3C3008A4200 /* XUFileSizeTransformer.swift in Sources */,
 				0779E19C1BF23D5E00832858 /* NSURL+NSURLAdditions.swift in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
+				07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */,
+				07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
 				07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */,
@@ -1174,7 +1151,6 @@
 				077AFECA1BBD101400872A48 /* NSBezierPathAdditions.m in Sources */,
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
-				077AFFAE1BBD101400872A48 /* FCRedView.m in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
@@ -1182,8 +1158,8 @@
 				0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */,
 				073E6ADB1BE1F86D00706283 /* re2.cc in Sources */,
 				07C3FA121BEBB619008A4200 /* XUMenuButton.swift in Sources */,
-				077AFF321BBD101400872A48 /* NSTimerAdditions.m in Sources */,
 				073E6B2F1BE1F86D00706283 /* XURegex.mm in Sources */,
+				07B9082F1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift in Sources */,
 				073E6AFF1BE1F86D00706283 /* hash.cc in Sources */,
 				073E6B451BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				077AFEE21BBD101400872A48 /* NSDataAdditions.m in Sources */,
@@ -1191,7 +1167,6 @@
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
-				077AFF061BBD101400872A48 /* NSMutableDictionaryAdditions.m in Sources */,
 				073E6AF11BE1F86D00706283 /* unicode_groups.cc in Sources */,
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				077AFFA61BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
@@ -1200,6 +1175,7 @@
 				0779E1571BEE5FE700832858 /* NSMenuLocalizationSupport.swift in Sources */,
 				0779E18A1BF2340800832858 /* NSViewAdditions.swift in Sources */,
 				07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */,
+				07B9082A1BF3BB62008D254A /* NSXMLAdditions.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
@@ -1208,7 +1184,7 @@
 				077AFFAA1BBD101400872A48 /* FCLog.m in Sources */,
 				073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */,
-				077AFF7C1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */,
+				07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */,
 				07C3FA231BECB2A3008A4200 /* XUAttributedStringTransformer.swift in Sources */,
 				073E6AF51BE1F86D00706283 /* arena.cc in Sources */,
 				07758A2F1BEFC640004B29A8 /* NSToolbarAdditions.swift in Sources */,
@@ -1220,8 +1196,8 @@
 				077AFF8C1BBD101400872A48 /* XUAbstract.swift in Sources */,
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
+				07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */,
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
-				0779E1951BF23B0A00832858 /* NSXMLAdditions.m in Sources */,
 				077AFEEE1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,
 				07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */,
 				073E6AC71BE1F86D00706283 /* nfa.cc in Sources */,
@@ -1229,18 +1205,20 @@
 				073E6ACD1BE1F86D00706283 /* perl_groups.cc in Sources */,
 				073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */,
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
+				07B9082C1BF3BC84008D254A /* NSTimerAdditions.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
-				073E6B521BE2026600706283 /* FCLog.swift in Sources */,
+				07B908311BF3C4A9008D254A /* XURedView.swift in Sources */,
+				073E6B521BE2026600706283 /* XULog.swift in Sources */,
 				07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */,
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				073E6ACB1BE1F86D00706283 /* parse.cc in Sources */,
 				077AFF3E1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */,
 				077AFF961BBD101400872A48 /* XUString.m in Sources */,
+				07B908351BF3DA10008D254A /* NSMutableDictionaryAdditions.swift in Sources */,
 				0779E16C1BF06B3E00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0779E1681BF0697800832858 /* NSEventAdditions.swift in Sources */,
 				077AFF641BBD101400872A48 /* FCAppStoreHidingView.m in Sources */,
 				073E6AED1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
-				077AFF161BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */,
 				073E6B131BE1F86D00706283 /* stringpiece.cc in Sources */,
 				07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */,
 				073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
@@ -1278,7 +1256,6 @@
 				077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */,
 				077AFF811BBD101400872A48 /* FCKeychain.m in Sources */,
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
-				077AFF331BBD101400872A48 /* NSTimerAdditions.m in Sources */,
 				073E6B411BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				0779E17F1BF2316700832858 /* NSDateAdditions.swift in Sources */,
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
@@ -1288,7 +1265,6 @@
 				0779E1861BF2334600832858 /* XUAttributedStringTransformer.swift in Sources */,
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
 				077AFEBB1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
-				077AFF071BBD101400872A48 /* NSMutableDictionaryAdditions.m in Sources */,
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				077AFFA71BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
@@ -1300,9 +1276,9 @@
 				073E6ACC1BE1F86D00706283 /* parse.cc in Sources */,
 				073E6AD41BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				073E6A6F1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
+				07B908241BF3AC19008D254A /* NSRecursiveLockAdditions.swift in Sources */,
 				073E6B3E1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				073E6AE41BE1F86D00706283 /* set.cc in Sources */,
-				077AFF7D1BBD101400872A48 /* FCAppScopeBookmarksManager.m in Sources */,
 				073E6B241BE1F86D00706283 /* valgrind.cc in Sources */,
 				077A00071BBD101400872A48 /* FCiPhoneDrawing.m in Sources */,
 				073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
@@ -1322,20 +1298,20 @@
 				073E6AE81BE1F86D00706283 /* simplify.cc in Sources */,
 				073E6AC81BE1F86D00706283 /* nfa.cc in Sources */,
 				073E6B2C1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
-				073E6B531BE2026600706283 /* FCLog.swift in Sources */,
+				073E6B531BE2026600706283 /* XULog.swift in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,
 				077AFEEF1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,
 				0779E1891BF2334600832858 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				073E6AF21BE1F86D00706283 /* unicode_groups.cc in Sources */,
 				077AFF3F1BBD101400872A48 /* NSURLConnectionAdditions.m in Sources */,
+				07B9082D1BF3BC87008D254A /* NSTimerAdditions.swift in Sources */,
 				0779E18D1BF2348D00832858 /* UIViewLocalizationSupport.swift in Sources */,
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				077AFF971BBD101400872A48 /* XUString.m in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
 				073E6ABE1BE1F86D00706283 /* compile.cc in Sources */,
 				0779E1801BF2317A00832858 /* NSDecimalNumberAdditions.swift in Sources */,
-				077AFF171BBD101400872A48 /* NSRecursiveLockAdditions.m in Sources */,
 				073E6B4A1BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				073E6B321BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,

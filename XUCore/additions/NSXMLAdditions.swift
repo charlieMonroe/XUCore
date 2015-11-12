@@ -8,10 +8,11 @@
 
 import Foundation
 
+/*
 public extension NSXMLNode {
 	
 	/// Error: Ambiguous use of nodesForXPath
-	public func nodesForXPath(xpath: String) -> [NSXMLNode] {
+	@objc public func nodesForXPath(xpath: String) -> [NSXMLNode] {
 		let fun = NSXMLNode.nodesForXPath(self)
 		guard let nodes = try? fun(xpath) else {
 			return  [ ]
@@ -20,6 +21,7 @@ public extension NSXMLNode {
 	}
 	
 }
+*/
 
 public extension NSXMLNode {
 	
@@ -83,14 +85,15 @@ public extension NSXMLDocument {
 	
 }
 
-public extension Dictionary where Key: String {
+public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
 	
 	public func XMLElementWithName(elementName: String) -> NSXMLElement {
 		let formatter = NSDateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
 		let element = NSXMLElement(name: elementName)
-		for (key, value) in self {
+		for (k, value) in self {
+			let key = String(k)
 			if let val =  value as? String {
 				element.addChild(NSXMLElement(name: key, stringValue: val))
 			}else if let val = value as? NSDecimalNumber {

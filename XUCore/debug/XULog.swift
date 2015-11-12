@@ -1,5 +1,5 @@
 //
-//  FCLog.swift
+//  XULog.swift
 //  DownieCore
 //
 //  Created by Charlie Monroe on 10/28/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public let FCLoggingStatusChangedNotification = "FCLoggingStatusChangedNotification"
+public let XULoggingStatusChangedNotification = "XULoggingStatusChangedNotification"
 
 private var _cachedPreferences = false
 private var _didCachePreferences = false
@@ -17,13 +17,13 @@ private var _lastLogTimeInterval: NSTimeInterval = NSDate.timeIntervalSinceRefer
 private var _logFile: UnsafeMutablePointer<FILE>?
 
 
-private func _FCCachePreferences() {
+private func _XUCachePreferences() {
 	if !_didCachePreferences {
 		_didCachePreferences = true
-		_cachedPreferences = NSUserDefaults.standardUserDefaults().boolForKey("FCLoggingEnabled")
+		_cachedPreferences = NSUserDefaults.standardUserDefaults().boolForKey("XULoggingEnabled")
 	}
 }
-private func _FCRunningDevelopmentComputer() -> Bool {
+private func _XURunningDevelopmentComputer() -> Bool {
 	#if DEBUG
 		return true
 	#endif
@@ -37,15 +37,15 @@ private func _FCRunningDevelopmentComputer() -> Bool {
 	
 	return false
 }
-private func _FCRedirectToLogFile() {
+private func _XURedirectToLogFile() {
 	// DO NOT LOG ANYTHING IN THIS FUNCTION,
 	// AS YOU'D MAKE AN INFINITE LOOP!
 	
-	if _FCRunningDevelopmentComputer() {
+	if _XURunningDevelopmentComputer() {
 		return
 	}
 	
-	let logFile = FCLogFilePath()
+	let logFile = XULogFilePath()
 	
 	// Try to create the log file
 	if !NSFileManager.defaultManager().fileExistsAtPath(logFile) {
@@ -60,7 +60,7 @@ private func _FCRedirectToLogFile() {
 		_didRedirectToLogFile = true
 	}
 }
-private func _FCStartNewSession() {
+private func _XUStartNewSession() {
 	let processInfo = NSProcessInfo()
 	let mainBundle = NSBundle.mainBundle()
 	
@@ -69,29 +69,29 @@ private func _FCStartNewSession() {
 	
 	print("\n\n\n============== Starting a new \(processInfo.processName) session (version \(version)[\(buildNumber)]) ==============")
 }
-private func _FCLogInitializer() {
+private func _XULogInitializer() {
 	if _didCachePreferences {
 		// No double-initialization
 		return
 	}
 	
 	//Don't redirect the log on my computer
-	if _FCRunningDevelopmentComputer(){
+	if _XURunningDevelopmentComputer(){
 		_didCachePreferences = true
 		_cachedPreferences = true
 		return
 	}
 	
-	_FCCachePreferences()
+	_XUCachePreferences()
 
 	if _cachedPreferences {
-		_FCRedirectToLogFile()
-		_FCStartNewSession()
+		_XURedirectToLogFile()
+		_XUStartNewSession()
 	}
 }
 
 
-public func FCLogFilePath() -> String {
+public func XULogFilePath() -> String {
 	let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo().processName
 	
 	let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).stringByExpandingTildeInPath
@@ -100,16 +100,16 @@ public func FCLogFilePath() -> String {
 	return logFile
 }
 
-public func FCForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func XUForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	let originalPreferences = _cachedPreferences
 	_cachedPreferences = true
-	FCLog(string, method: method, file: file, line: line)
+	XULog(string, method: method, file: file, line: line)
 	_cachedPreferences = originalPreferences
 }
 
-public func FCLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	if !_didCachePreferences {
-		_FCLogInitializer()
+		_XULogInitializer()
 	}
 	
 	if _cachedPreferences {
@@ -119,10 +119,10 @@ public func FCLog(@autoclosure string: () -> String, method: String = __FUNCTION
 	}
 }
 
-public func FCForceSetDebugging(debug: Bool) {
+public func XUForceSetDebugging(debug: Bool) {
 	if debug && !_didRedirectToLogFile {
-		_FCRedirectToLogFile()
-		_FCStartNewSession()
+		_XURedirectToLogFile()
+		_XUStartNewSession()
 	}
 	
 	let didChange = debug != _cachedPreferences;
@@ -131,25 +131,25 @@ public func FCForceSetDebugging(debug: Bool) {
 	_didCachePreferences = true //Already cached hence
 	
 	if (didChange) {
-		NSNotificationCenter.defaultCenter().postNotificationName(FCLoggingStatusChangedNotification, object: nil)
+		NSNotificationCenter.defaultCenter().postNotificationName(XULoggingStatusChangedNotification, object: nil)
 	}
 }
-public func FCShouldLog() -> Bool {
+public func XUShouldLog() -> Bool {
 	return _cachedPreferences
 }
 
-public func FCClearLog() {
+public func XUClearLog() {
 	if (_logFile != nil){
 		fclose(_logFile!);
 		_logFile = nil;
 		
-		_ = try? NSFileManager.defaultManager().removeItemAtPath(FCLogFilePath())
+		_ = try? NSFileManager.defaultManager().removeItemAtPath(XULogFilePath())
 		
 		_didRedirectToLogFile = false
 		
 		if _cachedPreferences {
-			_FCRedirectToLogFile()
-			_FCStartNewSession()
+			_XURedirectToLogFile()
+			_XUStartNewSession()
 		}
 	}
 }

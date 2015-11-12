@@ -38,17 +38,17 @@ public class FCURLHandlingCenter: NSObject {
 	/// Private function that handler the AppleEvent calls.
 	@objc private func handleURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
 		guard let receivedURLString = event.paramDescriptorForKeyword(UInt32(keyDirectObject))?.stringValue else {
-			FCLog("Cannot handle apple event - \(event)")
+			XULog("Cannot handle apple event - \(event)")
 			return
 		}
 		
 		guard let URL = NSURL(string: receivedURLString) else {
-			FCLog("Invalid URLString - \(receivedURLString)")
+			XULog("Invalid URLString - \(receivedURLString)")
 			return
 		}
 		
 		guard let handlers = _handlers[URL.scheme.lowercaseString] else {
-			FCLog("No handler for URL scheme \(URL.scheme) - \(URL)")
+			XULog("No handler for URL scheme \(URL.scheme) - \(URL)")
 			return
 		}
 		

@@ -20,7 +20,7 @@ public class FCCURLConnection: NSObject {
 			return false
 		}
 		
-		FCLog("response \(response)")
+		XULog("response \(response)")
 		let responseCode = response.integerValue
 		return responseCode >= 200 && responseCode < 300
 	}
@@ -160,7 +160,7 @@ public class FCCURLConnection: NSObject {
 				
 				var authFieldString = argsCopy[userIndex]
 				if authFieldString.rangeOfString("\n") != nil {
-					FCLog("WARNING: new line in username or password")
+					XULog("WARNING: new line in username or password")
 				}
 				
 				let components = authFieldString.componentsSeparatedByString(":")
@@ -174,7 +174,7 @@ public class FCCURLConnection: NSObject {
 				argsCopy[userIndex] = authFieldString
 			}
 			
-			FCLog("\(argsCopy)")
+			XULog("\(argsCopy)")
 		}
 		
 		let pipe = NSPipe()
@@ -206,7 +206,7 @@ public class FCCURLConnection: NSObject {
 		let data = self.sendSynchronousRequest()
 		let obj = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
 		if obj == nil {
-			FCLog("failed to deserialize JSON data (\(data))")
+			XULog("failed to deserialize JSON data (\(data))")
 		}
 		
 		return obj

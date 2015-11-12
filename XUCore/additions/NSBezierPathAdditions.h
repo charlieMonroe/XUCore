@@ -9,19 +9,26 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef NS_ENUM(NSInteger, FCDirection) {
+DEPRECATED_ATTRIBUTE typedef NS_ENUM(NSInteger, FCDirection) {
 	FCLeft,
 	FCRight,
 	FCBottom,
 	FCTop
-} ;
+};
+
+typedef NS_ENUM(NSInteger, XUDirection) {
+	XUDirectionLeftToRight,
+	XUDirectionRightToLeft,
+	XUDirectionBottomToTop,
+	XUDirectionTopToBottom
+};
 
 
 @interface NSBezierPath (NSBezierPathAdditions)
 
 +(nonnull instancetype)bezierPathWithRoundRectAndTriangleInRect:(NSRect)inRect triangleCenteredToRect:(NSRect)centerRect windowFrame:(NSRect)windowFrame cornerRadius:(float)radius;
 
-+(nonnull instancetype)bezierPathWithTriangleInRect:(NSRect)rect direction:(FCDirection)direction;
++(nonnull instancetype)bezierPathWithTriangleInRect:(NSRect)rect direction:(XUDirection)direction;
 
 +(nonnull instancetype)bezierPathWithCGPath:(nonnull CGPathRef)pathRef;
 -(nonnull CGPathRef)cgPath __attribute__((cf_returns_retained));

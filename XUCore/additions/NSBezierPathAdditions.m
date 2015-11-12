@@ -59,7 +59,7 @@ static void CGPathCallback(void *info, const CGPathElement *element)
 	return path;
 }
 
-+(NSBezierPath*)bezierPathWithTriangleInRect:(NSRect)rect direction:(FCDirection)direction{
++(NSBezierPath*)bezierPathWithTriangleInRect:(NSRect)rect direction:(XUDirection)direction{
 	NSBezierPath *bezierPath = [NSBezierPath bezierPath];
 	if (direction == FCTop){
 		[bezierPath moveToPoint:NSMakePoint(rect.origin.x, rect.origin.y)];
