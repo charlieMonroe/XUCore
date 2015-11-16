@@ -302,8 +302,8 @@
 		07B908311BF3C4A9008D254A /* XURedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908301BF3C4A9008D254A /* XURedView.swift */; };
 		07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908321BF3C602008D254A /* XUMouseTracker.swift */; };
 		07B908351BF3DA10008D254A /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
-		07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */; };
-		07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */; };
+		07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */; };
+		07C3FA0C1BEB7677008A4200 /* XUCURLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */; };
 		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
 		07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */; };
 		07C3FA121BEBB619008A4200 /* XUMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA111BEBB619008A4200 /* XUMenuButton.swift */; };
@@ -491,8 +491,8 @@
 		07B908301BF3C4A9008D254A /* XURedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURedView.swift; sourceTree = "<group>"; };
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
 		07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableDictionaryAdditions.swift; sourceTree = "<group>"; };
-		07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FCURLHandlingCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FCCURLConnection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUURLHandlingCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCURLConnection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUTimeUtilities.swift; sourceTree = "<group>"; };
 		07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURandomGenerator.swift; sourceTree = "<group>"; };
 		07C3FA111BEBB619008A4200 /* XUMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMenuButton.swift; sourceTree = "<group>"; };
@@ -868,8 +868,8 @@
 		077AFE781BBD101400872A48 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				07C3FA0B1BEB7677008A4200 /* FCCURLConnection.swift */,
-				07C3FA091BEB7158008A4200 /* FCURLHandlingCenter.swift */,
+				07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */,
+				07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -1142,7 +1142,7 @@
 				07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
-				07C3FA0C1BEB7677008A4200 /* FCCURLConnection.swift in Sources */,
+				07C3FA0C1BEB7677008A4200 /* XUCURLConnection.swift in Sources */,
 				073E6B231BE1F86D00706283 /* valgrind.cc in Sources */,
 				077AFF9E1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
@@ -1225,7 +1225,7 @@
 				0779E16E1BF06C6200832858 /* NSDecimalNumberAdditions.swift in Sources */,
 				073E6B401BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				077AFF921BBD101400872A48 /* XUPowerAssertion.m in Sources */,
-				07C3FA0A1BEB7158008A4200 /* FCURLHandlingCenter.swift in Sources */,
+				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

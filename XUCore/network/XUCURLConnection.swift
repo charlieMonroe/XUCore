@@ -8,11 +8,11 @@
 
 import Cocoa
 
-public let FCCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "FCCURLConnectionIgnoreInvalidCertificates"
+public let XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "FCCURLConnectionIgnoreInvalidCertificates"
 
 /// This class is somewhat similar to NSURLConnection, except supports only HTTP
 /// and internally uses the CURL command.
-public class FCCURLConnection: NSObject {
+public class XUCURLConnection: NSObject {
 	
 	/// Returns if the response is within 200-299 range.
 	public class func connectionResponseWithin200Range(data: NSData) -> Bool {
@@ -141,7 +141,7 @@ public class FCCURLConnection: NSObject {
 			args.append("\(self.username):\(self.password)")
 			
 		}
-		if NSUserDefaults.standardUserDefaults().boolForKey(FCCURLConnectionIgnoreInvalidCertificatesDefaultsKey) || self.ignoresInvalidCertificates {
+		if NSUserDefaults.standardUserDefaults().boolForKey(XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey) || self.ignoresInvalidCertificates {
 			args.append("-k")
 			
 		}
@@ -153,7 +153,7 @@ public class FCCURLConnection: NSObject {
 			args.append("/dev/null")
 		}
 		
-		if FCShouldLog() {
+		if XUShouldLog() {
 			var argsCopy = args
 			if var userIndex = argsCopy.indexOf("-u") {
 				++userIndex

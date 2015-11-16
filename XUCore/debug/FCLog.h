@@ -35,27 +35,27 @@ extern "C" {
 							} \
 						}
 	
-	void _FCLog(NSString * __nonnull format, ...) __attribute__((format(__NSString__, 1, 2)));
-	void FCLogv(NSString * __nonnull format, va_list __valist_nonnull args) __attribute__((format(__NSString__, 1, 0)));
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void _FCLog(NSString * __nonnull format, ...) __attribute__((format(__NSString__, 1, 2)));
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void FCLogv(NSString * __nonnull format, va_list __valist_nonnull args) __attribute__((format(__NSString__, 1, 0)));
 
-	void FCForceSetDebugging(BOOL debug);
-	BOOL FCShouldLog(void);
-	void FCForceLog(NSString * __nonnull format, ...) __attribute__((format(__NSString__, 1, 2)));
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void FCForceSetDebugging(BOOL debug);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") BOOL FCShouldLog(void);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void FCForceLog(NSString * __nonnull format, ...) __attribute__((format(__NSString__, 1, 2)));
 	
-	NSString * __nonnull FCLogFilePath(void);
-	void FCClearLog(void);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") NSString * __nonnull FCLogFilePath(void);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void FCClearLog(void);
 	
 	/* Returns nil if nothing ever got logged. */
-	NSDate * __nullable FCLastLogDate(void);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") NSDate * __nullable FCLastLogDate(void);
 	
-	void FCLogStacktrace(NSString * __nonnull comment);
-	NSString * __nonnull FCStacktraceString(void);
-	NSString * __nonnull FCStacktraceStringFromException(NSException * __nonnull exception);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") void FCLogStacktrace(NSString * __nonnull comment);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") NSString * __nonnull FCStacktraceString(void);
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") NSString * __nonnull FCStacktraceStringFromException(NSException * __nonnull exception);
 	
 	/** This notification is posted upon FCForceSetDebugging(). This allows
 	 * classes detect that debug logging was turned on and log something.
 	 */
-	extern NSString * __nonnull const FCLoggingStatusChangedNotification;
+	NS_SWIFT_UNAVAILABLE("Use XULog instead.") extern NSString * __nonnull const FCLoggingStatusChangedNotification;
 
 #ifdef __cplusplus
 }

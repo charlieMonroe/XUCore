@@ -1,5 +1,5 @@
 //
-//  FCURLHandlingCenter.swift
+//  XUURLHandlingCenter.swift
 //  XUCore
 //
 //  Created by Charlie Monroe on 11/5/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc public protocol FCURLHandler: AnyObject {
+@objc public protocol XUURLHandler: AnyObject {
 	
 	/// Called when the application opens a URL via Apple Events.
 	func handlerShouldProcessURL(URL: NSURL)
@@ -19,17 +19,17 @@ import Cocoa
 /// This object handles opening of URLs on OS X. On OS X, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
-public class FCURLHandlingCenter: NSObject {
+public class XUURLHandlingCenter: NSObject {
 
-	public static let defaultCenter = FCURLHandlingCenter()
+	public static let defaultCenter = XUURLHandlingCenter()
 	
 	
-	private var _handlers: [String : [FCURLHandler]] = [ : ]
+	private var _handlers: [String : [XUURLHandler]] = [ : ]
 	
 	
 	/// Adds a handler for scheme. Multiple handlers per scheme are allowed).
 	/// A strong reference is made to the handler.
-	public func addHandler(handler: FCURLHandler, forURLScheme scheme: String) {
+	public func addHandler(handler: XUURLHandler, forURLScheme scheme: String) {
 		var handlers = _handlers[scheme] ?? [ ]
 		handlers.append(handler)
 		_handlers[scheme] = handlers
@@ -58,14 +58,14 @@ public class FCURLHandlingCenter: NSObject {
 	}
 	
 	/// Removes the handler for all schemes.
-	public func removeHandler(handler: FCURLHandler) {
+	public func removeHandler(handler: XUURLHandler) {
 		for scheme in _handlers.keys {
 			self.removeHandler(handler, forURLScheme: scheme)
 		}
 	}
 	
 	/// Removes the handler for a particular scheme.
-	public func removeHandler(handler: FCURLHandler, forURLScheme scheme: String) {
+	public func removeHandler(handler: XUURLHandler, forURLScheme scheme: String) {
 		guard var schemes = _handlers[scheme] else {
 			return
 		}

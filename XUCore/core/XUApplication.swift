@@ -53,7 +53,9 @@ private extension NSView {
 	
 }
 
-
+/// If you are using XUApplication, you can use XUApp as an alternative to NSApp
+/// shortcut.
+public let XUApp: XUApplication! = NSApp as? XUApplication
 
 public class XUApplication: NSApplication {
 	
