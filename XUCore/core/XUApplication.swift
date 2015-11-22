@@ -61,17 +61,7 @@ public class XUApplication: NSApplication {
 	
 	private var _isModal: Bool = false
 	private weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
-	
-	/// Returns build number, e.g. 345
-	public class var buildNumber: String {
-		return (NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String) ?? "0"
-	}
-	
-	/// Returns version number, e.g. 1.2.3
-	public class var versionNumber: String {
-		return (NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String) ?? "1.0"
-	}
-	
+		
 	
 	/// Returns the current key events observer
 	public var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {

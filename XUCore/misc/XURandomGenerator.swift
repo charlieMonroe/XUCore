@@ -28,7 +28,7 @@ public class XURandomGenerator: NSObject {
 		var tv: timeval = timeval(tv_sec: 0, tv_usec: 0)
 		gettimeofday(&tv, nil)
 		
-		srandom(UInt32(((Int(getpid()) << 16) ^ tv.tv_sec ^ Int(tv.tv_usec) ^ address) % Int(UInt32.max)))
+		srandom(UInt32(((Int(getpid()) << 16) ^ tv.tv_sec ^ Int(tv.tv_usec) ^ address) % Int(UInt16.max)))
 		
 	}
 	

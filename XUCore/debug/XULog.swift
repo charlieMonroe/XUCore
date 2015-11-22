@@ -24,16 +24,13 @@ private func _XUCachePreferences() {
 	}
 }
 private func _XURunningDevelopmentComputer() -> Bool {
-	#if DEBUG
+	if XUApplicationSetup.sharedSetup.debugMode {
 		return true
-	#endif
+	}
+	
 	#if TARGET_OS_SIMULATOR
 		return true
 	#endif
-	
-	if let PWD = NSProcessInfo().environment["PWD"] {
-		return PWD.hasPrefix("/Users/charliemonroe/")
-	}
 	
 	return false
 }
@@ -62,10 +59,9 @@ private func _XURedirectToLogFile() {
 }
 private func _XUStartNewSession() {
 	let processInfo = NSProcessInfo()
-	let mainBundle = NSBundle.mainBundle()
 	
-	let version = mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?? "1.0"
-	let buildNumber = mainBundle.objectForInfoDictionaryKey("CFBundleVersion") as? String ?? "0"
+	let version = XUApplicationSetup.sharedSetup.applicationVersionNumber
+	let buildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber
 	
 	print("\n\n\n============== Starting a new \(processInfo.processName) session (version \(version)[\(buildNumber)]) ==============")
 }
@@ -90,7 +86,24 @@ private func _XULogInitializer() {
 	}
 }
 
+private func __XULogSetShouldLog(log: Bool) {
+	if log && !_didRedirectToLogFile {
+		_XURedirectToLogFile()
+		_XUStartNewSession()
+	}
+	
+	let didChange = log != _cachedPreferences;
+	
+	_cachedPreferences = log
+	_didCachePreferences = true //Already cached hence
+	
+	if (didChange) {
+		NSNotificationCenter.defaultCenter().postNotificationName(XULoggingStatusChangedNotification, object: nil)
+	}
+}
 
+
+/// Returns file path to the debug log.
 public func XULogFilePath() -> String {
 	let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo().processName
 	
@@ -100,6 +113,7 @@ public func XULogFilePath() -> String {
 	return logFile
 }
 
+/// Forces logging a string by temporarily enabling debug logging.
 public func XUForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	let originalPreferences = _cachedPreferences
 	_cachedPreferences = true
@@ -107,6 +121,7 @@ public func XUForceLog(@autoclosure string: () -> String, method: String = __FUN
 	_cachedPreferences = originalPreferences
 }
 
+/// Logs a message to the console.
 public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
 	if !_didCachePreferences {
 		_XULogInitializer()
@@ -119,25 +134,19 @@ public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION
 	}
 }
 
+/// Use this function to toggle debugging while the app is running.
 public func XUForceSetDebugging(debug: Bool) {
-	if debug && !_didRedirectToLogFile {
-		_XURedirectToLogFile()
-		_XUStartNewSession()
-	}
+	__XULogSetShouldLog(debug)
 	
-	let didChange = debug != _cachedPreferences;
-	
-	_cachedPreferences = debug
-	_didCachePreferences = true //Already cached hence
-	
-	if (didChange) {
-		NSNotificationCenter.defaultCenter().postNotificationName(XULoggingStatusChangedNotification, object: nil)
-	}
+	__FCLogSetShouldLog(debug)
 }
+
+/// Returns true when the debug logging is currently turned on.
 public func XUShouldLog() -> Bool {
 	return _cachedPreferences
 }
 
+/// Clears the log file.
 public func XUClearLog() {
 	if (_logFile != nil){
 		fclose(_logFile!);
@@ -153,3 +162,16 @@ public func XUClearLog() {
 		}
 	}
 }
+
+/// Do not use this class. It's a private class (which needs to be public so that
+/// it can be seen from ObjC), that allows FCLog to inform XULog that the debug
+/// logging preference was changed.
+public class __XULogBridge: NSObject {
+	
+	/// This method must only be called by FCForceSetDebugLog().
+	public class func setShouldLog(log: Bool) {
+		__XULogSetShouldLog(log)
+	}
+	
+}
+

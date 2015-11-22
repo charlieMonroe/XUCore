@@ -9,8 +9,10 @@
 
 #import "FCLog.h"
 
-#ifndef FC_APP_STORE_BUILD
-	#define FC_APP_STORE_BUILD 1 // Assuming AppStore environment
+#if TARGET_OS_IPHONE
+	#import <XUCoreMobile/XUCoreMobile-Swift.h>
+#else
+	#import <XUCore/XUCore-Swift.h>
 #endif
 
 NSString * __nonnull const FCLoggingStatusChangedNotification = @"FCLoggingStatusChangedNotification";
@@ -91,8 +93,12 @@ static void _FCRedirectToLogFile() {
 
 static void _FCStartNewSession() {
 	NSProcessInfo *processInfo = [NSProcessInfo processInfo];
-	NSBundle *mainBundle = [NSBundle mainBundle];
-	NSLog(@"\n\n\n============== Starting a new %@ session (version %@[%@], %@) ==============", [processInfo processName], [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"], [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"], FC_APP_STORE_BUILD ? @"AppStore" : @"Trial");
+	
+	NSString *version = [[XUApplicationSetup sharedSetup] applicationVersionNumber];
+	NSString *buildNumber = [[XUApplicationSetup sharedSetup] applicationBuildNumber];
+	NSString *buildType = [[XUApplicationSetup sharedSetup] AppStoreBuild] ? @"AppStore" : @"Trial";
+	
+	NSLog(@"\n\n\n============== Starting a new %@ session (version %@[%@], %@) ==============", [processInfo processName], version, buildNumber, buildType);
 }
 
 static void _FCLogInitializer() __attribute__ ((constructor));
@@ -116,20 +122,26 @@ static void _FCLogInitializer() {
 	}
 }
 
-void FCForceSetDebugging(BOOL debug){
-	if (debug && !_didRedirectToLogFile){
+void __FCLogSetShouldLog(BOOL log) {
+	if (log && !_didRedirectToLogFile){
 		_FCRedirectToLogFile();
 		_FCStartNewSession();
 	}
 	
-	BOOL didChange = debug != _cachedPreferences;
+	BOOL didChange = log != _cachedPreferences;
 	
-	_cachedPreferences = debug;
+	_cachedPreferences = log;
 	_didCachePreferences = YES; //Already cached hence
 	
 	if (didChange) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:FCLoggingStatusChangedNotification object:nil];
 	}
+}
+
+void FCForceSetDebugging(BOOL debug){
+	__FCLogSetShouldLog(debug);
+	
+	[__XULogBridge setShouldLog:debug];
 }
 
 BOOL FCShouldLog(){

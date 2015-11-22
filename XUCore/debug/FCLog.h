@@ -56,6 +56,12 @@ extern "C" {
 	 * classes detect that debug logging was turned on and log something.
 	 */
 	NS_SWIFT_UNAVAILABLE("Use XULog instead.") extern NSString * __nonnull const FCLoggingStatusChangedNotification;
+	
+	
+	/// This is a private function for Swift's version of FCLog (XULog), which
+	/// is needed for enabling both ObjC and Swift debug logging at once. Should
+	/// only be called by Swift's XUForceSetDebugging().
+	extern void __FCLogSetShouldLog(BOOL log);
 
 #ifdef __cplusplus
 }

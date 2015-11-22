@@ -15,23 +15,16 @@ FOUNDATION_EXPORT double XUCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Additions. */
-#import "NSAlertAdditions.h"
 #import "NSArrayAdditions.h"
 #import "NSBezierPathAdditions.h"
-#import "NSColorAdditions.h"
 #import "NSData+CommonCryptoSwift.h"
 #import "NSDataAdditions.h"
 #import "NSDictionaryAdditions.h"
-#import "NSImageAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSStringGeometrics.h"
-#import "NSURLConnectionAdditions.h"
-#import "NSWindow-NoodleEffects.h"
 #import "NSXMLAdditions.h"
 
 /** AppStore. */
-#import "FCAppStoreHidingView.h"
-#import "FCAppStoreMenuCleaner.h"
 #import "FCInAppPurchaseManager.h"
 
 /** Core. */
@@ -39,7 +32,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
-#import "XUPowerAssertion.h"
 #import "XUString.h"
 
 /** Data. */

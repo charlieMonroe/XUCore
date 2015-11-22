@@ -69,7 +69,7 @@
 		for (NSURL *item in items){
 			fileSize += [self _sizeOfFileAtURL:item];
 		}
-		_cachedSize = fileSize;
+		_cachedSize = (NSInteger)fileSize;
 	}
 	
 	return _cachedSize - [self maximumSize];

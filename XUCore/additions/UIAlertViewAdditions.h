@@ -50,14 +50,14 @@ typedef void(^XUAlertViewHandler)(UIAlertView *alertView, NSInteger clickedButto
 @end
 
 @interface UIAlertView (OSXCompatibility)
-@property (readwrite, retain, nonatomic) NSString *informativeText;
-@property (readwrite, retain, nonatomic) NSString *messageText;
+@property (readwrite, retain, nonatomic) NSString *informativeText DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
+@property (readwrite, retain, nonatomic) NSString *messageText DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");
 @end
 
 
 @interface UIAlertView (XUAlertViewErrorAdditions)
 
 /** Presents an alert view with error description. */
-+(instancetype)alertViewWithError:(NSError*)error;
++(instancetype)alertViewWithError:(NSError*)error DEPRECATED_MSG_ATTRIBUTE("Use UIAlertController.");;
 
 @end

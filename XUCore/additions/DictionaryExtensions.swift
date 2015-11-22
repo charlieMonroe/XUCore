@@ -55,9 +55,19 @@ public extension Dictionary {
 		return false
 	}
 	
-	/// A convenience method for retrieving dictionaries
+	/// A convenience method for retrieving dictionaries.
 	public func dictionaryForKeyPath(keyPath: String) -> XUJSONDictionary? {
 		return self.objectForKeyPath(keyPath) as? XUJSONDictionary
+	}
+	
+	/// A convenience method for retrieving dictionaries.
+	public func dictionaryForKeyPaths(keyPaths: String...) -> XUJSONDictionary? {
+		for keyPath in keyPaths {
+			if let d = self.dictionaryForKeyPath(keyPath) {
+				return d
+			}
+		}
+		return nil
 	}
 	
 	
