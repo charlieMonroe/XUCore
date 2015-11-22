@@ -134,6 +134,10 @@ public class XUMessageCenter: NSObject {
 	}
 	
 	@objc private func _launchMessageCenter() {
+		if XUApplicationSetup.sharedSetup.messageCenterFeedURL == nil {
+			return // Ignore, if the feed URL is nil
+		}
+		
 		XULog("Will be launching message center.")
 		XU_PERFORM_BLOCK_ASYNC { () -> Void in
 			self.checkForMessages()
@@ -190,9 +194,13 @@ public class XUMessageCenter: NSObject {
 				continue
 			}
 			
-			guard let minVersion = (message["XUMinVersion"] as? NSNumber)?.integerValue,
-					maxVersion = (message["XUMaxVersion"] as? NSNumber)?.integerValue else {
-				XULog("Invalid message (missing min or max version) \(message)")
+			guard let minVersion = (message["XUMinVersion"] as? NSNumber)?.integerValue else {
+				XULog("Invalid message (missing min version) \(message)")
+				continue
+			}
+			
+			guard let maxVersion = (message["XUMaxVersion"] as? NSNumber)?.integerValue else {
+				XULog("Invalid message (missing max version) \(message)")
 				continue
 			}
 			

@@ -19,8 +19,14 @@
 +(void)load{
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
+		// First, load the application setup.
 		[XUApplicationSetup sharedSetup];
+		
+		// Launch the message center.
 		[XUMessageCenter sharedMessageCenter];
+		
+		// Start catching exceptions.
+		[XUExceptionCatcher startExceptionCatcher];
 	});
 }
 

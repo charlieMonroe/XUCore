@@ -176,6 +176,11 @@
 		0749DCF91C00D5060075CC9B /* _XUCoreLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */; };
 		0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */; };
 		0749DCFB1C00D5060075CC9B /* _XUCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */; };
+		0749DD011C01F4580075CC9B /* XUExceptionCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */; };
+		0749DD031C01F8720075CC9B /* XUExceptionReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */; };
+		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
+		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */; };
 		07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */; };
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
@@ -404,6 +409,10 @@
 		0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMessageCenter.swift; sourceTree = "<group>"; };
 		0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUCoreLoader.h; path = private/_XUCoreLoader.h; sourceTree = "<group>"; };
 		0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUCoreLoader.m; path = private/_XUCoreLoader.m; sourceTree = "<group>"; };
+		0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionCatcher.swift; path = exception_handling/XUExceptionCatcher.swift; sourceTree = "<group>"; };
+		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; };
+		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
+		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
 		07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTabViewAdditions.swift; sourceTree = "<group>"; };
@@ -640,8 +649,19 @@
 			children = (
 				0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */,
 				0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */,
+				0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */,
 			);
 			name = private;
+			sourceTree = "<group>";
+		};
+		0749DCFF1C01F43F0075CC9B /* exception_handling */ = {
+			isa = PBXGroup;
+			children = (
+				0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */,
+				0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */,
+				0749DD041C0203430075CC9B /* ExceptionReporter.xib */,
+			);
+			name = exception_handling;
 			sourceTree = "<group>";
 		};
 		077AFD851BBD0E5300872A48 = {
@@ -672,6 +692,7 @@
 				077AFE1A1BBD101400872A48 /* data */,
 				077AFE231BBD101400872A48 /* debug */,
 				077AFE451BBD101400872A48 /* documents */,
+				0749DCFF1C01F43F0075CC9B /* exception_handling */,
 				077AFE611BBD101400872A48 /* localization */,
 				077AFE691BBD101400872A48 /* misc */,
 				077AFE781BBD101400872A48 /* network */,
@@ -1073,6 +1094,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1142,7 @@
 				073E6B231BE1F86D00706283 /* valgrind.cc in Sources */,
 				077AFF9E1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
+				0749DD031C01F8720075CC9B /* XUExceptionReporter.swift in Sources */,
 				073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */,
 				077AFF801BBD101400872A48 /* FCKeychain.m in Sources */,
 				0749DCD61C0056450075CC9B /* XUPowerAssertion.swift in Sources */,
@@ -1128,6 +1151,7 @@
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
+				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */,
@@ -1203,6 +1227,7 @@
 				073E6B401BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
+				0749DD011C01F4580075CC9B /* XUExceptionCatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,6 +1262,7 @@
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
 				073E6AD81BE1F86D00706283 /* prog.cc in Sources */,
 				077AFEE31BBD101400872A48 /* NSDataAdditions.m in Sources */,
+				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */,
 				0779E1861BF2334600832858 /* XUAttributedStringTransformer.swift in Sources */,

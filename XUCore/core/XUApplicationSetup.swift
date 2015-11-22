@@ -40,6 +40,12 @@ public class XUApplicationSetup: NSObject {
 	/// arguments list to enable it.
 	public let debugMode: Bool
 	
+	/// Returns a NSURL object that contains a URL where exception report is sent
+	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
+	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter
+	/// for more information.
+	public let exceptionHandlerReportURL: NSURL?
+	
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining
 	/// XUMessageCenterAppIdentifier in Info.plist.
@@ -71,6 +77,16 @@ public class XUApplicationSetup: NSObject {
 			}
 		}else{
 			messageCenterFeedURL = nil
+		}
+		
+		if let reporterURLString = infoDictionary["XUExceptionReporterURL"] as? String {
+			exceptionHandlerReportURL = NSURL(string: reporterURLString)
+			if exceptionHandlerReportURL == nil {
+				// NSURL creation failed, report this to the user
+				XULog("XUExceptionReporterURL contains a nonnull value, but it doesn't seem to be a proper URL '\(reporterURLString)'")
+			}
+		}else{
+			exceptionHandlerReportURL = nil
 		}
 		
 		let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo.processInfo().processName
