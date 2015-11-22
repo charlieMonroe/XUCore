@@ -27,6 +27,9 @@
 		
 		// Start catching exceptions.
 		[XUExceptionCatcher startExceptionCatcher];
+		
+		// Start the trial.
+		[XUTrial sharedTrial];
 	});
 }
 

@@ -318,6 +318,8 @@
 		07C3FA251BECB3C3008A4200 /* XUFileSizeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */; };
 		07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */; };
 		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
+		07E35B951C02384C007D31BE /* XUTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B941C02384C007D31BE /* XUTrial.swift */; };
+		07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -504,6 +506,8 @@
 		07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFileSizeTransformer.swift; sourceTree = "<group>"; };
 		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
+		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; };
+		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -699,6 +703,7 @@
 				0749DCF51C00D4DE0075CC9B /* private */,
 				073E6A7C1BE1F84600706283 /* regex */,
 				077AFEAD1BBD101400872A48 /* transformers */,
+				07E35B931C02383E007D31BE /* trial */,
 				073E6B541BE203E800706283 /* ui */,
 				077AFD941BBD0E5300872A48 /* Info.plist */,
 				077A00A81BBD107500872A48 /* Cocoa.framework */,
@@ -801,6 +806,7 @@
 				073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */,
 				07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */,
 				07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */,
+				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
 				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
 				073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */,
@@ -889,6 +895,14 @@
 				07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */,
 			);
 			path = transformers;
+			sourceTree = "<group>";
+		};
+		07E35B931C02383E007D31BE /* trial */ = {
+			isa = PBXGroup;
+			children = (
+				07E35B941C02384C007D31BE /* XUTrial.swift */,
+			);
+			name = trial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1124,6 +1138,7 @@
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
 				073E6B1B1BE1F86D00706283 /* thread.cc in Sources */,
+				07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */,
 				077AFF1E1BBD101400872A48 /* NSStringAdditions.m in Sources */,
 				073E6ADF1BE1F86D00706283 /* regexp.cc in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
@@ -1224,6 +1239,7 @@
 				07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */,
 				073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
 				0779E16E1BF06C6200832858 /* NSDecimalNumberAdditions.swift in Sources */,
+				07E35B951C02384C007D31BE /* XUTrial.swift in Sources */,
 				073E6B401BE1FD4C00706283 /* FCLocalizationSupport.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,

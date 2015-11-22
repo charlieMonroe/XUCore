@@ -55,6 +55,11 @@ public class XUExceptionCatcher: NSObject {
 	private override init() {
 		super.init()
 		
+		// Do not allow FCExceptionCatcher in apps using XUCore.
+		if NSClassFromString("FCExceptionCatcher") != nil {
+			NSException(name: NSInternalInconsistencyException, reason: "Do not use FCExceptionCatcher.", userInfo: nil).raise()
+		}
+		
 		// Since NSApplication installs its own handler, we need to make sure that
 		// this is called *after* the app is finished launching. We can detect this
 		// by checking NSApp for nil.

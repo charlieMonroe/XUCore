@@ -274,6 +274,11 @@ public class XUMessageCenter: NSObject {
 	private override init() {
 		super.init()
 		
+		// Do not allow FCMessageCenter in apps using XUCore.
+		if NSClassFromString("FCMessageCenter") != nil {
+			NSException(name: NSInternalInconsistencyException, reason: "Do not use FCMessageCenter.", userInfo: nil).raise()
+		}
+		
 		#if os(iOS)
 		#else
 			let notificationName = NSApplicationDidFinishLaunchingNotification
