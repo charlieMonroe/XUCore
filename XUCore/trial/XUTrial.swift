@@ -238,6 +238,11 @@ public class XUTrial: NSObject {
 		
 		super.init()
 		
+		// Do not allow FCTrial in apps using XUCore.
+		if NSClassFromString("FCTrial") != nil {
+			NSException(name: NSInternalInconsistencyException, reason: "Do not use FCTrial.", userInfo: nil).raise()
+		}
+		
 		self._innerInit()
 		
 		if NSApp == nil {

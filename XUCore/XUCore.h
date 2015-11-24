@@ -24,9 +24,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "NSStringGeometrics.h"
 #import "NSXMLAdditions.h"
 
-/** AppStore. */
-#import "FCInAppPurchaseManager.h"
-
 /** Core. */
 #import "FCKeychain.h"
 #import "XUAbstract.h"
