@@ -25,11 +25,13 @@
 		// Launch the message center.
 		[XUMessageCenter sharedMessageCenter];
 		
+#if !TARGET_OS_IOS
 		// Start catching exceptions.
 		[XUExceptionCatcher startExceptionCatcher];
 		
 		// Start the trial.
 		[XUTrial sharedTrial];
+#endif
 	});
 }
 

@@ -12,14 +12,14 @@ import Foundation
 public extension NSMenu {
 	
 	public func localizeMenu() {
-		self.title = FCLocalizedString(self.title)
+		self.title = XULocalizedString(self.title)
 		for item in self.itemArray {
 			if let attributedTitle = item.attributedTitle {
-				let localizedTitle = FCLocalizedString(attributedTitle.string)
+				let localizedTitle = XULocalizedString(attributedTitle.string)
 				let localizedAttributedTitle = NSAttributedString(string: localizedTitle, attributes: attributedTitle.attributesAtIndex(0, effectiveRange: nil))
 				item.attributedTitle = localizedAttributedTitle
 			}else{
-				item.title = FCLocalizedString(item.title)
+				item.title = XULocalizedString(item.title)
 			}
 			
 			if item.hasSubmenu {

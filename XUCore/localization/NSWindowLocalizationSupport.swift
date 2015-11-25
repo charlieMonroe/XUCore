@@ -11,13 +11,13 @@ import Foundation
 public extension NSWindow {
 	
 	public func localizeWindow() {
-		self.title = FCLocalizedString(self.title)
+		self.title = XULocalizedString(self.title)
 		
 		self.contentView?.localizeView()
 		
 		if let toolbar = self.toolbar {
 			for item in toolbar.items {
-				item.label = FCLocalizedString(item.label)
+				item.label = XULocalizedString(item.label)
 			}
 		}
 	}

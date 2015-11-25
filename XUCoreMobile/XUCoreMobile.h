@@ -22,9 +22,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "NSStringAdditions.h"
 #import "UIAlertViewAdditions.h"
 
-/** AppStore. */
-#import "FCInAppPurchaseManager.h"
-
 /** Core. */
 #import "FCKeychain.h"
 #import "iOSCommon.h"

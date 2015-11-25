@@ -6,6 +6,10 @@ It is a set of class categories/extensions, utilities for logging, localization,
 
 If you decide to use this in your own project, some acknowledgement is required.
 
+## History
+
+We're currently in the middle of reorganizing the framework. Originally, this was just files in a separate repository and those got included directly in the projects, now they are put together. For historical reasons, the framework contains a bunch of classes
+
 ## Usage
 
 As simple as `@import XUCore;` in Objective-C or `import XUCore` in Swift. 
@@ -24,4 +28,4 @@ All Objective-C code that is currently present in the framework is deprecated fo
 In addition to this, you can (temporarily), use the following classes/functions from ObjC:
 
 - FCLog - in Swift, use XULog, though.
-- FCLocalizationSupport - there will be XULocalizationSupport instead soon for Swift.
+- FCLocalizationSupport - in Swift, use XULocalizationSupport.

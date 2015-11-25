@@ -21,7 +21,7 @@
 #endif
 
 #if LOCALIZATION_TESTING
-	static inline NSString *FCLocalizedString(NSString *key){
+	NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") static inline NSString *FCLocalizedString(NSString *key){
 		if ([key length] == 0){
 			return key;
 		}
@@ -33,7 +33,7 @@
 		return result;
 	}
 #else
-	static inline NSString * __nonnull FCLocalizedString(NSString * __nonnull key){ return NSLocalizedStringFromTable(key, @"Localizable", @""); }
+	NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") static inline NSString * __nonnull FCLocalizedString(NSString * __nonnull key){ return NSLocalizedStringFromTable(key, @"Localizable", @""); }
 #endif
 
 #define FCLocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]

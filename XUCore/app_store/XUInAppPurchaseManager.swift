@@ -118,11 +118,15 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		self.reloadProductsAvailableForPurchase()
 		
-		if let transactions = SKPaymentQueue.defaultQueue().transactions {
-			if transactions.count > 0 {
-				for transaction in transactions {
-					SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-				}
+		#if os(iOS)
+			let transactions = SKPaymentQueue.defaultQueue().transactions
+		#else
+			let transactions = SKPaymentQueue.defaultQueue().transactions ?? [ ]
+		#endif
+
+		if transactions.count > 0 {
+			for transaction in transactions {
+				SKPaymentQueue.defaultQueue().finishTransaction(transaction)
 			}
 		}
 		
@@ -242,6 +246,15 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		_loadRequest?.start()
 	}
 	
+	#if os(iOS)
+	public func request(request: SKRequest, didFailWithError error: NSError) {
+		XULog("An error getting products occurred \(error)")
+		
+		_loadRequest = nil
+		
+		self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
+	}
+	#else
 	public func request(request: SKRequest, didFailWithError error: NSError?) {
 		XULog("An error getting products occurred \(error)")
 		
@@ -249,6 +262,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
 	}
+	#endif
 	
 	/// Starts restoration of purchases. See delegate methods for callbacks.
 	public func restorePurchases() {

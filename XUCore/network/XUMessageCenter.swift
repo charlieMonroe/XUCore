@@ -8,6 +8,10 @@
 
 import Foundation
 
+#if os(iOS)
+	import UIKit
+#endif
+
 /// Key for NSUserDefaults which contains a date when the block occurred.
 private let XUMessageCenterAppBlockedDateDefaultsKey = "XUMessageCenterAppBlockedDate"
 
@@ -120,9 +124,17 @@ public class XUMessageCenter: NSObject {
 				NSUserDefaults.standardUserDefaults().setInteger(maxVersion, forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 				
 				let appName = NSProcessInfo.processInfo().processName
-				let alert = NSAlert()
-				alert.messageText = FCLocalizedFormattedString("\(appName) will keep on working the next 24 hours, after which its functionality will be blocked. Please update \(appName) in order to keep it working.")
-				alert.runModalOnMainThread()
+				let title = XULocalizedFormattedString("\(appName) will keep on working the next 24 hours, after which its functionality will be blocked. Please update \(appName) in order to keep it working.")
+				
+				#if os(iOS)
+					let controller = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
+					controller.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
+					UIApplication.sharedApplication().windows.first!.rootViewController?.presentViewController(controller, animated: true, completion: nil)
+				#else
+					let alert = NSAlert()
+					alert.messageText = title
+					alert.runModalOnMainThread()
+				#endif
 			}else{
 				XULog("*** Unknown action \(key)")
 			}
@@ -224,7 +236,7 @@ public class XUMessageCenter: NSObject {
 			
 			let allowsIgnoringMessage = (message["XUCanIgnoreMessage"] as? NSNumber)?.boolValue ?? false
 			
-			var ignoreButtonTitle = FCLocalizedString("Cancel")
+			var ignoreButtonTitle = XULocalizedString("Cancel")
 			if allowsIgnoringMessage {
 				if let customIgnoreButtonTitle = message["XUIgnoreButtonTitle"] as? String {
 					ignoreButtonTitle = customIgnoreButtonTitle
@@ -238,24 +250,22 @@ public class XUMessageCenter: NSObject {
 			
 			// We should display this message!
 			#if os(iOS)
-			let alert = UIAlertView.alertWithTitle(message["XUMessage"], message: message["XUDescription"], handler: { (alertView: UIAlertView, clickedButton: Int) in
-				if clickedButton == alertView.cancelButtonIndex {
-					return
-					
+				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .Alert)
+				alert.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: { (_) -> Void in
+					self._processActionsFromMessageDict(message, withMessageID: messageID)
+				}))
+				if allowsIgnoringMessage {
+					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .Cancel, handler: nil))
 				}
-				self._processActionsFromMessageDict(message, withMessageID: messageID)
-				
-				}, cancelButtonTitle: ignoreButtonTitle, andSecondButtonTitle: FCLocalizedString("OK"))
-			dispatch_sync(dispatch_get_main_queue(),{	alert.show
-				
-			})
-				/* Only one alert per check. */
-				break
+
+				XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
+					UIApplication.sharedApplication().windows.first!.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+				})
 			#else
 				let alert = NSAlert()
 				alert.messageText = messageText
 				alert.informativeText = (message["XUDescription"] as? String) ?? ""
-				alert.addButtonWithTitle(FCLocalizedString("OK"))
+				alert.addButtonWithTitle(XULocalizedString("OK"))
 				if allowsIgnoringMessage {
 					alert.addButtonWithTitle(ignoreButtonTitle)
 				}
@@ -263,10 +273,10 @@ public class XUMessageCenter: NSObject {
 				if alert.runModalOnMainThread() == NSAlertFirstButtonReturn {
 					self._processActionsFromMessageDict(message, withMessageID: messageID)
 				}
-				
-				/* Only one alert per check. */
-				break
 			#endif
+			
+			/* Only one alert per check. */
+			break
 		}
 		
 	}
@@ -280,6 +290,7 @@ public class XUMessageCenter: NSObject {
 		}
 		
 		#if os(iOS)
+			let notificationName = UIApplicationDidFinishLaunchingNotification
 		#else
 			let notificationName = NSApplicationDidFinishLaunchingNotification
 		#endif

@@ -11,21 +11,21 @@ import Foundation
 public extension UIButton {
 	public override func localizeView() {
 		if let title = self.titleForState(.Normal) {
-			self.setTitle(FCLocalizedString(title), forState: .Normal)
+			self.setTitle(XULocalizedString(title), forState: .Normal)
 		}
 	}
 }
 public extension UILabel {
 	public override func localizeView() {
 		if let text = self.text {
-			self.text = FCLocalizedString(text)
+			self.text = XULocalizedString(text)
 		}
 	}
 }
 public extension UITextField {
 	public override func localizeView() {
 		if let placeholder = self.placeholder {
-			self.placeholder = FCLocalizedString(placeholder)
+			self.placeholder = XULocalizedString(placeholder)
 		}
 	}
 }

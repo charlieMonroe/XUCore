@@ -33,9 +33,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	/// Shows an alert with privacy information.
 	class func showPrivacyInformation() {
 		let alert = NSAlert()
-		alert.messageText = FCLocalizedString("We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.")
-		alert.informativeText = FCLocalizedString("Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).")
-		alert.addButtonWithTitle(FCLocalizedString("OK"))
+		alert.messageText = XULocalizedString("We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.")
+		alert.informativeText = XULocalizedString("Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).")
+		alert.addButtonWithTitle(XULocalizedString("OK"))
 		alert.runModal()
 	}
 	
@@ -71,9 +71,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	private func _reportFailedReportSend() {
 		let alert = NSAlert()
-		alert.messageText = FCLocalizedString("Could not post your report.")
-		alert.informativeText = FCLocalizedString("Check your Internet connection and try again.")
-		alert.addButtonWithTitle(FCLocalizedString("OK"))
+		alert.messageText = XULocalizedString("Could not post your report.")
+		alert.informativeText = XULocalizedString("Check your Internet connection and try again.")
+		alert.addButtonWithTitle(XULocalizedString("OK"))
 		alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 	}
 	
@@ -98,16 +98,16 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		if valid == .PhonyFormat {
 			let alert = NSAlert()
-			alert.messageText = FCLocalizedString("Heh, nice try. Please, enter a valid email address.")
-			alert.informativeText = FCLocalizedString("We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.")
-			alert.addButtonWithTitle(FCLocalizedString("OK"))
+			alert.messageText = XULocalizedString("Heh, nice try. Please, enter a valid email address.")
+			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.")
+			alert.addButtonWithTitle(XULocalizedString("OK"))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			return
 		}else if valid == .WrongFormat {
 			let alert = NSAlert()
-			alert.messageText = FCLocalizedString("You need to enter a valid email address.")
-			alert.informativeText = FCLocalizedString("We may need to get in touch with you in order to fix this.")
-			alert.addButtonWithTitle(FCLocalizedString("OK"))
+			alert.messageText = XULocalizedString("You need to enter a valid email address.")
+			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this.")
+			alert.addButtonWithTitle(XULocalizedString("OK"))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			return
 		}
@@ -152,9 +152,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		if response.statusCode >= 200 && response.statusCode < 300 {
 			let alert = NSAlert()
-			alert.messageText = FCLocalizedString("Thank you for the report!")
-			alert.informativeText = FCLocalizedString("We'll fix it as soon as possible!")
-			alert.addButtonWithTitle(FCLocalizedString("OK"))
+			alert.messageText = XULocalizedString("Thank you for the report!")
+			alert.informativeText = XULocalizedString("We'll fix it as soon as possible!")
+			alert.addButtonWithTitle(XULocalizedString("OK"))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: { (_) -> Void in
 				self._reporterWindow.close()
 			})

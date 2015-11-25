@@ -52,7 +52,7 @@ public class XUApplicationSetup: NSObject {
 	/// complicated - edit the scheme of your project and add "--xu-run-debug" to the
 	/// arguments list to enable it.
 	public let debugMode: Bool
-	
+		
 	/// Returns a NSURL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
 	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter

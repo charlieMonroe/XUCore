@@ -159,16 +159,16 @@ public class XUTrial: NSObject {
 	/// Shows an alert when isFirstRun is true.
 	@objc private func _showFirstRunAlert() {
 		let appName = NSProcessInfo.processInfo().processName
-		self._showTrialAlertWithMessage(FCLocalizedFormattedString("Thanks for trying out %@! You may use it for 15 days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, appName))
+		self._showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for 15 days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, appName))
 	}
 	
 	/// Displays an alert with custom message about the trial.
 	private func _showTrialAlertWithMessage(message: String) {
 		let alert = NSAlert()
 		alert.messageText = message
-		alert.informativeText = FCLocalizedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page \(self.supportURL.absoluteString)")
-		alert.addButtonWithTitle(FCLocalizedString("Continue"))
-		alert.addButtonWithTitle(FCLocalizedString("Purchase..."))
+		alert.informativeText = XULocalizedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page \(self.supportURL.absoluteString)")
+		alert.addButtonWithTitle(XULocalizedString("Continue"))
+		alert.addButtonWithTitle(XULocalizedString("Purchase..."))
 
 		let alertResult = alert.runModal()
 		if alertResult == NSAlertDefaultReturn {
@@ -192,10 +192,10 @@ public class XUTrial: NSObject {
 		
 		let appName = NSProcessInfo.processInfo().processName
 		let alert = NSAlert()
-		alert.messageText = FCLocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName)
-		alert.informativeText = FCLocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "")
-		alert.addButtonWithTitle(FCLocalizedString("Purchase..."))
-		alert.addButtonWithTitle(FCLocalizedString("I'm Still Not Sure"))
+		alert.messageText = XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName)
+		alert.informativeText = XULocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "")
+		alert.addButtonWithTitle(XULocalizedString("Purchase..."))
+		alert.addButtonWithTitle(XULocalizedString("I'm Still Not Sure"))
 		
 		let result = alert.runModal()
 		if result == NSAlertDefaultReturn {
@@ -211,9 +211,9 @@ public class XUTrial: NSObject {
 	/// circumstances, the app exits in an hour.
 	@objc private func _warnAboutNoInternetConnection() {
 		let alert = NSAlert()
-		alert.messageText = FCLocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", NSProcessInfo.processInfo().processName)
-		alert.informativeText = FCLocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", NSProcessInfo.processInfo().processName)
-		alert.addButtonWithTitle(FCLocalizedString("OK"))
+		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", NSProcessInfo.processInfo().processName)
+		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", NSProcessInfo.processInfo().processName)
+		alert.addButtonWithTitle(XULocalizedString("OK"))
 		alert.runModal()
 		
 		self._shortTrial()
