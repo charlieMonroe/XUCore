@@ -8,11 +8,13 @@ If you decide to use this in your own project, some acknowledgement is required.
 
 ## History
 
-We're currently in the middle of reorganizing the framework. Originally, this was just files in a separate repository and those got included directly in the projects, now they are put together. For historical reasons, the framework contains a bunch of classes
+We're currently in the middle of reorganizing the framework. Originally, this was just files in a separate repository and those got included directly in the projects, now they are put together. For historical reasons, the framework contains a bunch of classes (or sets of functions) that are prefixed as `FC`. We're migrating those to the `XU` prefix nomenclature as they get rewritten in Swift.
+
+The `FC` classes stay available as subclasses of the `XU` classes, but are deprecated and must not be used since they are soon to be removed entirely.
 
 ## Usage
 
-As simple as `@import XUCore;` in Objective-C or `import XUCore` in Swift. 
+As simple as `@import XUCore;` in Objective-C or `import XUCore` in Swift. On iOS, use `XUCoreMobile` instead.
 
 Most classes now have proper documentation, so feel free to go through it.
 
