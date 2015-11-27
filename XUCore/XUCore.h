@@ -25,26 +25,25 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "NSXMLAdditions.h"
 
 /** Core. */
-#import "FCKeychain.h"
+#import "FCKeychain.h" // Deprecated
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
-#import "XUString.h"
 
-/** Data. */
+/** Data - all deprectated. */
 #import "FCContextHolder.h"
 #import "FCDataEntity.h"
 #import "FCPersistentDataStorage.h"
 #import "FCTemporaryDataStorage.h"
 
 /** Debug. */
-#import "FCLog.h"
+#import "FCLog.h" // Deprecated
 
 /** Documents. */
 #import "FCCSVDocument.h"
 
 /** Localization. */
-#import "FCLocalizationSupport.h"
+#import "FCLocalizationSupport.h" // Deprecated
 
 /** Regex. */
 #import "XURegex.h"

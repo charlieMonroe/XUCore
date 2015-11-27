@@ -1,9 +1,12 @@
 
 #import <UIKit/UIKit.h>
 
-NSUInteger CMSystemMajorVersion(void);
+NS_AVAILABLE(10_10, 8_0);
+static inline NSUInteger XUSystemMajorVersion(void) {
+	return [[NSProcessInfo processInfo] operatingSystemVersion].majorVersion;
+}
 
-static inline BOOL CMRunningPhoneDevice(void){
+static inline BOOL XURunningPhoneDevice(void){
 	return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
 }
 

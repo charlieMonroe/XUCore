@@ -112,6 +112,18 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
+		if _userInputTextView.string == nil || _userInputTextView.string!.isEmpty {
+			let alert = NSAlert()
+			alert.messageText = XULocalizedString("Please, provide some details as to when this exception happened.")
+			alert.informativeText = XULocalizedString("Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.")
+			alert.addButtonWithTitle(XULocalizedString("OK"))
+			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
+			
+			_reporterWindow.makeFirstResponder(_userInputTextView)
+			return
+		}
+		
+		
 		let OSVersionString: String
 		if #available(OSX 10.10, *) {
 		    let OSVersion = NSProcessInfo.processInfo().operatingSystemVersion
