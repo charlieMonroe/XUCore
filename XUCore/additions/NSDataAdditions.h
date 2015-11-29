@@ -19,6 +19,8 @@
 -(NSUInteger)indexOfFirstOccurrenceOfBytes:(nonnull const char *)bytes ofLength:(NSUInteger)length;
 -(NSUInteger)readIntegerOfLength:(size_t)length startingAtIndex:(NSUInteger)index;
 
+/// Returns a string such as 194736ca92698d0282b76e979f32b1fa7b9b6d
+@property (readonly, nonnull, nonatomic) NSString *hexEncodedString;
 @property (readonly, nonnull, nonatomic) NSString *MD5Digest;
 
 @end

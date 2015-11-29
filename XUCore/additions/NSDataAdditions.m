@@ -56,6 +56,21 @@
 	}
 	return result;
 }
+-(NSString *)hexEncodedString{
+	NSUInteger dataLength  = [self length];
+	if (dataLength == 0){
+		return @"";
+	}
+	
+	const unsigned char *data = (const unsigned char *)[self bytes];
+	
+	NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
+	for (NSUInteger i = 0; i < dataLength; ++i){
+		[hexString appendFormat:@"%02lx", (unsigned long)data[i]];
+	}
+	
+	return hexString;
+}
 -(NSUInteger)indexOfFirstOccurrenceOfBytes:(const char *)bytes ofLength:(NSUInteger)length{
 	return [self rangeOfData:[NSData dataWithBytesNoCopy:(void *)bytes length:length freeWhenDone:NO] options:0 range:NSMakeRange(0, [self length])].location;
 }
