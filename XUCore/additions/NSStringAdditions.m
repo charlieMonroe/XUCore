@@ -495,6 +495,14 @@ regexp_fail:
 -(NSString*)stringByDecodingIllegalURLCharacters{
 	return CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapes( NULL, (CFStringRef)self, CFSTR( "" ) ));
 }
+-(NSString *)stringByLowercasingFirstLetter{
+	if ([self length] == 0){
+		return self;
+	}
+	NSMutableString *result = [self mutableCopy];
+	[result replaceCharactersInRange:NSMakeRange(0, 1) withString:[[self substringWithRange:NSMakeRange(0, 1)] lowercaseString]];
+	return result;
+}
 -(NSString *)stringByPaddingFrontToLength:(NSUInteger)length withString:(NSString *)padString{
 	NSString *result = self;
 	while ([result length] < length) {

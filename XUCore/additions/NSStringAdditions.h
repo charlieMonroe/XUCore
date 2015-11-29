@@ -151,6 +151,9 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 /** Decodes illegal URL characters (e.g. %20, etc.). */
 -(nonnull NSString *)stringByDecodingIllegalURLCharacters;
 
+/** Makes the first letter lowercase. */
+-(nonnull NSString *)stringByLowercasingFirstLetter;
+
 /** Appends enough prefix so that it has the specific length. */
 -(nonnull NSString *)stringByPaddingFrontToLength:(NSUInteger)length withString:(nonnull NSString *)padString;
 
