@@ -11,16 +11,13 @@ import Foundation
 
 public extension NSDate {
 	
-	public class func dateWithDay(day: Int, month: Int, year: Int) -> NSDate? {
+	/// Returns date with day/month/year values, if valid.
+	public class func dateWithDay(day: Int, month: Int, andYear year: Int) -> NSDate? {
 		let components = NSDateComponents()
 		components.day = day
 		components.month = month
 		components.year = year
 		return NSCalendar.currentCalendar().dateFromComponents(components)
-	}
-	public class func integralDate() -> NSDate {
-		let interval = floor(NSDate().timeIntervalSince1970)
-		return NSDate(timeIntervalSince1970: interval)
 	}
 	
 	public var day: Int {
@@ -33,6 +30,12 @@ public extension NSDate {
 		let calendar = NSCalendar.currentCalendar()
 		let components = calendar.components(.Hour, fromDate: self)
 		return components.hour
+	}
+	
+	/// Returns a new date object that is rounded down to seconds.
+	public var integralDate: NSDate {
+		let interval = floor(self.timeIntervalSince1970)
+		return NSDate(timeIntervalSince1970: interval)
 	}
 	
 	public var isFuture: Bool {
