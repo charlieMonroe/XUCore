@@ -30,6 +30,29 @@ public extension NSDecimalNumber {
 		return NSDecimalNumber(decimal: number!.decimalValue)
 	}
 	
+	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
+	/// NSDecimalNumber, (NS)String and NSNumber.
+	public class func decimalNumberWithValue(value: AnyObject?) -> NSDecimalNumber {
+		if value == nil {
+			return NSDecimalNumber.zero()
+		}
+		
+		if let number = value as? NSDecimalNumber {
+			return number
+		}
+		
+		if let str = value as? String {
+			return NSDecimalNumber(string: str)
+		}
+		
+		if let number = value as? NSNumber {
+			return NSDecimalNumber.decimalNumberWithNumber(number)
+		}
+		
+		XULogStacktrace("Trying to create NSDecimalNumber from unsupported kind of value \(value!)")
+		return NSDecimalNumber.zero()
+	}
+	
 	/// Returns a ceiled decimal number.
 	public var ceiledDecimalNumber: NSDecimalNumber {
 		if self.decimalPart.doubleValue < 0.01 {
