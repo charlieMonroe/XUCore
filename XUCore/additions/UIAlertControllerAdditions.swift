@@ -11,7 +11,7 @@ import Foundation
 public extension UIAlertController {
 	
 	/// See the init method.
-	public func alertControllerWithError(error: NSError?) -> UIAlertController {
+	public class func alertControllerWithError(error: NSError?) -> UIAlertController {
 		if error == nil {
 			let alert = UIAlertController(title: XULocalizedString("Unknown error."), message: nil, preferredStyle: .Alert)
 			alert.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
