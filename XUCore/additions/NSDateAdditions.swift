@@ -12,11 +12,25 @@ import Foundation
 public extension NSDate {
 	
 	/// Returns date with day/month/year values, if valid.
+	///
+	/// @note - cannot currently be an initializer since there is no initializer
+	///			that takes NSDateComponents as an arguments
 	public class func dateWithDay(day: Int, month: Int, andYear year: Int) -> NSDate? {
+		return self.dateWithDay(day, month: month, year: year, hour: 0, minute: 0, andSecond: 0)
+	}
+	
+	/// Returns date with day/month/year/hour/minute/second values, if valid.
+	///
+	/// @note - cannot currently be an initializer since there is no initializer
+	///			that takes NSDateComponents as an arguments
+	public class func dateWithDay(day: Int, month: Int, year: Int, hour: Int, minute: Int, andSecond second: Int) -> NSDate? {
 		let components = NSDateComponents()
 		components.day = day
 		components.month = month
 		components.year = year
+		components.hour = hour
+		components.minute = minute
+		components.second = second
 		return NSCalendar.currentCalendar().dateFromComponents(components)
 	}
 	
