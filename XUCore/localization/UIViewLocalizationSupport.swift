@@ -24,8 +24,14 @@ public extension UILabel {
 }
 public extension UITextField {
 	public override func localizeView() {
-		if let placeholder = self.placeholder {
-			self.placeholder = XULocalizedString(placeholder)
+		if let originalPlaceholder = self.attributedPlaceholder {
+			let attributes = originalPlaceholder.attributesAtIndex(0, effectiveRange: nil)
+			self.attributedPlaceholder = NSAttributedString(string: XULocalizedString(originalPlaceholder.string), attributes: attributes)
+		}else{
+			// No attributed placeholder
+			if let placeholder = self.placeholder {
+				self.placeholder = XULocalizedString(placeholder)
+			}
 		}
 	}
 }

@@ -16,24 +16,24 @@
  * functions in XUCore-Swift.h...
  */
 
-#ifndef LOCALIZATION_TESTING
-	#define LOCALIZATION_TESTING 0
-#endif
+extern NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") NSString * __nonnull FCLocalizedString(NSString * __nonnull key);
 
-#if LOCALIZATION_TESTING
-	NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") static inline NSString *FCLocalizedString(NSString *key){
-		if ([key length] == 0){
-			return key;
-		}
-		
-		NSString *result = NSLocalizedStringFromTable(key, @"Localizable", @"");
-		if ([result isEqualToString:key]){
-			NSLog(@"***NON-LOCALIZED KEY: \"%@\" = \"%@\";", key, key);
-		}
-		return result;
-	}
-#else
-	NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") static inline NSString * __nonnull FCLocalizedString(NSString * __nonnull key){ return NSLocalizedStringFromTable(key, @"Localizable", @""); }
-#endif
+/**
+ * A new format function which takes `values` and replaces placeholders within `key`
+ * with values from `values`.
+ *
+ * Example:
+ *
+ *  `key` = @"I have {number} apples."
+ *  `values` = @{ @"number" : @"2" }
+ *
+ *  results in @"I have 2 apples."
+ *
+ * @note `values` can have values other than NSString - -description is called
+ *            on the values.
+ *
+ */
+extern NSString * __nonnull FCLocalizedStringWithFormatValues(NSString * __nonnull key, NSDictionary<NSString *, id> * __nonnull values);
+
 
 #define FCLocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]

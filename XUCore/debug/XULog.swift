@@ -163,6 +163,22 @@ public func XUClearLog() {
 	}
 }
 
+/// Returns a string containing current stacktrace.
+public func XUStacktraceString() -> String {
+	return NSThread.callStackSymbols().joinWithSeparator("\n")
+}
+
+/// Returns a string containing stacktrace of the exception.
+public func XUStacktraceStringFromException(exception: NSException) -> String {
+	return exception.callStackSymbols.joinWithSeparator("\n")
+}
+
+/// Logs current stacktrace with a comment.
+public func XULogStacktrace(comment: String) {
+	XULog("\(comment): \(XUStacktraceString())")
+}
+
+
 /// Do not use this class. It's a private class (which needs to be public so that
 /// it can be seen from ObjC), that allows FCLog to inform XULog that the debug
 /// logging preference was changed.

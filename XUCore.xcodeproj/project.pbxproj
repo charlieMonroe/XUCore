@@ -316,6 +316,8 @@
 		07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */; };
 		07E38A401C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07E38A411C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
+		07EB33251C0B4D0300FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
+		07EB33261C0B4D0800FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -504,6 +506,7 @@
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; };
 		07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULocalizationSupport.swift; sourceTree = "<group>"; };
 		07E38A3F1C07105100AE6EAB /* XUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUString.swift; sourceTree = "<group>"; };
+		07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLocalizationSupport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -852,6 +855,7 @@
 			isa = PBXGroup;
 			children = (
 				077AFE621BBD101400872A48 /* FCLocalizationSupport.h */,
+				07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */,
 				07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */,
 				0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */,
 				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
@@ -1167,6 +1171,7 @@
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
+				07EB33251C0B4D0300FCD427 /* FCLocalizationSupport.m in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
@@ -1324,6 +1329,7 @@
 				0749DCDF1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B531BE2026600706283 /* XULog.swift in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
+				07EB33261C0B4D0800FCD427 /* FCLocalizationSupport.m in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,
 				077AFEEF1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,
 				0779E1891BF2334600832858 /* XUZeroBasedIndexTransformer.swift in Sources */,
