@@ -10,6 +10,17 @@ import Foundation
 
 public extension UIAlertController {
 	
+	/// See the init method.
+	public func alertControllerWithError(error: NSError?) -> UIAlertController {
+		if error == nil {
+			let alert = UIAlertController(title: XULocalizedString("Unknown error."), message: nil, preferredStyle: .Alert)
+			alert.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
+			return alert
+		}
+		
+		return UIAlertController(error: error!)
+	}
+	
 	/// Creates a new alert controller with information from the error. By default,
 	/// also adds an OK button. If you want all buttons of the alert to be custom,
 	/// remove the existing action on the controller.
