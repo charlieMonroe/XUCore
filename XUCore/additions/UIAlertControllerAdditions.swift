@@ -11,22 +11,26 @@ import Foundation
 public extension UIAlertController {
 	
 	/// See the init method.
-	public class func alertControllerWithError(error: NSError?) -> UIAlertController {
+	public class func alertControllerWithError(error: NSError?, andCompletionHandler completionHandler: ((Void)->Void)? = nil) -> UIAlertController {
 		if error == nil {
 			let alert = UIAlertController(title: XULocalizedString("Unknown error."), message: nil, preferredStyle: .Alert)
 			alert.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
 			return alert
 		}
 		
-		return UIAlertController(error: error!)
+		return UIAlertController(error: error!, andCompletionHandler: completionHandler)
 	}
 	
 	/// Creates a new alert controller with information from the error. By default,
 	/// also adds an OK button. If you want all buttons of the alert to be custom,
 	/// remove the existing action on the controller.
-	public convenience init(error: NSError) {
+	public convenience init(error: NSError, andCompletionHandler completionHandler: ((Void)->Void)? = nil) {
 		self.init(title: error.localizedFailureReason, message: error.localizedDescription, preferredStyle: .Alert)
-		self.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
+		self.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: { (_) in
+			if let handler = completionHandler {
+				handler()
+			}
+		}))
 	}
 	
 }
