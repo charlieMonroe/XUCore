@@ -79,6 +79,11 @@
 -(BOOL)contains:(BOOL (^)(id))filter{
 	return [self any:filter];
 }
+-(BOOL)containsAllObjectsFromArray:(NSArray *)otherArray{
+	return [otherArray all:^BOOL(id  _Nonnull obj) {
+		return [self containsObject:obj];
+	}];
+}
 -(BOOL)containsString:(NSString*)string{
 	return [self searchForString:string] != nil;
 }

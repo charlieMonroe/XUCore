@@ -36,6 +36,10 @@
 -(nonnull instancetype)arrayByRemovingObjectsMatching:(nonnull BOOL (^)(ObjectType __nonnull obj))filter; // Returns array with all objects matching filter removed
 -(nonnull instancetype)arrayByInterlacingWithArrays:(nonnull NSArray *)arrays;
 -(BOOL)contains:(nonnull BOOL (^)(ObjectType __nonnull obj))filter DEPRECATED_MSG_ATTRIBUTE("use -any: instead");
+
+/// Returns YES if all objects in otherArray are contained by the receiver.
+-(BOOL)containsAllObjectsFromArray:(nonnull NSArray *)otherArray;
+
 -(BOOL)containsString:(nonnull NSString *)string; // Calls -searchForString: on self and returns YES if non-nil value is returned
 -(NSUInteger)count:(nonnull BOOL (^)(ObjectType __nonnull obj))filter; // Returns number of items matching filter
 -(nonnull instancetype)dictionaryRepresentation; // Returns an array of items returned by calling -dictionaryRepresentation on each item
