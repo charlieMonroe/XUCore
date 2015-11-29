@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Used by +today
+private var __today: NSDate?
+private var __validUntil: NSTimeInterval = 0
 
 public extension NSDate {
 	
@@ -32,6 +35,25 @@ public extension NSDate {
 		components.minute = minute
 		components.second = second
 		return NSCalendar.currentCalendar().dateFromComponents(components)
+	}
+	
+	/// Returns today at 00:00:00.
+	public class func today() -> NSDate {
+		if __today == nil || __validUntil <= NSDate.timeIntervalSinceReferenceDate() {
+			let date = NSDate()
+			let calendar = NSCalendar.currentCalendar()
+			__today = calendar.startOfDayForDate(date)
+			__validUntil = __today!.timeIntervalSinceReferenceDate + 24.0 * 3600.0
+		}
+		return __today!
+	}
+	
+	
+	/// Converts this date to target time zone.
+	public func dateByConvertingFromTimeZone(originZone: NSTimeZone, toZone targetZone: NSTimeZone) -> NSDate {
+		var convertedDate = self.timeIntervalSinceReferenceDate
+		convertedDate -= NSTimeInterval(originZone.secondsFromGMT) - NSTimeInterval(targetZone.secondsFromGMT)
+		return NSDate(timeIntervalSinceReferenceDate: convertedDate)
 	}
 	
 	public var day: Int {
