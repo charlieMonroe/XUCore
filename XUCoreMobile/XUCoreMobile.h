@@ -28,7 +28,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
-#import "XUString.h"
 
 /** Data. */
 #import "FCContextHolder.h"
