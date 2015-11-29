@@ -74,6 +74,16 @@ public extension NSDate {
 		return NSDate(timeIntervalSince1970: interval)
 	}
 	
+	/// Returns true if the receiver is after date.
+	public func isAfterDate(date: NSDate) -> Bool {
+		return date.timeIntervalSince1970 < self.timeIntervalSince1970
+	}
+	
+	/// Returns true if the receiver is before date.
+	public func isBeforeDate(date: NSDate) -> Bool {
+		return self.timeIntervalSince1970 < date.timeIntervalSince1970
+	}
+	
 	public var isFuture: Bool {
 		return self.timeIntervalSinceReferenceDate > NSDate.timeIntervalSinceReferenceDate()
 	}
