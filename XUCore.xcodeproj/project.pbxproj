@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
 		070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
+		07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
+		07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
+		07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -321,6 +324,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
+		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
@@ -545,6 +550,14 @@
 			path = buttons;
 			sourceTree = "<group>";
 		};
+		07311DC71C0C5DB6001B95AC /* util */ = {
+			isa = PBXGroup;
+			children = (
+				07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		073E6A7C1BE1F84600706283 /* regex */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +719,7 @@
 				077AFEAD1BBD101400872A48 /* transformers */,
 				07E35B931C02383E007D31BE /* trial */,
 				073E6B541BE203E800706283 /* ui */,
+				07311DC71C0C5DB6001B95AC /* util */,
 				077AFD941BBD0E5300872A48 /* Info.plist */,
 				077A00A81BBD107500872A48 /* Cocoa.framework */,
 			);
@@ -728,6 +742,7 @@
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
 				073E6B391BE1F9D500706283 /* CharacterExtensions.swift */,
 				077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */,
+				07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */,
 				0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */,
 				077AFDAC1BBD101400872A48 /* NSArrayAdditions.h */,
 				077AFDAD1BBD101400872A48 /* NSArrayAdditions.m */,
@@ -1145,6 +1160,7 @@
 				07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */,
 				077AFF1E1BBD101400872A48 /* NSStringAdditions.m in Sources */,
 				073E6ADF1BE1F86D00706283 /* regexp.cc in Sources */,
+				07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
 				0749DCEA1C00C6DF0075CC9B /* XUAppStoreHidingView.swift in Sources */,
 				0779E1531BEE5D7300832858 /* NSWindowLocalizationSupport.swift in Sources */,
@@ -1153,6 +1169,7 @@
 				07C3FA251BECB3C3008A4200 /* XUFileSizeTransformer.swift in Sources */,
 				0779E19C1BF23D5E00832858 /* NSURL+NSURLAdditions.swift in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
+				07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */,
 				07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */,
@@ -1264,6 +1281,7 @@
 				077AFFE51BBD101400872A48 /* FCCSVDocument.m in Sources */,
 				077AFEB91BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				073E6B301BE1F86D00706283 /* XURegex.mm in Sources */,
+				07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				073E6B061BE1F86D00706283 /* pcre.cc in Sources */,
 				077AFF1F1BBD101400872A48 /* NSStringAdditions.m in Sources */,
 				073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */,
