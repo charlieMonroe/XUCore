@@ -2,27 +2,13 @@
 //  NSImageAdditions.swift
 //  XUCore
 //
-//  Created by Charlie Monroe on 11/20/15.
+//  Created by Charlie Monroe on 11/30/15.
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
 import Foundation
 
-#if os(iOS)
-	import UIKit
-	
-	public typealias XUImage = UIImage
-#else
-	import Cocoa
-	
-	public typealias XUImage = NSImage
-#endif
-
-/// Public extension of NSImage or UIImage. You can use XUImage in your code,
-/// to make it universal.
-public extension XUImage {
-	
-	#if !os(iOS)
+public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
 	private func _imageWithSingleImageRepOfSize(var size: CGSize) -> XUImage? {
@@ -91,40 +77,8 @@ public extension XUImage {
 		
 		self.drawInRect(rect, fromRect: fromRect, operation: op, fraction: delta, respectFlipped: respectFlipped, hints: nil)
 	}
-	
-	#endif
-	
-	/// Draws the rect centered within rect with fraction 1.0.
-	public func drawCenteredInRect(rect: CGRect) {
-		self.drawCenteredInRect(rect, fraction: 1.0)
-	}
-	
-	/// Draws the rect centered within rect. The image is scaled, if necessary.
-	public func drawCenteredInRect(rect: CGRect, fraction: CGFloat) {
-		let image = self
-		let mySize = image.size
-		var targetRect = rect
-		if mySize.width / mySize.height > rect.width / rect.height {
-			// Wider
-			targetRect.size.width = rect.width
-			targetRect.size.height = mySize.height * (rect.width / mySize.width)
-			targetRect.origin.y = rect.origin.y + (rect.height - targetRect.height) / 2.0
-		} else {
-			// Taller
-			targetRect.size.height = rect.height
-			targetRect.size.width = mySize.width * (rect.height / mySize.height)
-			targetRect.origin.x = rect.origin.x + (rect.width - targetRect.width) / 2.0
-		}
-		
-		#if os(iOS)
-			image.drawInRect(targetRect, blendMode: .Normal, alpha: fraction)
-		#else
-			image.drawInRect(targetRect, fromRect: CGRectZero, operation: .CompositeSourceOver, fraction: fraction, respectFlipped: true, hints: nil)
-		#endif
-	}
-	
-	#if !os(iOS)
-	
+
+	/// Inits with GCImageRef.
 	@available(OSX 10.10, *)
 	public convenience init?(CGImage: CGImageRef, asBitmapImageRep: Bool) {
 		let width = CGImageGetWidth(CGImage);
@@ -157,7 +111,7 @@ public extension XUImage {
 			self.unlockFocus()
 		}
 	}
-
+	
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
@@ -168,31 +122,6 @@ public extension XUImage {
 		}
 		return result
 	}
-	
-	#endif
-	
-	/// Proportionally scales the image to maximum size.
-	public func proportinallyScaledSizeForMaxSize(size: CGSize) -> CGSize {
-		let image = self
-		let mySize = image.size
-		if mySize.width < size.width && mySize.height < size.height {
-			return mySize
-		}
-		
-		var resultSize = CGSizeZero
-		if mySize.width / mySize.height > size.width / size.height {
-			// Wider
-			resultSize.width = size.width
-			resultSize.height = mySize.height * (size.width / mySize.width)
-		}else{
-			// Taller
-			resultSize.height = size.height
-			resultSize.width = mySize.width * (size.height / mySize.height)
-		}
-		return resultSize
-	}
-	
-	#if os(OSX)
 	
 	/// Returns NSData with a bitmap image file type representation.
 	public func representationForFileType(fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> NSData? {
@@ -248,7 +177,7 @@ public extension XUImage {
 	public func PNGRepresentationInterlaced(interlace: Bool) -> NSData? {
 		return self.representationForFileType(.NSPNGFileType, properties: [ NSImageInterlaced : interlace ])
 	}
-
+	
 	/// Returns a TIFF image representation with defined compression.
 	public func TIFFRepresentationUsingCompression(compression: NSTIFFCompression) -> NSData? {
 		return self.representationForFileType(.NSTIFFFileType, properties: [ NSImageCompressionMethod: compression.rawValue ])
@@ -285,47 +214,4 @@ public extension XUImage {
 		}
 	}
 	
-	#else
-	
-	/// Returns a proportionally resized image to targetSize.
-	public func imageResizedToSize(targetSize: CGSize) -> UIImage {
-		let size = self.size
-		if size.width <= targetSize.width && size.height <= targetSize.height {
-			return self
-		}
-		
-		var newSize = CGSizeZero
-		if size.width > size.height {
-			var width = targetSize.width
-			var height = size.height * (targetSize.width / size.width)
-			if height > targetSize.height {
-				height = targetSize.height
-				width = size.width * (targetSize.height / size.height)
-			}
-			newSize.width = width
-			newSize.height = height
-		}else{
-			var width = size.width * (targetSize.height / size.height)
-			var height = targetSize.height
-			if width > targetSize.width {
-				width = targetSize.width
-				height = size.height * (targetSize.width / size.width)
-			}
-			newSize.width = width
-			newSize.height = height
-		}
-		
-		UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-		self.drawInRect(CGRectMake(0.0, 0.0, newSize.width, newSize.height))
-		let newImage = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		return newImage
-	}
-
-	/// Returns PNG representation of the image.
-	public var PNGRepresentation: NSData? {
-		return UIImagePNGRepresentation(self)
-	}
-	
-	#endif
 }
