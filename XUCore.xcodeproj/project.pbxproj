@@ -12,6 +12,7 @@
 		07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
 		07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
 		07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
+		07311DCD1C0C62DD001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -1297,6 +1298,7 @@
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
 				077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */,
 				077AFF811BBD101400872A48 /* FCKeychain.m in Sources */,
+				07311DCD1C0C62DD001B95AC /* XUBundleUtilities.swift in Sources */,
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E17F1BF2316700832858 /* NSDateAdditions.swift in Sources */,
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
