@@ -49,7 +49,7 @@ public class XUApplicationSetup: NSObject {
 	
 	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
 	/// where #if DEBUG macro can be applied, in Swift, this is a bit more 
-	/// complicated - edit the scheme of your project and add "--xu-run-debug" to the
+	/// complicated - edit the scheme of your project and add "--debug" to the
 	/// arguments list to enable it.
 	public let debugMode: Bool
 		
@@ -118,7 +118,7 @@ public class XUApplicationSetup: NSObject {
 		self.applicationIdentifier = appIdentifier
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
 		
-		self.debugMode = NSProcessInfo.processInfo().arguments.contains("--xu-run-debug")
+		self.debugMode = NSProcessInfo.processInfo().arguments.contains("--debug")
 		
 		self.trialClassName = infoDictionary["XUTrialClassName"] as? String
 		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? NSNumber)?.integerValue ?? 14
