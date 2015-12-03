@@ -32,3 +32,11 @@ public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(block: () -> Void) {
 public func XU_PERFORM_BLOCK_ASYNC(block: () -> Void) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 }
+
+/// Dispatches the block after delay on queue. By default, queue is the main queue.
+public func XU_PERFORM_DELAYED_BLOCK(delay: NSTimeInterval, queue: dispatch_queue_t = dispatch_get_main_queue(), block: () -> Void) {
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * NSTimeInterval(NSEC_PER_SEC))), queue, {
+		block()
+	})
+
+}

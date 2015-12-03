@@ -184,6 +184,15 @@ public extension Array {
 		}
 	}
 	
+	/// Similar to map(), but provides the index of the element.
+	public func mapIndexed<U>(mapper: (Generator.Element, Int) -> U) -> [U] {
+		var result: [U] = [ ]
+		for i in 0..<Int(self.count) {
+			result.append(mapper(self[i], i))
+		}
+		return result
+	}
+	
 }
 
 public extension CollectionType {
@@ -208,6 +217,5 @@ public extension CollectionType {
 		return unique
 	}
 
-	
 }
 
