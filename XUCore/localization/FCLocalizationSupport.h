@@ -17,6 +17,8 @@
  */
 
 extern NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") NSString * __nonnull FCLocalizedString(NSString * __nonnull key);
+#define XULocalizedString(key) FCLocalizedString(key)
+#define XULocalizedStringWithLocale(key, locale) [[XULocalizationCenter sharedCenter] localizedString:key withLocale:locale]
 
 /**
  * A new format function which takes `values` and replaces placeholders within `key`
@@ -37,3 +39,5 @@ extern NSString * __nonnull FCLocalizedStringWithFormatValues(NSString * __nonnu
 
 
 #define FCLocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]
+#define XULocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]
+#define XULocalizedFormattedStringWithLocale(key, lang, ...) [NSString stringWithFormat:XULocalizedStringWithLocale(key, lang), __VA_ARGS__]
