@@ -171,10 +171,10 @@ public class XUTrial: NSObject {
 		alert.addButtonWithTitle(XULocalizedString("Purchase..."))
 
 		let alertResult = alert.runModal()
-		if alertResult == NSAlertDefaultReturn {
+		if alertResult == NSAlertFirstButtonReturn {
 			// Continue
 			return
-		}else if alertResult == NSAlertAlternateReturn {
+		}else if alertResult == NSAlertSecondButtonReturn {
 			// Purchase
 			self._openPurchaseURL()
 		}
@@ -198,9 +198,9 @@ public class XUTrial: NSObject {
 		alert.addButtonWithTitle(XULocalizedString("I'm Still Not Sure"))
 		
 		let result = alert.runModal()
-		if result == NSAlertDefaultReturn {
+		if result == NSAlertFirstButtonReturn {
 			self._openPurchaseURL()
-		}else if result == NSAlertAlternateReturn {
+		}else if result == NSAlertSecondButtonReturn {
 			self._openSupportURL()
 		}
 		

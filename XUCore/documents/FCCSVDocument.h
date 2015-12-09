@@ -22,7 +22,7 @@
 -(BOOL)writeToURL:(nonnull NSURL *)url;
 
 
-@property (readonly, nonnull, nonatomic) NSMutableArray<NSDictionary *> *content;
+@property (readwrite, nonnull, nonatomic) NSArray<NSDictionary<NSString *, NSString *> *> *content;
 
 /** Char that separates columns. ',' by default, but some files use ';' instead. */
 @property (readonly, nonatomic) unichar columnSeparator;

@@ -139,6 +139,16 @@ public extension NSDecimalNumber {
 		return self.decimalPart.doubleValue == 0.0
 	}
 	
+	/// Returns whether this number is less than 0.
+	public var isNegative: Bool {
+		return self.doubleValue < 0.0
+	}
+	
+	/// Returns whether this number is more or equal to 0.
+	public var isPositive: Bool {
+		return self.doubleValue >= 0.0
+	}
+	
 }
 
 

@@ -51,7 +51,7 @@
 -(nullable id)findTransformed:(nonnull id __nullable (^)(ObjectType __nonnull obj))mapper DEPRECATED_MSG_ATTRIBUTE("use -findMapped: instead");
 -(nullable id)findMin:(nonnull NSUInteger (^)(ObjectType __nonnull obj))transformer; // Finds minimum using the transformer
 -(NSUInteger)findMinValue:(nonnull NSUInteger (^)(ObjectType __nonnull obj))transformer; // Finds minimum using the transformer and returns the min value returned. NSNotFound for empty arrays
--(nullable id)findMax:(nonnull NSUInteger (^)(ObjectType __nonnull obj))transformer; // Finds maximum using the transformer
+-(nullable ObjectType)findMax:(nonnull NSUInteger (^)(ObjectType __nonnull obj))transformer; // Finds maximum using the transformer
 -(NSUInteger)findMaxValue:(nonnull NSUInteger (^)(ObjectType __nonnull obj))transformer; // Finds maximum using the transformer and returns the min value returned. NSNotFound for empty arrays
 -(nonnull instancetype)flattenedArray; // Assumes this array is an array of arrays and puts all arrays into one large array
 -(nonnull instancetype)map:(nonnull id __nullable (^)(ObjectType __nonnull obj))mapper; // Maps the array using the mapper into another array. Return nil to skip the object

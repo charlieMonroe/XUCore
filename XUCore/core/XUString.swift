@@ -16,7 +16,7 @@ public func ==(lhs: XUString, rhs: XUString) -> Bool {
 /// This is a class that helps dealing with various string computations by
 /// allowing direct modification of characters in the string. The string is just
 /// a byte array, hence can be used even for data.
-public class XUString: Equatable {
+public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConvertible {
 	
 	/// A typealias for the char. We're using UInt8.
 	public typealias XUChar = UInt8
@@ -37,6 +37,14 @@ public class XUString: Equatable {
 	/// Returns bytes wrapped in NSData.
 	public var data: NSData {
 		return NSData(bytes: &_buffer, length: _buffer.count)
+	}
+	
+	public var debugDescription: String {
+		return self.description
+	}
+	
+	public var description: String {
+		return "\(self)[length: \(self.length)] - \(self.stringValue)"
 	}
 	
 	/// Returns an index of the first occurrence of the char.
@@ -74,7 +82,7 @@ public class XUString: Equatable {
 	public convenience init(filledWithASCIITableOfLength length: UInt) {
 		var chars: [XUChar] = [ ]
 		for var i: Int = 0; i < Int(length); ++i {
-			chars[i] = XUChar(i)
+			chars.append(XUChar(i))
 		}
 		
 		self.init(chars: chars)
@@ -110,6 +118,15 @@ public class XUString: Equatable {
 		_buffer.removeAtIndex(index)
 	}
 	
+	/// Removes all characters with value > 127
+	public func removeNonASCIICharacters() {
+		for var i = _buffer.count - 1; i >= 0; --i {
+			if _buffer[i] > 127 {
+				_buffer.removeAtIndex(i)
+			}
+		}
+	}
+	
 	/// Sets a character at index. Will throw if the index is out of bounds.
 	public func setCharacter(char: XUChar, atIndex index: Int) {
 		_buffer[index] = char
@@ -127,7 +144,11 @@ public class XUString: Equatable {
 	
 	/// Returns a constructed string from the chars.
 	public var stringValue: String {
-		return String(UTF8String: UnsafePointer<CChar>(_buffer)) ?? ""
+		var value = ""
+		for c in _buffer {
+			value.append(UnicodeScalar(UInt32(c)))
+		}
+		return value
 	}
 	
 	/// Returns a substring in range.

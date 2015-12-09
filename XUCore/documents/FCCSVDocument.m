@@ -9,7 +9,9 @@
 
 #import "FCCSVDocument.h"
 
-@implementation FCCSVDocument
+@implementation FCCSVDocument {
+	NSMutableArray *_content;
+}
 
 @synthesize headerNames = _headerNames;
 @synthesize content = _content;
@@ -161,6 +163,9 @@
 }
 -(NSArray*)content{
 	return _content;
+}
+-(void)setContent:(NSArray<NSDictionary<NSString *,NSString *> *> *)content{
+	_content = [content mutableCopy];
 }
 -(NSArray*)headerNames{
 	return _headerNames;
