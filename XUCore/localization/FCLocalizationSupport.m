@@ -8,11 +8,7 @@
 
 #import "FCLocalizationSupport.h"
 
-#if TARGET_OS_IOS
-	#import <XUCoreMobile/XUCoreMobile-Swift.h>
-#else
-	#import <XUCore/XUCore-Swift.h>
-#endif
+#import <XUCore/XUCore-Swift.h>
 
 NSString * __nonnull FCLocalizedString(NSString * __nonnull key){
 	NSString *locale = [[XULocalizationCenter sharedCenter] currentLocalizationLanguageIdentifier];

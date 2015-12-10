@@ -227,7 +227,7 @@
 		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */; };
 		077AFD931BBD0E5300872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFD921BBD0E5300872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFDA21BBD0ED200872A48 /* XUCoreMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDA11BBD0ED200872A48 /* XUCoreMobile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDA11BBD0ED200872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDA81BBD101400872A48 /* ArrayExtensions.swift */; };
 		077AFEB91BBD101400872A48 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDA81BBD101400872A48 /* ArrayExtensions.swift */; };
 		077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */; };
@@ -452,8 +452,8 @@
 		077AFD8F1BBD0E5300872A48 /* XUCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		077AFD921BBD0E5300872A48 /* XUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCore.h; sourceTree = "<group>"; };
 		077AFD941BBD0E5300872A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		077AFD9F1BBD0ED200872A48 /* XUCoreMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCoreMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		077AFDA11BBD0ED200872A48 /* XUCoreMobile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCoreMobile.h; sourceTree = "<group>"; };
+		077AFD9F1BBD0ED200872A48 /* XUCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		077AFDA11BBD0ED200872A48 /* XUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCore.h; sourceTree = "<group>"; };
 		077AFDA31BBD0ED200872A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077AFDA81BBD101400872A48 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
@@ -720,7 +720,7 @@
 			isa = PBXGroup;
 			children = (
 				077AFD8F1BBD0E5300872A48 /* XUCore.framework */,
-				077AFD9F1BBD0ED200872A48 /* XUCoreMobile.framework */,
+				077AFD9F1BBD0ED200872A48 /* XUCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -755,7 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				070FEF7B1C106BB200C1B62E /* ui */,
-				077AFDA11BBD0ED200872A48 /* XUCoreMobile.h */,
+				077AFDA11BBD0ED200872A48 /* XUCore.h */,
 				077AFDA31BBD0ED200872A48 /* Info.plist */,
 			);
 			path = XUCoreMobile;
@@ -1042,7 +1042,7 @@
 				07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */,
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFFA11BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
-				077AFDA21BBD0ED200872A48 /* XUCoreMobile.h in Headers */,
+				077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B1A1BE1F86D00706283 /* test.h in Headers */,
 				077A00111BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
@@ -1109,7 +1109,7 @@
 			);
 			name = XUCoreMobile;
 			productName = XUCoreMobile;
-			productReference = 077AFD9F1BBD0ED200872A48 /* XUCoreMobile.framework */;
+			productReference = 077AFD9F1BBD0ED200872A48 /* XUCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1545,7 +1545,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1567,7 +1567,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

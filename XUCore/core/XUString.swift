@@ -12,6 +12,18 @@ public func ==(lhs: XUString, rhs: XUString) -> Bool {
 	return lhs._buffer == rhs._buffer
 }
 
+public func +=(inout lhs: XUString, rhs: XUString) {
+	lhs = lhs.stringByAppendingString(rhs)
+}
+
+public func +=(inout lhs: XUString, rhs: String) {
+	lhs = lhs.stringByAppendingString(XUString(string: rhs))
+}
+
+public func +=(lhs: XUString, rhs: XUString.XUChar) {
+	lhs.appendCharacter(rhs)
+}
+
 
 /// This is a class that helps dealing with various string computations by
 /// allowing direct modification of characters in the string. The string is just
