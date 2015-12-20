@@ -40,7 +40,7 @@ public extension SequenceType {
 		})
 		return UInt(count)
 	}
-	
+		
 	/// Unlike map, this allows you to return nil, in which case the value
 	/// will be ommitted.
 	public func filterMap<U>(transform: (Self.Generator.Element) -> U?) -> [U] {
@@ -94,6 +94,21 @@ public extension SequenceType {
 		return maxElement
 	}
 	
+	/// This will return the minimum value returned by the valuator, or nil if the
+	/// array is empty.
+	public func findMaxValue(valuator: (Self.Generator.Element) -> UInt) -> UInt? {
+		var maxValue: UInt? = 0
+		
+		for obj in self {
+			let value = valuator(obj)
+			if maxValue == nil || value > maxValue! {
+				maxValue = value
+			}
+		}
+		
+		return maxValue
+	}
+	
 	/// Finds a minimum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
 	public func findMin(valuator: (Self.Generator.Element) -> Int) -> Self.Generator.Element? {
@@ -134,6 +149,15 @@ public extension SequenceType {
 		var result: Double = 0.0
 		for obj in self {
 			result += numerator(obj)
+		}
+		return result
+	}
+	
+	/// Sums up values of elements in self.
+	public func sum(numerator: (Self.Generator.Element) -> NSDecimalNumber) -> NSDecimalNumber {
+		var result: NSDecimalNumber = NSDecimalNumber.zero()
+		for obj in self {
+			result = result.decimalNumberByAdding(numerator(obj))
 		}
 		return result
 	}

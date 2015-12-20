@@ -21,12 +21,6 @@
 	return [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
 }
 -(NSManagedObjectContext *)managedObjectContext{
-	NSAssert([NSThread isMainThread], @"Not main thread");
-	
-	if (![NSThread isMainThread]){
-		@throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"not main thread" userInfo:nil];
-	}
-	
 	@synchronized(self){
 		if (_managedObjectContext != nil) {
 			return _managedObjectContext;

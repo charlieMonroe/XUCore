@@ -21,13 +21,13 @@ public func XUSetCurrentLocalizationLanguageIdentifier(identifier: String) {
 }
 
 /// Returns a localized string.
-public func XULocalizedString(key: String, withLocale language: String = XUCurrentLocalizationLanguageIdentifier()) -> String {
-	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language)
+public func XULocalizedString(key: String, withLocale language: String? = nil) -> String {
+	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language ?? XUCurrentLocalizationLanguageIdentifier())
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
-public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType..., withLocale language: String = XUCurrentLocalizationLanguageIdentifier()) -> String {
+public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType..., withLocale language: String? = nil) -> String {
 	return String(format: XULocalizedString(format, withLocale: language), arguments: arguments)
 }
 
@@ -86,7 +86,11 @@ public class XULocalizationCenter: NSObject {
 			
 			if let languages = NSUserDefaults.standardUserDefaults().arrayForKey("AppleLanguages") as? [String] {
 				if let language = languages.first {
-					// The language is often e.g. en-US - get just the first part
+					// The language is often e.g. en-US - get just the first part,
+					// unless the language exists for the entire identifier.
+					if self._languageBundleForLanguage(language) != nil {
+						return language
+					}
 					return language.componentsSeparatedByString("-").first!
 				}
 			}
@@ -109,7 +113,9 @@ public class XULocalizationCenter: NSObject {
 	}
 	
 	/// Returns a localized string.
-	public func localizedString(key: String, withLocale language: String = XUCurrentLocalizationLanguageIdentifier()) -> String {
+	public func localizedString(key: String, withLocale _language: String? = nil) -> String {
+		let language = _language ?? XUCurrentLocalizationLanguageIdentifier()
+		
 		if key.isEmpty {
 			return key
 		}

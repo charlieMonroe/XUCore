@@ -15,7 +15,11 @@
 -(void)addContentItem:(nonnull NSDictionary *)item;
 
 -(nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)fileURL;
--(nonnull instancetype)initWithDictionaries:(nonnull NSArray<NSDictionary *> *)dictionaries;
+
+/// If headerless, fake columns called "1", "2", ... are created.
+-(nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)fileURL headerless:(BOOL)headerless andColumnSeparator:(unichar)columnSeparator;
+
+-(nonnull instancetype)initWithDictionaries:(nonnull NSArray<NSDictionary<NSString *, id> *> *)dictionaries;
 -(nullable instancetype)initWithString:(nonnull NSString *)body;
 -(nullable instancetype)initWithString:(nonnull NSString *)body andColumnSeparator:(unichar)columnSeparator;
 

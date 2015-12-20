@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */; };
 		070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
 		070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
@@ -186,6 +187,8 @@
 		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
+		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */; };
 		07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */; };
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
@@ -290,6 +293,10 @@
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */; };
+		07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; };
+		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
+		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
+		07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
 		07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -329,6 +336,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
 		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
@@ -426,6 +434,7 @@
 		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
+		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
 		07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTabViewAdditions.swift; sourceTree = "<group>"; };
@@ -494,6 +503,9 @@
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUHorizontallyCenteredTextField.swift; path = cells/XUHorizontallyCenteredTextField.swift; sourceTree = "<group>"; };
+		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
+		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
+		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
 		07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionHandler.h; sourceTree = "<group>"; };
 		07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionHandler.m; sourceTree = "<group>"; };
 		07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRecursiveLockAdditions.swift; sourceTree = "<group>"; };
@@ -670,6 +682,7 @@
 		073E6B541BE203E800706283 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				07A7BDFA1C199A45004BCDAF /* controllers */,
 				072AFA2E1BE2167E00DBCB0C /* buttons */,
 				079E24A81C048B9D002E159A /* cells */,
 				072AFA281BE2155900DBCB0C /* textfields */,
@@ -681,6 +694,7 @@
 		073E6B551BE203E800706283 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */,
 				07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */,
 				07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */,
 			);
@@ -819,7 +833,9 @@
 				07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */,
 				0779E17B1BF2307100832858 /* UIView+Enclosing.swift */,
 				07311DDE1C0C8007001B95AC /* UIView+Frame.swift */,
+				07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */,
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
+				0771E0781C26BF1C004305F4 /* XUSearchable.swift */,
 			);
 			path = additions;
 			sourceTree = "<group>";
@@ -947,6 +963,15 @@
 				079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */,
 			);
 			name = cells;
+			sourceTree = "<group>";
+		};
+		07A7BDFA1C199A45004BCDAF /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */,
+				07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 		07E35B931C02383E007D31BE /* trial */ = {
@@ -1157,6 +1182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */,
+				07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,6 +1208,7 @@
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */,
+				0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
@@ -1213,6 +1240,7 @@
 				073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */,
 				077AFF801BBD101400872A48 /* FCKeychain.m in Sources */,
 				0749DCD61C0056450075CC9B /* XUPowerAssertion.swift in Sources */,
+				07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */,
 				077AFECA1BBD101400872A48 /* NSBezierPathAdditions.m in Sources */,
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
@@ -1236,6 +1264,7 @@
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
 				073E6AF11BE1F86D00706283 /* unicode_groups.cc in Sources */,
+				07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */,
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */,
 				0749DCE41C00C3E00075CC9B /* XUMath.swift in Sources */,
@@ -1293,6 +1322,7 @@
 				07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */,
 				073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
 				0779E16E1BF06C6200832858 /* NSDecimalNumberAdditions.swift in Sources */,
+				0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */,
 				07E35B951C02384C007D31BE /* XUTrial.swift in Sources */,
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
@@ -1341,6 +1371,7 @@
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
 				077AFEBB1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				0749DCD01BFF5AAC0075CC9B /* XUImageAdditions.swift in Sources */,
+				0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */,
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
@@ -1390,6 +1421,7 @@
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
 				07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */,
+				07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */,
 				073E6ABE1BE1F86D00706283 /* compile.cc in Sources */,
 				0779E1801BF2317A00832858 /* NSDecimalNumberAdditions.swift in Sources */,
 				0749DCE81C00C64A0075CC9B /* CGContextRefAdditions.swift in Sources */,
@@ -1506,6 +1538,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1548,6 +1581,7 @@
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

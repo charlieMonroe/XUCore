@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 /// Since we keep casting AnyObject to this, it's easier to use a custom typealias
 /// rather than keep typing out the generics.
 public typealias XUJSONDictionary = Dictionary<String, AnyObject>

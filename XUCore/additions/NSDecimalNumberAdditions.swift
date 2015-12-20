@@ -149,6 +149,11 @@ public extension NSDecimalNumber {
 		return self.doubleValue >= 0.0
 	}
 	
+	/// Returns true is the current double value is 0.0
+	public var isZero: Bool {
+		return self.doubleValue == 0.0
+	}
+	
 }
 
 

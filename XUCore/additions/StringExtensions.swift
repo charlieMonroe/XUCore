@@ -27,6 +27,16 @@ public extension String {
 		return result
 	}
 	
+	/// Returns true if the receiver has prefix `prefix` in case-insensitive
+	/// comparison.
+	public func hasCaseInsensitivePrefix(prefix: String) -> Bool {
+		guard let range = self.rangeOfString(prefix, options: .CaseInsensitiveSearch) else {
+			return false
+		}
+		
+		return range.startIndex == self.startIndex
+	}
+	
 	/// Returns hexValue of the string.
 	public var hexValue: UInt {
 		return (self as NSString).hexValue()
@@ -97,6 +107,17 @@ public extension String {
 	/// returns nil, but instead falls back to self.
 	public var stringByEncodingIllegalURLCharacters: String {
 		return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet()) ?? self
+	}
+	
+	/// Trims the string to maximum length of maxLen, trimming the middle.
+	public func stringByMiddleTrimmingToMaximumLengthOf(maxLen: Int) -> String {
+		if self.characters.count < maxLen {
+			return self
+		}
+		
+		let begin = self.substringToIndex(self.startIndex.advancedBy((maxLen - 1) / 2))
+		let end = self.substringFromIndex(self.endIndex.advancedBy(-1 * (maxLen - 1) / 2))
+		return begin + "…" + end
 	}
 	
 	/// Trims whitespace characters

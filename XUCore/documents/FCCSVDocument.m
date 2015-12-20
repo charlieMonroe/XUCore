@@ -8,9 +8,11 @@
 
 
 #import "FCCSVDocument.h"
+#import "NSStringAdditions.h"
 
 @implementation FCCSVDocument {
 	NSMutableArray *_content;
+	BOOL _headerless;
 }
 
 @synthesize headerNames = _headerNames;
@@ -209,6 +211,9 @@
 	return self;
 }
 -(instancetype)initWithContentsOfURL:(NSURL *)fileURL{
+	return [self initWithContentsOfURL:fileURL headerless:NO andColumnSeparator:','];
+}
+-(instancetype)initWithContentsOfURL:(NSURL *)fileURL headerless:(BOOL)headerless andColumnSeparator:(unichar)columnSeparator{
 	NSError *err = nil;
 	NSString *csv = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:&err];
 	if (err != nil || csv == nil){
@@ -217,7 +222,22 @@
 		return nil;
 	}
 	
-	return [self initWithString:csv];
+	if (headerless) {
+		NSString *firstLine = [csv firstLine];
+		NSArray *components = [firstLine componentsSeparatedByString:[NSString stringWithFormat:@"%C", columnSeparator]];
+		NSMutableArray *headerNames = [NSMutableArray array];
+		for (NSUInteger i = 0; i < [components count]; ++i){
+			[headerNames addObject:[NSString stringWithFormat:@"%i", (int)(i + 1)]];
+		}
+			 
+		NSString *headerLine = [headerNames componentsJoinedByString:[NSString stringWithFormat:@"%C", columnSeparator]];
+		csv = [headerLine stringByAppendingFormat:@"\n%@", csv];
+		
+		/// A hack - it would be best to allow some kind of a preprocessor.
+		csv = [csv stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+	}
+	
+	return [self initWithString:csv andColumnSeparator:columnSeparator];
 }
 -(instancetype)initWithString:(NSString *)body{
 	return [self initWithString:body andColumnSeparator:','];
