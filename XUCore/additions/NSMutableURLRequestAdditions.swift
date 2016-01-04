@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// Value for the accept/content header field.
+public let XUMutableURLRequestJSONHeaderFieldValue = "application/json"
+
+/// Value for the accept/content header field.
+public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml"
 
 public extension NSMutableURLRequest {
 	
@@ -18,10 +23,10 @@ public extension NSMutableURLRequest {
 		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
 	}
 	public func addJSONAcceptToHeader() {
-		self.addAccept("application/json")
+		self.addAccept(XUMutableURLRequestJSONHeaderFieldValue)
 	}
 	public func addJSONContentToHeader() {
-		self.addContentType("application/json")
+		self.addContentType(XUMutableURLRequestJSONHeaderFieldValue)
 	}
 	public func addMultipartFormDataContentToHeader() {
 		self.addContentType("multipart/form-data")
@@ -30,10 +35,28 @@ public extension NSMutableURLRequest {
 		self.addContentType("application/x-www-form-urlencoded")
 	}
 	public func addXMLAcceptToHeader() {
-		self.addAccept("application/xml")
+		self.addAccept(XUMutableURLRequestXMLHeaderFieldValue)
 	}
 	public func addXMLContentToHeader() {
-		self.addContentType("application/xml")
+		self.addContentType(XUMutableURLRequestXMLHeaderFieldValue)
+	}
+	
+	public var acceptType: String? {
+		get {
+			return self.valueForHTTPHeaderField("Accept")
+		}
+		set {
+			self.setValue(newValue, forHTTPHeaderField: "Accept")
+		}
+	}
+	
+	public var contentType: String? {
+		get {
+			return self.valueForHTTPHeaderField("Content-Type")
+		}
+		set {
+			self.setValue(newValue, forHTTPHeaderField: "Content-Type")
+		}
 	}
 	
 	public var referer: String? {
@@ -43,7 +66,6 @@ public extension NSMutableURLRequest {
 		set {
 			self.setValue(newValue, forHTTPHeaderField: "Referer")
 		}
-		
 	}
 	
 	public func setFormBody(formBody: [String : String]) {

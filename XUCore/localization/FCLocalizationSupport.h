@@ -12,6 +12,10 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 /** We cannot migrare this file to Swift yet, since the compiler doesn't include
  * functions in XUCore-Swift.h...
  */
@@ -37,6 +41,9 @@ extern NS_SWIFT_UNAVAILABLE("Use XULocalizedString instead") NSString * __nonnul
  */
 extern NSString * __nonnull FCLocalizedStringWithFormatValues(NSString * __nonnull key, NSDictionary<NSString *, id> * __nonnull values);
 
+#ifdef __cplusplus
+}
+#endif
 
 #define FCLocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]
 #define XULocalizedFormattedString(key, ...) [NSString stringWithFormat:FCLocalizedString(key), __VA_ARGS__]

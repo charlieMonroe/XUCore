@@ -23,7 +23,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "UIAlertViewAdditions.h"
 
 /** Core. */
-#import "FCKeychain.h"
 #import "iOSCommon.h"
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
@@ -37,9 +36,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 
 /** Debug. */
 #import "FCLog.h"
-
-/** Documents. */
-#import "FCCSVDocument.h"
 
 /** Localization. */
 #import "FCLocalizationSupport.h"

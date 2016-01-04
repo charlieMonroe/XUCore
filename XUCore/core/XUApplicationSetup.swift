@@ -42,22 +42,32 @@ public class XUApplicationSetup: NSObject {
 	/// in Info.plist. "1.0" by default.
 	public let applicationVersionNumber: String
 	
-	/// Returns true, if the current build is made for AppStore submission. To
-	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
-	/// True by default.
-	public let AppStoreBuild: Bool
-	
-	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
-	/// where #if DEBUG macro can be applied, in Swift, this is a bit more 
-	/// complicated - edit the scheme of your project and add "--debug" to the
-	/// arguments list to enable it.
-	public let debugMode: Bool
-		
 	/// Returns a NSURL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
 	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter
 	/// for more information.
 	public let exceptionHandlerReportURL: NSURL?
+	
+	/// Returns true, if the current build is made for AppStore submission. To
+	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
+	/// True by default.
+	public let isAppStoreBuild: Bool
+	
+	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
+	/// where #if DEBUG macro can be applied, in Swift, this is a bit more
+	/// complicated - edit the scheme of your project and add "--debug" to the
+	/// arguments list to enable it.
+	public let isRunningInDebugMode: Bool
+	
+	/// Number of items allowed for item-based trials. Enter into Info.plist as
+	/// number under the key XUItemBasedTrialNumberOfItems. Default is 10.
+	public let itemBasedTrialNumberOfItems: Int
+	
+	/// Name of the item that is up for the trial. E.g. "documents", "items",
+	/// etc. Default is simply "items". You can change this using the key
+	/// XUItemBasedTrialItemName. Note that the name must be plural and is
+	/// passed to XULocalizedString(_) before being used.
+	public let itemBasedTrialItemName: String
 	
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining
@@ -83,7 +93,8 @@ public class XUApplicationSetup: NSObject {
 	public let timeBasedTrialDays: Int
 	
 	/// If the value is set to a non-nil value, XUCore will set up a trial. 
-	/// The only allowed value at this moment is "XUCore.XUTimeBasedTrial". 
+	/// The only allowed value at this moment is either "XUCore.XUTimeBasedTrial",
+	/// or "XUCore.XUItemBasedTrial".
 	/// Enter the value into Info.plist under the key XUTrialClassName. See 
 	/// XUTimeBasedTrial class for more information.
 	///
@@ -99,9 +110,9 @@ public class XUApplicationSetup: NSObject {
 		let infoDictionary = NSBundle.mainBundle().infoDictionary ?? [ : ]
 		
 		if let appStoreBuild = infoDictionary["XUAppStoreBuild"] as? NSNumber {
-			self.AppStoreBuild = appStoreBuild.boolValue
+			self.isAppStoreBuild = appStoreBuild.boolValue
 		}else{
-			self.AppStoreBuild = true
+			self.isAppStoreBuild = true
 		}
 		
 		applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
@@ -118,10 +129,13 @@ public class XUApplicationSetup: NSObject {
 		self.applicationIdentifier = appIdentifier
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
 		
-		self.debugMode = NSProcessInfo.processInfo().arguments.contains("--debug")
+		self.isRunningInDebugMode = NSProcessInfo.processInfo().arguments.contains("--debug")
 		
 		self.trialClassName = infoDictionary["XUTrialClassName"] as? String
 		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? NSNumber)?.integerValue ?? 14
+		
+		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? NSNumber)?.integerValue ?? 10
+		self.itemBasedTrialItemName = (infoDictionary["XUItemBasedTrialItemName"] as? String) ?? "items"
 		
 		super.init()
 	}

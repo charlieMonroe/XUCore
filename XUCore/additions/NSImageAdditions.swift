@@ -112,6 +112,24 @@ public extension NSImage {
 		}
 	}
 	
+	@available(OSX 10.10, *)
+	public convenience init?(thumbnailOfFileAtURL URL: NSURL, withSize size: CGSize) {
+		let dict: [NSObject : AnyObject] = [
+			kCGImageSourceCreateThumbnailFromImageIfAbsent: kCFBooleanTrue,
+			kCGImageSourceThumbnailMaxPixelSize: size.height
+		]
+		
+		guard let source = CGImageSourceCreateWithURL(URL, dict) else {
+			return nil
+		}
+		
+		guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, dict) else {
+			return nil
+		}
+		
+		self.init(CGImage: image, asBitmapImageRep: true)
+	}
+	
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.

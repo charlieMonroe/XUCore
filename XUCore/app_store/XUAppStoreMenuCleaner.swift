@@ -39,3 +39,12 @@ public func XUCleanMenuBar() {
 }
 
 
+public class XUMenuBarCleaner: NSObject {
+	
+	/// Should be only called from ObjC. To be removed soon.
+	public class func cleanMenuBar() {
+		XUCleanMenuBar()
+	}
+	
+}
+

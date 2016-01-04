@@ -24,6 +24,29 @@ public func +=(lhs: XUString, rhs: XUString.XUChar) {
 	lhs.appendCharacter(rhs)
 }
 
+public extension SequenceType where Generator.Element == XUString {
+	
+	/// Interpose the `separator` between elements of `self`, then concatenate
+	/// the result.  For example:
+	///
+	///     ["foo", "bar", "baz"].joinWithSeparator("-|-") // "foo-|-bar-|-baz"
+	@warn_unused_result
+	public func joinWithSeparator(separator: XUString) -> XUString {
+		var result = XUString()
+		var previous: XUString? = nil
+		for item in self {
+			if previous != nil {
+				result = result.stringByAppendingString(separator)
+			}
+			result = result.stringByAppendingString(item)
+			previous = item
+		}
+		return result
+	}
+	
+}
+
+
 
 /// This is a class that helps dealing with various string computations by
 /// allowing direct modification of characters in the string. The string is just
@@ -161,6 +184,16 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 			value.append(UnicodeScalar(UInt32(c)))
 		}
 		return value
+	}
+	
+	/// Returns a string containing everything after index.
+	public func substringFromIndex(index: Int) -> XUString {
+		return self.substringWithRange(Range<Int>(start: index, end: self.length))
+	}
+	
+	/// Returns a string containing `length` first characters.
+	public func substringToIndex(index: Int) -> XUString {
+		return self.substringWithRange(Range<Int>(start: 0, end: index))
 	}
 	
 	/// Returns a substring in range.

@@ -32,5 +32,20 @@ public extension UIView {
 		return self._enclosingView()
 	}
 	
+	/// Returns the first responder, if there is one in the subview hierarchy.
+	public var firstResponder: UIView? {
+		if self.isFirstResponder() {
+			return self
+		}
+		
+		for view in self.subviews {
+			if let responder = view.firstResponder {
+				return responder
+			}
+		}
+		
+		return nil
+	}
+	
 }
 

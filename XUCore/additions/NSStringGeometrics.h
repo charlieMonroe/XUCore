@@ -3,7 +3,7 @@
 // 
 // Created by Charlie Monroe
 // 
-// Copyright (c) 2010-13 Fuel Collective, LLC. All rights reserved.
+// Copyright (c) 2010-16 Charlie Monroe Software. All rights reserved.
 // 
 
 /*

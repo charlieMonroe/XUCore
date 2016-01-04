@@ -25,7 +25,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "NSXMLAdditions.h"
 
 /** Core. */
-#import "FCKeychain.h" // Deprecated
 #import "XUAbstract.h"
 #import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
@@ -38,9 +37,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Debug. */
 #import "FCLog.h" // Deprecated
-
-/** Documents. */
-#import "FCCSVDocument.h"
 
 /** Localization. */
 #import "FCLocalizationSupport.h" // Deprecated

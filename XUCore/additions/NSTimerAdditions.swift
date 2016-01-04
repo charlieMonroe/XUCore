@@ -13,7 +13,6 @@ private class __XUTimerBlockHolder {
 	
 	let timerBlock: NSTimer.XUTimerBlock
 	
-	
 	init(timerBlock: NSTimer.XUTimerBlock) {
 		self.timerBlock = timerBlock
 	}
@@ -30,7 +29,7 @@ public extension NSTimer {
 	}
 	
 	public class func scheduledTimerWithTimeInterval(seconds: NSTimeInterval, repeats: Bool, usingBlock fireBlock: XUTimerBlock) -> NSTimer {
-		return self.init(timeInterval: seconds, target: self, selector: "__executionMethod:", userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
+		return self.scheduledTimerWithTimeInterval(seconds, target: self, selector: "__executionMethod:", userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	
 	public class func timerWithTimeInterval(seconds: NSTimeInterval, repeats: Bool, usingBlock fireBlock: XUTimerBlock) -> NSTimer {

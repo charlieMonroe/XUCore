@@ -92,7 +92,7 @@ static void _FCStartNewSession() {
 	
 	NSString *version = [[XUApplicationSetup sharedSetup] applicationVersionNumber];
 	NSString *buildNumber = [[XUApplicationSetup sharedSetup] applicationBuildNumber];
-	NSString *buildType = [[XUApplicationSetup sharedSetup] AppStoreBuild] ? @"AppStore" : @"Trial";
+	NSString *buildType = [[XUApplicationSetup sharedSetup] isAppStoreBuild] ? @"AppStore" : @"Trial";
 	
 	NSLog(@"\n\n\n============== Starting a new %@ session (version %@[%@], %@) ==============", [processInfo processName], version, buildNumber, buildType);
 }

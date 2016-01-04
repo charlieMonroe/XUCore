@@ -186,7 +186,7 @@ public class XUMessageCenter: NSObject {
 		let lastMessageID = NSUserDefaults.standardUserDefaults().integerForKey(XUMessageCenterLastIDDefaultsKey)
 		let appBuildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber.integerValue
 		
-		let isAppStoreBuild = XUApplicationSetup.sharedSetup.AppStoreBuild
+		let isAppStoreBuild = XUApplicationSetup.sharedSetup.isAppStoreBuild
 		let appIdentifier = XUApplicationSetup.sharedSetup.applicationIdentifier
 		
 		guard let messages = dict[appIdentifier] as? [XUMessageDictionary] else {

@@ -14,7 +14,7 @@ public class XUAppStoreHidingView: NSView {
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		if XUApplicationSetup.sharedSetup.AppStoreBuild {
+		if XUApplicationSetup.sharedSetup.isAppStoreBuild {
 			self.hidden = true
 		}
 	}

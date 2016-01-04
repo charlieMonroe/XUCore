@@ -54,7 +54,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	/// You need to call this prior to calling sharedManager. Do not call this
 	/// unless the current application setup is set to AppStore.
 	public class func createSharedManagerWithDelegate(delegate: XUInAppPurchaseManagerDelegate) {
-		if !XUApplicationSetup.sharedSetup.AppStoreBuild {
+		if !XUApplicationSetup.sharedSetup.isAppStoreBuild {
 			NSException(name: NSInternalInconsistencyException, reason: "Trying to create in-app purchase manager, while this is not an AppStore build.", userInfo: nil).raise()
 		}
 		

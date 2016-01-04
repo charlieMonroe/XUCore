@@ -25,7 +25,7 @@ private func _XUCachePreferences() {
 }
 private func _XURunningDevelopmentComputer() -> Bool {
 	
-	if XUApplicationSetup.sharedSetup.debugMode {
+	if XUApplicationSetup.sharedSetup.isRunningInDebugMode {
 		return true
 	}
 	
