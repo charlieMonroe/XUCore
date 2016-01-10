@@ -9,6 +9,46 @@
 import Foundation
 
 
+public func <(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+	return lhs.doubleValue < rhs.doubleValue
+}
+public func <(lhs: NSDecimalNumber, rhs: Double) -> Bool {
+	return lhs.doubleValue < rhs
+}
+
+public func >(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+	return lhs.doubleValue > rhs.doubleValue
+}
+public func >(lhs: NSDecimalNumber, rhs: Double) -> Bool {
+	return lhs.doubleValue > rhs
+}
+
+
+public func <=(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+	return lhs.doubleValue <= rhs.doubleValue
+}
+public func <=(lhs: NSDecimalNumber, rhs: Double) -> Bool {
+	return lhs.doubleValue <= rhs
+}
+
+
+public func >=(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+	return lhs.doubleValue >= rhs.doubleValue
+}
+public func >=(lhs: NSDecimalNumber, rhs: Double) -> Bool {
+	return lhs.doubleValue >= rhs
+}
+
+
+public func +=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+	lhs = lhs + rhs
+}
+
+
+public func +(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
+	return lhs.addDecimal(rhs)
+}
+
 public extension NSDecimalNumber {
 	
 	public override class func initialize() {

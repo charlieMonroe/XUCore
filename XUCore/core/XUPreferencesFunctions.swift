@@ -8,10 +8,7 @@
 
 import Foundation
 
-public func XUPreferencesBoolForKey(key: String) -> Bool {
-	return NSUserDefaults.standardUserDefaults().boolForKey(key)
-}
-public func XUPreferencesBoolForKeyWithDefaultValue(key: String, defaultValue: Bool) -> Bool {
+public func XUPreferencesBoolForKey(key: String, defaultValue: Bool = false) -> Bool {
 	guard let value = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSNumber else {
 		return defaultValue
 	}
@@ -22,10 +19,7 @@ public func XUPreferencesSetBoolForKey(value: Bool, key: String) {
 }
 
 
-public func XUPreferencesIntegerForKey(key: String) -> Int {
-	return NSUserDefaults.standardUserDefaults().integerForKey(key)
-}
-public func XUPreferencesIntegerForKeyWithDefaultValue(key: String, defaultValue: Int) -> Int {
+public func XUPreferencesIntegerForKey(key: String, defaultValue: Int = 0) -> Int {
 	guard let value = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSNumber else {
 		return defaultValue
 	}
@@ -36,14 +30,14 @@ public func XUPreferencesSetIntegerForKey(value: Int, key: String) {
 }
 
 
-public func XUPreferencesObjectForKeyWithDefaultValue(key: String, defaultValue: AnyObject?) -> AnyObject? {
-	guard let obj = NSUserDefaults.standardUserDefaults().objectForKey(key) else  {
+public func XUPreferencesObjectForKey<T>(key: String) -> T? {
+	return XUPreferencesObjectForKey(key, defaultValue: Optional<T>())
+}
+public func XUPreferencesObjectForKey<T>(key: String, defaultValue: T) -> T {
+	guard let obj = NSUserDefaults.standardUserDefaults().objectForKey(key) as? T else  {
 		return defaultValue
 	}
 	return obj
-}
-public func XUPreferencesObjectForKey(key: String) -> AnyObject? {
-	return XUPreferencesObjectForKeyWithDefaultValue(key, defaultValue: nil)
 }
 public func XUPreferencesSetObjectForKey(value: AnyObject?, key: String) {
 	if (value == nil){
@@ -51,5 +45,31 @@ public func XUPreferencesSetObjectForKey(value: AnyObject?, key: String) {
 	}else{
 		NSUserDefaults.standardUserDefaults().setObject(value, forKey: key)
 	}
+}
+
+
+
+
+
+
+@available(*, deprecated, message="Use XUPreferencesBoolForKey and specify the defaultValue argument.")
+public func XUPreferencesBoolForKeyWithDefaultValue(key: String, defaultValue: Bool) -> Bool {
+	guard let value = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSNumber else {
+		return defaultValue
+	}
+	return value.boolValue
+}
+
+@available(*, deprecated, message="Use XUPreferencesIntegerForKey and specify the defaultValue argument.")
+public func XUPreferencesIntegerForKeyWithDefaultValue(key: String, defaultValue: Int) -> Int {
+	guard let value = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSNumber else {
+		return defaultValue
+	}
+	return value.integerValue
+}
+
+@available(*, deprecated, message="Use XUPreferencesObjectForKey and specify the defaultValue argument.")
+public func XUPreferencesObjectForKeyWithDefaultValue(key: String, defaultValue: AnyObject?) -> AnyObject? {
+	return XUPreferencesObjectForKey(key, defaultValue: defaultValue)
 }
 

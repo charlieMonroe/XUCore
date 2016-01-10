@@ -83,6 +83,14 @@ public extension String {
 		return firstLetter.uppercaseString + restOfString
 	}
 	
+	public var stringByDeletingLastCharacter: String {
+		if self.isEmpty {
+			fatalError("Cannot delete last character from an empty string!")
+		}
+		
+		return self.substringToIndex(self.endIndex.predecessor())
+	}
+	
 	/// Removes the prefix from the string.
 	public func stringByDeletingPrefix(prefix: String) -> String {
 		if !self.hasPrefix(prefix) {
@@ -118,6 +126,15 @@ public extension String {
 		let begin = self.substringToIndex(self.startIndex.advancedBy((maxLen - 1) / 2))
 		let end = self.substringFromIndex(self.endIndex.advancedBy(-1 * (maxLen - 1) / 2))
 		return begin + "…" + end
+	}
+	
+	/// Prepends prefix enough times so that it has the specific length.
+	public func stringByPaddingFrontToLength(length: Int, withString padString: String) -> String {
+		var str = self
+		while str.characters.count + padString.characters.count < length {
+			str = padString + str
+		}
+		return str
 	}
 	
 	/// Trims whitespace characters

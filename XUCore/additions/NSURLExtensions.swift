@@ -10,6 +10,42 @@ import Foundation
 
 public extension NSURL {
 	
+	/// Returns the file size.
+	public var fileSize: Int {
+		var value: AnyObject?
+		_ = try? self.getResourceValue(&value, forKey: NSURLFileSizeKey)
+		
+		guard let number = value as? NSNumber else {
+			return 0 // Fallback to 0
+		}
+		
+		return number.integerValue
+	}
+	
+	/// Returns true if the current URL is a directory.
+	public var isDirectory: Bool {
+		var value: AnyObject?
+		_ = try? self.getResourceValue(&value, forKey: NSURLIsDirectoryKey)
+		
+		guard let number = value as? NSNumber else {
+			return false // Fallback to false
+		}
+		
+		return number.boolValue
+	}
+	
+	/// Returns true if the URL is writable.
+	public var isWritable: Bool {
+		var value: AnyObject?
+		_ = try? self.getResourceValue(&value, forKey: NSURLIsWritableKey)
+		
+		guard let number = value as? NSNumber else {
+			return false // Fallback to false
+		}
+		
+		return number.boolValue
+	}
+	
 	public var queryDictionary: [String:String] {
 		var dict: [String:String] = [:]
 		for part in (self.query ?? "").componentsSeparatedByString("&") {
@@ -26,6 +62,18 @@ public extension NSURL {
 		}
 		
 		return dict
+	}
+	
+	public var thumbnailImage: XUImage? {
+		var value: AnyObject?
+		if #available(OSX 10.10, *) {
+		    _ = try? self.getResourceValue(&value, forKey: NSURLThumbnailKey)
+		} else {
+			return nil
+		}
+		
+		return value as? XUImage
+		
 	}
 	
 	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.

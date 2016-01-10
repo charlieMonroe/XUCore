@@ -12,6 +12,88 @@ import Foundation
 private var __today: NSDate?
 private var __validUntil: NSTimeInterval = 0
 
+public struct XUMonth : OptionSetType {
+	public let rawValue: Int
+	
+	public init(rawValue: Int) { self.rawValue = rawValue }
+	
+	public static let January = XUMonth(rawValue: 1 << 0)
+	public static let February = XUMonth(rawValue: 1 << 1)
+	public static let March = XUMonth(rawValue: 1 << 2)
+	public static let April = XUMonth(rawValue: 1 << 3)
+	public static let May = XUMonth(rawValue: 1 << 4)
+	public static let June = XUMonth(rawValue: 1 << 5)
+	public static let July = XUMonth(rawValue: 1 << 6)
+	public static let August = XUMonth(rawValue: 1 << 7)
+	public static let September = XUMonth(rawValue: 1 << 8)
+	public static let October = XUMonth(rawValue: 1 << 9)
+	public static let November = XUMonth(rawValue: 1 << 10)
+	public static let December = XUMonth(rawValue: 1 << 11)
+	
+	/// Contains a mask for the entire quarter.
+	public static let Quarter1: XUMonth = [ .January, .February, .March ]
+	
+	/// Contains a mask for the entire quarter.
+	public static let Quarter2: XUMonth = [ .April, .May, .June ]
+	
+	/// Contains a mask for the entire quarter.
+	public static let Quarter3: XUMonth = [ .July, .August, .September ]
+	
+	/// Contains a mask for the entire quarter.
+	public static let Quarter4: XUMonth = [ .October, .November, .December ]
+	
+	public static let AllMonths: XUMonth = [
+		.Quarter1, .Quarter2, .Quarter3, .Quarter4
+	]
+	
+	/// Returns true if the current mask is a single month.
+	public var isSingleMonth: Bool {
+		return XUMonth.AllMonthsArray.count({ self.contains($0) }) == 1
+	}
+	
+	/// This will return the month integer (1-12). If the option set contains
+	/// more than one month, this will call fatalError(_).
+	public var month: Int {
+		switch self {
+		case XUMonth.January:
+			return 1
+		case XUMonth.February:
+			return 2
+		case XUMonth.March:
+			return 3
+		case XUMonth.April:
+			return 4
+		case XUMonth.May:
+			return 5
+		case XUMonth.June:
+			return 6
+		case XUMonth.July:
+			return 7
+		case XUMonth.August:
+			return 8
+		case XUMonth.September:
+			return 9
+		case XUMonth.October:
+			return 10
+		case XUMonth.November:
+			return 11
+		case XUMonth.December:
+			return 12
+			
+		default:
+			fatalError("Calling month on a XUMonth mask that is not a single-month.")
+		}
+	}
+	
+	/// Array of all months.
+	public static let AllMonthsArray: [XUMonth] = [
+		.January, .February, .March, .April, .May, .June,
+		.July, .August, .September, .November, .October, .December
+	]
+	
+}
+
+
 public extension NSDate {
 	
 	/// Returns date with day/month/year values, if valid.
@@ -92,12 +174,12 @@ public extension NSDate {
 		return self.timeIntervalSinceReferenceDate < NSDate.timeIntervalSinceReferenceDate()
 	}
 	
-	public func isWithinMonths(months: Int) -> Bool {
+	public func isWithinMonths(months: XUMonth) -> Bool {
 		let calendar = NSCalendar.currentCalendar()
 		let components = calendar.components(.Month, fromDate: self)
-		let shift = (1 << (components.month - 1))
-		let result = ((shift & months) != 0)
-		return result
+		
+		let month = XUMonth(rawValue: (1 << (components.month - 1)))
+		return months.contains(month)
 	}
 	
 	public func isWithinYear(year: Int) -> Bool {

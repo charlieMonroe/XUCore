@@ -40,7 +40,7 @@ public class XUAppScopeBookmarksManager: NSObject {
 						return false
 					}
 					
-					XULog("trying to save bookmark data for path \(URL!.path) - bookmark data length = \(bookmarkData.length)")
+					XULog("trying to save bookmark data for path \(URL!.path ?? "<>") - bookmark data length = \(bookmarkData.length)")
 					
 					NSUserDefaults.standardUserDefaults().setObject(bookmarkData, forKey: defaultsKey)
 					
