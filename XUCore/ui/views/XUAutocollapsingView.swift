@@ -36,7 +36,12 @@ public class XUAutocollapsingView: __XUBridgedView {
 		} else {
 			constraint.constant = _originalHeight
 		}
-		self.superview?.needsLayout = true
+		
+		#if os(iOS)
+			self.superview?.setNeedsLayout()
+		#else
+			self.superview?.needsLayout = true
+		#endif
 	}
 	
 	public override func awakeFromNib() {

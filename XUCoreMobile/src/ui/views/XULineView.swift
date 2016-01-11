@@ -64,12 +64,14 @@ import Foundation
 		super.init(frame: frame)
 		
 		self.opaque = false
+		self.backgroundColor = nil
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
 	    super.init(coder: aDecoder)
 		
 		self.opaque = false
+		self.backgroundColor = nil
 	}
 
 }
