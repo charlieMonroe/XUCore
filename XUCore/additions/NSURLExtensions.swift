@@ -64,6 +64,7 @@ public extension NSURL {
 		return dict
 	}
 	
+	#if os(OSX)
 	public var thumbnailImage: XUImage? {
 		var value: AnyObject?
 		if #available(OSX 10.10, *) {
@@ -73,8 +74,8 @@ public extension NSURL {
 		}
 		
 		return value as? XUImage
-		
 	}
+	#endif
 	
 	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.
 	public var URLByDeletingFragment: NSURL {
