@@ -191,6 +191,10 @@
 		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		075A929E1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
+		075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
+		075A92A11C43D775006DD45B /* XUUIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A92A01C43D775006DD45B /* XUUIBridge.swift */; };
+		075A92A21C43D775006DD45B /* XUUIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A92A01C43D775006DD45B /* XUUIBridge.swift */; };
 		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */; };
@@ -434,6 +438,8 @@
 		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
+		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
+		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
@@ -739,6 +745,23 @@
 			name = exception_handling;
 			sourceTree = "<group>";
 		};
+		075A929B1C43D70F006DD45B /* ui_bridged */ = {
+			isa = PBXGroup;
+			children = (
+				075A929C1C43D723006DD45B /* views */,
+				075A92A01C43D775006DD45B /* XUUIBridge.swift */,
+			);
+			name = ui_bridged;
+			sourceTree = "<group>";
+		};
+		075A929C1C43D723006DD45B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		077AFD851BBD0E5300872A48 = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +798,7 @@
 				073E6A7C1BE1F84600706283 /* regex */,
 				077AFEAD1BBD101400872A48 /* transformers */,
 				07E35B931C02383E007D31BE /* trial */,
+				075A929B1C43D70F006DD45B /* ui_bridged */,
 				070FEF7B1C106BB200C1B62E /* ui_ios */,
 				073E6B541BE203E800706283 /* ui_osx */,
 				07311DC71C0C5DB6001B95AC /* util */,
@@ -1221,6 +1245,7 @@
 			files = (
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
+				075A929E1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */,
 				0749DCF31C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
@@ -1233,6 +1258,7 @@
 				073E6B1B1BE1F86D00706283 /* thread.cc in Sources */,
 				07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */,
 				077AFF1E1BBD101400872A48 /* NSStringAdditions.m in Sources */,
+				075A92A11C43D775006DD45B /* XUUIBridge.swift in Sources */,
 				073E6ADF1BE1F86D00706283 /* regexp.cc in Sources */,
 				07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
@@ -1360,8 +1386,10 @@
 				077AFEC31BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				077AFEB91BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				073E6B301BE1F86D00706283 /* XURegex.mm in Sources */,
+				075A92A21C43D775006DD45B /* XUUIBridge.swift in Sources */,
 				07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				073E6B061BE1F86D00706283 /* pcre.cc in Sources */,
+				075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */,
 				07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */,
 				077AFF1F1BBD101400872A48 /* NSStringAdditions.m in Sources */,
 				073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */,
