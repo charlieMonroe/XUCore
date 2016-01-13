@@ -22,6 +22,7 @@
 		07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */; };
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
+		073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -347,6 +348,7 @@
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageAdditions.swift; sourceTree = "<group>"; };
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageAdditions.swift; sourceTree = "<group>"; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 				0779E1961BF23B6000832858 /* NSMutableURLRequestAdditions.swift */,
 				07758A2C1BEFC5D8004B29A8 /* NSOpenPanelAdditions.swift */,
 				07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */,
+				073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */,
 				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				077AFDDA1BBD101400872A48 /* NSStringAdditions.h */,
 				077AFDDB1BBD101400872A48 /* NSStringAdditions.m */,
@@ -1246,6 +1249,7 @@
 				077AFEC21BBD101400872A48 /* NSArrayAdditions.m in Sources */,
 				073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */,
 				075A929E1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */,
+				073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */,
 				0749DCF31C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,

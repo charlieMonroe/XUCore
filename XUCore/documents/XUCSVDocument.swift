@@ -278,6 +278,13 @@ public class XUCSVDocument {
 					return ""
 				}
 				
+				if var string = obj as? String {
+					if string.rangeOfString(String(self.columnSeparator)) != nil {
+						string = "\"" + string.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
+					}
+					return string
+				}
+				
 				if let decimal = obj as? NSDecimalNumber {
 					return String(format: "%0.4f", decimal.doubleValue)
 				}
