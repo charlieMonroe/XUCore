@@ -15,6 +15,7 @@
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		07156FEE1C396F82006D3616 /* XUBorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */; };
+		071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
 		07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
 		07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
 		07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
@@ -343,6 +344,7 @@
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCSVDocument.swift; sourceTree = "<group>"; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; };
+		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
 		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageAdditions.swift; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 			isa = PBXGroup;
 			children = (
 				077AFDA81BBD101400872A48 /* ArrayExtensions.swift */,
+				071BC28F1C4701810097FCEC /* BoolAdditions.swift */,
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
 				073E6B391BE1F9D500706283 /* CharacterExtensions.swift */,
 				077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */,
@@ -1255,6 +1258,7 @@
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */,
+				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
 				0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,

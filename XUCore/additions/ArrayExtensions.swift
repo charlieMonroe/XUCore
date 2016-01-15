@@ -34,11 +34,11 @@ public extension SequenceType {
 	}
 	
 	/// Counts elements that match the filter
-	public func count(filter: XUFilter) -> UInt {
+	public func count(filter: XUFilter) -> Int {
 		let count =  self.sum({ (obj) -> Int in
 			return filter(obj) ? 1 : 0
 		})
-		return UInt(count)
+		return count
 	}
 		
 	/// Unlike map, this allows you to return nil, in which case the value
@@ -215,6 +215,26 @@ public extension Array {
 			result.append(mapper(self[i], i))
 		}
 		return result
+	}
+	
+	/// Moves object from one index to another.
+	mutating func moveObjectAtIndex(fromIndex: Int, var toIndex: Int) {
+		if toIndex == fromIndex {
+			return
+		}
+		
+		if toIndex >= fromIndex {
+			--toIndex
+		}
+		
+		let obj = self[fromIndex]
+		self.removeAtIndex(fromIndex)
+		
+		if toIndex >= self.count {
+			self.append(obj)
+		} else {
+			self.insert(obj, atIndex: toIndex)
+		}
 	}
 	
 }

@@ -16,12 +16,12 @@ public extension String {
 	}
 	
 	/// This converts string to UInt as a fourCharCode
-	public var fourCharCodeValue: UInt {
-		var result: UInt = 0
+	public var fourCharCodeValue: Int {
+		var result: Int = 0
 		if let data = self.dataUsingEncoding(NSMacOSRomanStringEncoding) {
 			let bytes = UnsafePointer<UInt8>(data.bytes)
 			for i in 0..<data.length {
-				result = result << 8 + UInt(bytes[i])
+				result = result << 8 + Int(bytes[i])
 			}
 		}
 		return result
@@ -38,8 +38,8 @@ public extension String {
 	}
 	
 	/// Returns hexValue of the string.
-	public var hexValue: UInt {
-		return (self as NSString).hexValue()
+	public var hexValue: Int {
+		return Int((self as NSString).hexValue())
 	}
 	
 	/// Replaces & -> &amp; etc.
