@@ -92,6 +92,12 @@ public class XUMessageCenter: NSObject {
 	
 	private typealias XUMessageDictionary = [String : AnyObject]
 	
+	private func _markMessageWithIDAsRead(messageID: Int) {
+		// Save the message ID
+		NSUserDefaults.standardUserDefaults().setInteger(messageID, forKey: XUMessageCenterLastIDDefaultsKey)
+		NSUserDefaults.standardUserDefaults().synchronize()
+	}
+	
 	private func _processActionsFromMessageDict(message: XUMessageDictionary, withMessageID messageID: Int) {
 		guard let actions = message["XUActions"] as? [String : String] else {
 			XULog("Invalid message \(message)")
@@ -140,9 +146,7 @@ public class XUMessageCenter: NSObject {
 			}
 		}
 		
-		// Save the message ID
-		NSUserDefaults.standardUserDefaults().setInteger(messageID, forKey: XUMessageCenterLastIDDefaultsKey)
-		NSUserDefaults.standardUserDefaults().synchronize()
+		self._markMessageWithIDAsRead(messageID)
 	}
 	
 	@objc private func _launchMessageCenter() {
@@ -255,7 +259,9 @@ public class XUMessageCenter: NSObject {
 					self._processActionsFromMessageDict(message, withMessageID: messageID)
 				}))
 				if allowsIgnoringMessage {
-					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .Cancel, handler: nil))
+					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .Cancel, handler: { (_) -> Void in
+						self._markMessageWithIDAsRead(messageID)
+					}))
 				}
 
 				XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
@@ -272,6 +278,8 @@ public class XUMessageCenter: NSObject {
 				
 				if alert.runModalOnMainThread() == NSAlertFirstButtonReturn {
 					self._processActionsFromMessageDict(message, withMessageID: messageID)
+				}else{
+					self._markMessageWithIDAsRead(messageID)
 				}
 			#endif
 			

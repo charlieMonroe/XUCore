@@ -21,6 +21,7 @@ private func _URLForKey(key: String, inInfoDictionary infoDictionary: [String : 
 	}
 }
 
+
 /// This class contains several variables containing some of the information in
 /// the main bundle's Info.plist. You can go through the variables and see what
 /// information needs to be entered under which key to modify the app's behavior.
@@ -42,6 +43,13 @@ public class XUApplicationSetup: NSObject {
 	/// in Info.plist. "1.0" by default.
 	public let applicationVersionNumber: String
 	
+	/// If isBetaBuild, this is the time interval after which the beta expires.
+	/// By default, this is 7 days, but can be customized using XUBetaExpiration
+	/// key. If you enter 0, the betas never expires.
+	///
+	/// @discussion - Only available on OS X.
+	public let betaExpirationTimeInterval: NSTimeInterval
+	
 	/// Returns a NSURL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
 	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter
@@ -51,7 +59,20 @@ public class XUApplicationSetup: NSObject {
 	/// Returns true, if the current build is made for AppStore submission. To
 	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
 	/// True by default.
+	///
+	/// @discussion - Probably one of the alternatives would be to make an enum
+	///				  of build types. Unfortunately, we can think of all of the
+	///				  combinations of AppStore-Beta builds, which would not be
+	///				  a nice solution. Hence these options are separated.
 	public let isAppStoreBuild: Bool
+	
+	/// Returns true if the Info.plist contains a true boolean under the key
+	/// XUBetaBuild. When true, the XUCore framework automatically handles
+	/// beta expiration. False by default. See betaExpirationTimeInterval.
+	///
+	/// @discussion - Only available on OS X. On iOS, beta builds are handled
+	///				by TestFlight.
+	public let isBetaBuild: Bool
 	
 	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
 	/// where #if DEBUG macro can be applied, in Swift, this is a bit more
@@ -114,6 +135,19 @@ public class XUApplicationSetup: NSObject {
 		}else{
 			self.isAppStoreBuild = true
 		}
+		
+		if let betaBuild = infoDictionary["XUBetaBuild"] as? NSNumber {
+			self.isBetaBuild = betaBuild.boolValue
+		}else{
+			self.isBetaBuild = false
+		}
+		
+		if let betaExpirationTimeInterval = infoDictionary["XUBetaExpiration"] as? NSNumber where betaExpirationTimeInterval.doubleValue > 0.0 {
+			self.betaExpirationTimeInterval = betaExpirationTimeInterval.doubleValue
+		}else{
+			self.betaExpirationTimeInterval = 7.0 * 24.0 * 3600.0
+		}
+		
 		
 		applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
 		applicationVersionNumber = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"

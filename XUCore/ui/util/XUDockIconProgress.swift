@@ -58,7 +58,7 @@ public class XUDockIconProgress: NSObject {
 		}
 		
 		let progress = self.progressValue
-		if (progress >= 0.0 && progress <= 1.0){
+		if (progress > 0.0 && progress < 1.0){
 			let image = self._progressImage()
 			NSApplication.sharedApplication().applicationIconImage = image
 		}else{

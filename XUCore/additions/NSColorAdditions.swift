@@ -16,13 +16,16 @@ private class _XU_NSColorDraggingSource: NSObject, NSDraggingSource {
 	@objc private func draggingSession(session: NSDraggingSession, sourceOperationMaskForDraggingContext context: NSDraggingContext) -> NSDragOperation {
 		return .Copy
 	}
+	@objc private func draggingSession(session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, operation: NSDragOperation) {
+		
+	}
 	
 }
 
 private let _source = _XU_NSColorDraggingSource()
+private var _draggingSession: NSDraggingSession?
 
-
-public extension NSColor {
+extension NSColor: NSPasteboardItemDataProvider {
 	
 	private var _imagePreview: NSImage {
 		let image = NSImage(size: CGSizeMake(kXUColorSampleItemWidth, kXUColorSampleItemHeight))
@@ -54,30 +57,52 @@ public extension NSColor {
 		
 		image.unlockFocus()
 		
-		// Write to PBoard
-		let dP = NSPasteboard(name: NSDragPboard)
-		dP.declareTypes([ NSColorPboardType ], owner: self)
-		
-		let imagePreview = self._imagePreview
-		if let TIFFData = imagePreview.TIFFRepresentation {
-			if let bmapImage = NSImage(data: TIFFData) {
-				dP.writeObjects([ bmapImage ])
-			}
-		}
-		
 		var p = view.convertPoint(event.locationInWindow, fromView: nil)
 		p.x -= 6.0
 		p.y -= 6.0
 		
-		let item = NSDraggingItem(pasteboardWriter: self)
+		let pbItem = NSPasteboardItem()
+		pbItem.setDataProvider(self, forTypes: [ NSColorPboardType, NSPasteboardTypeColor, NSPasteboardTypeTIFF, NSPasteboardTypePNG ])
+		
+		let item = NSDraggingItem(pasteboardWriter: pbItem)
 		item.imageComponentsProvider = {
 			let component = NSDraggingImageComponent(key: "Color")
 			component.contents = image
 			return [ component ]
 		}
 		
-		item.draggingFrame = CGRectMake(p.x, p.y, 12.0, 12.0)
-		view.beginDraggingSessionWithItems([ item ], event: event, source: _source)
+		let colorItem = NSDraggingItem(pasteboardWriter: self)
+		
+		colorItem.setDraggingFrame(CGRectMake(p.x, p.y, 12.0, 12.0), contents: image)
+		_draggingSession = view.beginDraggingSessionWithItems([ colorItem ], event: event, source: _source)
+		
+		let pasteboard = _draggingSession!.draggingPasteboard
+		let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+		pasteboard.setData(data, forType: NSColorPboardType)
+		pasteboard.setData(data, forType: NSPasteboardTypeColor)
+		pasteboard.writeObjects([self])
+		
+		XULog("\(_draggingSession!)")
+	}
+	
+	public func pasteboard(pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
+		switch type {
+		case NSPasteboardTypeTIFF:
+			pasteboard?.setData(self._imagePreview.TIFFRepresentation, forType: type)
+			break
+		case NSPasteboardTypePNG:
+			pasteboard?.setData(self._imagePreview.PNGRepresentation, forType: type)
+			break
+		case NSPasteboardTypeColor: fallthrough
+		case NSColorPboardType:
+			let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+			pasteboard?.setData(data, forType: NSColorPboardType)
+			pasteboard?.setData(data, forType: NSPasteboardTypeColor)
+			pasteboard?.writeObjects([self])
+			break
+		default:
+			break
+		}
 	}
 	
 }

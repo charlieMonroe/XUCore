@@ -237,6 +237,11 @@ public extension Array {
 		}
 	}
 	
+	/// Returns a slice in range.
+	public func sliceWithRange(range: Range<Int>) -> ArraySlice<Generator.Element> {
+		return self[range.startIndex..<range.endIndex]
+	}
+	
 }
 
 public extension CollectionType {

@@ -32,6 +32,12 @@ public class XURandomGenerator: NSObject {
 		
 	}
 	
+	/// Returns a random boolean. Does so by getting a random byte and returning
+	/// byte % 2 == 0
+	public var randomBool: Bool {
+		return self.randomByte % 2 == 0
+	}
+	
 	/// Returns a random byte.
 	public var randomByte: UInt8 {
 		return UInt8(random() % 256)

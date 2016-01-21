@@ -24,6 +24,7 @@
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
 		073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */; };
+		073B7ECA1C49371900020B3A /* XUClickThroughTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6C1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
@@ -239,6 +240,7 @@
 		077A00A91BBD107500872A48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00A81BBD107500872A48 /* Cocoa.framework */; };
 		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */; };
+		077ADC151C501A74008F5600 /* XUBetaExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */; };
 		077AFD931BBD0E5300872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFD921BBD0E5300872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDA11BBD0ED200872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDA81BBD101400872A48 /* ArrayExtensions.swift */; };
@@ -351,6 +353,7 @@
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageAdditions.swift; sourceTree = "<group>"; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
+		073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUClickThroughTextField.swift; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
@@ -468,6 +471,7 @@
 		0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+NSURLAdditions.swift"; sourceTree = "<group>"; };
 		0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTextFieldAdditions.swift; sourceTree = "<group>"; };
 		077A00A81BBD107500872A48 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBetaExpirationHandler.swift; path = trial/XUBetaExpirationHandler.swift; sourceTree = "<group>"; };
 		077AFD8F1BBD0E5300872A48 /* XUCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		077AFD921BBD0E5300872A48 /* XUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCore.h; sourceTree = "<group>"; };
 		077AFD941BBD0E5300872A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -599,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */,
+				073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */,
 			);
 			path = textfields;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 		07E35B931C02383E007D31BE /* trial */ = {
 			isa = PBXGroup;
 			children = (
+				077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */,
 				07E35B941C02384C007D31BE /* XUTrial.swift */,
 			);
 			name = trial;
@@ -1312,6 +1318,7 @@
 				073E6B451BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				077AFEE21BBD101400872A48 /* NSDataAdditions.m in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
+				077ADC151C501A74008F5600 /* XUBetaExpirationHandler.swift in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
@@ -1376,6 +1383,7 @@
 				07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */,
 				073E6B4F1BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
 				0779E16E1BF06C6200832858 /* NSDecimalNumberAdditions.swift in Sources */,
+				073B7ECA1C49371900020B3A /* XUClickThroughTextField.swift in Sources */,
 				0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */,
 				07E35B951C02384C007D31BE /* XUTrial.swift in Sources */,
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,

@@ -46,6 +46,13 @@ public extension NSURL {
 		return number.boolValue
 	}
 	
+	public var modificationDate: NSDate? {
+		var value: AnyObject?
+		_ = try? self.getResourceValue(&value, forKey: NSURLContentModificationDateKey)
+
+		return value as? NSDate
+	}
+	
 	public var queryDictionary: [String:String] {
 		var dict: [String:String] = [:]
 		for part in (self.query ?? "").componentsSeparatedByString("&") {

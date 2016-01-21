@@ -8,6 +8,15 @@
 
 import Foundation
 
+public func +(lhs: String, rhs: Character) -> String {
+	return lhs + String(rhs)
+}
+
+public func +(inout lhs: String, rhs: Character) {
+	lhs = lhs + String(rhs)
+}
+
+
 public extension String {
 	
 	/// Returns first line of string. Always non-nil
@@ -106,8 +115,8 @@ public extension String {
 			return self
 		}
 		
-		let len = self.characters.count - 1
-		return self.substringToIndex(self.startIndex.advancedBy(len))
+		let len = suffix.characters.count
+		return self.substringToIndex(self.endIndex.advancedBy(-len))
 	}
 	
 	/// Encodes string by adding percent escapes. Unlike

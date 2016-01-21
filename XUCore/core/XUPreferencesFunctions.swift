@@ -31,7 +31,7 @@ public func XUPreferencesSetIntegerForKey(value: Int, key: String) {
 
 
 public func XUPreferencesObjectForKey<T>(key: String) -> T? {
-	return XUPreferencesObjectForKey(key, defaultValue: Optional<T>())
+	return NSUserDefaults.standardUserDefaults().objectForKey(key) as? T
 }
 public func XUPreferencesObjectForKey<T>(key: String, defaultValue: T) -> T {
 	guard let obj = NSUserDefaults.standardUserDefaults().objectForKey(key) as? T else  {
