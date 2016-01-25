@@ -69,10 +69,15 @@ public class XUApplicationSetup: NSObject {
 	/// Returns true if the Info.plist contains a true boolean under the key
 	/// XUBetaBuild. When true, the XUCore framework automatically handles
 	/// beta expiration. False by default. See betaExpirationTimeInterval.
-	///
-	/// @discussion - Only available on OS X. On iOS, beta builds are handled
-	///				by TestFlight.
 	public let isBetaBuild: Bool
+	
+	/// Returns true if the Dark Mode for menu bar and Dock is enabled. Will always
+	/// return false on iOS.
+	@available(OSX 10.0, *)
+	@available(iOS, unavailable)
+	public var isDarkModeEnabled: Bool {
+		return NSUserDefaults.standardUserDefaults().stringForKey("AppleInterfaceStyle") == "Dark"
+	}
 	
 	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
 	/// where #if DEBUG macro can be applied, in Swift, this is a bit more

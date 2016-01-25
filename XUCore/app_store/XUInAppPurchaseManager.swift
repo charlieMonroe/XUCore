@@ -10,10 +10,10 @@ import Foundation
 import StoreKit
 
 /// Notification posted when the available products did load.
-public let XUInAppPurchaseManagerAvailableProductsDidLoadNotification = "XUInAppPurchaseManagerAvailableProductsGotLoadedNotification"
+public let XUInAppPurchaseManagerAvailableProductsDidLoadNotification = "XUInAppPurchaseManagerAvailableProductsDidLoadNotification"
 
 /// Notification posted when a purchase is made, or restored.
-public let XUInAppPurchaseManagerPurchasesChangedNotification = "XUInAppPurchaseManagerPurchasesChangedNotification"
+public let XUInAppPurchaseManagerPurchasesDidChangeNotification = "XUInAppPurchaseManagerPurchasesDidChangeNotification"
 
 
 private let XUInAppPurchasesDefaultsKey = "XUInAppPurchases"
@@ -80,7 +80,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	public private(set) var productsAvailableForPurchase: [SKProduct] = [ ]
 	
 	/// A list of identifiers of purchased products.
-	public private(set) var purchasedProductsIdentifiers: [String] = [ ]
+	public private(set) var purchasedProductIdentifiers: [String] = [ ]
 	
 	
 	/// Called from a notification, so that we remove self from observers when the
@@ -105,13 +105,13 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 			for hashedIdentifier in savedPurchases {
 				for inAppPurchaseID in allowedIdentifiers {
 					let hashedInAppIdentifier = inAppPurchaseID + NSProcessInfo.processInfo().processName.MD5Digest.MD5Digest
-					if hashedInAppIdentifier == hashedIdentifier && !self.purchasedProductsIdentifiers.contains(inAppPurchaseID) {
-						self.purchasedProductsIdentifiers.append(inAppPurchaseID)
+					if hashedInAppIdentifier == hashedIdentifier && !self.purchasedProductIdentifiers.contains(inAppPurchaseID) {
+						self.purchasedProductIdentifiers.append(inAppPurchaseID)
 					}
 				}
 			}
 			
-			XULog("Restored in-app purchases: \(purchasedProductsIdentifiers)")
+			XULog("Restored in-app purchases: \(purchasedProductIdentifiers)")
 		}else{
 			XULog("NULL in-app purchases data")
 		}
@@ -163,8 +163,8 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 				case SKPaymentTransactionStateRestored:
 					// Add to purchased items
 					XULog("Purchased item with identifier \(purchasedProductIdentifier)")
-					if !self.purchasedProductsIdentifiers.contains(purchasedProductIdentifier) {
-						self.purchasedProductsIdentifiers.append(purchasedProductIdentifier)
+					if !self.purchasedProductIdentifiers.contains(purchasedProductIdentifier) {
+						self.purchasedProductIdentifiers.append(purchasedProductIdentifier)
 					}
 					
 					SKPaymentQueue.defaultQueue().finishTransaction(transaction)
@@ -181,7 +181,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		self.save()
 		
-		NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerPurchasesChangedNotification, object: self)
+		NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerPurchasesDidChangeNotification, object: self)
 	}
 	
 	
@@ -271,9 +271,9 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	
 	/// Saves the in-app purchases. Seldomly needed to be called manually.
 	public func save() {
-		XULog("Saving in app purchases \(self.purchasedProductsIdentifiers)")
+		XULog("Saving in app purchases \(self.purchasedProductIdentifiers)")
 		
-		let hashedIdentifiers = self.purchasedProductsIdentifiers.map { (identifier) -> String in
+		let hashedIdentifiers = self.purchasedProductIdentifiers.map { (identifier) -> String in
 			return identifier + NSProcessInfo.processInfo().processName.MD5Digest.MD5Digest
 		}
 		

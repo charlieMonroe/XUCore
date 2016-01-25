@@ -21,14 +21,14 @@ public func XUSetCurrentLocalizationLanguageIdentifier(identifier: String) {
 }
 
 /// Returns a localized string.
-public func XULocalizedString(key: String, withLocale language: String? = nil) -> String {
-	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language ?? XUCurrentLocalizationLanguageIdentifier())
+public func XULocalizedString(key: String, inBundle bundle: NSBundle = NSBundle.mainBundle(), withLocale language: String? = nil) -> String {
+	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language ?? XUCurrentLocalizationLanguageIdentifier(), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
-public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType..., withLocale language: String? = nil) -> String {
-	return String(format: XULocalizedString(format, withLocale: language), arguments: arguments)
+public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType..., withLocale language: String? = nil, inBundle bundle: NSBundle = NSBundle.mainBundle()) -> String {
+	return String(format: XULocalizedString(format, withLocale: language, inBundle: bundle), arguments: arguments)
 }
 
 /// A new format function which takes `values` and replaces placeholders within `key`
@@ -57,11 +57,11 @@ public class XULocalizationCenter: NSObject {
 	public static var sharedCenter = XULocalizationCenter()
 
 	/// Cached language dictionaries.
-	private var _cachedLanguageDicts: [String : [String : String]] = [ : ]
+	private var _cachedLanguageDicts: [NSBundle: [String : [String : String]]] = [ : ]
 	
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
-	private func _languageBundleForLanguage(language: String) -> NSBundle? {
+	private func _languageBundleForLanguage(language: String, inBundle bundle: NSBundle) -> NSBundle? {
 		if let URL = NSBundle.mainBundle().URLForResource(language, withExtension: "lproj") {
 			return NSBundle(URL: URL)
 		}
@@ -69,14 +69,14 @@ public class XULocalizationCenter: NSObject {
 		// Fall back to en or "Base". Just check if the language is "en" so that if
 		// the project doesn't contain either, we don't end up in an infinite loop.
 		if language == "en" {
-			if let bundle = self._languageBundleForLanguage("English") {
+			if let bundle = self._languageBundleForLanguage("English", inBundle: bundle) {
 				return bundle
-			}else if let bundle = self._languageBundleForLanguage("Base") {
+			}else if let bundle = self._languageBundleForLanguage("Base", inBundle: bundle) {
 				return bundle
 			}
 		}
 		
-		return self._languageBundleForLanguage("en")
+		return self._languageBundleForLanguage("en", inBundle: bundle)
 	}
 	
 	/// Returns the identifier of current localization.
@@ -90,7 +90,7 @@ public class XULocalizationCenter: NSObject {
 				if let language = languages.first {
 					// The language is often e.g. en-US - get just the first part,
 					// unless the language exists for the entire identifier.
-					if self._languageBundleForLanguage(language) != nil {
+					if self._languageBundleForLanguage(language, inBundle: NSBundle.mainBundle()) != nil {
 						return language
 					}
 					return language.componentsSeparatedByString("-").first!
@@ -115,18 +115,22 @@ public class XULocalizationCenter: NSObject {
 	}
 	
 	/// Returns a localized string.
-	public func localizedString(key: String, withLocale _language: String? = nil) -> String {
+	public func localizedString(key: String, withLocale _language: String? = nil, inBundle bundle: NSBundle = NSBundle.mainBundle()) -> String {
 		let language = _language ?? XUCurrentLocalizationLanguageIdentifier()
 		
 		if key.isEmpty {
 			return key
 		}
 		
+		if _cachedLanguageDicts[bundle] == nil {
+			_cachedLanguageDicts[bundle] = [:]
+		}
+		
 		let dict: [String : String]
-		if let d = _cachedLanguageDicts[language] {
+		if let d = _cachedLanguageDicts[bundle]![language] {
 			dict = d
 		}else{
-			guard let languageBundle = self._languageBundleForLanguage(language) else {
+			guard let languageBundle = self._languageBundleForLanguage(language, inBundle: bundle) else {
 				return key // No such localization
 			}
 			
@@ -138,7 +142,7 @@ public class XULocalizationCenter: NSObject {
 				return key // Invalid format
 			}
 			
-			_cachedLanguageDicts[language] = d
+			_cachedLanguageDicts[bundle]![language] = d
 			dict = d
 		}
 		

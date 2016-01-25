@@ -9,7 +9,7 @@
 import Cocoa
 
 public class XUPositionedWindowView: NSView {
-
+	
 	@IBOutlet weak var connectedToWindow: NSWindow!
 	
 	@objc private func _updateFramePosition() {
@@ -22,28 +22,23 @@ public class XUPositionedWindowView: NSView {
 		if self.shouldBeConnectedOnAwakeFromNib {
 			var superview = connectedToWindow.contentView?.superview
 			if connectedToWindow.respondsToSelector("addTitlebarAccessoryViewController:") {
-				if #available(OSX 10.10, *) {
-				    if connectedToWindow.titlebarAccessoryViewControllers.count == 0 {
-    					/** Since 10.10.2, the titlebar view is deferred in creation.
-    					* We need to force the creation by adding a blank titlebar accessory
-    					* view controller.
-    					*/
-    					let controller = NSTitlebarAccessoryViewController()
-    					controller.layoutAttribute = .Right
-    					controller.view = NSView()
-    					connectedToWindow.addTitlebarAccessoryViewController(controller)
-    				}
-				} else {
-				    // Fallback on earlier versions
-					XUThrowAbstractException()
+				if connectedToWindow.titlebarAccessoryViewControllers.count == 0 {
+					/** Since 10.10.2, the titlebar view is deferred in creation.
+					 * We need to force the creation by adding a blank titlebar accessory
+					 * view controller.
+					 */
+					let controller = NSTitlebarAccessoryViewController()
+					controller.layoutAttribute = .Right
+					controller.view = NSView()
+					connectedToWindow.addTitlebarAccessoryViewController(controller)
 				}
 				
-				superview = superview?.subviews.find({ (view) -> Bool in
-					return view.isKindOfClass(NSClassFromString("NSTitlebarContainerView")!)
-				})
-				superview = superview?.subviews.find({ (view) -> Bool in
-					return view.isKindOfClass(NSClassFromString("NSTitlebarView")!)
-				})
+				superview = superview?.subviews.find({(view) -> Bool in
+						return view.isKindOfClass(NSClassFromString("NSTitlebarContainerView")!)
+					})
+				superview = superview?.subviews.find({(view) -> Bool in
+						return view.isKindOfClass(NSClassFromString("NSTitlebarView")!)
+					})
 				
 				superview?.addSubview(self)
 			} else {
@@ -70,17 +65,17 @@ public class XUPositionedWindowView: NSView {
 			}
 			return self.frameForWindowBounds(self.superview!.bounds, andRealFrame: super.frame)
 		}
-		set (newValue) {
+		set(newValue) {
 			super.frame = newValue
 		}
 	}
 	
 	/*
-	func layoutAttribute() -> NSLayoutAttribute {
-		return NSLayoutAttributeBottom
-		
-	}
-	*/
+	 func layoutAttribute() -> NSLayoutAttribute {
+	 return NSLayoutAttributeBottom
+
+	 }
+	 */
 	
 	/// Override this to NO if you don't want the view to be connected to the
 	/// window on awakeFromNib under some cirtumstances. By default YES.

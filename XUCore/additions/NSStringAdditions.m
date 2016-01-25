@@ -31,7 +31,7 @@
 	NSString *timeString = [self timeStringFromSeconds:(NSTimeInterval)seconds];
 	if (timeString == nil){
 		// Was below zero
-		timeString = FCLocalizedString(@"Finishing...");
+		timeString = XULocalizedString(@"Finishing...");
 	}
 	return timeString;
 }
@@ -45,7 +45,7 @@
 		// i.e. at least one hour
 		NSUInteger hours = eta / 3600;
 		if (hours == 1){
-			hourString = FCLocalizedString(@"1 hour");
+			hourString = XULocalizedString(@"1 hour");
 		}else{
 			hourString = FCLocalizedFormattedString(@"%lu hours", hours);
 		}
@@ -55,7 +55,7 @@
 	if (eta > 60){
 		NSUInteger minutes = eta / 60;
 		if (minutes == 1){
-			minuteString = FCLocalizedString(@"1 minute");
+			minuteString = XULocalizedString(@"1 minute");
 		}else{
 			minuteString = FCLocalizedFormattedString(@"%lu minutes", (unsigned long)minutes);
 		}
@@ -64,7 +64,7 @@
 	eta %= 60;
 	if (eta > 0){
 		if (eta == 1){
-			secondsString = FCLocalizedString(@"1 second");
+			secondsString = XULocalizedString(@"1 second");
 		}else{
 			secondsString = FCLocalizedFormattedString(@"%lu seconds", (unsigned long)eta);
 		}

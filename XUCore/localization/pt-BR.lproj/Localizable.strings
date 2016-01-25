@@ -1,0 +1,68 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"Finishing..." = "Finalizando...";
+"1 hour" = "1 hora";
+"1 minute" = "1 minuto";
+"1 second" = "1 segundo";
+"%lu hours" = "%lu horas";
+"%lu minutes" = "%lu minutos";
+"%lu seconds" = "%lu segundos";
+"Unknown error." = "Erro desconhecido.";
+
+"OK" = "OK";
+"Cancel" = "Cancelar";
+
+"Failed to parse CSV file." = "Falha ao analisar arquivo CSV.";
+
+"Send Report" = "Enviar Relatório";
+"Privacy Information..." = "Informações de Privacidade…";
+"%AppName% has encountered a problem." = "O %AppName% encontrou um problema.";
+"%AppName% will terminate after sending the report." = "O %AppName% será encerrado depois que o relatório for enviado.";
+"Report to be sent:" = "Relatório a ser enviado:";
+"Your Email:" = "Seu E-mail:";
+"Description:" = "Descrição:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Descreva a situação ocorrida durante esta exceção e forneça os passos necessários para reproduzir o problema, se possível. Digite o seu endereço de e-mail abaixo para que possamos avisá-lo quando este problema for resolvido ou para pedirmos detalhes em relação ao ocorrido. Seu endereço de e-mail não será armazenado em nenhum banco de dados e você não receberá e-mails indesejados.\n\nO envio deste relatório nos ajuda a melhorar o software. Obrigado!";
+
+"Report Problem" = "Relatar Problema";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Valorizamos seus comentários e não coletamos informações não relacionadas ao problema. Seu endereço de e-mail não será armazenado e será usado apenas para informá-lo   quando este problema for resolvido ou se precisarmos de mais informações para corrigi-lo.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Apenas as informações a seguir serão enviadas:\n• A descrição fornecida;\n• As informações da exceção abaixo;\n• A versão deste aplicativo;\n• A versão do sistema (OS);\n• O modelo do computador (exceto por informações como endereço MAC e similares, que poderiam identificar o computador).";
+
+"Could not post your report." = "Não foi possível publicar o relatório.";
+"Check your Internet connection and try again." = "Verifique sua conexão à Internet e tente novamente.";
+"Heh, nice try. Please, enter a valid email address." = "Digite um endereço de e-mail válido.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Pode ser necessário contatá-lo para solucionar isto. Não venderemos seu endereço de e-mail para ninguém e não o usaremos com outros propósitos.";
+"You need to enter a valid email address." = "Digite um endereço de e-mail válido.";
+"We may need to get in touch with you in order to fix this." = "Pode ser necessário contatá-lo para solucionar isto.";
+"Please, provide some details as to when this exception happened." = "Forneça alguns detalhes sobre quando esta exceção ocorreu.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inclua informações sobre tarefas que estavam em andamento, se o aplicativo estava em 1º ou 2º plano, se você clicou em algo, etc. É muito difícil entender o erro somente com o relatório — e impossível sem informações adicionais.";
+"Thank you for the report!" = "Obrigado pelo relatório!";
+"We'll fix it as soon as possible!" = "Este erro será corrigido assim que possível!";
+
+"Welcome to beta testing of %@." = "Bem-vindo ao beta do %@.";
+"This is the first time you run a beta build %@." = "Está é a primeira vez que você abra um beta do %@.";
+"This beta build of %@ has expired." = "Este beta do %@ expirou.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Curta nosso software! Caso tenha dúvidas ou encontre erros, fique à vontade para entrar em contatar na página de suporte: %@";
+
+"Continue" = "Continuar";
+"Purchase..." = "Comprar...";
+"I'm Still Not Sure" = "Ainda Não Sei";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "O %@ não pôde conectar-se à Internet. O aplicativo será encerrado em uma hora.";
+"%@ requires connection to the Internet to continue the trial properly." = "É necessária uma conexão à Internet para que a avaliação do %@ continue.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Você será direcionado à página onde poderá comprar uma cópia. Caso não tenha certeza se o %@ é exatamente o que você quer e ainda tiver dúvidas, contate-nos.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %li dias sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %li dias. Para continuar usando o %@, é preciso comprar uma cópia.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %i %@ dias sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %i %@. Para continuar usando o %@, é preciso comprar uma cópia.";
+"Working..." = "Processando...";
+
+"Progress" = "Progresso";
+"Posted successfully" = "Publicado corretamente";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "O %@ continuará funcionando pelas próximas 24 horas. Depois disso, sua funcionalidade será bloqueada. Atualize o %@ para mantê-lo em funcionamento.";
+"Please download a new build." = "Transfira uma nova versão.";
+
+

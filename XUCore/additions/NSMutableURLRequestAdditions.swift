@@ -14,6 +14,9 @@ public let XUMutableURLRequestJSONHeaderFieldValue = "application/json"
 /// Value for the accept/content header field.
 public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml"
 
+/// Value for the accept/content header field.
+public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded"
+
 public extension NSMutableURLRequest {
 	
 	public func addAccept(accept: String) {
@@ -32,7 +35,7 @@ public extension NSMutableURLRequest {
 		self.addContentType("multipart/form-data")
 	}
 	public func addWWWFormContentToHeader() {
-		self.addContentType("application/x-www-form-urlencoded")
+		self.addContentType(XUMutableURLRequestWWWFormHeaderFieldValue)
 	}
 	public func addXMLAcceptToHeader() {
 		self.addAccept(XUMutableURLRequestXMLHeaderFieldValue)

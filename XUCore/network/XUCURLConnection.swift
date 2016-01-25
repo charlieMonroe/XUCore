@@ -1,5 +1,5 @@
 //
-//  FCCURLConnection.swift
+//  XUCURLConnection.swift
 //  XUCore
 //
 //  Created by Charlie Monroe on 11/5/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public let XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "FCCURLConnectionIgnoreInvalidCertificates"
+public let XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "XUCURLConnectionIgnoreInvalidCertificates"
 
 /// This class is somewhat similar to NSURLConnection, except supports only HTTP
 /// and internally uses the CURL command.

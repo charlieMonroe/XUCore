@@ -21,17 +21,18 @@
 		// Launch the message center.
 		[XUMessageCenter sharedMessageCenter];
 		
-		// Launch the beta expiration handler if supported.
-		if ([[XUApplicationSetup sharedSetup] isBetaBuild]) {
-			[XUBetaExpirationHandler sharedExpirationHandler];
-		}
 		
 #if !TARGET_OS_IOS
 		// Start catching exceptions.
 		[XUExceptionCatcher startExceptionCatcher];
 		
-		// Start the trial.
-		[XUTrial sharedTrial];
+		// Launch the beta expiration handler if supported.
+		if ([[XUApplicationSetup sharedSetup] isBetaBuild]) {
+			[XUBetaExpirationHandler sharedExpirationHandler];
+		}else{
+			// Start the trial.
+			[XUTrial sharedTrial];
+		}
 #endif
 	});
 }

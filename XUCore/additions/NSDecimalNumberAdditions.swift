@@ -43,10 +43,16 @@ public func >=(lhs: NSDecimalNumber, rhs: Double) -> Bool {
 public func +=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs + rhs
 }
+public func -=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+	lhs = lhs - rhs
+}
 
 
 public func +(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
 	return lhs.addDecimal(rhs)
+}
+public func -(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
+	return lhs.subtractDecimal(rhs)
 }
 
 public extension NSDecimalNumber {

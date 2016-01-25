@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,8 @@
 		07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */; };
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
+		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
+		0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */; };
 		073B7ECA1C49371900020B3A /* XUClickThroughTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */; };
 		073E6A6B1BE1F62C00706283 /* XUPreferencesFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */; };
@@ -167,6 +169,9 @@
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B521BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
 		073E6B531BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
+		074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */; };
+		074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446AD1C529AB60026F5DD /* XUSystemNotification.swift */; };
+		074446B11C529F270026F5DD /* SystemNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074446B01C529F270026F5DD /* SystemNotification.xib */; };
 		0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */; };
 		0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */; };
 		0749DCD01BFF5AAC0075CC9B /* XUImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */; };
@@ -344,14 +349,17 @@
 		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDockIconProgress.swift; path = util/XUDockIconProgress.swift; sourceTree = "<group>"; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
-		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCSVDocument.swift; sourceTree = "<group>"; };
+		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; };
+		071A74A31C54DA3600EEA7FC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		071A74A41C54DA7000EEA7FC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
 		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageAdditions.swift; sourceTree = "<group>"; };
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageAdditions.swift; sourceTree = "<group>"; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
 		073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUClickThroughTextField.swift; sourceTree = "<group>"; };
 		073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencesFunctions.swift; sourceTree = "<group>"; };
@@ -426,6 +434,9 @@
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
+		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
+		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; };
+		074446B01C529F270026F5DD /* SystemNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SystemNotification.xib; path = util/SystemNotification.xib; sourceTree = "<group>"; };
 		0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAlertAdditions.swift; sourceTree = "<group>"; };
 		0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUImageAdditions.swift; sourceTree = "<group>"; };
 		0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColorAdditions.swift; sourceTree = "<group>"; };
@@ -438,11 +449,11 @@
 		0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContextRefAdditions.swift; sourceTree = "<group>"; };
 		0749DCE91C00C6DF0075CC9B /* XUAppStoreHidingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppStoreHidingView.swift; sourceTree = "<group>"; };
 		0749DCEC1C00C7BF0075CC9B /* XUAppStoreMenuCleaner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppStoreMenuCleaner.swift; sourceTree = "<group>"; };
-		0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMessageCenter.swift; sourceTree = "<group>"; };
+		0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUMessageCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUCoreLoader.h; path = private/_XUCoreLoader.h; sourceTree = "<group>"; };
 		0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUCoreLoader.m; path = private/_XUCoreLoader.m; sourceTree = "<group>"; };
 		0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionCatcher.swift; path = exception_handling/XUExceptionCatcher.swift; sourceTree = "<group>"; };
-		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; };
+		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
@@ -471,7 +482,7 @@
 		0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+NSURLAdditions.swift"; sourceTree = "<group>"; };
 		0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTextFieldAdditions.swift; sourceTree = "<group>"; };
 		077A00A81BBD107500872A48 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBetaExpirationHandler.swift; path = trial/XUBetaExpirationHandler.swift; sourceTree = "<group>"; };
+		077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUBetaExpirationHandler.swift; path = trial/XUBetaExpirationHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		077AFD8F1BBD0E5300872A48 /* XUCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		077AFD921BBD0E5300872A48 /* XUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCore.h; sourceTree = "<group>"; };
 		077AFD941BBD0E5300872A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -538,9 +549,9 @@
 		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
 		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; };
-		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; };
+		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
-		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; };
+		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULocalizationSupport.swift; sourceTree = "<group>"; };
 		07E38A3F1C07105100AE6EAB /* XUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUString.swift; sourceTree = "<group>"; };
 		07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLocalizationSupport.m; sourceTree = "<group>"; };
@@ -569,6 +580,8 @@
 			isa = PBXGroup;
 			children = (
 				070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */,
+				074446AD1C529AB60026F5DD /* XUSystemNotification.swift */,
+				074446B01C529F270026F5DD /* SystemNotification.xib */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -594,6 +607,7 @@
 		07156FEC1C396F58006D3616 /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */,
 				07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */,
 			);
 			name = windows;
@@ -971,6 +985,7 @@
 				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
 				0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */,
 				0779E18B1BF2348D00832858 /* UIViewLocalizationSupport.swift */,
+				0737DC631C5381B9004F5D84 /* Localizable.strings */,
 			);
 			path = localization;
 			sourceTree = "<group>";
@@ -1198,6 +1213,7 @@
 		077AFD861BBD0E5300872A48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XU;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Charlie Monroe Software";
 				TargetAttributes = {
@@ -1212,13 +1228,14 @@
 				};
 			};
 			buildConfigurationList = 077AFD891BBD0E5300872A48 /* Build configuration list for PBXProject "XUCore" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				cs,
 				English,
+				"pt-BR",
+				cs,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1237,6 +1254,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */,
+				0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */,
+				074446B11C529F270026F5DD /* SystemNotification.xib in Resources */,
 				07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1245,6 +1264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1285,7 @@
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */,
 				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
+				074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */,
 				0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
@@ -1339,6 +1360,7 @@
 				07B9082A1BF3BB62008D254A /* NSXMLAdditions.swift in Sources */,
 				0749DCD41C004D640075CC9B /* NSWindow-NoodleEffects.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
+				074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */,
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
 				077AFFAA1BBD101400872A48 /* FCLog.m in Sources */,
@@ -1500,6 +1522,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		0737DC631C5381B9004F5D84 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0737DC641C5381B9004F5D84 /* en */,
+				071A74A31C54DA3600EEA7FC /* pt-BR */,
+				071A74A41C54DA7000EEA7FC /* cs */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		077AFD951BBD0E5300872A48 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1598,7 +1633,7 @@
 				INFOPLIST_FILE = XUCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1620,7 +1655,7 @@
 				INFOPLIST_FILE = XUCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

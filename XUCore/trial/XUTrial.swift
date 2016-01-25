@@ -81,9 +81,9 @@ public class XUTrial: NSObject {
 	/// circumstances, the app exits in an hour.
 	@objc private func _warnAboutNoInternetConnection() {
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", NSProcessInfo.processInfo().processName)
-		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", NSProcessInfo.processInfo().processName)
-		alert.addButtonWithTitle(XULocalizedString("OK"))
+		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", NSProcessInfo.processInfo().processName, inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", NSProcessInfo.processInfo().processName, inBundle: XUCoreBundle)
+		alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 		alert.runModal()
 		
 		self.startShortTrial()
@@ -161,9 +161,9 @@ public class XUTrial: NSObject {
 	public func showTrialAlertWithMessage(message: String) {
 		let alert = NSAlert()
 		alert.messageText = message
-		alert.informativeText = XULocalizedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page \(self.supportURL.absoluteString)")
-		alert.addButtonWithTitle(XULocalizedString("Continue"))
-		alert.addButtonWithTitle(XULocalizedString("Purchase..."))
+		alert.informativeText = XULocalizedFormattedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@", self.supportURL.absoluteString, inBundle: XUCoreBundle)
+		alert.addButtonWithTitle(XULocalizedString("Continue", inBundle: XUCoreBundle))
+		alert.addButtonWithTitle(XULocalizedString("Purchase...", inBundle: XUCoreBundle))
 		
 		let alertResult = alert.runModal()
 		if alertResult == NSAlertFirstButtonReturn {
@@ -200,9 +200,9 @@ public class XUTrial: NSObject {
 		let appName = NSProcessInfo.processInfo().processName
 		let alert = NSAlert()
 		alert.messageText = self.trialExpirationMessage
-		alert.informativeText = XULocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "")
-		alert.addButtonWithTitle(XULocalizedString("Purchase..."))
-		alert.addButtonWithTitle(XULocalizedString("I'm Still Not Sure"))
+		alert.informativeText = XULocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "", inBundle: XUCoreBundle)
+		alert.addButtonWithTitle(XULocalizedString("Purchase...", inBundle: XUCoreBundle))
+		alert.addButtonWithTitle(XULocalizedString("I'm Still Not Sure", inBundle: XUCoreBundle))
 		
 		let result = alert.runModal()
 		if result == NSAlertFirstButtonReturn {
@@ -324,7 +324,7 @@ public class XUTimeBasedTrial: XUTrial {
 	
 	public override func showFirstRunAlert() {
 		let appName = NSProcessInfo.processInfo().processName
-		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName))
+		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle))
 	}
 	
 	public override func startShortTrial() {
@@ -335,7 +335,7 @@ public class XUTimeBasedTrial: XUTrial {
 	
 	public override var trialExpirationMessage: String {
 		let appName = NSProcessInfo.processInfo().processName
-		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName)
+		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle)
 	}
 	
 }
@@ -468,7 +468,7 @@ public class XUItemBasedTrial: XUTrial {
 		let numberOfItems = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
 		let itemsName = XUApplicationSetup.sharedSetup.itemBasedTrialItemName
 		
-		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, numberOfItems, itemsName, appName))
+		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreBundle))
 	}
 	
 	public override func startShortTrial() {
@@ -482,7 +482,7 @@ public class XUItemBasedTrial: XUTrial {
 		let numberOfItems = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
 		let itemsName = XUApplicationSetup.sharedSetup.itemBasedTrialItemName
 		
-		return XULocalizedFormattedString("Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.", appName, numberOfItems, itemsName, appName)
+		return XULocalizedFormattedString("Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreBundle)
 	}
 	
 }

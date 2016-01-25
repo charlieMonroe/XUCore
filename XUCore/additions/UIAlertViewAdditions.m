@@ -202,7 +202,7 @@ static inline NSMutableArray *_XUActiveAlertsArray(void){
 @implementation UIAlertView (XUAlertViewErrorAdditions)
 
 +(instancetype)alertViewWithError:(NSError *)error{
-	return [[self alloc] initWithTitle:[error localizedFailureReason] message:[error localizedDescription] delegate:nil cancelButtonTitle:FCLocalizedString(@"OK") otherButtonTitles:nil];
+	return [[self alloc] initWithTitle:[error localizedFailureReason] message:[error localizedDescription] delegate:nil cancelButtonTitle:XULocalizedString(@"OK") otherButtonTitles:nil];
 }
 
 @end

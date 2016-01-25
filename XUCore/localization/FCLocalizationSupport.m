@@ -12,7 +12,7 @@
 
 NSString * __nonnull FCLocalizedString(NSString * __nonnull key){
 	NSString *locale = [[XULocalizationCenter sharedCenter] currentLocalizationLanguageIdentifier];
-	return [[XULocalizationCenter sharedCenter] localizedString:key withLocale:locale];
+	return [[XULocalizationCenter sharedCenter] localizedString:key withLocale:locale inBundle:[NSBundle mainBundle]];
 }
 
 NSString *FCLocalizedStringWithFormatValues(NSString *key, NSDictionary *values){

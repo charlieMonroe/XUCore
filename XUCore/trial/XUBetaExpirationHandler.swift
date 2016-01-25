@@ -22,8 +22,7 @@ public class XUBetaExpirationHandler: NSObject {
 		guard let date = defaults.objectForKey(XULastBetaTimestampDefaultsKey) as? NSDate else {
 			// We're missing date -> someone has tempered with the defaults.
 			self._handleExpiration()
-			
-			// No return
+			return -1.0
 		}
 		
 		let timeInterval = abs(NSDate().timeIntervalSinceDate(date))
@@ -31,9 +30,16 @@ public class XUBetaExpirationHandler: NSObject {
 	}
 	
 	private func _showFirstBetaLaunchDialog() {
+		if NSApp == nil {
+			NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationDidFinishLaunchingNotification, object: nil, queue: nil, usingBlock: { (_) -> Void in
+				self._showFirstBetaLaunchDialog()
+			})
+			return
+		}
+		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", NSProcessInfo().processName)
-		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUApplicationSetup.sharedSetup.applicationBuildNumber)
+		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", NSProcessInfo().processName, inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUApplicationSetup.sharedSetup.applicationBuildNumber, inBundle: XUCoreBundle)
 		alert.addButtonWithTitle("OK")
 		alert.runModal()
 	}
@@ -42,11 +48,18 @@ public class XUBetaExpirationHandler: NSObject {
 		
 	}
 	
-	@objc @noreturn
+	@objc
 	private func _handleExpiration() {
+		if NSApp == nil {
+			NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationDidFinishLaunchingNotification, object: nil, queue: nil, usingBlock: { (_) -> Void in
+				self._handleExpiration()
+			})
+			return
+		}
+		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", NSProcessInfo().processName)
-		alert.informativeText = XULocalizedFormattedString("Please download a new build.")
+		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", NSProcessInfo().processName, inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCoreBundle)
 		alert.addButtonWithTitle("OK")
 		alert.runModal()
 		

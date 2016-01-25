@@ -193,7 +193,12 @@ public class XUCSVDocument {
 	/// Char that separates columns. ',' by default, but some files use ';' 
 	/// instead.
 	public var columnSeparator: Character {
-		return _columnSeparator
+		get {
+			return _columnSeparator
+		}
+		set {
+			_columnSeparator = newValue
+		}
 	}
 	
 	public var content: [[String : AnyObject]] {
@@ -255,7 +260,7 @@ public class XUCSVDocument {
 		if !self._parseString(string) {
 			// Could not parse string
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.")
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.", inBundle: XUCoreBundle)
 			])
 		}
 	}

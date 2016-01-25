@@ -74,12 +74,7 @@ public extension NSURL {
 	#if os(OSX)
 	public var thumbnailImage: XUImage? {
 		var value: AnyObject?
-		if #available(OSX 10.10, *) {
-		    _ = try? self.getResourceValue(&value, forKey: NSURLThumbnailKey)
-		} else {
-			return nil
-		}
-		
+		_ = try? self.getResourceValue(&value, forKey: NSURLThumbnailKey)
 		return value as? XUImage
 	}
 	#endif

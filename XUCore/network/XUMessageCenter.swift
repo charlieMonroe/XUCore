@@ -130,11 +130,11 @@ public class XUMessageCenter: NSObject {
 				NSUserDefaults.standardUserDefaults().setInteger(maxVersion, forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 				
 				let appName = NSProcessInfo.processInfo().processName
-				let title = XULocalizedFormattedString("\(appName) will keep on working the next 24 hours, after which its functionality will be blocked. Please update \(appName) in order to keep it working.")
+				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCoreBundle)
 				
 				#if os(iOS)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
-					controller.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: nil))
+					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: nil))
 					UIApplication.sharedApplication().windows.first!.rootViewController?.presentViewController(controller, animated: true, completion: nil)
 				#else
 					let alert = NSAlert()
@@ -240,7 +240,7 @@ public class XUMessageCenter: NSObject {
 			
 			let allowsIgnoringMessage = (message["XUCanIgnoreMessage"] as? NSNumber)?.boolValue ?? false
 			
-			var ignoreButtonTitle = XULocalizedString("Cancel")
+			var ignoreButtonTitle = XULocalizedString("Cancel", inBundle: XUCoreBundle)
 			if allowsIgnoringMessage {
 				if let customIgnoreButtonTitle = message["XUIgnoreButtonTitle"] as? String {
 					ignoreButtonTitle = customIgnoreButtonTitle
@@ -255,7 +255,7 @@ public class XUMessageCenter: NSObject {
 			// We should display this message!
 			#if os(iOS)
 				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .Alert)
-				alert.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: { (_) -> Void in
+				alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: { (_) -> Void in
 					self._processActionsFromMessageDict(message, withMessageID: messageID)
 				}))
 				if allowsIgnoringMessage {
@@ -271,7 +271,7 @@ public class XUMessageCenter: NSObject {
 				let alert = NSAlert()
 				alert.messageText = messageText
 				alert.informativeText = (message["XUDescription"] as? String) ?? ""
-				alert.addButtonWithTitle(XULocalizedString("OK"))
+				alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 				if allowsIgnoringMessage {
 					alert.addButtonWithTitle(ignoreButtonTitle)
 				}

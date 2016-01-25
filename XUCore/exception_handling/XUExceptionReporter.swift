@@ -33,9 +33,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	/// Shows an alert with privacy information.
 	class func showPrivacyInformation() {
 		let alert = NSAlert()
-		alert.messageText = XULocalizedString("We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.")
-		alert.informativeText = XULocalizedString("Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).")
-		alert.addButtonWithTitle(XULocalizedString("OK"))
+		alert.messageText = XULocalizedString("We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.", inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedString("Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).", inBundle: XUCoreBundle)
+		alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 		alert.runModal()
 	}
 	
@@ -71,9 +71,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	private func _reportFailedReportSend() {
 		let alert = NSAlert()
-		alert.messageText = XULocalizedString("Could not post your report.")
-		alert.informativeText = XULocalizedString("Check your Internet connection and try again.")
-		alert.addButtonWithTitle(XULocalizedString("OK"))
+		alert.messageText = XULocalizedString("Could not post your report.", inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedString("Check your Internet connection and try again.", inBundle: XUCoreBundle)
+		alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 		alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 	}
 	
@@ -98,25 +98,25 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		if valid == .PhonyFormat {
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("Heh, nice try. Please, enter a valid email address.")
-			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.")
-			alert.addButtonWithTitle(XULocalizedString("OK"))
+			alert.messageText = XULocalizedString("Heh, nice try. Please, enter a valid email address.", inBundle: XUCoreBundle)
+			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.", inBundle: XUCoreBundle)
+			alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			return
 		}else if valid == .WrongFormat {
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("You need to enter a valid email address.")
-			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this.")
-			alert.addButtonWithTitle(XULocalizedString("OK"))
+			alert.messageText = XULocalizedString("You need to enter a valid email address.", inBundle: XUCoreBundle)
+			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this.", inBundle: XUCoreBundle)
+			alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			return
 		}
 		
 		if _userInputTextView.string == nil || _userInputTextView.string!.isEmpty {
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("Please, provide some details as to when this exception happened.")
-			alert.informativeText = XULocalizedString("Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.")
-			alert.addButtonWithTitle(XULocalizedString("OK"))
+			alert.messageText = XULocalizedString("Please, provide some details as to when this exception happened.", inBundle: XUCoreBundle)
+			alert.informativeText = XULocalizedString("Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.", inBundle: XUCoreBundle)
+			alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			
 			_reporterWindow.makeFirstResponder(_userInputTextView)
@@ -124,14 +124,8 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		}
 		
 		
-		let OSVersionString: String
-		if #available(OSX 10.10, *) {
-		    let OSVersion = NSProcessInfo.processInfo().operatingSystemVersion
-			OSVersionString = "\(OSVersion.majorVersion).\(OSVersion.minorVersion).\(OSVersion.patchVersion)"
-		} else {
-		    // Fallback on earlier versions
-			OSVersionString = NSProcessInfo.processInfo().operatingSystemVersionString
-		}
+		let OSVersion = NSProcessInfo.processInfo().operatingSystemVersion
+		let OSVersionString = "\(OSVersion.majorVersion).\(OSVersion.minorVersion).\(OSVersion.patchVersion)"
 		
 		let reportDictionary = [
 			"description": _userInputTextView.string ?? "",
@@ -164,9 +158,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		if response.statusCode >= 200 && response.statusCode < 300 {
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("Thank you for the report!")
-			alert.informativeText = XULocalizedString("We'll fix it as soon as possible!")
-			alert.addButtonWithTitle(XULocalizedString("OK"))
+			alert.messageText = XULocalizedString("Thank you for the report!", inBundle: XUCoreBundle)
+			alert.informativeText = XULocalizedString("We'll fix it as soon as possible!", inBundle: XUCoreBundle)
+			alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: { (_) -> Void in
 				self._reporterWindow.close()
 			})

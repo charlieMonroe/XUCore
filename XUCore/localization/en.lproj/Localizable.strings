@@ -1,0 +1,68 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"Finishing..." = "Finishing...";
+"1 hour" = "1 hour";
+"1 minute" = "1 minute";
+"1 second" = "1 second";
+"%lu hours" = "%lu hours";
+"%lu minutes" = "%lu minutes";
+"%lu seconds" = "%lu seconds";
+"Unknown error." = "Unknown error.";
+
+"OK" = "OK";
+"Cancel" = "Cancel";
+
+"Failed to parse CSV file." = "Failed to parse CSV file.";
+
+"Send Report" = "Send Report";
+"Privacy Information..." = "Privacy Information...";
+"%AppName% has encountered a problem." = "%AppName% has encountered a problem.";
+"%AppName% will terminate after sending the report." = "%AppName% will terminate after sending the report.";
+"Report to be sent:" = "Report to be sent:";
+"Your Email:" = "Your Email:";
+"Description:" = "Description:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!";
+
+"Report Problem" = "Report Problem";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).";
+
+"Could not post your report." = "Could not post your report.";
+"Check your Internet connection and try again." = "Check your Internet connection and try again.";
+"Heh, nice try. Please, enter a valid email address." = "Heh, nice try. Please, enter a valid email address.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.";
+"You need to enter a valid email address." = "You need to enter a valid email address.";
+"We may need to get in touch with you in order to fix this." = "We may need to get in touch with you in order to fix this.";
+"Please, provide some details as to when this exception happened." = "Please, provide some details as to when this exception happened.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.";
+"Thank you for the report!" = "Thank you for the report!";
+"We'll fix it as soon as possible!" = "We'll fix it as soon as possible!";
+
+"Welcome to beta testing of %@." = "Welcome to beta testing of %@.";
+"This is the first time you run a beta build %@." = "This is the first time you run a beta build %@.";
+"This beta build of %@ has expired." = "This beta build of %@ has expired.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@";
+
+"Continue" = "Continue";
+"Purchase..." = "Purchase...";
+"I'm Still Not Sure" = "I'm Still Not Sure";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ couldn't connect to the Internet. The application will exit in one hour.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ requires connection to the Internet to continue the trial properly.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.";
+"Working..." = "Working...";
+
+"Progress" = "Progress";
+"Posted successfully" = "Posted successfully";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.";
+"Please download a new build." = "Please download a new build.";
+
+

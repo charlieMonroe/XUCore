@@ -9,7 +9,7 @@
 import Cocoa
 
 /// Direction of the rounding
-public enum XUTimeRoundingDirection {
+@objc public enum XUTimeRoundingDirection: Int {
 	/// Floor
 	case Floor
 	
