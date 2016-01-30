@@ -166,12 +166,20 @@ public extension NSDate {
 		return self.timeIntervalSince1970 < date.timeIntervalSince1970
 	}
 	
+	/// Returns true if the receiver referes to an newer date than in now.
 	public var isFuture: Bool {
 		return self.timeIntervalSinceReferenceDate > NSDate.timeIntervalSinceReferenceDate()
 	}
 	
+	/// Returns true if the receiver referes to an older date than in now.
 	public var isPast: Bool {
 		return self.timeIntervalSinceReferenceDate < NSDate.timeIntervalSinceReferenceDate()
+	}
+	
+	/// Returns true if the receiver's day, month and year match the one of now.
+	public var isToday: Bool {
+		let now = NSDate()
+		return now.day == self.day && now.month == self.month && now.year == self.year
 	}
 	
 	public func isWithinMonths(months: XUMonth) -> Bool {

@@ -129,7 +129,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		let reportDictionary = [
 			"description": _userInputTextView.string ?? "",
-			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason)\nFurther info: \(_exception.userInfo)",
+			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])",
 			"stacktrace": _stackTraceTextView.string ?? "",
 			"version": XUApplicationSetup.sharedSetup.applicationVersionNumber,
 			"build": XUApplicationSetup.sharedSetup.applicationBuildNumber,

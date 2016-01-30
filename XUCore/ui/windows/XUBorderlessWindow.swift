@@ -42,7 +42,7 @@ public class XUBorderlessWindow: NSWindow {
 			contentRect.size.height = 200.0
 		}
 		
-		super.init(contentRect: contentRect, styleMask: NSBorderlessWindowMask | NSNonactivatingPanelMask, backing: NSBackingStoreType.Buffered, `defer`: flag)
+		super.init(contentRect: contentRect, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, `defer`: flag)
 		
 		self._innerInit()
 	}
