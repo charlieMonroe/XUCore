@@ -49,7 +49,7 @@ public extension NSTableView {
 public extension NSSegmentedControl {
 	
 	public override func localizeView() {
-		for var i = 0; i < self.segmentCount; ++i {
+		for i in 0 ..< self.segmentCount {
 			if let label = self.labelForSegment(i) {
 				self.setLabel(XULocalizedString(label), forSegment: i)
 			}

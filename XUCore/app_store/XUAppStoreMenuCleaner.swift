@@ -14,7 +14,7 @@ public let kXUMenuItemAppStoreTag = 127
 
 /// Removes menu items with tag kXUMenuItemAppStoreTag.
 public func XUCleanMenu(menu: NSMenu) {
-	for var i = menu.numberOfItems - 1; i >= 0; --i {
+	for i in (0..<menu.numberOfItems).reverse() {
 		guard let menuItem = menu.itemAtIndex(i) else {
 			continue
 		}

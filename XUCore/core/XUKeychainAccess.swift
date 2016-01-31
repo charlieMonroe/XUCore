@@ -18,7 +18,7 @@ public class XUKeychainAccess: NSObject {
 		let utf8username = (username as NSString).UTF8String
 		
 		var passLen: UInt32 = 0
-		var passBytes: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>()
+		var passBytes: UnsafeMutablePointer<Void> = nil
 		var item: SecKeychainItemRef? = nil
 		
 		let result = SecKeychainFindGenericPassword(nil,
@@ -70,7 +70,7 @@ public class XUKeychainAccess: NSObject {
 		}
 		
 		var passLen: UInt32 = 0
-		var passBytes: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>()
+		var passBytes: UnsafeMutablePointer<Void> = nil
 		var item: SecKeychainItemRef? = nil
 
 		let result = SecKeychainFindGenericPassword(nil,

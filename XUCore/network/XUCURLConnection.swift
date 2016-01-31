@@ -156,7 +156,7 @@ public class XUCURLConnection: NSObject {
 		if XUShouldLog() {
 			var argsCopy = args
 			if var userIndex = argsCopy.indexOf("-u") {
-				++userIndex
+				userIndex += 1
 				
 				var authFieldString = argsCopy[userIndex]
 				if authFieldString.rangeOfString("\n") != nil {

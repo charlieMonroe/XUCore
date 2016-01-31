@@ -49,7 +49,7 @@ public func XUAllSubclassesOfClass<T: AnyObject>(aClass: T.Type) -> [T.Type] {
 		classes = AutoreleasingUnsafeMutablePointer<AnyClass?>(malloc(sizeof(AnyClass) * Int(numClasses)))
 		numClasses = objc_getClassList(classes, numClasses)
 		
-		for var i = 0; i < Int(numClasses); ++i {
+		for i in 0..<Int(numClasses) {
 			// Go through the classes, find out if the class is kind of aClass 
 			// and then add it to the list
 			

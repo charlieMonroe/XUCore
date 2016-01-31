@@ -116,7 +116,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	/// Convenience method that fills the string with str[0] = 0, str[1] = 1, ...
 	public convenience init(filledWithASCIITableOfLength length: UInt) {
 		var chars: [XUChar] = [ ]
-		for var i: Int = 0; i < Int(length); ++i {
+		for i in 0..<Int(length) {
 			chars.append(XUChar(i))
 		}
 		
@@ -155,7 +155,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	
 	/// Removes all characters with value > 127
 	public func removeNonASCIICharacters() {
-		for var i = _buffer.count - 1; i >= 0; --i {
+		for i in (0..<_buffer.count).reverse() {
 			if _buffer[i] > 127 {
 				_buffer.removeAtIndex(i)
 			}
@@ -188,12 +188,12 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	
 	/// Returns a string containing everything after index.
 	public func substringFromIndex(index: Int) -> XUString {
-		return self.substringWithRange(Range<Int>(start: index, end: self.length))
+		return self.substringWithRange(index..<self.length)
 	}
 	
 	/// Returns a string containing `length` first characters.
 	public func substringToIndex(index: Int) -> XUString {
-		return self.substringWithRange(Range<Int>(start: 0, end: index))
+		return self.substringWithRange(0..<index)
 	}
 	
 	/// Returns a substring in range.

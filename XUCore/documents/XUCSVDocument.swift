@@ -36,7 +36,7 @@ public class XUCSVDocument {
 			let c = csv.characters[ptr]
 			if !c.isMemberOfCharacterSet(importantChars) {
 				// Unimportant char -> skip
-				++ptr
+				ptr = ptr.successor()
 				continue
 			}
 			
@@ -44,12 +44,12 @@ public class XUCSVDocument {
 			if c == _columnSeparator {
 				if insideQuotes {
 					// Comma inside a quoted string -> all right
-					++ptr
+					ptr = ptr.successor()
 					continue
 				}
 				
 				// It's a comma and not inside quotes -> get the string
-				var field = csv.substringWithRange(Range<String.CharacterView.Index>(start: startIndex, end: ptr)).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+				var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at the
 					// beginning and at the end and replace double-quotes with
@@ -79,8 +79,8 @@ public class XUCSVDocument {
 					}
 				}
 				
-				++column
-				++ptr
+				column += 1
+				ptr = ptr.successor()
 				startIndex = ptr
 			} else if c == Character("\"") {
 				// It's quotes - a few possibilities:
@@ -94,12 +94,12 @@ public class XUCSVDocument {
 						if ptr < len.predecessor() {
 							// End of quotes
 							insideQuotes = false
-							++ptr
+							ptr = ptr.successor()
 						} else {
 							// c) end of document
-							++ptr
+							ptr = ptr.successor()
 							
-							var field = csv.substringWithRange(Range<String.CharacterView.Index>(start: startIndex, end: ptr)).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+							var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 							
 							if field.hasPrefix("\"") {
 								// The field begins with a quote -> remove quote at
@@ -127,17 +127,17 @@ public class XUCSVDocument {
 					// d) Start of quotes
 					insideQuotes = true
 					startIndex = ptr
-					++ptr
+					ptr = ptr.successor()
 				}
 			} else if c == Character("\n") {
 				// New line
 				if insideQuotes {
 					// Can be a new line inside quoted string
-					++ptr
+					ptr = ptr.successor()
 					continue
 				}
 				
-				var field = csv.substringWithRange(Range<String.CharacterView.Index>(start: startIndex, end: ptr)).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+				var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at
 					// the beginning and at the end and replace
@@ -174,7 +174,7 @@ public class XUCSVDocument {
 				
 				firstLine = false
 				column = 0
-				++ptr
+				ptr = ptr.successor()
 				startIndex = ptr
 			}
 		}

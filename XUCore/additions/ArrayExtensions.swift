@@ -199,7 +199,7 @@ public extension Array {
 		}
 		
 		let maxIndex = interlacedArrays.findMax({ UInt($0.count) })!.count
-		for var i = 0; i < maxIndex; ++i {
+		for i in 0..<maxIndex {
 			for arr in interlacedArrays {
 				if i < arr.count {
 					self.append(arr[i])
@@ -224,7 +224,7 @@ public extension Array {
 		}
 		
 		if toIndex >= fromIndex {
-			--toIndex
+			toIndex -= 1
 		}
 		
 		let obj = self[fromIndex]
@@ -250,9 +250,10 @@ public extension CollectionType {
 	/// that do not contain equatable elements.
 	public func distinct(@noescape customComparator: (obj1: Self.Generator.Element, obj2: Self.Generator.Element) -> Bool) -> [Self.Generator.Element] {
 		var unique: [Self.Generator.Element] = [ ]
-		for var i: Self.Index.Distance = 0; i < self.count; ++i {
+		var i: Self.Index.Distance = 0
+		while i < self.count {
 			var found = false
-			for var o: Int = 0; o < unique.count; ++o {
+			for o in 0..<unique.count {
 				if customComparator(obj1: self[self.startIndex.advancedBy(i)], obj2: unique[unique.startIndex.advancedBy(o)]) {
 					found = true
 					break
@@ -262,6 +263,8 @@ public extension CollectionType {
 			if !found {
 				unique.append(self[self.startIndex.advancedBy(i)])
 			}
+			
+			i += 1
 		}
 		return unique
 	}

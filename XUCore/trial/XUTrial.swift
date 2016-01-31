@@ -382,7 +382,7 @@ public class XUItemBasedTrial: XUTrial {
 	/// on main thread.
 	public func decreaseItemsLeft() {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
-			--self._itemsLeft
+			self._itemsLeft -= 1
 			
 			if self._itemsLeft <= 0 {
 				self._trialExpired()

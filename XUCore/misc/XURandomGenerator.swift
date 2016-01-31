@@ -55,7 +55,7 @@ public class XURandomGenerator: NSObject {
 	
 	/// Returns an unsigned integer of max value.
 	public func randomUnsignedIntegerOfMaxValue(max: UInt) -> UInt {
-		return self.randomUnsignedIntegerInRange(Range<UInt>(start: 0, end: max))
+		return self.randomUnsignedIntegerInRange(0..<max)
 	}
 	
 	/// Returns an UInt64 value.
