@@ -342,7 +342,6 @@
 		07E38A401C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07E38A411C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07EA8E8D1C58B69F00B6F77C /* XUKeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */; };
-		07EA8E8E1C58B69F00B6F77C /* XUKeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */; };
 		07EB33251C0B4D0300FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
 		07EB33261C0B4D0800FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
 /* End PBXBuildFile section */
@@ -1460,7 +1459,6 @@
 				070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */,
 				0779E1861BF2334600832858 /* XUAttributedStringTransformer.swift in Sources */,
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
-				07EA8E8E1C58B69F00B6F77C /* XUKeychainAccess.swift in Sources */,
 				077AFEBB1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				0749DCD01BFF5AAC0075CC9B /* XUImageAdditions.swift in Sources */,
 				0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */,
