@@ -11,13 +11,13 @@ import Cocoa
 /// Direction of the rounding
 @objc public enum XUTimeRoundingDirection: Int {
 	/// Floor
-	case Floor
+	case Floor = 0
 	
 	/// Nearest
-	case Nearest
+	case Nearest = 1
 	
 	/// Ceiling
-	case Ceiling
+	case Ceiling = 2
 }
 
 /// Rounds time to certain second count. E.g. by setting seconds to 30, it will

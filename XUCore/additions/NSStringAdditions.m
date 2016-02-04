@@ -415,11 +415,7 @@ regexp_fail:
 	NSUInteger tailIndex = frontIndex;
 	
 	NSString *result = self;
-#if !TARGET_OS_IPHONE
-	NSSize size = [result sizeWithAttributes:atts];
-#else
 	CGSize size = [result sizeWithAttributes:atts];
-#endif
 	
 	while (size.width > width) {
 		--frontIndex;

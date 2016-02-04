@@ -244,14 +244,13 @@ public extension Array {
 	
 }
 
-public extension CollectionType {
+public extension CollectionType where Index.Distance : ForwardIndexType {
 	
 	/// This is the same as distinct(), but takes in a custom comparator for arrays
 	/// that do not contain equatable elements.
 	public func distinct(@noescape customComparator: (obj1: Self.Generator.Element, obj2: Self.Generator.Element) -> Bool) -> [Self.Generator.Element] {
 		var unique: [Self.Generator.Element] = [ ]
-		var i: Self.Index.Distance = 0
-		while i < self.count {
+		for i in 0 ..< self.count {
 			var found = false
 			for o in 0..<unique.count {
 				if customComparator(obj1: self[self.startIndex.advancedBy(i)], obj2: unique[unique.startIndex.advancedBy(o)]) {
@@ -263,8 +262,6 @@ public extension CollectionType {
 			if !found {
 				unique.append(self[self.startIndex.advancedBy(i)])
 			}
-			
-			i += 1
 		}
 		return unique
 	}
