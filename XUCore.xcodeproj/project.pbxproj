@@ -320,6 +320,7 @@
 		07B908311BF3C4A9008D254A /* XURedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908301BF3C4A9008D254A /* XURedView.swift */; };
 		07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908321BF3C602008D254A /* XUMouseTracker.swift */; };
 		07B908351BF3DA10008D254A /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
+		07C23A1A1C639E2400DF5DFD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C23A191C639E2400DF5DFD /* Media.xcassets */; };
 		07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */; };
 		07C3FA0C1BEB7677008A4200 /* XUCURLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */; };
 		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
@@ -536,6 +537,7 @@
 		07B908301BF3C4A9008D254A /* XURedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURedView.swift; sourceTree = "<group>"; };
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
 		07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableDictionaryAdditions.swift; sourceTree = "<group>"; };
+		07C23A191C639E2400DF5DFD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUURLHandlingCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCURLConnection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUTimeUtilities.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				073E6B541BE203E800706283 /* ui_osx */,
 				07311DC71C0C5DB6001B95AC /* util */,
 				077AFD941BBD0E5300872A48 /* Info.plist */,
+				07C23A191C639E2400DF5DFD /* Media.xcassets */,
 				077A00A81BBD107500872A48 /* Cocoa.framework */,
 			);
 			path = XUCore;
@@ -1256,6 +1259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C23A1A1C639E2400DF5DFD /* Media.xcassets in Resources */,
 				0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */,
 				0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */,
 				074446B11C529F270026F5DD /* SystemNotification.xib in Resources */,

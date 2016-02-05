@@ -20,6 +20,11 @@ public class XUSystemNotification: NSObject {
 		self.message = message
 	}
 	
+	/// Uses a checkmark image that is bundled with XUCore.
+	public convenience init(confirmationMessage: String) {
+		self.init(icon: XUCoreBundle.imageForResource("Checkmark")!, andMessage: confirmationMessage)
+	}
+	
 }
 
 /// This class is used for dispatching the XUSystemNotification objects. Note:

@@ -303,7 +303,10 @@ public class XUTimeBasedTrial: XUTrial {
 		dateString = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
 		dateString = dateString.stringByReplacingOccurrencesOfString("+", withString: " +")
 		
-		let date = NSDate(string: dateString) ?? NSDate()
+		let formatter = NSDateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:SS xx"
+		
+		let date = formatter.dateFromString(dateString) ?? NSDate()
 		let now = NSDate()
 		let difference = now.timeIntervalSinceDate(date)
 		
