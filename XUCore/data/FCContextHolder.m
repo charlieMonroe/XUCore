@@ -8,8 +8,6 @@
 
 #import "FCContextHolder.h"
 
-#import "FCLog.h"
-
 @implementation FCContextHolder
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -63,7 +61,7 @@
 		NSError *error = nil;
 		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 		if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{ NSMigratePersistentStoresAutomaticallyOption : @(YES) } error:&error]) {
-			FCLog(@"%s - persistent store coordinator failed adding persistent store at URL %@ - error %@", __FCFUNCTION__, storeURL, error);
+			NSLog(@"persistent store coordinator failed adding persistent store at URL %@ - error %@", storeURL, error);
 		}
 		
 		return _persistentStoreCoordinator;
@@ -80,7 +78,7 @@
 		NSError *error = nil;
 		[managedObjectContext processPendingChanges];
 		if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-			FCLog(@"%s - managed object context failed saving - error %@", __FCFUNCTION__, error);
+			NSLog(@"managed object context failed saving - error %@", error);
 		}
 	}];
 }

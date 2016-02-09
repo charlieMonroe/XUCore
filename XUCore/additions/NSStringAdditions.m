@@ -12,8 +12,10 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <regex.h>
 
-#import "FCLog.h"
-#import "FCLocalizationSupport.h"
+#import <XUCore/XUCore-Swift.h>
+
+#define XULocalizedString(str) [[XULocalizationCenter sharedCenter] localizedString:str withLocale:nil inBundle:[NSBundle mainBundle]]
+#define XULocalizedFormattedString(str, ...) [NSString stringWithFormat:XULocalizedString(str), __VA_ARGS__]
 
 #define FCNumberOfRegexMatches 1
 #define FCRegexMaxErrorMessageSize 512
@@ -47,7 +49,7 @@
 		if (hours == 1){
 			hourString = XULocalizedString(@"1 hour");
 		}else{
-			hourString = FCLocalizedFormattedString(@"%lu hours", hours);
+			hourString = XULocalizedFormattedString(@"%lu hours", hours);
 		}
 	}
 	
@@ -57,7 +59,7 @@
 		if (minutes == 1){
 			minuteString = XULocalizedString(@"1 minute");
 		}else{
-			minuteString = FCLocalizedFormattedString(@"%lu minutes", (unsigned long)minutes);
+			minuteString = XULocalizedFormattedString(@"%lu minutes", (unsigned long)minutes);
 		}
 	}
 	
@@ -66,7 +68,7 @@
 		if (eta == 1){
 			secondsString = XULocalizedString(@"1 second");
 		}else{
-			secondsString = FCLocalizedFormattedString(@"%lu seconds", (unsigned long)eta);
+			secondsString = XULocalizedFormattedString(@"%lu seconds", (unsigned long)eta);
 		}
 	}
 	

@@ -138,8 +138,6 @@ public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION
 /// Use this function to toggle debugging while the app is running.
 public func XUForceSetDebugging(debug: Bool) {
 	__XULogSetShouldLog(debug)
-	
-	__FCLogSetShouldLog(debug)
 }
 
 /// Returns true when the debug logging is currently turned on.

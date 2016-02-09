@@ -25,8 +25,3 @@ All Objective-C code that is currently present in the framework is deprecated fo
 - additions - there are two types of additions that are still in ObjC - one set extends classes that are not really used in Swift (`NSArray`, `NSDictionary` and `NSString`), or they use `CommonCrypto`, which still isn't available as a module to be easily imported and I haven't had time to get it working in Swift yet.
 - XURegex - it leverages on C++ code, which cannot be used from Swift.
 - XUExceptionHandler - obviously needs to be written in ObjC, since there is no way to catch ObjC exceptions in Swift.
-
-In addition to this, you can (temporarily), use the following classes/functions from ObjC:
-
-- FCLog - in Swift, use XULog, though.
-- FCLocalizationSupport - in Swift, use XULocalizationSupport.

@@ -240,8 +240,6 @@
 		0779E19C1BF23D5E00832858 /* NSURL+NSURLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */; };
 		0779E19D1BF23E5C00832858 /* NSURL+NSURLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */; };
 		0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */; };
-		077A00101BBD101400872A48 /* FCLocalizationSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE621BBD101400872A48 /* FCLocalizationSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00111BBD101400872A48 /* FCLocalizationSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE621BBD101400872A48 /* FCLocalizationSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00A91BBD107500872A48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00A81BBD107500872A48 /* Cocoa.framework */; };
 		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */; };
@@ -295,10 +293,6 @@
 		077AFFA51BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE211BBD101400872A48 /* FCTemporaryDataStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFFA61BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE221BBD101400872A48 /* FCTemporaryDataStorage.m */; };
 		077AFFA71BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE221BBD101400872A48 /* FCTemporaryDataStorage.m */; };
-		077AFFA81BBD101400872A48 /* FCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE241BBD101400872A48 /* FCLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFFA91BBD101400872A48 /* FCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE241BBD101400872A48 /* FCLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFFAA1BBD101400872A48 /* FCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE251BBD101400872A48 /* FCLog.m */; };
-		077AFFAB1BBD101400872A48 /* FCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE251BBD101400872A48 /* FCLog.m */; };
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */; };
@@ -343,8 +337,6 @@
 		07E38A401C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07E38A411C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07EA8E8D1C58B69F00B6F77C /* XUKeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */; };
-		07EB33251C0B4D0300FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
-		07EB33261C0B4D0800FCD427 /* FCLocalizationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -520,9 +512,6 @@
 		077AFE201BBD101400872A48 /* FCPersistentDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPersistentDataStorage.m; sourceTree = "<group>"; };
 		077AFE211BBD101400872A48 /* FCTemporaryDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTemporaryDataStorage.h; sourceTree = "<group>"; };
 		077AFE221BBD101400872A48 /* FCTemporaryDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTemporaryDataStorage.m; sourceTree = "<group>"; };
-		077AFE241BBD101400872A48 /* FCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FCLog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		077AFE251BBD101400872A48 /* FCLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FCLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		077AFE621BBD101400872A48 /* FCLocalizationSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLocalizationSupport.h; sourceTree = "<group>"; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUHorizontallyCenteredTextField.swift; path = cells/XUHorizontallyCenteredTextField.swift; sourceTree = "<group>"; };
@@ -558,7 +547,6 @@
 		07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULocalizationSupport.swift; sourceTree = "<group>"; };
 		07E38A3F1C07105100AE6EAB /* XUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUString.swift; sourceTree = "<group>"; };
 		07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess.swift; sourceTree = "<group>"; };
-		07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLocalizationSupport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -966,8 +954,6 @@
 			isa = PBXGroup;
 			children = (
 				073E6B511BE2026600706283 /* XULog.swift */,
-				077AFE241BBD101400872A48 /* FCLog.h */,
-				077AFE251BBD101400872A48 /* FCLog.m */,
 				07B908301BF3C4A9008D254A /* XURedView.swift */,
 			);
 			path = debug;
@@ -984,8 +970,6 @@
 		077AFE611BBD101400872A48 /* localization */ = {
 			isa = PBXGroup;
 			children = (
-				077AFE621BBD101400872A48 /* FCLocalizationSupport.h */,
-				07EB33241C0B4D0300FCD427 /* FCLocalizationSupport.m */,
 				07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */,
 				0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */,
 				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
@@ -1085,14 +1069,12 @@
 				073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */,
 				073E6AD91BE1F86D00706283 /* prog.h in Headers */,
 				073E6AFB1BE1F86D00706283 /* benchmark.h in Headers */,
-				077AFFA81BBD101400872A48 /* FCLog.h in Headers */,
 				073E6B2D1BE1F86D00706283 /* XURegex.h in Headers */,
 				077AFFA01BBD101400872A48 /* FCPersistentDataStorage.h in Headers */,
 				07B908281BF3B908008D254A /* NSXMLAdditions.h in Headers */,
 				0749DCF81C00D5060075CC9B /* _XUCoreLoader.h in Headers */,
 				077AFEC81BBD101400872A48 /* NSBezierPathAdditions.h in Headers */,
 				077AFD931BBD0E5300872A48 /* XUCore.h in Headers */,
-				077A00101BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
 				073E6B1D1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B291BE1F86D00706283 /* walker-inl.h in Headers */,
 				073E6B191BE1F86D00706283 /* test.h in Headers */,
@@ -1138,7 +1120,6 @@
 				077AFFA51BBD101400872A48 /* FCTemporaryDataStorage.h in Headers */,
 				073E6B2A1BE1F86D00706283 /* walker-inl.h in Headers */,
 				073E6B261BE1F86D00706283 /* valgrind.h in Headers */,
-				077AFFA91BBD101400872A48 /* FCLog.h in Headers */,
 				073E6AE21BE1F86D00706283 /* regexp.h in Headers */,
 				073E6AFC1BE1F86D00706283 /* benchmark.h in Headers */,
 				07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */,
@@ -1147,7 +1128,6 @@
 				077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B1A1BE1F86D00706283 /* test.h in Headers */,
-				077A00111BBD101400872A48 /* FCLocalizationSupport.h in Headers */,
 				077AFF8B1BBD101400872A48 /* XUAbstract.h in Headers */,
 				073E6B221BE1F86D00706283 /* util.h in Headers */,
 				073E6B021BE1F86D00706283 /* logging.h in Headers */,
@@ -1331,7 +1311,6 @@
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
-				07EB33251C0B4D0300FCD427 /* FCLocalizationSupport.m in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				07156FEE1C396F82006D3616 /* XUBorderlessWindow.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
@@ -1371,7 +1350,6 @@
 				074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */,
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
-				077AFFAA1BBD101400872A48 /* FCLog.m in Sources */,
 				073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */,
 				07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */,
@@ -1473,7 +1451,6 @@
 				077AFFA71BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
-				077AFFAB1BBD101400872A48 /* FCLog.m in Sources */,
 				0779E19D1BF23E5C00832858 /* NSURL+NSURLAdditions.swift in Sources */,
 				073E6ACC1BE1F86D00706283 /* parse.cc in Sources */,
 				07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */,
@@ -1505,7 +1482,6 @@
 				0749DCDF1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B531BE2026600706283 /* XULog.swift in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
-				07EB33261C0B4D0800FCD427 /* FCLocalizationSupport.m in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,
 				077AFEEF1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */,
 				0779E1891BF2334600832858 /* XUZeroBasedIndexTransformer.swift in Sources */,

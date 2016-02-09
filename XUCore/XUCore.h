@@ -35,11 +35,5 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "FCPersistentDataStorage.h"
 #import "FCTemporaryDataStorage.h"
 
-/** Debug. */
-#import "FCLog.h" // Deprecated
-
-/** Localization. */
-#import "FCLocalizationSupport.h" // Deprecated
-
 /** Regex. */
 #import "XURegex.h"

@@ -8,7 +8,6 @@
 
 
 #import "NSArrayAdditions.h"
-#import "FCLog.h"
 
 #import <XUCore/XUCore-Swift.h>
 
@@ -96,10 +95,6 @@
 	return [self resultsOfSelectorPerformed:@selector(dictionaryRepresentation)];
 }
 -(instancetype)distinctUsingSelector:(SEL)aSelector{
-	if (aSelector == nil){
-		FCLogStacktrace([NSString stringWithFormat:@"******* NULL SEL in %@ ********", NSStringFromSelector(_cmd)]);
-	}
-	
 	return [self distinctUsingBlock:^BOOL(id resultObj, id obj) {
 		#pragma clang diagnostic push
 		#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -254,11 +249,6 @@
 	return result;
 }
 -(instancetype)resultsOfSelectorPerformed:(SEL)action{
-	if (action == nil){
-		FCLogStacktrace([NSString stringWithFormat:@"******* NULL SEL in %@ ********", NSStringFromSelector(_cmd)]);
-		return nil;
-	}
-	
 	return [self map:^id(id obj) {
 		#pragma clang diagnostic push
 		#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
