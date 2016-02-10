@@ -79,7 +79,10 @@ public extension NSMutableURLRequest {
 		self.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions())
 	}
 	public func setUsername(name: String, andPassword password: String) {
-		let b64 = "\(name):\(password)".dataUsingEncoding(NSUTF8StringEncoding)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+		guard let b64 = "\(name):\(password)".dataUsingEncoding(NSUTF8StringEncoding)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions()) else {
+			XULog("Failed to set name and password - cannot create a base64-encoded string!")
+			return
+		}
 		self.addValue("Basic \(b64)", forHTTPHeaderField: "Authorization")
 	}
 	

@@ -199,6 +199,8 @@
 		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		074B43CE1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		074B43CF1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */; };
 		075A929E1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
 		075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
 		075A92A11C43D775006DD45B /* XUUIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A92A01C43D775006DD45B /* XUUIBridge.swift */; };
@@ -450,6 +452,8 @@
 		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
+		074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __XUInAppPurchaseManagerHelper.h; sourceTree = "<group>"; };
+		074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __XUInAppPurchaseManagerHelper.m; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
@@ -906,6 +910,8 @@
 				0749DCE91C00C6DF0075CC9B /* XUAppStoreHidingView.swift */,
 				0749DCEC1C00C7BF0075CC9B /* XUAppStoreMenuCleaner.swift */,
 				079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */,
+				074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */,
+				074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */,
 			);
 			path = app_store;
 			sourceTree = "<group>";
@@ -1095,6 +1101,7 @@
 				073E6AF91BE1F86D00706283 /* atomicops.h in Headers */,
 				077AFEE01BBD101400872A48 /* NSDataAdditions.h in Headers */,
 				077AFEC01BBD101400872A48 /* NSArrayAdditions.h in Headers */,
+				074B43CE1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h in Headers */,
 				073E6B211BE1F86D00706283 /* util.h in Headers */,
 				073E6AD11BE1F86D00706283 /* prefilter.h in Headers */,
 				073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */,
@@ -1311,6 +1318,7 @@
 				077AFF9A1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E1971BF23B6000832858 /* NSMutableURLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
+				074B43CF1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				07156FEE1C396F82006D3616 /* XUBorderlessWindow.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,

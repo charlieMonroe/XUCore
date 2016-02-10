@@ -37,3 +37,5 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Regex. */
 #import "XURegex.h"
+
+#import "__XUInAppPurchaseManagerHelper.h"

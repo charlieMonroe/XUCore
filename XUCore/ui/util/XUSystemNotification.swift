@@ -58,7 +58,7 @@ public class XUSystemNotificationCenter: NSObject {
 		let window = _currentController.window as! XUSystemNotificationWindow
 		window.messageField.stringValue = _currentNotification.message
 		window.iconView.image = _currentNotification.icon
-		
+				
 		NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "_hideNotification", userInfo: nil, repeats: false)
 	}
 	

@@ -20,7 +20,7 @@ private let XUInAppPurchasesDefaultsKey = "XUInAppPurchases"
 
 
 /// You need to create a delegate and implement all methods and properties.
-public protocol XUInAppPurchaseManagerDelegate: AnyObject {
+@objc public protocol XUInAppPurchaseManagerDelegate: AnyObject {
 	
 	/// Return a list of available identifiers. This is then checked against
 	/// what AppStore returns. Allows the app not to list products that are
@@ -49,7 +49,7 @@ public protocol XUInAppPurchaseManagerDelegate: AnyObject {
 	
 }
 
-public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKRequestDelegate {
+public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKRequestDelegate, SKProductsRequestDelegate {
 
 	/// You need to call this prior to calling sharedManager. Do not call this
 	/// unless the current application setup is set to AppStore.
@@ -58,15 +58,13 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 			NSException(name: NSInternalInconsistencyException, reason: "Trying to create in-app purchase manager, while this is not an AppStore build.", userInfo: nil).raise()
 		}
 		
-		sharedManager = XUInAppPurchaseManager(delegate: delegate)
+		self.sharedManager = XUInAppPurchaseManager(delegate: delegate)
 	}
 	
 	/// This is the shared instance of the manager. Make sure that you call
 	/// createSharedManagerWithDelegate() before using this!
 	public private(set) static var sharedManager: XUInAppPurchaseManager!
 	
-	
-	private var _loadRequest: SKRequest?
 	
 	/// The delegate. Unlike the convention, the manager keeps a strong reference
 	/// to the delegate for two reasons:
@@ -75,6 +73,9 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	/// - the manager is a singleton, hence there is no reason for you to keep
 	///		reference to it, hence no retain cycles should be created.
 	public let delegate: XUInAppPurchaseManagerDelegate
+	
+	/// Returns true if the manager is currently loading products.
+	public private(set) var isLoadingProducts: Bool = false
 	
 	/// Products available for purchse.
 	public private(set) var productsAvailableForPurchase: [SKProduct] = [ ]
@@ -87,6 +88,22 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	/// app is about to terminate.
 	@objc private func _removeAsObserver(sender: AnyObject?) {
 		SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
+	}
+	
+	@objc private func _innerInit() {
+		self.reloadProductsAvailableForPurchase()
+		
+		#if os(iOS)
+			let transactions = SKPaymentQueue.defaultQueue().transactions
+		#else
+			let transactions = SKPaymentQueue.defaultQueue().transactions ?? [ ]
+		#endif
+		
+		if transactions.count > 0 {
+			for transaction in transactions {
+				SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+			}
+		}
 	}
 	
 	deinit {
@@ -113,21 +130,19 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 			
 			XULog("Restored in-app purchases: \(purchasedProductIdentifiers)")
 		}else{
-			XULog("NULL in-app purchases data")
+			XULog("No saved in-app purchases data")
 		}
 		
-		self.reloadProductsAvailableForPurchase()
-		
-		#if os(iOS)
-			let transactions = SKPaymentQueue.defaultQueue().transactions
-		#else
-			let transactions = SKPaymentQueue.defaultQueue().transactions ?? [ ]
-		#endif
+		if NSApp == nil {
+			#if os(iOS)
+				let notificationName = UIApplicationDidFinishLaunchingNotification
+			#else
+				let notificationName = NSApplicationDidFinishLaunchingNotification
+			#endif
 
-		if transactions.count > 0 {
-			for transaction in transactions {
-				SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-			}
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: "_innerInit", name: notificationName, object: nil)
+		} else {
+			self._innerInit()
 		}
 		
 		#if os(iOS)
@@ -202,23 +217,25 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	}
 	
 	public func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-		if let products = response.products {
-			if products.count > 0 {
-				XULog("Found new product identifiers \(products)")
-				self.productsAvailableForPurchase += products
+		XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC({
+			if let products = response.products {
+				if products.count > 0 {
+					XULog("Found new product identifiers \(products)")
+					self.productsAvailableForPurchase += products
+				}
 			}
-		}
-		
-		NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerAvailableProductsDidLoadNotification, object: self)
-		
-		// Product was not found in the App Store
-		if let invalidProductIdentifiers = response.invalidProductIdentifiers {
-			if invalidProductIdentifiers.count > 0 {
-				XULog("Invalid product identifiers \(invalidProductIdentifiers)")
+
+			NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerAvailableProductsDidLoadNotification, object: self)
+			
+			// Product was not found in the App Store
+			if let invalidProductIdentifiers = response.invalidProductIdentifiers {
+				if invalidProductIdentifiers.count > 0 {
+					XULog("Invalid product identifiers \(invalidProductIdentifiers)")
+				}
 			}
-		}
-		
-		_loadRequest = nil
+			
+			self.isLoadingProducts = false
+		})
 	}
 	
 	/// Starts a purchase. This is asynchronous and the delegate is notified about
@@ -236,14 +253,13 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	/// Reloads products available for purchase. Usually is done automatically,
 	/// but you may re-trigger this e.g. on network failure.
 	public func reloadProductsAvailableForPurchase() {
-		if _loadRequest != nil {
+		if isLoadingProducts {
 			// Already loading
 			return
 		}
 		
-		_loadRequest = SKProductsRequest(productIdentifiers: Set<NSObject>(arrayLiteral: self.delegate.availableProductIdentifiers))
-		_loadRequest?.delegate = self
-		_loadRequest?.start()
+		isLoadingProducts = true
+		__XUInAppPurchaseManagerHelper.requestProductsWithIdentifiers(self.delegate.availableProductIdentifiers, withDelegate: self)
 	}
 	
 	#if os(iOS)
@@ -258,7 +274,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	public func request(request: SKRequest, didFailWithError error: NSError?) {
 		XULog("An error getting products occurred \(error)")
 		
-		_loadRequest = nil
+		isLoadingProducts = false
 		
 		self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
 	}
