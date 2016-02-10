@@ -243,8 +243,6 @@
 		0779E19D1BF23E5C00832858 /* NSURL+NSURLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E19B1BF23D5E00832858 /* NSURL+NSURLAdditions.swift */; };
 		0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */; };
 		077A00A91BBD107500872A48 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00A81BBD107500872A48 /* Cocoa.framework */; };
-		077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */; };
 		077ADC151C501A74008F5600 /* XUBetaExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077ADC141C501A74008F5600 /* XUBetaExpirationHandler.swift */; };
 		077AFD931BBD0E5300872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFD921BBD0E5300872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDA11BBD0ED200872A48 /* XUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -502,8 +500,6 @@
 		077AFDF61BBD101400872A48 /* NSXMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSXMLAdditions.h; sourceTree = "<group>"; };
 		077AFDF71BBD101400872A48 /* NSXMLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSXMLAdditions.m; sourceTree = "<group>"; };
 		077AFDF81BBD101400872A48 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertViewAdditions.h; sourceTree = "<group>"; };
-		077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewAdditions.m; sourceTree = "<group>"; };
 		077AFE111BBD101400872A48 /* iOSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCommon.h; sourceTree = "<group>"; };
 		077AFE131BBD101400872A48 /* XUAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUAbstract.h; sourceTree = "<group>"; };
 		077AFE141BBD101400872A48 /* XUAbstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAbstract.swift; sourceTree = "<group>"; };
@@ -890,8 +886,6 @@
 				077AFDF71BBD101400872A48 /* NSXMLAdditions.m */,
 				0779E1911BF2362B00832858 /* NSXMLAdditions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
-				077AFDF91BBD101400872A48 /* UIAlertViewAdditions.h */,
-				077AFDFA1BBD101400872A48 /* UIAlertViewAdditions.m */,
 				07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */,
 				0749DCE01C00C1910075CC9B /* UIColorAdditions.swift */,
 				07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */,
@@ -1154,7 +1148,6 @@
 				073E6AE61BE1F86D00706283 /* set.h in Headers */,
 				073E6B0C1BE1F86D00706283 /* random.h in Headers */,
 				077AFEE11BBD101400872A48 /* NSDataAdditions.h in Headers */,
-				077A00AB1BBD122700872A48 /* UIAlertViewAdditions.h in Headers */,
 				073E6AEA1BE1F86D00706283 /* stringpiece.h in Headers */,
 				073E6ADE1BE1F86D00706283 /* re2.h in Headers */,
 				077AFEC11BBD101400872A48 /* NSArrayAdditions.h in Headers */,
@@ -1437,7 +1430,6 @@
 				077AFF9F1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
 				070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */,
-				077A00AC1BBD122700872A48 /* UIAlertViewAdditions.m in Sources */,
 				07311DCD1C0C62DD001B95AC /* XUBundleUtilities.swift in Sources */,
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E17F1BF2316700832858 /* NSDateAdditions.swift in Sources */,

@@ -188,5 +188,19 @@ public class __XULogBridge: NSObject {
 		__XULogSetShouldLog(log)
 	}
 	
+	public class var stackTraceString: String {
+		return XUStacktraceString()
+	}
+	
+	public class func log(string: String) {
+		if XUShouldLog() {
+			print(string)
+		}
+	}
+	
+	public class var filePath: String {
+		return XULogFilePath()
+	}
+	
 }
 

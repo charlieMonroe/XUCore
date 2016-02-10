@@ -20,7 +20,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "NSDataAdditions.h"
 #import "NSDictionaryAdditions.h"
 #import "NSStringAdditions.h"
-#import "UIAlertViewAdditions.h"
 
 /** Core. */
 #import "iOSCommon.h"
@@ -33,12 +32,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "FCDataEntity.h"
 #import "FCPersistentDataStorage.h"
 #import "FCTemporaryDataStorage.h"
-
-/** Debug. */
-#import "FCLog.h"
-
-/** Localization. */
-#import "FCLocalizationSupport.h"
 
 /** Regex. */
 #import "XURegex.h"
