@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@import StoreKit;
+#import <StoreKit/StoreKit.h>
 
 /// This is a private class used by XUI
 @interface __XUInAppPurchaseManagerHelper : NSObject

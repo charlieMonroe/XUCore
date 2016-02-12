@@ -452,6 +452,7 @@
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __XUInAppPurchaseManagerHelper.h; sourceTree = "<group>"; };
 		074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __XUInAppPurchaseManagerHelper.m; sourceTree = "<group>"; };
+		074E08501C6CB65A00A0FD48 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
@@ -1222,6 +1223,7 @@
 				English,
 				"pt-BR",
 				cs,
+				"zh-Hans",
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1513,6 +1515,7 @@
 				0737DC641C5381B9004F5D84 /* en */,
 				071A74A31C54DA3600EEA7FC /* pt-BR */,
 				071A74A41C54DA7000EEA7FC /* cs */,
+				074E08501C6CB65A00A0FD48 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

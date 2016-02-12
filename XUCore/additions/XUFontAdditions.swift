@@ -20,6 +20,29 @@ import Foundation
 
 public extension XUFont {
 	
+	/// Returns the same font with bold trait.
+	public var boldFont: XUFont? {
+		#if os(iOS)
+			let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold)
+			return XUFont(descriptor: descriptor, size: self.pointSize)
+		#else
+			let manager = NSFontManager.sharedFontManager()
+			return manager.convertFont(self, toHaveTrait: .BoldFontMask)
+		#endif
+	}
+	
+	/// Returns the same font with italic trait.
+	public var italicFont: XUFont? {
+		#if os(iOS)
+			let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic)
+			return XUFont(descriptor: descriptor, size: self.pointSize)
+		#else
+			let manager = NSFontManager.sharedFontManager()
+			return manager.convertFont(self, toHaveTrait: .ItalicFontMask)
+		#endif
+	}
+	
+	
 	/// Creates a Helvetica font. Automatically unwrapping the optional. Since
 	/// all sane systems have Helvetica installed, this is bound to work.
 	public convenience init(helveticaFontOfSize size: CGFloat) {
