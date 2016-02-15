@@ -153,7 +153,7 @@ public class XUCURLConnection: NSObject {
 			args.append("/dev/null")
 		}
 		
-		if XUShouldLog() {
+		if XULoggingEnabled() {
 			var argsCopy = args
 			if var userIndex = argsCopy.indexOf("-u") {
 				userIndex += 1

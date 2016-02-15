@@ -12,7 +12,7 @@ public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
 	private func _imageWithSingleImageRepOfSize(var size: CGSize) -> XUImage? {
-		if CGSizeEqualToSize(CGSizeZero, size) {
+		if size == CGSize() {
 			return nil
 		}
 		
