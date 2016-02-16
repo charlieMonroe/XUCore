@@ -99,7 +99,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
 			}else if let val = value as? NSDecimalNumber {
 				element.addChild(NSXMLElement(name: key, stringValue: String(format: "%0.4f", val)))
 			}else if let val = value as? NSNumber {
-				element.addChild(NSXMLElement(name: key, stringValue: "\(val.doubleValue)"))
+				element.addChild(NSXMLElement(name: key, stringValue: "\(val.stringValue)"))
 			}else if let val = value as? NSDate {
 				element.addChild(NSXMLElement(name: key, stringValue: formatter.stringFromDate(val)))
 			}else if let val = value as? NSDictionary {

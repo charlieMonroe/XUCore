@@ -284,9 +284,7 @@ public class XUCSVDocument {
 				}
 				
 				if var string = obj as? String {
-					if string.rangeOfString(String(self.columnSeparator)) != nil {
-						string = "\"" + string.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
-					}
+					string = "\"" + string.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
 					return string
 				}
 				
@@ -307,7 +305,7 @@ public class XUCSVDocument {
 						return ""
 					} else {
 						let document = XUCSVDocument(dictionaries: [dict])
-						return document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"")
+						return "\"" + document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
 					}
 				}
 				
@@ -316,7 +314,7 @@ public class XUCSVDocument {
 						return ""
 					} else {
 						let document = XUCSVDocument(dictionaries: arr)
-						return document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"")
+						return "\"" + document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
 					}
 				}
 				
