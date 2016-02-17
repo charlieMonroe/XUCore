@@ -63,6 +63,9 @@ private func _XURedirectToLogFile() {
 		let fileDesc = fileno(_logFile!)
 		dup2(fileDesc, STDOUT_FILENO)
 		dup2(fileDesc, STDERR_FILENO)
+		
+		setbuf(__stdoutp, nil)
+		
 		_didRedirectToLogFile = true
 	}
 }
@@ -132,6 +135,7 @@ public func XULogFilePath() -> String {
 	/// Activates Finder and selects the debug log file.
 	public func XUSelectDebugLogFileInFileViewer() {
 		if _logFile != nil {
+			fflush(__stdoutp)
 			fflush(_logFile!)
 		}
 		
@@ -141,6 +145,7 @@ public func XULogFilePath() -> String {
 	/// Opens the debug log in Console.
 	public func XUOpenDebugLogInConsole() {
 		if _logFile != nil {
+			fflush(__stdoutp)
 			fflush(_logFile!)
 		}
 		
