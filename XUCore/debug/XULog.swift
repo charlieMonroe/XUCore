@@ -8,7 +8,15 @@
 
 import Foundation
 
+#if os(OSX)
+	import Cocoa
+#endif
+
 public let XULoggingStatusChangedNotification = "XULoggingStatusChangedNotification"
+
+/// We are not exposing this defaults key. Please, use XULoggingEnabled() function
+/// and XUSetLoggingEnabled().
+private let XULoggingEnabledDefaultsKey: String = "XULoggingEnabled"
 
 private var _cachedPreferences = false
 private var _didCachePreferences = false
@@ -20,7 +28,7 @@ private var _logFile: UnsafeMutablePointer<FILE>?
 private func _XUCachePreferences() {
 	if !_didCachePreferences {
 		_didCachePreferences = true
-		_cachedPreferences = NSUserDefaults.standardUserDefaults().boolForKey("XULoggingEnabled")
+		_cachedPreferences = NSUserDefaults.standardUserDefaults().boolForKey(XULoggingEnabledDefaultsKey)
 	}
 }
 private func _XURunningDevelopmentComputer() -> Bool {
@@ -43,7 +51,7 @@ private func _XURedirectToLogFile() {
 		return
 	}
 	
-	let logFile = XULogFilePath()
+	let logFile = _XULogFilePath()
 	
 	// Try to create the log file
 	if !NSFileManager.defaultManager().fileExistsAtPath(logFile) {
@@ -103,9 +111,7 @@ private func __XULogSetShouldLog(log: Bool) {
 	}
 }
 
-
-/// Returns file path to the debug log.
-public func XULogFilePath() -> String {
+private func _XULogFilePath() -> String {
 	let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo().processName
 	
 	let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).stringByExpandingTildeInPath
@@ -113,6 +119,37 @@ public func XULogFilePath() -> String {
 	_ = try? NSFileManager.defaultManager().createDirectoryAtPath(logFolder, withIntermediateDirectories: true, attributes: nil)
 	return logFile
 }
+
+
+/// Returns file path to the debug log.
+@available(*, deprecated, message="If you need to clear the log, use XUClearLog, if you need to show it in Finder (OS X), use XUSelectDebugLogFileInFileViewer")
+public func XULogFilePath() -> String {
+	return _XULogFilePath()
+}
+
+#if os(OSX)
+
+	/// Activates Finder and selects the debug log file.
+	public func XUSelectDebugLogFileInFileViewer() {
+		if _logFile != nil {
+			fflush(_logFile!)
+		}
+		
+		NSWorkspace.sharedWorkspace().selectFile(_XULogFilePath(), inFileViewerRootedAtPath: "")
+	}
+	
+	/// Opens the debug log in Console.
+	public func XUOpenDebugLogInConsole() {
+		if _logFile != nil {
+			fflush(_logFile!)
+		}
+		
+		let URL = NSURL(fileURLWithPath: _XULogFilePath())
+		NSWorkspace.sharedWorkspace().openURLs([URL], withAppBundleIdentifier: "com.apple.Console", options: .Default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+	}
+	
+#endif
+
 
 /// Forces logging a string by temporarily enabling debug logging.
 public func XUForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
@@ -136,14 +173,31 @@ public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION
 }
 
 /// Use this function to toggle debugging while the app is running.
+@available(*, deprecated, message="Use XUSetLoggingEnabled instead.")
 public func XUForceSetDebugging(debug: Bool) {
 	__XULogSetShouldLog(debug)
 }
 
 /// Returns true when the debug logging is currently turned on.
+@available(*, deprecated, renamed="XULoggingEnabled")
 public func XUShouldLog() -> Bool {
 	return _cachedPreferences
 }
+
+/// Returns true when the debug logging is currently turned on.
+public func XULoggingEnabled() -> Bool {
+	return _cachedPreferences
+}
+
+/// Use this function to toggle debugging while the app is running. This method,
+/// unlike XUForceSetDebugging also sets the option in user defaults.
+public func XUSetLoggingEnabled(enabled: Bool) {
+	__XULogSetShouldLog(enabled)
+	
+	NSUserDefaults.standardUserDefaults().setBool(enabled, forKey: XULoggingEnabledDefaultsKey)
+	NSUserDefaults.standardUserDefaults().synchronize()
+}
+
 
 /// Clears the log file.
 public func XUClearLog() {
@@ -151,7 +205,7 @@ public func XUClearLog() {
 		fclose(_logFile!);
 		_logFile = nil;
 		
-		_ = try? NSFileManager.defaultManager().removeItemAtPath(XULogFilePath())
+		_ = try? NSFileManager.defaultManager().removeItemAtPath(_XULogFilePath())
 		
 		_didRedirectToLogFile = false
 		
@@ -193,13 +247,14 @@ public class __XULogBridge: NSObject {
 	}
 	
 	public class func log(string: String) {
-		if XUShouldLog() {
+		if XULoggingEnabled() {
 			print(string)
 		}
 	}
 	
+	@available(*, deprecated, message="Migrate your code to Swift.")
 	public class var filePath: String {
-		return XULogFilePath()
+		return _XULogFilePath()
 	}
 	
 }
