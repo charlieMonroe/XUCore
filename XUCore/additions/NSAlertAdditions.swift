@@ -37,22 +37,28 @@ public extension NSAlert {
 	
 	/// Begins the alert as sheet from window with secure text field as accessory
 	/// view, containing initialValue.
-	public func beginSheetModalWithSecureTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse) -> Void) {
+	public func beginSheetModalWithSecureTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
 		self.beginSheetModalWithTextField(initialValue, secure: true, forWindow: window, completionHandler: handler)
 	}
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue.
-	public func beginSheetModalWithTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse) -> Void) {
+	public func beginSheetModalWithTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
 		self.beginSheetModalWithTextField(initialValue, secure: false, forWindow: window, completionHandler: handler)
 	}
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue. If secure is true, the text field is secure.
-	private func beginSheetModalWithTextField(initialValue: String, secure: Bool, forWindow window: NSWindow, completionHandler handler: (NSModalResponse) -> Void) {
+	private func beginSheetModalWithTextField(initialValue: String, secure: Bool, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
 
 		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
-		self.beginSheetModalForWindow(window, completionHandler: handler)
+		self.beginSheetModalForWindow(window, completionHandler: { (response) in
+			if response == NSAlertFirstButtonReturn {
+				handler(response, (self.accessoryView as! NSTextField).stringValue)
+			} else {
+				handler(response, nil)
+			}
+		})
 		
 		// Make sure the field's focused
 		if let accessory = self.accessoryView {
