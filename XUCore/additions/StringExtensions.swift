@@ -126,6 +126,18 @@ public extension String {
 		return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet()) ?? self
 	}
 	
+	/// Lowercases the first letter of the string.
+	public var stringByLowercasingFirstLetter: String {
+		if self.characters.count == 0 {
+			return self
+		}
+		
+		let index = self.startIndex.advancedBy(1)
+		let firstLetter = self.substringToIndex(index)
+		let restOfString = self.substringFromIndex(index)
+		return firstLetter.lowercaseString + restOfString
+	}
+	
 	/// Trims the string to maximum length of maxLen, trimming the middle.
 	public func stringByMiddleTrimmingToMaximumLengthOf(maxLen: Int) -> String {
 		if self.characters.count < maxLen {

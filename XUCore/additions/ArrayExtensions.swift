@@ -208,6 +208,17 @@ public extension Array {
 		}
 	}
 	
+	/// Similar to filterMap(), but provides the index of the element.
+	public func filterMapIndexed<U>(@noescape mapper: (Generator.Element, Int) -> U?) -> [U] {
+		var result: [U] = [ ]
+		for i in 0..<Int(self.count) {
+			if let obj = mapper(self[i], i) {
+				result.append(obj)
+			}
+		}
+		return result
+	}
+	
 	/// Similar to map(), but provides the index of the element.
 	public func mapIndexed<U>(@noescape mapper: (Generator.Element, Int) -> U) -> [U] {
 		var result: [U] = [ ]
