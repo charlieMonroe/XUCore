@@ -20,8 +20,9 @@ public class XUAppScopeBookmarksManager: NSObject {
 	}
 	
 	/// Sets a URL for key. Returns if the save was successful.
-	public func setURL(var URL: NSURL?, forKey defaultsKey: String) -> Bool {
-		if URL == nil {
+	public func setURL(URL: NSURL?, forKey defaultsKey: String) -> Bool {
+		var newURL = URL
+		if newURL == nil {
 			_cache.removeValueForKey(defaultsKey)
 			
 			NSUserDefaults.standardUserDefaults().removeObjectForKey(defaultsKey)
@@ -29,30 +30,30 @@ public class XUAppScopeBookmarksManager: NSObject {
 			// Make sure the path is different from the current one -> otherwise 
 			// we probably haven't opened the open dialog -> will fail
 			let savedURL = self.URLForKey(defaultsKey)
-			if savedURL == nil || !savedURL!.isEqual(URL!) {
+			if savedURL == nil || !savedURL!.isEqual(newURL!) {
 				#if os(iOS)
 					NSUserDefaults.standardUserDefaults().setObject(URL!.absoluteString, forKey: defaultsKey)
 				#else
-					URL!.startAccessingSecurityScopedResource()
+					newURL!.startAccessingSecurityScopedResource()
 					
-					guard let bookmarkData = try? URL!.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: [ ], relativeToURL: nil) else {
-						XULog("Failed to create bookmark data for URL \(URL!)")
+					guard let bookmarkData = try? newURL!.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: [ ], relativeToURL: nil) else {
+						XULog("Failed to create bookmark data for URL \(newURL!)")
 						return false
 					}
 					
-					XULog("trying to save bookmark data for path \(URL!.path ?? "<>") - bookmark data length = \(bookmarkData.length)")
+					XULog("trying to save bookmark data for path \(newURL!.path ?? "<>") - bookmark data length = \(bookmarkData.length)")
 					
 					NSUserDefaults.standardUserDefaults().setObject(bookmarkData, forKey: defaultsKey)
 					
-					URL!.stopAccessingSecurityScopedResource()
+					newURL!.stopAccessingSecurityScopedResource()
 					
 					let reloadedURL = try? NSURL(byResolvingBookmarkData: bookmarkData, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: nil)
 					if reloadedURL != nil {
-						URL = reloadedURL
+						newURL = reloadedURL
 					}
 				#endif
 				
-				_cache[defaultsKey] = URL
+				_cache[defaultsKey] = newURL
 				
 				NSUserDefaults.standardUserDefaults().synchronize()
 			}

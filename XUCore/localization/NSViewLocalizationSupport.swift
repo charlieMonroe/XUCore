@@ -10,11 +10,11 @@ import Foundation
 
 public extension NSButton {
 	
-	public override func localizeView() {
-		self.menu?.localizeMenu()
+	public override func localizeView(bundle: NSBundle = XUMainBundle) {
+		self.menu?.localizeMenu(bundle)
 		
 		if self.imagePosition != .ImageOnly || self is NSPopUpButton {
-			self.title = XULocalizedString(self.title)
+			self.title = XULocalizedString(self.title, inBundle: bundle)
 		}
 	}
 	
@@ -22,36 +22,36 @@ public extension NSButton {
 
 public extension NSTextField {
 	
-	public override func localizeView() {
-		self.stringValue = XULocalizedString(self.stringValue)
+	public override func localizeView(bundle: NSBundle = XUMainBundle) {
+		self.stringValue = XULocalizedString(self.stringValue, inBundle: bundle)
 	}
 	
 }
 public extension NSTabView {
 	
-	public override func localizeView() {
+	public override func localizeView(bundle: NSBundle = XUMainBundle) {
 		for item in self.tabViewItems {
-			item.label = XULocalizedString(item.label)
-			item.view?.localizeView()
+			item.label = XULocalizedString(item.label, inBundle: bundle)
+			item.view?.localizeView(bundle)
 		}
 	}
 	
 }
 public extension NSTableView {
 	
-	public override func localizeView() {
+	public override func localizeView(bundle: NSBundle = XUMainBundle) {
 		for column in self.tableColumns {
-			column.headerCell.title = XULocalizedString(column.headerCell.title)
+			column.headerCell.title = XULocalizedString(column.headerCell.title, inBundle: bundle)
 		}
 	}
 
 }
 public extension NSSegmentedControl {
 	
-	public override func localizeView() {
+	public override func localizeView(bundle: NSBundle = XUMainBundle) {
 		for i in 0 ..< self.segmentCount {
 			if let label = self.labelForSegment(i) {
-				self.setLabel(XULocalizedString(label), forSegment: i)
+				self.setLabel(XULocalizedString(label, inBundle: bundle), forSegment: i)
 			}
 		}
 	}
@@ -59,9 +59,9 @@ public extension NSSegmentedControl {
 }
 public extension NSView {
 	
-	public func localizeView() {
+	public func localizeView(bundle: NSBundle = XUMainBundle) {
 		for view in self.subviews {
-			view.localizeView()
+			view.localizeView(bundle)
 		}
 	}
 	

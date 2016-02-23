@@ -52,7 +52,7 @@ public extension XURegex {
 		return XURegex(self.numbersRegexString)
 	}
 	public static var numbersRegexString: String {
-		return "[a-f0-9]+"
+		return "[0-9]+"
 	}
 	
 	public static var titleH1Regex: XURegex {

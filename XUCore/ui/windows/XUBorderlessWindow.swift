@@ -34,15 +34,16 @@ public class XUBorderlessWindow: NSWindow {
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
-	public override init(var contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
+	public override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
 		// Don't allow zero sizes;
-		if contentRect.size.width < 1.0 || contentRect.size.height < 1.0 {
+		var frame = contentRect
+		if frame.width < 1.0 || frame.height < 1.0 {
 			// Little size, use arbitrary values
-			contentRect.size.width = 200.0
-			contentRect.size.height = 200.0
+			frame.size.width = 200.0
+			frame.size.height = 200.0
 		}
 		
-		super.init(contentRect: contentRect, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, `defer`: flag)
+		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, `defer`: flag)
 		
 		self._innerInit()
 	}

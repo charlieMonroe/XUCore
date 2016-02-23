@@ -286,7 +286,7 @@ public class XUTimeBasedTrial: XUTrial {
 			if self._registerWithTrialServer() {
 				_secondsLeft = NSTimeInterval(XUApplicationSetup.sharedSetup.timeBasedTrialDays) * (24.0 * 3600.0)
 				_wasFirstRun = true
-				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: "_showFirstRunAlert", userInfo: nil, repeats: false)
+				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: "showFirstRunAlert", userInfo: nil, repeats: false)
 			}else{
 				self.noInternetConnectionDetected()
 			}

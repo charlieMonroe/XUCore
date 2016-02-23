@@ -70,7 +70,8 @@ public extension String {
 			Occurrences.append(ogVideo)
 		}
 		
-		URLs += Occurrences.filterMap({ (var URLString) -> NSURL? in
+		URLs += Occurrences.filterMap({ (originalURLString) -> NSURL? in
+			var URLString = originalURLString
 			if URLString.hasPrefix("//") {
 				URLString = "http:" + URLString
 			}else if !URLString.hasPrefix("http") && !URLString.hasPrefix("rtmp") && !URLString.hasPrefix("rtme") {

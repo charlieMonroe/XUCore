@@ -10,14 +10,14 @@ import Foundation
 
 public extension NSWindow {
 	
-	public func localizeWindow() {
-		self.title = XULocalizedString(self.title)
+	public func localizeWindow(bundle: NSBundle = XUMainBundle) {
+		self.title = XULocalizedString(self.title, inBundle: bundle)
 		
-		self.contentView?.localizeView()
+		self.contentView?.localizeView(bundle)
 		
 		if let toolbar = self.toolbar {
 			for item in toolbar.items {
-				item.label = XULocalizedString(item.label)
+				item.label = XULocalizedString(item.label, inBundle: bundle)
 			}
 		}
 	}

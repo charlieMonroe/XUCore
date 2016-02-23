@@ -86,6 +86,16 @@ public extension NSMutableURLRequest {
 		self.addValue("Basic \(b64)", forHTTPHeaderField: "Authorization")
 	}
 	
+	/// You can subscript the URL request and get/set HTTP header fields.
+	public subscript(field: String) -> String? {
+		get {
+			return self.valueForHTTPHeaderField(field)
+		}
+		set {
+			self.setValue(newValue, forHTTPHeaderField: field)
+		}
+	}
+	
 	public var userAgent: String? {
 		get {
 			return self.valueForHTTPHeaderField("User-Agent")

@@ -62,7 +62,7 @@ public class XULocalizationCenter: NSObject {
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
 	private func _languageBundleForLanguage(language: String, inBundle bundle: NSBundle) -> NSBundle? {
-		if let URL = NSBundle.mainBundle().URLForResource(language, withExtension: "lproj") {
+		if let URL = bundle.URLForResource(language, withExtension: "lproj") {
 			return NSBundle(URL: URL)
 		}
 		

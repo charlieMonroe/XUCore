@@ -11,13 +11,14 @@ import Foundation
 public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
-	private func _imageWithSingleImageRepOfSize(var size: CGSize) -> XUImage? {
+	private func _imageWithSingleImageRepOfSize(size: CGSize) -> XUImage? {
 		if size == CGSize() {
 			return nil
 		}
 		
+		var newSize = size
 		let s = self.size
-		if s.width <= size.width && s.height <= size.height {
+		if s.width <= newSize.width && s.height <= newSize.height {
 			return self
 		}
 		
@@ -26,17 +27,17 @@ public extension NSImage {
 			scale = 1.0
 		}
 		
-		size.width /= scale
-		size.height /= scale
+		newSize.width /= scale
+		newSize.height /= scale
 		
-		let icon = NSImage(size: size)
+		let icon = NSImage(size: newSize)
 		icon.lockFocus()
 		
-		let height = (s.height > s.width) ? size.height : (size.width / s.width) * s.height
-		let width = (s.width >= s.height) ? size.width : (size.height / s.height) * s.width
+		let height = (s.height > s.width) ? newSize.height : (newSize.width / s.width) * s.height
+		let width = (s.width >= s.height) ? newSize.width : (newSize.height / s.height) * s.width
 		
 		
-		let fromRect = CGRectMake((size.width - width) / 2.0, (size.height - height) / 2.0, width, height)
+		let fromRect = CGRectMake((newSize.width - width) / 2.0, (newSize.height - height) / 2.0, width, height)
 		self.drawInRect(fromRect, fromRect: CGRectMake(0.0, 0.0, s.width, s.height), operation: .CompositeCopy, fraction: 1.0)
 		
 		icon.unlockFocus()
@@ -46,8 +47,8 @@ public extension NSImage {
 		}
 		
 		let imageRep = icon.representations.first!
-		imageRep.pixelsWide = Int(size.width)
-		imageRep.pixelsHigh = Int(size.height)
+		imageRep.pixelsWide = Int(newSize.width)
+		imageRep.pixelsHigh = Int(newSize.height)
 		
 		return icon
 	}

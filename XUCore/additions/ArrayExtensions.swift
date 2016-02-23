@@ -218,22 +218,23 @@ public extension Array {
 	}
 	
 	/// Moves object from one index to another.
-	mutating func moveObjectAtIndex(fromIndex: Int, var toIndex: Int) {
+	mutating func moveObjectAtIndex(fromIndex: Int, toIndex: Int) {
 		if toIndex == fromIndex {
 			return
 		}
 		
-		if toIndex >= fromIndex {
-			toIndex -= 1
+		var targetIndex = toIndex
+		if targetIndex >= fromIndex {
+			targetIndex -= 1
 		}
 		
 		let obj = self[fromIndex]
 		self.removeAtIndex(fromIndex)
 		
-		if toIndex >= self.count {
+		if targetIndex >= self.count {
 			self.append(obj)
 		} else {
-			self.insert(obj, atIndex: toIndex)
+			self.insert(obj, atIndex: targetIndex)
 		}
 	}
 	
