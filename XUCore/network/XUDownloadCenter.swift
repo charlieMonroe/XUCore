@@ -365,7 +365,7 @@ public class XUDownloadCenter {
 	
 	/// Based on the request's URL, the Cookie field is filled with cookies from
 	/// the default storage.
-	func setupCookieFieldForURLRequest(request: NSMutableURLRequest) {
+	public func setupCookieFieldForURLRequest(request: NSMutableURLRequest) {
 		self._setupCookieFieldForURLRequest(request)
 	}
 
