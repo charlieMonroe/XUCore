@@ -167,6 +167,12 @@ public extension SequenceType {
 
 public extension SequenceType where Generator.Element : Equatable {
 	
+	/// Returns true if the otherArray contains the same elements as self, but
+	/// the order may differ.
+	public func containsAllObjectsFromArray(otherArray: [Self.Generator.Element]) -> Bool {
+		return self.all({ otherArray.contains($0) })
+	}
+	
 	/// Returns a distinct array. This means that it will toss away any duplicate
 	/// items in self
 	public func distinct() -> [Self.Generator.Element] {
