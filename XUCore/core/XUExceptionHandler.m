@@ -10,6 +10,9 @@
 
 @implementation XUExceptionHandler
 
+-(instancetype)init {
+	return [super init];
+}
 -(instancetype)initWithCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock{
 	if ((self = [super init]) != nil){
 		_catchHandler = catchHandler;
@@ -24,6 +27,15 @@
 		_catchHandler(exception);
 	}@finally {
 		_finallyHandler();
+	}
+}
+-(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock {
+	@try {
+		block();
+	}@catch (NSException *exception) {
+		catchHandler(exception);
+	}@finally {
+		finallyBlock();
 	}
 }
 

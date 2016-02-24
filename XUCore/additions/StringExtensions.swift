@@ -51,6 +51,12 @@ public extension String {
 		return Int((self as NSString).hexValue())
 	}
 	
+	/// Returns if the receiver is equal to the other string in a case 
+	/// insensitive manner.
+	public func isCaseInsensitivelyEqualToString(string: String) -> Bool {
+		return self.compare(string, options: .CaseInsensitiveSearch) == .OrderedSame
+	}
+
 	/// Replaces & -> &amp; etc.
 	public var HTMLEscapedString: String {
 		return (self as NSString).HTMLEscapedString()
@@ -61,7 +67,7 @@ public extension String {
 		return (self as NSString).HTMLUnescapedString()
 	}
 	
-	///
+	/// @see JSDecodedString() on NSString.
 	public var JSDecodedString: String {
 		return (self as NSString).JSDecodedString()
 	}

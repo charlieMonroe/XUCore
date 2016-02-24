@@ -37,7 +37,7 @@ extension Character {
 	}
 	
 	/// Returns true if the character is a member of character set.
-	func isMemberOfCharacterSet(characterSet: NSCharacterSet) -> Bool {
+	public func isMemberOfCharacterSet(characterSet: NSCharacterSet) -> Bool {
 		return characterSet.characterIsMember(String(self).utf16.first!)
 	}
 	
@@ -45,5 +45,15 @@ extension Character {
 		self.init(UnicodeScalar(UInt32(byte)))
 	}
 	
+	/// Returns the value of the character as viewed in UTF8
+	public var UTF8Value: UInt8 {
+		return String(self).utf8.first!
+	}
+
+	/// Returns the value of the character as viewed in UTF16
+	public var unicodeScalarValue: UInt16 {
+		return String(self).utf16.first!
+	}
+
 }
 

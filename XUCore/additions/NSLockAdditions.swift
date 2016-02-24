@@ -10,6 +10,13 @@ import Foundation
 
 public extension NSLock {
 	
+	/// Creates a lock and sets the name.
+	public convenience init(name: String) {
+		self.init()
+		
+		self.name = name
+	}
+	
 	public func performLockedBlock(block: (Void) -> Void) {
 		self.lock()
 		
