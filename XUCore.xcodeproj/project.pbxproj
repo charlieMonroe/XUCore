@@ -344,6 +344,8 @@
 		07FD4BD51C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */; };
 		07FD4BDA1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */; };
 		07FD4BDB1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */; };
+		07FD4BC71C7CA1D000559CF0 /* XUManagedDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BC61C7CA1D000559CF0 /* XUManagedDataContext.swift */; };
+		07FD4BC81C7CA1D000559CF0 /* XUManagedDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BC61C7CA1D000559CF0 /* XUManagedDataContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -559,6 +561,7 @@
 		07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess.swift; sourceTree = "<group>"; };
 		07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUObjCProperty.swift; path = deserialization/XUObjCProperty.swift; sourceTree = "<group>"; };
 		07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializer.swift; path = deserialization/XUJSONDeserializer.swift; sourceTree = "<group>"; };
+		07FD4BC61C7CA1D000559CF0 /* XUManagedDataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUManagedDataContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,6 +963,7 @@
 				077AFE201BBD101400872A48 /* FCPersistentDataStorage.m */,
 				077AFE211BBD101400872A48 /* FCTemporaryDataStorage.h */,
 				077AFE221BBD101400872A48 /* FCTemporaryDataStorage.m */,
+				07FD4BC61C7CA1D000559CF0 /* XUManagedDataContext.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -1373,6 +1377,7 @@
 				0779E18A1BF2340800832858 /* NSViewAdditions.swift in Sources */,
 				0749DCED1C00C7C00075CC9B /* XUAppStoreMenuCleaner.swift in Sources */,
 				07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */,
+				07FD4BC71C7CA1D000559CF0 /* XUManagedDataContext.swift in Sources */,
 				07B9082A1BF3BB62008D254A /* NSXMLAdditions.swift in Sources */,
 				0749DCD41C004D640075CC9B /* NSWindow-NoodleEffects.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
@@ -1470,6 +1475,7 @@
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */,
 				0779E1861BF2334600832858 /* XUAttributedStringTransformer.swift in Sources */,
+				07FD4BC81C7CA1D000559CF0 /* XUManagedDataContext.swift in Sources */,
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
 				077AFEBB1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				0749DCD01BFF5AAC0075CC9B /* XUImageAdditions.swift in Sources */,
