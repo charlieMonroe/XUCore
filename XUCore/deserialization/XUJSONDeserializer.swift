@@ -91,7 +91,7 @@ public extension XUJSONDeserializable {
 	/// them. The default implementation assumes ISO8601 format and tries to
 	/// deserialize it. You can customize this behavior.
 	public func dateFromString(dateString: String, forKey key: String) -> NSDate? {
-		return nil // TODO
+		return NSDate.dateWithISO8601String(dateString, andReturnError: nil)
 	}
 
 	/// Return true if you want to ignore this key. If true is returned, the
