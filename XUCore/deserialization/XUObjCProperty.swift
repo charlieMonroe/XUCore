@@ -71,8 +71,6 @@ public class XUObjCProperty: CustomStringConvertible {
 		
 		self.isReadOnly = allProperties.contains("R")
 		
-		print("\(name): \(allProperties)")
-		
 		/// ObjC type. If it's an object, starts with @, followed by ", class
 		/// name and ", e.g. @"NSString"
 		let typeProperty = allProperties.find({ $0.hasPrefix("T") })?.stringByDeletingPrefix("T") ?? ""

@@ -46,28 +46,24 @@ public enum XUJSONDeserializationError {
 		}
 
 		if self == .None {
-			return true
+			return false
 		}
 
 		if self == .Warning {
-			return otherError == .Error
+			return otherError != .Error
 		}
 
-		return false
+		return true
 	}
 }
 
 /// All classes that want to be deserialized by the deserializer must conform to
 /// this protocol.
-public protocol XUJSONDeserializable: AnyObject {
+@objc public protocol XUJSONDeserializable: AnyObject {
 	
 	/// This is implemented by NSObject. If you are not basing your class on 
 	/// NSObject, you need to do this yourself.
 	func setValue(value: AnyObject?, forKey: String)
-}
-
-/// The default implementation of the protocol.
-public extension XUJSONDeserializable {
 
 	/// This method is called when the deserializer encounters a dictionary under
 	/// `key`. The returned object doesn't necessarily need to conform to
@@ -83,57 +79,42 @@ public extension XUJSONDeserializable {
 	///
 	/// - if nil is returned, the object is given another chance in
 	/// performCustomDeserialization* methods.
-	public func createObjectForKey(key: String) -> AnyObject? {
-		return nil
-	}
+	optional func createObjectForKey(key: String) -> AnyObject?
 
 	/// Dates are tricky to deserialize since JSON doesn't specify a format for
 	/// them. The default implementation assumes ISO8601 format and tries to
 	/// deserialize it. You can customize this behavior.
-	public func dateFromString(dateString: String, forKey key: String) -> NSDate? {
-		return NSDate.dateWithISO8601String(dateString, andReturnError: nil)
-	}
+	optional func dateFromString(dateString: String, forKey key: String) -> NSDate?
 
 	/// Return true if you want to ignore this key. If true is returned, the
 	/// deserializer will not call any further methods.
-	public func ignoreKey(key: String) -> Bool {
-		return false
-	}
+	optional func ignoreKey(key: String) -> Bool
 
 	/// When the deserializer encounters an array of strings or numbers (NSNumber),
 	/// it will call this method assuming that those are IDs or some other objects.
 	/// The default implementation returns nil.
-	public func mapIDs(IDs: [AnyObject], toObjectsForKey key: String) -> [AnyObject]? {
-		return nil
-	}
+	optional func mapIDs(IDs: [AnyObject], toObjectsForKey key: String) -> [AnyObject]?
 
 	/// When the createObjectForKey(_:) method returns nil, the deserializer
 	/// calls this method. Return true to indicate that the custom deserialization
 	/// was successful, false that it was not.
-	public func performCustomDeserializationOfObject(object: XUJSONDictionary, forKey key: String) -> Bool {
-		return false
-	}
+	optional func performCustomDeserializationOfObject(object: XUJSONDictionary, forKey key: String) -> Bool
 
 	/// When the createObjectForKey(_:) method returns nil, the deserializer
 	/// calls this method. Return true to indicate that the custom deserialization
 	/// was successful, false that it was not.
-	public func performCustomDeserializationOfObjects(objects: [AnyObject], forKey key: String) -> Bool {
-		return false
-	}
+	optional func performCustomDeserializationOfObjects(objects: [AnyObject], forKey key: String) -> Bool
 
 	/// Returns the name of the property for that particular key. By default,
 	/// if nil is returned, the deserializer goes through the class' properties
 	/// and finds one that is a case-insensitive match.
-	public func propertyNameForDictionaryRepresentationKey(key: String) -> String? {
-		return nil
-	}
+	optional func propertyNameForDictionaryRepresentationKey(key: String) -> String?
 
 	/// Transforms the value to the representation required by the class. By default
 	/// just returns the value.
-	public func transformedValue(value: AnyObject?, forKey key: String) -> AnyObject? {
-		return value
-	}
+	optional func transformedValue(value: AnyObject?, forKey key: String) -> AnyObject?
 }
+
 
 /// This class is to be used for a semi-automatic JSON deserialization. It is
 /// fairly flexible and the deserialization process can be fairly well customized.
@@ -180,6 +161,16 @@ public class XUJSONDeserializer {
 	/// global option.
 	public var isLoggingEnabled: Bool = XUJSONDeserializer.deserializationLoggingEnabled
 
+	private func _addLogEntry(severity: XUJSONDeserializationError, objectClass: AnyClass, key: String, additionalInformation: String = "") {
+		if !self.isLoggingEnabled {
+			return
+		}
+		
+		let entry = XUJSONDeserializationLogEntry(severity: severity, objectClass: objectClass, key: key, additionalInformation: additionalInformation)
+		self.deserializationLog.append(entry)
+		XULog(entry.debugDescription)
+	}
+	
 	private func _propertiesForObject(object: XUJSONDeserializable) -> [XUObjCProperty] {
 		let className = NSStringFromClass(object.dynamicType)
 
@@ -198,18 +189,16 @@ public class XUJSONDeserializer {
 	}
 
 	private func _deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary, underKey key: String) -> XUJSONDeserializationError {
-		if object.ignoreKey(key) {
+		if object.ignoreKey?(key) ?? false {
 			return .None
 		}
 
 		let propertyList = self._propertiesForObject(object)
 		let property: XUObjCProperty
-		if let propertyName = object.propertyNameForDictionaryRepresentationKey(key) {
+		if let propertyName = object.propertyNameForDictionaryRepresentationKey?(key) {
 			// Custom name
 			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(propertyName)}) else {
-				if self.isLoggingEnabled {
-					self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property named \(propertyName) not found in class \(object.dynamicType)"))
-				}
+				self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property named \(propertyName) not found in class \(object.dynamicType)")
 				return .Error
 			}
 
@@ -219,18 +208,16 @@ public class XUJSONDeserializer {
 			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(key)}) else {
 				let value = dictionary[key]
 				if let dict = value as? XUJSONDictionary {
-					if object.performCustomDeserializationOfObject(dict, forKey: key) {
+					if object.performCustomDeserializationOfObject?(dict, forKey: key) ?? false {
 						return .None
 					}
 				} else if let array = value as? [AnyObject] {
-					if object.performCustomDeserializationOfObjects(array, forKey: key) {
+					if object.performCustomDeserializationOfObjects?(array, forKey: key) ?? false {
 						return .None
 					}
 				}
 
-				if self.isLoggingEnabled {
-					self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Key \(key) not handled when mapping class \(object.dynamicType)"))
-				}
+				self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Key \(key) not handled when mapping class \(object.dynamicType)")
 				return .Warning
 			}
 
@@ -238,9 +225,7 @@ public class XUJSONDeserializer {
 		}
 		
 		if (reservedProperties.contains(property.name) || property.isReadOnly) {
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property named \(property.name) on class \(object.dynamicType) is READ-ONLY or RESERVED"))
-			}
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property named \(property.name) on class \(object.dynamicType) is READ-ONLY or RESERVED")
 			return .Error
 		}
 		
@@ -254,9 +239,7 @@ public class XUJSONDeserializer {
 			
 			object.setValue(response.value, forKey: property.name)
 		}, withCatchHandler: { (exception) in
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Failed setting value for key \(key) to property \(property.name) on class \(object.dynamicType), exception \(exception)"))
-			}
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Failed setting value for key \(key) to property \(property.name) on class \(object.dynamicType), exception \(exception)")
 			
 			response.error = .Error
 		}, andFinallyBlock: {})
@@ -283,9 +266,7 @@ public class XUJSONDeserializer {
 			result = array
 		} else {
 			// Unknown target class
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass))"))
-			}
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass))")
 			return (nil, .Error)
 		}
 		
@@ -300,29 +281,32 @@ public class XUJSONDeserializer {
 		let firstObject = value.first!
 		if firstObject is String || firstObject is NSNumber {
 			// List of IDs
-			if let result = object.mapIDs(value, toObjectsForKey: key) {
+			if let result = object.mapIDs?(value, toObjectsForKey: key) {
 				return (result, .None)
 			}
 			
-			if object.performCustomDeserializationOfObjects(value, forKey: key) {
+			if object.performCustomDeserializationOfObjects?(value, forKey: key) ?? false {
 				dontSetValue = true
 				return (nil, .None)
 			}
 			
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot map object for key \(key) on class \(object.dynamicType)."))
-			}
+			self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot map object for key \(key) on class \(object.dynamicType).")
 			return (nil, .Warning)
 		}
 		
 		if let dicts = value as? [XUJSONDictionary] {
-			if object.performCustomDeserializationOfObjects(value, forKey: key) {
+			if object.performCustomDeserializationOfObjects?(value, forKey: key) ?? false {
 				dontSetValue = true
 				return (nil, .None)
 			}
 			
+			if object.createObjectForKey == nil {
+				self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "The class \(object.dynamicType) doesn't implement createObjectForKey(:_)!")
+				return (nil, .Error)
+			}
+			
 			let result = dicts.filterMap({ (dict) -> AnyObject? in
-				guard let obj = object.createObjectForKey(key) else {
+				guard let obj = object.createObjectForKey?(key) else {
 					return nil // Can be some filtering.
 				}
 				
@@ -340,9 +324,7 @@ public class XUJSONDeserializer {
 			return (result, .None)
 		}
 		
-		if self.isLoggingEnabled {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass). (\(value))"))
-		}
+		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass). (\(value))")
 		return (nil, .Error)
 	}
 	
@@ -352,10 +334,13 @@ public class XUJSONDeserializer {
 			return (value, .None)
 		}
 		
-		guard let obj = object.createObjectForKey(key) else {
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot create object from dictionary under key \(key) on class \(object.dynamicType)."))
-			}
+		if object.createObjectForKey == nil {
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "The class \(object.dynamicType) doesn't implement createObjectForKey(:_)!")
+			return (nil, .Error)
+		}
+		
+		guard let obj = object.createObjectForKey?(key) else {
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot create object from dictionary under key \(key) on class \(object.dynamicType).")
 			return (nil, .Error)
 		}
 		
@@ -373,9 +358,7 @@ public class XUJSONDeserializer {
 		}
 		
 		guard let str = value as? String else {
-			if self.isLoggingEnabled {
-				self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to scalar type."))
-			}
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to scalar type.")
 			return (value: nil, error: .Error)
 		}
 		
@@ -389,13 +372,19 @@ public class XUJSONDeserializer {
 		}
 		
 		/// The value may be a date mapping on NSTimeInterval.
-		if let date = object.dateFromString(str, forKey: key) {
-			return (value: date, error: .None)
+		if object.dateFromString != nil {
+			if let date = object.dateFromString!(str, forKey: key) {
+				return (value: date, error: .None)
+			}
+		} else {
+			if let date = NSDate.dateWithISO8601String(str, andReturnError: nil) {
+				return (value: date, error: .None)
+			}
 		}
 		
 		let doubleValue = str.doubleValue
 		if doubleValue == 0.0 && !str.hasPrefix("0") {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to scalar type."))
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to scalar type.")
 			return (value: nil, error: .Error)
 		}
 		
@@ -413,12 +402,19 @@ public class XUJSONDeserializer {
 		}
 		
 		guard let str = value as? String else {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to date."))
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to date.")
 			return (value: nil, error: .Error)
 		}
 		
-		guard let date = object.dateFromString(str, forKey: key) else {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to date."))
+		let dateOptional: NSDate?
+		if object.dateFromString != nil {
+			dateOptional = object.dateFromString!(str, forKey: key)
+		} else {
+			dateOptional = NSDate.dateWithISO8601String(str, andReturnError: nil)
+		}
+
+		guard let date = dateOptional else {
+			self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to date.")
 			return (nil, .Warning)
 		}
 		
@@ -429,13 +425,13 @@ public class XUJSONDeserializer {
 		/// Value isn't NSNumber, since that would have already been handled in 
 		/// _transformedValue(...).
 		guard let str = value as? String else {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to number."))
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to number.")
 			return (value: nil, error: .Error)
 		}
 
 		let doubleValue = str.doubleValue
 		if doubleValue == 0.0 && !str.hasPrefix("0") {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to scalar type."))
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert string '\(str)' to scalar type.")
 			return (value: nil, error: .Error)
 		}
 		
@@ -451,19 +447,19 @@ public class XUJSONDeserializer {
 			return (NSDecimalNumber(string: str), .None)
 		}
 		
-		self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to decimal number."))
+		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to decimal number.")
 		return (value: nil, error: .Error)
 	}
 	
 	private func _transformedValue(value: AnyObject, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, inout dontSetValue: Bool) -> (value: AnyObject?, error: XUJSONDeserializationError) {
 		if let dictionary = value as? XUJSONDictionary {
-			if object.performCustomDeserializationOfObject(dictionary, forKey: key) {
+			if object.performCustomDeserializationOfObject?(dictionary, forKey: key) ?? false {
 				dontSetValue = true
 				return (value: nil, error: .None)
 			}
 		}
 		
-		if let customTransformation = object.transformedValue(value, forKey: key) {
+		if let customTransformation = object.transformedValue?(value, forKey: key) {
 			return (value: customTransformation, error: .None)
 		}
 		
@@ -475,7 +471,7 @@ public class XUJSONDeserializer {
 		
 		// Value is of the same class as property.
 		guard let propertyClass = property.propertyClass else {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property declared on \(object.dynamicType) contains an unknown class \(property.className ?? "<>")."))
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property declared on \(object.dynamicType) contains an unknown class \(property.className ?? "<>").")
 			return (value: nil, error: .Error)
 		}
 		
@@ -509,9 +505,7 @@ public class XUJSONDeserializer {
 			return self._transformedDictionary(dict, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSetValue)
 		}
 		
-		if self.isLoggingEnabled {
-			self.deserializationLog.append(XUJSONDeserializationLogEntry(severity: .Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(propertyClass) - \(value)."))
-		}
+		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(propertyClass) - \(value).")
 		return (nil, .Error)
 
 
@@ -554,7 +548,7 @@ public class XUJSONDeserializer {
 	}
 }
 
-public class XUJSONDeserializationLogEntry {
+public class XUJSONDeserializationLogEntry: CustomDebugStringConvertible {
 
 	/// Severity of the issue. May be only .Warning or .Error
 	public let severity: XUJSONDeserializationError
@@ -567,6 +561,10 @@ public class XUJSONDeserializationLogEntry {
 
 	/// Additional information about the issue.
 	public let additionalInformation: String
+	
+	public var debugDescription: String {
+		return "\(self.severity): \(objectClass).\(key): \(additionalInformation)"
+	}
 
 	public init(severity: XUJSONDeserializationError, objectClass: AnyClass, key: String, additionalInformation: String = "") {
 		self.severity = severity
