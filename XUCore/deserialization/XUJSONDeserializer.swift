@@ -85,7 +85,21 @@ public enum XUJSONDeserializationError {
 	/// them. The default implementation assumes ISO8601 format and tries to
 	/// deserialize it. You can customize this behavior.
 	optional func dateFromString(dateString: String, forKey key: String) -> NSDate?
+	
+	/// The serializer supports updating already existing entities from fetched
+	/// content. When the serializer encounters a dictionary, it asks for the
+	/// entityID. If a non-nil object is returned, fetchEntityWithID(_:forKey:)
+	/// is invoked.
+	///
+	/// @note - the `key` parameter refers to the the key currently being deserialized.
+	optional func entityIDInDictionary(dictionary: XUJSONDictionary, forKey key: String) -> AnyObject?
 
+	/// entityIDInDictionary(_:forKey:) returned a non-nil value which is passed
+	/// as `entityID` parameter here. You should return the entity with this ID.
+	///
+	/// @note - the `key` parameter refers to the the key currently being deserialized.
+	optional func fetchEntityWithID(entityID: AnyObject, forKey key: String) -> AnyObject?
+	
 	/// Return true if you want to ignore this key. If true is returned, the
 	/// deserializer will not call any further methods.
 	optional func ignoreKey(key: String) -> Bool
@@ -247,6 +261,31 @@ public class XUJSONDeserializer {
 		return response.error
 	}
 	
+	private func _fetchOrCreateObjectForDictionary(value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty) -> (value: AnyObject?, error: XUJSONDeserializationError) {
+		
+		/// Fetching the object.
+		
+		if let entityID = object.entityIDInDictionary?(value, forKey: key) {
+			if let entity = object.fetchEntityWithID?(entityID, forKey: key) {
+				return (entity, .None)
+			}
+		}
+		
+		/// Creating the object.
+		
+		if object.createObjectForKey == nil {
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "The class \(object.dynamicType) doesn't implement createObjectForKey(:_)!")
+			return (nil, .Error)
+		}
+		
+		guard let obj = object.createObjectForKey?(key) else {
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot create object from dictionary under key \(key) on class \(object.dynamicType).")
+			return (nil, .Error)
+		}
+		
+		return (obj, .None)
+	}
+	
 	private func _transformedArray(value: [AnyObject], forKey key: String, onObject object: XUJSONDeserializable, toArrayLikeProperty property: XUObjCProperty, inout dontSetValue: Bool) -> (value: AnyObject?, error: XUJSONDeserializationError) {
 		let transformedArrayResult = self._transformedArray(value, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSetValue)
 		if dontSetValue { // A custom deserialization took place
@@ -306,7 +345,7 @@ public class XUJSONDeserializer {
 			}
 			
 			let result = dicts.filterMap({ (dict) -> AnyObject? in
-				guard let obj = object.createObjectForKey?(key) else {
+				guard let obj = self._fetchOrCreateObjectForDictionary(dict, forKey: key, onObject: object, toProperty: property).value else {
 					return nil // Can be some filtering.
 				}
 				
@@ -333,18 +372,8 @@ public class XUJSONDeserializer {
 			// Keep it the dictionary
 			return (value, .None)
 		}
-		
-		if object.createObjectForKey == nil {
-			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "The class \(object.dynamicType) doesn't implement createObjectForKey(:_)!")
-			return (nil, .Error)
-		}
-		
-		guard let obj = object.createObjectForKey?(key) else {
-			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot create object from dictionary under key \(key) on class \(object.dynamicType).")
-			return (nil, .Error)
-		}
-		
-		return (obj, .None)
+
+		return self._fetchOrCreateObjectForDictionary(value, forKey: key, onObject: object, toProperty: property)
 	}
 	
 	private func _transformedScalarValue(value: AnyObject, forObject object: XUJSONDeserializable, andKey key: String) -> (value: AnyObject?, error: XUJSONDeserializationError) {
