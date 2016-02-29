@@ -373,7 +373,11 @@ public class XUJSONDeserializer {
 			return (value, .None)
 		}
 
-		return self._fetchOrCreateObjectForDictionary(value, forKey: key, onObject: object, toProperty: property)
+		let response = self._fetchOrCreateObjectForDictionary(value, forKey: key, onObject: object, toProperty: property)
+		if let deserializable = response.value as? XUJSONDeserializable {
+			self.deserializeObject(deserializable, fromDictionary: value)
+		}
+		return response
 	}
 	
 	private func _transformedScalarValue(value: AnyObject, forObject object: XUJSONDeserializable, andKey key: String) -> (value: AnyObject?, error: XUJSONDeserializationError) {
