@@ -25,7 +25,12 @@ public extension Dictionary {
 	
 	/// A convenience method for retrieving an array of dictionaries
 	public func arrayOfDictionariesForKeyPath(keyPath: String) -> [XUJSONDictionary]? {
-		return self.objectForKeyPath(keyPath) as? [XUJSONDictionary]
+		return self.arrayOfDictionariesForKeyPaths(keyPath)
+	}
+	
+	/// A convenience method for retrieving an array of dictionaries
+	public func arrayOfDictionariesForKeyPaths(keyPaths: String...) -> [XUJSONDictionary]? {
+		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: [XUJSONDictionary].self)
 	}
 	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.

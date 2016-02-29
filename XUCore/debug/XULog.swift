@@ -178,7 +178,7 @@ public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION
 }
 
 /// Use this function to toggle debugging while the app is running.
-@available(*, deprecated, message="Use XUSetLoggingEnabled instead.")
+@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
 public func XUForceSetDebugging(debug: Bool) {
 	__XULogSetShouldLog(debug)
 }
@@ -189,6 +189,11 @@ public func XUShouldLog() -> Bool {
 	return _cachedPreferences
 }
 
+@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
+public func XUSetLoggingEnabled(enabled: Bool) {
+	XULoggingSetEnabled(enabled)
+}
+
 /// Returns true when the debug logging is currently turned on.
 public func XULoggingEnabled() -> Bool {
 	return _cachedPreferences
@@ -196,7 +201,7 @@ public func XULoggingEnabled() -> Bool {
 
 /// Use this function to toggle debugging while the app is running. This method,
 /// unlike XUForceSetDebugging also sets the option in user defaults.
-public func XUSetLoggingEnabled(enabled: Bool) {
+public func XULoggingSetEnabled(enabled: Bool) {
 	__XULogSetShouldLog(enabled)
 	
 	NSUserDefaults.standardUserDefaults().setBool(enabled, forKey: XULoggingEnabledDefaultsKey)
@@ -243,6 +248,7 @@ public func XULogStacktrace(comment: String) {
 public class __XULogBridge: NSObject {
 	
 	/// This method must only be called by FCForceSetDebugLog().
+	@available(*, deprecated, message="Migrate your code to Swift.")
 	public class func setShouldLog(log: Bool) {
 		__XULogSetShouldLog(log)
 	}
