@@ -39,13 +39,24 @@ public enum XUDownloadCenterError {
 /// is optional - see the extension below.
 public protocol XUDownloadCenterOwner: AnyObject {
 	
+	/// Default encoding for web sites. UTF8 by default.
+	var defaultSourceEncoding: NSStringEncoding { get }
+	
 	/// This is called whenever the download center fails to load a webpage, or
 	/// parse JSON/XML.
 	func downloadCenter(downloadCenter: XUDownloadCenter, didEncounterError error: XUDownloadCenterError)
 	
+	/// User agent used for downloading websites, XML documents, JSONs.
+	var infoPageUserAgent: String { get }
+	
 	///  Name of the owner. Used for logging, etc.
 	var name: String { get }
+	
+	/// Referer URL.
+	var refererURL: NSURL? { get }
 
+	/// Possibility to modify the request for downloading a page. No-op by default.
+	func setupURLRequest(request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: NSURL)
 }
 
 public extension XUDownloadCenterOwner {
