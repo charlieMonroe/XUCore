@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		070329C51C3F8C8F0058F914 /* XUDockIconProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */; };
 		0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */; };
+		070647ED1C8852C5007A89BB /* XUDeviceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */; };
 		070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
 		070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
@@ -355,6 +356,7 @@
 /* Begin PBXFileReference section */
 		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDockIconProgress.swift; path = util/XUDockIconProgress.swift; sourceTree = "<group>"; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
+		070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDeviceUtilities.swift; path = util/XUDeviceUtilities.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */,
+				070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -1474,6 +1477,7 @@
 				073E6B461BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				077AFF9F1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
+				070647ED1C8852C5007A89BB /* XUDeviceUtilities.swift in Sources */,
 				070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */,
 				07311DCD1C0C62DD001B95AC /* XUBundleUtilities.swift in Sources */,
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
