@@ -6,6 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
+import CoreData
 import Foundation
 
 /// We're caching the properties, since they are likely to be often reused.
@@ -251,7 +252,13 @@ public class XUJSONDeserializer {
 				return // Handled by custom deserialization
 			}
 			
-			object.setValue(response.value, forKey: property.name)
+			if let managedObject = object as? NSManagedObject {
+				managedObject.managedObjectContext?.performBlockAndWait {
+					object.setValue(response.value, forKey: property.name)
+				}
+			} else {
+				object.setValue(response.value, forKey: property.name)
+			}
 		}, withCatchHandler: { (exception) in
 			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Failed setting value for key \(key) to property \(property.name) on class \(object.dynamicType), exception \(exception)")
 			
