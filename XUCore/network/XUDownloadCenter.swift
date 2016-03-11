@@ -116,10 +116,10 @@ public class XUDownloadCenter {
 	}
 	
 	/// Sets the Cookie HTTP header field on request.
-	private func _setupCookieFieldForURLRequest(request: NSMutableURLRequest) {
+	private func _setupCookieFieldForURLRequest(request: NSMutableURLRequest, andBaseURL originalBaseURL: NSURL? = nil) {
 		if !NSThread.isMainThread() {
 			dispatch_sync(dispatch_get_main_queue(),{
-				self._setupCookieFieldForURLRequest(request)
+				self._setupCookieFieldForURLRequest(request, andBaseURL: originalBaseURL)
 			})
 			return
 		}
@@ -127,10 +127,16 @@ public class XUDownloadCenter {
 		guard let URL = request.URL else {
 			return
 		}
-		guard let baseURL = NSURL(scheme: URL.scheme, host: URL.host, path: "/") else {
-			return
-		}
 		
+		let baseURL: NSURL!
+		if originalBaseURL != nil {
+			baseURL = originalBaseURL
+		} else {
+			baseURL = NSURL(scheme: URL.scheme, host: URL.host, path: "/")
+			if baseURL == nil {
+				return
+			}
+		}
 		
 		let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
 		guard let cookies = storage.cookiesForURL(baseURL) else {
@@ -376,8 +382,8 @@ public class XUDownloadCenter {
 	
 	/// Based on the request's URL, the Cookie field is filled with cookies from
 	/// the default storage.
-	public func setupCookieFieldForURLRequest(request: NSMutableURLRequest) {
-		self._setupCookieFieldForURLRequest(request)
+	public func setupCookieFieldForURLRequest(request: NSMutableURLRequest, andBaseURL baseURL: NSURL? = nil) {
+		self._setupCookieFieldForURLRequest(request, andBaseURL: baseURL)
 	}
 
 	/// Sends a HEAD request to `URL` and returns the status code or 0.

@@ -71,6 +71,10 @@ public class XUSwitchableView: NSView {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_frameChanged:", name: NSViewFrameDidChangeNotification, object: self)
 	}
 	
+	public override var mouseDownCanMoveWindow: Bool {
+		return true
+	}
+	
 	/// Switches to a new view in direction specified. Doesn't adjust window size.
 	public func switchToView(view: NSView, inDirection direction: XUDirection) {
 		self.switchToView(view, inDirection: direction, adjustWindow: false)
