@@ -12,9 +12,9 @@ import Foundation
 /// boundaries.
 public class XURedView: NSView {
 	
-	public override func drawRect(dirtyRect: NSRect) {
+	public override func drawRect(dirtyRect: CGRect) {
 		NSColor.redColor().set()
-		NSRectFill(dirtyRect)
+		CGRectFill(dirtyRect)
 	}
 	public override var flipped: Bool {
 		return true

@@ -34,7 +34,7 @@ public class XUBorderlessWindow: NSWindow {
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
-	public override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
+	public override init(contentRect: CGRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
 		// Don't allow zero sizes;
 		var frame = contentRect
 		if frame.width < 1.0 || frame.height < 1.0 {

@@ -14,7 +14,7 @@ private let kXUZoomAnimationTimeMultiplier = 0.4
 
 private class __XUZoomWindow: NSPanel {
 	
-	@objc override func animationResizeTime(newWindowFrame: NSRect) -> NSTimeInterval {
+	@objc override func animationResizeTime(newWindowFrame: CGRect) -> NSTimeInterval {
 		return super.animationResizeTime(newWindowFrame) * kXUZoomAnimationTimeMultiplier
 	}
 	
@@ -26,7 +26,7 @@ public extension NSWindow {
 	
 	/// Creates a new zoom window in screen rect. Nil is returned when there is
 	/// no contentView, or the view fails to create the bitmap image representation.
-	private func _createZoomWindowWithRect(rect: NSRect) -> NSPanel? {
+	private func _createZoomWindowWithRect(rect: CGRect) -> NSPanel? {
 		let frame = self.frame
 		let isOneShot = self.oneShot
 		if isOneShot {
@@ -74,7 +74,7 @@ public extension NSWindow {
 	}
 	
 	/// Pops the window on screen from startRect.
-	public func zoomInFromRect(startRect: NSRect) {
+	public func zoomInFromRect(startRect: CGRect) {
 		if self.visible {
 			return // Do nothing if we're already on-screen
 		}
@@ -138,7 +138,7 @@ public extension NSWindow {
 	}
 	
 	/// Removes the window from screen by zooming off to endRect.
-	public func zoomOutToRect(endRect: NSRect) {
+	public func zoomOutToRect(endRect: CGRect) {
 		if !self.visible {
 			return // Already off screen
 		}

@@ -12,7 +12,7 @@ import Foundation
 /// as well.
 public class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
 	
-	public override func drawWithFrame(cellFrame: NSRect, inView controlView: NSView) {
+	public override func drawWithFrame(cellFrame: CGRect, inView controlView: NSView) {
 		let color = self.highlighted ? NSColor.whiteColor() : (self.textColor ?? NSColor.blackColor())
 		let attributes = [ NSFontAttributeName: self.font!, NSForegroundColorAttributeName: color ]
 		let textSize = self.stringValue.sizeWithAttributes(attributes)

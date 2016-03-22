@@ -14,9 +14,9 @@ public class XUSwitchableView: NSView {
 
 	//Only for debug purposes
 	/*
-	-(void)drawRect:(NSRect)dirtyRect{
+	-(void)drawRect:(CGRect)dirtyRect{
 		[[NSColor blueColor] set];
-		NSRectFill(dirtyRect);
+		CGRectFill(dirtyRect);
 	}
 	*/
 	
