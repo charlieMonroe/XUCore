@@ -40,7 +40,7 @@ public class XUBorderlessWindow: NSWindow {
 		if frame.width < 1.0 || frame.height < 1.0 {
 			// Little size, use arbitrary values
 			frame.width = 200.0
-			frame.size.height = 200.0
+			frame.height = 200.0
 		}
 		
 		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, `defer`: flag)

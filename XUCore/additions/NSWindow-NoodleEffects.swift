@@ -96,9 +96,9 @@ public extension NSWindow {
 	public func popAway() {
 		var frame = self.frame
 		frame.origin.x += (frame.width / 2.0) - 10.0
-		frame.origin.y += (frame.size.height / 2.0) - 10.0
+		frame.origin.y += (frame.height / 2.0) - 10.0
 		frame.width = 20.0
-		frame.size.height = 20.0
+		frame.height = 20.0
 		
 		self.zoomOutToRect(frame)
 	}
@@ -117,13 +117,13 @@ public extension NSWindow {
 		enlargedFrame.origin.x -= 12.5
 		enlargedFrame.origin.y -= 12.5
 		enlargedFrame.width += 25.0
-		enlargedFrame.size.height += 25.0
+		enlargedFrame.height += 25.0
 		
 		var fromRect = originalFrame
 		fromRect.origin.x += originalFrame.width / 2.0
-		fromRect.origin.y += originalFrame.size.height / 2.0
+		fromRect.origin.y += originalFrame.height / 2.0
 		fromRect.width = 1.0
-		fromRect.size.height = 1.0
+		fromRect.height = 1.0
 		
 		let zoomWindow = self._createZoomWindowWithRect(fromRect)
 		zoomWindow?.orderFront(self)

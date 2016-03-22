@@ -20,7 +20,7 @@ public extension NSTextField {
 		let deltaHeight = textFrame.height - textHeight
 		
 		var myFrame = self.frame
-		myFrame.size.height -= deltaHeight
+		myFrame.height -= deltaHeight
 		if resizeDownwards {
 			myFrame.origin.y += deltaHeight
 		}

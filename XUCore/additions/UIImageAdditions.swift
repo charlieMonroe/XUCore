@@ -20,7 +20,7 @@ public extension UIImage {
 		let context = UIGraphicsGetCurrentContext()
 		
 		CGContextScaleCTM(context, 1.0, -1.0)
-		CGContextTranslateCTM(context, 0.0, -(imageRect.size.height))
+		CGContextTranslateCTM(context, 0.0, -(imageRect.height))
 		CGContextClipToMask(context, imageRect, self.CGImage)
 		CGContextSetFillColorWithColor(context, color.CGColor)
 		CGContextFillRect(context, imageRect)

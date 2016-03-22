@@ -20,8 +20,8 @@ public func CGContextAddRoundedRect(c: CGContextRef, rect: CGRect, cornerRadius:
 	let x_right = rect.origin.x + rect.width
 	let y_top = rect.origin.y
 	let y_top_center = rect.origin.y + cornerRadius
-	let y_bottom_center = rect.origin.y + rect.size.height - cornerRadius
-	let y_bottom = rect.origin.y + rect.size.height
+	let y_bottom_center = rect.origin.y + rect.height - cornerRadius
+	let y_bottom = rect.origin.y + rect.height
 	
 	/* Begin! */
 	CGContextBeginPath(c)

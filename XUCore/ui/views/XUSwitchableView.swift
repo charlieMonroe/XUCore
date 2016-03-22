@@ -120,7 +120,7 @@ public class XUSwitchableView: NSView {
 			// Keeping it centered
 			// Height delta
 			delta = (newViewSize.height - oldViewSize.height)
-			newFrame.size.height += delta
+			newFrame.height += delta
 			newFrame.origin.y -= delta
 			
 			// Keeping the top aligned
@@ -146,12 +146,12 @@ public class XUSwitchableView: NSView {
 				toBeMoved = CGRect(x: oldViewSize.width, y: 0, width: oldViewSize.width, height: oldViewSize.height)
 			case .TopToBottom:
 				// From up to down
-				newViewRect = CGRect(x: 0, y: r.size.height, width: r.width, height: r.size.height)
-				toBeMoved = CGRectMake(0, -r.size.height, r.width, r.size.height)
+				newViewRect = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
+				toBeMoved = CGRectMake(0, -r.height, r.width, r.height)
 			case .BottomToTop:
 				// FCTop - from down to up
-				newViewRect = CGRectMake(0, -r.size.height, r.width, r.size.height)
-				toBeMoved = CGRect(x: 0, y: r.size.height, width: r.width, height: r.size.height)
+				newViewRect = CGRectMake(0, -r.height, r.width, r.height)
+				toBeMoved = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
 		}
 		
 		// Add the new view offscreen

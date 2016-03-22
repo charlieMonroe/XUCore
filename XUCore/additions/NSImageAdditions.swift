@@ -206,7 +206,7 @@ public extension NSImage {
 	public func tileInRect(rect: CGRect) {
 		let size = self.size
 		var destRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: size.width, height: size.height)
-		let top = rect.origin.y + rect.size.height
+		let top = rect.origin.y + rect.height
 		let right = rect.origin.x + rect.width
 		
 		// Tile vertically
@@ -221,7 +221,7 @@ public extension NSImage {
 				}
 				
 				if destRect.maxY > top {
-					sourceRect.size.height -= destRect.maxY - top
+					sourceRect.height -= destRect.maxY - top
 				}
 				
 				// Draw and shift
@@ -229,7 +229,7 @@ public extension NSImage {
 				destRect.origin.x += destRect.width
 			}
 			
-			destRect.origin.y += destRect.size.height
+			destRect.origin.y += destRect.height
 		}
 	}
 	

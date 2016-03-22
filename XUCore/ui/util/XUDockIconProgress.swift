@@ -30,18 +30,18 @@ public class XUDockIconProgress: NSObject {
 		im.lockFocus()
 		
 		var bounds = barRect
-		var bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.size.height / 2.0, yRadius: bounds.size.height / 2.0)
+		var bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
 		NSColor.whiteColor().set()
 		bezierPath.fill()
 		
 		bounds = CGRectInset(bounds, 2.0, 2.0)
-		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.size.height / 2.0, yRadius: bounds.size.height / 2.0)
+		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
 		NSColor.blackColor().set()
 		bezierPath.fill()
 		
 		bounds = CGRectInset(bounds, 2.0, 2.0)
 		bounds.width = bounds.width * CGFloat(progress)
-		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.size.height / 2.0, yRadius: bounds.size.height / 2.0)
+		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
 		NSColor.whiteColor().set()
 		bezierPath.fill()
 		
