@@ -109,7 +109,7 @@ public class XUTopRightWindowCornerView: XUPositionedWindowView {
 
 		retRect = CGRectIntegral(retRect)
 
-		--retRect.origin.y
+		--retRect.minY
 
 		return retRect
 	}

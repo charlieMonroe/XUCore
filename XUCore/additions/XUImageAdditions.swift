@@ -36,7 +36,7 @@ public extension XUImage {
 			// Wider
 			targetRect.size.width = rect.width
 			targetRect.size.height = mySize.height * (rect.width / mySize.width)
-			targetRect.origin.y = rect.origin.y + (rect.height - targetRect.height) / 2.0
+			targetRect.origin.y = rect.minY + (rect.height - targetRect.height) / 2.0
 		} else {
 			// Taller
 			targetRect.size.height = rect.height

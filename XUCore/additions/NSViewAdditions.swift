@@ -32,7 +32,7 @@ public extension NSView {
 		var rect = self.convertRect(frame, toView: nil)
 		let windowFrame = self.window!.frame
 		rect.minX += windowFrame.minX
-		rect.origin.y += windowFrame.origin.y
+		rect.minY += windowFrame.minY
 		return rect
 	}
 	public func screenCoordinatesOfPoint(point: CGPoint) -> CGPoint {
@@ -43,7 +43,7 @@ public extension NSView {
 		var localPoint = self.convertPoint(point, toView: nil)
 		let windowFrame = self.window!.frame
 		localPoint.x += windowFrame.minX
-		localPoint.y += windowFrame.origin.y
+		localPoint.y += windowFrame.minY
 		return localPoint
 	}
 	

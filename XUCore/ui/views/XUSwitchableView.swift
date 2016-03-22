@@ -121,7 +121,7 @@ public class XUSwitchableView: NSView {
 			// Height delta
 			delta = (newViewSize.height - oldViewSize.height)
 			newFrame.height += delta
-			newFrame.origin.y -= delta
+			newFrame.minY -= delta
 			
 			// Keeping the top aligned
 			self.window!.animator().setFrame(newFrame, display: true)

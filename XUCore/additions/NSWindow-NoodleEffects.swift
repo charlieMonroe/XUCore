@@ -96,7 +96,7 @@ public extension NSWindow {
 	public func popAway() {
 		var frame = self.frame
 		frame.minX += (frame.width / 2.0) - 10.0
-		frame.origin.y += (frame.height / 2.0) - 10.0
+		frame.minY += (frame.height / 2.0) - 10.0
 		frame.width = 20.0
 		frame.height = 20.0
 		
@@ -115,13 +115,13 @@ public extension NSWindow {
 		let originalFrame = frame
 		var enlargedFrame = originalFrame
 		enlargedFrame.minX -= 12.5
-		enlargedFrame.origin.y -= 12.5
+		enlargedFrame.minY -= 12.5
 		enlargedFrame.width += 25.0
 		enlargedFrame.height += 25.0
 		
 		var fromRect = originalFrame
 		fromRect.minX += originalFrame.width / 2.0
-		fromRect.origin.y += originalFrame.height / 2.0
+		fromRect.minY += originalFrame.height / 2.0
 		fromRect.width = 1.0
 		fromRect.height = 1.0
 		

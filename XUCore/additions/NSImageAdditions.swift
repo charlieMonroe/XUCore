@@ -205,12 +205,12 @@ public extension NSImage {
 	/// Draws the image as tile in specified rect.
 	public func tileInRect(rect: CGRect) {
 		let size = self.size
-		var destRect = CGRect(x: rect.minX, y: rect.origin.y, width: size.width, height: size.height)
-		let top = rect.origin.y + rect.height
+		var destRect = CGRect(x: rect.minX, y: rect.minY, width: size.width, height: size.height)
+		let top = rect.minY + rect.height
 		let right = rect.minX + rect.width
 		
 		// Tile vertically
-		while destRect.origin.y < top {
+		while destRect.minY < top {
 			// Tile horizontally
 			while destRect.minX < right {
 				var sourceRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
@@ -229,7 +229,7 @@ public extension NSImage {
 				destRect.minX += destRect.width
 			}
 			
-			destRect.origin.y += destRect.height
+			destRect.minY += destRect.height
 		}
 	}
 	
