@@ -195,6 +195,10 @@ public class XUTrial: NSObject {
 	/// Notifies the user that the trial has expired. Trial ID is included. Trial
 	/// ID may be nil.
 	public func trialExpiredWithTrialID(trialID: String?) {
+		if NSProcessInfo.processInfo().arguments.contains("--disable-trial") {
+			return
+		}
+		
 		XUForceLog("trial expired, session identifier \(self._sessionIdentifier)")
 		
 		let appName = NSProcessInfo.processInfo().processName

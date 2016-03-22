@@ -354,7 +354,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDockIconProgress.swift; path = util/XUDockIconProgress.swift; sourceTree = "<group>"; };
+		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUDockIconProgress.swift; path = util/XUDockIconProgress.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
 		070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDeviceUtilities.swift; path = util/XUDeviceUtilities.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
@@ -366,8 +366,8 @@
 		072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationControllerAdditions.swift; sourceTree = "<group>"; };
 		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
-		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageAdditions.swift; sourceTree = "<group>"; };
-		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageAdditions.swift; sourceTree = "<group>"; };
+		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
@@ -447,14 +447,14 @@
 		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
 		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; };
 		074446B01C529F270026F5DD /* SystemNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SystemNotification.xib; path = util/SystemNotification.xib; sourceTree = "<group>"; };
-		0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAlertAdditions.swift; sourceTree = "<group>"; };
+		0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSAlertAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUImageAdditions.swift; sourceTree = "<group>"; };
-		0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColorAdditions.swift; sourceTree = "<group>"; };
+		0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSColorAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCD31C004D640075CC9B /* NSWindow-NoodleEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow-NoodleEffects.swift"; sourceTree = "<group>"; };
 		0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPowerAssertion.swift; sourceTree = "<group>"; };
 		0749DCDA1C00BAEC0075CC9B /* iOSCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSCommon.swift; sourceTree = "<group>"; };
 		0749DCDD1C00BD130075CC9B /* XUApplicationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationSetup.swift; sourceTree = "<group>"; };
-		0749DCE01C00C1910075CC9B /* UIColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
+		0749DCE01C00C1910075CC9B /* UIColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIColorAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCE31C00C3E00075CC9B /* XUMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMath.swift; sourceTree = "<group>"; };
 		0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContextRefAdditions.swift; sourceTree = "<group>"; };
 		0749DCE91C00C6DF0075CC9B /* XUAppStoreHidingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppStoreHidingView.swift; sourceTree = "<group>"; };
@@ -553,13 +553,13 @@
 		07C3FA111BEBB619008A4200 /* XUMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMenuButton.swift; sourceTree = "<group>"; };
 		07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppNameTextField.swift; sourceTree = "<group>"; };
 		07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPositionedWindowView.swift; sourceTree = "<group>"; };
-		07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSwitchableView.swift; sourceTree = "<group>"; };
+		07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUSwitchableView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUArrayNotEmptyTransformer.swift; sourceTree = "<group>"; };
 		07C3FA221BECB2A3008A4200 /* XUAttributedStringTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAttributedStringTransformer.swift; sourceTree = "<group>"; };
 		07C3FA241BECB3C3008A4200 /* XUFileSizeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFileSizeTransformer.swift; sourceTree = "<group>"; };
 		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
-		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; };
+		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };

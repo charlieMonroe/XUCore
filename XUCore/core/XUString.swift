@@ -138,6 +138,12 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 		self.init(chars: chars)
 	}
 	
+	public var lastCharacter: XUChar {
+		assert(self.length > 0)
+		
+		return self.characterAtIndex(self.length - 1)
+	}
+	
 	/// Returns the length of the string.
 	public var length: Int {
 		return _buffer.count
@@ -151,6 +157,13 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	/// Removes character at index by shifting the remainder of the string left.
 	public func removeCharacterAtIndex(index: Int) {
 		_buffer.removeAtIndex(index)
+	}
+	
+	/// Removes last character.
+	public func removeLastCharacter() {
+		assert(self.length > 0)
+		
+		self.removeCharacterAtIndex(self.length - 1)
 	}
 	
 	/// Removes all characters with value > 127
