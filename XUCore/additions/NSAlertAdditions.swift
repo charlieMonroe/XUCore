@@ -20,7 +20,7 @@ public extension NSAlert {
 	}
 	
 	private func _prepareAccessoryTextFieldWithInitialValue(initialValue: String, secure: Bool) {
-		let frame = CGRectMake(0.0, 0.0, 290.0, 22.0)
+		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {
 			accessory = NSSecureTextField(frame: frame)
@@ -69,7 +69,7 @@ public extension NSAlert {
 	/// Create a pop up button as its own accessory view in the alert and populates
 	/// it with menuItems.
 	public func createAccessoryPopUpButtonWithMenuItems(menuItems: [NSMenuItem]) -> NSPopUpButton {
-		let popUpButton = NSPopUpButton(frame: CGRectMake(0.0, 0.0, 300.0, 22.0), pullsDown: false)
+		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
 		self.accessoryView = popUpButton
 		
 		var anyImageTooLargeForInlineDisplay = false

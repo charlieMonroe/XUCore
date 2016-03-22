@@ -48,14 +48,14 @@ import Foundation
 			if self.alternateAlignment {
 				UIRectFill(CGRectMake(0.0, bounds.size.height - self.lineWidth, bounds.size.width, self.lineWidth))
 			} else {
-				UIRectFill(CGRectMake(0.0, 0.0, bounds.size.width, self.lineWidth))
+				UIRectFill(CGRect(x: 0.0, y: 0.0, width: bounds.size.width, height: self.lineWidth))
 			}
 		} else {
 			// Horizontal line
 			if self.alternateAlignment {
 				UIRectFill(CGRectMake(bounds.size.width - self.lineWidth, 0.0, self.lineWidth, bounds.size.height))
 			} else {
-				UIRectFill(CGRectMake(0.0, 0.0, self.lineWidth, bounds.size.height))
+				UIRectFill(CGRect(x: 0.0, y: 0.0, width: self.lineWidth, height: bounds.size.height))
 			}
 		}
 	}

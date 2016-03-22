@@ -38,7 +38,7 @@ public extension NSImage {
 		
 		
 		let fromRect = CGRectMake((newSize.width - width) / 2.0, (newSize.height - height) / 2.0, width, height)
-		self.drawInRect(fromRect, fromRect: CGRectMake(0.0, 0.0, s.width, s.height), operation: .CompositeCopy, fraction: 1.0)
+		self.drawInRect(fromRect, fromRect: CGRect(x: 0.0, y: 0.0, width: s.width, height: s.height), operation: .CompositeCopy, fraction: 1.0)
 		
 		icon.unlockFocus()
 		
@@ -205,7 +205,7 @@ public extension NSImage {
 	/// Draws the image as tile in specified rect.
 	public func tileInRect(rect: CGRect) {
 		let size = self.size
-		var destRect = CGRectMake(rect.origin.x, rect.origin.y, size.width, size.height)
+		var destRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: size.width, height: size.height)
 		let top = rect.origin.y + rect.size.height
 		let right = rect.origin.x + rect.size.width
 		
@@ -213,7 +213,7 @@ public extension NSImage {
 		while destRect.origin.y < top {
 			// Tile horizontally
 			while destRect.origin.x < right {
-				var sourceRect = CGRectMake(0.0, 0.0, size.width, size.height)
+				var sourceRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 				
 				// Crop as necessary
 				if destRect.maxX > right {

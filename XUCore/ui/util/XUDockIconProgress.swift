@@ -20,7 +20,7 @@ public class XUDockIconProgress: NSObject {
 	
 	private func _progressImage() -> NSImage {
 		let im: NSImage = NSImage(named: "NSApplicationIcon")?.copy() as! NSImage
-		let barRect = CGRectMake(0.0, 25.0, 128.0, kXUDockProgressBarHeight)
+		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: kXUDockProgressBarHeight)
 		
 		var progress = self.progressValue
 		if (progress < 0.1){

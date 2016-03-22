@@ -34,7 +34,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		
 		self.set()
 		
-		let paintRect = CGRectMake(0.0, 0.0, kXUColorSampleItemWidth, kXUColorSampleItemHeight)
+		let paintRect = CGRect(x: 0.0, y: 0.0, width: kXUColorSampleItemWidth, height: kXUColorSampleItemHeight)
 		
 		NSBezierPath(rect: paintRect).fill()
 		
@@ -49,11 +49,11 @@ extension NSColor: NSPasteboardItemDataProvider {
 		image.lockFocus()
 		
 		// Draw color swatch
-		self.drawSwatchInRect(CGRectMake(0.0, 0.0, 12.0, 12.0))
+		self.drawSwatchInRect(CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0))
 		
 		// Draw border
 		NSColor.blackColor().set()
-		NSBezierPath(rect: CGRectMake(0.0, 0.0, 12.0, 12.0)).stroke()
+		NSBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0)).stroke()
 		
 		image.unlockFocus()
 		
@@ -73,7 +73,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		
 		let colorItem = NSDraggingItem(pasteboardWriter: self)
 		
-		colorItem.setDraggingFrame(CGRectMake(p.x, p.y, 12.0, 12.0), contents: image)
+		colorItem.setDraggingFrame(CGRect(x: p.x, y: p.y, width: 12.0, height: 12.0), contents: image)
 		_draggingSession = view.beginDraggingSessionWithItems([ colorItem ], event: event, source: _source)
 		
 		let pasteboard = _draggingSession!.draggingPasteboard

@@ -16,7 +16,7 @@ public extension UIColor {
 		let sideSize: CGFloat = 26.0
 		let radius: CGFloat = min(6.0, sideSize / 2.0)
 		
-		let dstRect = CGRectMake(0.0, 0.0, sideSize, sideSize)
+		let dstRect = CGRect(x: 0.0, y: 0.0, width: sideSize, height: sideSize)
 		
 		UIGraphicsBeginImageContext(dstRect.size)
 		

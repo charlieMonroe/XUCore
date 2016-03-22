@@ -59,7 +59,7 @@ public extension UIImage {
 		}
 		
 		UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-		self.drawInRect(CGRectMake(0.0, 0.0, newSize.width, newSize.height))
+		self.drawInRect(CGRect(x: 0.0, y: 0.0, width: newSize.width, height: newSize.height))
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		return newImage
