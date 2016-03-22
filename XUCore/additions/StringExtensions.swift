@@ -19,6 +19,15 @@ public func +(inout lhs: String, rhs: Character) {
 
 public extension String {
 	
+	/// Returns true if the other string is not empty and is contained in self
+	/// case-insensitive.
+	public func containsCaseInsensitiveString(otherString: String) -> Bool {
+		if otherString.isEmpty {
+			return false
+		}
+		return self.rangeOfString(otherString, options: .CaseInsensitiveSearch) != nil
+	}
+	
 	/// Returns first line of string. Always non-nil
 	public var firstLine: String {
 		return self.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())[0]
