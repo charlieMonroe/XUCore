@@ -44,16 +44,16 @@ import Foundation
 		self.lineColor.set()
 
 		let bounds = self.bounds
-		if bounds.size.width > bounds.size.height {
+		if bounds.width > bounds.size.height {
 			if self.alternateAlignment {
-				UIRectFill(CGRectMake(0.0, bounds.size.height - self.lineWidth, bounds.size.width, self.lineWidth))
+				UIRectFill(CGRectMake(0.0, bounds.size.height - self.lineWidth, bounds.width, self.lineWidth))
 			} else {
-				UIRectFill(CGRect(x: 0.0, y: 0.0, width: bounds.size.width, height: self.lineWidth))
+				UIRectFill(CGRect(x: 0.0, y: 0.0, width: bounds.width, height: self.lineWidth))
 			}
 		} else {
 			// Horizontal line
 			if self.alternateAlignment {
-				UIRectFill(CGRectMake(bounds.size.width - self.lineWidth, 0.0, self.lineWidth, bounds.size.height))
+				UIRectFill(CGRectMake(bounds.width - self.lineWidth, 0.0, self.lineWidth, bounds.size.height))
 			} else {
 				UIRectFill(CGRect(x: 0.0, y: 0.0, width: self.lineWidth, height: bounds.size.height))
 			}

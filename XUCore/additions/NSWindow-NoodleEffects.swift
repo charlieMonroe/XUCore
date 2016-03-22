@@ -95,9 +95,9 @@ public extension NSWindow {
 	/// Removes the window from screen by zooming off to the center of the window.
 	public func popAway() {
 		var frame = self.frame
-		frame.origin.x += (frame.size.width / 2.0) - 10.0
+		frame.origin.x += (frame.width / 2.0) - 10.0
 		frame.origin.y += (frame.size.height / 2.0) - 10.0
-		frame.size.width = 20.0
+		frame.width = 20.0
 		frame.size.height = 20.0
 		
 		self.zoomOutToRect(frame)
@@ -116,13 +116,13 @@ public extension NSWindow {
 		var enlargedFrame = originalFrame
 		enlargedFrame.origin.x -= 12.5
 		enlargedFrame.origin.y -= 12.5
-		enlargedFrame.size.width += 25.0
+		enlargedFrame.width += 25.0
 		enlargedFrame.size.height += 25.0
 		
 		var fromRect = originalFrame
-		fromRect.origin.x += originalFrame.size.width / 2.0
+		fromRect.origin.x += originalFrame.width / 2.0
 		fromRect.origin.y += originalFrame.size.height / 2.0
-		fromRect.size.width = 1.0
+		fromRect.width = 1.0
 		fromRect.size.height = 1.0
 		
 		let zoomWindow = self._createZoomWindowWithRect(fromRect)

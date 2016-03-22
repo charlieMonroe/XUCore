@@ -27,7 +27,7 @@ import UIKit
 	public override func drawRect(rect: CGRect) {
 		let bounds = self.bounds
 		UIColor.whiteColor().set()
-		UIBezierPath(roundedRect: bounds, cornerRadius: CGRectGetHeight(bounds) / 2.0).fill()
+		UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height / 2.0).fill()
 		
 		super.drawRect(rect)
 	}

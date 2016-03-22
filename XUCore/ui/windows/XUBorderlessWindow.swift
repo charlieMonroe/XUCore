@@ -39,7 +39,7 @@ public class XUBorderlessWindow: NSWindow {
 		var frame = contentRect
 		if frame.width < 1.0 || frame.height < 1.0 {
 			// Little size, use arbitrary values
-			frame.size.width = 200.0
+			frame.width = 200.0
 			frame.size.height = 200.0
 		}
 		

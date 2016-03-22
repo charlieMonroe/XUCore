@@ -207,7 +207,7 @@ public extension NSImage {
 		let size = self.size
 		var destRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: size.width, height: size.height)
 		let top = rect.origin.y + rect.size.height
-		let right = rect.origin.x + rect.size.width
+		let right = rect.origin.x + rect.width
 		
 		// Tile vertically
 		while destRect.origin.y < top {
@@ -217,7 +217,7 @@ public extension NSImage {
 				
 				// Crop as necessary
 				if destRect.maxX > right {
-					sourceRect.size.width -= destRect.maxX - right
+					sourceRect.width -= destRect.maxX - right
 				}
 				
 				if destRect.maxY > top {
@@ -226,7 +226,7 @@ public extension NSImage {
 				
 				// Draw and shift
 				self.drawAtPoint(destRect.origin, fromRect: sourceRect, operation: .CompositeSourceOver, fraction: 1.0)
-				destRect.origin.x += destRect.size.width
+				destRect.origin.x += destRect.width
 			}
 			
 			destRect.origin.y += destRect.size.height

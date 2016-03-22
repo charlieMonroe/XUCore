@@ -16,8 +16,8 @@ public extension NSTextField {
 	/// origin.
 	public func sizeToFitKeepingWidth(resizeDownwards: Bool) -> CGRect {
 		let textFrame = CGRectInset(self.bounds, kBorderWidth, kBorderWidth)
-		let textHeight = self.stringValue.heightForWidth(CGRectGetWidth(textFrame), font: self.font)
-		let deltaHeight = CGRectGetHeight(textFrame) - textHeight
+		let textHeight = self.stringValue.heightForWidth(textFrame.width, font: self.font)
+		let deltaHeight = textFrame.height - textHeight
 		
 		var myFrame = self.frame
 		myFrame.size.height -= deltaHeight

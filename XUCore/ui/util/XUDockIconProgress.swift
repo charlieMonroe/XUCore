@@ -40,7 +40,7 @@ public class XUDockIconProgress: NSObject {
 		bezierPath.fill()
 		
 		bounds = CGRectInset(bounds, 2.0, 2.0)
-		bounds.size.width = bounds.size.width * CGFloat(progress)
+		bounds.width = bounds.width * CGFloat(progress)
 		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.size.height / 2.0, yRadius: bounds.size.height / 2.0)
 		NSColor.whiteColor().set()
 		bezierPath.fill()
