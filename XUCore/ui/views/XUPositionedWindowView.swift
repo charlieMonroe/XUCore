@@ -88,8 +88,8 @@ public class XUPositionedWindowView: NSView {
 public class XUTopCenterWindowView: XUPositionedWindowView {
 
 	public override func frameForWindowBounds(bounds: CGRect, andRealFrame realFrame: CGRect) -> CGRect {
-		var retRect = CGRectMake((bounds.width - realFrame.width) / 2.0, bounds.height - realFrame.height, realFrame.width, realFrame.height)
-		retRect = CGRectIntegral(retRect)
+		var retRect = CGRect(x: (bounds.width - realFrame.width) / 2.0, y: bounds.height - realFrame.height, width: realFrame.width, height: realFrame.height)
+		retRect = retRect.integral
 		return retRect
 	}
 }
@@ -97,7 +97,7 @@ public class XUTopCenterWindowView: XUPositionedWindowView {
 public class XUTopLeftWindowCornerView: XUPositionedWindowView {
 
 	public override func frameForWindowBounds(bounds: CGRect, andRealFrame realFrame: CGRect) -> CGRect {
-		let retRect = CGRectMake(0.0, bounds.height - realFrame.height, realFrame.width, realFrame.height)
+		let retRect = CGRect(x: 0.0, y: bounds.height - realFrame.height, width: realFrame.width, height: realFrame.height)
 		return retRect
 	}
 }
@@ -105,11 +105,11 @@ public class XUTopLeftWindowCornerView: XUPositionedWindowView {
 public class XUTopRightWindowCornerView: XUPositionedWindowView {
 
 	public override func frameForWindowBounds(bounds: CGRect, andRealFrame realFrame: CGRect) -> CGRect {
-		var retRect = CGRectMake(bounds.width - realFrame.width - 5.0, bounds.height - realFrame.height, realFrame.width, realFrame.height)
+		var retRect = CGRect(x: bounds.width - realFrame.width - 5.0, y: bounds.height - realFrame.height, width: realFrame.width, height: realFrame.height)
 
-		retRect = CGRectIntegral(retRect)
+		retRect = retRect.integral
 
-		--retRect.minY
+		retRect.origin.y -= 1.0
 
 		return retRect
 	}

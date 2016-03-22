@@ -46,14 +46,14 @@ import Foundation
 		let bounds = self.bounds
 		if bounds.width > bounds.height {
 			if self.alternateAlignment {
-				UIRectFill(CGRectMake(0.0, bounds.height - self.lineWidth, bounds.width, self.lineWidth))
+				UIRectFill(CGRect(x: 0.0, y: bounds.height - self.lineWidth, width: bounds.width, height: self.lineWidth))
 			} else {
 				UIRectFill(CGRect(x: 0.0, y: 0.0, width: bounds.width, height: self.lineWidth))
 			}
 		} else {
 			// Horizontal line
 			if self.alternateAlignment {
-				UIRectFill(CGRectMake(bounds.width - self.lineWidth, 0.0, self.lineWidth, bounds.height))
+				UIRectFill(CGRect(x: bounds.width - self.lineWidth, y: 0.0, width: self.lineWidth, height: bounds.height))
 			} else {
 				UIRectFill(CGRect(x: 0.0, y: 0.0, width: self.lineWidth, height: bounds.height))
 			}

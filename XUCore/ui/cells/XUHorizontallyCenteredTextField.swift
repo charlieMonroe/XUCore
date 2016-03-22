@@ -17,7 +17,7 @@ public class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
 		let attributes = [ NSFontAttributeName: self.font!, NSForegroundColorAttributeName: color ]
 		let textSize = self.stringValue.sizeWithAttributes(attributes)
 		
-		self.stringValue.drawAtPoint(CGPointMake(cellFrame.minX, cellFrame.minY + ((cellFrame.height - textSize.height) / 2.0)), withAttributes: attributes)
+		self.stringValue.drawAtPoint(CGPoint(x: cellFrame.minX, y: cellFrame.minY + ((cellFrame.height - textSize.height) / 2.0)), withAttributes: attributes)
 	}
 	
 }

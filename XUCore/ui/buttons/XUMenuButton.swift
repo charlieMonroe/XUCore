@@ -17,7 +17,7 @@ public class XUMenuButton: NSButton {
 			return
 		}
 		
-		menu.popUpMenuPositioningItem(nil, atLocation: CGPointMake(0.0, self.bounds.height), inView: self)
+		menu.popUpMenuPositioningItem(nil, atLocation: CGPoint(x: 0.0, y: self.bounds.height), inView: self)
 	}
 	
 	public override func awakeFromNib() {

@@ -34,13 +34,13 @@ public class XUDockIconProgress: NSObject {
 		NSColor.whiteColor().set()
 		bezierPath.fill()
 		
-		bounds = CGRectInset(bounds, 2.0, 2.0)
+		bounds = bounds.insetBy(dx: 2.0, dy: 2.0)
 		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
 		NSColor.blackColor().set()
 		bezierPath.fill()
 		
-		bounds = CGRectInset(bounds, 2.0, 2.0)
-		bounds.width = bounds.width * CGFloat(progress)
+		bounds = bounds.insetBy(dx: 2.0, dy: 2.0)
+		bounds.size.width = bounds.width * CGFloat(progress)
 		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
 		NSColor.whiteColor().set()
 		bezierPath.fill()

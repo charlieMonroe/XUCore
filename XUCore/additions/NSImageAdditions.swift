@@ -37,7 +37,7 @@ public extension NSImage {
 		let width = (s.width >= s.height) ? newSize.width : (newSize.height / s.height) * s.width
 		
 		
-		let fromRect = CGRectMake((newSize.width - width) / 2.0, (newSize.height - height) / 2.0, width, height)
+		let fromRect = CGRect(x: (newSize.width - width) / 2.0, y: (newSize.height - height) / 2.0, width: width, height: height)
 		self.drawInRect(fromRect, fromRect: CGRect(x: 0.0, y: 0.0, width: s.width, height: s.height), operation: .CompositeCopy, fraction: 1.0)
 		
 		icon.unlockFocus()
@@ -64,7 +64,7 @@ public extension NSImage {
 			return nil
 		}
 		
-		let image = NSImage(size: CGSizeMake(rep.size.width, rep.size.height))
+		let image = NSImage(size: CGSize(width: rep.size.width, height: rep.size.height))
 		image.addRepresentation(bwRep)
 		return image
 	}
@@ -85,7 +85,7 @@ public extension NSImage {
 		let width = CGImageGetWidth(CGImage);
 		let height = CGImageGetHeight(CGImage);
 		
-		self.init(size: CGSizeMake(CGFloat(width), CGFloat(height)))
+		self.init(size: CGSize(width: CGFloat(width), height: CGFloat(height)))
 		
 		if asBitmapImageRep {
 			let hasAlpha = CGImageGetAlphaInfo(CGImage) == .None ? false : true
@@ -101,14 +101,14 @@ public extension NSImage {
 			NSGraphicsContext.saveGraphicsState()
 			NSGraphicsContext.setCurrentContext(bitmapContext)
 			
-			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRectMake(0.0, 0.0, CGFloat(width), CGFloat(height)), CGImage)
+			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)), CGImage)
 			
 			NSGraphicsContext.restoreGraphicsState()
 			
 			self.addRepresentation(bitmapImageRep)
 		}else{
 			self.lockFocus()
-			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRectMake(0.0, 0.0, CGFloat(width), CGFloat(height)), CGImage)
+			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)), CGImage)
 			self.unlockFocus()
 		}
 	}
@@ -217,19 +217,19 @@ public extension NSImage {
 				
 				// Crop as necessary
 				if destRect.maxX > right {
-					sourceRect.width -= destRect.maxX - right
+					sourceRect.size.width -= destRect.maxX - right
 				}
 				
 				if destRect.maxY > top {
-					sourceRect.height -= destRect.maxY - top
+					sourceRect.size.height -= destRect.maxY - top
 				}
 				
 				// Draw and shift
 				self.drawAtPoint(destRect.origin, fromRect: sourceRect, operation: .CompositeSourceOver, fraction: 1.0)
-				destRect.minX += destRect.width
+				destRect.origin.x += destRect.width
 			}
 			
-			destRect.minY += destRect.height
+			destRect.origin.y += destRect.height
 		}
 	}
 	

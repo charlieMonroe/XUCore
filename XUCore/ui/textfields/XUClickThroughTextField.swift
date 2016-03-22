@@ -14,7 +14,7 @@ public class XUClickThroughTextField: NSTextField {
 	public override var mouseDownCanMoveWindow: Bool {
 		return false
 	}
-	public override func hitTest(aPoint: NSPoint) -> NSView? {
+	public override func hitTest(aPoint: CGPoint) -> NSView? {
 		return nil
 	}
 	

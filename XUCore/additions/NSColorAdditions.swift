@@ -16,7 +16,7 @@ private class _XU_NSColorDraggingSource: NSObject, NSDraggingSource {
 	@objc private func draggingSession(session: NSDraggingSession, sourceOperationMaskForDraggingContext context: NSDraggingContext) -> NSDragOperation {
 		return .Copy
 	}
-	@objc private func draggingSession(session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, operation: NSDragOperation) {
+	@objc private func draggingSession(session: NSDraggingSession, endedAtPoint screenPoint: CGPoint, operation: NSDragOperation) {
 		
 	}
 	
@@ -28,7 +28,7 @@ private var _draggingSession: NSDraggingSession?
 extension NSColor: NSPasteboardItemDataProvider {
 	
 	private var _imagePreview: NSImage {
-		let image = NSImage(size: CGSizeMake(kXUColorSampleItemWidth, kXUColorSampleItemHeight))
+		let image = NSImage(size: CGSize(width: kXUColorSampleItemWidth, height: kXUColorSampleItemHeight))
 		image.backgroundColor = NSColor.clearColor()
 		image.lockFocus()
 		
@@ -45,7 +45,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 	/// Creates a new dragging session with the color. The view is used as the
 	/// source of the drag.
 	public func dragWithEvent(event: NSEvent, sourceView view: NSView) {
-		let image = NSImage(size: CGSizeMake(12.0, 12.0))
+		let image = NSImage(size: CGSize(width: 12.0, height: 12.0))
 		image.lockFocus()
 		
 		// Draw color swatch

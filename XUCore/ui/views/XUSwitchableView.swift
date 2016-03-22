@@ -114,14 +114,14 @@ public class XUSwitchableView: NSView {
 			// Adjust the window - this is based on deltas
 			var newFrame = self.window!.frame
 			var delta = (newViewSize.width - oldViewSize.width)
-			newFrame.width += delta
-			newFrame.minX -= delta / 2.0
+			newFrame.size.width += delta
+			newFrame.origin.x -= delta / 2.0
 			
 			// Keeping it centered
 			// Height delta
 			delta = (newViewSize.height - oldViewSize.height)
-			newFrame.height += delta
-			newFrame.minY -= delta
+			newFrame.size.height += delta
+			newFrame.origin.y -= delta
 			
 			// Keeping the top aligned
 			self.window!.animator().setFrame(newFrame, display: true)
@@ -138,19 +138,19 @@ public class XUSwitchableView: NSView {
 		switch direction {
 			case .LeftToRight:
 				// From left to right
-				newViewRect = CGRectMake(oldViewSize.width, oldViewSize.height - newViewSize.height, targetSize.width, targetSize.height)
-				toBeMoved = CGRectMake(-oldViewSize.width, 0, oldViewSize.width, oldViewSize.height)
+				newViewRect = CGRect(x: oldViewSize.width, y: oldViewSize.height - newViewSize.height, width: targetSize.width, height: targetSize.height)
+				toBeMoved = CGRect(x: -oldViewSize.width, y: 0, width: oldViewSize.width, height: oldViewSize.height)
 			case .RightToLeft:
 				// From right to left
-				newViewRect = CGRectMake(-newViewSize.width, oldViewSize.height - newViewSize.height, newViewSize.width, newViewSize.height)
+				newViewRect = CGRect(x: -newViewSize.width, y: oldViewSize.height - newViewSize.height, width: newViewSize.width, height: newViewSize.height)
 				toBeMoved = CGRect(x: oldViewSize.width, y: 0, width: oldViewSize.width, height: oldViewSize.height)
 			case .TopToBottom:
 				// From up to down
 				newViewRect = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
-				toBeMoved = CGRectMake(0, -r.height, r.width, r.height)
+				toBeMoved = CGRect(x: 0, y: -r.height, width: r.width, height: r.height)
 			case .BottomToTop:
 				// FCTop - from down to up
-				newViewRect = CGRectMake(0, -r.height, r.width, r.height)
+				newViewRect = CGRect(x: 0, y: -r.height, width: r.width, height: r.height)
 				toBeMoved = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
 		}
 		
