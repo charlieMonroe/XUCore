@@ -205,14 +205,14 @@ public extension NSImage {
 	/// Draws the image as tile in specified rect.
 	public func tileInRect(rect: CGRect) {
 		let size = self.size
-		var destRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: size.width, height: size.height)
+		var destRect = CGRect(x: rect.minX, y: rect.origin.y, width: size.width, height: size.height)
 		let top = rect.origin.y + rect.height
-		let right = rect.origin.x + rect.width
+		let right = rect.minX + rect.width
 		
 		// Tile vertically
 		while destRect.origin.y < top {
 			// Tile horizontally
-			while destRect.origin.x < right {
+			while destRect.minX < right {
 				var sourceRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 				
 				// Crop as necessary
@@ -226,7 +226,7 @@ public extension NSImage {
 				
 				// Draw and shift
 				self.drawAtPoint(destRect.origin, fromRect: sourceRect, operation: .CompositeSourceOver, fraction: 1.0)
-				destRect.origin.x += destRect.width
+				destRect.minX += destRect.width
 			}
 			
 			destRect.origin.y += destRect.height

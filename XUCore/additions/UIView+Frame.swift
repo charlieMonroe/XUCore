@@ -53,7 +53,7 @@ public extension UIView {
 	/// X of the frame.
 	public var x: CGFloat {
 		get {
-			return self.frame.origin.x
+			return self.frame.minX
 		}
 		set {
 			self.frame.origin.x = newValue

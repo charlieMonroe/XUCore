@@ -115,7 +115,7 @@ public class XUSwitchableView: NSView {
 			var newFrame = self.window!.frame
 			var delta = (newViewSize.width - oldViewSize.width)
 			newFrame.width += delta
-			newFrame.origin.x -= delta / 2.0
+			newFrame.minX -= delta / 2.0
 			
 			// Keeping it centered
 			// Height delta

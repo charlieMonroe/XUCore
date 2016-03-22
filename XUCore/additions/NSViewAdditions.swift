@@ -31,7 +31,7 @@ public extension NSView {
 		
 		var rect = self.convertRect(frame, toView: nil)
 		let windowFrame = self.window!.frame
-		rect.origin.x += windowFrame.origin.x
+		rect.minX += windowFrame.minX
 		rect.origin.y += windowFrame.origin.y
 		return rect
 	}
@@ -42,7 +42,7 @@ public extension NSView {
 		
 		var localPoint = self.convertPoint(point, toView: nil)
 		let windowFrame = self.window!.frame
-		localPoint.x += windowFrame.origin.x
+		localPoint.x += windowFrame.minX
 		localPoint.y += windowFrame.origin.y
 		return localPoint
 	}

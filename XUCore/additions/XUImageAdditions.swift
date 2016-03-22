@@ -41,7 +41,7 @@ public extension XUImage {
 			// Taller
 			targetRect.size.height = rect.height
 			targetRect.size.width = mySize.width * (rect.height / mySize.height)
-			targetRect.origin.x = rect.origin.x + (rect.width - targetRect.width) / 2.0
+			targetRect.origin.x = rect.minX + (rect.width - targetRect.width) / 2.0
 		}
 		
 		#if os(iOS)
