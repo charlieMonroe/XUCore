@@ -72,7 +72,7 @@ public extension NSImage {
 	/// Draws the image at point from rect. If respectFlipped is true, the current
 	/// context's flip is respected.
 	public func drawAtPoint(point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
-		var rect: CGRect = CGRectZero
+		var rect: CGRect = CGRect()
 		rect.origin = point
 		rect.size = self.size
 		

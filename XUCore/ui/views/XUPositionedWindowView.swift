@@ -42,7 +42,7 @@ public class XUPositionedWindowView: NSView {
 			superview?.addSubview(self)
 		}
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_updateFramePosition", name: NSWindowDidResizeNotification, object: connectedToWindow)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUPositionedWindowView._updateFramePosition), name: NSWindowDidResizeNotification, object: connectedToWindow)
 
 		self.postsFrameChangedNotifications = false
 

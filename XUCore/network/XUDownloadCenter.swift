@@ -100,7 +100,7 @@ public class XUDownloadCenter {
 	}
 	
 	
-	private func _logMethod(method: String = __FUNCTION__) -> String {
+	private func _logMethod(method: String = #function) -> String {
 		return  "-[\(self)[\(self.owner.name)] \(method)]"
 	}
 	
@@ -249,14 +249,14 @@ public class XUDownloadCenter {
 			if request.HTTPBody != nil && request.HTTPBody!.length > 0 {
 				logString += "\nHTTP Body: \(NSString(data: request.HTTPBody) ?? "")"
 			}
-			XULog("-[\(self)[\(self.owner.name) \(__FUNCTION__)] - will be downloading URL \(URL!):\n\(logString)")
+			XULog("-[\(self)[\(self.owner.name) \(#function)] - will be downloading URL \(URL!):\n\(logString)")
 		}
 		
 		do {
 			var response: NSURLResponse? = nil
 			let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
 			
-			XULog("-[\(self)[\(self.owner.name) \(__FUNCTION__)] - downloaded web site source from \(URL!), response: \(response)")
+			XULog("-[\(self)[\(self.owner.name) \(#function)] - downloaded web site source from \(URL!), response: \(response)")
 			
 			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
 			
@@ -267,7 +267,7 @@ public class XUDownloadCenter {
 			/* Fallback */
 			return NSString(data: data) as? String
 		} catch let error {
-			XULog("-[\(self)[\(self.owner.name) \(__FUNCTION__)] - Failed to load URL connection to URL \(URL!) - \(error)")
+			XULog("-[\(self)[\(self.owner.name) \(#function)] - Failed to load URL connection to URL \(URL!) - \(error)")
 			return nil
 		}
 	}
@@ -419,18 +419,18 @@ public class XUDownloadCenter {
 			_ = try NSURLConnection.sendSynchronousRequest(req, returningResponse: &response)
 			
 			guard let HTTPResponse = response as? NSHTTPURLResponse else {
-				XULog("-[\(self)[\(self.owner.name)] \(__FUNCTION__)] - invalid response (non-HTTP): \(response)")
+				XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response)")
 				return nil
 			}
 			
-			XULog("-[\(self)[\(self.owner.name)] \(__FUNCTION__)] - 'HEAD'ing \(URL!), response: \(HTTPResponse) \(HTTPResponse.allHeaderFields)")
+			XULog("-[\(self)[\(self.owner.name)] \(#function)] - 'HEAD'ing \(URL!), response: \(HTTPResponse) \(HTTPResponse.allHeaderFields)")
 			
 			self._importCookiesFromURLResponse(HTTPResponse)
 			
 			self.lastHTTPURLResponse = HTTPResponse
 			return HTTPResponse
 		}catch let error {
-			XULog("-[\(self)[\(self.owner.name)] \(__FUNCTION__)] - Failed to send HEAD to URL \(URL!) - \(error)")
+			XULog("-[\(self)[\(self.owner.name)] \(#function)] - Failed to send HEAD to URL \(URL!) - \(error)")
 			return nil
 		}
 	}

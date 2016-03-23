@@ -22,7 +22,7 @@ public class XUMenuButton: NSButton {
 	
 	public override func awakeFromNib() {
 		self.target = self
-		self.action = "_displayMenu"
+		self.action = #selector(XUMenuButton._displayMenu)
 		
 		self.menu?.localizeMenu()
 		

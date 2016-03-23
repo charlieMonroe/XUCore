@@ -12,7 +12,7 @@ public extension UIImage {
 	
 	/// Applies color tint to the image.
 	public func imageByApplyingTintColor(color: UIColor) -> UIImage {
-		var imageRect = CGRectZero
+		var imageRect = CGRect()
 		imageRect.size = self.size
 		
 		UIGraphicsBeginImageContextWithOptions(imageRect.size, false, self.scale)
@@ -37,7 +37,7 @@ public extension UIImage {
 			return self
 		}
 		
-		var newSize = CGSizeZero
+		var newSize = CGSize()
 		if size.width > size.height {
 			var width = targetSize.width
 			var height = size.height * (targetSize.width / size.width)

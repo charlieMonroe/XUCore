@@ -26,7 +26,7 @@ public extension NSView {
 	}
 	public func screenCoordinatesOfFrame(frame: CGRect) -> CGRect {
 		if self.window == nil {
-			return CGRectZero
+			return CGRect()
 		}
 		
 		var rect = self.convertRect(frame, toView: nil)

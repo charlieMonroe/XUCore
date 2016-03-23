@@ -13,8 +13,8 @@ import Foundation
 public class XUBorderlessWindow: NSWindow {
 	
 	private func _innerInit() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateBackground", name: NSWindowDidResizeNotification, object: self)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateBackground", name: NSWindowDidMoveNotification, object: self)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindowDidResizeNotification, object: self)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindowDidMoveNotification, object: self)
 		
 		self.collectionBehavior = .CanJoinAllSpaces
 		self.hasShadow = true
@@ -43,7 +43,7 @@ public class XUBorderlessWindow: NSWindow {
 			frame.size.height = 200.0
 		}
 		
-		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, `defer`: flag)
+		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: flag)
 		
 		self._innerInit()
 	}
@@ -63,7 +63,7 @@ public class XUBorderlessWindow: NSWindow {
 			return
 		}
 		
-		if windowSize == CGSizeZero {
+		if windowSize == CGSize() {
 			// Zero size -> return;
 			return
 		}

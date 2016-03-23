@@ -116,7 +116,7 @@ public class XUTrial: NSObject {
 		self.innerInit()
 		
 		if NSApp == nil {
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:", name: NSApplicationDidFinishLaunchingNotification, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSApplicationDidFinishLaunchingNotification, object: nil)
 		}else{
 			self.applicationDidFinishLaunching(NSNotification(name: NSApplicationDidFinishLaunchingNotification, object: NSApp))
 		}
@@ -140,7 +140,7 @@ public class XUTrial: NSObject {
 	public func noInternetConnectionDetected() {
 		if NSApp == nil {
 			/// Schedule it for later
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: "_warnAboutNoInternetConnection", name: NSApplicationDidFinishLaunchingNotification, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUTrial._warnAboutNoInternetConnection), name: NSApplicationDidFinishLaunchingNotification, object: nil)
 		}else{
 			self._warnAboutNoInternetConnection()
 		}
@@ -179,7 +179,7 @@ public class XUTrial: NSObject {
 	/// server and hence only one-hour trial is provided. By default, schedules
 	/// a timer that is fired after 1 hour and calls trialExpiredWithTrialID(nil).
 	public func startShortTrial() {
-		NSTimer.scheduledTimerWithTimeInterval(3600.0, target: self, selector: "_trialExpired", userInfo: nil, repeats: false)
+		NSTimer.scheduledTimerWithTimeInterval(3600.0, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
 	}
 	
 	/// Each subclass must override this. The message returns should include
@@ -290,7 +290,7 @@ public class XUTimeBasedTrial: XUTrial {
 			if self._registerWithTrialServer() {
 				_secondsLeft = NSTimeInterval(XUApplicationSetup.sharedSetup.timeBasedTrialDays) * (24.0 * 3600.0)
 				_wasFirstRun = true
-				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: "showFirstRunAlert", userInfo: nil, repeats: false)
+				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial.showFirstRunAlert), userInfo: nil, repeats: false)
 			}else{
 				self.noInternetConnectionDetected()
 			}
@@ -317,7 +317,7 @@ public class XUTimeBasedTrial: XUTrial {
 		_secondsLeft = NSTimeInterval(XUApplicationSetup.sharedSetup.timeBasedTrialDays) * (24.0 * 3600.0) - abs(difference)
 		
 		if _secondsLeft > 0.0 {
-			NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: "_trialExpired", userInfo: nil, repeats: false)
+			NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
 		}else{
 			XUForceLog("trial expired, session identifier \(self._sessionIdentifier), trial ID \(trialID)")
 			self.trialExpiredWithTrialID(trialID)

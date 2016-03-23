@@ -140,7 +140,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 				let notificationName = NSApplicationDidFinishLaunchingNotification
 			#endif
 
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: "_innerInit", name: notificationName, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUInAppPurchaseManager._innerInit), name: notificationName, object: nil)
 		} else {
 			self._innerInit()
 		}
@@ -150,8 +150,8 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		#else
 			let notificationName = NSApplicationWillTerminateNotification
 		#endif
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "save", name: notificationName, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_removeAsObserver:", name: notificationName, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUInAppPurchaseManager.save), name: notificationName, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUInAppPurchaseManager._removeAsObserver(_:)), name: notificationName, object: nil)
 	}
 	
 	public func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {

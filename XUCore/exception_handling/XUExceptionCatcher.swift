@@ -65,7 +65,7 @@ public class XUExceptionCatcher: NSObject {
 		// by checking NSApp for nil.
 		if NSApp == nil {
 			// App not yet fully launched, defer the handler registration.
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: "_registerExceptionHandler", name: NSApplicationDidFinishLaunchingNotification, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUExceptionCatcher._registerExceptionHandler), name: NSApplicationDidFinishLaunchingNotification, object: nil)
 		}else{
 			// The app is fully launched.
 			self._registerExceptionHandler()

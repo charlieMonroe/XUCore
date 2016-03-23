@@ -52,7 +52,7 @@ public extension NSWindow {
 		view.cacheDisplayInRect(view.bounds, toBitmapImageRep: imageRep)
 		image.addRepresentation(imageRep)
 		
-		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: NSBorderlessWindowMask, backing: .Buffered, `defer`: false)
+		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: NSBorderlessWindowMask, backing: .Buffered, defer: false)
 		zoomWindow.backgroundColor = NSColor(deviceWhite: 0.0, alpha: 0.0)
 		zoomWindow.hasShadow = self.hasShadow
 		zoomWindow.level = Int(CGWindowLevelForKey(.ModalPanelWindowLevelKey))

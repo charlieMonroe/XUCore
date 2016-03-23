@@ -62,13 +62,13 @@ public class XUSwitchableView: NSView {
 		super.init(frame: frame)
 		
 		self.postsFrameChangedNotifications = true
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_frameChanged:", name: NSViewFrameDidChangeNotification, object: self)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSViewFrameDidChangeNotification, object: self)
 	}
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
 		self.postsFrameChangedNotifications = true
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_frameChanged:", name: NSViewFrameDidChangeNotification, object: self)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSViewFrameDidChangeNotification, object: self)
 	}
 	
 	public override var mouseDownCanMoveWindow: Bool {
@@ -172,7 +172,7 @@ public class XUSwitchableView: NSView {
 		_otherView = self.currentView
 		self.currentView = view
 		
-		NSTimer.scheduledTimerWithTimeInterval(NSAnimationContext.currentContext().duration, target: self, selector: "_unsetAnimation:", userInfo: nil, repeats: false)
+		NSTimer.scheduledTimerWithTimeInterval(NSAnimationContext.currentContext().duration, target: self, selector: #selector(XUSwitchableView._unsetAnimation(_:)), userInfo: nil, repeats: false)
 	}
     
 }

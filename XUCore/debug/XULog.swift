@@ -157,7 +157,7 @@ public func XULogFilePath() -> String {
 
 
 /// Forces logging a string by temporarily enabling debug logging.
-public func XUForceLog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func XUForceLog(@autoclosure string: () -> String, method: String = #function, file: String = #file, line: Int = #line) {
 	let originalPreferences = _cachedPreferences
 	_cachedPreferences = true
 	XULog(string, method: method, file: file, line: line)
@@ -165,7 +165,7 @@ public func XUForceLog(@autoclosure string: () -> String, method: String = __FUN
 }
 
 /// Logs a message to the console.
-public func XULog(@autoclosure string: () -> String, method: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+public func XULog(@autoclosure string: () -> String, method: String = #function, file: String = #file, line: Int = #line) {
 	if !_didCachePreferences {
 		_XULogInitializer()
 	}

@@ -100,7 +100,7 @@ public class XUBetaExpirationHandler: NSObject {
 				// No return
 			}
 			
-			NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "_handleExpiration", userInfo: nil, repeats: false)
+			NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: #selector(XUBetaExpirationHandler._handleExpiration), userInfo: nil, repeats: false)
 			return
 		}
 		

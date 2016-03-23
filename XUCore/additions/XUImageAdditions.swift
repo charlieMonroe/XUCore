@@ -47,7 +47,7 @@ public extension XUImage {
 		#if os(iOS)
 			image.drawInRect(targetRect, blendMode: .Normal, alpha: fraction)
 		#else
-			image.drawInRect(targetRect, fromRect: CGRectZero, operation: .CompositeSourceOver, fraction: fraction, respectFlipped: true, hints: nil)
+			image.drawInRect(targetRect, fromRect: CGRect(), operation: .CompositeSourceOver, fraction: fraction, respectFlipped: true, hints: nil)
 		#endif
 	}
 	
@@ -59,7 +59,7 @@ public extension XUImage {
 			return mySize
 		}
 		
-		var resultSize = CGSizeZero
+		var resultSize = CGSize()
 		if mySize.width / mySize.height > size.width / size.height {
 			// Wider
 			resultSize.width = size.width

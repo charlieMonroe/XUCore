@@ -83,7 +83,7 @@ public class XUURLHandlingCenter: NSObject {
 	private override init() {
 		super.init()
 		
-		NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector: "handleURLEvent:withReplyEvent:", forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
+		NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector: #selector(XUURLHandlingCenter.handleURLEvent(_:withReplyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
 	}
 	
 }

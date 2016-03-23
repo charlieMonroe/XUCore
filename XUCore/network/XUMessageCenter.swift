@@ -303,7 +303,7 @@ public class XUMessageCenter: NSObject {
 			let notificationName = NSApplicationDidFinishLaunchingNotification
 		#endif
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "_launchMessageCenter", name: notificationName, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
 		
 		// Repeat this every hour.
 		NSTimer.scheduledTimerWithTimeInterval(3600.0, repeats: true) { (_) -> Void in
