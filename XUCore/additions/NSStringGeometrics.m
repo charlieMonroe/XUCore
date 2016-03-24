@@ -109,6 +109,10 @@ int gNSStringGeometricsTypesetterBehavior = NSTypesetterLatestBehavior ;
 	CFArrayRef lineArray = CTFrameGetLines(frame);
 	CFIndex lineCount = CFArrayGetCount(lineArray);
 	if (lineCount == 0){
+		CFRelease(path);
+		CFRelease(framesetter);
+		CFRelease(frame);
+
 		return 0.0;
 	}
 	
