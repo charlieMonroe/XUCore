@@ -36,6 +36,23 @@ public extension UIColor {
 		return maskedImage
 	}
 	
+	/// Initializes self from a hexString color.
+	public convenience init?(hexString originalHexString: String) {
+		var hexString = originalHexString
+		if hexString.characters.count == 6 || hexString.characters.count == 7 {
+			hexString = hexString.stringByDeletingPrefix("#")
+		} else {
+			return nil // Wrong fromat
+		}
+		
+		let startIndex = hexString.startIndex
+		let redByte = hexString.substringWithRange(startIndex ..< startIndex.advancedBy(2)).hexValue
+		let greenByte = hexString.substringWithRange(startIndex.advancedBy(2) ..< startIndex.advancedBy(4)).hexValue
+		let blueByte = hexString.substringWithRange(startIndex.advancedBy(4) ..< startIndex.advancedBy(6)).hexValue
+		
+		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: 1.0)
+	}
+	
 }
 
 
