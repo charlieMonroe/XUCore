@@ -226,6 +226,12 @@ public extension NSDate {
 		return String(format: "%02i.%02i.%04i", components.day, components.month, components.year)
 	}
 	
+	/// Returns a date that is within the same day as self, but has 0 hours,
+	/// 0 minutes and 0 seconds.
+	public var startOfDay: NSDate {
+		return NSDate.dateWithDay(self.day, month: self.month, andYear: self.year) ?? self
+	}
+	
 	public var year: Int {
 		let calendar = NSCalendar.currentCalendar()
 		let components = calendar.components(.Year, fromDate: self)
