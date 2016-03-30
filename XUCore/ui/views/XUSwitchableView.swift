@@ -71,6 +71,9 @@ public class XUSwitchableView: NSView {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSViewFrameDidChangeNotification, object: self)
 	}
 	
+	public override var flipped: Bool {
+		return true
+	}
 	public override var mouseDownCanMoveWindow: Bool {
 		return true
 	}
@@ -104,6 +107,7 @@ public class XUSwitchableView: NSView {
 			return
 		}
 		
+		// NSAnimationContext.currentContext().duration = 3.0
 		NSAnimationContext.beginGrouping()
 		
 		// [[NSAnimationContext currentContext] setDuration:3.0];
@@ -138,12 +142,12 @@ public class XUSwitchableView: NSView {
 		switch direction {
 			case .LeftToRight:
 				// From left to right
-				newViewRect = CGRect(x: oldViewSize.width, y: oldViewSize.height - newViewSize.height, width: targetSize.width, height: targetSize.height)
-				toBeMoved = CGRect(x: -oldViewSize.width, y: 0, width: oldViewSize.width, height: oldViewSize.height)
+				newViewRect = CGRect(x: oldViewSize.width, y: 0.0, width: targetSize.width, height: targetSize.height)
+				toBeMoved = CGRect(x: -oldViewSize.width, y: 0.0, width: oldViewSize.width, height: oldViewSize.height)
 			case .RightToLeft:
 				// From right to left
-				newViewRect = CGRect(x: -newViewSize.width, y: oldViewSize.height - newViewSize.height, width: newViewSize.width, height: newViewSize.height)
-				toBeMoved = CGRect(x: oldViewSize.width, y: 0, width: oldViewSize.width, height: oldViewSize.height)
+				newViewRect = CGRect(x: -newViewSize.width, y: 0.0, width: newViewSize.width, height: newViewSize.height)
+				toBeMoved = CGRect(x: oldViewSize.width, y: 0.0, width: oldViewSize.width, height: oldViewSize.height)
 			case .TopToBottom:
 				// From up to down
 				newViewRect = CGRect(x: 0, y: r.height, width: r.width, height: r.height)

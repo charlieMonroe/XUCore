@@ -12,12 +12,6 @@ public class XUPositionedWindowView: NSView {
 
 	@IBOutlet weak var connectedToWindow: NSWindow!
 
-	@objc private func _updateFramePosition() {
-		let rect = self.frame
-		self.frame = rect
-		self.autoresizingMask = .ViewMinXMargin
-	}
-
 	public override func awakeFromNib() {
 		if self.shouldBeConnectedOnAwakeFromNib {
 			var superview = connectedToWindow.contentView?.superview
@@ -42,11 +36,11 @@ public class XUPositionedWindowView: NSView {
 			superview?.addSubview(self)
 		}
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUPositionedWindowView._updateFramePosition), name: NSWindowDidResizeNotification, object: connectedToWindow)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUPositionedWindowView.updateFramePosition), name: NSWindowDidResizeNotification, object: connectedToWindow)
 
 		self.postsFrameChangedNotifications = false
 
-		self._updateFramePosition()
+		self.updateFramePosition()
 		self.localizeView()
 	}
 
@@ -82,6 +76,13 @@ public class XUPositionedWindowView: NSView {
 	/// Override this to specify position of the view in window
 	public func frameForWindowBounds(bounds: CGRect, andRealFrame realFrame: CGRect) -> CGRect {
 		XUThrowAbstractException()
+	}
+	
+	/// Updates frame position. Shouldn't be invoked manually.
+	@objc public func updateFramePosition() {
+		let rect = self.frame
+		self.frame = rect
+		self.autoresizingMask = .ViewMinXMargin
 	}
 }
 
