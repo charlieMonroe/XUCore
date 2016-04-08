@@ -79,7 +79,7 @@ public extension String {
 			}
 			
 			if URLString.rangeOfString("&amp;") != nil {
-				URLString = URLString.HTMLUnescapedString()
+				URLString = URLString.HTMLUnescapedString
 			}
 			
 			if let decoded = URLString.stringByRemovingPercentEncoding {
@@ -104,7 +104,7 @@ public extension String {
 			}
 			
 			if URL == nil {
-				URL = NSURL(string: URLString.HTMLUnescapedString())
+				URL = NSURL(string: URLString.HTMLUnescapedString)
 			}
 			
 			if URL == nil {

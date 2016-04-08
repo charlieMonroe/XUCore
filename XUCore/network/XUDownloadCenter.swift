@@ -247,7 +247,7 @@ public class XUDownloadCenter {
 		if XULoggingEnabled() {
 			var logString = "Method: \(request.HTTPMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
 			if request.HTTPBody != nil && request.HTTPBody!.length > 0 {
-				logString += "\nHTTP Body: \(NSString(data: request.HTTPBody) ?? "")"
+				logString += "\nHTTP Body: \(String(data: request.HTTPBody) ?? "")"
 			}
 			XULog("-[\(self)[\(self.owner.name) \(#function)] - will be downloading URL \(URL!):\n\(logString)")
 		}
@@ -265,7 +265,7 @@ public class XUDownloadCenter {
 			}
 			
 			/* Fallback */
-			return NSString(data: data) as? String
+			return String(data: data)
 		} catch let error {
 			XULog("-[\(self)[\(self.owner.name) \(#function)] - Failed to load URL connection to URL \(URL!) - \(error)")
 			return nil

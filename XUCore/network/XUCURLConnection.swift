@@ -16,7 +16,7 @@ public class XUCURLConnection: NSObject {
 	
 	/// Returns if the response is within 200-299 range.
 	public class func connectionResponseWithin200Range(data: NSData) -> Bool {
-		guard let response = NSString(data: data) else {
+		guard let response = String(data: data) else {
 			return false
 		}
 		

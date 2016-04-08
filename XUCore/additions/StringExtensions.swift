@@ -80,7 +80,45 @@ public extension String {
 	
 	/// Replaces &amp; -> & etc.
 	public var HTMLUnescapedString: String {
-		return (self as NSString).HTMLUnescapedString()
+		var string = self
+		string = string.stringByReplacingOccurrencesOfString("&nbsp;", withString: " ", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&amp;", withString: "&", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&quot;", withString: "\"", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&#x27;", withString: "'", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&#x39;", withString: "'", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&#x92;", withString: "'", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&#x96;", withString: "'", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&gt;", withString: ">", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&lt;", withString: "<", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&apos;", withString: "'", options: .LiteralSearch)
+		
+		var i = 0
+		while i < self.characters.count {
+			let c = self.characters[self.characters.startIndex.advancedBy(i)]
+			if c == Character("&") && i < self.characters.count - 1 {
+				let nextC = self.characters[self.characters.startIndex.advancedBy(i + 1)]
+				if nextC == Character("#") {
+					var length = 0
+					while i + length + 2 < self.characters.count {
+						let cc = self.characters[self.characters.startIndex.advancedBy(i + length + 2)]
+						if cc >= Character("0") && cc <= Character("9") {
+							length += 1
+							continue
+						}
+						break
+					}
+					
+					let unicodeCharCode = self.substringWithRange(self.startIndex.advancedBy(i + 2) ..< self.startIndex.advancedBy(i + length + 2))
+					let replacementChar = unicodeCharCode.integerValue
+					string = string.stringByReplacingOccurrencesOfString("&#\(unicodeCharCode);", withString: String(format: "%C", replacementChar))
+					i += 6
+					continue
+				}
+			}
+			i += 1
+		}
+		
+		return string
 	}
 	
 	/// This tries to create a string from data. First, UTF8 is tried as encoding,

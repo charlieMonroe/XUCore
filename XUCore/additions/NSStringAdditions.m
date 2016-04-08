@@ -29,82 +29,6 @@
 #endif
 
 @implementation NSString (NSStringAdditions)
-+(NSString*)estimatedTimeStringFromSeconds:(long)seconds{
-	NSString *timeString = [self timeStringFromSeconds:(NSTimeInterval)seconds];
-	if (timeString == nil){
-		// Was below zero
-		timeString = XULocalizedString(@"Finishing...");
-	}
-	return timeString;
-}
-+(NSString *)localizedTimeStringForSeconds:(NSTimeInterval)seconds{
-	NSString *hourString = @"";
-	NSString *minuteString = @"";
-	NSString *secondsString = @"";
-	
-	NSUInteger eta = seconds;
-	if (eta > 3599){
-		// i.e. at least one hour
-		NSUInteger hours = eta / 3600;
-		if (hours == 1){
-			hourString = XULocalizedString(@"1 hour");
-		}else{
-			hourString = XULocalizedFormattedString(@"%lu hours", hours);
-		}
-	}
-	
-	eta %= 3600;
-	if (eta > 60){
-		NSUInteger minutes = eta / 60;
-		if (minutes == 1){
-			minuteString = XULocalizedString(@"1 minute");
-		}else{
-			minuteString = XULocalizedFormattedString(@"%lu minutes", (unsigned long)minutes);
-		}
-	}
-	
-	eta %= 60;
-	if (eta > 0){
-		if (eta == 1){
-			secondsString = XULocalizedString(@"1 second");
-		}else{
-			secondsString = XULocalizedFormattedString(@"%lu seconds", (unsigned long)eta);
-		}
-	}
-	
-	NSString *composedString = [NSString stringWithFormat:@"%@ %@ %@", hourString, minuteString, secondsString];
-	composedString = [[composedString stringByReplacingOccurrencesOfString:@"  " withString:@" "] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	
-	return composedString;
-}
-+(NSString*)fileSizeStringFromSize:(unsigned long long)size{
-	NSString *result = [NSClassFromString(@"NSByteCountFormatter") stringFromByteCount:size countStyle:NSByteCountFormatterCountStyleFile];
-	if (result != nil){
-		return result;
-	}
-	
-	/* Likely OS X 10.7. */
-	if (size == 0){
-		return @"0 B";
-	}
-	
-	if (size < 1024){
-		return [NSString stringWithFormat:@"%i B", (int)size];
-	}
-	
-	CGFloat floatSize = (((CGFloat)size) / 1024.0);
-	if (floatSize < 1024.0){
-		return [NSString stringWithFormat:@"%03.02f kB", floatSize];
-	}
-	
-	floatSize /= 1024.0;
-	if (floatSize < 1024.0){
-		return [NSString stringWithFormat:@"%03.02f MB", floatSize];
-	}
-	
-	floatSize /= 1024.0;
-	return [NSString stringWithFormat:@"%03.02f GB", floatSize];
-}
 +(NSString *)stringWithData:(NSData *)data{
 	if (data == nil){
 		return nil;
@@ -133,40 +57,13 @@
 	}
 	return nil;
 }
-+(NSString*)timeStringFromSeconds:(NSTimeInterval)interval{
-	return [self timeStringFromSeconds:interval skipHoursWhenZero:YES];
-}
-+(NSString*)timeStringFromSeconds:(NSTimeInterval)interval skipHoursWhenZero:(BOOL)skipHours{
-	if (interval < 0) {
-		return nil;
-	}
-	
-	NSUInteger timeCp = (NSUInteger)interval;
-	
-	NSUInteger hours = 0;
-	NSUInteger minutes = 0;
-	NSUInteger seconds = 0;
-	
-	seconds = timeCp % 60;
-	timeCp -= seconds;
-	
-	minutes = (timeCp % 3600)/60;
-	timeCp -= minutes * 60;
-	
-	hours = timeCp/3600;
-	
-	if (hours == 0 && skipHours){
-		//Skip hours
-		[NSString stringWithFormat:@"%02li:%02li", (unsigned long)minutes, (unsigned long)seconds];
-	}
-	return [NSString stringWithFormat:@"%02li:%02li:%02li", (unsigned long)hours, (unsigned long)minutes, (unsigned long)seconds];
-}
 +(NSString*)UUIDString{
 	CFUUIDRef uidRef = CFUUIDCreate(NULL);
 	NSString *uid = CFBridgingRelease(CFUUIDCreateString(NULL, uidRef));
 	CFRelease(uidRef);
 	return uid;
 }
+
 -(NSComparisonResult)compareAsNumbers:(NSString *)aString{
 	return [self compare:aString options:NSNumericSearch];
 }
@@ -535,9 +432,6 @@ regexp_fail:
 }
 -(NSString*)trimmedString{
 	return [self stringByTrimmingWhitespace];
-}
--(NSString*)unescapedString{
-	return [self HTMLUnescapedString];
 }
 -(NSString *)HTMLUnescapedString{
 	NSMutableString *string = [NSMutableString stringWithString: self];

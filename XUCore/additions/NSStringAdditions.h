@@ -26,39 +26,13 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 
 @interface NSString (NSStringAdditions)
 
-/** Estimated time for string.
- *
- *  @param seconds The time in seconds.
- *  @return Time string, or "Finishing" if the time supplied is less than zero.
- */
-+(nonnull NSString *)estimatedTimeStringFromSeconds:(long)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
-
-/** Returns seconds as human-readable string. */
-+(nonnull NSString *)localizedTimeStringForSeconds:(NSTimeInterval)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
-
 /** Tries to create a string from data - it first tries UTF-8 encoding, then tries
  * every other encoding available.
  */
-+(nullable NSString *)stringWithData:(nullable NSData *)data;
-
-
-/** Converts the seconds to a time string (00:00:00 format).
- *
- *  @param seconds The time in seconds.
- *  @return Time string.
- */
-+(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
-
-/** Converts the seconds to a time string (00:00:00 format).
- *
- *  @param seconds The time in seconds.
- *  @param skipHours If the time is < 1 hour, only includes minutes and seconds.
- *  @return Time string.
- */
-+(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds skipHoursWhenZero:(BOOL)skipHours DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
++(nullable NSString *)stringWithData:(nullable NSData *)data DEPRECATED_MSG_ATTRIBUTE("Use the initializer on Swift's String.");
 
 /** Uses CFUUID. */
-+(nonnull NSString *)UUIDString;
++(nonnull NSString *)UUIDString DEPRECATED_MSG_ATTRIBUTE("Use the static variable on Swift's String.");
 
 /** Number-like comparison by calling -[self compare:aString options:NSNumericSearch] */
 -(NSComparisonResult)compareAsNumbers:(nonnull NSString *)aString;
@@ -96,16 +70,13 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 -(nonnull NSString *)HTMLEscapedString;
 
 /** Replaces &amp; -> & etc. */
--(nonnull NSString *)HTMLUnescapedString;
-
-/** Returns the string written backwards. */
--(nonnull instancetype)inverseString DEPRECATED_MSG_ATTRIBUTE("Use -reverseString");
+-(nonnull NSString *)HTMLUnescapedString DEPRECATED_ATTRIBUTE;
 
 /** Returns if the string is equal to the other string ignoring case. */
 -(BOOL)isCaseInsensitivelyEqualToString:(nonnull NSString *)string;
 
 /** returns [self isEqualToString:@""] */
--(BOOL)isEmpty;
+-(BOOL)isEmpty DEPRECATED_ATTRIBUTE;
 
 /** Replaces \r, \n, \t, \u3245, etc. */
 -(nonnull NSString *)JSDecodedString;

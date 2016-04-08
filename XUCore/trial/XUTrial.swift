@@ -422,8 +422,8 @@ public class XUItemBasedTrial: XUTrial {
 			self.saveTrialInformation()
 		}else{
 			let data = p.fileHandleForReading.availableData
-			let string = NSString(data: data, encoding: NSUTF8StringEncoding) ?? ""
-			if string.isEmpty() {
+			let string = String(data: data) ?? ""
+			if string.isEmpty {
 				self._wasFirstRun = true
 				_itemsLeft = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
 				self.saveTrialInformation()
