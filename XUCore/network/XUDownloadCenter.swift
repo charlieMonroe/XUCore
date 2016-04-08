@@ -187,7 +187,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionaryAtURL(URL: NSURL?, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> XUJSONDictionary? {
+	public func downloadJSONDictionaryAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> XUJSONDictionary? {
 		guard let obj = self.downloadJSONAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -201,7 +201,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSONAtURL(URL: NSURL?, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> AnyObject? {
+	public func downloadJSONAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> AnyObject? {
 		let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
 			request.addJSONAcceptToHeader()
 			
@@ -274,7 +274,7 @@ public class XUDownloadCenter {
 	
 	/// Does the same as the varian without the `fields` argument, but adds or
 	/// replaces some field values.
-	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL?, forceSettingFields fields: [String:String]) -> String? {
+	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL!, forceSettingFields fields: [String:String]) -> String? {
 		return self.downloadWebSiteSourceByPostingFormOnPage(source, toURL: URL, withModifier: { (inout inputFields: [String:String]) in
 			inputFields += fields
 		})
@@ -282,7 +282,7 @@ public class XUDownloadCenter {
 	
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
-	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL?, withModifier modifier: XUPOSTFieldsModifier? = nil) -> String? {
+	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL!, withModifier modifier: XUPOSTFieldsModifier? = nil) -> String? {
 		var inputFields = source.allVariablePairsForRegexString("<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairsForRegexString("<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
@@ -299,7 +299,7 @@ public class XUDownloadCenter {
 	
 	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
 	/// invoke this method that posts the specific values to URL.
-	public func downloadWebSiteSourceByPostingFormWithValues(values: [String : String], toURL URL: NSURL?) -> String? {
+	public func downloadWebSiteSourceByPostingFormWithValues(values: [String : String], toURL URL: NSURL!) -> String? {
 		return self.downloadWebSiteSourceAtURL(URL, withReferer: self.owner.refererURL?.absoluteString, asAgent: self.owner.infoPageUserAgent, withModifier: { (request) in
 			request.HTTPMethod = "POST"
 			XULog("\(self._logMethod()) - POST fields: \(values)")
@@ -311,7 +311,7 @@ public class XUDownloadCenter {
 	#if os(OSX)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocumentAtURL(URL: NSURL?, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> NSXMLDocument? {
+	public func downloadXMLDocumentAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> NSXMLDocument? {
 		guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -327,7 +327,7 @@ public class XUDownloadCenter {
 	#endif
 	
 	/// Parses the `JSONString` as JSON and attempts to cast it to XUJSONDictionary.
-	public func JSONDictionaryFromString(JSONString: String?) -> XUJSONDictionary? {
+	public func JSONDictionaryFromString(JSONString: String!) -> XUJSONDictionary? {
 		guard let obj = self.JSONObjectFromString(JSONString) else {
 			return nil
 		}
@@ -341,7 +341,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Attempts to parse `JSONString` as JSON.
-	public func JSONObjectFromString(JSONString: String?) -> AnyObject? {
+	public func JSONObjectFromString(JSONString: String!) -> AnyObject? {
 		if JSONString == nil {
 			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
 			XULog("\(self._logMethod()) - Trying to pass nil JSONString.")
@@ -365,7 +365,7 @@ public class XUDownloadCenter {
 	
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
-	public func JSONObjectFromCallbackString(JSONString: String?) -> AnyObject? {
+	public func JSONObjectFromCallbackString(JSONString: String!) -> AnyObject? {
 		guard let innerJSON = JSONString?.getRegexVariableNamed("JSON", forRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})") else {
 			XULog("\(self._logMethod()) - no inner JSON in callback string \(JSONString ?? "")")
 			return nil
@@ -387,12 +387,12 @@ public class XUDownloadCenter {
 	}
 
 	/// Sends a HEAD request to `URL` and returns the status code or 0.
-	public func statusCodeForURL(URL: NSURL?) -> Int {
+	public func statusCodeForURL(URL: NSURL!) -> Int {
 		return self.sendHeadRequestToURL(URL)?.statusCode ?? 0
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequestToURL(URL: NSURL?, withReferer referer: String? = nil) -> NSHTTPURLResponse? {
+	public func sendHeadRequestToURL(URL: NSURL!, withReferer referer: String? = nil) -> NSHTTPURLResponse? {
 		return self.sendHeadRequestToURL(URL, withRequestModifier: { (request: NSMutableURLRequest) in
 			if referer != nil {
 				request.referer = referer
@@ -401,7 +401,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequestToURL(URL: NSURL?, withRequestModifier modifier: XUURLRequestModifier?) -> NSHTTPURLResponse? {
+	public func sendHeadRequestToURL(URL: NSURL!, withRequestModifier modifier: XUURLRequestModifier?) -> NSHTTPURLResponse? {
 		if (URL == nil) {
 			return nil
 		}

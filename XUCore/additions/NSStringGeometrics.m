@@ -10,6 +10,8 @@
 #import "NSStringGeometrics.h"
 #import "NSStringAdditions.h"
 
+#import <Foundation/Foundation.h>
+
 int gNSStringGeometricsTypesetterBehavior = NSTypesetterLatestBehavior ;
 
 @implementation NSAttributedString (Geometrics) 

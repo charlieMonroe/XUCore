@@ -19,6 +19,13 @@ public func +(inout lhs: String, rhs: Character) {
 
 public extension String {
 	
+	/// Creates a new UUID string.
+	public static var UUIDString: String {
+		let UIDRef = CFUUIDCreate(nil)
+		let UID = CFUUIDCreateString(nil, UIDRef)
+		return UID as String
+	}
+	
 	/// Returns true if the other string is not empty and is contained in self
 	/// case-insensitive.
 	public func containsCaseInsensitiveString(otherString: String) -> Bool {
@@ -76,11 +83,44 @@ public extension String {
 		return (self as NSString).HTMLUnescapedString()
 	}
 	
+	/// This tries to create a string from data. First, UTF8 is tried as encoding,
+	/// then ASCII and then it just goes through the list of available string
+	/// encodings. This is pretty much a convenience initializer for cases where
+	/// you don't know the source encoding, but want to get a non-nil string
+	/// for as many cases as possible.
+	public init?(data: NSData!) {
+		if data == nil {
+			return nil
+		}
+		
+		// First, try UTF8, then ASCII.
+		for enc in [NSUTF8StringEncoding, NSASCIIStringEncoding] {
+			if let str = String(data: data, encoding: enc) {
+				self = str
+				return
+			}
+		}
+		
+		var encodings = NSString.availableStringEncodings()
+		while encodings.memory != 0 {
+			let enc = encodings.memory as NSStringEncoding
+			if let str = String(data: data, encoding: enc) {
+				self = str
+				return
+			}
+			
+			encodings = encodings.successor()
+		}
+		
+		return nil
+	}
+	
 	/// @see JSDecodedString() on NSString.
 	public var JSDecodedString: String {
 		return (self as NSString).JSDecodedString()
 	}
 	
+	/// Splits `self` using NSCharacterSet.newlineCharacterSet().
 	public var lines: [String] {
 		return self.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 	}

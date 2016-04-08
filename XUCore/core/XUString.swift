@@ -79,7 +79,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	}
 	
 	public var description: String {
-		return "\(self)[length: \(self.length)] - \(self.stringValue)"
+		return "XUString<\(unsafeAddressOf(self))> [length: \(self.length)] - \(self.stringValue)"
 	}
 	
 	/// Returns an index of the first occurrence of the char.
@@ -159,6 +159,15 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 		_buffer.removeAtIndex(index)
 	}
 	
+	/// Removes all characters passing the filter.
+	public func removeCharactersPassingTest(test: (character: XUChar, index: Int) -> Bool) {
+		for i in (0..<_buffer.count).reverse() {
+			if test(character: _buffer[i], index: i) {
+				_buffer.removeAtIndex(i)
+			}
+		}
+	}
+	
 	/// Removes last character.
 	public func removeLastCharacter() {
 		assert(self.length > 0)
@@ -168,11 +177,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	
 	/// Removes all characters with value > 127
 	public func removeNonASCIICharacters() {
-		for i in (0..<_buffer.count).reverse() {
-			if _buffer[i] > 127 {
-				_buffer.removeAtIndex(i)
-			}
-		}
+		self.removeCharactersPassingTest({ $0.character > 127 })
 	}
 	
 	/// Sets a character at index. Will throw if the index is out of bounds.

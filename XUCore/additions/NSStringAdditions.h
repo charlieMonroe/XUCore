@@ -31,25 +31,23 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
  *  @param seconds The time in seconds.
  *  @return Time string, or "Finishing" if the time supplied is less than zero.
  */
-+(nonnull NSString *)estimatedTimeStringFromSeconds:(long)seconds;
++(nonnull NSString *)estimatedTimeStringFromSeconds:(long)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
 
 /** Returns seconds as human-readable string. */
-+(nonnull NSString *)localizedTimeStringForSeconds:(NSTimeInterval)seconds;
-
-/** Uses NSByteCountFormatter on supported systems, otherwise returns a similar value. */
-+(nonnull NSString *)fileSizeStringFromSize:(unsigned long long)size DEPRECATED_MSG_ATTRIBUTE("Use NSByteCountFormatter");
++(nonnull NSString *)localizedTimeStringForSeconds:(NSTimeInterval)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
 
 /** Tries to create a string from data - it first tries UTF-8 encoding, then tries
  * every other encoding available.
  */
 +(nullable NSString *)stringWithData:(nullable NSData *)data;
 
+
 /** Converts the seconds to a time string (00:00:00 format).
  *
  *  @param seconds The time in seconds.
  *  @return Time string.
  */
-+(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds;
++(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
 
 /** Converts the seconds to a time string (00:00:00 format).
  *
@@ -57,7 +55,7 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
  *  @param skipHours If the time is < 1 hour, only includes minutes and seconds.
  *  @return Time string.
  */
-+(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds skipHoursWhenZero:(BOOL)skipHours;
++(nonnull NSString *)timeStringFromSeconds:(NSTimeInterval)seconds skipHoursWhenZero:(BOOL)skipHours DEPRECATED_MSG_ATTRIBUTE("This is now migrated in XUTimeUtilities");
 
 /** Uses CFUUID. */
 +(nonnull NSString *)UUIDString;
@@ -80,8 +78,6 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 -(NSRect)drawCenteredInRect:(NSRect)rect withFont:(nonnull NSFont *)font;
 -(NSSize)drawRightAlignedWithAttributes:(nullable NSDictionary *)atts toPoint:(NSPoint)point;
 #endif
-
--(nonnull NSString *)escapedString DEPRECATED_MSG_ATTRIBUTE("use -HTMLEscapedString");
 
 /** Returns first character, or \0 is the string is empty. */
 -(unichar)firstCharacter;
@@ -118,7 +114,7 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 -(unichar)lastCharacter;
 
 /** You may pass NULL for error. */
--(BOOL)matchesRegexp:(nonnull NSString *)expression errorMessage:(NSString * __nullable * __nullable)error;
+-(BOOL)matchesRegexp:(nonnull NSString *)expression errorMessage:(NSString * __nullable * __nullable)error DEPRECATED_MSG_ATTRIBUTE("use XURegex");;
 
 /** Returns MD5 digest of the string. */
 -(nonnull NSString *)MD5Digest;
@@ -131,10 +127,6 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 
 /** String written back-to-front. */
 -(nonnull instancetype)reverseString;
-
-#if TARGET_OS_IPHONE
--(CGSize)sizeWithFont:(nonnull UIFont *)font maxWidth:(CGFloat)width DEPRECATED_MSG_ATTRIBUTE("Use the universal method -sizeWithAttributes:maxWidth:");
-#endif
 
 /** Returns size with attributes, limited to width. */
 -(CGSize)sizeWithAttributes:(nonnull NSDictionary *)attrs maxWidth:(CGFloat)width;
@@ -174,11 +166,6 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 
 /** Returns the suffix of length. Doesn't do any range checking. */
 -(nonnull NSString *)suffixOfLength:(NSUInteger)length;
-
-/** Trims whitespace. */
--(nonnull NSString *)trimmedString DEPRECATED_MSG_ATTRIBUTE("use -stringByTrimmingWhitespace");
-
--(nonnull NSString *)unescapedString DEPRECATED_MSG_ATTRIBUTE("use -HTMLUnescapedString"); // Replaces &amp; -> & etc.
 
 /** Uses strtoull to return ull value. */
 -(unsigned long long)unsignedLongLongValue;

@@ -588,7 +588,8 @@ regexp_fail:
 
 -(FCEmailAddressValidationFormat)validateEmailAddress{
 	// First see if it fits the general description
-	if (![self matchesRegexp:@"..*@..*\\..[^/]*" errorMessage:nil]){
+	XURegex *regex = [[XURegex alloc] initWithPattern:@"..*@..*\\..[^/]*" andOptions:XURegexOptionCaseless];
+	if (![regex matchesString:self]){
 		return FCEmailAddressWrongFormat;
 	}
 	
@@ -596,7 +597,7 @@ regexp_fail:
 	if ([self hasCaseInsensitiveSubstring:@"fuck"] || [self hasCaseInsensitiveSubstring:@"shit"] 
 	    || [self hasCaseInsensitiveSubstring:@"qwert"] || [self hasCaseInsensitiveSubstring:@"asdf"]
 	    || [self hasCaseInsensitiveSubstring:@"mail@mail.com"]
-	    || [self matchesRegexp:@"^.@.\\..*" errorMessage:nil]){ /* a@a.com */
+	    || [[[XURegex alloc] initWithPattern:@"^.@.\\..*" andOptions:XURegexOptionCaseless] matchesString:self]){ /* a@a.com */
 		return FCEmailAddressPhonyFormat;
 	}
 	

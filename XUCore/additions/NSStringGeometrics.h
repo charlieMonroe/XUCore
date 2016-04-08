@@ -131,15 +131,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern int gNSStringGeometricsTypesetterBehavior ;
+extern int gNSStringGeometricsTypesetterBehavior NS_UNAVAILABLE;
+
 
 @interface NSAttributedString (Geometrics) 
 
 // Measuring Attributed Strings
 - (NSSize)sizeForWidth:(CGFloat)width
-				height:(CGFloat)height ;
-- (CGFloat)heightForWidth:(CGFloat)width ;
-- (CGFloat)widthForHeight:(CGFloat)height ;
+				height:(CGFloat)height NS_UNAVAILABLE;
+- (CGFloat)heightForWidth:(CGFloat)width  NS_UNAVAILABLE;
+- (CGFloat)widthForHeight:(CGFloat)height  NS_UNAVAILABLE;
 
 @end
 
@@ -148,20 +149,20 @@ extern int gNSStringGeometricsTypesetterBehavior ;
 // Measuring a String With Attributes
 - (NSSize)sizeForWidth:(CGFloat)width
 				height:(CGFloat)height
-			attributes:(NSDictionary*)attributes ;
+			attributes:(NSDictionary*)attributes  NS_UNAVAILABLE;
 - (CGFloat)heightForWidth:(CGFloat)width
-			 attributes:(NSDictionary*)attributes ;
+			 attributes:(NSDictionary*)attributes  NS_UNAVAILABLE;
 - (CGFloat)widthForHeight:(CGFloat)height
-			 attributes:(NSDictionary*)attributes ;
+			 attributes:(NSDictionary*)attributes  NS_UNAVAILABLE;
 
 // Measuring a String with a constant Font
 - (NSSize)sizeForWidth:(CGFloat)width
 				height:(CGFloat)height
-				  font:(NSFont*)font ;
+				  font:(NSFont*)font  NS_UNAVAILABLE;
 - (CGFloat)heightForWidth:(CGFloat)width
-				   font:(NSFont*)font ;
+				   font:(NSFont*)font  NS_UNAVAILABLE;
 - (CGFloat)widthForHeight:(CGFloat)height
-				   font:(NSFont*)font ;
+				   font:(NSFont*)font  NS_UNAVAILABLE;
 
 @end
 

@@ -60,12 +60,6 @@ public class XUPositionedWindowView: NSView {
 		}
 	}
 
-	/*
-	 func layoutAttribute() -> NSLayoutAttribute {
-	 return NSLayoutAttributeBottom
-
-	 }
-	 */
 
 	/// Override this to NO if you don't want the view to be connected to the
 	/// window on awakeFromNib under some cirtumstances. By default YES.
