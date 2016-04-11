@@ -142,9 +142,6 @@
 	return s;
 }
 #endif
--(NSString*)escapedString{
-	return [self HTMLEscapedString];
-}
 -(NSString *)HTMLEscapedString{
 	NSMutableString *string = [NSMutableString stringWithString: self];
 	
@@ -155,9 +152,6 @@
 	[string replaceOccurrencesOfString: @"<"  withString: @"&lt;" options: NSLiteralSearch range: NSMakeRange(0, [string length])];
 	
 	return [NSString stringWithString:string];
-}
--(NSString *)inverseString{
-	return [self reverseString];
 }
 -(BOOL)isCaseInsensitivelyEqualToString:(NSString*)string{
 	return [self compare:string options:NSCaseInsensitiveSearch range:[self range]] == NSOrderedSame;
@@ -182,8 +176,11 @@
 	return [self rangeOfString:suffix options:( NSCaseInsensitiveSearch | NSBackwardsSearch | NSAnchoredSearch ) range:[self range]].location != NSNotFound;
 }
 
+-(BOOL)_hasCaseInsensitiveSubstring:(NSString *)substring {
+	return [self rangeOfString:substring options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self length])].location != NSNotFound;
+}
 -(BOOL)hasCaseInsensitiveSubstring:(NSString*)substring{
-	return [self rangeOfString:substring options:NSCaseInsensitiveSearch range:[self range]].location != NSNotFound;
+	return [self _hasCaseInsensitiveSubstring:substring];
 }
 -(NSUInteger)hexValue{
 	NSArray *components = [self componentsSeparatedByString:@"x"];
@@ -488,9 +485,9 @@ regexp_fail:
 	}
 	
 	// It's about right, see for some obviously phony emails
-	if ([self hasCaseInsensitiveSubstring:@"fuck"] || [self hasCaseInsensitiveSubstring:@"shit"] 
-	    || [self hasCaseInsensitiveSubstring:@"qwert"] || [self hasCaseInsensitiveSubstring:@"asdf"]
-	    || [self hasCaseInsensitiveSubstring:@"mail@mail.com"]
+	if ([self _hasCaseInsensitiveSubstring:@"fuck"] || [self _hasCaseInsensitiveSubstring:@"shit"]
+	    || [self _hasCaseInsensitiveSubstring:@"qwert"] || [self _hasCaseInsensitiveSubstring:@"asdf"]
+	    || [self _hasCaseInsensitiveSubstring:@"mail@mail.com"]
 	    || [[[XURegex alloc] initWithPattern:@"^.@.\\..*" andOptions:XURegexOptionCaseless] matchesString:self]){ /* a@a.com */
 		return FCEmailAddressPhonyFormat;
 	}
