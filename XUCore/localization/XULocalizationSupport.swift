@@ -61,7 +61,7 @@ public class XULocalizationCenter: NSObject {
 	
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
-	private func _languageBundleForLanguage(language: String, inBundle bundle: NSBundle) -> NSBundle? {
+	private func _languageBundleForLanguage(language: String, inBundle bundle: NSBundle, fallbackToEnglish: Bool = true) -> NSBundle? {
 		if let URL = bundle.URLForResource(language, withExtension: "lproj") {
 			return NSBundle(URL: URL)
 		}
@@ -76,7 +76,11 @@ public class XULocalizationCenter: NSObject {
 			}
 		}
 		
-		return self._languageBundleForLanguage("en", inBundle: bundle)
+		if !fallbackToEnglish {
+			return nil
+		}
+		
+		return self._languageBundleForLanguage("en", inBundle: bundle, fallbackToEnglish: false)
 	}
 	
 	/// Returns the identifier of current localization.
@@ -90,7 +94,7 @@ public class XULocalizationCenter: NSObject {
 				if let language = languages.first {
 					// The language is often e.g. en-US - get just the first part,
 					// unless the language exists for the entire identifier.
-					if self._languageBundleForLanguage(language, inBundle: NSBundle.mainBundle()) != nil {
+					if self._languageBundleForLanguage(language, inBundle: NSBundle.mainBundle(), fallbackToEnglish: false) != nil {
 						return language
 					}
 					return language.componentsSeparatedByString("-").first!
