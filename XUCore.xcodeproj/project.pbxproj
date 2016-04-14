@@ -153,8 +153,6 @@
 		073E6B301BE1F86D00706283 /* XURegex.mm in Sources */ = {isa = PBXBuildFile; fileRef = 073E6AB91BE1F86D00706283 /* XURegex.mm */; };
 		073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */; };
 		073E6B321BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */; };
-		073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 073E6B331BE1F8FC00706283 /* NSStringGeometrics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */; };
 		073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B391BE1F9D500706283 /* CharacterExtensions.swift */; };
 		073E6B3B1BE1F9D500706283 /* CharacterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B391BE1F9D500706283 /* CharacterExtensions.swift */; };
 		073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B3C1BE1FA2700706283 /* NSURLExtensions.swift */; };
@@ -434,8 +432,6 @@
 		073E6AB81BE1F86D00706283 /* XURegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XURegex.h; path = regex/XURegex.h; sourceTree = "<group>"; };
 		073E6AB91BE1F86D00706283 /* XURegex.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = XURegex.mm; path = regex/XURegex.mm; sourceTree = "<group>"; };
 		073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XURegex+BasicRegex.swift"; path = "regex/XURegex+BasicRegex.swift"; sourceTree = "<group>"; };
-		073E6B331BE1F8FC00706283 /* NSStringGeometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringGeometrics.h; sourceTree = "<group>"; };
-		073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringGeometrics.m; sourceTree = "<group>"; };
 		073E6B391BE1F9D500706283 /* CharacterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterExtensions.swift; sourceTree = "<group>"; };
 		073E6B3C1BE1FA2700706283 /* NSURLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLExtensions.swift; sourceTree = "<group>"; };
 		073E6B421BE1FD7E00706283 /* NSInputStream+Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSInputStream+Reading.swift"; sourceTree = "<group>"; };
@@ -899,8 +895,6 @@
 				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				077AFDDA1BBD101400872A48 /* NSStringAdditions.h */,
 				077AFDDB1BBD101400872A48 /* NSStringAdditions.m */,
-				073E6B331BE1F8FC00706283 /* NSStringGeometrics.h */,
-				073E6B341BE1F8FC00706283 /* NSStringGeometrics.m */,
 				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
 				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
 				07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */,
@@ -1137,7 +1131,6 @@
 				074B43CE1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h in Headers */,
 				073E6B211BE1F86D00706283 /* util.h in Headers */,
 				073E6AD11BE1F86D00706283 /* prefilter.h in Headers */,
-				073E6B351BE1F8FC00706283 /* NSStringGeometrics.h in Headers */,
 				073E6B011BE1F86D00706283 /* logging.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1398,7 +1391,6 @@
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
 				073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
-				073E6B371BE1F8FC00706283 /* NSStringGeometrics.m in Sources */,
 				07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */,
 				07C3FA231BECB2A3008A4200 /* XUAttributedStringTransformer.swift in Sources */,
 				073E6AF51BE1F86D00706283 /* arena.cc in Sources */,

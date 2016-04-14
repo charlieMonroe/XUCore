@@ -94,15 +94,15 @@ public class XUTime {
 	/// - Parameter skipHours - If the time is < 1 hour, only includes minutes 
 	///							and seconds. True by default.
  	public class func timeString(seconds: NSTimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
-		if seconds < 0 {
+		if seconds < 0 || !seconds.isFinite || NSTimeInterval(Int64.max) < seconds {
 			return "00:00"
 		}
 		
-		var timeCp = Int(seconds)
+		var timeCp = Int64(seconds)
 		
-		var hours = 0
-		var minutes = 0
-		var seconds = 0
+		var hours: Int64 = 0
+		var minutes: Int64 = 0
+		var seconds: Int64 = 0
 		
 		seconds = timeCp % 60
 		timeCp -= seconds

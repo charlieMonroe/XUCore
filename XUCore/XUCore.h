@@ -21,7 +21,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 #import "NSDataAdditions.h"
 #import "NSDictionaryAdditions.h"
 #import "NSStringAdditions.h"
-#import "NSStringGeometrics.h"
 #import "NSXMLAdditions.h"
 
 /** Core. */

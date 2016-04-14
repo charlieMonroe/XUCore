@@ -20,6 +20,21 @@ public func + (inout lhs: String, rhs: Character) {
 	lhs = lhs + String(rhs)
 }
 
+
+public enum XUEmailValidationFormat {
+	
+	/// Correct format.
+	case Correct
+	
+	/// Wrong. Missing @ sign, etc.
+	case Wrong
+	
+	/// Phony. E.g. a@a.com.
+	case Phony
+	
+}
+
+
 public extension String {
 
 	/// Creates a new UUID string.
@@ -383,10 +398,37 @@ public extension String {
 		}
 		return str
 	}
+	
+	/// Removes characters from the set from the beginning of the string.
+	public func stringByTrimmingLeftCharactersInSet(set: NSCharacterSet) -> String {
+		var index = 0
+		while index < self.characters.count && self.characters[self.startIndex.advancedBy(index)].isMemberOfCharacterSet(set) {
+			index += 1
+		}
+		
+		return self.substringFromIndex(self.startIndex.advancedBy(index))
+	}
+	
+	/// Removes characters from the set from the end of the string.
+	public func stringByTrimmingRightCharactersInSet(set: NSCharacterSet) -> String {
+		var index = self.characters.count - 1
+		while index >= 0 && self.characters[self.startIndex.advancedBy(index)].isMemberOfCharacterSet(set) {
+			index -= 1
+		}
+		
+		index += 1
+		
+		return self.substringToIndex(self.startIndex.advancedBy(index))
+	}
 
-	/// Trims whitespace characters
+	/// Trims whitespace whitespace and newlines.
 	public var stringByTrimmingWhitespace: String {
-		return (self as NSString).stringByTrimmingWhitespace()
+		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+	}
+	
+	/// Returns the suffix of length. Doesn't do any range checking.
+	public func suffixOfLength(length: Int) -> String {
+		return self.substringFromIndex(self.endIndex.advancedBy(-1 * length))
 	}
 
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
@@ -407,6 +449,26 @@ public extension String {
 		}
 		return dict
 	}
+	
+	/// Tries several heuristics to see if the email address is valid, or even 
+	/// phony.
+	public func validateEmailAddress() -> XUEmailValidationFormat {
+		// First see if it fits the general description
+		let regex = XURegex(pattern: "^[\\w-]{2,}@[\\w-]{2,}\\.\\w{2,}$", andOptions: .Caseless)
+		if !regex.matchesString(self) {
+			return .Wrong
+		}
+		
+		// It's about right, see for some obviously phony emails
+		if self.hasCaseInsensitiveSubstring("fuck") || self.hasCaseInsensitiveSubstring("shit")
+			|| self.hasCaseInsensitiveSubstring("qwert") || self.hasCaseInsensitiveSubstring("asdf")
+			|| self.hasCaseInsensitiveSubstring("mail@mail.com") {
+			return .Phony
+		}
+		
+		return .Correct
+	}
+	
 }
 
 /// Numeric methods

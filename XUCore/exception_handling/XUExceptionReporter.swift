@@ -96,14 +96,14 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	@IBAction func sendReport(sender: AnyObject?) {
 		let valid = _emailTextField.stringValue.validateEmailAddress()
 		
-		if valid == .PhonyFormat {
+		if valid == .Phony {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedString("Heh, nice try. Please, enter a valid email address.", inBundle: XUCoreBundle)
 			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.", inBundle: XUCoreBundle)
 			alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
 			alert.beginSheetModalForWindow(_reporterWindow, completionHandler: nil)
 			return
-		}else if valid == .WrongFormat {
+		}else if valid == .Wrong {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedString("You need to enter a valid email address.", inBundle: XUCoreBundle)
 			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this.", inBundle: XUCoreBundle)

@@ -46,9 +46,16 @@ public class XUExceptionCatcher: NSObject {
 		// which is why we just note down the exception and we periodically check
 		// for it in _checkForException.
 		
-		let stackTrace = NSThread.callStackSymbols().joinWithSeparator("\n")
+		var stackTraceString = ""
 		
-		XUExceptionReporter.showReporterForException(exception, andStackTrace: stackTrace)
+		let exceptionStackTrace = XUStacktraceStringFromException(exception)
+		if !exceptionStackTrace.isEmpty {
+			stackTraceString = exceptionStackTrace + "\n\n"
+		}
+		
+		stackTraceString += XUStacktraceString()
+		
+		XUExceptionReporter.showReporterForException(exception, andStackTrace: stackTraceString)
 		return true
 	}
 	
