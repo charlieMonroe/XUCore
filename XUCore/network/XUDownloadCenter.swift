@@ -366,7 +366,7 @@ public class XUDownloadCenter {
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
 	public func JSONObjectFromCallbackString(JSONString: String!) -> AnyObject? {
-		guard let innerJSON = JSONString?.getRegexVariableNamed("JSON", forRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})") else {
+		guard let innerJSON = JSONString?.getRegexVariableNamed("JSON", forRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			XULog("\(self._logMethod()) - no inner JSON in callback string \(JSONString ?? "")")
 			return nil
 		}

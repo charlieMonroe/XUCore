@@ -177,23 +177,6 @@ public func XULog(@autoclosure string: () -> String, method: String = #function,
 	}
 }
 
-/// Use this function to toggle debugging while the app is running.
-@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
-public func XUForceSetDebugging(debug: Bool) {
-	__XULogSetShouldLog(debug)
-}
-
-/// Returns true when the debug logging is currently turned on.
-@available(*, deprecated, renamed="XULoggingEnabled")
-public func XUShouldLog() -> Bool {
-	return _cachedPreferences
-}
-
-@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
-public func XUSetLoggingEnabled(enabled: Bool) {
-	XULoggingSetEnabled(enabled)
-}
-
 /// Returns true when the debug logging is currently turned on.
 public func XULoggingEnabled() -> Bool {
 	return _cachedPreferences
@@ -210,7 +193,7 @@ public func XULoggingSetEnabled(enabled: Bool) {
 
 
 /// Clears the log file.
-public func XUClearLog() {
+public func XULogClear() {
 	if (_logFile != nil){
 		fclose(_logFile!);
 		_logFile = nil;
@@ -269,4 +252,31 @@ public class __XULogBridge: NSObject {
 	}
 	
 }
+
+
+
+/// Deprecated methods.
+
+@available(*, deprecated, renamed="XULogClear")
+public func XUClearLog() {
+	XULogClear()
+}
+
+/// Use this function to toggle debugging while the app is running.
+@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
+public func XUForceSetDebugging(debug: Bool) {
+	__XULogSetShouldLog(debug)
+}
+
+/// Returns true when the debug logging is currently turned on.
+@available(*, deprecated, renamed="XULoggingEnabled")
+public func XUShouldLog() -> Bool {
+	return _cachedPreferences
+}
+
+@available(*, deprecated, message="Use XULoggingSetEnabled instead.")
+public func XUSetLoggingEnabled(enabled: Bool) {
+	XULoggingSetEnabled(enabled)
+}
+
 

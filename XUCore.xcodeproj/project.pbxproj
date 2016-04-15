@@ -207,6 +207,7 @@
 		075A92A21C43D775006DD45B /* XUUIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A92A01C43D775006DD45B /* XUUIBridge.swift */; };
 		0763C15E1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
 		0763C15F1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
+		077093821CC1296C0093830B /* NSDataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* NSDataAdditions.swift */; };
 		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */; };
@@ -258,10 +259,6 @@
 		077AFEC31BBD101400872A48 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDAD1BBD101400872A48 /* NSArrayAdditions.m */; };
 		077AFEC81BBD101400872A48 /* NSBezierPathAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDB01BBD101400872A48 /* NSBezierPathAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFECA1BBD101400872A48 /* NSBezierPathAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDB11BBD101400872A48 /* NSBezierPathAdditions.m */; };
-		077AFEE01BBD101400872A48 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDBC1BBD101400872A48 /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFEE11BBD101400872A48 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDBC1BBD101400872A48 /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077AFEE21BBD101400872A48 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDBD1BBD101400872A48 /* NSDataAdditions.m */; };
-		077AFEE31BBD101400872A48 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDBD1BBD101400872A48 /* NSDataAdditions.m */; };
 		077AFEEC1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDC21BBD101400872A48 /* NSDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFEED1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDC21BBD101400872A48 /* NSDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFEEE1BBD101400872A48 /* NSDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDC31BBD101400872A48 /* NSDictionaryAdditions.m */; };
@@ -468,6 +465,7 @@
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
 		0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDownloadCenter.swift; sourceTree = "<group>"; };
+		077093811CC1296C0093830B /* NSDataAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataAdditions.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
@@ -505,8 +503,6 @@
 		077AFDAD1BBD101400872A48 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSArrayAdditions.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		077AFDB01BBD101400872A48 /* NSBezierPathAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBezierPathAdditions.h; sourceTree = "<group>"; };
 		077AFDB11BBD101400872A48 /* NSBezierPathAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBezierPathAdditions.m; sourceTree = "<group>"; };
-		077AFDBC1BBD101400872A48 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
-		077AFDBD1BBD101400872A48 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		077AFDC21BBD101400872A48 /* NSDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryAdditions.h; sourceTree = "<group>"; };
 		077AFDC31BBD101400872A48 /* NSDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryAdditions.m; sourceTree = "<group>"; };
 		077AFDDA1BBD101400872A48 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
@@ -875,8 +871,7 @@
 				073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */,
 				073E6B431BE1FD7E00706283 /* NSData+CommonCryptoSwift.h */,
 				073E6B441BE1FD7E00706283 /* NSData+CommonCryptoSwift.m */,
-				077AFDBC1BBD101400872A48 /* NSDataAdditions.h */,
-				077AFDBD1BBD101400872A48 /* NSDataAdditions.m */,
+				077093811CC1296C0093830B /* NSDataAdditions.swift */,
 				07758A241BEFBB2B004B29A8 /* NSDateAdditions.swift */,
 				07FD4BDF1C7DC2E900559CF0 /* NSDateFormatterISO8601.swift */,
 				0779E16D1BF06C6200832858 /* NSDecimalNumberAdditions.swift */,
@@ -1126,7 +1121,6 @@
 				073E6B1F1BE1F86D00706283 /* utf.h in Headers */,
 				073E6B471BE1FD7E00706283 /* NSData+CommonCryptoSwift.h in Headers */,
 				073E6AF91BE1F86D00706283 /* atomicops.h in Headers */,
-				077AFEE01BBD101400872A48 /* NSDataAdditions.h in Headers */,
 				077AFEC01BBD101400872A48 /* NSArrayAdditions.h in Headers */,
 				074B43CE1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h in Headers */,
 				073E6B211BE1F86D00706283 /* util.h in Headers */,
@@ -1179,7 +1173,6 @@
 				073E6AFE1BE1F86D00706283 /* flags.h in Headers */,
 				073E6AE61BE1F86D00706283 /* set.h in Headers */,
 				073E6B0C1BE1F86D00706283 /* random.h in Headers */,
-				077AFEE11BBD101400872A48 /* NSDataAdditions.h in Headers */,
 				073E6AEA1BE1F86D00706283 /* stringpiece.h in Headers */,
 				073E6ADE1BE1F86D00706283 /* re2.h in Headers */,
 				077AFEC11BBD101400872A48 /* NSArrayAdditions.h in Headers */,
@@ -1361,7 +1354,6 @@
 				07B9082F1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift in Sources */,
 				073E6AFF1BE1F86D00706283 /* hash.cc in Sources */,
 				073E6B451BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
-				077AFEE21BBD101400872A48 /* NSDataAdditions.m in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
 				077ADC151C501A74008F5600 /* XUBetaExpirationHandler.swift in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
@@ -1389,6 +1381,7 @@
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */,
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
+				077093821CC1296C0093830B /* NSDataAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
 				073E6B3D1BE1FA2700706283 /* NSURLExtensions.swift in Sources */,
 				07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */,
@@ -1476,7 +1469,6 @@
 				0779E17F1BF2316700832858 /* NSDateAdditions.swift in Sources */,
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
 				073E6AD81BE1F86D00706283 /* prog.cc in Sources */,
-				077AFEE31BBD101400872A48 /* NSDataAdditions.m in Sources */,
 				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */,

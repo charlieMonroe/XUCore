@@ -435,7 +435,7 @@ public extension String {
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
 	public var URLQueryDictionary: [String: String] {
-		let variablePairs = self.allVariablePairsForRegexString("&?(?P<VARNAME>[ ^=] +) = (?P<VARVALUE>[ ^ &] +) ")
+		let variablePairs = self.allVariablePairsForRegexString("&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
 			guard let

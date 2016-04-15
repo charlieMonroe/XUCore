@@ -85,9 +85,6 @@ typedef NS_ENUM(NSUInteger, FCEmailAddressValidationFormat) {
 /** Returns last character, or \0 is the string is empty. */
 -(unichar)lastCharacter NS_SWIFT_UNAVAILABLE("Use Swift's String.");
 
-/** You may pass NULL for error. */
--(BOOL)matchesRegexp:(nonnull NSString *)expression errorMessage:(NSString * __nullable * __nullable)error DEPRECATED_MSG_ATTRIBUTE("use XURegex");
-
 /** Returns MD5 digest of the string. This is currently the only non-deprecated symbol on NSString. */
 -(nonnull NSString *)MD5Digest;
 

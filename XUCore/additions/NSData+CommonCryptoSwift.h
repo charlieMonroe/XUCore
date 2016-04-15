@@ -10,6 +10,9 @@
 
 @interface NSData (CommonCryptoSwift)
 
+/// Digests bytes.
++(nonnull NSString *)MD5DigestOfBytes:(nonnull const void *)bytes ofLength:(NSInteger)length;
+
 /// Decrypts data with RC4 using an encryption key
 -(nullable NSData *)decryptedRC4DataWithEncryptionKey:(nonnull NSString *)key;
 

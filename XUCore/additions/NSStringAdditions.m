@@ -9,9 +9,6 @@
 
 #import "NSStringAdditions.h"
 
-#import <CommonCrypto/CommonDigest.h>
-#import <regex.h>
-
 #import <XUCore/XUCore-Swift.h>
 
 #define XULocalizedString(str) [[XULocalizationCenter sharedCenter] localizedString:str withLocale:nil inBundle:[NSBundle mainBundle]]
@@ -241,68 +238,10 @@
 	
 	return [self characterAtIndex:len - 1];
 }
--(BOOL)matchesRegexp:(NSString*)expression errorMessage:(NSString**)error{
-	int isFail;
-	
-	const char *regexPattern = [expression UTF8String];
-	
-	regex_t regex;
-	regmatch_t pmatch[FCNumberOfRegexMatches]; // track up to 1 maches. Actually only one is needed.
-	
-	const char *sourceCString;
-	char errorMessage[FCRegexMaxErrorMessageSize];
-	
-	NSString *errorMessageString;
-	
-	sourceCString = [self UTF8String];
-	
-	// setup the regular expression
-	
-	@try{
-		
-		if( (isFail = regcomp(&regex, regexPattern, REG_EXTENDED)) > 0 ){
-			regerror(isFail, &regex, errorMessage, FCRegexMaxErrorMessageSize);
-			errorMessageString = [NSString stringWithUTF8String:errorMessage];
-			
-			goto regexp_fail;
-		}else{
-			if( (isFail = regexec( &regex, sourceCString, FCNumberOfRegexMatches, pmatch, 0 )) > 0 ){
-				regerror( isFail, &regex, errorMessage, FCRegexMaxErrorMessageSize );
-				errorMessageString = [NSString stringWithUTF8String:errorMessage];
-				goto regexp_fail;
-			}else{
-				goto regexp_success;
-			}
-		}
-	}@catch (NSException *exception) {
-		goto regexp_fail;
-	}
-
-regexp_success:
-	regfree(&regex);
-	if (error != nil){
-		*error = nil;
-	}
-	return YES;
-regexp_fail:
-	regfree(&regex);
-	if (error != nil){
-		*error = errorMessageString;
-	}
-	return NO;
-}
 
 -(NSString *)MD5Digest{
 	const char *cstr = [self UTF8String];
-	unsigned char result[16];
-	CC_MD5(cstr, (CC_LONG)strlen(cstr), result);
-	
-	return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-			result[0], result[1], result[2], result[3],
-			result[4], result[5], result[6], result[7],
-			result[8], result[9], result[10], result[11],
-			result[12], result[13], result[14], result[15]
-		];
+	return [NSData MD5DigestOfBytes:cstr ofLength:(NSInteger)strlen(cstr)];
 }
 -(NSString *)middleTruncatedStringToFitWidth:(CGFloat)width withAttributes:(NSDictionary *)atts{
 	NSString *front = nil;
