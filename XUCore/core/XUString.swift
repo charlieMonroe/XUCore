@@ -98,6 +98,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	}
 	
 	/// Takes an array of NSNumber's which represent individual chars.
+	@available(*, deprecated, message="Use init(chars:) instead.")
 	public convenience init(characterCodes: [NSNumber]) {
 		let chars = characterCodes.map({ $0.unsignedCharValue })
 		self.init(chars: chars)
