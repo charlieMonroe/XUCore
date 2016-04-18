@@ -29,7 +29,10 @@ public class XUAutocollapsingView: __XUBridgedView {
 	
 	/// Called from -setHidden: to perform hide or unhide.
 	private func _performHide(hidden: Bool) {
-		let constraint = self._heightContstraint!
+		guard let constraint = self._heightContstraint else {
+			return
+		}
+		
 		if hidden {
 			_originalHeight = constraint.constant
 			constraint.constant = 0.0
