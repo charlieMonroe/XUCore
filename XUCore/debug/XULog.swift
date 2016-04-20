@@ -179,6 +179,10 @@ public func XULog(@autoclosure string: () -> String, method: String = #function,
 
 /// Returns true when the debug logging is currently turned on.
 public func XULoggingEnabled() -> Bool {
+	if !_didCachePreferences {
+		_XULogInitializer()
+	}
+	
 	return _cachedPreferences
 }
 
