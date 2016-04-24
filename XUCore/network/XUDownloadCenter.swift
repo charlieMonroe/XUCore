@@ -408,11 +408,12 @@ public class XUDownloadCenter {
 		
 		let req = NSMutableURLRequest(URL: URL!)
 		req.HTTPMethod = "HEAD"
+		
+		self._setupCookieFieldForURLRequest(req)
+		
 		if modifier != nil {
 			modifier!(request: req)
 		}
-		
-		self._setupCookieFieldForURLRequest(req)
 		
 		do {
 			var response: NSURLResponse?

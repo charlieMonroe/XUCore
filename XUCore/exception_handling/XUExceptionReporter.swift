@@ -123,6 +123,17 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
+		if _userInputTextView.string!.characters.any({ !$0.isASCII }) {
+			let alert = NSAlert()
+			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", NSProcessInfo.processInfo().processName)
+			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.")
+			alert.addButtonWithTitle("Cancel")
+			alert.addButtonWithTitle("Send Anyway")
+			if alert.runModal() == NSAlertFirstButtonReturn {
+				return
+			}
+		}
+		
 		
 		let OSVersion = NSProcessInfo.processInfo().operatingSystemVersion
 		let OSVersionString = "\(OSVersion.majorVersion).\(OSVersion.minorVersion).\(OSVersion.patchVersion)"

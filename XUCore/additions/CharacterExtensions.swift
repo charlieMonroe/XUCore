@@ -36,6 +36,11 @@ extension Character {
 		return Character(UnicodeScalar(UInt32(randomInt)))
 	}
 	
+	/// Returns true if `self` is < 128.
+	public var isASCII: Bool {
+		return self.unicodeScalarValue < 128
+	}
+	
 	/// Returns true if the character is a member of character set.
 	public func isMemberOfCharacterSet(characterSet: NSCharacterSet) -> Bool {
 		return characterSet.characterIsMember(String(self).utf16.first!)

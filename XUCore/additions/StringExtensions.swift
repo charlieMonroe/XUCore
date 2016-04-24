@@ -454,7 +454,7 @@ public extension String {
 	/// phony.
 	public func validateEmailAddress() -> XUEmailValidationFormat {
 		// First see if it fits the general description
-		let regex = XURegex(pattern: "^[\\w-]{2,}@[\\w-]{2,}\\.\\w{2,}$", andOptions: .Caseless)
+		let regex = XURegex(pattern: "^[\\w\\.-]{2,}@[\\w\\.-]{2,}\\.\\w{2,}$", andOptions: .Caseless)
 		if !regex.matchesString(self) {
 			return .Wrong
 		}
@@ -462,7 +462,7 @@ public extension String {
 		// It's about right, see for some obviously phony emails
 		if self.hasCaseInsensitiveSubstring("fuck") || self.hasCaseInsensitiveSubstring("shit")
 			|| self.hasCaseInsensitiveSubstring("qwert") || self.hasCaseInsensitiveSubstring("asdf")
-			|| self.hasCaseInsensitiveSubstring("mail@mail.com") {
+			|| self.hasCaseInsensitiveSubstring("mail@mail.com") || self.hasCaseInsensitiveSubstring("1234") {
 			return .Phony
 		}
 		
