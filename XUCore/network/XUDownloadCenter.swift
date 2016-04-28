@@ -89,6 +89,7 @@ public class XUDownloadCenter {
 	public typealias XUPOSTFieldsModifier = (fields: inout [String : String]) -> Void
 	public typealias XUURLRequestModifier = (request: NSMutableURLRequest) -> Void
 	
+	public private(set) var lastError: NSError?
 	public private(set) var lastHTTPURLResponse: NSHTTPURLResponse?
 	public weak var owner: XUDownloadCenterOwner!
 	
@@ -99,10 +100,6 @@ public class XUDownloadCenter {
 		self.owner = owner
 	}
 	
-	
-	private func _logMethod(method: String = #function) -> String {
-		return  "-[\(self)[\(self.owner.name)] \(method)]"
-	}
 	
 	private func _importCookiesFromURLResponse(response: NSHTTPURLResponse) {
 		guard let
@@ -186,6 +183,48 @@ public class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
+	public func downloadDataAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil, referingFunction: String = #function) -> NSData? {
+		if URL == nil {
+			return nil
+		}
+		
+		let request = NSMutableURLRequest(URL: URL, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 15.0)
+		request.userAgent = agent
+		request.referer = referer
+		
+		if request.valueForHTTPHeaderField("Accept") == nil {
+			request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+		}
+		
+		self._setupCookieFieldForURLRequest(request)
+		
+		if modifier != nil {
+			modifier!(request: request)
+		}
+		
+		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)
+		
+		if XULoggingEnabled() {
+			var logString = "Method: \(request.HTTPMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
+			if request.HTTPBody != nil && request.HTTPBody!.length > 0 {
+				logString += "\nHTTP Body: \(String(data: request.HTTPBody) ?? "")"
+			}
+			
+			XULog("[\(self.owner.name)] Will be downloading URL \(URL!):\n\(logString)", method: referingFunction)
+		}
+		
+		var response: NSURLResponse? = nil
+		do {
+			let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
+			return data
+		} catch let error as NSError {
+			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
+			self.lastError = error
+			return nil
+		}
+	}
+	
 	/// Downloads the JSON and attempts to cast it to dictionary.
 	public func downloadJSONDictionaryAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> XUJSONDictionary? {
 		guard let obj = self.downloadJSONAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
@@ -228,48 +267,20 @@ public class XUDownloadCenter {
 			return nil
 		}
 		
-		let request = NSMutableURLRequest(URL: URL, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 15.0)
-		request.userAgent = agent
-		request.referer = referer
-		
-		if request.valueForHTTPHeaderField("Accept") == nil {
-			request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
-		}
-		
-		self._setupCookieFieldForURLRequest(request)
-		
-		if modifier != nil {
-			modifier!(request: request)
-		}
-		
-		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)
-		
-		if XULoggingEnabled() {
-			var logString = "Method: \(request.HTTPMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
-			if request.HTTPBody != nil && request.HTTPBody!.length > 0 {
-				logString += "\nHTTP Body: \(String(data: request.HTTPBody) ?? "")"
-			}
-			XULog("-[\(self)[\(self.owner.name) \(#function)] - will be downloading URL \(URL!):\n\(logString)")
-		}
-		
-		do {
-			var response: NSURLResponse? = nil
-			let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-			
-			XULog("-[\(self)[\(self.owner.name) \(#function)] - downloaded web site source from \(URL!), response: \(response)")
-			
-			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
-			
-			if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
-				return responseString
-			}
-			
-			/* Fallback */
-			return String(data: data)
-		} catch let error {
-			XULog("-[\(self)[\(self.owner.name) \(#function)] - Failed to load URL connection to URL \(URL!) - \(error)")
+		guard let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
+			XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(URL!) - \(self.lastError ?? "unknown error")")
 			return nil
 		}
+
+		
+		XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse ?? "none")")
+		
+		if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
+			return responseString
+		}
+		
+		/* Fallback */
+		return String(data: data)
 	}
 	
 	/// Does the same as the varian without the `fields` argument, but adds or
@@ -286,7 +297,7 @@ public class XUDownloadCenter {
 		var inputFields = source.allVariablePairsForRegexString("<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairsForRegexString("<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
-			XULog("\(self._logMethod()) - no input fields in \(source)")
+			XULog("[\(self.owner.name)] - no input fields in \(source)")
 			self.owner.downloadCenter(self, didEncounterError: .NoInputFields)
 			return nil
 		}
@@ -302,7 +313,7 @@ public class XUDownloadCenter {
 	public func downloadWebSiteSourceByPostingFormWithValues(values: [String : String], toURL URL: NSURL!) -> String? {
 		return self.downloadWebSiteSourceAtURL(URL, withReferer: self.owner.refererURL?.absoluteString, asAgent: self.owner.infoPageUserAgent, withModifier: { (request) in
 			request.HTTPMethod = "POST"
-			XULog("\(self._logMethod()) - POST fields: \(values)")
+			XULog("[\(self.owner.name)] POST fields: \(values)")
 			let bodyString = values.URLQueryString
 			request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
 		})
@@ -318,7 +329,7 @@ public class XUDownloadCenter {
 		
 		let doc = try? NSXMLDocument(XMLString: source, options: NSXMLDocumentTidyXML)
 		if doc == nil {
-			XULog("\(self._logMethod()) - failed to parse XML document \(source)")
+			XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
 			self.owner.downloadCenter(self, didEncounterError: .InvalidXMLResponse)
 		}
 		return doc
@@ -344,20 +355,20 @@ public class XUDownloadCenter {
 	public func JSONObjectFromString(JSONString: String!) -> AnyObject? {
 		if JSONString == nil {
 			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
-			XULog("\(self._logMethod()) - Trying to pass nil JSONString.")
+			XULog("[\(self.owner.name)] - Trying to pass nil JSONString.")
 			return nil
 		}
 		
 		guard let data = JSONString!.dataUsingEncoding(NSUTF8StringEncoding) else {
 			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
-			XULog("\(self._logMethod()) - Cannot get non-nil string data! \(JSONString!)")
+			XULog("[\(self.owner.name)] - Cannot get non-nil string data! \(JSONString!)")
 			return nil
 		}
 		
 		let obj = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
 		if obj == nil {
 			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
-			XULog("\(self._logMethod()) - failed to parse JSON \(JSONString!)")
+			XULog("[\(self.owner.name)] - failed to parse JSON \(JSONString!)")
 		}
 		
 		return obj
@@ -367,7 +378,7 @@ public class XUDownloadCenter {
 	/// to find the JSON potential callback function.
 	public func JSONObjectFromCallbackString(JSONString: String!) -> AnyObject? {
 		guard let innerJSON = JSONString?.getRegexVariableNamed("JSON", forRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
-			XULog("\(self._logMethod()) - no inner JSON in callback string \(JSONString ?? "")")
+			XULog("[\(self.owner.name)] - no inner JSON in callback string \(JSONString ?? "")")
 			return nil
 		}
 		
