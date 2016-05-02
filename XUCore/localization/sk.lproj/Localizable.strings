@@ -1,0 +1,75 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"Finishing..." = "Ukončuje sa...";
+"1 hour" = "1 hodina";
+"1 minute" = "1 minúta";
+"1 second" = "1 sekunda";
+"%lu hours" = "%lu hodín";
+"%lu minutes" = "%lu minút";
+"%lu seconds" = "%lu sekúnd";
+
+"Unknown error." = "Neznamá chyba.";
+
+"OK" = "OK";
+"Cancel" = "Zrušiť";
+
+"Failed to parse CSV file." = "Nie je možné prečítať CSV súbor.";
+
+"Send Report" = "Zaslať správu";
+"Privacy Information..." = "Informácie o súkromí...";
+"%AppName% has encountered a problem." = "Aplikácia %AppName% narazila na problém.";
+"%AppName% will terminate after sending the report." = "Aplikácia %AppName% sa ukončí po zaslaní správy.";
+"Report to be sent:" = "Správa na odoslanie:";
+"Your Email:" = "Váš email:";
+"Description:" = "Popis:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Prosím, popíšte situáciu, pri ktorej došlo k tejto výnimke a pokiaľ bude možné, uveďte kroky, ako k tejto situácii došlo. Vyplňte svoj email - dáme Vám vedieť, kedy bude táto chyba opravená, prípadne sa môžeme opýtať na nejaké detaily týkajúcich sa tejto chyby. Vaša emailová adresa nebude nijak spracovaná a nebude použitá k zasielaniu nechcenej pošty. Zaslaním tejto správy nám pomáhate vylepšiť tento software. Ďakujeme!";
+
+"Report Problem" = "Nahlásiť problém";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Ceníme si Vašej správy a nikdy by sme si nedovolili odosielať citlivé informácie. Vaša emailová adresa nebude nikde uchovávaná a bude použitá iba k zasielaniu informácie o tom, kedy bude problém vyriešený, alebo ak budeme potrebovať viac informácií k vyriešeniu tohoto problému.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Iba nasledujúce informácie budú odoslané:\n• Vami napísaný popis problému.\n• Vygenerovaný popis problému.\n• Verzia tejto aplikácie.\n• Verzia Vašho systému (OS).\n• Model tohoto počítača (bez MAC adresy, alebo akékoľvek informácie, ktorá by sa dala využiť na identifikáciu konkrétneho počítača).";
+
+"Could not post your report." = "Nie je možné odoslať správu.";
+"Check your Internet connection and try again." = "Skontrolujte svoje pripojenie k internetu a skúste to znovu.";
+"Heh, nice try. Please, enter a valid email address." = "Heh, Skúsili ste to... Zadajte prosím platnú emailovú adresu.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Možno Vás budeme musieť kontaktovať kvôli vyriešeniu tohto problému. Nehryzieme, nepredáme Váš email, ani ho nijak inak nezneužijeme. Sľubujeme.";
+"You need to enter a valid email address." = "Musíte zadať platnú emailovú adresu.";
+"We may need to get in touch with you in order to fix this." = "Možno Vás budeme musieť kontaktovať kvôli vyriešeniu tohto problému.";
+"Please, provide some details as to when this exception happened." = "Prosím, uveďte nejaké podrobnosti ohľadom toho, kedy táto chyba nastala.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Uveďte informácie o prebiehajúcich úlohách, či aplikácia bola v popredí alebo na pozadí; či ste na niečo klikli, atď. Pokúšať sa opraviť chybu iba z vygenerovaného popisu problému môže byť ťažké, až nemožné.";
+"Thank you for the report!" = "Ďakujeme za nahlásenie!";
+"We'll fix it as soon as possible!" = "Túto chybu opravíme čo najskôr!";
+
+"Welcome to beta testing of %@." = "Vitejte v beta testovaní aplikácie %@.";
+"This is the first time you run a beta build %@." = "Toto je prvýkrát, čo ste otvorili beta verziu číslo %@.";
+"This beta build of %@ has expired." = "Táto beta verzia aplikácie %@ vypršala.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Užívajte si náš software! Ak máte akékoľvek otázky, alebo pokiaľ ste narazili na nejaké chyby, kontaktujte nás na %@";
+
+"Continue" = "Pokračovať";
+"Purchase..." = "Zakúpiť...";
+"I'm Still Not Sure" = "Stále si nie som istý";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "Aplikácia %@ sa nemohla pripojiť k internetu. Táto aplikácia bude ukončená behom jednej hodiny.";
+"%@ requires connection to the Internet to continue the trial properly." = "Aplikácia %@ vyžaduje pripojenie k internetu, aby skúšobná verzia fungovala správne.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Budete presmerovaný na stránku, kde sa dá aplikácia zakúpiť. Pokiaľ máte stále pochybnosti, či je %@ práve pre Vás a máte nejaké otázky, kontaktujte nás.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Ďakujeme za stiahnutie %@! Môžete túto aplikáciu využívat %li dní bez akýchkoľvek obmedzení. Potom, čo skušobná doba vyprší, musíte si %@ zakúpiť.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Ďakujeme za vyskúšanie %@! Už ste túto aplikáciu využívali %li dní. Pokiaľ chcete aj naďalej používať %@, musíte si ho zakúpiť.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Ďakujeme za stiahnutie %@! Môžete ho využívať na %i %@ bez akýchkoľvek obmedzení. Po vypršaní skúšobnej doby si musíte %@ zakúpiť.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Ďakujeme za vyskúšanie %@! Už ste aplikáciu použil na %i %@. Pokiaľ chcete aj naďalej používať %@, musíte si ho zakúpiť.";
+
+"Working..." = "Pracujem...";
+
+"Progress" = "Postup";
+"Posted successfully" = "Úspešne odoslané";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ bude fungovať nasledujúcich 24 hodin, po ktorých bude funkčnosť zablokovaná. Prosím, nainštalujte si aktualizáciu %@.";
+"Please download a new build." = "Prosím, stiahnite si novú verziu.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Môžete správu odoslať aj tak, avšak pokiaľ naozaj nie je anglicky, nebudem schopný poskytnúť plnú podporu.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Vaša správa obsahuje špeciálne znaky, čo býva známkou toho, že správa nie je anglicky. Hoci %@ je preložený do rôznych jazykov, podpora je poskytovaná iba anglicky. Ďakujem za pochopenie.";
+"%li hours" = "%li hodín";
+"%li minutes" = "%li minút";
+"%li seconds" = "%li sekúnd";

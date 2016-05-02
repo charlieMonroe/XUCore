@@ -43,6 +43,17 @@ public extension String {
 		let UID = CFUUIDCreateString(nil, UIDRef)
 		return UID as String
 	}
+	
+	
+	/// Decodes `self` as base64-encoded `NSData` and tries to create a string
+	/// from the result.
+	public var base64DecodedString: String? {
+		guard let data = NSData(base64EncodedString: self, options: .IgnoreUnknownCharacters) else {
+			return nil
+		}
+		
+		return String(data: data)
+	}
 
 	/// Returns true if the other string is not empty and is contained in self
 	/// case-insensitive.
@@ -163,6 +174,7 @@ public extension String {
 		string = string.stringByReplacingOccurrencesOfString("&gt;", withString: ">", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString("&lt;", withString: "<", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString("&apos;", withString: "'", options: .LiteralSearch)
+		string = string.stringByReplacingOccurrencesOfString("&reg;", withString: "®", options: .LiteralSearch)
 
 		var i = 0
 		while i < self.characters.count {

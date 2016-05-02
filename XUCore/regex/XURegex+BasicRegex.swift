@@ -116,6 +116,12 @@ public extension XURegex {
 	public static var URLSourceSourceRegexString: String {
 		return "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']"
 	}
+	public static var URLVideoPosterRegex: XURegex {
+		return XURegex(self.URLVideoPosterRegexString)
+	}
+	public static var URLVideoPosterRegexString: String {
+		return "<video[^>]+poster=\"(?P<URL>[^\"]+)\""
+	}
 	public static var URLVideoSourceRegex: XURegex {
 		return XURegex(self.URLVideoSourceRegexString)
 	}

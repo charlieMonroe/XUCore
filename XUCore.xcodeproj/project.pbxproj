@@ -438,6 +438,7 @@
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
+		074147A01CD72649007482D5 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
 		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		074446B01C529F270026F5DD /* SystemNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SystemNotification.xib; path = util/SystemNotification.xib; sourceTree = "<group>"; };
@@ -1249,6 +1250,7 @@
 				"pt-BR",
 				cs,
 				"zh-Hans",
+				sk,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1554,6 +1556,7 @@
 				071A74A31C54DA3600EEA7FC /* pt-BR */,
 				071A74A41C54DA7000EEA7FC /* cs */,
 				074E08501C6CB65A00A0FD48 /* zh-Hans */,
+				074147A01CD72649007482D5 /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
