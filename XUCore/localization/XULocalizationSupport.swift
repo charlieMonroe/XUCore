@@ -43,7 +43,7 @@ public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType.
 ///
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
-public func localizedStringWithFormatValues(key: String, andValues values: [String : AnyObject]) -> String {
+public func XULocalizedStringWithFormatValues(key: String, andValues values: [String : AnyObject]) -> String {
 	return XULocalizationCenter.sharedCenter.localizedStringWithFormatValues(key, andValues: values)
 }
 
