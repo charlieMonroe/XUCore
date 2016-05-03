@@ -560,6 +560,7 @@
 		07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULocalizationSupport.swift; sourceTree = "<group>"; };
 		07E38A3F1C07105100AE6EAB /* XUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUString.swift; sourceTree = "<group>"; };
 		07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess.swift; sourceTree = "<group>"; };
+		07EBEA321CD8B3A600681651 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07FD4BC61C7CA1D000559CF0 /* XUManagedDataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUManagedDataContext.swift; sourceTree = "<group>"; };
 		07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUObjCProperty.swift; path = deserialization/XUObjCProperty.swift; sourceTree = "<group>"; };
 		07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializer.swift; path = deserialization/XUJSONDeserializer.swift; sourceTree = "<group>"; };
@@ -1251,6 +1252,7 @@
 				cs,
 				"zh-Hans",
 				sk,
+				he,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1557,6 +1559,7 @@
 				071A74A41C54DA7000EEA7FC /* cs */,
 				074E08501C6CB65A00A0FD48 /* zh-Hans */,
 				074147A01CD72649007482D5 /* sk */,
+				07EBEA321CD8B3A600681651 /* he */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

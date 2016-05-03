@@ -40,7 +40,7 @@ public extension NSData {
 			let byte1 = _hexValueOfChar(hexString.characters[i]) << 4
 			let byte2 = _hexValueOfChar(hexString.characters[i.successor()])
 			
-			var byte = (byte1 << 4) | byte2
+			var byte = byte1 | byte2
 			data.appendBytes(&byte, length: 1)
 			
 			i = i.advancedBy(2)
@@ -89,10 +89,10 @@ public extension NSData {
 			return ""
 		}
 		
-		let bytes = UnsafePointer<Int8>(self.bytes)
+		let bytes = UnsafePointer<UInt8>(self.bytes)
 		var hexString = ""
 		for i in 0 ..< dataLength {
-			hexString += String(format: "%02lx", bytes[i])
+			hexString += String(format: "%02x", bytes[i])
 		}
 		return hexString
 	}
