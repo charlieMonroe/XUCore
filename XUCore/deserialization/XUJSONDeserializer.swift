@@ -104,6 +104,10 @@ public enum XUJSONDeserializationError {
 	/// Return true if you want to ignore this key. If true is returned, the
 	/// deserializer will not call any further methods.
 	optional func ignoreKey(key: String) -> Bool
+	
+	/// You can observe the fact that you were deserialized by implementing this
+	/// method.
+	optional func objectWasDeserializedFromDictionary(dictionary: XUJSONDictionary)
 
 	/// When the deserializer encounters an array of strings or numbers (NSNumber),
 	/// it will call this method assuming that those are IDs or some other objects.
@@ -574,6 +578,8 @@ public class XUJSONDeserializer {
 		var result: XUJSONDeserializationError = .None
 		for key in dictionary.keys {
 			let resultPerKey = self._deserializeObject(object, fromDictionary: dictionary, underKey: key)
+			object.objectWasDeserializedFromDictionary?(dictionary)
+			
 			if resultPerKey.isMoreSevereThan(result) {
 				result = resultPerKey
 			}
