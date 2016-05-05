@@ -196,15 +196,16 @@ public extension Dictionary {
 		for key in components {
 			if let dict = obj as? XUJSONDictionary {
 				obj = dict[key]
-			}else if let arr = obj as? [AnyObject] {
-				let index = Int(key)
-				if index == nil {
+			} else if let arr = obj as? [AnyObject] {
+				guard let index = Int(key) else {
 					print("Dictionary.objectForKeyPath(): Index \(key) cannot be applied on an array!")
 					return nil
 				}
 				
-				if index! < arr.count {
-					obj = arr[index!]
+				if index == -1 {
+					return arr.last
+				} else if index < arr.count {
+					obj = arr[index]
 				}else{
 					return nil
 				}

@@ -30,5 +30,8 @@
 	return decryptedData;
 }
 
+-(NSData *)HMACSHA1WithKey:(NSString *)key {
+	return [self HMACWithAlgorithm:kCCHmacAlgSHA1 key:key];
+}
 
 @end

@@ -25,7 +25,7 @@ private func _hexValueOfChar(c: Character) -> Int {
 }
 
 public extension NSData {
-
+	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
 	public convenience init(hexEncodedString hexString: String) {
 		if hexString.characters.count % 2 != 0 {
@@ -40,7 +40,7 @@ public extension NSData {
 			let byte1 = _hexValueOfChar(hexString.characters[i]) << 4
 			let byte2 = _hexValueOfChar(hexString.characters[i.successor()])
 			
-			var byte = (byte1 << 4) | byte2
+			var byte = byte1 | byte2
 			data.appendBytes(&byte, length: 1)
 			
 			i = i.advancedBy(2)
@@ -49,12 +49,31 @@ public extension NSData {
 		self.init(data: data)
 	}
 	
+	/// Returns self.bytes as Int8. If includeZeros is false, this function remove
+	/// bytes that are == 0.
+	@available(*, deprecated, message="Use filteredByteArray")
 	public func byteArrayWithZerosIncluded(includeZeros: Bool) -> [Int8] {
 		var result: [Int8] = []
 		let bytes = UnsafePointer<Int8>(self.bytes)
 		for i in 0 ..< self.length {
 			let c = bytes[i]
 			if c == 0 && !includeZeros {
+				continue
+			}
+			result.append(c)
+		}
+		
+		return result
+	}
+	
+	/// Returns `self.bytes` as `Int8` with `filter` applied. If nil is passed as
+	/// `filter` (default value of `filter`), all bytes are included.
+	public func filteredByteArray(filter: ((index: Int, byte: Int8) -> Bool)! = nil) -> [Int8] {
+		var result: [Int8] = []
+		let bytes = UnsafePointer<Int8>(self.bytes)
+		for i in 0 ..< self.length {
+			let c = bytes[i]
+			if filter != nil && !filter(index: i, byte: c) {
 				continue
 			}
 			result.append(c)
@@ -70,10 +89,10 @@ public extension NSData {
 			return ""
 		}
 		
-		let bytes = UnsafePointer<Int8>(self.bytes)
+		let bytes = UnsafePointer<UInt8>(self.bytes)
 		var hexString = ""
 		for i in 0 ..< dataLength {
-			hexString += String(format: "%02lx", bytes[i])
+			hexString += String(format: "%02x", bytes[i])
 		}
 		return hexString
 	}

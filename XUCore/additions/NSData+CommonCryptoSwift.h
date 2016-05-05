@@ -16,4 +16,7 @@
 /// Decrypts data with RC4 using an encryption key
 -(nullable NSData *)decryptedRC4DataWithEncryptionKey:(nonnull NSString *)key;
 
+/// Creates a HMAC-SH1 with custom key.
+-(nullable NSData *)HMACSHA1WithKey:(nonnull NSString *)key;
+
 @end

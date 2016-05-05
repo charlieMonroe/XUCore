@@ -183,7 +183,7 @@ public class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
-	public func downloadDataAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil, referingFunction: String = #function) -> NSData? {
+	public func downloadDataAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: XUURLRequestModifier? = nil) -> NSData? {
 		if URL == nil {
 			return nil
 		}
