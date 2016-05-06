@@ -105,6 +105,14 @@ public extension NSData {
 		return NSData.MD5DigestOfBytes(self.bytes, ofLength: self.length)
 	}
 	
+	/// Reads Int-typed value from stream.
+	public func readIntegerStartingAtIndex<T: IntegerType>(index: Int) -> T {
+		let bytes = UnsafePointer<Int8>(self.bytes).advancedBy(index)
+		let pointer = UnsafePointer<T>(bytes)
+		return pointer.memory
+	}
+	
+	@available(*, deprecated, message="Use generic readIntegerStartingAtIndex().")
 	public func readIntegerOfLength(length: Int, startingAtIndex index: Int) -> Int {
 		assert(length <= sizeof(Int), "This is a way too big of an int!")
 		

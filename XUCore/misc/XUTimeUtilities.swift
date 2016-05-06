@@ -25,6 +25,10 @@ public class XUTime {
 	
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
 	public class func localizedTimeString(seconds: NSTimeInterval) -> String {
+		if seconds < 0 || !seconds.isFinite || NSTimeInterval(Int64.max) < seconds {
+			return XULocalizedString("1 second")
+		}
+		
 		var hourString = ""
 		var minuteString = ""
 		var secondsString = ""
@@ -71,6 +75,10 @@ public class XUTime {
 	/// Rounds time to certain second count. E.g. by setting seconds to 30, it
 	/// will round the time to 5 minutes.
 	public class func roundTime(time: NSTimeInterval, direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> NSTimeInterval {
+		if seconds < 0 || !time.isFinite || NSTimeInterval(Int64.max) < time {
+			return 0.0
+		}
+		
 		var t = UInt64(time)
 		
 		let remains = t % UInt64(seconds)

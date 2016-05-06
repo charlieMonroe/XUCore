@@ -17,4 +17,4 @@ private class XUCore {
 }
 
 /// Contains NSBundle of XUCore(Mobile) framework.
-let XUCoreBundle = NSBundle(forClass: XUCore.self)
+public let XUCoreBundle = NSBundle(forClass: XUCore.self)

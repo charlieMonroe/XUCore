@@ -390,13 +390,13 @@ public class XUItemBasedTrial: XUTrial {
 	public func decreaseItemsLeft() {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
 			self._itemsLeft -= 1
-			
+
+			self.saveTrialInformation()
+			self._notifyAboutItemsLeftChanged()
+
 			if self._itemsLeft <= 0 {
 				self._trialExpired()
 			}
-			
-			self.saveTrialInformation()
-			self._notifyAboutItemsLeftChanged()
 		}
 	}
 	
