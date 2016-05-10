@@ -223,19 +223,21 @@ public class XUJSONDeserializer {
 
 			property = prop
 		} else {
+			
+			/// First, give chance to custom deserialization.
+			let value = dictionary[key]
+			if let dict = value as? XUJSONDictionary {
+				if object.performCustomDeserializationOfObject?(dict, forKey: key) ?? false {
+					return .None
+				}
+			} else if let array = value as? [AnyObject] {
+				if object.performCustomDeserializationOfObjects?(array, forKey: key) ?? false {
+					return .None
+				}
+			}
+			
 			// We need to find it.
 			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(key)}) else {
-				let value = dictionary[key]
-				if let dict = value as? XUJSONDictionary {
-					if object.performCustomDeserializationOfObject?(dict, forKey: key) ?? false {
-						return .None
-					}
-				} else if let array = value as? [AnyObject] {
-					if object.performCustomDeserializationOfObjects?(array, forKey: key) ?? false {
-						return .None
-					}
-				}
-
 				self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Key \(key) not handled when mapping class \(object.dynamicType)")
 				return .Warning
 			}
