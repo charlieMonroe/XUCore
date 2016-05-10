@@ -129,8 +129,8 @@ public enum XUJSONDeserializationError {
 	/// and finds one that is a case-insensitive match.
 	optional func propertyNameForDictionaryRepresentationKey(key: String) -> String?
 
-	/// Transforms the value to the representation required by the class. By default
-	/// just returns the value.
+	/// Transforms the value to the representation required by the class. Return
+	/// nil if you don't want transformation for that key to occurr.
 	optional func transformedValue(value: AnyObject?, forKey key: String) -> AnyObject?
 }
 
