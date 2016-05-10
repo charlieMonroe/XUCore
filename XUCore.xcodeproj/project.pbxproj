@@ -10,6 +10,10 @@
 		070329C51C3F8C8F0058F914 /* XUDockIconProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */; };
 		0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */; };
 		070647ED1C8852C5007A89BB /* XUDeviceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */; };
+		070A00ED1CE1BA68001A90EB /* _XUBacktrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		070A00EE1CE1BA68001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
+		070A00EF1CE1BC59001A90EB /* _XUBacktrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		070A00F01CE1BC62001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
 		070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
 		070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
@@ -353,6 +357,8 @@
 		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUDockIconProgress.swift; path = util/XUDockIconProgress.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
 		070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDeviceUtilities.swift; path = util/XUDeviceUtilities.swift; sourceTree = "<group>"; };
+		070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUBacktrace.h; path = private/_XUBacktrace.h; sourceTree = "<group>"; };
+		070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUBacktrace.m; path = private/_XUBacktrace.m; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -762,6 +768,8 @@
 		0749DCF51C00D4DE0075CC9B /* private */ = {
 			isa = PBXGroup;
 			children = (
+				070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */,
+				070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */,
 				0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */,
 				0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */,
 				0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */,
@@ -1116,6 +1124,7 @@
 				073E6AF31BE1F86D00706283 /* unicode_groups.h in Headers */,
 				073E6AE91BE1F86D00706283 /* stringpiece.h in Headers */,
 				077AFF1C1BBD101400872A48 /* NSStringAdditions.h in Headers */,
+				070A00ED1CE1BA68001A90EB /* _XUBacktrace.h in Headers */,
 				073E6B4D1BE1FE0A00706283 /* NSData+CommonCrypto.h in Headers */,
 				073E6AF71BE1F86D00706283 /* arena.h in Headers */,
 				077AFF981BBD101400872A48 /* FCContextHolder.h in Headers */,
@@ -1176,6 +1185,7 @@
 				073E6AFE1BE1F86D00706283 /* flags.h in Headers */,
 				073E6AE61BE1F86D00706283 /* set.h in Headers */,
 				073E6B0C1BE1F86D00706283 /* random.h in Headers */,
+				070A00EF1CE1BC59001A90EB /* _XUBacktrace.h in Headers */,
 				073E6AEA1BE1F86D00706283 /* stringpiece.h in Headers */,
 				073E6ADE1BE1F86D00706283 /* re2.h in Headers */,
 				077AFEC11BBD101400872A48 /* NSArrayAdditions.h in Headers */,
@@ -1385,6 +1395,7 @@
 				0749DCD41C004D640075CC9B /* NSWindow-NoodleEffects.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
 				074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */,
+				070A00EE1CE1BA68001A90EB /* _XUBacktrace.m in Sources */,
 				0779E16A1BF06AE200832858 /* NSHTTPURLResponseAdditions.swift in Sources */,
 				077093821CC1296C0093830B /* NSDataAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
@@ -1495,6 +1506,7 @@
 				073E6ACC1BE1F86D00706283 /* parse.cc in Sources */,
 				07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */,
 				073E6AD41BE1F86D00706283 /* prefilter_tree.cc in Sources */,
+				070A00F01CE1BC62001A90EB /* _XUBacktrace.m in Sources */,
 				073E6A6F1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				07B908241BF3AC19008D254A /* NSRecursiveLockAdditions.swift in Sources */,
 				07FD4BE11C7DC2E900559CF0 /* NSDateFormatterISO8601.swift in Sources */,

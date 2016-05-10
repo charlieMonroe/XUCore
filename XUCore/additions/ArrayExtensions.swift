@@ -235,7 +235,7 @@ public extension Array {
 	}
 	
 	/// Moves object from one index to another.
-	mutating func moveObjectAtIndex(fromIndex: Int, toIndex: Int) {
+	public mutating func moveObjectAtIndex(fromIndex: Int, toIndex: Int) {
 		if toIndex == fromIndex {
 			return
 		}
@@ -283,6 +283,19 @@ public extension CollectionType where Index.Distance : ForwardIndexType {
 		}
 		return unique
 	}
+	
+}
 
+public extension Array where Element : Equatable {
+
+	/// Replaces all occurrences of `element` with `newElement`.
+	public mutating func replaceAllOccurrences(element: Generator.Element, withElement newElement: Generator.Element) {
+		assert(element != newElement, "Trying to replace a value with the same value!")
+		
+		while let index = self.indexOf(element) {
+			self[index] = newElement
+		}
+	}
+	
 }
 

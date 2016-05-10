@@ -196,7 +196,9 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		self.save()
 		
-		NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerPurchasesDidChangeNotification, object: self)
+		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			NSNotificationCenter.defaultCenter().postNotificationName(XUInAppPurchaseManagerPurchasesDidChangeNotification, object: self)
+		}
 	}
 	
 	
@@ -267,8 +269,10 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		XULog("An error getting products occurred \(error)")
 		
 		_loadRequest = nil
-		
-		self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
+	
+		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
+		}
 	}
 	#else
 	public func request(request: SKRequest, didFailWithError error: NSError?) {
@@ -276,7 +280,9 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		isLoadingProducts = false
 		
-		self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
+		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
+		}
 	}
 	#endif
 	

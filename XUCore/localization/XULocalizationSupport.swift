@@ -69,9 +69,9 @@ public class XULocalizationCenter: NSObject {
 		// Fall back to en or "Base". Just check if the language is "en" so that if
 		// the project doesn't contain either, we don't end up in an infinite loop.
 		if language == "en" {
-			if let bundle = self._languageBundleForLanguage("English", inBundle: bundle) {
+			if let bundle = self._languageBundleForLanguage("English", inBundle: bundle, fallbackToEnglish: fallbackToEnglish) {
 				return bundle
-			}else if let bundle = self._languageBundleForLanguage("Base", inBundle: bundle) {
+			}else if let bundle = self._languageBundleForLanguage("Base", inBundle: bundle, fallbackToEnglish: fallbackToEnglish) {
 				return bundle
 			}
 		}

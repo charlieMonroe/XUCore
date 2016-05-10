@@ -46,11 +46,17 @@ public class XUExceptionCatcher: NSObject {
 		// which is why we just note down the exception and we periodically check
 		// for it in _checkForException.
 		
-		var stackTraceString = ""
+		var stackTraceString = exception.description + "\n\n"
 		
 		let exceptionStackTrace = XUStacktraceStringFromException(exception)
 		if !exceptionStackTrace.isEmpty {
 			stackTraceString = exceptionStackTrace + "\n\n"
+		}
+		
+		if let stackTraceSymbolsString = exception.userInfo?[NSStackTraceKey] as? String {
+			let stackTraceSymbols = stackTraceSymbolsString.componentsSeparatedByString("  ").map({ NSNumber(integer: $0.stringByDeletingPrefix("0x").hexValue) })
+			stackTraceString += _XUBacktrace.backtraceStringForAddresses(stackTraceSymbols).joinWithSeparator("\n")
+			stackTraceString += "\n\n"
 		}
 		
 		stackTraceString += XUStacktraceString()
