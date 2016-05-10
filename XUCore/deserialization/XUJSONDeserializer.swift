@@ -566,14 +566,22 @@ public class XUJSONDeserializer {
 	///
 	/// Smart mapping:
 	/// - there are some default type conversions NSString <-> NSNumber,
-	/// NSString/NSNumber <-> NSDate. You can modify the behavior in
-	/// transformedValue(_:forKey:).
+	///				NSString/NSNumber <-> NSDate. You can modify the behavior in
+	///				transformedValue(_:forKey:).
 	/// - if the value under the particular key is an Array, it is further
-	/// looked into it. If it contains NSStrings or NSNumbers,
-	/// mapIDs(_:toObjectsForKey:) is called. If dictionaries are present,
-	/// createObjectForKey(_:) is called and if a non-nil object is
-	/// returned, the array is mapped. If neither condition is met,
-	/// performCustomDeserializationOfObject[s](_:forKey:) is called.
+	///				looked into it. If it contains NSStrings or NSNumbers,
+	///				mapIDs(_:toObjectsForKey:) is called. If dictionaries are present,
+	///				createObjectForKey(_:) is called and if a non-nil object is
+	///				returned, the array is mapped. If neither condition is met,
+	///				performCustomDeserializationOfObject[s](_:forKey:) is called.
+	///
+	/// @note - The implementation will lock the context for NSMangedObject
+	/// subclasses. The locking may be expensive since it performs the updates
+	/// on a different thread (usually). If the context is set for main queue,
+	/// deserialize the object on main thread (which saves a lot of unnecessary 
+	/// context switches). The deserializer has a built-in support for this,
+	/// avoiding UI lock-up by letting one-pass run loop after deserializing each
+	/// object.
 	public func deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary) -> XUJSONDeserializationError {
 		var result: XUJSONDeserializationError = .None
 		for key in dictionary.keys {
@@ -583,6 +591,12 @@ public class XUJSONDeserializer {
 			if resultPerKey.isMoreSevereThan(result) {
 				result = resultPerKey
 			}
+		}
+		
+		/// This is a slight hack that allows a fast deserialization on main 
+		/// thread. See the note in this method's docs. 
+		if NSThread.isMainThread() {
+			CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0, false)
 		}
 
 		return result

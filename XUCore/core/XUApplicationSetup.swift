@@ -25,10 +25,43 @@ private func _URLForKey(key: String, inInfoDictionary infoDictionary: [String : 
 /// This class contains several variables containing some of the information in
 /// the main bundle's Info.plist. You can go through the variables and see what
 /// information needs to be entered under which key to modify the app's behavior.
+///
+/// If you need your own:
+///		- subclass the setup
+///		- override init()
+///		- enter the class name into Info.plist under the key XUApplicationSetupClass
+///		- provide your own static var that casts sharedSetup to your own. Example:
+///
+/// class XUMyAppSetup: XUApplicationSetup {
+///
+///		class var myAppSetup: XUMyAppSetup { 
+///			return XUApplicationSetup.sharedSetup as! XUMyAppSetup
+///		}
+///
+/// }
+///
 public class XUApplicationSetup: NSObject {
 	
 	/// Returns the shared setup.
-	public static let sharedSetup = XUApplicationSetup()
+	public static let sharedSetup: XUApplicationSetup = {
+		let infoDictionary = NSBundle.mainBundle().infoDictionary ?? [ : ]
+		let setupClass: XUApplicationSetup.Type
+		if let className = infoDictionary["XUApplicationSetupClass"] as? String {
+			guard let genericClass = NSClassFromString(className) else {
+				fatalError("Cannot find class named \(className) for XUApplicationSetup subclass.")
+			}
+			
+			guard let specializedClass = genericClass as? XUApplicationSetup.Type else {
+				fatalError("Class \(genericClass) is not a subclass of XUApplicationSetup.")
+			}
+			
+			setupClass = specializedClass
+		} else {
+			setupClass = XUApplicationSetup.self
+		}
+		
+		return setupClass.init(infoDictionary: infoDictionary)
+	}()
 	
 	
 	/// Returns the application build number - found under CFBundleVersion 
@@ -132,9 +165,8 @@ public class XUApplicationSetup: NSObject {
 	/// under the key XUTrialSessionsURL in Info.plist.
 	public let trialSessionsURL: NSURL?
 	
-	private override init() {
-		let infoDictionary = NSBundle.mainBundle().infoDictionary ?? [ : ]
-		
+	/// The initializer gets the main bundle's infoDictionary.
+	public required init(infoDictionary: XUJSONDictionary) {
 		if let appStoreBuild = infoDictionary["XUAppStoreBuild"] as? NSNumber {
 			self.isAppStoreBuild = appStoreBuild.boolValue
 		}else{

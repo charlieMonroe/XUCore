@@ -115,7 +115,7 @@ private func __XULogSetShouldLog(log: Bool) {
 }
 
 private func _XULogFilePath() -> String {
-	let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo().processName
+	let appIdentifier = XUApplicationSetup.sharedSetup.applicationIdentifier
 	
 	let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).stringByExpandingTildeInPath
 	let logFile = logFolder + "/" + "\(appIdentifier).log"
