@@ -29,6 +29,8 @@
 		07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */; };
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
+		0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
+		0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */; };
@@ -371,6 +373,7 @@
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIView+Frame.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGeometryAdditions.swift; sourceTree = "<group>"; };
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
 		073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUClickThroughTextField.swift; sourceTree = "<group>"; };
@@ -870,6 +873,7 @@
 				07B821111C86395B0079868F /* CGGraphicsAdditions.swift */,
 				073E6B391BE1F9D500706283 /* CharacterExtensions.swift */,
 				077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */,
+				0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */,
 				07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */,
 				0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */,
 				077AFDAC1BBD101400872A48 /* NSArrayAdditions.h */,
@@ -1422,6 +1426,7 @@
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
 				07B9082C1BF3BC84008D254A /* NSTimerAdditions.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
+				0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */,
 				07B908311BF3C4A9008D254A /* XURedView.swift in Sources */,
 				0749DCDE1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B521BE2026600706283 /* XULog.swift in Sources */,
@@ -1476,6 +1481,7 @@
 				0779E17D1BF2307100832858 /* UIView+Enclosing.swift in Sources */,
 				0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				073E6B461BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
+				0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */,
 				07580D981CC5231E0022D183 /* NSDataAdditions.swift in Sources */,
 				077AFF9F1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
