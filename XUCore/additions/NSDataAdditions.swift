@@ -97,6 +97,9 @@ public extension NSData {
 		return hexString
 	}
 	
+	/// Returns first occurrence of bytes within `self`. If it doesn't contain
+	/// the data, NSNotFound is returned since this method is based on 
+	/// self.rangeOfData(_:options:range:).
 	public func indexOfFirstOccurrenceOfBytes(bytes: UnsafeMutablePointer<Void>, ofLength length: Int) -> Int {
 		return self.rangeOfData(NSData(bytesNoCopy: bytes, length: length, freeWhenDone: false), options: NSDataSearchOptions(), range: NSMakeRange(0, self.length)).location
 	}
