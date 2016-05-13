@@ -9,9 +9,13 @@
 import Foundation
 import ObjectiveC
 
+public func ==(property1: XUObjCProperty, property2: XUObjCProperty) -> Bool {
+	return property1.propertyClass == property2.propertyClass && property1.name == property2.name
+}
+
 /// This class represents a property on an ObjC class (or a dynamic/@objc property
 /// on a Swift class).
-public class XUObjCProperty: CustomStringConvertible {
+public class XUObjCProperty: CustomStringConvertible, Hashable {
 	
 	/// Returns a list of properties declared on a class, optionally including
 	/// properties declared on superclasses.
@@ -24,7 +28,7 @@ public class XUObjCProperty: CustomStringConvertible {
 			var count: UInt32 = 0
 			let props = class_copyPropertyList(cl, &count)
 			for i in 0 ..< Int(count) {
-				properties.append(XUObjCProperty(runtimeProperty: props[i]))
+				properties.append(XUObjCProperty(runtimeProperty: props[i], definedOnClass: cl))
 			}
 			
 			free(props)
@@ -48,6 +52,10 @@ public class XUObjCProperty: CustomStringConvertible {
 	/// returned for 'id'. For 'id<Protocol>', @"<Protocol>" is returned.
 	public let className: String?
 	
+	/// The class the property is defined on. Note that this may be a subclass
+	/// of the class passed into propertiesOnClass(_:).
+	public let definedOnClass: AnyClass
+	
 	/// If true, the property is declared as readonly.
 	public let isReadOnly: Bool
 	
@@ -62,9 +70,14 @@ public class XUObjCProperty: CustomStringConvertible {
 		return "\(self.isScalar ? "S" : "O") \(self.isReadOnly ? "RO" : "RW") \(self.name) (\(self.className ?? "--"))"
 	}
 	
+	public var hashValue: Int {
+		return "\(self.definedOnClass).\(self.name)".hash
+	}
+	
 	/// Returns a property object for this particular property.
-	public init(runtimeProperty: objc_property_t) {
+	public init(runtimeProperty: objc_property_t, definedOnClass aClass: AnyClass) {
 		self.name = (NSString(UTF8String: property_getName(runtimeProperty)) as String?) ?? "<<unknown>>"
+		self.definedOnClass = aClass
 		
 		let allPropertiesString = NSString(UTF8String: property_getAttributes(runtimeProperty)) as String? ?? ""
 		let allProperties = allPropertiesString.componentsSeparatedByString(",")

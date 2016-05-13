@@ -58,6 +58,17 @@ public enum XUJSONDeserializationError {
 	}
 }
 
+/// Used as a return value for per-key results.
+private enum XUJSONDeserializationPropertyResult {
+	
+	case DeserializedValue(property: XUObjCProperty, value: AnyObject?, error: XUJSONDeserializationError)
+	case CustomDeserializationPerformed // Custom deserialization performed.
+	case Ignored // Ignored by object returning true from .ignoreKey(_:)
+	case Unhandled(error: XUJSONDeserializationError) // Not handled at all.
+	case Error // Error.
+	
+}
+
 /// All classes that want to be deserialized by the deserializer must conform to
 /// this protocol.
 @objc public protocol XUJSONDeserializable: AnyObject {
@@ -207,9 +218,9 @@ public class XUJSONDeserializer {
 		return properties
 	}
 
-	private func _deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary, underKey key: String) -> XUJSONDeserializationError {
+	private func _deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary, underKey key: String) -> XUJSONDeserializationPropertyResult {
 		if object.ignoreKey?(key) ?? false {
-			return .None
+			return .Ignored
 		}
 
 		let propertyList = self._propertiesForObject(object)
@@ -228,18 +239,18 @@ public class XUJSONDeserializer {
 			let value = dictionary[key]
 			if let dict = value as? XUJSONDictionary {
 				if object.performCustomDeserializationOfObject?(dict, forKey: key) ?? false {
-					return .None
+					return .CustomDeserializationPerformed
 				}
 			} else if let array = value as? [AnyObject] {
 				if object.performCustomDeserializationOfObjects?(array, forKey: key) ?? false {
-					return .None
+					return .CustomDeserializationPerformed
 				}
 			}
 			
 			// We need to find it.
 			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(key)}) else {
 				self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Key \(key) not handled when mapping class \(object.dynamicType)")
-				return .Warning
+				return .Unhandled(error: .Warning)
 			}
 
 			property = prop
@@ -250,28 +261,23 @@ public class XUJSONDeserializer {
 			return .Error
 		}
 		
-		var response: (value: AnyObject?, error: XUJSONDeserializationError) = (nil, .Error)
+		var response: XUJSONDeserializationPropertyResult = .DeserializedValue(property: property, value: nil, error: .Error)
 		_exceptionHandler.performBlock({
 			var dontSet: Bool = false
-			response = self._transformedValue(dictionary[key]!, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSet)
+			let localResponse = self._transformedValue(dictionary[key]!, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSet)
 			if dontSet {
+				response = .CustomDeserializationPerformed
 				return // Handled by custom deserialization
 			}
 			
-			if let managedObject = object as? NSManagedObject {
-				managedObject.managedObjectContext?.performBlockAndWait {
-					object.setValue(response.value, forKey: property.name)
-				}
-			} else {
-				object.setValue(response.value, forKey: property.name)
-			}
+			response = .DeserializedValue(property: property, value: localResponse.value, error: localResponse.error)
 		}, withCatchHandler: { (exception) in
 			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Failed setting value for key \(key) to property \(property.name) on class \(object.dynamicType), exception \(exception)")
 			
-			response.error = .Error
+			response = .Error
 		}, andFinallyBlock: {})
 
-		return response.error
+		return response
 	}
 	
 	private func _fetchOrCreateObjectForDictionary(value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty) -> (value: AnyObject?, error: XUJSONDeserializationError) {
@@ -586,14 +592,48 @@ public class XUJSONDeserializer {
 	/// object.
 	public func deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary) -> XUJSONDeserializationError {
 		var result: XUJSONDeserializationError = .None
+		
+		var values: [XUObjCProperty : AnyObject?] = [:]
 		for key in dictionary.keys {
 			let resultPerKey = self._deserializeObject(object, fromDictionary: dictionary, underKey: key)
-			object.objectWasDeserializedFromDictionary?(dictionary)
-			
-			if resultPerKey.isMoreSevereThan(result) {
-				result = resultPerKey
+			switch resultPerKey {
+			case .CustomDeserializationPerformed: fallthrough
+			case .Ignored:
+				continue
+			case .Error:
+				result = .Error
+			case .Unhandled(let error):
+				if error.isMoreSevereThan(result) {
+					result = error
+				}
+			case .DeserializedValue(let property, let value, let error):
+				if error.isMoreSevereThan(result) {
+					result = error
+				}
+				
+				if error != .Error {
+					values[property] = value
+				}
 			}
 		}
+		
+		let setValues = {
+			for (property, value) in values {
+				object.setValue(value, forKey: property.name)
+			}
+		}
+		
+		// Now, set the values on the object. This deferred set has a major 
+		// advantage of only performing one locked block on managed objects.
+		if let managedObject = object as? NSManagedObject {
+			managedObject.managedObjectContext?.performBlockAndWait {
+				setValues()
+			}
+		} else {
+			setValues()
+		}
+		
+		object.objectWasDeserializedFromDictionary?(dictionary)
 		
 		/// This is a slight hack that allows a fast deserialization on main 
 		/// thread. See the note in this method's docs. 
