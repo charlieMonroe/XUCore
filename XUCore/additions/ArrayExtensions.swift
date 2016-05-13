@@ -79,9 +79,16 @@ public extension SequenceType {
 	
 	/// Finds a maximum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
+	@available(*, deprecated, message="Use the alternative returning Int.")
 	public func findMax(@noescape valuator: (Self.Generator.Element) -> UInt) -> Self.Generator.Element? {
+		return self.findMax({ Int(valuator($0)) })
+	}
+	
+	/// Finds a maximum value within self. For non-empty arrays, always returns
+	/// a non-nil value.
+	public func findMax(@noescape valuator: (Self.Generator.Element) -> Int) -> Self.Generator.Element? {
 		var maxElement: Self.Generator.Element? = nil
-		var maxValue: UInt = 0
+		var maxValue: Int = Int.min
 		
 		for obj in self {
 			let value = valuator(obj)
@@ -204,7 +211,7 @@ public extension Array {
 			return
 		}
 		
-		let maxIndex = interlacedArrays.findMax({ UInt($0.count) })!.count
+		let maxIndex = interlacedArrays.findMax({ $0.count })!.count
 		for i in 0..<maxIndex {
 			for arr in interlacedArrays {
 				if i < arr.count {
@@ -257,7 +264,7 @@ public extension Array {
 	
 	/// Returns a slice in range.
 	public func sliceWithRange(range: Range<Int>) -> ArraySlice<Generator.Element> {
-		return self[range.startIndex..<range.endIndex]
+		return self[range.startIndex ..< range.endIndex]
 	}
 	
 }
