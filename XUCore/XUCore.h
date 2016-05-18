@@ -16,7 +16,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Additions. */
 #import "NSArrayAdditions.h"
-#import "NSBezierPathAdditions.h"
 #import "NSData+CommonCryptoSwift.h"
 #import "NSDictionaryAdditions.h"
 #import "NSStringAdditions.h"
