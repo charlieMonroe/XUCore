@@ -30,7 +30,7 @@ public extension Dictionary {
 	
 	/// A convenience method for retrieving an array of dictionaries
 	public func arrayOfDictionariesForKeyPaths(keyPaths: String...) -> [XUJSONDictionary]? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: [XUJSONDictionary].self)
+		return self.firstNonNilObjectForKeyPaths(keyPaths)
 	}
 	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
@@ -95,18 +95,17 @@ public extension Dictionary {
 	
 	// MARK: first[*] family of methods
 	
-	/********** THIS METHOD CAUSES THE COMPILER TO CRASH. *******************/
 	/// See objectForKeyPath - this method attempts to find the first non-nil
 	/// object of class. Works as something between objectForKeyPath and
 	/// firstNonNilObjectForKeys.
-	//public func firstNonNilObjectForKeyPaths<T>(keyPaths: String..., ofClass aClass: T.Type) -> T? {
-	//	return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: aClass)
-	//}
+	public func firstNonNilObjectForKeyPaths<T>(keyPaths: String...) -> T? {
+		return self.firstNonNilObjectForKeyPaths(keyPaths)
+	}
 	
 	/// See objectForKeyPath - this method attempts to find the first non-nil
 	/// object of class. Works as something between objectForKeyPath and
 	/// firstNonNilObjectForKeys.
-	public func firstNonNilObjectForKeyPaths<T>(keyPaths: [String], ofClass aClass: T.Type) -> T? {
+	public func firstNonNilObjectForKeyPaths<T>(keyPaths: [String]) -> T? {
 		for path in keyPaths {
 			if let v = self.objectForKeyPath(path) as? T {
 				return v
@@ -117,11 +116,11 @@ public extension Dictionary {
 	
 	/// A convenience method for firstNonNilObjectForKeyPaths defaulting to AnyObject
 	public func firstNonNilObjectForKeyPaths(keyPaths: String...) -> AnyObject? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: AnyObject.self)
+		return self.firstNonNilObjectForKeyPaths(keyPaths)
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilObjectForKeys<T>(keys: [Key], ofClass aClass: T.Type) -> T? {
+	public func firstNonNilObjectForKeys<T>(keys: [Key]) -> T? {
 		for k in keys {
 			if let v = self[k] as? T {
 				return v
@@ -132,22 +131,22 @@ public extension Dictionary {
 
 	/// Returns first non-nil string value for key paths.
 	public func firstNonNilStringForKeyPaths(keyPaths: [String]) -> String? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: String.self)
+		return self.firstNonNilObjectForKeyPaths(keyPaths)
 	}
 	
 	/// Returns first non-nil string value for key paths.
 	public func firstNonNilStringForKeyPaths(keyPaths: String...) -> String? {
-		return self.firstNonNilObjectForKeyPaths(keyPaths, ofClass: String.self)
+		return self.firstNonNilObjectForKeyPaths(keyPaths)
 	}
 	
 	/// Returns first non-nil string value for keys.
 	public func firstNonNilStringForKeys(keys: [Key]) -> String? {
-		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
+		return self.firstNonNilObjectForKeys(keys)
 	}
 	
 	/// Returns first non-nil string value for keys.
 	public func firstNonNilStringForKeys(keys: Key...) -> String? {
-		return self.firstNonNilObjectForKeys(keys, ofClass: String.self)
+		return self.firstNonNilObjectForKeys(keys)
 	}
 	
 	/// In a lot of cases, currently we need to get an int from whatever is under
