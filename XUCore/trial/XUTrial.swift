@@ -433,8 +433,7 @@ public class XUItemBasedTrial: XUTrial {
 		}
 		
 		if _itemsLeft > XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems {
-			self._trialExpired()
-			return
+			_itemsLeft = 0
 		}
 	}
 	
