@@ -114,13 +114,6 @@ public class XUDownloadCenter {
 	
 	/// Sets the Cookie HTTP header field on request.
 	private func _setupCookieFieldForURLRequest(request: NSMutableURLRequest, andBaseURL originalBaseURL: NSURL? = nil) {
-		if !NSThread.isMainThread() {
-			dispatch_sync(dispatch_get_main_queue(),{
-				self._setupCookieFieldForURLRequest(request, andBaseURL: originalBaseURL)
-			})
-			return
-		}
-		
 		guard let URL = request.URL else {
 			return
 		}
