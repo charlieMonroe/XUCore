@@ -20,8 +20,8 @@ public class XUManagedDataContext {
 	
 	
 	/// Inits by reading/creating a database at `URL`.
-	public init(persistentStoreURL: NSURL) {
-		self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+	public init(persistentStoreURL: NSURL, concurrencyType: NSManagedObjectContextConcurrencyType = .MainQueueConcurrencyType) {
+		self.managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
 
 		guard let objectModel = NSManagedObjectModel.mergedModelFromBundles([ XUMainBundle ]) else {
 			fatalError("No models in main bundle.")

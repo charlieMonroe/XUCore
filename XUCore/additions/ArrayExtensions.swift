@@ -18,8 +18,9 @@ public extension SequenceType {
 	}
 	
 	/// Returns true if any of the elements in self matches the filter
+	@available(*, deprecated, renamed="contains")
 	public func any(@noescape filter: XUFilter) -> Bool {
-		return self.find(filter) != nil
+		return self.contains(filter)
 	}
 	
 	/// Returns a new array by removing objects that match the filter
