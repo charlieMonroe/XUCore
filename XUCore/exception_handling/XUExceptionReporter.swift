@@ -41,7 +41,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Shows a new reporter window with the exception.
 	class func showReporterForException(exception: NSException, andStackTrace stackTrace: String) {
-		if [ NSAccessibilityException, NSPortTimeoutException, NSObjectInaccessibleException ].any({ exception.name == $0 }) {
+		if [ NSAccessibilityException, NSPortTimeoutException, NSObjectInaccessibleException ].contains({ exception.name == $0 }) {
 			// Exceptions that commonly arise in Apple's code
 			return
 		}
@@ -123,7 +123,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		if _userInputTextView.string!.characters.any({ !$0.isASCII }) {
+		if _userInputTextView.string!.characters.contains({ !$0.isASCII }) {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", NSProcessInfo.processInfo().processName)
 			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.")

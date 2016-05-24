@@ -86,7 +86,7 @@ public class XUApplication: NSApplication {
 	
 	/// Unregisters current key events observer.
 	public func unregisterArrowKeyEventsObserver() {
-		XULog("unregistering \(_arrowKeyEventObserver as AnyObject? ?? "nil") as arrow key event observer")
+		XULog("unregistering \(_arrowKeyEventObserver as Any? ?? "nil") as arrow key event observer")
 		_arrowKeyEventObserver = nil
 	}
 	

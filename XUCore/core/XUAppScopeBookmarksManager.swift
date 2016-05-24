@@ -80,7 +80,7 @@ public class XUAppScopeBookmarksManager: NSObject {
 			}
 		
 			result = try? NSURL(byResolvingBookmarkData: bookmarkData, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: nil)
-			XULog("resolved bookmark data (length: \(bookmarkData.length)) to \(result)")
+			XULog("resolved bookmark data (length: \(bookmarkData.length)) to \(result as Any? ?? "nil")")
 		#endif
 		
 		if result != nil {

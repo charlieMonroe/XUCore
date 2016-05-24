@@ -261,12 +261,12 @@ public class XUDownloadCenter {
 		}
 		
 		guard let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
-			XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(URL!) - \(self.lastError ?? "unknown error")")
+			XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(URL!) - \(self.lastError as Any? ?? "unknown error")")
 			return nil
 		}
 
 		
-		XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse ?? "none")")
+		XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse as Any? ?? "none")")
 		
 		if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
 			return responseString
@@ -424,7 +424,7 @@ public class XUDownloadCenter {
 			_ = try NSURLConnection.sendSynchronousRequest(req, returningResponse: &response)
 			
 			guard let HTTPResponse = response as? NSHTTPURLResponse else {
-				XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response)")
+				XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response as Any? ?? "nil")")
 				return nil
 			}
 			

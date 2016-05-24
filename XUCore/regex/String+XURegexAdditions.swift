@@ -272,7 +272,7 @@ public extension String {
 	
 	/// Returns true if any of the regex strings matches self.
 	public func matchesAnyOfRegexStrings(regexStrings: [String]) -> Bool {
-		return regexStrings.any({ self.matchesRegexString($0) })
+		return regexStrings.contains({ self.matchesRegexString($0) })
 	}
 	
 	/// Returns true if the regex matches self.

@@ -536,3 +536,12 @@ public extension String {
 		return Int(numberString) ?? 0
 	}
 }
+
+public extension String {
+	
+	@available(*, deprecated, message="Interpolation of optionals is deprecated.")
+	public init<T>(stringInterpolationSegment segment: Optional<T>) {
+		self.init(stringInterpolationSegment: segment as Any)
+	}
+	
+}

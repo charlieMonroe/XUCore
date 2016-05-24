@@ -276,7 +276,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	}
 	#else
 	public func request(request: SKRequest, didFailWithError error: NSError?) {
-		XULog("An error getting products occurred \(error)")
+		XULog("An error getting products occurred: \(error as Any? ?? "nil")")
 		
 		isLoadingProducts = false
 		

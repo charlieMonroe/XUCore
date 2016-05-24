@@ -324,7 +324,7 @@ public class XUJSONDeserializer {
 			result = array
 		} else {
 			// Unknown target class
-			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass))")
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass as Any? ?? "<<Nil>>"))")
 			return (nil, .Error)
 		}
 		
@@ -382,7 +382,7 @@ public class XUJSONDeserializer {
 			return (result, .None)
 		}
 		
-		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass). (\(value))")
+		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass as Any? ?? "Nil"). (\(value))")
 		return (nil, .Error)
 	}
 	

@@ -136,9 +136,9 @@ public class XUCURLConnection: NSObject {
 			args.append(headerField)
 			
 		}
-		if self.username != nil&&self.password != nil {
+		if self.username != nil && self.password != nil {
 			args.append("-u")
-			args.append("\(self.username):\(self.password)")
+			args.append("\(self.username!):\(self.password!)")
 			
 		}
 		if NSUserDefaults.standardUserDefaults().boolForKey(XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey) || self.ignoresInvalidCertificates {
