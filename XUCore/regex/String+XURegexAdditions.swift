@@ -144,8 +144,8 @@ public extension String {
 	/// Attempts to find all absolute URLs in self. Uses various heuristics to
 	/// do so.
 	public var allURLs: [NSURL] {
-		let regex = XURegex(pattern: "(?i)(?:(?:[a-z]{2,8}:)?//)?([a-z0-9\\-_]\\.?)*[a-z0-9\\-_]+\\.[a-z0-9\\-_]+(?::\\d+)?(/[^\\(\\)<>\"'\\$\\\\\n]*)", andOptions: .Caseless)
-		var occurrences = regex.allOccurrencesInString(self)
+		let regex = XURegex(pattern: "(?i)(?:(?:[a-z]{2,8}:)?//)?([a-z0-9\\-_]\\.?)*[a-z0-9\\-_]+\\.[a-z0-9\\-_]+(?::\\d+)?(/[^\\(\\)<>\"'\\$\\\\\n\r]*)", andOptions: .Caseless)
+		var occurrences = regex.allOccurrencesInString(self.stringByReplacingOccurrencesOfString("\r", withString: "\n"))
 		
 		/** Unfortunely some sites idiotically include spaces in the URLs. This is an easy workaround... */
 		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")

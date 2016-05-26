@@ -358,6 +358,8 @@
 		07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */; };
 		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 		07C4B8F21C2AE6240058EE6A /* XULineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4B8F11C2AE6240058EE6A /* XULineView.swift */; };
+		07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
+		07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
 		07E35B951C02384C007D31BE /* XUTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B941C02384C007D31BE /* XUTrial.swift */; };
 		07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 		07E38A311C06132100AE6EAB /* UIAlertControllerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */; };
@@ -592,6 +594,7 @@
 		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
 		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
 		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -859,6 +862,7 @@
 		075DC77B1CF069AE0043EBD0 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */,
 				075DC7851CF1E0080043EBD0 /* XUAttributeSyncChange.swift */,
 				075DC7881CF1E1760043EBD0 /* XUDeletionSyncChange.swift */,
 				075DC78B1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift */,
@@ -1506,6 +1510,7 @@
 				0779E16C1BF06B3E00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0779E1681BF0697800832858 /* NSEventAdditions.swift in Sources */,
 				075DC7801CF06ABE0043EBD0 /* XUManagedObject.swift in Sources */,
+				07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
 				075DC7A11CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
 				0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */,
@@ -1643,6 +1648,7 @@
 				073E6AF61BE1F86D00706283 /* arena.cc in Sources */,
 				07E38A311C06132100AE6EAB /* UIAlertControllerAdditions.swift in Sources */,
 				073E6AEC1BE1F86D00706283 /* tostring.cc in Sources */,
+				07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1868,6 +1874,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */,
+			);
+			currentVersion = 07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */;
+			name = XUSyncEngineModel.xcdatamodeld;
+			path = coredata/sync/model/XUSyncEngineModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 077AFD861BBD0E5300872A48 /* Project object */;
 }

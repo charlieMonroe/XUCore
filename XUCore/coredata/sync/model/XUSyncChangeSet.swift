@@ -50,5 +50,9 @@ public class XUSyncChangeSet: NSManagedObject {
 		
 		self.changes = Set(changes)
 	}
+	
+	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	}
 
 }

@@ -28,5 +28,9 @@ public class XURelationshipSyncChange: XUSyncChange {
 		self.valueEntityName = value?.entity.name
 		self.valueSyncID = value?.syncUUID
 	}
+	
+	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	}
 
 }

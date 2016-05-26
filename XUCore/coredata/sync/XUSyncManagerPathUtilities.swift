@@ -29,7 +29,7 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 		
 		// Put in the user salt as well - we may have two users on the same computer
 		let computerID = UUIDString + NSUserName()
-		return computerID.MD5Digest
+		return computerID.MD5Digest.uppercaseString
 	}()
 #endif
 
@@ -37,7 +37,7 @@ internal class XUSyncManagerPathUtilities {
 	
 	class var currentDeviceIdentifier: String {
 		#if os(iOS)
-			return UIDevice.currentDevice().identifierForVendor!.UUIDString
+			return UIDevice.currentDevice().identifierForVendor!.UUIDString.uppercaseString
 		#else
 			return _cachedID
 		#endif

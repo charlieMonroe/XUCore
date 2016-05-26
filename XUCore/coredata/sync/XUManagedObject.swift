@@ -38,6 +38,22 @@ private extension XUManagedObject {
 	@NSManaged private var ticdsSyncID: String
 }
 
+private func _lockInit(isSync: Bool) {
+	// We cannot assign _isBeingCreatedBySyncEngine = sync, since CoreData
+	// re-allocates the object as an instance of a generated subclass,
+	// which hence loses the data. The new instance also has a different
+	// address.
+	_initializationLock.lock()
+	
+	if _currentInitInitiatedInSync {
+		_initializationLock.unlock()
+		fatalError("Nested object creation within synchronization - this is likely caused by you inserting new entities into MOC from -awakeFromInsert. Use -awakeFromNonSyncInsert instead.")
+	}
+	
+	_currentInitInitiatedInSync = isSync
+	_initializationLock.unlock()
+}
+
 
 /// This is the base class for all synchronized objects. Upon insert, it generates
 /// a syncUUID, which is used for tracking changes.
@@ -419,9 +435,7 @@ public class XUManagedObject: NSManagedObject {
 	private func _createUpdateChanges() -> [XUSyncChange] {
 		var changes: [XUSyncChange] = []
 		
-		for property in self.entity.properties {
-			let propertyName = property.name
-			
+		for (propertyName, changedValue) in self.changedValues() {
 			if let relationship = self.entity.relationshipsByName[propertyName] {
 				// This is a relationship change
 				changes += self._createRelationshipChangesForRelationship(relationship)
@@ -433,7 +447,14 @@ public class XUManagedObject: NSManagedObject {
 			// to take a look if the update is indeed from the user
 			_changesLock.lock()
 			var objDict = _attributeValueChanges[self.syncUUID] ?? [:]
-			let value = self.valueForKey(propertyName)
+			
+			let value: AnyObject?
+			if changedValue is NSNull {
+				value = nil
+			} else {
+				value = changedValue
+			}
+			
 
 			let objValue = objDict[propertyName]
 			if objValue != nil {
@@ -527,7 +548,7 @@ public class XUManagedObject: NSManagedObject {
 	/// This method will create sync change if necessary for this object.
 	public func createSyncChanges() -> [XUSyncChange] {
 		if self.managedObjectContext?.documentSyncManager == nil {
-			XULog("Skipping creating sync change for object \(self) since there is no document sync manager!")
+			XULog("Skipping creating sync change for object \(self.dynamicType)[\(self.ticdsSyncID)] since there is no document sync manager!")
 			return []
 		}
 		
@@ -544,24 +565,20 @@ public class XUManagedObject: NSManagedObject {
 		return []
 	}
 	
-	public convenience override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-		self.init(entity: entity, insertIntoManagedObjectContext: context)
+	public required override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		_lockInit(false)
+		
+		defer {
+			_initializationLock.lock()
+			_currentInitInitiatedInSync = false
+			_initializationLock.unlock()
+		}
+		
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
 	}
 	
 	public required init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?, asResultOfSyncAction isSync: Bool) {
-		// We cannot assign _isBeingCreatedBySyncEngine = sync, since CoreData
-		// re-allocates the object as an instance of a generated subclass,
-		// which hence loses the data. The new instance also has a different
-		// address.
-		_initializationLock.lock()
-		
-		if _currentInitInitiatedInSync {
-			_initializationLock.unlock()
-			fatalError("Nested object creation within synchronization - this is likely caused by you inserting new entities into MOC from -awakeFromInsert. Use -awakeFromNonSyncInsert instead.")
-		}
-		
-		_currentInitInitiatedInSync = isSync
-		_initializationLock.unlock()
+		_lockInit(isSync)
 		
 		defer {
 			_initializationLock.lock()

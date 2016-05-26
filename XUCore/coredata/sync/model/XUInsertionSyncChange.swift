@@ -38,6 +38,10 @@ public class XUInsertionSyncChange: XUSyncChange {
 		self.insertedEntityName = object.entity.name!
 	}
 	
+	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	}
+	
 }
 
 /// This class represents a change where an object was added into a -to-many

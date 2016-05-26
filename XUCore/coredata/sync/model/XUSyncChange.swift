@@ -46,5 +46,8 @@ public class XUSyncChange: NSManagedObject {
 		self.timestamp = NSDate.timeIntervalSinceReferenceDate()
 	}
 
-	
+	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	}
+
 }

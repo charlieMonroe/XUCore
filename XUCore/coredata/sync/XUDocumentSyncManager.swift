@@ -638,7 +638,7 @@ public class XUDocumentSyncManager {
 	}
 	
 	/// Uploads the entire document to the cloud.
-	private func uploadEntireDocumentFromURL(fileURL: NSURL, withCompletionHandler completionHandler: (Bool, NSError?) -> Void) {
+	public func uploadEntireDocumentFromURL(fileURL: NSURL, withCompletionHandler completionHandler: (Bool, NSError?) -> Void) {
 		assert(NSThread.isMainThread(), "This methos must be called from the main thread!")
 		
 		// The _isUploadingEntireDocument flag is only changed from main thread
@@ -729,16 +729,16 @@ public class XUDocumentSyncManager {
 }
 
 
-private let NSManagedObjectContextXUSyncManagerKey = "NSManagedObjectContextXUSyncManager"
+private let NSManagedObjectContextXUSyncManagerKey: AnyObject = "NSManagedObjectContextXUSyncManager"
 
 public extension NSManagedObjectContext {
 	
 	public var documentSyncManager: XUDocumentSyncManager? {
 		get {
-			return objc_getAssociatedObject(self, NSManagedObjectContextXUSyncManagerKey) as? XUDocumentSyncManager
+			return objc_getAssociatedObject(self, unsafeAddressOf(NSManagedObjectContextXUSyncManagerKey)) as? XUDocumentSyncManager
 		}
 		set {
-			objc_setAssociatedObject(self, NSManagedObjectContextXUSyncManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+			objc_setAssociatedObject(self, unsafeAddressOf(NSManagedObjectContextXUSyncManagerKey), newValue, .OBJC_ASSOCIATION_RETAIN)
 		}
 	}
 	
