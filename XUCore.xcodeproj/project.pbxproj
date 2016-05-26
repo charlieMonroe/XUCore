@@ -1311,11 +1311,9 @@
 				TargetAttributes = {
 					077AFD8E1BBD0E5300872A48 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = D43XN356JM;
 					};
 					077AFD9E1BBD0ED200872A48 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = D43XN356JM;
 					};
 				};
 			};
@@ -1809,7 +1807,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = XUCoreMobile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
@@ -1832,7 +1830,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = XUCoreMobile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
