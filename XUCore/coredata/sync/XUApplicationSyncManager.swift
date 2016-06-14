@@ -26,30 +26,30 @@ private func _XULogFileAtURL(rootURL: NSURL, fileURL: NSURL, level: Int) {
 	
 	// Don't care if the URL isn't a folder - file mananger will simple return
 	// nothing
-	if let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(fileURL, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) {
-		for aURL in contents {
-			_XULogFileAtURL(rootURL, fileURL: aURL, level: level + 1)
-		}
+	for aURL in NSFileManager.defaultManager().contentsOfDirectoryAtURL(fileURL) {
+		_XULogFileAtURL(rootURL, fileURL: aURL, level: level + 1)
 	}
 }
 
-private func _XULogUbiquityFolderContentsStartingAtURL(rootURL: NSURL?) {
+private func _XULogFolderContentsStartingAtURL(rootURL: NSURL?, manager: XUApplicationSyncManager) {
 	if rootURL == nil {
 		print("====================================================")
-		print("| Ubiquity folder == nil -> iCloud is not enabled. |")
+		print("| \(manager).rootURL == nil -> not enabled. |")
 		print("====================================================")
 		return
 	}
 	
-	print("====== Printing Ubiquity Contents ======")
+	print("====== Printing \(manager).rootURL Contents ======")
 	_XULogFileAtURL(rootURL!, fileURL: rootURL!, level: 0);
 }
+
 
 private let XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey = "XUApplicationSyncManagerDownloadedDocumentIDs"
 
 private let XUApplicationSyncManagerErrorDomain = "XUApplicationSyncManagerErrorDomain"
 
-
+/// This is an abstract class that represents a sync manager. You should only
+/// create one instance per subclass within the app.
 public class XUApplicationSyncManager {
 	
 	/// Timer that checks for new documents every 30 seconds.
@@ -75,7 +75,9 @@ public class XUApplicationSyncManager {
 	/// URL of the folder that contains the documents for this sync manager.
 	/// The folder mustn't be created until whole store upload in order to eliminate
 	/// any potential duplicates.
-	public private(set) var syncRootFolderURL: NSURL?
+	///
+	/// Changes to this var should only be done by subclasses.
+	public var syncRootFolderURL: NSURL?
 
 	
 	
@@ -84,10 +86,7 @@ public class XUApplicationSyncManager {
 			return
 		}
 	
-		guard let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(self.syncRootFolderURL!, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) else {
-			return
-		}
-		
+		let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(self.syncRootFolderURL!)
 		for fileURL in contents {
 			guard let documentUUID = fileURL.lastPathComponent else {
 				continue
@@ -120,35 +119,13 @@ public class XUApplicationSyncManager {
 			}
 	
 			do {
-				self._startDownloadingUbiquitousItemAtURL(URL)
-				
-				try NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(URL)
+				try self.startDownloadingItemAtURL(URL)
 			} catch let error as NSError {
-				XULog("Failed to start downloading ubiquitous item at URL \(URL) because \(error)")
+				XULog("Failed to start downloading item at URL \(URL) because \(error)")
 			}
 		}
 	}
-	
-	private func _startDownloadingUbiquitousItemAtURL(URL: NSURL) {
-		if URL.isDirectory {
-			guard let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(URL, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) else {
-				return
-			}
-			
-			for fileURL in contents {
-				self._startDownloadingUbiquitousItemAtURL(fileURL)
-			}
-		} else {
-			_ = try? NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(URL)
-		}
-	}
-	
-	@objc private func _updateUbiquityFolderURL() {
-		if let ubiquityFolderURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)?.URLByAppendingPathComponent(self.name) {
-			self.syncRootFolderURL = ubiquityFolderURL
-			self._startDownloadingUbiquitousItemAtURL(ubiquityFolderURL)
-		}
-	}
+
 	
 	/// Downloads or copies document with ID to URL and calls completion handler
 	/// upon completion. The handler is always called on the main thread.
@@ -179,7 +156,7 @@ public class XUApplicationSyncManager {
 	}
 	
 	/// Designated initialized. Name should be e.g. name of the app.
-	public init(name: String, andDelegate delegate: XUApplicationSyncManagerDelegate) {
+	public init(name: String, rootFolder: NSURL?, andDelegate delegate: XUApplicationSyncManagerDelegate) {
 		self.name = name
 		self.delegate = delegate
 		
@@ -189,14 +166,11 @@ public class XUApplicationSyncManager {
 			self.availableDocumentUUIDs += downloadedDocumentUUIDs
 		}
 		
-		self._updateUbiquityFolderURL()
-		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_updateUbiquityFolderURL), name:NSUbiquityIdentityDidChangeNotification, object:nil)
 		_documentCheckerTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(_checkForNewDocuments), userInfo: nil, repeats: true)
 		
 		self._checkForNewDocuments()
 		
-		self.logUbiquityFolderContents()
+		self.logRootSyncFolderContents()
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSMetadataQueryDidUpdateNotification, object: _metadataQuery)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSMetadataQueryDidFinishGatheringNotification, object: _metadataQuery)
@@ -204,8 +178,24 @@ public class XUApplicationSyncManager {
 		_metadataQuery.startQuery()
 	}
 	
-	/// Debugging method that logs all contents on the folder at ubiquityFolderURL.
-	public func logUbiquityFolderContents() {
-		_XULogUbiquityFolderContentsStartingAtURL(self.syncRootFolderURL?.URLByDeletingLastPathComponent)
+	/// Debugging method that logs all contents on the folder at syncRootFolderURL.
+	public func logRootSyncFolderContents() {
+		_XULogFolderContentsStartingAtURL(self.syncRootFolderURL?.URLByDeletingLastPathComponent, manager: self)
 	}
+	
+	/// Starts scanning for new documents.
+	public func scanForNewDocuments() {
+		self._checkForNewDocuments()
+	}
+	
+	/// Start downloading item at URL. The metadata query should automatically 
+	/// notice when the download is done. You can call scanForNewDocuments()
+	/// to make sure, though.
+	public func startDownloadingItemAtURL(URL: NSURL) throws {
+		XUThrowAbstractException("\(self)")
+	}
+	
+	
+	
+	
 }

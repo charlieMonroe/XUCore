@@ -89,7 +89,7 @@ public extension XURegex {
 		return XURegex(self.titleMetaOGTitleRegexString)
 	}
 	public static var titleMetaOGTitleRegexString: String {
-		return "<meta\\s+(?:property|name)=\"og:title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\""
+		return "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\""
 	}
 	public static var titleTitleRegex: XURegex {
 		return XURegex(self.titleTitleRegexString)

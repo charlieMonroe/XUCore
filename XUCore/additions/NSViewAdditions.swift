@@ -21,9 +21,15 @@ public extension NSView {
 		}
 	}
 	
+	@available(*, deprecated, renamed="screenCoordinates")
 	public var screenCoordinatesOfSelf: CGRect {
+		return self.screenCoordinates
+	}
+	
+	public var screenCoordinates: CGRect {
 		return self.screenCoordinatesOfFrame(self.bounds)
 	}
+	
 	public func screenCoordinatesOfFrame(frame: CGRect) -> CGRect {
 		if self.window == nil {
 			return CGRect()
@@ -35,6 +41,7 @@ public extension NSView {
 		rect.origin.y += windowFrame.minY
 		return rect
 	}
+	
 	public func screenCoordinatesOfPoint(point: CGPoint) -> CGPoint {
 		if self.window == nil {
 			return CGPoint()

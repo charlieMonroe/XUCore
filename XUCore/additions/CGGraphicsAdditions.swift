@@ -15,3 +15,12 @@ public extension CGRect {
 	}
 	
 }
+
+
+public extension CGSize {
+	
+	public var isEmpty: Bool {
+		return self.height.isZero && self.width.isZero
+	}
+	
+}

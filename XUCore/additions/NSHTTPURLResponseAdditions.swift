@@ -10,6 +10,11 @@ import Foundation
 
 public extension NSHTTPURLResponse {
 	
+	/// Return Content-Type from allHeaderFields
+	public var contentType: String? {
+		return self.allHeaderFields["Content-Type"] as? String
+	}
+	
 	/// Returns whether the statusCode of self is > 200 and < 300.
 	public var statusCodeWithin200Range: Bool {
 		return self.statusCode >= 200 && self.statusCode < 300

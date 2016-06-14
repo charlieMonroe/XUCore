@@ -132,10 +132,7 @@ public class XUDocumentSyncManager {
 		var newestComputerID: String?
 		
 		coordinator.coordinateReadingItemAtURL(folderURL, options: .WithoutChanges, error:nil, byAccessor: { (newURL) in
-			guard let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(newURL, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) else {
-				return
-			}
-			
+			let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(newURL)
 			for computerURL in contents {
 				guard let computerID = computerURL.lastPathComponent where computerID != ".DS_Store" else {
 					continue
@@ -356,10 +353,7 @@ public class XUDocumentSyncManager {
 		}
 		
 		var latestTimeStamp = NSTimeInterval(CGFloat.max)
-		guard let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(timestampsFolderURL, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) else {
-			return
-		}
-		
+		let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(timestampsFolderURL)
 		for timestampURL in contents {
 			if timestampURL.pathExtension !=  "plist" {
 				continue
@@ -441,7 +435,7 @@ public class XUDocumentSyncManager {
 			])
 		}
 		
-		for computerURL in try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentFolder, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions()) {
+		for computerURL in NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentFolder) {
 			// The computerURL is a folder that contains computer-specific sync data
 	
 			guard let computerID = computerURL.lastPathComponent where computerID != ".DS_Store" else {

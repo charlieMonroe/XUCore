@@ -108,12 +108,12 @@ public extension NSBezierPath {
 
 		let correctDirection = direction.directionInCurrentGraphicsContext
 		switch correctDirection {
-		case .TopToBottom:
+		case .BottomToTop:
 			self.moveToPoint(CGPoint(x: rect.origin.x, y: rect.origin.y))
 			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.origin.y))
 			self.lineToPoint(CGPoint(x: rect.origin.x + (rect.maxX - rect.origin.x) / 2.0, y: rect.maxY))
 			self.closePath()
-		case .BottomToTop:
+		case .TopToBottom:
 			self.moveToPoint(CGPoint(x: rect.origin.x, y: rect.maxY))
 			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
 			self.lineToPoint(CGPoint(x: rect.origin.x + (rect.maxX - rect.origin.x) / 2.0, y: rect.minY))

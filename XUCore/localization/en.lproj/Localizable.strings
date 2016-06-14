@@ -72,4 +72,20 @@
 "%li minutes" = "%li minutes";
 "%li seconds" = "%li seconds";
 
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
+"Cannot open document metadata file." = "Cannot open document metadata file.";
+"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
+"Synchronization is already in progress." = "Synchronization is already in progress.";
+"An upload operation is already in progress." = "An upload operation is already in progress.";
+"Could not save upload metadata." = "Could not save upload metadata.";
+"Cannot find entity named %@" = "Cannot find entity named %@";
+"Cannot find class named %@" = "Cannot find class named %@";
+"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
+"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
+"Can't find synchronization folder for computer %@." = "Can't find synchronization folder for computer %@.";
+"Can't open info dictionary computer %@." = "Can't open info dictionary computer %@.";
+"Can't find sync folder for document %@." = "Can't find sync folder for document %@.";
+"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
+"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
 

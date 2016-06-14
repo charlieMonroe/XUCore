@@ -10,12 +10,13 @@ import Foundation
 
 public extension NSURL {
 	
+	@available(*, deprecated)
 	public class func fileReferenceURLWithPath(path: String) -> NSURL? {
 		let fileURL = NSURL(fileURLWithPath: path)
-		let referenceURL = fileURL.fileReferenceURL()
-		return referenceURL == nil ? fileURL : referenceURL
+		return fileURL.fileReferenceURL()
 	}
 	
+	@available(*, deprecated)
 	public var fileSizeString: String {
 		if !self.fileURL {
 			return "Not Applicable (\(self))"

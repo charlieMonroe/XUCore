@@ -12,13 +12,27 @@ import Foundation
 	import Cocoa
 #endif
 
+/// + operator for String + Character
 public func + (lhs: String, rhs: Character) -> String {
 	return lhs + String(rhs)
 }
 
+/// + operator for String + Character
 public func + (inout lhs: String, rhs: Character) {
 	lhs = lhs + String(rhs)
 }
+
+infix operator =+ {
+	associativity right
+	precedence 90
+	assignment
+}
+
+/// Similar to += - this operator
+public func =+ (inout lhs: String, rhs: String) {
+	lhs = rhs + lhs
+}
+
 
 
 public enum XUEmailValidationFormat {
@@ -176,32 +190,20 @@ public extension String {
 		string = string.stringByReplacingOccurrencesOfString("&apos;", withString: "'", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString("&reg;", withString: "®", options: .LiteralSearch)
 
-		var i = 0
-		while i < self.characters.count {
-			let c = self.characters[self.characters.startIndex.advancedBy(i)]
-			if c == Character("&") && i < self.characters.count - 1 {
-				let nextC = self.characters[self.characters.startIndex.advancedBy(i + 1)]
-				if nextC == Character("#") {
-					var length = 0
-					while i + length + 2 < self.characters.count {
-						let cc = self.characters[self.characters.startIndex.advancedBy(i + length + 2)]
-						if cc >= Character("0") && cc <= Character("9") {
-							length += 1
-							continue
-						}
-						break
-					}
-
-					let unicodeCharCode = self.substringWithRange(self.startIndex.advancedBy(i + 2) ..< self.startIndex.advancedBy(i + length + 2))
-					let replacementChar = unicodeCharCode.integerValue
-					string = string.stringByReplacingOccurrencesOfString("&#\(unicodeCharCode);", withString: String(format: "%C", replacementChar))
-					i += 6
-					continue
-				}
+		let regex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]);", andOptions: .Caseless)
+		let allOccurrences = self.allValuesOfVariableNamed("C", forRegex: regex).distinct()
+		for occurrence in allOccurrences {
+			let value: Int
+			if occurrence.hasPrefix("x") {
+				// Hex
+				value = occurrence.stringByDeletingPrefix("x").hexValue
+			} else {
+				value = occurrence.integerValue
 			}
-			i += 1
+			
+			string = string.stringByReplacingOccurrencesOfString("&#\(occurrence);", withString: String(format: "%C", value))
 		}
-
+		
 		return string
 	}
 	

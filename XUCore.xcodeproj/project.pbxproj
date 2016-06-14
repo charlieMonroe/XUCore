@@ -29,6 +29,7 @@
 		07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */; };
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
+		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
@@ -327,6 +328,9 @@
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
+		07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
+		07AEC1111D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */; };
+		07AEC1121D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */; };
 		07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B821131C8639610079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -570,6 +574,8 @@
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
+		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
+		07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerAdditions.swift; sourceTree = "<group>"; };
 		07B821111C86395B0079868F /* CGGraphicsAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGGraphicsAdditions.swift; sourceTree = "<group>"; };
 		07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionHandler.h; sourceTree = "<group>"; };
 		07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionHandler.m; sourceTree = "<group>"; };
@@ -853,6 +859,7 @@
 				075DC77B1CF069AE0043EBD0 /* model */,
 				075DC79D1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift */,
 				075DC79E1CF31FAE0043EBD0 /* XUDocumentSyncManager.swift */,
+				07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */,
 				075DC79A1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift */,
 				075DC77F1CF06ABE0043EBD0 /* XUManagedObject.swift */,
 			);
@@ -959,6 +966,7 @@
 				077AFDC21BBD101400872A48 /* NSDictionaryAdditions.h */,
 				077AFDC31BBD101400872A48 /* NSDictionaryAdditions.m */,
 				0779E1671BF0697700832858 /* NSEventAdditions.swift */,
+				07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */,
 				0779E1691BF06AE200832858 /* NSHTTPURLResponseAdditions.swift */,
 				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
 				073E6B421BE1FD7E00706283 /* NSInputStream+Reading.swift */,
@@ -1438,6 +1446,7 @@
 				073E6B2F1BE1F86D00706283 /* XURegex.mm in Sources */,
 				075DC7891CF1E1760043EBD0 /* XUDeletionSyncChange.swift in Sources */,
 				07B9082F1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift in Sources */,
+				07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */,
 				073E6AFF1BE1F86D00706283 /* hash.cc in Sources */,
 				073E6B451BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
@@ -1458,6 +1467,7 @@
 				0763C15E1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */,
 				07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */,
 				0779E1571BEE5FE700832858 /* NSMenuLocalizationSupport.swift in Sources */,
+				07AEC1111D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */,
 				0749DCE71C00C64A0075CC9B /* CGContextRefAdditions.swift in Sources */,
 				0779E18A1BF2340800832858 /* NSViewAdditions.swift in Sources */,
 				0749DCED1C00C7C00075CC9B /* XUAppStoreMenuCleaner.swift in Sources */,
@@ -1552,6 +1562,7 @@
 				073E6ACE1BE1F86D00706283 /* perl_groups.cc in Sources */,
 				073E6ADC1BE1F86D00706283 /* re2.cc in Sources */,
 				075DC7791CF069470043EBD0 /* XUManagedDataContext.swift in Sources */,
+				0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */,
 				0779E1871BF2334600832858 /* XUFileSizeTransformer.swift in Sources */,
 				073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */,
 				0779E17D1BF2307100832858 /* UIView+Enclosing.swift in Sources */,
@@ -1582,6 +1593,7 @@
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
+				07AEC1121D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */,
 				070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */,
 				077AFFA71BBD101400872A48 /* FCTemporaryDataStorage.m in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
