@@ -126,6 +126,19 @@ public class XUApplicationSyncManager {
 		}
 	}
 
+	/// Should create a folder at URL. By default, this only invokes NSFileManager,
+	/// but subclasses may do additional work, such as contacting the server.
+	public func createDirectoryAtURL(URL: NSURL) throws {
+		try NSFileManager.defaultManager().createDirectoryAtURL(URL, withIntermediateDirectories: true, attributes: nil)
+	}
+	
+	/// The document manager will notify the app sync manager that it has written
+	/// into (or created) a file at fileURL. Note that the fileURL may lead to a
+	/// folder. Use this on subclasses to upload the file. Note that if the upload
+	/// fails, the subclass is responsible for deferring the upload.
+	public func didUpdateFileAtURL(fileURL: NSURL) {
+		/// No-op.
+	}
 	
 	/// Downloads or copies document with ID to URL and calls completion handler
 	/// upon completion. The handler is always called on the main thread.

@@ -59,4 +59,51 @@ You can mark menu items with tag 127 and automatically hide them. Also, includes
 
 ### CoreData
 
-Mostly sync engine. Originally 
+Mostly sync engine. Originally part as XUSyncEngine. Documentation for it can be found separately [here](XUSync.md).
+
+### Debug
+
+Mainly `XULog` for logging functionality.
+
+### Deserialization
+
+XUCore features a robust JSON deserializer that can be customized.
+
+### Exception Handling (OS X only)
+
+If you setup `exceptionHandlerReportURL` on `XUApplicationSetup`, XUCore will automatically install an exception handler and send you crash reports using that URL.
+
+### Localization
+
+Various localization methods.
+
+### Misc
+
+- `XUMouseTracker` - track mouse movement on the screen (OS X).
+- `XURandomGenerator` - generator of pseudo-random numbers.
+- `XUTimeUtilities` - methods for rounding time and converting it to strings.
+
+### Network
+
+- `XUCURLConnection` - send HTTP requests via cURL instead of `NSURLConnection`.
+- `XUDownloadCenter` - an umbrella over all network needs for downloading JSON, XML and pure text over HTTP. Includes logging, support for cookies, etc.
+- `XUMessageCenter` - send messages from your server to the user of the app.
+- `XUURLHandlingCenter` (OS X) - handle URLs being opened by your app.
+
+### Regex
+
+Powerful regex implementation based on `re2` (C++). `XURegex` is an ObjC wrapper around `re2` with various methods implemented on `String`. Unlike `NSRegularExpression`, it supports variables and much more.
+
+### Transformers
+
+Value transformers to be used in XIB files on OS X (binding).
+
+### Trial (OS X)
+
+Have XUCore handle the trial for you and refer your user to AppStore when the trial expires.
+
+### UI
+
+- `XUAutocollapsingView` - view that when hidden, automatically sets its height constraint to `0.0` and then restores it once it's set to be visible.
+- `XUDockIconProgress` - display progress on your app's Dock icon.
+

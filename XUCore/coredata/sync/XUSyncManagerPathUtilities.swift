@@ -43,27 +43,27 @@ internal class XUSyncManagerPathUtilities {
 		#endif
 	}
 	
-	/// Returns the device specific ubiquity folder for the document - 
+	/// Returns the device specific folder for the document -
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID.
-	class func deviceSpecificUbiquityFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.documentUbiquityFolderURLForSyncManager(syncManager, andDocumentUUID: UUID)?.URLByAppendingPathComponent(computerID)
+	class func deviceSpecificFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
+		return self.documentFolderURLForSyncManager(syncManager, andDocumentUUID: UUID)?.URLByAppendingPathComponent(computerID)
 	}
 	
-	/// Returns the document ubiquity folder - SYNC_ROOT/DOC_UUID. */
-	class func documentUbiquityFolderURLForSyncManager(syncManager: XUApplicationSyncManager, andDocumentUUID UUID: String) -> NSURL! {
+	/// Returns the document folder - SYNC_ROOT/DOC_UUID. */
+	class func documentFolderURLForSyncManager(syncManager: XUApplicationSyncManager, andDocumentUUID UUID: String) -> NSURL! {
 		return syncManager.syncRootFolderURL?.URLByAppendingPathComponent(UUID)
 	}
 	
 	/// Returns the Info.plist for particular document's whole store - 
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID/whole_store/Info.plist.
 	class func entireDocumentInfoFileURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.entireDocumentUbiquityFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("Info.plist")
+		return self.entireDocumentFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("Info.plist")
 	}
 	
 	/// Returns the store for the dev's doc whole-upload store folder - 
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID/whole_store.
-	class func entireDocumentUbiquityFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.deviceSpecificUbiquityFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("whole_store")
+	class func entireDocumentFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
+		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("whole_store")
 	}
 	
 	/// Returns the URL of the Info.plist that contains information about last 
@@ -76,7 +76,7 @@ internal class XUSyncManagerPathUtilities {
 	/// Returns the URL of folder where the document sync manager keeps its sync 
 	/// data. - SYNC_ROOT/DOC_UUID/DEV_UUID/sync_store.
 	class func persistentSyncStorageFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.deviceSpecificUbiquityFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("sync_store")
+		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("sync_store")
 	}
 	
 	/// Returns the URL of the actual SQL databse where sync manager keeps its

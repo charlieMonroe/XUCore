@@ -78,7 +78,7 @@ public class XUDocumentSyncManager {
 				return
 			}
 		
-			_ = try? NSFileManager.defaultManager().createDirectoryAtURL(fileURL, withIntermediateDirectories: true, attributes: nil)
+			_ = try? appSyncManager.createDirectoryAtURL(fileURL)
 		
 			let remoteDocumentURL = config.accountURL.URLByAppendingPathComponent(documentName)
 			let localDocumentURL = fileURL.URLByAppendingPathComponent(documentName)
@@ -91,7 +91,7 @@ public class XUDocumentSyncManager {
 				// We need to copy the sync timestamp
 				let syncInfoURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(appSyncManager, computerID: config.computerID, andDocumentUUID: documentID)
 				
-				try NSFileManager.defaultManager().createDirectoryAtURL(syncInfoURL.URLByDeletingLastPathComponent!, withIntermediateDirectories: true, attributes:nil)
+				try appSyncManager.createDirectoryAtURL(syncInfoURL.URLByDeletingLastPathComponent!)
 				
 				let timeStamp = accountDict.doubleForKey(XUDocumentLastUploadDateKey)
 				let syncInfoDict: NSDictionary = [
@@ -99,6 +99,7 @@ public class XUDocumentSyncManager {
 				]
 				
 				syncInfoDict.writeToURL(syncInfoURL, atomically: true)
+				appSyncManager.didUpdateFileAtURL(syncInfoURL)
 			} catch let localError as NSError {
 				error = localError
 			}
@@ -122,7 +123,7 @@ public class XUDocumentSyncManager {
 	/// computerIDPtr contains the ID of the computer from which we're downloading 
 	/// the document. Nil if not successful.
 	public class func URLOfNewestEntireDocumentWithUUID(documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager) -> (accountURL: NSURL, computerID: String)? {
-		guard let folderURL = XUSyncManagerPathUtilities.documentUbiquityFolderURLForSyncManager(appSyncManager, andDocumentUUID: documentID) else {
+		guard let folderURL = XUSyncManagerPathUtilities.documentFolderURLForSyncManager(appSyncManager, andDocumentUUID: documentID) else {
 			return nil
 		}
 		
@@ -141,7 +142,7 @@ public class XUDocumentSyncManager {
 				let infoFileURL = XUSyncManagerPathUtilities.entireDocumentInfoFileURLForSyncManager(appSyncManager, computerID: computerID, andDocumentUUID: documentID)
 				
 				guard let dict = NSDictionary(contentsOfURL: infoFileURL) as? XUJSONDictionary else {
-					_ = try? NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(infoFileURL)
+					_ = try? appSyncManager.startDownloadingItemAtURL(infoFileURL)
 					continue
 				}
 			
@@ -153,7 +154,7 @@ public class XUDocumentSyncManager {
 				let fileDate = NSDate(timeIntervalSinceReferenceDate: timeInterval)
 				if newestDate == nil || fileDate.compare(newestDate!) == .OrderedDescending {
 					newestDate = fileDate
-					let wholeStoreURL = XUSyncManagerPathUtilities.entireDocumentUbiquityFolderURLForSyncManager(appSyncManager, computerID: computerID, andDocumentUUID: documentID)
+					let wholeStoreURL = XUSyncManagerPathUtilities.entireDocumentFolderURLForSyncManager(appSyncManager, computerID: computerID, andDocumentUUID: documentID)
 					newestURL = wholeStoreURL.URLByAppendingPathComponent("Document")
 			
 					newestComputerID = computerID;
@@ -314,6 +315,8 @@ public class XUDocumentSyncManager {
 		do {
 			try self.syncManagedObjectContext.save()
 			
+			self.applicationSyncManager.didUpdateFileAtURL(_syncStoreCoordinator.persistentStores[0].URL!)
+			
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD({ 
 				self.delegate?.documentSyncManagerDidSuccessfullyFinishSynchronization(self)
 			})
@@ -429,7 +432,7 @@ public class XUDocumentSyncManager {
 		/// will be reused.
 		var objectCache: [String : XUManagedObject] = [:]
 	
-		guard let documentFolder = XUSyncManagerPathUtilities.documentUbiquityFolderURLForSyncManager(self.applicationSyncManager, andDocumentUUID: self.UUID) else {
+		guard let documentFolder = XUSyncManagerPathUtilities.documentFolderURLForSyncManager(self.applicationSyncManager, andDocumentUUID: self.UUID) else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for document %@.", self.UUID)
 			])
@@ -472,7 +475,7 @@ public class XUDocumentSyncManager {
 			])
 		}
 	
-		_ = try? NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(fileURL)
+		_ = try? self.applicationSyncManager.startDownloadingItemAtURL(fileURL)
 	
 		let options = [
 			NSReadOnlyPersistentStoreOption: true,
@@ -484,7 +487,7 @@ public class XUDocumentSyncManager {
 	
 		// We need to find out which change was last seen by this computer
 		let infoDictURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(self.applicationSyncManager, computerID: computerID, andDocumentUUID: self.UUID)
-		try NSFileManager.defaultManager().createDirectoryAtURL(infoDictURL.URLByDeletingLastPathComponent!, withIntermediateDirectories: true, attributes: nil)
+		try self.applicationSyncManager.createDirectoryAtURL(infoDictURL.URLByDeletingLastPathComponent!)
 	
 		guard let infoDict = NSDictionary(contentsOfURL: infoDictURL) as? XUJSONDictionary else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
@@ -530,6 +533,7 @@ public class XUDocumentSyncManager {
 		// Since each device has its own file, we don't need to lock the file 
 		// anyhow, or worry about some collision issues.
 		newInfoDict.writeToURL(infoDictURL, atomically: true)
+		self.applicationSyncManager.didUpdateFileAtURL(infoDictURL)
 	}
 
 	/// Inits the document sync manager with fileURL, appSyncManager and UUID.
@@ -546,11 +550,11 @@ public class XUDocumentSyncManager {
 		self.managedObjectContext = managedObjectContext
 		self.managedObjectContext.documentSyncManager = self
 	
-		if let deviceFolderURL = XUSyncManagerPathUtilities.deviceSpecificUbiquityFolderURLForSyncManager(appSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: UUID) {
+		if let deviceFolderURL = XUSyncManagerPathUtilities.deviceSpecificFolderURLForSyncManager(appSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: UUID) {
 			do {
-				try NSFileManager.defaultManager().createDirectoryAtURL(deviceFolderURL, withIntermediateDirectories: true, attributes: nil)
+				try appSyncManager.createDirectoryAtURL(deviceFolderURL)
 			} catch let error as NSError {
-				XULog("\(self) - failed to create device specific ubiquity folder URL \(deviceFolderURL), error \(error)")
+				XULog("\(self) - failed to create device specific folder URL \(deviceFolderURL), error \(error)")
 			}
 		}
 	
@@ -560,7 +564,7 @@ public class XUDocumentSyncManager {
 			])
 		}
 	
-		try NSFileManager.defaultManager().createDirectoryAtURL(persistentStoreURL.URLByDeletingLastPathComponent!, withIntermediateDirectories: true, attributes: nil)
+		try appSyncManager.createDirectoryAtURL(persistentStoreURL.URLByDeletingLastPathComponent!)
 	
 		let dict = [
 			NSSQLitePragmasOption: [ "journal_mode" : "DELETE" ],
@@ -663,7 +667,7 @@ public class XUDocumentSyncManager {
 		// and changes may be made.
 		let tempFolderURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(String.UUIDString)
 		
-		_ = try? NSFileManager.defaultManager().createDirectoryAtURL(tempFolderURL, withIntermediateDirectories: true, attributes: nil)
+		NSFileManager.defaultManager().createDirectoryAtURL(tempFolderURL)
 	
 		do {
 			try NSFileManager.defaultManager().copyItemAtURL(fileURL, toURL: tempFolderURL.URLByAppendingPathComponent(fileURL.lastPathComponent!))
@@ -677,11 +681,11 @@ public class XUDocumentSyncManager {
 			let coordinator = NSFileCoordinator(filePresenter: nil)
 			var err: NSError?
 			var success: Bool = false
-			let entireDocumentUbiquityFolderURL = XUSyncManagerPathUtilities.entireDocumentUbiquityFolderURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID)
-			coordinator.coordinateWritingItemAtURL(entireDocumentUbiquityFolderURL, options: .ForReplacing, error: &err, byAccessor: { (newURL) in
+			let entireDocumentFolderURL = XUSyncManagerPathUtilities.entireDocumentFolderURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID)
+			coordinator.coordinateWritingItemAtURL(entireDocumentFolderURL, options: .ForReplacing, error: &err, byAccessor: { (newURL) in
 				let docURL = newURL.URLByAppendingPathComponent("Document")
 				
-				_ = try? NSFileManager.defaultManager().createDirectoryAtURL(docURL, withIntermediateDirectories: true, attributes: nil)
+				_ = try? self.applicationSyncManager.createDirectoryAtURL(docURL)
 	
 				let targetURL = docURL.URLByAppendingPathComponent(fileURL.lastPathComponent!)
 	
@@ -690,6 +694,8 @@ public class XUDocumentSyncManager {
 					try NSFileManager.defaultManager().removeItemAtURL(targetURL)
 					try NSFileManager.defaultManager().createDirectoryAtURL(tempFolderURL, withIntermediateDirectories: true, attributes: nil)
 					try NSFileManager.defaultManager().copyItemAtURL(tempFolderURL.URLByAppendingPathComponent(fileURL.lastPathComponent!), toURL: targetURL)
+					
+					self.applicationSyncManager.didUpdateFileAtURL(targetURL)
 				} catch let error as NSError {
 					err = error
 					success = false
@@ -702,7 +708,8 @@ public class XUDocumentSyncManager {
 					XUDocumentNameKey: fileURL.lastPathComponent!
 				]
 	
-				if !documentConfig.writeToURL(newURL.URLByAppendingPathComponent("Info.plist"), atomically: true) {
+				let configURL = newURL.URLByAppendingPathComponent("Info.plist")
+				if !documentConfig.writeToURL(configURL, atomically: true) {
 					success = false
 					err = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.")
@@ -710,6 +717,7 @@ public class XUDocumentSyncManager {
 					return
 				}
 	
+				self.applicationSyncManager.didUpdateFileAtURL(configURL)
 				success = true
 			})
 	

@@ -15,4 +15,13 @@ public extension NSFileManager {
 		return (try? self.contentsOfDirectoryAtURL(url, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())) ?? []
 	}
 	
+	public func createDirectoryAtURL(url: NSURL, withIntermediateDirectories intermediate: Bool = true) -> Bool {
+		do {
+			try self.createDirectoryAtURL(url, withIntermediateDirectories: intermediate, attributes: nil)
+			return true
+		} catch _ {
+			return false
+		}
+	}
+	
 }
