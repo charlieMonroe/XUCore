@@ -299,8 +299,9 @@ public class XUManagedObject: NSManagedObject {
 			fatalError("\(self.dynamicType).\(relationshipName) returned a non-Set value.")
 		}
 		
+		
 		guard let commitedObjects = self.committedValuesForKeys([relationshipName])[relationshipName] as? Set<XUManagedObject> else {
-			fatalError("\(self.dynamicType).committedValuesForKeys(\(relationshipName)) returned a non-Set value.")
+			return [] // Most likely no objects
 		}
 		
 		var changes: [XUSyncChange] = []
@@ -352,7 +353,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 	
 			let syncChange = XUToManyRelationshipAdditionSyncChange(object: self, relationshipName: relationshipName, andValue: obj)
-			XULog("Created to-many addition sync change for [\(self.dynamicType) \(relationshipName)]{\(self.syncUUID)} \(obj.dynamicType) [\(objUUID)]")
+			XULog("Created to-many addition sync change for \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] \(obj.dynamicType) [\(objUUID)]")
 	
 			changes.append(syncChange)
 		}
@@ -380,7 +381,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 	
 			let syncChange = XUToManyRelationshipDeletionSyncChange(object: self, relationshipName: relationshipName, andValue: obj)
-			XULog("Created to-many deletion sync change for [\(self.dynamicType) \(relationshipName)]{\(self.syncUUID)} \(obj.dynamicType) [\(objUUID)]")
+			XULog("Created to-many deletion sync change for \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] \(obj.dynamicType) [\(objUUID)]")
 			
 			changes.append(syncChange)
 		}
@@ -393,7 +394,7 @@ public class XUManagedObject: NSManagedObject {
 		
 		let genericValue = self.valueForKey(relationshipName)
 		let value = genericValue as? XUManagedObject
-		let valueClassName = "\((value?.dynamicType as Any) ?? ("<<none>>" as Any))"
+		let valueClassName = "\((value?.dynamicType).descriptionWithDefaultValue())"
 		if genericValue != nil && value == nil {
 			XULog("Skipping sync of [\(self.dynamicType) \(relationshipName)]{\(self.syncUUID)} because value isn't subclass of XUManagedObject (\(valueClassName)).")
 			return []
@@ -428,7 +429,7 @@ public class XUManagedObject: NSManagedObject {
 	
 	
 		let syncChange = XUToOneRelationshipSyncChange(object: self, relationshipName: relationshipName, andValue:value)
-		XULog("Creating to-one relationship change on [\(self.dynamicType) \(relationshipName)]{\(self.syncUUID)} -> \(valueClassName){\(value?.syncUUID ?? "<<none>>")}")
+		XULog("Creating to-one relationship change on \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] -> \(valueClassName) [\((value?.syncUUID).descriptionWithDefaultValue())]")
 		return [syncChange]
 	}
 
@@ -480,7 +481,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 
 			let change = XUAttributeSyncChange(object: self, attributeName: propertyName, andValue: value)
-			XULog("Creating value change on [\(self.dynamicType) \(propertyName)]{\(self.syncUUID)}")
+			XULog("Creating value change on \(self.dynamicType).\(propertyName) [\(self.syncUUID)]")
 			
 			changes.append(change)
 		}

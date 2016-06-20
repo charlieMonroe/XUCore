@@ -75,12 +75,12 @@ public extension String {
 	private func _URLStringOccurrencesToNSURLs(occurrences: [String]) -> [NSURL] {
 		var URLs: [NSURL] = [ ]
 		
-		URLs += occurrences.filterMap({ (originalURLString) -> [NSURL]? in
+		URLs += occurrences.flatMap({ (originalURLString) -> [NSURL]? in
 			return self._standardizedURLFromURLString(originalURLString)
 		}).flatten()
 		
 		URLs = URLs.distinct({ $0.isEqual($1) })
-		URLs = URLs.filterMap({ (URL) -> NSURL? in
+		URLs = URLs.flatMap({ (URL) -> NSURL? in
 			if URL.host == nil {
 				return nil
 			}
@@ -122,7 +122,7 @@ public extension String {
 		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URLIframeSourceRegexString)
 		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
 		
-		occurrences = occurrences.filterMap({ (URLString) -> String? in
+		occurrences = occurrences.flatMap({ (URLString) -> String? in
 			if URLString.hasPrefix("http") || URLString.hasPrefix("//") {
 				return nil /* We want just relative URLs. */
 			}

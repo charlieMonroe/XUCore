@@ -176,7 +176,7 @@ public class XUJSONDeserializer {
 	/// deserializationLog. Note that this is for debugging purposes only and
 	/// should in no way be turned on in production environment, since it degrades
 	/// performance greatly as well as keeps references to the deserialized objects.
-	public static var deserializationLoggingEnabled: Bool = XUApplicationSetup.sharedSetup.isRunningInDebugMode
+	public static var deserializationLoggingEnabled: Bool = XUAppSetup.isRunningInDebugMode
 
 	/// Exception catcher.
 	private let _exceptionHandler = XUExceptionHandler()
@@ -324,7 +324,7 @@ public class XUJSONDeserializer {
 			result = array
 		} else {
 			// Unknown target class
-			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass as Any? ?? "<<Nil>>"))")
+			self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Unknown array-like class. (\(property.propertyClass.descriptionWithDefaultValue()))")
 			return (nil, .Error)
 		}
 		
@@ -363,7 +363,7 @@ public class XUJSONDeserializer {
 				return (nil, .Error)
 			}
 			
-			let result = dicts.filterMap({ (dict) -> AnyObject? in
+			let result = dicts.flatMap({ (dict) -> AnyObject? in
 				guard let obj = self._fetchOrCreateObjectForDictionary(dict, forKey: key, onObject: object, toProperty: property).value else {
 					return nil // Can be some filtering.
 				}
@@ -382,7 +382,7 @@ public class XUJSONDeserializer {
 			return (result, .None)
 		}
 		
-		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass as Any? ?? "Nil"). (\(value))")
+		self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Cannot convert value of class \(value.dynamicType) to \(property.propertyClass.descriptionWithDefaultValue()). (\(value))")
 		return (nil, .Error)
 	}
 	

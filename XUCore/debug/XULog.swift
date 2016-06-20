@@ -33,7 +33,7 @@ private func _XUCachePreferences() {
 }
 private func _XURunningDevelopmentComputer() -> Bool {
 	
-	if XUApplicationSetup.sharedSetup.isRunningInDebugMode {
+	if XUAppSetup.isRunningInDebugMode {
 		return true
 	}
 	
@@ -72,8 +72,8 @@ private func _XURedirectToLogFile() {
 private func _XUStartNewSession() {
 	let processInfo = NSProcessInfo()
 	
-	let version = XUApplicationSetup.sharedSetup.applicationVersionNumber
-	let buildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber
+	let version = XUAppSetup.applicationVersionNumber
+	let buildNumber = XUAppSetup.applicationBuildNumber
 	
 	print("\n\n\n============== Starting a new \(processInfo.processName) session (version \(version)[\(buildNumber)]) ==============")
 }
@@ -115,7 +115,7 @@ private func __XULogSetShouldLog(log: Bool) {
 }
 
 private func _XULogFilePath() -> String {
-	let appIdentifier = XUApplicationSetup.sharedSetup.applicationIdentifier
+	let appIdentifier = XUAppSetup.applicationIdentifier
 	
 	let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).stringByExpandingTildeInPath
 	let logFile = logFolder + "/" + "\(appIdentifier).log"

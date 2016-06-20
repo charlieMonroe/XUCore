@@ -21,6 +21,11 @@ private func _URLForKey(key: String, inInfoDictionary infoDictionary: [String : 
 	}
 }
 
+/// Shorthand for XUAppSetup
+public var XUAppSetup: XUApplicationSetup {
+	return XUApplicationSetup.sharedSetup
+}
+
 
 /// This class contains several variables containing some of the information in
 /// the main bundle's Info.plist. You can go through the variables and see what
@@ -35,7 +40,7 @@ private func _URLForKey(key: String, inInfoDictionary infoDictionary: [String : 
 /// class XUMyAppSetup: XUApplicationSetup {
 ///
 ///		class var myAppSetup: XUMyAppSetup { 
-///			return XUApplicationSetup.sharedSetup as! XUMyAppSetup
+///			return XUAppSetup as! XUMyAppSetup
 ///		}
 ///
 /// }

@@ -39,7 +39,7 @@ private func _XULogFolderContentsStartingAtURL(rootURL: NSURL?, manager: XUAppli
 		return
 	}
 	
-	print("====== Printing \(manager).rootURL Contents ======")
+	print("====== Printing \(manager).rootURL Contents [\(XU_SYNC_DEVICE_ID())] ======")
 	_XULogFileAtURL(rootURL!, fileURL: rootURL!, level: 0);
 }
 
@@ -81,7 +81,7 @@ public class XUApplicationSyncManager {
 
 	
 	
-	@objc private func _checkForNewDocuments() {
+	private func _checkForNewDocuments() {
 		if self.syncRootFolderURL == nil {
 			return
 		}
@@ -172,14 +172,14 @@ public class XUApplicationSyncManager {
 	public init(name: String, rootFolder: NSURL?, andDelegate delegate: XUApplicationSyncManagerDelegate) {
 		self.name = name
 		self.delegate = delegate
-		
+		self.syncRootFolderURL = rootFolder
 		
 		if let downloadedDocumentUUIDs = NSUserDefaults.standardUserDefaults().arrayForKey(XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey) as? [String] {
 			_downloadedDocumentUUIDs += downloadedDocumentUUIDs
 			self.availableDocumentUUIDs += downloadedDocumentUUIDs
 		}
 		
-		_documentCheckerTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(_checkForNewDocuments), userInfo: nil, repeats: true)
+		_documentCheckerTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(scanForNewDocuments), userInfo: nil, repeats: true)
 		
 		self._checkForNewDocuments()
 		
@@ -197,7 +197,7 @@ public class XUApplicationSyncManager {
 	}
 	
 	/// Starts scanning for new documents.
-	public func scanForNewDocuments() {
+	@objc public func scanForNewDocuments() {
 		self._checkForNewDocuments()
 	}
 	

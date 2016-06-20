@@ -10,6 +10,19 @@ import Foundation
 
 public extension NSView {
 	
+	public var enclosingTableView: NSTableView? {
+		var view: NSView? = self.superview
+		while view != nil {
+			if let tableView = view as? NSTableView {
+				return tableView
+			}
+			
+			view = view?.superview
+		}
+		
+		return nil
+	}
+	
 	/// Sets enabled on subviews.
 	public func setDeepEnabled(flag: Bool) {
 		for view in self.subviews {

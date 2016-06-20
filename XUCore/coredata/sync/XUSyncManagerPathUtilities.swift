@@ -35,13 +35,18 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 
 internal class XUSyncManagerPathUtilities {
 	
-	class var currentDeviceIdentifier: String {
+	static var currentDeviceIdentifier: String = {
 		#if os(iOS)
-			return UIDevice.currentDevice().identifierForVendor!.UUIDString.uppercaseString
+			#if (arch(i386) || arch(x86_64)) && os(iOS)
+				/// Simulator changes vender ID each run.
+				return NSBundle.mainBundle().bundleURL.path!.componentsSeparatedByString("data/Containers/Bundle")[0].MD5Digest.uppercaseString
+			#else
+				return UIDevice.currentDevice().identifierForVendor!.UUIDString.uppercaseString
+			#endif
 		#else
 			return _cachedID
 		#endif
-	}
+	}()
 	
 	/// Returns the device specific folder for the document -
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID.

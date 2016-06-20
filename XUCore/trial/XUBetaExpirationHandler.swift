@@ -26,7 +26,7 @@ public class XUBetaExpirationHandler: NSObject {
 		}
 		
 		let timeInterval = abs(NSDate().timeIntervalSinceDate(date))
-		return XUApplicationSetup.sharedSetup.betaExpirationTimeInterval - timeInterval
+		return XUAppSetup.betaExpirationTimeInterval - timeInterval
 	}
 	
 	private func _showFirstBetaLaunchDialog() {
@@ -39,7 +39,7 @@ public class XUBetaExpirationHandler: NSObject {
 		
 		let alert = NSAlert()
 		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", NSProcessInfo().processName, inBundle: XUCoreBundle)
-		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUApplicationSetup.sharedSetup.applicationBuildNumber, inBundle: XUCoreBundle)
+		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCoreBundle)
 		alert.addButtonWithTitle("OK")
 		alert.runModal()
 	}
@@ -69,12 +69,12 @@ public class XUBetaExpirationHandler: NSObject {
 	private override init() {
 		super.init()
 		
-		if !XUApplicationSetup.sharedSetup.isBetaBuild {
+		if !XUAppSetup.isBetaBuild {
 			return
 		}
 		
 		let defaults = NSUserDefaults.standardUserDefaults()
-		let currentBuildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber.integerValue
+		let currentBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 		
 		if let number = defaults.objectForKey(XULastBetaBuildNumberDefaultsKey) as? NSNumber where number.integerValue == currentBuildNumber {
 			/// We're continuing to use the same beta build.

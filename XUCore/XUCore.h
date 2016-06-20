@@ -23,7 +23,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Core. */
 #import "XUAbstract.h"
-#import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
 
 /** Data - all deprectated. */

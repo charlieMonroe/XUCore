@@ -150,7 +150,7 @@ public class XUMessageCenter: NSObject {
 	}
 	
 	@objc private func _launchMessageCenter() {
-		if XUApplicationSetup.sharedSetup.messageCenterFeedURL == nil {
+		if XUAppSetup.messageCenterFeedURL == nil {
 			return // Ignore, if the feed URL is nil
 		}
 		
@@ -166,7 +166,7 @@ public class XUMessageCenter: NSObject {
 			}
 			
 			self.appBlocked = NSUserDefaults.standardUserDefaults().boolForKey(XUMessageCenterAppBlockedDefaultsKey)
-			let appBuildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber.integerValue
+			let appBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 			let maxVersion = NSUserDefaults.standardUserDefaults().integerForKey(XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 			if self.appBlocked && maxVersion < appBuildNumber {
 				self.appBlocked = false
@@ -179,7 +179,7 @@ public class XUMessageCenter: NSObject {
 	
 	/// Checks for messages with the server. Must not be called from main thread.
 	private func checkForMessages() {
-		guard let feedURL = XUApplicationSetup.sharedSetup.messageCenterFeedURL else {
+		guard let feedURL = XUAppSetup.messageCenterFeedURL else {
 			return
 		}
 		
@@ -188,10 +188,10 @@ public class XUMessageCenter: NSObject {
 		}
 
 		let lastMessageID = NSUserDefaults.standardUserDefaults().integerForKey(XUMessageCenterLastIDDefaultsKey)
-		let appBuildNumber = XUApplicationSetup.sharedSetup.applicationBuildNumber.integerValue
+		let appBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 		
-		let isAppStoreBuild = XUApplicationSetup.sharedSetup.isAppStoreBuild
-		let appIdentifier = XUApplicationSetup.sharedSetup.applicationIdentifier
+		let isAppStoreBuild = XUAppSetup.isAppStoreBuild
+		let appIdentifier = XUAppSetup.applicationIdentifier
 		
 		guard let messages = dict[appIdentifier] as? [XUMessageDictionary] else {
 			XULog("Either feed is invalid, or no messages are defined in the feed for \(appIdentifier)")

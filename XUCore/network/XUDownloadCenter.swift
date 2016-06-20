@@ -134,7 +134,7 @@ public class XUDownloadCenter {
 			return
 		}
 		
-		var cookieString = cookies.filterMap({ (obj: NSHTTPCookie) -> String? in
+		var cookieString = cookies.flatMap({ (obj: NSHTTPCookie) -> String? in
 			return "\(obj.name)=\(obj.value)"
 		}).joinWithSeparator(";")
 		
@@ -263,14 +263,14 @@ public class XUDownloadCenter {
 		
 		guard let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(URL!) - \(self.lastError as Any? ?? "unknown error")")
+				XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(URL!) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
 			}
 			return nil
 		}
 
 		
 		if self.logTraffic {
-			XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse as Any? ?? "none")")
+			XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
 		}
 		
 		if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
@@ -452,7 +452,7 @@ public class XUDownloadCenter {
 			
 			guard let HTTPResponse = response as? NSHTTPURLResponse else {
 				if self.logTraffic {
-					XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response as Any? ?? "nil")")
+					XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response.descriptionWithDefaultValue())")
 				}
 				return nil
 			}

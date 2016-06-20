@@ -110,7 +110,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 		image.unlockFocus()
 		self.visualEffectView.maskImage = image
 		
-		if XUApplicationSetup.sharedSetup.isDarkModeEnabled {
+		if XUAppSetup.isDarkModeEnabled {
 			self.visualEffectView.material = .Dark
 			
 			self.messageField.textColor = NSColor.whiteColor()

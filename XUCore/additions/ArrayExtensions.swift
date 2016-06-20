@@ -44,15 +44,9 @@ public extension SequenceType {
 		
 	/// Unlike map, this allows you to return nil, in which case the value
 	/// will be ommitted.
+	@available(*, deprecated, renamed="flatMap")
 	public func filterMap<U>(@noescape transform: (Self.Generator.Element) throws -> U?) rethrows -> [U] {
-		var result: Array<U> = [ ]
-		for obj in self {
-			let transObj: U? = try transform(obj)
-			if let nonNilObj = transObj {
-				result.append(nonNilObj)
-			}
-		}
-		return result
+		return try self.flatMap(transform)
 	}
 	
 	/// Returns the first element in self that matches the filter

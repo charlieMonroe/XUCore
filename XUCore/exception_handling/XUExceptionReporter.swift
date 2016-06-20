@@ -142,8 +142,8 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			"description": _userInputTextView.string ?? "",
 			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])",
 			"stacktrace": _stackTraceTextView.string ?? "",
-			"version": XUApplicationSetup.sharedSetup.applicationVersionNumber,
-			"build": XUApplicationSetup.sharedSetup.applicationBuildNumber,
+			"version": XUAppSetup.applicationVersionNumber,
+			"build": XUAppSetup.applicationBuildNumber,
 			"name": NSProcessInfo.processInfo().processName,
 			"os_version": OSVersionString,
 			"email": _emailTextField.stringValue
@@ -152,7 +152,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		/// The exception catcher doesn't even start without a valid URL. We assume
 		/// that it's still valid. This class is internal, so there should be no
 		/// calls to this from outside of XUCore.
-		let URL = XUApplicationSetup.sharedSetup.exceptionHandlerReportURL!
+		let URL = XUAppSetup.exceptionHandlerReportURL!
 		
 		
 		let request = NSMutableURLRequest(URL: URL, cachePolicy: .ReloadIgnoringCacheData, timeoutInterval: 20.0)

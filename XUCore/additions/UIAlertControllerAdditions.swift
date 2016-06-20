@@ -21,6 +21,16 @@ public extension UIAlertController {
 		return UIAlertController(error: error!, andCompletionHandler: completionHandler)
 	}
 	
+	/// Adds a cancel action.
+	public func addCancelAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {
+		self.addAction(UIAlertAction(cancelWithCompletionHandler: completionHandler))
+	}
+	
+	/// Adds an action with localized "OK" title.
+	public func addOKAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {
+		self.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: completionHandler))
+	}
+	
 	/// Creates a new alert controller with information from the error. By default,
 	/// also adds an OK button. If you want all buttons of the alert to be custom,
 	/// remove the existing action on the controller.
@@ -31,6 +41,15 @@ public extension UIAlertController {
 				handler()
 			}
 		}))
+	}
+	
+}
+
+public extension UIAlertAction {
+	
+	/// A conveniece for a Cancel action.
+	public convenience init(cancelWithCompletionHandler completionHandler: ((UIAlertAction) -> Void)?) {
+		self.init(title: XULocalizedString("Cancel"), style: .Cancel, handler: completionHandler)
 	}
 	
 }

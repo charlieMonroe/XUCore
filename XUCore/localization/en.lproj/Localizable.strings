@@ -89,3 +89,8 @@
 "%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
 "Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
 
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Could not read synchronization change data.";
+"Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
+"Failing to apply change sets." = "Failing to apply change sets.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";

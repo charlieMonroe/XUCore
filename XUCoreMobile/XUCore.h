@@ -21,9 +21,7 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "NSStringAdditions.h"
 
 /** Core. */
-#import "iOSCommon.h"
 #import "XUAbstract.h"
-#import "XUBlockThreading.h"
 #import "XUExceptionHandler.h"
 
 /** Data. */

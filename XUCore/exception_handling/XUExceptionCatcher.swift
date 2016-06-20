@@ -22,7 +22,7 @@ public class XUExceptionCatcher: NSObject {
 	/// XUApplicationSetup, the catcher does not start. See XUExceptionReporter
 	/// for more information.
 	public class func startExceptionCatcher() {
-		if XUApplicationSetup.sharedSetup.exceptionHandlerReportURL == nil {
+		if XUAppSetup.exceptionHandlerReportURL == nil {
 			return
 		}
 		

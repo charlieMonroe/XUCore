@@ -22,7 +22,7 @@ public class XUTrial: NSObject {
 	/// Returns the shared trial. Will be nil when trial is not enabled, or
 	/// AppStoreBuild is active.
 	public static let sharedTrial: XUTrial? = {
-		let setup = XUApplicationSetup.sharedSetup
+		let setup = XUAppSetup
 		if setup.isAppStoreBuild {
 			return nil
 		}
@@ -249,7 +249,7 @@ public class XUTimeBasedTrial: XUTrial {
 	
 	/// Registers the app with the trial server.
 	private func _registerWithTrialServer() -> Bool {
-		let identifier = XUApplicationSetup.sharedSetup.applicationIdentifier.stringByEncodingIllegalURLCharacters
+		let identifier = XUAppSetup.applicationIdentifier.stringByEncodingIllegalURLCharacters
 		let URL = NSURL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = "POST"
@@ -285,10 +285,10 @@ public class XUTimeBasedTrial: XUTrial {
 			return
 		}
 		
-		let identifier = XUApplicationSetup.sharedSetup.applicationIdentifier
+		let identifier = XUAppSetup.applicationIdentifier
 		guard let appDict = apps.find({ $0["app_identifier"] == identifier }) else {
 			if self._registerWithTrialServer() {
-				_secondsLeft = NSTimeInterval(XUApplicationSetup.sharedSetup.timeBasedTrialDays) * (24.0 * 3600.0)
+				_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * (24.0 * 3600.0)
 				_wasFirstRun = true
 				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial.showFirstRunAlert), userInfo: nil, repeats: false)
 			}else{
@@ -314,7 +314,7 @@ public class XUTimeBasedTrial: XUTrial {
 		let now = NSDate()
 		let difference = now.timeIntervalSinceDate(date)
 		
-		_secondsLeft = NSTimeInterval(XUApplicationSetup.sharedSetup.timeBasedTrialDays) * (24.0 * 3600.0) - abs(difference)
+		_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * (24.0 * 3600.0) - abs(difference)
 		
 		if _secondsLeft > 0.0 {
 			NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
@@ -331,7 +331,7 @@ public class XUTimeBasedTrial: XUTrial {
 	
 	public override func showFirstRunAlert() {
 		let appName = NSProcessInfo.processInfo().processName
-		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle))
+		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle))
 	}
 	
 	public override func startShortTrial() {
@@ -342,7 +342,7 @@ public class XUTimeBasedTrial: XUTrial {
 	
 	public override var trialExpirationMessage: String {
 		let appName = NSProcessInfo.processInfo().processName
-		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUApplicationSetup.sharedSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle)
+		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCoreBundle)
 	}
 	
 }
@@ -418,21 +418,21 @@ public class XUItemBasedTrial: XUTrial {
 		
 		if task.terminationStatus == 1 {
 			self._wasFirstRun = true
-			_itemsLeft = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
+			_itemsLeft = XUAppSetup.itemBasedTrialNumberOfItems
 			self.saveTrialInformation()
 		}else{
 			let data = p.fileHandleForReading.availableData
 			let string = String(data: data) ?? ""
 			if string.isEmpty {
 				self._wasFirstRun = true
-				_itemsLeft = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
+				_itemsLeft = XUAppSetup.itemBasedTrialNumberOfItems
 				self.saveTrialInformation()
 			}else{
 				_itemsLeft = string.integerValue
 			}
 		}
 		
-		if _itemsLeft > XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems {
+		if _itemsLeft > XUAppSetup.itemBasedTrialNumberOfItems {
 			_itemsLeft = 0
 		}
 	}
@@ -444,12 +444,12 @@ public class XUItemBasedTrial: XUTrial {
 	
 	/// Returns how many items have been user during the trial.
 	public var itemsUsed: Int {
-		return XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems - _itemsLeft
+		return XUAppSetup.itemBasedTrialNumberOfItems - _itemsLeft
 	}
 	
 	/// Resets the trial.
 	public func resetTrial() {
-		_itemsLeft = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
+		_itemsLeft = XUAppSetup.itemBasedTrialNumberOfItems
 		
 		self.saveTrialInformation()
 	}
@@ -471,8 +471,8 @@ public class XUItemBasedTrial: XUTrial {
 	
 	public override func showFirstRunAlert() {
 		let appName = NSProcessInfo.processInfo().processName
-		let numberOfItems = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
-		let itemsName = XUApplicationSetup.sharedSetup.itemBasedTrialItemName
+		let numberOfItems = XUAppSetup.itemBasedTrialNumberOfItems
+		let itemsName = XUAppSetup.itemBasedTrialItemName
 		
 		self.showTrialAlertWithMessage(XULocalizedFormattedString("Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreBundle))
 	}
@@ -485,8 +485,8 @@ public class XUItemBasedTrial: XUTrial {
 	
 	public override var trialExpirationMessage: String {
 		let appName = NSProcessInfo.processInfo().processName
-		let numberOfItems = XUApplicationSetup.sharedSetup.itemBasedTrialNumberOfItems
-		let itemsName = XUApplicationSetup.sharedSetup.itemBasedTrialItemName
+		let numberOfItems = XUAppSetup.itemBasedTrialNumberOfItems
+		let itemsName = XUAppSetup.itemBasedTrialItemName
 		
 		return XULocalizedFormattedString("Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreBundle)
 	}

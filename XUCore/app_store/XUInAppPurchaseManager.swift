@@ -54,7 +54,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	/// You need to call this prior to calling sharedManager. Do not call this
 	/// unless the current application setup is set to AppStore.
 	public class func createSharedManagerWithDelegate(delegate: XUInAppPurchaseManagerDelegate) {
-		if !XUApplicationSetup.sharedSetup.isAppStoreBuild {
+		if !XUAppSetup.isAppStoreBuild {
 			NSException(name: NSInternalInconsistencyException, reason: "Trying to create in-app purchase manager, while this is not an AppStore build.", userInfo: nil).raise()
 		}
 		
@@ -276,7 +276,7 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 	}
 	#else
 	public func request(request: SKRequest, didFailWithError error: NSError?) {
-		XULog("An error getting products occurred: \(error as Any? ?? "nil")")
+		XULog("An error getting products occurred: \(error.descriptionWithDefaultValue())")
 		
 		isLoadingProducts = false
 		
