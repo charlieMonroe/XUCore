@@ -32,6 +32,7 @@
 		07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */; };
 		07311DDF1C0C8007001B95AC /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DDE1C0C8007001B95AC /* UIView+Frame.swift */; };
 		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
+		0734CF4B1D199FC900A9A582 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734CF4A1D199FC900A9A582 /* XUOAuth2.swift */; };
 		0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
@@ -401,6 +402,7 @@
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DDE1C0C8007001B95AC /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIView+Frame.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0734CF4A1D199FC900A9A582 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUOAuth2.swift; sourceTree = "<group>"; };
 		0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGeometryAdditions.swift; sourceTree = "<group>"; };
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 				07C3FA0B1BEB7677008A4200 /* XUCURLConnection.swift */,
 				0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */,
 				0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */,
+				0734CF4A1D199FC900A9A582 /* XUOAuth2.swift */,
 				07C3FA091BEB7158008A4200 /* XUURLHandlingCenter.swift */,
 			);
 			path = network;
@@ -1453,6 +1456,7 @@
 				073E6AFF1BE1F86D00706283 /* hash.cc in Sources */,
 				073E6B451BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
+				0734CF4B1D199FC900A9A582 /* XUOAuth2.swift in Sources */,
 				077ADC151C501A74008F5600 /* XUBetaExpirationHandler.swift in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,

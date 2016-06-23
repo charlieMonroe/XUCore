@@ -29,6 +29,7 @@ infix operator =+ {
 }
 
 /// Similar to += - this operator
+@available(*, deprecated, message="Use prepend instead.")
 public func =+ (inout lhs: String, rhs: String) {
 	lhs = rhs + lhs
 }
@@ -307,7 +308,10 @@ public extension String {
 			size = result.sizeWithAttributes(atts)
 		}
 		return result
-
+	}
+	
+	public mutating func prepend(string: String) {
+		self.insertContentsOf(string.characters, at: self.startIndex)
 	}
 
 	/// Returns a reverse string.

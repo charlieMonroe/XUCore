@@ -8,6 +8,22 @@
 
 import Foundation
 
+private protocol _XUOptional {}
+extension Optional: _XUOptional {}
+
+/// Returns true if anyValue represents an optional.
+public func isOptional(anyValue: Any) -> Bool {
+	return anyValue is _XUOptional
+}
+
+/// If anyValue is an Optional, it will be returned.
+public func asOptional<T>(anyValue: Any) -> T? {
+	if let val = anyValue as? T {
+		return val
+	}
+	return nil
+}
+
 public extension String {
 	
 	@available(*, deprecated, message="Interpolation of optionals is deprecated.")
