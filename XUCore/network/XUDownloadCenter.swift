@@ -186,14 +186,14 @@ public class XUDownloadCenter {
 		request.userAgent = agent
 		request.referer = referer
 		
-		if request.valueForHTTPHeaderField("Accept") == nil {
-			request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
-		}
-		
 		self._setupCookieFieldForURLRequest(request)
 		
 		if modifier != nil {
 			modifier!(request: request)
+		}
+		
+		if request.valueForHTTPHeaderField("Accept") == nil {
+			request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
 		}
 		
 		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)

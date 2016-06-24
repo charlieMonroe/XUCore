@@ -6,7 +6,8 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import Foundation
+import Security
 
 public class XUKeychainAccess: NSObject {
 	

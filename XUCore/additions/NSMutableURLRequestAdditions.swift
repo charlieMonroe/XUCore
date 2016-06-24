@@ -9,13 +9,13 @@
 import Foundation
 
 /// Value for the accept/content header field.
-public let XUMutableURLRequestJSONHeaderFieldValue = "application/json"
+public let XUMutableURLRequestJSONHeaderFieldValue = "application/json;charset=UTF-8"
 
 /// Value for the accept/content header field.
-public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml"
+public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml;charset=UTF-8"
 
 /// Value for the accept/content header field.
-public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded"
+public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded;charset=UTF-8"
 
 public extension NSMutableURLRequest {
 	

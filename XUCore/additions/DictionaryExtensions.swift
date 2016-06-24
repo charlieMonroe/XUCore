@@ -13,6 +13,14 @@ import Foundation
 /// rather than keep typing out the generics.
 public typealias XUJSONDictionary = Dictionary<String, AnyObject>
 
+public func + <KeyType, ValueType> (left: Dictionary<KeyType, ValueType>, right: Dictionary<KeyType, ValueType>) -> Dictionary<KeyType, ValueType> {
+	var dict = left
+	for (k, v) in right {
+		dict.updateValue(v, forKey: k)
+	}
+	return dict
+}
+
 /// Introducing the += function for dictionaries
 public func += <KeyType, ValueType> (inout left: Dictionary<KeyType, ValueType>, right: Dictionary<KeyType, ValueType>) {
 	for (k, v) in right {
