@@ -187,7 +187,7 @@ public class XUApplicationSetup: NSObject {
 		if let betaExpirationTimeInterval = infoDictionary["XUBetaExpiration"] as? NSNumber where betaExpirationTimeInterval.doubleValue > 0.0 {
 			self.betaExpirationTimeInterval = betaExpirationTimeInterval.doubleValue
 		}else{
-			self.betaExpirationTimeInterval = 7.0 * 24.0 * 3600.0
+			self.betaExpirationTimeInterval = 7.0 * XUTimeInterval.day
 		}
 		
 		

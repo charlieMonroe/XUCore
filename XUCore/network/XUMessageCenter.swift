@@ -161,7 +161,7 @@ public class XUMessageCenter: NSObject {
 		
 		if let blockedDate = NSUserDefaults.standardUserDefaults().objectForKey(XUMessageCenterAppBlockedDateDefaultsKey) as? NSDate {
 			// We are more lenient now and give the user 24 hours to update
-			if NSDate.timeIntervalSinceReferenceDate() - blockedDate.timeIntervalSinceReferenceDate < 24.0 * 3600.0 {
+			if NSDate.timeIntervalSinceReferenceDate() - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
 				return
 			}
 			
@@ -306,7 +306,7 @@ public class XUMessageCenter: NSObject {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
 		
 		// Repeat this every hour.
-		NSTimer.scheduledTimerWithTimeInterval(3600.0, repeats: true) { (_) -> Void in
+		NSTimer.scheduledTimerWithTimeInterval(XUTimeInterval.hour, repeats: true) { (_) -> Void in
 			XU_PERFORM_BLOCK_ASYNC({ () -> Void in
 				self.checkForMessages()
 			})

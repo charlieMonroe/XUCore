@@ -179,7 +179,7 @@ public class XUTrial: NSObject {
 	/// server and hence only one-hour trial is provided. By default, schedules
 	/// a timer that is fired after 1 hour and calls trialExpiredWithTrialID(nil).
 	public func startShortTrial() {
-		NSTimer.scheduledTimerWithTimeInterval(3600.0, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
+		NSTimer.scheduledTimerWithTimeInterval(XUTimeInterval.hour, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
 	}
 	
 	/// Each subclass must override this. The message returns should include
@@ -288,7 +288,7 @@ public class XUTimeBasedTrial: XUTrial {
 		let identifier = XUAppSetup.applicationIdentifier
 		guard let appDict = apps.find({ $0["app_identifier"] == identifier }) else {
 			if self._registerWithTrialServer() {
-				_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * (24.0 * 3600.0)
+				_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * XUTimeInterval.day
 				_wasFirstRun = true
 				NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial.showFirstRunAlert), userInfo: nil, repeats: false)
 			}else{
@@ -314,7 +314,7 @@ public class XUTimeBasedTrial: XUTrial {
 		let now = NSDate()
 		let difference = now.timeIntervalSinceDate(date)
 		
-		_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * (24.0 * 3600.0) - abs(difference)
+		_secondsLeft = NSTimeInterval(XUAppSetup.timeBasedTrialDays) * XUTimeInterval.day - abs(difference)
 		
 		if _secondsLeft > 0.0 {
 			NSTimer.scheduledTimerWithTimeInterval(_secondsLeft, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
@@ -335,7 +335,7 @@ public class XUTimeBasedTrial: XUTrial {
 	}
 	
 	public override func startShortTrial() {
-		_secondsLeft = 3600.0
+		_secondsLeft = XUTimeInterval.day
 		
 		super.startShortTrial()
 	}

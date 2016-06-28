@@ -421,7 +421,7 @@ public class XUDocumentSyncManager {
 		// Device A's sync folder, but the changes may take some time to propagate.
 		// So generally speaking, this is just to be safe rather than sorry.
 	
-		latestTimeStamp = min(latestTimeStamp, NSDate.timeIntervalSinceReferenceDate() - (24.0 * 3600.0))
+		latestTimeStamp = min(latestTimeStamp, NSDate.timeIntervalSinceReferenceDate() - XUTimeInterval.day)
 	
 		// Get all change sets.
 		let syncChangeSets = XUSyncChangeSet.allChangeSetsInManagedObjectContext(self.syncManagedObjectContext, withTimestampNewerThan: 0.0)

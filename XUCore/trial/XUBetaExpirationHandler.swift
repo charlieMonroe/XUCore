@@ -89,7 +89,7 @@ public class XUBetaExpirationHandler: NSObject {
 			
 			// The beta will expire in less than an hour and we haven't shown 
 			// a warning yet - do so now.
-			if timeInterval < 3600.0 && !didShowWarning {
+			if timeInterval < XUTimeInterval.hour && !didShowWarning {
 				self._showWarningAndScheduleOneHourExpiration()
 				return
 			}
