@@ -228,6 +228,8 @@ public final class XUOAuth2Client {
 				return nil
 			}
 			
+			self.client = client
+			
 			self.identifier = identifier
 			self.tokenExpirationDate = expirationDate
 			
@@ -368,9 +370,11 @@ public final class XUOAuth2Client {
 	/// Takes the code from redirection URL, requests authorization.
 	private func _finishAuthorization(withCode code: String) {
 		let postDict: [String : String] = [
+			"clientID": self.configuration.clientID,
+			"client_secret": self.configuration.secret,
 			"grant_type": "authorization_code",
 			"code": code,
-			"redirect_uri": self.configuration.authorizationURL.absoluteString
+			"redirect_uri": self.configuration.redirectionURLString
 		]
 		
 		guard let obj = self.downloadCenter.downloadJSONDictionaryAtURL(self.configuration.tokenEndpointURL, withModifier: { (request) in
@@ -389,6 +393,8 @@ public final class XUOAuth2Client {
 		}
 		
 		guard obj["token_type"] as? String == "bearer" else {
+			XULog("Token type is not bearer \(obj).")
+			
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				self._authorizationController!.close(withResult: .Error(.InvalidTokenType))
 				self._authorizationController = nil
@@ -397,6 +403,8 @@ public final class XUOAuth2Client {
 		}
 		
 		guard let accessToken = obj["access_token"] as? String, refreshToken = obj["refresh_token"] as? String else {
+			XULog("No access token or refresh token in \(obj).")
+			
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				self._authorizationController!.close(withResult: .Error(.InvalidAuthorizationResponse))
 				self._authorizationController = nil
@@ -404,10 +412,13 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		let expiratesInSeconds: NSTimeInterval = obj.doubleForKey("expires_in")
+		var expiresInSeconds: NSTimeInterval = obj.doubleForKey("expires_in")
+		if expiresInSeconds == 0.0 {
+			expiresInSeconds = XUTimeInterval.day
+		}
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
-			let account = Account(client: self, accessToken: accessToken, refreshToken: refreshToken, andExpirationDate: NSDate(timeIntervalSinceNow: expiratesInSeconds))
+			let account = Account(client: self, accessToken: accessToken, refreshToken: refreshToken, andExpirationDate: NSDate(timeIntervalSinceNow: expiresInSeconds))
 			self.accounts.append(account)
 			
 			self._authorizationController!.close(withResult: .Authorized(account))

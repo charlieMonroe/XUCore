@@ -69,6 +69,11 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 		return _buffer[index]
 	}
 	
+	/// Returns a copy of self.
+	public func copy() -> XUString {
+		return XUString(chars: _buffer)
+	}
+	
 	/// Returns bytes wrapped in NSData.
 	public var data: NSData {
 		return NSData(bytes: &_buffer, length: _buffer.count)
@@ -80,6 +85,20 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	
 	public var description: String {
 		return "XUString<\(unsafeAddressOf(self))> [length: \(self.length)] - \(self.stringValue)"
+	}
+	
+	public func hasPrefix(prefix: XUString) -> Bool {
+		if prefix.length > self.length {
+			return false
+		}
+		
+		for i in 0 ..< prefix.length {
+			if prefix[i] != self[i] {
+				return false
+			}
+		}
+		
+		return true
 	}
 	
 	/// Returns an index of the first occurrence of the char.
@@ -115,9 +134,9 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	}
 	
 	/// Convenience method that fills the string with str[0] = 0, str[1] = 1, ...
-	public convenience init(filledWithASCIITableOfLength length: UInt) {
+	public convenience init(filledWithASCIITableOfLength length: Int) {
 		var chars: [XUChar] = [ ]
-		for i in 0..<Int(length) {
+		for i in 0 ..< length {
 			chars.append(XUChar(i))
 		}
 		
@@ -158,6 +177,11 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	/// Removes character at index by shifting the remainder of the string left.
 	public func removeCharacterAtIndex(index: Int) {
 		_buffer.removeAtIndex(index)
+	}
+	
+	/// Removes characters in range by shifting the remainder of the string left.
+	public func removeCharactersInRange(range: Range<Int>) {
+		_buffer.removeRange(range)
 	}
 	
 	/// Removes all characters passing the filter.
@@ -232,7 +256,12 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 
 	
 	public subscript(index: Int) -> XUChar {
-		return self.characterAtIndex(index)
+		get {
+			return self.characterAtIndex(index)
+		}
+		set {
+			self.setCharacter(newValue, atIndex: index)
+		}
 	}
 	
 	

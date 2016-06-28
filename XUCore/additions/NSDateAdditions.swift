@@ -12,6 +12,21 @@ import Foundation
 private var __today: NSDate?
 private var __validUntil: NSTimeInterval = 0
 
+/// Contains time intervals, like hour, minute, day, week. Ideally, this would
+/// be NSTimeInterval extension. Unfortunately, NSTimeInterval is only a typealias
+/// for Double, so Double.day would be valid as well, which we don't want.
+public struct XUTimeInterval {
+	
+	public static let day: NSTimeInterval = 24.0 * 3600.0
+	public static let hour: NSTimeInterval = 3600.0
+	public static let minute: NSTimeInterval = 60.0
+	public static let week: NSTimeInterval = 7.0 * 24.0 * 3600.0
+	
+	private init() {}
+}
+
+
+
 public struct XUMonth : OptionSetType {
 	public let rawValue: Int
 	
@@ -125,7 +140,7 @@ public extension NSDate {
 			let date = NSDate()
 			let calendar = NSCalendar.currentCalendar()
 			__today = calendar.startOfDayForDate(date)
-			__validUntil = __today!.timeIntervalSinceReferenceDate + 24.0 * 3600.0
+			__validUntil = __today!.timeIntervalSinceReferenceDate + XUTimeInterval.day
 		}
 		return __today!
 	}
