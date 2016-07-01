@@ -24,7 +24,7 @@ public extension NSAlert {
 		let accessory: NSTextField
 		if secure {
 			accessory = NSSecureTextField(frame: frame)
-		}else{
+		} else {
 			accessory = NSTextField(frame: frame)
 		}
 		

@@ -52,9 +52,9 @@ public extension NSBezierPath {
 
 		let transform = NSAffineTransform()
 		if NSGraphicsContext.currentContext()!.flipped {
-			transform.translateXBy(0, yBy: bounds.size.height)
+			transform.translateXBy(0, yBy: bounds.height)
 		} else {
-			transform.translateXBy(0, yBy: -bounds.size.height)
+			transform.translateXBy(0, yBy: -bounds.height)
 		}
 
 		let drawingPath = NSBezierPath(rect: bounds)
@@ -78,16 +78,16 @@ public extension NSBezierPath {
 		let bounds = self.bounds.insetBy(dx: -radius, dy: -radius)
 
 		let shadow = NSShadow()
-		shadow.shadowOffset = CGSize(width: 0, height: bounds.size.height)
+		shadow.shadowOffset = CGSize(width: 0, height: bounds.height)
 		shadow.shadowBlurRadius = radius
 		shadow.shadowColor = color
 
 		let path = self.copy() as! NSBezierPath
 		let transform = NSAffineTransform()
 		if NSGraphicsContext.currentContext()!.flipped {
-			transform.translateXBy(0, yBy: bounds.size.height)
+			transform.translateXBy(0, yBy: bounds.height)
 		} else {
-			transform.translateXBy(0, yBy: -bounds.size.height)
+			transform.translateXBy(0, yBy: -bounds.height)
 		}
 		path.transformUsingAffineTransform(transform)
 
@@ -151,7 +151,7 @@ public extension NSBezierPath {
 		self.setClip()
 
 		// Further clip drawing to clipRect, usually the view's frame.
-		if clipRect.size.width > 0.0 && clipRect.size.height > 0.0 {
+		if clipRect.width > 0.0 && clipRect.height > 0.0 {
 			NSBezierPath.clipRect(clipRect)
 		}
 
