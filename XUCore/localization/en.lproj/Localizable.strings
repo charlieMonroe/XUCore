@@ -94,3 +94,10 @@
 "Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
 "Failing to apply change sets." = "Failing to apply change sets.";
 "Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
+
+/// XUOAuth2
+"Authentication" = "Authentication";
+"Server responded with unknown token type." = "Server responded with unknown token type.";
+"Server provided invalid authorization response." = "Server provided invalid authorization response.";
+"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
+"User has cancelled the authorization." = "User has cancelled the authorization.";

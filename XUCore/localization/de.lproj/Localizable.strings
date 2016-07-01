@@ -89,3 +89,15 @@
 "%@ couldn't finish synchronization in the background." = "%@ konnte im Hintergrund nicht synchronisiert werden.";
 "Please switch back to %@ so that the synchronization can finish." = "Bitte wechsle zurück auf %@ damit die Synchronisation beendet werden kann.";
 
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Could not read synchronization change data.";
+"Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
+"Failing to apply change sets." = "Failing to apply change sets.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
+
+/// XUOAuth2
+"Authentication" = "Authentication";
+"Server responded with unknown token type." = "Server responded with unknown token type.";
+"Server provided invalid authorization response." = "Server provided invalid authorization response.";
+"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
+"User has cancelled the authorization." = "User has cancelled the authorization.";
