@@ -459,10 +459,6 @@ public final class XUOAuth2Client {
 	/// Private initializer.
 	private init(configuration: XUOAuth2Configuration) {
 		self.configuration = configuration
-		
-		#if os(OSX)
-			XUURLHandlingCenter.defaultCenter.addHandler(self, forURLScheme: configuration.redirectionScheme)
-		#endif
 	}
 
 	private convenience init?(dictionary: XUJSONDictionary) {
@@ -483,8 +479,13 @@ public final class XUOAuth2Client {
 	
 	#if os(OSX)
 		public func startAccountAuthorization(withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
+			XUURLHandlingCenter.defaultCenter.addHandler(self, forURLScheme: configuration.redirectionScheme)
+			
 			_authorizationController = XUAuthorizationWebViewWindowController(URL: self.configuration.authorizationURL)
-			_authorizationController!.runModal(withCompletionHandler: completionHandler)
+			_authorizationController!.runModal(withCompletionHandler: { result in
+				XUURLHandlingCenter.defaultCenter.removeHandler(self, forURLScheme: self.configuration.redirectionScheme)
+				completionHandler?(result)
+			})
 		}
 	#else
 		public func startAccountAuthorization(fromController controller: UIViewController, withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {

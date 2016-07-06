@@ -46,13 +46,50 @@ public func +=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
 public func -=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs - rhs
 }
+public func *=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+	lhs = lhs * rhs
+}
+public func /=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+	lhs = lhs / rhs
+}
 
+public func +=(inout lhs: NSDecimalNumber, rhs: Double) {
+	lhs = lhs + rhs
+}
+public func -=(inout lhs: NSDecimalNumber, rhs: Double) {
+	lhs = lhs - rhs
+}
+public func *=(inout lhs: NSDecimalNumber, rhs: Double) {
+	lhs = lhs * rhs
+}
+public func /=(inout lhs: NSDecimalNumber, rhs: Double) {
+	lhs = lhs / rhs
+}
 
 public func +(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.addDecimal(rhs)
+	return lhs.decimalNumberByAdding(rhs)
 }
 public func -(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.subtractDecimal(rhs)
+	return lhs.decimalNumberBySubtracting(rhs)
+}
+public func *(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
+	return lhs.decimalNumberByMultiplyingBy(rhs)
+}
+public func /(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
+	return lhs.decimalNumberByDividingBy(rhs)
+}
+
+public func +(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
+	return lhs.decimalNumberByAdding(NSDecimalNumber(double: rhs))
+}
+public func -(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
+	return lhs.decimalNumberBySubtracting(NSDecimalNumber(double: rhs))
+}
+public func *(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
+	return lhs.decimalNumberByMultiplyingBy(NSDecimalNumber(double: rhs))
+}
+public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
+	return lhs.decimalNumberByDividingBy(NSDecimalNumber(double: rhs))
 }
 
 public extension NSDecimalNumber {
@@ -111,7 +148,7 @@ public extension NSDecimalNumber {
 	
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
 	public var decimalPart: NSDecimalNumber {
-		return self.subtractDecimal(self.integralDecimalNumber)
+		return self - self.integralDecimalNumber
 	}
 	
 	/// Returns number without the decimal part.
@@ -128,27 +165,35 @@ public extension NSDecimalNumber {
 		return NSDecimalNumber(double: round(self.doubleValue))
 	}
 	
+	@available(*, deprecated, message="Use + operator.")
 	public func add(value: Double) -> NSDecimalNumber {
 		return self.decimalNumberByAdding(NSDecimalNumber(double: value))
 	}
+	
+	@available(*, deprecated, message="Use / operator.")
 	public func divide(value: Double) -> NSDecimalNumber {
 		return self.decimalNumberByDividingBy(NSDecimalNumber(double: value))
 	}
+	
+	@available(*, deprecated, message="Use * operator.")
 	public func multiply(value: Double) -> NSDecimalNumber {
 		return self.decimalNumberByMultiplyingBy(NSDecimalNumber(double: value))
 	}
+	
+	@available(*, deprecated, message="Use - operator.")
 	public func subtract(value: Double) -> NSDecimalNumber {
 		return self.decimalNumberBySubtracting(NSDecimalNumber(double: value))
 	}
 	
 	public var absoluteValueDecimalNumber: NSDecimalNumber {
 		if self.doubleValue < 0.0 {
-			return self.multiply(-1.0)
+			return self * (-1.0)
 		}
 		
 		return self
 	}
 	
+	@available(*, deprecated, message="Use + operator.")
 	public func addDecimal(value: NSDecimalNumber?) -> NSDecimalNumber {
 		if value == nil {
 			return self
@@ -156,6 +201,7 @@ public extension NSDecimalNumber {
 		return self.decimalNumberByAdding(value!)
 	}
 	
+	@available(*, deprecated, message="Use / operator.")
 	public func divideDecimal(value: NSDecimalNumber?) -> NSDecimalNumber {
 		if value == nil {
 			return NSDecimalNumber.notANumber()
@@ -164,6 +210,7 @@ public extension NSDecimalNumber {
 		return self.decimalNumberByDividingBy(value!)
 	}
 	
+	@available(*, deprecated, message="Use * operator.")
 	public func multiplyDecimal(value: NSDecimalNumber?) -> NSDecimalNumber {
 		if value == nil {
 			return NSDecimalNumber.zero()
@@ -172,6 +219,7 @@ public extension NSDecimalNumber {
 		return self.decimalNumberByMultiplyingBy(value!)
 	}
 	
+	@available(*, deprecated, message="Use - operator.")
 	public func subtractDecimal(value: NSDecimalNumber?) -> NSDecimalNumber {
 		if value == nil {
 			return self
