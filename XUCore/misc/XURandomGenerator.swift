@@ -18,18 +18,10 @@ public class XURandomGenerator: NSObject {
 	public override init() {
 		super.init()
 		
-		let str = String()
-		let ptr = unsafeAddressOf(str)
-		let nullPtr = UnsafePointer<Void>(bitPattern: 0)
-		
-		/// This gets the address
-		let address = nullPtr.distanceTo(ptr)
-		
 		var tv: timeval = timeval(tv_sec: 0, tv_usec: 0)
 		gettimeofday(&tv, nil)
 		
-		srandom(UInt32(((Int(getpid()) << 16) ^ tv.tv_sec ^ Int(tv.tv_usec) ^ address) % Int(UInt16.max)))
-		
+		srandom(UInt32(((Int(getpid()) << 16) ^ tv.tv_sec ^ Int(tv.tv_usec)) % Int(UInt16.max)))
 	}
 	
 	/// Returns a random boolean. Does so by getting a random byte and returning
