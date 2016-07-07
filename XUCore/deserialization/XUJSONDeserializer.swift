@@ -155,7 +155,7 @@ private enum XUJSONDeserializationPropertyResult {
 ///
 /// Note that the deserialization will work only on properties that are declared
 /// as dynamic or @objc from the nature of the deserialization.
-public class XUJSONDeserializer {
+public final class XUJSONDeserializer {
 
 	private static let XUJSONDeserializerThreadKey = "XUJSONDeserializerThreadKey"
 
@@ -650,7 +650,7 @@ public class XUJSONDeserializer {
 	}
 }
 
-public class XUJSONDeserializationLogEntry: CustomDebugStringConvertible {
+public final class XUJSONDeserializationLogEntry: CustomDebugStringConvertible {
 
 	/// Severity of the issue. May be only .Warning or .Error
 	public let severity: XUJSONDeserializationError
