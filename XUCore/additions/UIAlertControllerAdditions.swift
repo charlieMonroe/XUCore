@@ -43,6 +43,16 @@ public extension UIAlertController {
 		}))
 	}
 	
+	/// Initializes self with no title or message but with particular style. This
+	/// is to be used like this:
+	///
+	/// let alert = UIAlertController(style: .Alert)
+	/// alert.message = "123"
+	/// alert.title = "456"
+	public convenience init(style: UIAlertControllerStyle) {
+		self.init(title: nil, message: nil, preferredStyle: style)
+	}
+	
 }
 
 public extension UIAlertAction {
