@@ -46,7 +46,7 @@ public extension NSBezierPath {
 		let radius = shadow.shadowBlurRadius
 
 		let bounds = self.bounds.insetBy(dx: -(abs(offset.width) + radius), dy: -(abs(offset.height) + radius))
-		offset.height += bounds.size.height
+		offset.height += bounds.height
 
 		shadow.shadowOffset = offset
 
@@ -103,30 +103,77 @@ public extension NSBezierPath {
 		NSGraphicsContext.restoreGraphicsState()
 	}
 
+	public convenience init(roundedPointingRect inRect: CGRect, triangleCenteredToRect centerRect: CGRect, windowFrame: CGRect, cornerRadius radius: CGFloat) {
+		
+		let triangleTopX = centerRect.minX - windowFrame.minX + centerRect.width / 2.0
+		let inRadiusX = radius
+		let inRadiusY = radius
+		let kEllipseFactor: CGFloat = 0.55228474983079
+		let theMaxRadiusX = inRect.width / 2.0
+		let theMaxRadiusY = inRect.height / 2.0
+		let theRadiusX = (inRadiusX < theMaxRadiusX) ? inRadiusX : theMaxRadiusX
+		let theRadiusY = (inRadiusY < theMaxRadiusY) ? inRadiusY : theMaxRadiusY
+		let theControlX = theRadiusX * kEllipseFactor
+		let theControlY = theRadiusY * kEllipseFactor
+		let theEdges = inRect.insetBy(dx: theRadiusX, dy: theRadiusY)
+		
+		self.init()
+		
+		// Lower edge and lower-right corner
+		self.moveToPoint(CGPoint(x: theEdges.minX, y: inRect.minY))
+		self.lineToPoint(CGPoint(x: theEdges.maxX, y: inRect.minY))
+		self.curveToPoint(CGPoint(x: inRect.maxX, y: theEdges.minY), controlPoint1: CGPoint(x: theEdges.maxX + theControlX, y: inRect.minY), controlPoint2: CGPoint(x: inRect.maxX, y: theEdges.minY - theControlY))
+		
+		// Right edge and upper-right corner
+		self.lineToPoint(CGPoint(x: inRect.maxX, y: theEdges.maxY))
+		self.curveToPoint(CGPoint(x: theEdges.maxX, y: inRect.maxY), controlPoint1: CGPoint(x: inRect.maxX, y: theEdges.maxY + theControlY), controlPoint2: CGPoint(x: theEdges.maxX + theControlX, y: inRect.maxY))
+		
+		// triangle:
+		// Right edge
+		self.lineToPoint(CGPoint(x: triangleTopX + 14.0 - inRect.minX / 2.0, y: inRect.minY + inRect.height))
+		
+		// Center
+		self.lineToPoint(CGPoint(x: triangleTopX, y: inRect.minY / 2.0 + inRect.height + 14.0))
+		
+		// Left edge
+		self.lineToPoint(CGPoint(x: triangleTopX - 14.0 + inRect.minX / 2.0, y: inRect.minY + inRect.height))
+		
+		// Top edge and upper-left corner
+		self.lineToPoint(CGPoint(x: theEdges.minX, y: inRect.maxY))
+		self.curveToPoint(CGPoint(x: inRect.minX, y: theEdges.maxY), controlPoint1: CGPoint(x: theEdges.minX - theControlX, y: inRect.maxY), controlPoint2: CGPoint(x: inRect.minX, y: theEdges.maxY + theControlY))
+		
+		// Left edge and lower-left corner
+		self.lineToPoint(CGPoint(x: inRect.minX, y: theEdges.minY))
+		self.curveToPoint(CGPoint(x: theEdges.minX, y: inRect.minY), controlPoint1: CGPoint(x: inRect.minX, y: theEdges.minY - theControlY), controlPoint2: CGPoint(x: theEdges.minX - theControlX, y: inRect.minY))
+		
+		// Finish up and return
+		self.closePath()
+	}
+
 	public convenience init(triangleInRect rect: CGRect, direction: XUDirection) {
 		self.init()
 
 		let correctDirection = direction.directionInCurrentGraphicsContext
 		switch correctDirection {
 		case .BottomToTop:
-			self.moveToPoint(CGPoint(x: rect.origin.x, y: rect.origin.y))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.origin.y))
-			self.lineToPoint(CGPoint(x: rect.origin.x + (rect.maxX - rect.origin.x) / 2.0, y: rect.maxY))
+			self.moveToPoint(CGPoint(x: rect.minX, y: rect.minY))
+			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
+			self.lineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.maxY))
 			self.closePath()
 		case .TopToBottom:
-			self.moveToPoint(CGPoint(x: rect.origin.x, y: rect.maxY))
+			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
 			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
-			self.lineToPoint(CGPoint(x: rect.origin.x + (rect.maxX - rect.origin.x) / 2.0, y: rect.minY))
+			self.lineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.minY))
 			self.closePath()
 		case .RightToLeft:
-			self.moveToPoint(CGPoint(x: rect.origin.x, y: rect.maxY))
+			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
 			self.lineToPoint(CGPoint(x: rect.minX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.origin.y + (rect.maxY - rect.origin.y) / 2.0))
+			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
 			self.closePath()
 		case .LeftToRight:
 			self.moveToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
 			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.minX, y: rect.origin.y + (rect.maxY - rect.origin.y) / 2.0))
+			self.lineToPoint(CGPoint(x: rect.minX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
 			self.closePath()
 		}
 

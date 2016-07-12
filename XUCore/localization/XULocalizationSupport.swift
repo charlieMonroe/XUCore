@@ -135,19 +135,35 @@ public class XULocalizationCenter: NSObject {
 			dict = d
 		}else{
 			guard let languageBundle = self._languageBundleForLanguage(language, inBundle: bundle) else {
+				_cachedLanguageDicts[bundle]![language] = [:]
+				
 				return key // No such localization
 			}
 			
-			guard let URL = languageBundle.URLForResource("Localizable", withExtension: "strings", subdirectory: nil, localization: language) else {
+			guard let URL = languageBundle.URLForResource("Localizable", withExtension: "strings", subdirectory: nil, localization: language), data = NSData(contentsOfURL: URL) else {
+				XULog("No '\(language)' localizable strings in bundle \(bundle).")
+				_cachedLanguageDicts[bundle]![language] = [:]
+				
 				return key
 			}
 			
-			guard let d = NSDictionary(contentsOfURL: URL) as? [String : String] else {
-				return key // Invalid format
+			do {
+				let object = try NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil)
+				guard let d = object as? [String : String] else {
+					XULog("Invalid localization loaded - '\(language)' \(object.dynamicType) \(object).")
+					_cachedLanguageDicts[bundle]![language] = [:]
+					
+					return key // Invalid format
+				}
+				
+				_cachedLanguageDicts[bundle]![language] = d
+				dict = d
+			} catch let err as NSError {
+				XULog("Failed to read '\(language)' localizable strings \(err).")
+				_cachedLanguageDicts[bundle]![language] = [:]
+				
+				return key
 			}
-			
-			_cachedLanguageDicts[bundle]![language] = d
-			dict = d
 		}
 		
 		if let value = dict[key] {
