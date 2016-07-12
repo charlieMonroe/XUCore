@@ -13,7 +13,7 @@ public let XUDownloadCenterMobileUserAgent = "Mozilla/5.0 (iPad; CPU OS 8_1 like
 
 public enum XUDownloadCenterError {
 	
-	/// This error represents a state where the NSURLConnection returns nil - 
+	/// This error represents a state where the NSURLConnection returns nil -
 	/// i.e. connection timeout or no internet connection at all.
 	case NoInternetConnection
 	
@@ -54,7 +54,7 @@ public protocol XUDownloadCenterOwner: AnyObject {
 	
 	/// Referer URL.
 	var refererURL: NSURL? { get }
-
+	
 	/// Possibility to modify the request for downloading a page. No-op by default.
 	func setupURLRequest(request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: NSURL)
 }
@@ -80,7 +80,7 @@ public extension XUDownloadCenterOwner {
 	public var refererURL: NSURL? {
 		return nil
 	}
-
+	
 }
 
 /// Class that handles communication over HTTP and parsing the responses.
@@ -162,8 +162,8 @@ public class XUDownloadCenter {
 			NSHTTPCookieValue: value,
 			NSHTTPCookiePath: "/",
 			NSHTTPCookieDomain: host
-		]) {
-				storage.setCookie(cookie)
+			]) {
+			storage.setCookie(cookie)
 		}
 	}
 	
@@ -235,7 +235,7 @@ public class XUDownloadCenter {
 	
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSONAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> AnyObject? {
-		let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
+		let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
 			request.addJSONAcceptToHeader()
 			
 			if modifier != nil {
@@ -243,12 +243,12 @@ public class XUDownloadCenter {
 			}
 		}
 		
-		if source == nil {
+		if data == nil {
 			self.owner.downloadCenter(self, didEncounterError: .NoInternetConnection)
 			return nil
 		}
 		
-		guard let obj = self.JSONObjectFromString(source!) else {
+		guard let obj = self.JSONObjectFromData(data!) else {
 			return nil // Error already set by JSONObjectFromString(_:)
 		}
 		
@@ -267,7 +267,7 @@ public class XUDownloadCenter {
 			}
 			return nil
 		}
-
+		
 		
 		if self.logTraffic {
 			XULog("[\(self.owner.name)] - downloaded web site source from \(URL!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
@@ -327,18 +327,18 @@ public class XUDownloadCenter {
 	
 	/// Attempts to download content at `URL` and parse it as XML.
 	public func downloadXMLDocumentAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> NSXMLDocument? {
-		guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
-			return nil // Error already set.
-		}
-		
-		let doc = try? NSXMLDocument(XMLString: source, options: NSXMLDocumentTidyXML)
-		if doc == nil {
-			if self.logTraffic {
-				XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
-			}
-			self.owner.downloadCenter(self, didEncounterError: .InvalidXMLResponse)
-		}
-		return doc
+	guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
+	return nil // Error already set.
+	}
+	
+	let doc = try? NSXMLDocument(XMLString: source, options: NSXMLDocumentTidyXML)
+	if doc == nil {
+	if self.logTraffic {
+	XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
+	}
+	self.owner.downloadCenter(self, didEncounterError: .InvalidXMLResponse)
+	}
+	return doc
 	}
 	
 	#endif
@@ -357,6 +357,20 @@ public class XUDownloadCenter {
 			return nil
 		}
 		return dict
+	}
+	
+	/// Attempts to parse `data` as JSON.
+	public func JSONObjectFromData(data: NSData) -> AnyObject? {
+		let obj = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+		if obj == nil {
+			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
+			
+			if self.logTraffic {
+				XULog("[\(self.owner.name)] - failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
+			}
+		}
+		
+		return obj
 	}
 	
 	/// Attempts to parse `JSONString` as JSON.
@@ -379,16 +393,7 @@ public class XUDownloadCenter {
 			return nil
 		}
 		
-		let obj = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-		if obj == nil {
-			self.owner.downloadCenter(self, didEncounterError: .InvalidJSONResponse)
-			
-			if self.logTraffic {
-				XULog("[\(self.owner.name)] - failed to parse JSON \(JSONString!)")
-			}
-		}
-		
-		return obj
+		return self.JSONObjectFromData(data)
 	}
 	
 	/// Some JSON responses may contain secure prefixes - this method attempts
@@ -416,7 +421,7 @@ public class XUDownloadCenter {
 	public func setupCookieFieldForURLRequest(request: NSMutableURLRequest, andBaseURL baseURL: NSURL? = nil) {
 		self._setupCookieFieldForURLRequest(request, andBaseURL: baseURL)
 	}
-
+	
 	/// Sends a HEAD request to `URL` and returns the status code or 0.
 	public func statusCodeForURL(URL: NSURL!) -> Int {
 		return self.sendHeadRequestToURL(URL)?.statusCode ?? 0
