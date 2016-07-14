@@ -365,6 +365,8 @@
 		07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */; };
 		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 		07C4B8F21C2AE6240058EE6A /* XULineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4B8F11C2AE6240058EE6A /* XULineView.swift */; };
+		07D3330E1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
+		07D3330F1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
 		07DA882C1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
 		07DA882D1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
 		07DA88301D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */; };
@@ -610,6 +612,7 @@
 		07C3FA261BECB5A8008A4200 /* XUStringTrimmingTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUStringTrimmingTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
 		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOAuth2.swift; path = oauth2/XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
 		07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUAuthorizationWebViewWindowController.xib; path = oauth2/XUAuthorizationWebViewWindowController.xib; sourceTree = "<group>"; };
@@ -1011,6 +1014,7 @@
 				072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */,
 				0779E17B1BF2307100832858 /* UIView+Enclosing.swift */,
 				07311DDE1C0C8007001B95AC /* UIView+Frame.swift */,
+				07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */,
 				07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */,
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
 				0771E0781C26BF1C004305F4 /* XUSearchable.swift */,
@@ -1451,6 +1455,7 @@
 				077AFF9E1BBD101400872A48 /* FCDataEntity.m in Sources */,
 				073E6B3A1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
 				0749DD031C01F8720075CC9B /* XUExceptionReporter.swift in Sources */,
+				07D3330E1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */,
 				079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */,
 				075DC7861CF1E0080043EBD0 /* XUAttributeSyncChange.swift in Sources */,
 				07E38A331C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
@@ -1613,6 +1618,7 @@
 				077AFF9B1BBD101400872A48 /* FCContextHolder.m in Sources */,
 				0779E17F1BF2316700832858 /* NSDateAdditions.swift in Sources */,
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
+				07D3330F1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */,
 				073E6AD81BE1F86D00706283 /* prog.cc in Sources */,
 				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,

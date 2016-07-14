@@ -8,34 +8,6 @@
 
 import Cocoa
 
-@objc public enum XUDirection: Int {
-	case LeftToRight
-	case RightToLeft
-	case BottomToTop
-	case TopToBottom
-
-	/// If the context is flipped, the opposite direction is returned for bottom/
-	/// top.
-	public var directionInCurrentGraphicsContext: XUDirection {
-		guard let graphicsContext = NSGraphicsContext.currentContext() else {
-			return self
-		}
-
-		if !graphicsContext.flipped {
-			return self
-		}
-
-		if self == .BottomToTop {
-			return .TopToBottom
-		}
-		if self == .TopToBottom {
-			return .BottomToTop
-		}
-
-		return self
-	}
-}
-
 public extension NSBezierPath {
 
 	public func fillWithInnerShadow(shadow: NSShadow) {

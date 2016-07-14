@@ -19,17 +19,9 @@ public class XUAutocollapsingView: __XUBridgedView {
 	 /// constraints aren't loaded yet.
 	private var _inCoderInit: Bool = true
 	
-	private var _heightContstraint: NSLayoutConstraint? {
-		let constraint = self.constraints.find({ $0.firstAttribute == .Height })
-		if constraint == nil && !_inCoderInit {
-			NSException(name: NSInternalInconsistencyException, reason: "XUAutocollapsingView needs to have a height constraint!", userInfo: nil).raise()
-		}
-		return constraint
-	}
-	
 	/// Called from -setHidden: to perform hide or unhide.
 	private func _performHide(hidden: Bool) {
-		guard let constraint = self._heightContstraint else {
+		guard let constraint = self.collapsibleContstraint else {
 			return
 		}
 		
@@ -53,6 +45,17 @@ public class XUAutocollapsingView: __XUBridgedView {
 		if self.hidden {
 			self._performHide(true)
 		}
+	}
+	
+	/// Returns the constraint that is collapsible. It will return nil before
+	/// the view is loaded from XIB.
+	public var collapsibleContstraint: NSLayoutConstraint! {
+		let constraint = self.constraints.find({ $0.firstAttribute == .Height })
+		if constraint == nil && !_inCoderInit {
+			fatalError("XUAutocollapsingView needs to have a collapsible constraint!")
+		}
+		
+		return constraint
 	}
 	
 	public required init?(coder: NSCoder) {
