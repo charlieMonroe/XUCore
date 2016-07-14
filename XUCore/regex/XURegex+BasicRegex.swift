@@ -10,130 +10,46 @@ import Foundation
 
 public extension XURegex {
 	
-	public static var alphaNumericRegex: XURegex {
-		return XURegex(self.alphaNumericRegexString)
-	}
-	public static var alphaNumericRegexString: String {
-		return "[a-zA-Z0-9]+"
-	}
-	public static var alphaNumericLowercaseRegex: XURegex {
-		return XURegex(self.alphaNumericLowercaseRegexString)
-	}
-	public static var alphaNumericLowercaseRegexString: String {
-		return "[a-z0-9]+"
-	}
-	public static var alphaNumericUppercaseRegex: XURegex {
-		return XURegex(self.alphaNumericUppercaseRegexString)
-	}
-	public static var alphaNumericUppercaseRegexString: String {
-		return "[A-Z0-9]+"
+	public struct RegexString {
+		
+		/// Returns a regex from self.regexString.
+		public var regex: XURegex {
+			return XURegex(self.regexString)
+		}
+		
+		/// The regex string.
+		public let regexString: String
+		
+		public init(regexString: String) {
+			self.regexString = regexString
+		}
+		
 	}
 	
-	public static var anythingRegex: XURegex {
-		return XURegex(self.anythingRegexString)
-	}
-	public static var anythingRegexString: String {
-		return ".*"
-	}
-	public static var somethingRegex: XURegex {
-		return XURegex(self.somethingRegexString)
-	}
-	public static var somethingRegexString: String {
-		return ".*"
-	}
+	public static let alphaNumeric: RegexString = RegexString(regexString: "[a-zA-Z0-9]+")
+	public static let alphaNumericLowercase: RegexString = RegexString(regexString: "[a-z0-9]+")
+	public static let alphaNumericUppercase: RegexString = RegexString(regexString: "[A-Z0-9]+")
 	
-	public static var hexNumberRegex: XURegex {
-		return XURegex(self.hexNumberRegexString)
-	}
-	public static var hexNumberRegexString: String {
-		return "[a-f0-9]+"
-	}
-	public static var numbersRegex: XURegex {
-		return XURegex(self.numbersRegexString)
-	}
-	public static var numbersRegexString: String {
-		return "[0-9]+"
-	}
+	public static let anything: RegexString = RegexString(regexString: ".*")
+	public static let something: RegexString = RegexString(regexString: ".*")
 	
-	public static var titleH1Regex: XURegex {
-		return XURegex(self.titleH1RegexString)
-	}
-	public static var titleH1RegexString: String {
-		return "<h1[^>]*>\\s*(?P<TITLE>.*?)\\s*</h1>"
-	}
-	public static var titleH2Regex: XURegex {
-		return XURegex(self.titleH2RegexString)
-	}
-	public static var titleH2RegexString: String {
-		return "<h2[^>]*>\\s*(?P<TITLE>.*?)\\s*</h2>"
-	}
-	public static var titleH3Regex: XURegex {
-		return XURegex(self.titleH3RegexString)
-	}
-	public static var titleH3RegexString: String {
-		return "<h3[^>]*>\\s*(?P<TITLE>.*?)\\s*</h3>"
-	}
-	public static var titleMetaTitleRegex: XURegex {
-		return XURegex(self.titleMetaTitleRegexString)
-	}
-	public static var titleMetaTitleRegexString: String {
-		return "<meta\\s+(name|property)=\"[a-z:]*title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\""
-	}
-	public static var titleMetaDescriptionRegex: XURegex {
-		return XURegex(self.titleMetaDescriptionRegexString)
-	}
-	public static var titleMetaDescriptionRegexString: String {
-		return "<meta\\s+(name|property)=\"[a-z:]*description\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\""
-	}
-	public static var titleMetaOGTitleRegex: XURegex {
-		return XURegex(self.titleMetaOGTitleRegexString)
-	}
-	public static var titleMetaOGTitleRegexString: String {
-		return "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\""
-	}
-	public static var titleTitleRegex: XURegex {
-		return XURegex(self.titleTitleRegexString)
-	}
-	public static var titleTitleRegexString: String {
-		return "<title>\\s*(?P<TITLE>.*?)\\s*</title>"
-	}
-	
-	public static var URLMetaOGImageRegex: XURegex {
-		return XURegex(self.URLMetaOGImageRegexString)
-	}
-	public static var URLMetaOGImageRegexString: String {
-		return "<meta[^>]+(name|property)=\"og:image\"[^>]+content=\"(?P<URL>[^\"]+)\""
-	}
-	public static var URLMetaOGVideoRegex: XURegex {
-		return XURegex(self.URLMetaOGVideoRegexString)
-	}
-	public static var URLMetaOGVideoRegexString: String {
-		return "<meta[^>]+(name|property)=\"og:video(:url)?\"[^>]+content=\"(?P<URL>[^\"]+)\""
-	}
-	public static var URLSourceSourceRegex: XURegex {
-		return XURegex(self.URLSourceSourceRegexString)
-	}
-	public static var URLSourceSourceRegexString: String {
-		return "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']"
-	}
-	public static var URLVideoPosterRegex: XURegex {
-		return XURegex(self.URLVideoPosterRegexString)
-	}
-	public static var URLVideoPosterRegexString: String {
-		return "<video[^>]+poster=\"(?P<URL>[^\"]+)\""
-	}
-	public static var URLVideoSourceRegex: XURegex {
-		return XURegex(self.URLVideoSourceRegexString)
-	}
-	public static var URLVideoSourceRegexString: String {
-		return "<video[^>]+src=\"(?P<URL>[^\"]+)\""
-	}
-	public static var URLIframeSourceRegex: XURegex {
-		return XURegex(self.URLIframeSourceRegexString)
-	}
-	public static var URLIframeSourceRegexString: String {
-		return "<iframe[^>]+src=\"(?P<URL>[^\"]+)\""
-	}
+	public static let hexNumber: RegexString = RegexString(regexString: "[a-f0-9]+")
+	public static let numbers: RegexString = RegexString(regexString: "[0-9]+")
+
+	public static let titleH1: RegexString = RegexString(regexString: "<h1[^>]*>\\s*(?P<TITLE>.*?)\\s*</h1>")
+	public static let titleH2: RegexString = RegexString(regexString: "<h2[^>]*>\\s*(?P<TITLE>.*?)\\s*</h2>")
+	public static let titleH3: RegexString = RegexString(regexString: "<h3[^>]*>\\s*(?P<TITLE>.*?)\\s*</h3>")
+	public static let titleMetaTitle: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+	public static let titleMetaDescription: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*description\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+	public static let titleMetaOGTitle: RegexString = RegexString(regexString: "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+	public static let titleTitle: RegexString = RegexString(regexString: "<title>\\s*(?P<TITLE>.*?)\\s*</title>")
+
+	public static let URLMetaOGImage: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:image\"[^>]+content=\"(?P<URL>[^\"]+)\"")
+	public static let URLMetaOGVideo: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:video(:url)?\"[^>]+content=\"(?P<URL>[^\"]+)\"")
+	public static let URLSourceSource: RegexString = RegexString(regexString: "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']")
+	public static let URLVideoPoster: RegexString = RegexString(regexString: "<video[^>]+poster=\"(?P<URL>[^\"]+)\"")
+	public static let URLVideoSource: RegexString = RegexString(regexString: "<video[^>]+src=\"(?P<URL>[^\"]+)\"")
+	public static let URLIframeSource: RegexString = RegexString(regexString: "<iframe[^>]+src=\"(?P<URL>[^\"]+)\"")
 
 	
 	convenience init(_ pattern: String) {
