@@ -122,35 +122,6 @@ public extension NSBezierPath {
 		self.closePath()
 	}
 
-	public convenience init(triangleInRect rect: CGRect, direction: XUDirection) {
-		self.init()
-
-		let correctDirection = direction.directionInCurrentGraphicsContext
-		switch correctDirection {
-		case .BottomToTop:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.maxY))
-			self.closePath()
-		case .TopToBottom:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
-			self.lineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.minY))
-			self.closePath()
-		case .RightToLeft:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
-			self.lineToPoint(CGPoint(x: rect.minX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
-			self.closePath()
-		case .LeftToRight:
-			self.moveToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
-			self.lineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
-			self.lineToPoint(CGPoint(x: rect.minX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
-			self.closePath()
-		}
-
-	}
-
 	public func strokeInside() {
 		self.strokeInsideWithinRect(CGRect())
 	}

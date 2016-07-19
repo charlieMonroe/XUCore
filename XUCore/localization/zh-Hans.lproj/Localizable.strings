@@ -1,68 +1,103 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "完成中…";
-"1 hour" = "1小时";
-"1 minute" = "1分钟";
-"1 second" = "1秒";
+"Finishing..." = "完成中...";
+"1 hour" = "1 小时";
+"1 minute" = "1 分";
+"1 second" = "1 秒";
 "%lu hours" = "%lu 小时";
-"%lu minutes" = "%lu 分钟";
+"%lu minutes" = "%lu 分";
 "%lu seconds" = "%lu 秒";
-"Unknown error." = "未知错误";
+"Unknown error." = "未知错误.";
 
-"OK" = "好";
+"OK" = "确认";
 "Cancel" = "取消";
 
-"Failed to parse CSV file." = "CSV文件分析错误";
+"Failed to parse CSV file." = "CSV 文件读取失败.";
 
 "Send Report" = "发送报告";
-"Privacy Information..." = "隐私资讯…";
-"%AppName% has encountered a problem." = "%AppName% 出现问题";
-"%AppName% will terminate after sending the report." = "%AppName% 会在发送本报告后关闭";
-"Report to be sent:" = "待发报告：";
-"Your Email:" = "您的邮箱：";
-"Description:" = "描述：";
+"Privacy Information..." = "隐私信息...";
+"%AppName% has encountered a problem." = "%AppName% 在运行中遇到了一个问题.";
+"%AppName% will terminate after sending the report." = "%AppName% 将在发送问题报告之后退出.";
+"Report to be sent:" = "报告内容:";
+"Your Email:" = "您的邮箱:";
+"Description:" = "问题描述:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "请您描述问题，并尽可能提供如何重现问题的步骤 在以下输入您的电子邮件 － 我们会在问题解决后告知您，或者要求您提供更多有关资讯 您的邮箱不会被数据库记录，因此您不会收到不相关的邮件。发送这则邮件可以让我们改进这个软件，谢谢！";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况. 如果可能, 请提供能够重现该问题的操作步骤. 请在下方输入您的电子邮件地址 - 我们会在问题修复时发送邮件通知您, 或是通过邮件询问您有关该异常的更多细节. 我们保证, 不会收集您的电子邮件地址, 也不会发送任何不相关的骚扰邮件. 提交该问题报告能够帮助我们改善这款软件. 感谢您的支持!";;
 
 "Report Problem" = "报告问题";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我们珍视您的反馈并且不会收集其他非必要的信息 您的邮箱地址不会被储存，并且仅被用于通知问题已被解决，或者要求您提供更多有关资讯以便于解决问题";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我们非常重视您的反馈, 绝对不会收集任何不相关的信息. 请您放心, 我们不会在任何位置保存您的电子邮件地址. 您提供的电子邮箱仅用于: 在问题得到修复时我们能及时通知您, 或是当我们需要更多信息才能解决该问题时与您联系.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅有以下信息会被发送:\n• 您提供的描述\n• 例外信息如下\n• 软件版本\n• 系统版本 (OS)\n• 电脑型号 (不包含MAC地址或类似可供识别您电脑的资料)";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅限以下信息会被发送:\n• 您提供的问题描述.\n• 下方所列的程序异常信息.\n• 该应用的版本.\n• 您所用操作系统 (OS) 的版本.\n• 您所用电脑的型号 (不包括您电脑的物理地址 (MAC), 及其他类似的可用于识别您电脑的信息).";
 
-"Could not post your report." = "无法发送报告";
-"Check your Internet connection and try again." = "检查是否联网后再次尝试";
-"Heh, nice try. Please, enter a valid email address." = "嘿，得了吧 请输入有效的邮箱地址";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "我们可能需要联系您以便于解决问题 我们没有恶意，我们保证：我们不会售卖您的邮箱地址或将其用于其他用途";
-"You need to enter a valid email address." = "您需要输入有效的邮箱地址";
-"We may need to get in touch with you in order to fix this." = "我们可能会联系您以便解决问题";
-"Please, provide some details as to when this exception happened." = "请提供导致问题出现时的步骤";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "包含以下信息：目前运行的任务情况，前台或后台运行，是否点击任何按钮等。仅凭报告本身可能难以发现问题所在，尤其是没有提供额外信息的报告。";
-"Thank you for the report!" = "谢谢您提交的报告！";
-"We'll fix it as soon as possible!" = "我们会尽快修复！";
+"Could not post your report." = "无法提交您的报告..";
+"Check your Internet connection and try again." = "请检查您的网络连接, 然后再次尝试提交报告.";
+"Heh, nice try. Please, enter a valid email address." = "嘿, 不错的尝试. 但是请确认您填写了有效的电子邮件地址, 再试一次.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "我们可能会与您联系, 以修复该问题. 我们保证不会将您的电子邮件地址泄露给其他任何人或将其另作他用, 决不食言.";
+"You need to enter a valid email address." = "您需要输入一个有效的电子邮件地址.";
+"We may need to get in touch with you in order to fix this." = "我们可能会与您联系, 以修复该问题.";
+"Please, provide some details as to when this exception happened." = "请您提供该异常发生时的具体细节.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "可包含如下信息: 程序当时正在执行的任务, 程序是在前台还是后台运行, 您所进行的操作等等. 如果没有您提供的细节信息, 我们几乎无法修复这个问题.";
+"Thank you for the report!" = "感谢您提交报告!";
+"We'll fix it as soon as possible!" = "我们会尽快修复该问题!";
 
-"Welcome to beta testing of %@." = "欢迎使用 %@ 的测试版";
-"This is the first time you run a beta build %@." = "这是您第一次运行测试版本%@";
-"This beta build of %@ has expired." = "测试版本 %@ 已经过期";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "喜欢您喜欢这款软件！如果您有任何问题或者发现程序错误，请登陆支持界面 %@ 咨询";
+"Welcome to beta testing of %@." = "欢迎使用公测版 %@.";
+"This is the first time you run a beta build %@." = "这是您第一次运行公测版 %@.";
+"This beta build of %@ has expired." = "该公测版 %@ 已经过期.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "请享用我们的软件! 如果您在使用中有任何疑问或遇到任何程序错误, 请通过技术支持页面 %@ 联系我们.";
 
 "Continue" = "继续";
-"Purchase..." = "购买…";
-"I'm Still Not Sure" = "我暂时还不确定";
+"Purchase..." = "付费购买...";
+"I'm Still Not Sure" = "再考虑一下";
 
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ 无法连接互联网 软件将在一小时内关闭";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ 需要连接互联网以继续正常试用";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "您将会被导向购买页面。如果您依旧不确定 %@ 是否合适，并有更多问题咨询，请联系我们 %@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "谢谢您试用 %@！ 您现在可以无限制使用 %li 天 在试用期结束后，您需要购买 %@";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "谢谢您试用 %@！ 您现在已经使用了 %li 天 要继续使用 %@ 您需要购买软件";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "谢谢您试用 %@! 您现在可以无限制使用 %i %@ 在试用期结束后，您需要购买 %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "谢谢您试用 %@！ 您现在已经使用了 %i %@ 要继续使用 %@ 您需要购买软件";
-"Working..." = "工作中…";
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ 无法连接到网络. 程序将在一小时内退出.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ 需要连接到网络以继续试用.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "您可以在接下来打开的页面中完成购买. 如果您还不确定 %@ 是否能满足您的需求或是还有其他疑问, 请联系我们.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "感谢您试用 %@! 您的试用还有 %li 天到期, 这期间内您可以使用软件的全部功能. 试用期结束后, 您需要付费购买 %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "感谢您试用 %@! 您已经使用了 %li 天. 要继续使用 %@ 您需要付费购买.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "感谢您试用 %@! 您的试用还有 %i %@ 到期. 试用期结束后, 您需要付费购买 %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "感谢您试用 %@! 您已经使用了 %i %@. 要继续使用 %@ 您需要付费购买.";
+"Working..." = "处理中...";
 
 "Progress" = "进度";
-"Posted successfully" = "成功发布";
+"Posted successfully" = "发布成功";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 将在接下来的二十四小时正常工作，之后其功能将被关闭。请更新 %@ 以保持正常工作";
-"Please download a new build." = "请下载新版本";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 还可以继续使用 24 个小时, 之后它的功能将被阻止. 为了不影响您的正常使用, 请及时更新 %@.";
+"Please download a new build." = "请您下载新的版本.";
 
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "您依然可以发送该报告, 但如果报告中的消息使用的语言不是英语, 我们恐怕无法提供完整的技术支持.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您的消息中含有特殊字符, 这通常意味着您的消息不是用英语写的. 尽管 %@ 已经提供了汉化版以及其他多种语言的版本, 但是我们仅提供基于英语的技术支持. 感谢您的理解.";
+"%li hours" = "%li 小时";
+"%li minutes" = "%li 分";
+"%li seconds" = "%li 秒";
 
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "无法找到该文档. 可能因为同步尚未完成, 请稍后再试.";
+"Cannot open document metadata file." = "无法打开文档元数据文件.";
+"Metadata file doesn't contain required information." = "元数据文件中找不到需要的信息.";
+"Synchronization is already in progress." = "同步正在进行.";
+"An upload operation is already in progress." = "上传操作正在进行.";
+"Could not save upload metadata." = "无法保存上传的元数据.";
+"Cannot find entity named %@" = "找不到实体名 %@";
+"Cannot find class named %@" = "找不到类名 %@";
+"Cannot find entity with ID %@" = "找不实体 ID %@";
+"Can't find synchronization folder for document %@." = "找不到文档 %@ 的同步文件夹.";
+"Can't find synchronization folder for computer %@." = "找不到计算机 %@ 的同步文件夹.";
+"Can't open info dictionary computer %@." = "无法打开信息字典计算机 %@.";
+"Can't find sync folder for document %@." = "找不到文档 %@ 的同步文件夹.";
+"%@ couldn't finish synchronization in the background." = "%@ 无法在后台完成同步.";
+"Please switch back to %@ so that the synchronization can finish." = "请切换回 %@ 以完成同步.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "无法读取同步变更数据.";
+"Could not copy synchronization change data to the cloud." = "无法将同步变更数据复制到云端.";
+"Failing to apply change sets." = "无法应用变更集.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "来自电脑 %@ 的同步变更尚未下载.";
+
+/// XUOAuth2
+"Authentication" = "身份验证";
+"Server responded with unknown token type." = "服务器返回未知的令牌类型.";
+"Server provided invalid authorization response." = "服务器返回无效的身份验证答复.";
+"Server has redirected with invalid URL." = "服务器重定向至无效的链接.";
+"User has cancelled the authorization." = "身份验证被用户取消.";
