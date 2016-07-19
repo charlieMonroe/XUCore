@@ -27,6 +27,16 @@ public extension CGRect {
 		return CGRect(origin: origin, size: rect.size)
 	}
 	
+	/// Returns max of self.width and self.height.
+	public var maxSize: CGFloat {
+		return max(self.width, self.height)
+	}
+	
+	/// Returns min of self.width and self.height.
+	public var minSize: CGFloat {
+		return min(self.width, self.height)
+	}
+	
 	/// Returns top half. Top by coordinates, doesn't take into account flipped
 	/// graphics context.
 	public var topHalf: CGRect {
