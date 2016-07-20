@@ -165,7 +165,7 @@ public final class XUOAuth2Client {
 		/// Authentication token.
 		public private(set) var accessToken: String {
 			didSet {
-				XUOAuth2Client.save()
+				self.save()
 			}
 		}
 		
@@ -209,9 +209,8 @@ public final class XUOAuth2Client {
 			self.identifier = String.UUIDString
 			self.refreshToken = refreshToken
 			self.tokenExpirationDate = expirationDate
-			
-			XUKeychainAccess.sharedAccess.savePassword(self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
-			XUKeychainAccess.sharedAccess.savePassword(self.accessToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+
+			self.save()
 		}
 		
 		public init?(client: XUOAuth2Client, andDictionary dictionary: XUJSONDictionary) {
@@ -244,12 +243,15 @@ public final class XUOAuth2Client {
 		/// Renews authentication token and returns true if it was successful.
 		/// The request for token renewal is synchronous.
 		public func renewToken() -> Bool {
+			XULog("Renewing token - expired \(XUTime.timeString(abs(NSDate.timeIntervalSinceReferenceDate() - self.tokenExpirationDate.timeIntervalSinceReferenceDate))) ago.")
+			
 			let postDict: [String : String] = [
 				"grant_type": "refresh_token",
 				"refresh_token": self.refreshToken
 			]
 			
 			guard let obj = self.client.downloadCenter.downloadJSONDictionaryAtURL(self.client.configuration.tokenEndpointURL, withModifier: { (request) in
+				request.setUsername(self.client.configuration.clientID, andPassword: self.client.configuration.secret)
 				request.acceptType = XUMutableURLRequestJSONHeaderFieldValue
 				request.addWWWFormContentToHeader()
 				request["Cookie"] = nil
@@ -266,7 +268,18 @@ public final class XUOAuth2Client {
 			let expiresInSeconds: NSTimeInterval = obj.doubleForKey("expires_in")
 			self.accessToken = accessToken
 			self.tokenExpirationDate = NSDate(timeIntervalSinceNow: expiresInSeconds)
-			return false // TODO
+			
+			self.save()
+			
+			return true
+		}
+		
+		/// Force-saves the token and refresh token. Currently a private method.
+		private func save() {
+			XUKeychainAccess.sharedAccess.savePassword(self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
+			XUKeychainAccess.sharedAccess.savePassword(self.refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+			
+			XUOAuth2Client.save()
 		}
 		
 		public func setupURLRequest(request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: NSURL) {
