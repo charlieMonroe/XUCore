@@ -181,6 +181,7 @@
 		074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */; };
 		074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446AD1C529AB60026F5DD /* XUSystemNotification.swift */; };
 		074446B11C529F270026F5DD /* SystemNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074446B01C529F270026F5DD /* SystemNotification.xib */; };
+		0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
 		0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */; };
 		0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */; };
 		0749DCD01BFF5AAC0075CC9B /* XUImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */; };
@@ -1639,6 +1640,7 @@
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
 				0779E19D1BF23E5C00832858 /* NSURL+NSURLAdditions.swift in Sources */,
+				0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */,
 				073E6ACC1BE1F86D00706283 /* parse.cc in Sources */,
 				07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */,
 				07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */,
