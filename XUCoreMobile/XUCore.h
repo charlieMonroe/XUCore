@@ -24,12 +24,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 #import "XUAbstract.h"
 #import "XUExceptionHandler.h"
 
-/** Data. */
-#import "FCContextHolder.h"
-#import "FCDataEntity.h"
-#import "FCPersistentDataStorage.h"
-#import "FCTemporaryDataStorage.h"
-
 /** Regex. */
 #import "XURegex.h"
 #import "_XUBacktrace.h"
