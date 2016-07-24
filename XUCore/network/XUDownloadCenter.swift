@@ -198,7 +198,7 @@ public class XUDownloadCenter {
 		
 		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)
 		
-		if XULoggingEnabled() && self.logTraffic {
+		if XUDebugLog.isLoggingEnabled && self.logTraffic {
 			var logString = "Method: \(request.HTTPMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
 			if request.HTTPBody != nil && request.HTTPBody!.length > 0 {
 				logString += "\nHTTP Body: \(String(data: request.HTTPBody) ?? "")"

@@ -27,12 +27,6 @@ import Foundation
 	var observeEvenWhenEditing: Bool { get }
 }
 
-
-@available(*, deprecated)
-@objc public protocol FCArrowKeyEventObserver: XUArrowKeyEventsObserver {
-	
-}
-
 private extension NSView {
 	
 	var suitableFirstResponder: NSView? {
@@ -175,20 +169,6 @@ public class XUApplication: NSApplication {
 		_isModal = false
 		
 		super.stopModalWithCode(returnCode)
-	}
-	
-}
-
-@objc(FCApplication) class FCApplication: XUApplication {
-	
-	private var _warnedDeprecation: Bool = false
-	
-	override func sendEvent(theEvent: NSEvent) {
-		if !_warnedDeprecation {
-			XULog("WARNING: Use XUCore.XUApplication!")
-		}
-		
-		super.sendEvent(theEvent)
 	}
 	
 }
