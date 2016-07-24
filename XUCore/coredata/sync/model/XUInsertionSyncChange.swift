@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 /// This class represents a sync change where an object has been inserted
 /// into the MOC.

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 /// This class represents a change of attribute's value.
 @objc(XUAttributeSyncChange)

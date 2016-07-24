@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 @objc(XURelationshipSyncChange)
 public class XURelationshipSyncChange: XUSyncChange {
