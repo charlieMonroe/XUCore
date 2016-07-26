@@ -70,5 +70,15 @@ public extension String {
 		)
 	}
 	
+	/// Returns a value of an input HTML field in self. This cannot be achieved by
+	/// a single regex, since the name can be either before or after content,
+	/// and there is no way to ensure that at least one of the conditions is met.
+	public func valueOfInputField(named fieldName: String) -> String? {
+		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+			"<input[^>]+(name|id)=\"\(fieldName)\"[^>]+value=\"(?P<VALUE>[^\"]+)\"",
+		    "<input[^>]+value=\"(?P<VALUE>[^\"]+)\"[^>]+(name|id)=\"\(fieldName)\""
+		)
+	}
+	
 }
 

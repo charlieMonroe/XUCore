@@ -26,7 +26,7 @@ public class XUTime {
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
 	public class func localizedTimeString(seconds: NSTimeInterval) -> String {
 		if seconds < 0 || !seconds.isFinite || NSTimeInterval(Int64.max) < seconds {
-			return XULocalizedString("1 second")
+			return XULocalizedString("1 second", inBundle: XUCoreBundle)
 		}
 		
 		var hourString = ""
@@ -38,9 +38,9 @@ public class XUTime {
 			// i.e. at least one hour
 			let hours = eta / 3600
 			if hours == 1 {
-				hourString = XULocalizedString("1 hour")
+				hourString = XULocalizedString("1 hour", inBundle: XUCoreBundle)
 			} else {
-				hourString = XULocalizedFormattedString("%li hours", hours)
+				hourString = XULocalizedFormattedString("%li hours", hours, inBundle: XUCoreBundle)
 			}
 		}
 		
@@ -49,9 +49,9 @@ public class XUTime {
 		if eta > 60 {
 			let minutes = eta / 60
 			if minutes == 1 {
-				minuteString = XULocalizedString("1 minute")
+				minuteString = XULocalizedString("1 minute", inBundle: XUCoreBundle)
 			} else {
-				minuteString = XULocalizedFormattedString("%li minutes", minutes)
+				minuteString = XULocalizedFormattedString("%li minutes", minutes, inBundle: XUCoreBundle)
 			}
 		}
 		
@@ -59,9 +59,9 @@ public class XUTime {
 		
 		if eta > 0 {
 			if eta == 1 {
-				secondsString = XULocalizedString("1 second");
+				secondsString = XULocalizedString("1 second", inBundle: XUCoreBundle)
 			} else {
-				secondsString = XULocalizedFormattedString("%li seconds", eta)
+				secondsString = XULocalizedFormattedString("%li seconds", eta, inBundle: XUCoreBundle)
 			}
 		}
 		

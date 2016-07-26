@@ -28,7 +28,7 @@ public extension UIAlertController {
 	
 	/// Adds an action with localized "OK" title.
 	public func addOKAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {
-		self.addAction(UIAlertAction(title: XULocalizedString("OK"), style: .Default, handler: completionHandler))
+		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: completionHandler))
 	}
 	
 	/// Creates a new alert controller with information from the error. By default,
@@ -59,7 +59,7 @@ public extension UIAlertAction {
 	
 	/// A conveniece for a Cancel action.
 	public convenience init(cancelWithCompletionHandler completionHandler: ((UIAlertAction) -> Void)?) {
-		self.init(title: XULocalizedString("Cancel"), style: .Cancel, handler: completionHandler)
+		self.init(title: XULocalizedString("Cancel", inBundle: XUCoreBundle), style: .Cancel, handler: completionHandler)
 	}
 	
 }
