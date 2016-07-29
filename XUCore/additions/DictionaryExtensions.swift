@@ -205,7 +205,7 @@ public extension Dictionary {
 				obj = dict[key]
 			} else if let arr = obj as? [AnyObject] {
 				guard let index = Int(key) else {
-					print("Dictionary.objectForKeyPath(): Index \(key) cannot be applied on an array!")
+					XULog("Dictionary.objectForKeyPath(): Index \(key) cannot be applied on an array!")
 					return nil
 				}
 				

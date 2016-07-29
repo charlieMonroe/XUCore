@@ -198,7 +198,7 @@ public extension String {
 				value = occurrence.integerValue
 			}
 			
-			string = string.stringByReplacingOccurrencesOfString("&#\(occurrence);", withString: String(format: "%C", value))
+			string = string.stringByReplacingOccurrencesOfString("&#\(occurrence);", withString: String(Character(UnicodeScalar(value))))
 		}
 		
 		return string
@@ -244,9 +244,9 @@ public extension String {
 	/// Replaces \r, \n, \t, \u3245, etc.
 	public var JSDecodedString: String {
 		var result = self
-		result = result.stringByReplacingOccurrencesOfString("\\r", withString: String(format: "%C", 13))
-		result = result.stringByReplacingOccurrencesOfString("\\n", withString: String(format: "%C", 10))
-		result = result.stringByReplacingOccurrencesOfString("\\t", withString: String(format: "%C", 9))
+		result = result.stringByReplacingOccurrencesOfString("\\r", withString: String(Character(UnicodeScalar(13))))
+		result = result.stringByReplacingOccurrencesOfString("\\n", withString: String(Character(UnicodeScalar(10))))
+		result = result.stringByReplacingOccurrencesOfString("\\t", withString: String(Character(UnicodeScalar(9))))
 
 		var i: String.Index = self.startIndex
 		while i < self.characters.endIndex {
@@ -257,7 +257,7 @@ public extension String {
 					let unicodeCharCode = self.substringWithRange(i.advancedBy(2) ..< i.advancedBy(6))
 					let replacementChar = unicodeCharCode.hexValue
 					
-					result = result.stringByReplacingOccurrencesOfString("\\u\(unicodeCharCode)", withString: String(format: "%C", replacementChar))
+					result = result.stringByReplacingOccurrencesOfString("\\u\(unicodeCharCode)", withString: String(Character(UnicodeScalar(replacementChar))))
 					i = i.advancedBy(6)
 					continue
 				}
@@ -280,7 +280,11 @@ public extension String {
 
 	/// Computes MD5 digest of self
 	public var MD5Digest: String {
-		return (self as NSString).MD5Digest()
+		guard let data = self.dataUsingEncoding(NSUTF8StringEncoding) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.MD5Digest
 	}
 	
 	/// Truncates the string in the middle with '...' in order to fit the width, 

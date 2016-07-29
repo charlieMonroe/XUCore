@@ -34,7 +34,7 @@ public func XULog(@autoclosure string: () -> String, method: String = #function,
 	}
 	
 	if XUDebugLog._cachedPreferences {
-		print("\((file as NSString).lastPathComponent):\(line).\(method): \(string())")
+		print("\(file.componentsSeparatedByString("/").last.descriptionWithDefaultValue()):\(line).\(method): \(string())")
 		
 		XUDebugLog._lastLogTimeInterval = NSDate.timeIntervalSinceReferenceDate()
 	}
@@ -230,7 +230,7 @@ public final class XUDebugLog {
 			NSData().writeToFile(logFile, atomically: true)
 		}
 		
-		_logFile = fopen((logFile as NSString).fileSystemRepresentation, ("a+" as NSString).UTF8String)
+		_logFile = fopen((logFile as NSString).fileSystemRepresentation, "a+")
 		if _logFile != nil {
 			let fileDesc = fileno(_logFile!)
 			dup2(fileDesc, STDOUT_FILENO)
@@ -248,10 +248,10 @@ public final class XUDebugLog {
 		let version = XUAppSetup.applicationVersionNumber
 		let buildNumber = XUAppSetup.applicationBuildNumber
 		
-		print("\n\n\n============== Starting a new session ==============")
-		print("Application: \(processInfo.processName)")
-		print("Version: \(version)[\(buildNumber)]")
-		print("")
+		XULog("\n\n\n============== Starting a new session ==============")
+		XULog("Application: \(processInfo.processName)")
+		XULog("Version: \(version)[\(buildNumber)]")
+		XULog("")
 	}
 	
 }

@@ -320,6 +320,8 @@
 		07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		07AEC1111D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */; };
 		07AEC1121D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */; };
+		07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
+		07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
 		07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B821131C8639610079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -567,6 +569,7 @@
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
 		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
 		07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerAdditions.swift; sourceTree = "<group>"; };
+		07B211001D4903DC005203F0 /* XUWeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUWeakArray.swift; sourceTree = "<group>"; };
 		07B821111C86395B0079868F /* CGGraphicsAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGGraphicsAdditions.swift; sourceTree = "<group>"; };
 		07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionHandler.h; sourceTree = "<group>"; };
 		07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionHandler.m; sourceTree = "<group>"; };
@@ -1035,6 +1038,7 @@
 				073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
+				07B211001D4903DC005203F0 /* XUWeakArray.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -1437,6 +1441,7 @@
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */,
 				073E6ADB1BE1F86D00706283 /* re2.cc in Sources */,
+				07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */,
 				0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */,
 				07C3FA121BEBB619008A4200 /* XUMenuButton.swift in Sources */,
 				073E6B2F1BE1F86D00706283 /* XURegex.mm in Sources */,
@@ -1549,6 +1554,7 @@
 				07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				073E6B061BE1F86D00706283 /* pcre.cc in Sources */,
 				075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */,
+				07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */,
 				07FD4BDB1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */,
 				075F70B21D1D50A200540B42 /* XUAuthorizationWebViewController.swift in Sources */,
 				07FD4BD51C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */,

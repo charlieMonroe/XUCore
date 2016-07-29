@@ -32,6 +32,10 @@ private func _XULogFileAtURL(rootURL: NSURL, fileURL: NSURL, level: Int) {
 }
 
 private func _XULogFolderContentsStartingAtURL(rootURL: NSURL?, manager: XUApplicationSyncManager) {
+	guard XUDebugLog.isLoggingEnabled else {
+		return
+	}
+	
 	if rootURL == nil {
 		print("====================================================")
 		print("| \(manager).rootURL == nil -> not enabled. |")

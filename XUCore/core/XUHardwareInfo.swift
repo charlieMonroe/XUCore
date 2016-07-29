@@ -18,7 +18,7 @@ public class XUHardwareInfo: NSObject {
 	
 	/// Returns the serial number of the computer.
 	public let serialNumber: String = {
-		let serviceName = ("IOPlatformExpertDevice" as NSString).UTF8String
+		let serviceName = "IOPlatformExpertDevice"
 		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(serviceName))
 		let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0)
 		let serialNumber = serialNumberAsCFString.takeUnretainedValue() as! String

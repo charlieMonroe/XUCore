@@ -17,12 +17,6 @@ public extension SequenceType {
 		return self.find({ !filter($0) }) == nil
 	}
 	
-	/// Returns true if any of the elements in self matches the filter
-	@available(*, deprecated, renamed="contains")
-	public func any(@noescape filter: XUFilter) -> Bool {
-		return self.contains(filter)
-	}
-	
 	/// Returns a new array by removing objects that match the filter
 	public func arrayByRemovingObjectsMatching(@noescape filter: XUFilter) -> [Self.Generator.Element] {
 		var arr: [Self.Generator.Element] = [ ]
@@ -40,13 +34,6 @@ public extension SequenceType {
 			return filter(obj) ? 1 : 0
 		})
 		return count
-	}
-		
-	/// Unlike map, this allows you to return nil, in which case the value
-	/// will be ommitted.
-	@available(*, deprecated, renamed="flatMap")
-	public func filterMap<U>(@noescape transform: (Self.Generator.Element) throws -> U?) rethrows -> [U] {
-		return try self.flatMap(transform)
 	}
 	
 	/// Returns the first element in self that matches the filter
@@ -74,20 +61,13 @@ public extension SequenceType {
 	
 	/// Finds a maximum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
-	@available(*, deprecated, message="Use the alternative returning Int.")
-	public func findMax(@noescape valuator: (Self.Generator.Element) -> UInt) -> Self.Generator.Element? {
-		return self.findMax({ Int(valuator($0)) })
-	}
-	
-	/// Finds a maximum value within self. For non-empty arrays, always returns
-	/// a non-nil value.
-	public func findMax(@noescape valuator: (Self.Generator.Element) -> Int) -> Self.Generator.Element? {
+	public func findMax<T: Comparable>(@noescape valuator: (Self.Generator.Element) -> T) -> Self.Generator.Element? {
 		var maxElement: Self.Generator.Element? = nil
-		var maxValue: Int = Int.min
+		var maxValue: T! = nil
 		
 		for obj in self {
 			let value = valuator(obj)
-			if value > maxValue || maxElement == nil {
+			if maxElement == nil || value > maxValue {
 				maxValue = value
 				maxElement = obj
 			}
@@ -113,13 +93,13 @@ public extension SequenceType {
 	
 	/// Finds a minimum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
-	public func findMin(@noescape valuator: (Self.Generator.Element) -> Int) -> Self.Generator.Element? {
+	public func findMin<T: Comparable>(@noescape valuator: (Self.Generator.Element) -> T) -> Self.Generator.Element? {
 		var minElement: Self.Generator.Element? = nil
-		var minValue: Int = Int.max
+		var minValue: T! = nil
 		
 		for obj in self {
 			let value = valuator(obj)
-			if value > minValue || minElement == nil {
+			if minElement == nil || value > minValue {
 				minValue = value
 				minElement = obj
 			}
@@ -272,7 +252,7 @@ public extension CollectionType where Index.Distance : ForwardIndexType {
 		var unique: [Self.Generator.Element] = [ ]
 		for i in 0 ..< self.count {
 			var found = false
-			for o in 0..<unique.count {
+			for o in 0 ..< unique.count {
 				if customComparator(obj1: self[self.startIndex.advancedBy(i)], obj2: unique[unique.startIndex.advancedBy(o)]) {
 					found = true
 					break

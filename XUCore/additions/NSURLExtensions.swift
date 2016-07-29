@@ -21,8 +21,28 @@ public extension NSURL {
 		return number.boolValue
 	}
 
+	private func _resourceValueForKey<T>(key: String) -> T? {
+		var value: AnyObject?
+		_ = try? self.getResourceValue(&value, forKey: key)
+		return value as? T
+	}
+	
 	private func _setBooleanResourceValue(value: Bool, forKey key: String) {
 		_ = try? self.setResourceValue(value, forKey: key)
+	}
+	
+	private func _setResourceValue(value: AnyObject?, forKey key: String) {
+		_ = try? self.setResourceValue(value, forKey: key)
+	}
+	
+	/// Date the URL was created at.
+	public var creationDate: NSDate? {
+		get {
+			return self._resourceValueForKey(NSURLCreationDateKey)
+		}
+		set {
+			self._setResourceValue(newValue, forKey: NSURLCreationDateKey)
+		}
 	}
 
 	/// Returns the file size.
@@ -57,13 +77,18 @@ public extension NSURL {
 		return _booleanResourceValueForKey(NSURLIsWritableKey)
 	}
 
+	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
 	public var modificationDate: NSDate? {
-		var value: AnyObject?
-		_ = try? self.getResourceValue(&value, forKey: NSURLContentModificationDateKey)
-
-		return value as? NSDate
+		get {
+			return self._resourceValueForKey(NSURLContentModificationDateKey)
+		}
+		set {
+			self._setResourceValue(newValue, forKey: NSURLContentModificationDateKey)
+		}
 	}
 
+	/// If the URL has a query part, returns a dictionary of the query. Otherwise
+	/// an empty dictionary.
 	public var queryDictionary: [String: String] {
 		var dict: [String: String] = [:]
 		for part in(self.query ?? "").componentsSeparatedByString("&") {
@@ -83,10 +108,9 @@ public extension NSURL {
 	}
 
 	#if os(OSX)
+		/// Thumbnail image for supported files.
 		public var thumbnailImage: XUImage? {
-			var value: AnyObject?
-			_ = try? self.getResourceValue(&value, forKey: NSURLThumbnailKey)
-			return value as? XUImage
+			return self._resourceValueForKey(NSURLThumbnailKey)
 		}
 	#endif
 
