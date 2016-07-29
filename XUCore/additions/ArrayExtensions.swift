@@ -76,10 +76,10 @@ public extension SequenceType {
 		return maxElement
 	}
 	
-	/// This will return the minimum value returned by the valuator, or nil if the
+	/// This will return the maximum value returned by the valuator, or nil if the
 	/// array is empty.
-	public func findMaxValue(@noescape valuator: (Self.Generator.Element) -> UInt) -> UInt? {
-		var maxValue: UInt? = 0
+	public func findMaxValue<T: Comparable>(@noescape valuator: (Self.Generator.Element) -> T) -> T? {
+		var maxValue: T? = nil
 		
 		for obj in self {
 			let value = valuator(obj)
@@ -99,13 +99,28 @@ public extension SequenceType {
 		
 		for obj in self {
 			let value = valuator(obj)
-			if minElement == nil || value > minValue {
+			if minElement == nil || value < minValue {
 				minValue = value
 				minElement = obj
 			}
 		}
 		
 		return minElement
+	}
+	
+	/// This will return the minimum value returned by the valuator, or nil if the
+	/// array is empty.
+	public func findMinValue<T: Comparable>(@noescape valuator: (Self.Generator.Element) -> T) -> T? {
+		var minValue: T? = nil
+		
+		for obj in self {
+			let value = valuator(obj)
+			if minValue == nil || value < minValue! {
+				minValue = value
+			}
+		}
+		
+		return minValue
 	}
 	
 	/// Sums up values of elements in self.
