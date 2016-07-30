@@ -24,7 +24,7 @@
 		
 #if !TARGET_OS_IOS
 		// Start catching exceptions.
-		[XUExceptionCatcher startExceptionCatcher];
+		[XUExceptionHandler startExceptionHandler];
 		
 		// Launch the beta expiration handler if supported.
 		if ([[XUApplicationSetup sharedSetup] isBetaBuild]) {

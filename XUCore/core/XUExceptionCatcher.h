@@ -16,7 +16,7 @@ typedef void(^XUExceptionFinallyHandler)(void);
 
 
 /// This class allows handling ObjC exceptions using Swift.
-@interface XUExceptionHandler : NSObject
+@interface XUExceptionCatcher : NSObject
 
 /// Initializer. You must supply the blocks when calling performBlock then.
 -(nonnull instancetype)init;

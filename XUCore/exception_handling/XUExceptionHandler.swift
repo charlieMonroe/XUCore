@@ -1,5 +1,5 @@
 //
-//  XUExceptionCatcher.swift
+//  XUExceptionHandler.swift
 //  XUCore
 //
 //  Created by Charlie Monroe on 11/22/15.
@@ -51,25 +51,25 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 
 
 
-/// This class catches all uncaught exceptions and displays a message about
-/// the exception, allowing the user to send a report.
-public final class XUExceptionCatcher: NSObject {
+/// This class catches and handles all uncaught exceptions and displays a message
+/// about the exception, allowing the user to send a report.
+public final class XUExceptionHandler: NSObject {
 	
-	/// Contains the shared catcher. You should not call this, unless the exception
+	/// Contains the shared handler. You should not call this, unless the exception
 	/// reporting is enabled.
-	public static let sharedExceptionCatcher = XUExceptionCatcher()
+	public static let sharedExceptionHandler = XUExceptionHandler()
 	
 	/// This is called automatically by _XUCoreLauncher and starts exception
 	/// handling. If, however, no exception handler reporting URL is found in
-	/// XUApplicationSetup, the catcher does not start. See XUExceptionReporter
+	/// XUApplicationSetup, the handler does not start. See XUExceptionReporter
 	/// for more information.
-	public class func startExceptionCatcher() {
+	public class func startExceptionHandler() {
 		if XUAppSetup.exceptionHandlerReportURL == nil {
 			return
 		}
 		
 		// Force initialization.
-		_ = XUExceptionCatcher.sharedExceptionCatcher
+		_ = XUExceptionHandler.sharedExceptionHandler
 	}
 	
 	/// Registers the exception handler.
@@ -95,7 +95,7 @@ public final class XUExceptionCatcher: NSObject {
 		var stackTraceString = exception.description + "\n\n"
 		
 		if let provider = self.applicationStateProvider {
-			let exceptionCatcher = XUExceptionHandler()
+			let exceptionCatcher = XUExceptionCatcher()
 			exceptionCatcher.performBlock({ 
 				stackTraceString += provider.provideApplicationState() + "\n\n"
 			}, withCatchHandler: { (exception) in
@@ -133,7 +133,7 @@ public final class XUExceptionCatcher: NSObject {
 		// by checking NSApp for nil.
 		if NSApp == nil {
 			// App not yet fully launched, defer the handler registration.
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUExceptionCatcher._registerExceptionHandler), name: NSApplicationDidFinishLaunchingNotification, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUExceptionHandler._registerExceptionHandler), name: NSApplicationDidFinishLaunchingNotification, object: nil)
 		}else{
 			// The app is fully launched.
 			self._registerExceptionHandler()

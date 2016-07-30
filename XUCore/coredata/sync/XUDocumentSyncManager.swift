@@ -257,7 +257,7 @@ public class XUDocumentSyncManager {
 	
 			obj = cl.init(entity: entityDescription, insertIntoManagedObjectContext: self.managedObjectContext, asResultOfSyncAction: true)
 			
-			let exceptionHandler = XUExceptionHandler()
+			let exceptionHandler = XUExceptionCatcher()
 			
 			let attributes = change.attributes
 			for (key, value) in attributes {

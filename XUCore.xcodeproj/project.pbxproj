@@ -14,7 +14,7 @@
 		070A00EE1CE1BA68001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
 		070A00EF1CE1BC59001A90EB /* _XUBacktrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070A00F01CE1BC62001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
-		070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
+		070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */; };
 		070C040C1BFC76D4001373B1 /* NSMutableDictionaryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
@@ -205,7 +205,7 @@
 		0749DCF91C00D5060075CC9B /* _XUCoreLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */; };
 		0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */; };
 		0749DCFB1C00D5060075CC9B /* _XUCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */; };
-		0749DD011C01F4580075CC9B /* XUExceptionCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */; };
+		0749DD011C01F4580075CC9B /* XUExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD001C01F4580075CC9B /* XUExceptionHandler.swift */; };
 		0749DD031C01F8720075CC9B /* XUExceptionReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */; };
 		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
@@ -324,9 +324,9 @@
 		07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
 		07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B821131C8639610079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
-		07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */; };
-		07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B9081F1BF39EF0008D254A /* XUExceptionCatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B908201BF39EF0008D254A /* XUExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */; };
+		07B908211BF3A8F4008D254A /* XUExceptionCatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B908231BF3AB40008D254A /* NSRecursiveLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */; };
 		07B908241BF3AC19008D254A /* NSRecursiveLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */; };
 		07B908281BF3B908008D254A /* NSXMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF61BBD101400872A48 /* NSXMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -491,7 +491,7 @@
 		0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUMessageCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUCoreLoader.h; path = private/_XUCoreLoader.h; sourceTree = "<group>"; };
 		0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUCoreLoader.m; path = private/_XUCoreLoader.m; sourceTree = "<group>"; };
-		0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionCatcher.swift; path = exception_handling/XUExceptionCatcher.swift; sourceTree = "<group>"; };
+		0749DD001C01F4580075CC9B /* XUExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionHandler.swift; path = exception_handling/XUExceptionHandler.swift; sourceTree = "<group>"; };
 		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
@@ -571,8 +571,8 @@
 		07AEC1101D01E8BF00C8E127 /* NSFileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerAdditions.swift; sourceTree = "<group>"; };
 		07B211001D4903DC005203F0 /* XUWeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUWeakArray.swift; sourceTree = "<group>"; };
 		07B821111C86395B0079868F /* CGGraphicsAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGGraphicsAdditions.swift; sourceTree = "<group>"; };
-		07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionHandler.h; sourceTree = "<group>"; };
-		07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionHandler.m; sourceTree = "<group>"; };
+		07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionCatcher.h; sourceTree = "<group>"; };
+		07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionCatcher.m; sourceTree = "<group>"; };
 		07B908221BF3AB40008D254A /* NSRecursiveLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRecursiveLockAdditions.swift; sourceTree = "<group>"; };
 		07B9082B1BF3BC84008D254A /* NSTimerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTimerAdditions.swift; sourceTree = "<group>"; };
 		07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppScopeBookmarksManager.swift; sourceTree = "<group>"; };
@@ -818,7 +818,7 @@
 		0749DCFF1C01F43F0075CC9B /* exception_handling */ = {
 			isa = PBXGroup;
 			children = (
-				0749DD001C01F4580075CC9B /* XUExceptionCatcher.swift */,
+				0749DD001C01F4580075CC9B /* XUExceptionHandler.swift */,
 				0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */,
 				0749DD041C0203430075CC9B /* ExceptionReporter.xib */,
 			);
@@ -1028,8 +1028,8 @@
 				07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */,
 				073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */,
 				07241D3A1D17D57300206E27 /* XUCompoundError.swift */,
-				07B9081D1BF39EEF008D254A /* XUExceptionHandler.h */,
-				07B9081E1BF39EF0008D254A /* XUExceptionHandler.m */,
+				07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */,
+				07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */,
 				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
 				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
@@ -1175,7 +1175,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B9081F1BF39EF0008D254A /* XUExceptionHandler.h in Headers */,
+				07B9081F1BF39EF0008D254A /* XUExceptionCatcher.h in Headers */,
 				073E6B0F1BE1F86D00706283 /* sparse_array.h in Headers */,
 				073E6B031BE1F86D00706283 /* mutex.h in Headers */,
 				077AFEEC1BBD101400872A48 /* NSDictionaryAdditions.h in Headers */,
@@ -1235,7 +1235,7 @@
 				073E6B261BE1F86D00706283 /* valgrind.h in Headers */,
 				073E6AE21BE1F86D00706283 /* regexp.h in Headers */,
 				073E6AFC1BE1F86D00706283 /* benchmark.h in Headers */,
-				07B908211BF3A8F4008D254A /* XUExceptionHandler.h in Headers */,
+				07B908211BF3A8F4008D254A /* XUExceptionCatcher.h in Headers */,
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
@@ -1414,7 +1414,7 @@
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
 				07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */,
-				07B908201BF39EF0008D254A /* XUExceptionHandler.m in Sources */,
+				07B908201BF39EF0008D254A /* XUExceptionCatcher.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* NSDateAdditions.swift in Sources */,
 				0746A9FD1D42037600650106 /* XUManagedObjectContextManager.swift in Sources */,
 				07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */,
@@ -1536,7 +1536,7 @@
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
-				0749DD011C01F4580075CC9B /* XUExceptionCatcher.swift in Sources */,
+				0749DD011C01F4580075CC9B /* XUExceptionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,7 +1599,7 @@
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
 				07AEC1121D01E8BF00C8E127 /* NSFileManagerAdditions.swift in Sources */,
-				070C040B1BFC7649001373B1 /* XUExceptionHandler.m in Sources */,
+				070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
 				0779E19D1BF23E5C00832858 /* NSURL+NSURLAdditions.swift in Sources */,

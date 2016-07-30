@@ -6,9 +6,9 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-#import "XUExceptionHandler.h"
+#import "XUExceptionCatcher.h"
 
-@implementation XUExceptionHandler
+@implementation XUExceptionCatcher
 
 -(instancetype)init {
 	return [super init];

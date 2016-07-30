@@ -179,7 +179,7 @@ public final class XUJSONDeserializer {
 	public static var deserializationLoggingEnabled: Bool = XUAppSetup.isRunningInDebugMode
 
 	/// Exception catcher.
-	private let _exceptionHandler = XUExceptionHandler()
+	private let _exceptionHandler = XUExceptionCatcher()
 
 	/// Deserialization log. This will contain all the warnings and errors. Only
 	/// populated if deserializationLoggingEnabled is true. Remember that the

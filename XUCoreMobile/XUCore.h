@@ -22,7 +22,7 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 
 /** Core. */
 #import "XUAbstract.h"
-#import "XUExceptionHandler.h"
+#import "XUExceptionCatcher.h"
 
 /** Regex. */
 #import "XURegex.h"

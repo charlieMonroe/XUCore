@@ -20,7 +20,7 @@ public extension NSRecursiveLock {
 	public func performLockedBlock(block: (Void) -> Void) {
 		self.lock()
 		
-		let handler = XUExceptionHandler(catchHandler: { (exception) -> Void in
+		let handler = XUExceptionCatcher(catchHandler: { (exception) -> Void in
 			// We only unlock self if an exception was raised. If no exception
 			// occurrs, the lock is unlocked within performing the block.
 			self.unlock()
