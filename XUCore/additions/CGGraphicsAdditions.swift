@@ -48,6 +48,12 @@ public extension CGRect {
 
 public extension CGSize {
 	
+	/// Returns a copy of self that contains integral width and height.
+	public var integral: CGSize {
+		return CGSize(width: Int(self.width), height: Int(self.height))
+	}
+	
+	/// Returns true if both width and height is zero.
 	public var isEmpty: Bool {
 		return self.height.isZero && self.width.isZero
 	}
