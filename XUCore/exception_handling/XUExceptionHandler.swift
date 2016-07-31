@@ -19,6 +19,24 @@ public protocol XUApplicationStateProvider {
 	
 }
 
+/// Item depicting a particular part of the application state. 
+/// @see XUBasicApplicationStateProvider.stateItems
+public struct XUApplicationStateItem {
+	
+	/// Name of the item. E.g. "Running since".
+	let name: String
+	
+	/// Value of the item. E.g. "May 14".
+	let value: String
+	
+	/// Designated initializer.
+	public init(name: String, andValue value: String) {
+		self.name = name
+		self.value = value
+	}
+	
+}
+
 
 /// Basic application state provider. Maintains some information about the application
 /// and provides an easy way to supply additional information in a key-value
@@ -32,19 +50,19 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	/// Returns state values. By default, this contains run-time, window list
 	/// including names and perhaps in the future additional values. Override
 	/// this var and append your values to what super returns.
-	public var stateValues: [(stateName: String, stateValue: String)] {
+	public var stateItems: [XUApplicationStateItem] {
 		let windows = NSApp.windows.map({ "\($0) - \($0.title)" }).joinWithSeparator("\n")
 		
 		return [
-			("Run Time", "\(Int(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)) seconds"),
-			("Window List", "\n\(windows)\n")
+			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
+			XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)\n")
 		]
 	}
 	
 	public init() {}
 	
 	public func provideApplicationState() -> String {
-		return self.stateValues.map({ "\($0.stateName): \($0.stateValue)" }).joinWithSeparator("\n")
+		return self.stateItems.map({ "\($0.name): \($0.value)" }).joinWithSeparator("\n")
 	}
 	
 }
