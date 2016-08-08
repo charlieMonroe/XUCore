@@ -17,6 +17,7 @@ public final class XUOAuth2Configuration {
 		static let redirectionSchemeKey = "redirectionScheme"
 		static let secretKey = "secret"
 		static let tokenEndpointURLStringKey = "tokenEndpointURLString"
+		static let tokenNeverExpiresKey = "tokenNeverExpires"
 	}
 	
 	
@@ -59,20 +60,24 @@ public final class XUOAuth2Configuration {
 	/// URL for token.
 	public let tokenEndpointURL: NSURL
 	
+	/// Some clients can have tokens that never expire. In such cases, the response
+	/// doesn't contain refresh token, or expiration date.
+	public let tokenNeverExpires: Bool
 	
-	public var dictionaryRepresentation: [String : String] {
+	public var dictionaryRepresentation: [String : AnyObject] {
 		return [
 			ConfigurationKeys.authorizationBaseURLStringKey: self.authorizationBaseURL.absoluteString,
 			ConfigurationKeys.clientIDKey: self.clientID,
 			ConfigurationKeys.nameKey: self.name,
 			ConfigurationKeys.redirectionSchemeKey: self.redirectionScheme,
 			ConfigurationKeys.secretKey: self.secret,
-			ConfigurationKeys.tokenEndpointURLStringKey: self.tokenEndpointURL.absoluteString
+			ConfigurationKeys.tokenEndpointURLStringKey: self.tokenEndpointURL.absoluteString,
+			ConfigurationKeys.tokenNeverExpiresKey: self.tokenNeverExpires
 		]
 	}
 	
 	/// Designated initializer.
-	public init(authorizationBaseURL: NSURL, clientID: String, name: String, redirectionScheme: String, secret: String, tokenEndpointURL: NSURL) {
+	public init(authorizationBaseURL: NSURL, clientID: String, name: String, redirectionScheme: String, secret: String, tokenEndpointURL: NSURL, tokenNeverExpires: Bool = false) {
 		assert(authorizationBaseURL.query == nil, "authorizationBaseURL with query is not supported.")
 		
 		self.authorizationBaseURL = authorizationBaseURL
@@ -81,16 +86,17 @@ public final class XUOAuth2Configuration {
 		self.redirectionScheme = redirectionScheme
 		self.secret = secret
 		self.tokenEndpointURL = tokenEndpointURL
+		self.tokenNeverExpires = tokenNeverExpires
 	}
 	
-	public convenience init?(dictionary dict: [String : String]) {
+	public convenience init?(dictionary dict: [String : AnyObject]) {
 		guard let
-			authorizationBaseURLString = dict[ConfigurationKeys.authorizationBaseURLStringKey],
-			clientID = dict[ConfigurationKeys.clientIDKey],
-			name = dict[ConfigurationKeys.nameKey],
-			redirectionScheme = dict[ConfigurationKeys.redirectionSchemeKey],
-			secret = dict[ConfigurationKeys.secretKey],
-			tokenEndpointURLString = dict[ConfigurationKeys.tokenEndpointURLStringKey] else {
+			authorizationBaseURLString = dict[ConfigurationKeys.authorizationBaseURLStringKey] as? String,
+			clientID = dict[ConfigurationKeys.clientIDKey] as? String,
+			name = dict[ConfigurationKeys.nameKey] as? String,
+			redirectionScheme = dict[ConfigurationKeys.redirectionSchemeKey] as? String,
+			secret = dict[ConfigurationKeys.secretKey] as? String,
+			tokenEndpointURLString = dict[ConfigurationKeys.tokenEndpointURLStringKey] as? String else {
 			return nil
 		}
 		
@@ -98,7 +104,10 @@ public final class XUOAuth2Configuration {
 			return nil
 		}
 		
-		self.init(authorizationBaseURL: authorizationBaseURL, clientID: clientID, name: name, redirectionScheme: redirectionScheme, secret: secret, tokenEndpointURL: tokenEndpointURL)
+		self.init(authorizationBaseURL: authorizationBaseURL, clientID: clientID,
+		          name: name, redirectionScheme: redirectionScheme,
+		          secret: secret, tokenEndpointURL: tokenEndpointURL,
+		          tokenNeverExpires: dict.booleanForKey(ConfigurationKeys.tokenNeverExpiresKey))
 	}
 	
 }
@@ -138,7 +147,7 @@ public enum XUOAuth2ClientError: Int {
 		case .InvalidRedirectionURL:
 			errorString = XULocalizedString("Server has redirected with invalid URL.", inBundle: XUCoreBundle)
 		case .UserCancelled:
-			errorString = XULocalizedString("User has cancelled the authorization.", inBundle: XUCoreBundle)
+			errorString = XULocalizedString("User cancelled the authorization.", inBundle: XUCoreBundle)
 		}
 		
 		return NSError(domain: XUOAuth2ClientErrorDomain, code: self.rawValue, userInfo: [
@@ -182,11 +191,14 @@ public final class XUOAuth2Client {
 		
 		/// Returns true if the token is expired.
 		public var isTokenExpired: Bool {
+			if self.client.configuration.tokenNeverExpires {
+				return false
+			}
 			return self.tokenExpirationDate.isPast
 		}
 		
 		/// Refresh token.
-		public let refreshToken: String
+		public let refreshToken: String?
 		
 		/// Expiration date of the token.
 		public private(set) var tokenExpirationDate: NSDate
@@ -203,7 +215,7 @@ public final class XUOAuth2Client {
 			/// No-op
 		}
 		
-		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String, andExpirationDate expirationDate: NSDate) {
+		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String?, andExpirationDate expirationDate: NSDate) {
 			self.client = client
 			self.accessToken = accessToken
 			self.identifier = String.UUIDString
@@ -221,9 +233,12 @@ public final class XUOAuth2Client {
 			}
 			
 			let keychain = XUKeychainAccess.sharedAccess
-			guard let
-				accessToken = keychain.passwordForUsername(identifier + "_access", inAccount: client.configuration.name),
-				refreshToken = keychain.passwordForUsername(identifier + "_refresh", inAccount: client.configuration.name) else {
+			guard let accessToken = keychain.passwordForUsername(identifier + "_access", inAccount: client.configuration.name) else {
+				return nil
+			}
+			
+			let refreshToken = keychain.passwordForUsername(identifier + "_refresh", inAccount: client.configuration.name)
+			if refreshToken == nil && !client.configuration.tokenNeverExpires {
 				return nil
 			}
 			
@@ -243,11 +258,19 @@ public final class XUOAuth2Client {
 		/// Renews authentication token and returns true if it was successful.
 		/// The request for token renewal is synchronous.
 		public func renewToken() -> Bool {
+			guard let refreshToken = self.refreshToken else {
+				if self.client.configuration.tokenNeverExpires {
+					return true
+				}
+				
+				fatalError("The client's configuration assumes token expiration, yet there is no refresh token available.")
+			}
+			
 			XULog("Renewing token - expired \(XUTime.timeString(abs(NSDate.timeIntervalSinceReferenceDate() - self.tokenExpirationDate.timeIntervalSinceReferenceDate))) ago.")
 			
 			let postDict: [String : String] = [
 				"grant_type": "refresh_token",
-				"refresh_token": self.refreshToken
+				"refresh_token": refreshToken
 			]
 			
 			guard let obj = self.client.downloadCenter.downloadJSONDictionaryAtURL(self.client.configuration.tokenEndpointURL, withModifier: { (request) in
@@ -277,7 +300,10 @@ public final class XUOAuth2Client {
 		/// Force-saves the token and refresh token. Currently a private method.
 		private func save() {
 			XUKeychainAccess.sharedAccess.savePassword(self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
-			XUKeychainAccess.sharedAccess.savePassword(self.refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+			
+			if let refreshToken = self.refreshToken {
+				XUKeychainAccess.sharedAccess.savePassword(refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+			}
 			
 			XUOAuth2Client.save()
 		}
@@ -415,8 +441,19 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		guard let accessToken = obj["access_token"] as? String, refreshToken = obj["refresh_token"] as? String else {
-			XULog("No access token or refresh token in \(obj).")
+		guard let accessToken = obj["access_token"] as? String else {
+			XULog("No access token in \(obj).")
+			
+			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+				self._authorizationController!.close(withResult: .Error(.InvalidAuthorizationResponse))
+				self._authorizationController = nil
+			}
+			return
+		}
+		
+		let refreshToken = obj["refresh_token"] as? String
+		if !self.configuration.tokenNeverExpires && refreshToken == nil {
+			XULog("No refresh token in \(obj).")
 			
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				self._authorizationController!.close(withResult: .Error(.InvalidAuthorizationResponse))
@@ -426,8 +463,10 @@ public final class XUOAuth2Client {
 		}
 		
 		var expiresInSeconds: NSTimeInterval = obj.doubleForKey("expires_in")
-		if expiresInSeconds == 0.0 {
-			expiresInSeconds = XUTimeInterval.day
+		if self.configuration.tokenNeverExpires {
+			expiresInSeconds = NSDate.distantFuture().timeIntervalSinceReferenceDate
+		} else if expiresInSeconds == 0.0 {
+			expiresInSeconds = XUTimeInterval.day * 14.0
 		}
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {

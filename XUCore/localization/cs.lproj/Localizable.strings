@@ -102,7 +102,7 @@
 "Server responded with unknown token type." = "Server odpověděl s neznámým typem tokenu.";
 "Server provided invalid authorization response." = "Server poskytl špatnou autorizační odpověď1.";
 "Server has redirected with invalid URL." = "Server přesměroval na špatnou URL.";
-"User has cancelled the authorization." = "Uživatel zrušil autorizaci.";
+"User cancelled the authorization." = "Uživatel zrušil autorizaci.";
 
 /// Debug Log Menu
 "Debug" = "Debug";

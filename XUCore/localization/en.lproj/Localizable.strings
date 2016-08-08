@@ -100,7 +100,7 @@
 "Server responded with unknown token type." = "Server responded with unknown token type.";
 "Server provided invalid authorization response." = "Server provided invalid authorization response.";
 "Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
-"User has cancelled the authorization." = "User has cancelled the authorization.";
+"User cancelled the authorization." = "User cancelled the authorization.";
 
 /// Debug Log Menu
 "Debug" = "Debug";

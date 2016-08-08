@@ -128,5 +128,20 @@ public extension NSURL {
 
 		return URLComponents.URL ?? self
 	}
+	
+	/// Returns URL with deleted query (i.e. the ? part). Fallbacks to self.
+	public var URLByDeletingQuery: NSURL {
+		if self.query == nil {
+			return self
+		}
+		
+		guard let URLComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+			return self
+		}
+		
+		URLComponents.query = nil
+		
+		return URLComponents.URL ?? self
+	}
 }
 

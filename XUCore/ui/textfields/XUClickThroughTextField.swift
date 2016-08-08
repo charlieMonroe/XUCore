@@ -11,6 +11,9 @@ import Foundation
 /// This class is for labels used in controls, where they need to be click-through.
 public class XUClickThroughTextField: NSTextField {
 	
+	public override var description: String {
+		return "\(super.description) hidden: \(self.hidden)"
+	}
 	public override var mouseDownCanMoveWindow: Bool {
 		return false
 	}

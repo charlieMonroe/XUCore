@@ -100,4 +100,4 @@
 "Server responded with unknown token type." = "Server hat mit unbekanntem Token geantwortet.";
 "Server provided invalid authorization response." = "Server hat falsch auf die Authentifizierung geantwortet.";
 "Server has redirected with invalid URL." = "Server hat mit falscher URL umgeleitet.";
-"User has cancelled the authorization." = "Benutzer hat die Authorisierung abgebrochen.";
+"User cancelled the authorization." = "Benutzer hat die Authorisierung abgebrochen.";

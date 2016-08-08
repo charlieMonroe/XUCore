@@ -110,16 +110,18 @@ public final class XUExceptionHandler: NSObject {
 		// which is why we just note down the exception and we periodically check
 		// for it in _checkForException.
 		
-		var stackTraceString = exception.description + "\n\n"
+		var stackTraceString = ""
 		
 		if let provider = self.applicationStateProvider {
 			let exceptionCatcher = XUExceptionCatcher()
 			exceptionCatcher.performBlock({ 
 				stackTraceString += provider.provideApplicationState() + "\n\n"
 			}, withCatchHandler: { (exception) in
-				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception)."
+				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
 			}, andFinallyBlock: {})
 		}
+		
+		stackTraceString = exception.description + "\n\n"
 		
 		let exceptionStackTrace = XUStacktraceStringFromException(exception)
 		if !exceptionStackTrace.isEmpty {

@@ -8,11 +8,15 @@
 
 import Foundation
 
-private final class _XUWeakReference<T: AnyObject> {
+/// A class that contains a weak reference to an object. Useful for array and
+/// dictionary entries.
+public final class XUWeakReference<T: AnyObject> {
 	
-	weak var objectValue: T?
+	/// Weak reference.
+	public weak var objectValue: T?
 	
-	init(objectValue: T?) {
+	/// Designated initializer.
+	public init(objectValue: T?) {
 		self.objectValue = objectValue
 	}
 }
@@ -21,10 +25,10 @@ public struct XUWeakArray<T: AnyObject>: SequenceType {
 	
 	typealias GeneratorType = XUWeakArrayGenerator<T>
 
-	private var _innerArray: [_XUWeakReference<T>] = []
+	private var _innerArray: [XUWeakReference<T>] = []
 	
 	public mutating func append(value: T?) {
-		_innerArray.append(_XUWeakReference(objectValue: value))
+		_innerArray.append(XUWeakReference(objectValue: value))
 	}
 	
 	public var count: Int {
@@ -54,7 +58,7 @@ public struct XUWeakArray<T: AnyObject>: SequenceType {
 			return _innerArray[index].objectValue
 		}
 		set {
-			_innerArray[index] = _XUWeakReference(objectValue: newValue)
+			_innerArray[index] = XUWeakReference(objectValue: newValue)
 		}
 	}
 	
