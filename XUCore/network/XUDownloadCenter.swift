@@ -86,6 +86,7 @@ public extension XUDownloadCenterOwner {
 /// Class that handles communication over HTTP and parsing the responses.
 public class XUDownloadCenter {
 	
+	/// TODO: Both should be @noescape. Depends on SR-2266.
 	public typealias XUPOSTFieldsModifier = (fields: inout [String : String]) -> Void
 	public typealias XUURLRequestModifier = (request: NSMutableURLRequest) -> Void
 	
@@ -327,18 +328,18 @@ public class XUDownloadCenter {
 	
 	/// Attempts to download content at `URL` and parse it as XML.
 	public func downloadXMLDocumentAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> NSXMLDocument? {
-	guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
-	return nil // Error already set.
-	}
+		guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
+			return nil // Error already set.
+		}
 	
-	let doc = try? NSXMLDocument(XMLString: source, options: NSXMLDocumentTidyXML)
-	if doc == nil {
-	if self.logTraffic {
-	XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
-	}
-	self.owner.downloadCenter(self, didEncounterError: .InvalidXMLResponse)
-	}
-	return doc
+		let doc = try? NSXMLDocument(XMLString: source, options: NSXMLDocumentTidyXML)
+		if doc == nil {
+			if self.logTraffic {
+				XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
+			}
+			self.owner.downloadCenter(self, didEncounterError: .InvalidXMLResponse)
+		}
+		return doc
 	}
 	
 	#endif
