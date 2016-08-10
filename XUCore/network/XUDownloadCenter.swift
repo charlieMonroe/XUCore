@@ -83,6 +83,47 @@ public extension XUDownloadCenterOwner {
 	
 }
 
+private class _XUSynchronousDataLoader {
+	
+	let request: NSURLRequest
+	
+	init(request: NSURLRequest) {
+		self.request = request
+	}
+	
+	func loadData() throws -> (NSData, NSURLResponse?) {
+		var data: NSData?
+		var response: NSURLResponse?
+		var error: NSError?
+		
+		let lock = NSConditionLock(condition: 0)
+		
+		NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+			data = $0.0
+			response = $0.1
+			error = $0.2
+			
+			lock.lockWhenCondition(0)
+			lock.unlockWithCondition(1)
+		}).resume()
+		
+		lock.lockWhenCondition(1)
+		lock.unlockWithCondition(0)
+		
+		if error != nil {
+			throw error!
+		}
+		if data == nil {
+			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Unknown error.")
+			])
+		}
+		return (data!, response!)
+	}
+	
+}
+
+
 /// Class that handles communication over HTTP and parsing the responses.
 public class XUDownloadCenter {
 	
@@ -207,13 +248,12 @@ public class XUDownloadCenter {
 			XULog("[\(self.owner.name)] Will be downloading URL \(URL!):\n\(logString)", method: referingFunction)
 		}
 		
-		var response: NSURLResponse? = nil
 		do {
-			let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+			let (data, response) = try _XUSynchronousDataLoader(request: request).loadData()
 			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
 			return data
 		} catch let error as NSError {
-			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
+			self.lastHTTPURLResponse = nil
 			self.lastError = error
 			return nil
 		}
@@ -452,8 +492,7 @@ public class XUDownloadCenter {
 		}
 		
 		do {
-			var response: NSURLResponse?
-			_ = try NSURLConnection.sendSynchronousRequest(req, returningResponse: &response)
+			let (_, response) = try _XUSynchronousDataLoader(request: req).loadData()
 			
 			guard let HTTPResponse = response as? NSHTTPURLResponse else {
 				if self.logTraffic {
