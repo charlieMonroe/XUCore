@@ -54,6 +54,7 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		let windows = NSApp.windows.map({ "\($0) - \($0.title)" }).joinWithSeparator("\n")
 		
 		return [
+			XUApplicationStateItem(name: "Locale", andValue: NSLocale.currentLocale().localeIdentifier),
 			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
 			XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)\n")
 		]
