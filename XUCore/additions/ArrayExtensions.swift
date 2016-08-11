@@ -142,6 +142,15 @@ public extension SequenceType {
 	}
 	
 	/// Sums up values of elements in self.
+	public func sum(@noescape numerator: (Self.Generator.Element) -> CGFloat) -> CGFloat {
+		var result: CGFloat = 0.0
+		for obj in self {
+			result += numerator(obj)
+		}
+		return result
+	}
+	
+	/// Sums up values of elements in self.
 	public func sum(@noescape numerator: (Self.Generator.Element) -> Double) -> Double {
 		var result: Double = 0.0
 		for obj in self {
