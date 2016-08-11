@@ -100,4 +100,16 @@
 "Server responded with unknown token type." = "Server hat mit unbekanntem Token geantwortet.";
 "Server provided invalid authorization response." = "Server hat falsch auf die Authentifizierung geantwortet.";
 "Server has redirected with invalid URL." = "Server hat mit falscher URL umgeleitet.";
-"User has cancelled the authorization." = "Benutzer hat die Authorisierung abgebrochen.";
+"User cancelled the authorization." = "Benutzer hat die Authorisierung abgebrochen.";
+
+/// Debug Log Menu
+"Debug" = "Fehlersuche";
+"About Debug Log..." = "Über das Fehlerprotokoll...";
+"Debug Logging" = "Fehler wird protokolliert";
+"On" = "An";
+"Off" = "Aus";
+"Clear Debug Log" = "Löschen des Protokolls";
+"Show Log in Finder" = "Anzeigen des Protokolls im Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Das Fehlerprotokoll ist eine Textdatei, die einige technische Details über den Zustand von %@ im Hintergrund beinhaltet. Es ist sehr nützlich für mich, in das Protokoll zu schauen, um eine schnelle Analyse zu ermöglichen. Um mir das Fehlerprotokoll zu senden, führen Sie bitte die folgenden Schritte aus:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Falls dies nicht Ihr erstes Fehlerprotokoll ist, so löschen Sie bitte zunächst das bestehende Protokoll im Debug-Menü.\n2) Stellen Sie im Debug-Menü sicher, dass das Protokollieren eingeschaltet ist.\n3) Führen Sie die Schritte aus, um den Fehler erneut auszulösen.\n4) Schalten Sie das Protokollieren im Debug-Menü wieder aus.\n5) Wählen Sie im Debug-Menü den Eintrag Protokoll im Finder zeigen aus. Damit wird die Protokolldatei ausgewählt und kann einfach an mich gesendet werden. Bitte fügen Sie die Datei der E-Mail als Anhang bei und nutzen nicht die Copy-Paste-Funktion.\n\nDie Protokolldatei enthält keine persönlichen Daten, was Sie leicht in der Datei überprüfen können (die Datei ist eine einfache Textdatei). Falls Sie dennoch vertrauliche oder persönliche Daten entdecken, so ersetzen Sie diese bitte mit einem Platzhalten (z. B. XXXXXXXX) und teilen mir mit, das Sie die Protokolldatei modifiziert haben.";

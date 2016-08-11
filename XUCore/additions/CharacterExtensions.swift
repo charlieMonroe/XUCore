@@ -41,9 +41,29 @@ extension Character {
 		return self.unicodeScalarValue < 128
 	}
 	
+	/// Returns true iff `self` is a-z or A-Z.
+	public var isASCIILetter: Bool {
+		return self.isLowercaseASCIILetter || self.isUppercaseASCIILetter
+	}
+	
+	/// Returns true iff `self` is 0-9.
+	public var isASCIINumber: Bool {
+		return self.unicodeScalarValue >= Character("0").unicodeScalarValue && self.unicodeScalarValue <= Character("9").unicodeScalarValue
+	}
+	
+	/// Returns true iff `self` is a-z.
+	public var isLowercaseASCIILetter: Bool {
+		return self.unicodeScalarValue >= Character("a").unicodeScalarValue && self.unicodeScalarValue <= Character("z").unicodeScalarValue
+	}
+	
 	/// Returns true if the character is a member of character set.
 	public func isMemberOfCharacterSet(characterSet: NSCharacterSet) -> Bool {
 		return characterSet.characterIsMember(String(self).utf16.first!)
+	}
+	
+	/// Returns true iff `self` is A-Z.
+	public var isUppercaseASCIILetter: Bool {
+		return self.unicodeScalarValue >= Character("A").unicodeScalarValue && self.unicodeScalarValue <= Character("Z").unicodeScalarValue
 	}
 	
 	public init(_ byte: UInt8) {

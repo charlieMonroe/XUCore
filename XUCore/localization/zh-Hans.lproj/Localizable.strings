@@ -100,4 +100,4 @@
 "Server responded with unknown token type." = "服务器返回未知的令牌类型.";
 "Server provided invalid authorization response." = "服务器返回无效的身份验证答复.";
 "Server has redirected with invalid URL." = "服务器重定向至无效的链接.";
-"User has cancelled the authorization." = "身份验证被用户取消.";
+"User cancelled the authorization." = "身份验证被用户取消.";

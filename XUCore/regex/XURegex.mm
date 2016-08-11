@@ -43,6 +43,9 @@ static NSLock *_evaluationLock;
 	re2::RE2 tempRegex("(" + _regex->pattern() + ")");
 	std::string match;
 	while (re2::RE2::FindAndConsume(&input, tempRegex, &match)) {
+		if (match.empty()) {
+			break; // If the regex returns an empty match, it's inifite -> break
+		}
 		[result addObject:[NSString stringWithUTF8String:match.c_str()]];
 	}
 	

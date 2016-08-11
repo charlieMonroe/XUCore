@@ -11,6 +11,10 @@ import Foundation
 public extension NSAlert {
 	
 	private func _isDefaultButton(response: NSModalResponse) -> Bool {
+		if self.buttons.count == 0 {
+			return true // The alert only has one default OK button
+		}
+		
 		if self.buttons.first!.tag == NSAlertFirstButtonReturn {
 			return response == NSAlertFirstButtonReturn
 		}

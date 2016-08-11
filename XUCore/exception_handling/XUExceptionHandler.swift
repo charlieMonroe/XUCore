@@ -54,6 +54,7 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		let windows = NSApp.windows.map({ "\($0) - \($0.title)" }).joinWithSeparator("\n")
 		
 		return [
+			XUApplicationStateItem(name: "Locale", andValue: NSLocale.currentLocale().localeIdentifier),
 			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
 			XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)\n")
 		]
@@ -110,16 +111,18 @@ public final class XUExceptionHandler: NSObject {
 		// which is why we just note down the exception and we periodically check
 		// for it in _checkForException.
 		
-		var stackTraceString = exception.description + "\n\n"
+		var stackTraceString = ""
 		
 		if let provider = self.applicationStateProvider {
 			let exceptionCatcher = XUExceptionCatcher()
 			exceptionCatcher.performBlock({ 
 				stackTraceString += provider.provideApplicationState() + "\n\n"
 			}, withCatchHandler: { (exception) in
-				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception)."
+				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
 			}, andFinallyBlock: {})
 		}
+		
+		stackTraceString = exception.description + "\n\n"
 		
 		let exceptionStackTrace = XUStacktraceStringFromException(exception)
 		if !exceptionStackTrace.isEmpty {
