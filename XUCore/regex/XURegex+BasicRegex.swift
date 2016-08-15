@@ -26,6 +26,38 @@ public extension XURegex {
 		
 	}
 	
+	/// This struct gathers all RegexString structs that contain a variable named
+	/// "URL".
+	public struct URL {
+		
+		/// Name of the variable within these regexes.
+		public static let variableName: String = "URL"
+		
+		public static let metaOGImage: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:image\"[^>]+content=\"(?P<URL>[^\"]+)\"")
+		public static let metaOGVideo: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:video(:url)?\"[^>]+content=\"(?P<URL>[^\"]+)\"")
+		public static let sourceSource: RegexString = RegexString(regexString: "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']")
+		public static let videoPoster: RegexString = RegexString(regexString: "<video[^>]+poster=\"(?P<URL>[^\"]+)\"")
+		public static let videoSource: RegexString = RegexString(regexString: "<video[^>]+src=\"(?P<URL>[^\"]+)\"")
+		public static let iframeSource: RegexString = RegexString(regexString: "<iframe[^>]+src=\"(?P<URL>[^\"]+)\"")
+
+	}
+	
+	/// This struct gathers all RegexString structs that contain a variable named
+	/// "TITLE".
+	public struct Title {
+		
+		/// Name of the variable within these regexes.
+		public static let variableName: String = "TITLE"
+
+		public static let h1: RegexString = RegexString(regexString: "<h1[^>]*>\\s*(?P<TITLE>.*?)\\s*</h1>")
+		public static let h2: RegexString = RegexString(regexString: "<h2[^>]*>\\s*(?P<TITLE>.*?)\\s*</h2>")
+		public static let h3: RegexString = RegexString(regexString: "<h3[^>]*>\\s*(?P<TITLE>.*?)\\s*</h3>")
+		public static let metaTitle: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+		public static let metaDescription: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*description\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+		public static let metaOGTitle: RegexString = RegexString(regexString: "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
+		public static let title: RegexString = RegexString(regexString: "<title>\\s*(?P<TITLE>.*?)\\s*</title>")
+	}
+		
 	public static let alphaNumeric: RegexString = RegexString(regexString: "[a-zA-Z0-9]+")
 	public static let alphaNumericLowercase: RegexString = RegexString(regexString: "[a-z0-9]+")
 	public static let alphaNumericUppercase: RegexString = RegexString(regexString: "[A-Z0-9]+")
@@ -35,22 +67,6 @@ public extension XURegex {
 	
 	public static let hexNumber: RegexString = RegexString(regexString: "[a-f0-9]+")
 	public static let numbers: RegexString = RegexString(regexString: "[0-9]+")
-
-	public static let titleH1: RegexString = RegexString(regexString: "<h1[^>]*>\\s*(?P<TITLE>.*?)\\s*</h1>")
-	public static let titleH2: RegexString = RegexString(regexString: "<h2[^>]*>\\s*(?P<TITLE>.*?)\\s*</h2>")
-	public static let titleH3: RegexString = RegexString(regexString: "<h3[^>]*>\\s*(?P<TITLE>.*?)\\s*</h3>")
-	public static let titleMetaTitle: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
-	public static let titleMetaDescription: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*description\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
-	public static let titleMetaOGTitle: RegexString = RegexString(regexString: "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
-	public static let titleTitle: RegexString = RegexString(regexString: "<title>\\s*(?P<TITLE>.*?)\\s*</title>")
-
-	public static let URLMetaOGImage: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:image\"[^>]+content=\"(?P<URL>[^\"]+)\"")
-	public static let URLMetaOGVideo: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:video(:url)?\"[^>]+content=\"(?P<URL>[^\"]+)\"")
-	public static let URLSourceSource: RegexString = RegexString(regexString: "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']")
-	public static let URLVideoPoster: RegexString = RegexString(regexString: "<video[^>]+poster=\"(?P<URL>[^\"]+)\"")
-	public static let URLVideoSource: RegexString = RegexString(regexString: "<video[^>]+src=\"(?P<URL>[^\"]+)\"")
-	public static let URLIframeSource: RegexString = RegexString(regexString: "<iframe[^>]+src=\"(?P<URL>[^\"]+)\"")
-
 	
 	convenience init(_ pattern: String) {
 		self.init(pattern: pattern, andOptions: .None)

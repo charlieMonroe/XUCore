@@ -117,9 +117,9 @@ public extension String {
 		let regex = XURegex(pattern: "(?i)/[^\\s'\"<>]+", andOptions: .None)
 		
 		var occurrences = regex.allOccurrencesInString(self)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URLSourceSource.regexString)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URLVideoSource.regexString)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URLIframeSource.regexString)
+		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.sourceSource.regexString)
+		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.videoSource.regexString)
+		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.iframeSource.regexString)
 		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
 		
 		occurrences = occurrences.flatMap({ (URLString) -> String? in
@@ -149,8 +149,8 @@ public extension String {
 		
 		/** Unfortunely some sites idiotically include spaces in the URLs. This is an easy workaround... */
 		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URLIframeSource.regexString)
-		if let ogVideo = self.getRegexVariableNamed("URL", forRegex: XURegex.URLMetaOGVideo.regex) {
+		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.iframeSource.regexString)
+		if let ogVideo = self.getRegexVariableNamed("URL", forRegex: XURegex.URL.metaOGVideo.regex) {
 			occurrences.append(ogVideo)
 		}
 		
