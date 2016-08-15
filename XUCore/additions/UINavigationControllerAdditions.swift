@@ -22,4 +22,16 @@ public extension UINavigationController {
 		CATransaction.commit()
 	}
 	
+	/// This method allows you to observe when the navigation controller has
+	/// completed the animation. The completionHandler argument is required -
+	/// if you don't need it, use the basic popViewControllerAnimated(_:) method.
+	public func popToRootViewControllerAnimated(animated: Bool, completionHandler: (Void) -> Void) {
+		CATransaction.begin()
+		CATransaction.setCompletionBlock(completionHandler)
+		
+		self.popToRootViewControllerAnimated(animated)
+		
+		CATransaction.commit()
+	}
+	
 }
