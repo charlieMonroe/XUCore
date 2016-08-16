@@ -13,9 +13,9 @@ import WebKit
 /// the client receives a redirection.
 internal final class XUAuthorizationWebViewWindowController: NSWindowController, WebFrameLoadDelegate {
 	
-	@IBOutlet private var _currentURLTextField: NSTextField!
-	@IBOutlet private var _progressIndicator: NSProgressIndicator!
-	@IBOutlet private var _webView: WebView!
+	@IBOutlet private weak var _currentURLTextField: NSTextField!
+	@IBOutlet private weak var _progressIndicator: NSProgressIndicator!
+	@IBOutlet private weak var _webView: WebView!
 	
 	/// Completion handler
 	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?

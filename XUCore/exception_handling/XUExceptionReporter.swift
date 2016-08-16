@@ -65,7 +65,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	@IBOutlet private var _reporterWindow: NSWindow!
 	
-	@IBOutlet private var _emailTextField: NSTextField!
+	@IBOutlet private weak var _emailTextField: NSTextField!
 	@IBOutlet private var _stackTraceTextView: NSTextView!
 	@IBOutlet private var _userInputTextView: NSTextView!
 	

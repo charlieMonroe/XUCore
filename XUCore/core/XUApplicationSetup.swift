@@ -45,7 +45,7 @@ public var XUAppSetup: XUApplicationSetup {
 ///
 /// }
 ///
-public class XUApplicationSetup: NSObject {
+public class XUApplicationSetup {
 	
 	/// Returns the shared setup.
 	public static let sharedSetup: XUApplicationSetup = {
@@ -76,6 +76,11 @@ public class XUApplicationSetup: NSObject {
 	/// This is an identifier of the app. By default, it is main bundle's bundle
 	/// identifier and if it is null, process name is used.
 	public let applicationIdentifier: String
+	
+	/// Application state provider. Note that there is a strong reference kept
+	/// to the object. By default, this contains XUBasicApplicationStateProvider.
+	/// In case you don't want it, you can set it to nil.
+	public var applicationStateProvider: XUApplicationStateProvider? = XUBasicApplicationStateProvider()
 	
 	/// Returns the application version number - found under CFBundleShortVersionString
 	/// in Info.plist. "1.0" by default.
@@ -212,8 +217,6 @@ public class XUApplicationSetup: NSObject {
 		
 		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? NSNumber)?.integerValue ?? 10
 		self.itemBasedTrialItemName = (infoDictionary["XUItemBasedTrialItemName"] as? String) ?? "items"
-		
-		super.init()
 	}
 	
 }

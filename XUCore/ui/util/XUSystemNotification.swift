@@ -94,9 +94,9 @@ private class XUSystemNotificationWindowController: NSWindowController {
 // be slightly randomized, causing issues with Interface Builder.
 internal class XUSystemNotificationWindow: NSWindow {
 	
-	@IBOutlet private var iconView: NSImageView!
-	@IBOutlet private var messageField: NSTextField!
-	@IBOutlet private var visualEffectView: NSVisualEffectView!
+	@IBOutlet private weak var iconView: NSImageView!
+	@IBOutlet private weak var messageField: NSTextField!
+	@IBOutlet private weak var visualEffectView: NSVisualEffectView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()

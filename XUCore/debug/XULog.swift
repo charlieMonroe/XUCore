@@ -266,6 +266,12 @@ public final class XUDebugLog {
 			XUDebugLog.clearLog()
 		}
 		
+		@objc private func _logAppState() {
+			if let provider = XUAppSetup.applicationStateProvider {
+				XULog(provider.provideApplicationState())
+			}
+		}
+		
 		@objc private func _showAboutDialog() {
 			let alert = NSAlert()
 			let appName = NSProcessInfo().processName
@@ -317,6 +323,9 @@ public final class XUDebugLog {
 			
 			menu.addItem(NSMenuItem.separatorItem())
 			
+			if XUAppSetup.applicationStateProvider != nil {
+				menu.addItemWithTitle(XULocalizedString("Log Current Application State", inBundle: XUCoreBundle), action: #selector(_XUDebugLogActionHandler._logAppState), keyEquivalent: "")?.target = _actionHandler
+			}
 			menu.addItemWithTitle(XULocalizedString("Clear Debug Log", inBundle: XUCoreBundle), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "")?.target = _actionHandler
 
 			menu.addItem(NSMenuItem.separatorItem())

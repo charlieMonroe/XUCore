@@ -9,69 +9,10 @@
 import Foundation
 import ExceptionHandling
 
-/// The exception handler can have an application state provider which should
-/// include a single method. See its docs.
-public protocol XUApplicationStateProvider {
-	
-	/// Return a string that describes the application's state. E.g. if there
-	/// is any network activity going on, if any documents are open, etc.
-	func provideApplicationState() -> String
-	
-}
-
-/// Item depicting a particular part of the application state. 
-/// @see XUBasicApplicationStateProvider.stateItems
-public struct XUApplicationStateItem {
-	
-	/// Name of the item. E.g. "Running since".
-	let name: String
-	
-	/// Value of the item. E.g. "May 14".
-	let value: String
-	
-	/// Designated initializer.
-	public init(name: String, andValue value: String) {
-		self.name = name
-		self.value = value
-	}
-	
-}
-
-
-/// Basic application state provider. Maintains some information about the application
-/// and provides an easy way to supply additional information in a key-value
-/// manner.
-public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
-	
-	/// Automatically initialized to NSDate(), providing how long has the app been
-	/// running.
-	public let launchTime: NSDate = NSDate()
-	
-	/// Returns state values. By default, this contains run-time, window list
-	/// including names and perhaps in the future additional values. Override
-	/// this var and append your values to what super returns.
-	public var stateItems: [XUApplicationStateItem] {
-		let windows = NSApp.windows.map({ "\($0) - \($0.title)" }).joinWithSeparator("\n")
-		
-		return [
-			XUApplicationStateItem(name: "Locale", andValue: NSLocale.currentLocale().localeIdentifier),
-			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
-			XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)\n")
-		]
-	}
-	
-	public init() {}
-	
-	public func provideApplicationState() -> String {
-		return self.stateItems.map({ "\($0.name): \($0.value)" }).joinWithSeparator("\n")
-	}
-	
-}
-
-
-
 /// This class catches and handles all uncaught exceptions and displays a message
-/// about the exception, allowing the user to send a report.
+/// about the exception, allowing the user to send a report. See XUApplicationStateProvider
+/// for information on how to extend the exception handler and reporter, providing
+/// additional information about your app's state.
 public final class XUExceptionHandler: NSObject {
 	
 	/// Contains the shared handler. You should not call this, unless the exception
@@ -101,10 +42,6 @@ public final class XUExceptionHandler: NSObject {
 		handler.setExceptionHangingMask(0)
 	}
 	
-	/// Application state provider. Note that there is a strong reference kept
-	/// to the object.
-	public var applicationStateProvider: XUApplicationStateProvider?
-	
 	@objc public override func exceptionHandler(sender: NSExceptionHandler!, shouldHandleException exception: NSException!, mask aMask: Int) -> Bool {
 		
 		// This method can be called from any thread, under any circumstances,
@@ -113,7 +50,7 @@ public final class XUExceptionHandler: NSObject {
 		
 		var stackTraceString = ""
 		
-		if let provider = self.applicationStateProvider {
+		if let provider = XUAppSetup.applicationStateProvider {
 			let exceptionCatcher = XUExceptionCatcher()
 			exceptionCatcher.performBlock({ 
 				stackTraceString += provider.provideApplicationState() + "\n\n"
@@ -122,7 +59,7 @@ public final class XUExceptionHandler: NSObject {
 			}, andFinallyBlock: {})
 		}
 		
-		stackTraceString = exception.description + "\n\n"
+		stackTraceString += exception.description + "\n\n"
 		
 		let exceptionStackTrace = XUStacktraceStringFromException(exception)
 		if !exceptionStackTrace.isEmpty {

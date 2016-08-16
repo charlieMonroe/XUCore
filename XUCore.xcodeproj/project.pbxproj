@@ -308,6 +308,9 @@
 		077AFF8B1BBD101400872A48 /* XUAbstract.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFE131BBD101400872A48 /* XUAbstract.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077AFF8C1BBD101400872A48 /* XUAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE141BBD101400872A48 /* XUAbstract.swift */; };
 		077AFF8D1BBD101400872A48 /* XUAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFE141BBD101400872A48 /* XUAbstract.swift */; };
+		077DE4901D61BDA600FD6639 /* NSMenu+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */; };
+		077DE4921D61C3EC00FD6639 /* XUApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */; };
+		077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */; };
 		0784480B1D12A4C000E8467B /* OptionalAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784480A1D12A4C000E8467B /* OptionalAdditions.swift */; };
 		0784480C1D12A4C000E8467B /* OptionalAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784480A1D12A4C000E8467B /* OptionalAdditions.swift */; };
 		078E2D6C1CEB58AB00715CB8 /* NSBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */; };
@@ -561,6 +564,8 @@
 		077AFDF81BBD101400872A48 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		077AFE131BBD101400872A48 /* XUAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUAbstract.h; sourceTree = "<group>"; };
 		077AFE141BBD101400872A48 /* XUAbstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAbstract.swift; sourceTree = "<group>"; };
+		077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Additions.swift"; sourceTree = "<group>"; };
+		077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationState.swift; sourceTree = "<group>"; };
 		0784480A1D12A4C000E8467B /* OptionalAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAdditions.swift; sourceTree = "<group>"; };
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
@@ -981,6 +986,7 @@
 				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
 				073E6B421BE1FD7E00706283 /* NSInputStream+Reading.swift */,
 				07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */,
+				077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */,
 				07B908341BF3DA10008D254A /* NSMutableDictionaryAdditions.swift */,
 				0779E1961BF23B6000832858 /* NSMutableURLRequestAdditions.swift */,
 				07758A2C1BEFC5D8004B29A8 /* NSOpenPanelAdditions.swift */,
@@ -1036,6 +1042,7 @@
 				077AFE141BBD101400872A48 /* XUAbstract.swift */,
 				0779E16F1BF07E3B00832858 /* XUApplication.swift */,
 				0749DCDD1C00BD130075CC9B /* XUApplicationSetup.swift */,
+				077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */,
 				07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */,
 				073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */,
 				07241D3A1D17D57300206E27 /* XUCompoundError.swift */,
@@ -1397,6 +1404,7 @@
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
+				077DE4901D61BDA600FD6639 /* NSMenu+Additions.swift in Sources */,
 				079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */,
 				075DC78F1CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,
 				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
@@ -1484,6 +1492,7 @@
 				0779E18A1BF2340800832858 /* NSViewAdditions.swift in Sources */,
 				0749DCED1C00C7C00075CC9B /* XUAppStoreMenuCleaner.swift in Sources */,
 				07C3FA271BECB5A8008A4200 /* XUStringTrimmingTransformer.swift in Sources */,
+				077DE4921D61C3EC00FD6639 /* XUApplicationState.swift in Sources */,
 				07B9082A1BF3BB62008D254A /* NSXMLAdditions.swift in Sources */,
 				0749DCD41C004D640075CC9B /* NSWindow-NoodleEffects.swift in Sources */,
 				073E6AD31BE1F86D00706283 /* prefilter_tree.cc in Sources */,
@@ -1584,6 +1593,7 @@
 				073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */,
 				0779E17D1BF2307100832858 /* UIView+Enclosing.swift in Sources */,
 				075DC7A21CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
+				077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */,
 				0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				073E6B461BE1FD7E00706283 /* NSInputStream+Reading.swift in Sources */,
 				0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */,
