@@ -56,15 +56,19 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	/// including names and perhaps in the future additional values. Override
 	/// this var and append your values to what super returns.
 	public var stateItems: [XUApplicationStateItem] {
-		let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joinWithSeparator("\n")
-		
-		return [
+		var stateItems: [XUApplicationStateItem] = [
 			XUApplicationStateItem(name: "Locale", andValue: NSLocale.currentLocale().localeIdentifier),
 			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "AppStore", andValue: "\(XUAppSetup.isAppStoreBuild)"),
 			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
-			XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)", requiresAdditionalTrailingNewLine: true)
 		]
+		
+		#if os(OSX)
+			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joinWithSeparator("\n")
+			stateItems.append(XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)", requiresAdditionalTrailingNewLine: true))
+		#endif
+		
+		return stateItems
 	}
 	
 	public init() {}
