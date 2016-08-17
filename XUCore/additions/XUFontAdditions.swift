@@ -20,7 +20,7 @@ import Foundation
 
 /// An enum that defines a font weight. This is similar to e.g UIFontWeightUltraLight,
 /// but allows cross-platform behavior.
-public enum XUFontWeight {
+public enum XUFontWeight: Int {
 	
 	/// All weight values.
 	static let allValues: [XUFontWeight] = [
@@ -115,7 +115,15 @@ public extension XUFont {
 	/// should include all weights, the returned value is IUO, instead of a pure
 	/// optional.
 	public class func systemFontOfSize(pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
-		return self.systemFontOfSize(pointSize, weight: weight.value)
+		if #available(OSX 10.11, *) {
+			return self.systemFontOfSize(pointSize, weight: weight.value)
+		} else {
+			if weight.rawValue <= XUFontWeight.Regular.rawValue {
+				return self.systemFontOfSize(pointSize)
+			} else {
+				return self.boldSystemFontOfSize(pointSize)
+			}
+		}
 	}
 	
 	/// Returns the same font with bold trait.
