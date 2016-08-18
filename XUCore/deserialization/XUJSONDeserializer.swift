@@ -9,8 +9,13 @@
 import CoreData
 import Foundation
 
-/// We're caching the properties, since they are likely to be often reused.
-private var _cachedProperties: [String : [XUObjCProperty]] = [:]
+/// We're caching the properties, since they are likely to be often reused. The 
+/// cache is two-level. First, it is ObjectIdentifier(class) -> class-specific
+/// cache. The class-specific cache contains up to three entries for each property:
+///		- regular name -> XUObjCProperty mapping for properties that actually match.
+///		- lowercase name -> XUObjCProperty for a quicker lookup
+///		- match -> XUObjCProperty for future mappings.
+private var _cachedProperties: [ObjectIdentifier : [String : XUObjCProperty]] = [:]
 private var _cacheLock: NSLock = NSLock(name: "com.charliemonroe.XUJSONDeserialization.XUObjCPropertyCache")
 
 
@@ -201,21 +206,38 @@ public final class XUJSONDeserializer {
 		XULog(entry.debugDescription)
 	}
 	
-	private func _propertiesForObject(object: XUJSONDeserializable) -> [XUObjCProperty] {
-		let className = NSStringFromClass(object.dynamicType)
+	private func _property(forObject object: XUJSONDeserializable, andKey key: String) -> XUObjCProperty? {
+		let classIdentifier = ObjectIdentifier(object.dynamicType)
 
 		_cacheLock.lock()
 		defer {
 			_cacheLock.unlock()
 		}
 
-		if let properties = _cachedProperties[className] {
-			return properties
+		if _cachedProperties[classIdentifier] == nil {
+			let properties = XUObjCProperty.propertiesOnClass(object.dynamicType, includingSuperclasses: true)
+			var propertyMapping: [String : XUObjCProperty] = [:]
+			for prop in properties {
+				propertyMapping[prop.name] = prop
+				propertyMapping[prop.name.lowercaseString] = prop
+			}
+			
+			_cachedProperties[classIdentifier] = propertyMapping
+		}
+		
+		let properties = _cachedProperties[classIdentifier]!
+		if let property = properties[key] {
+			return property
+		}
+		
+		let lowercaseKey = key.lowercaseString
+		if let property = properties[lowercaseKey] {
+			// Matching lowercase.
+			_cachedProperties[classIdentifier]![lowercaseKey] = property
+			return property
 		}
 
-		let properties = XUObjCProperty.propertiesOnClass(object.dynamicType, includingSuperclasses: true)
-		_cachedProperties[className] = properties
-		return properties
+		return nil
 	}
 
 	private func _deserializeObject(object: XUJSONDeserializable, fromDictionary dictionary: XUJSONDictionary, underKey key: String) -> XUJSONDeserializationPropertyResult {
@@ -223,11 +245,10 @@ public final class XUJSONDeserializer {
 			return .Ignored
 		}
 
-		let propertyList = self._propertiesForObject(object)
 		let property: XUObjCProperty
 		if let propertyName = object.propertyNameForDictionaryRepresentationKey?(key) {
 			// Custom name
-			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(propertyName)}) else {
+			guard let prop = self._property(forObject: object, andKey: propertyName) else {
 				self._addLogEntry(.Error, objectClass: object.dynamicType, key: key, additionalInformation: "Property named \(propertyName) not found in class \(object.dynamicType)")
 				return .Error
 			}
@@ -248,7 +269,7 @@ public final class XUJSONDeserializer {
 			}
 			
 			// We need to find it.
-			guard let prop = propertyList.find({ $0.name.isCaseInsensitivelyEqualToString(key)}) else {
+			guard let prop = self._property(forObject: object, andKey: key) else {
 				self._addLogEntry(.Warning, objectClass: object.dynamicType, key: key, additionalInformation: "Key \(key) not handled when mapping class \(object.dynamicType)")
 				return .Unhandled(error: .Warning)
 			}
