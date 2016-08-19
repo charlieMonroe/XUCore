@@ -9,13 +9,34 @@
 import Foundation
 
 /// Value for the accept/content header field.
+@available(*, deprecated, renamed="NSURLRequest.ContentType.JSON")
 public let XUMutableURLRequestJSONHeaderFieldValue = "application/json;charset=UTF-8"
 
 /// Value for the accept/content header field.
+@available(*, deprecated, renamed="NSURLRequest.ContentType.XML")
 public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml;charset=UTF-8"
 
 /// Value for the accept/content header field.
+@available(*, deprecated, renamed="NSURLRequest.ContentType.WWWForm")
 public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded;charset=UTF-8"
+
+public extension NSURLRequest {
+	
+	public struct ContentType {
+		
+		/// Content-Type: application/json
+		public static let JSON = "application/json;charset=UTF-8"
+		
+		/// Content-Type: application/xml
+		public static let XML = "application/xml;charset=UTF-8"
+		
+		/// Content-Type: application/x-www-form-urlencoded
+		public static let WWWForm = "application/x-www-form-urlencoded;charset=UTF-8"
+		
+	}
+	
+}
+
 
 public extension NSMutableURLRequest {
 	
@@ -26,22 +47,22 @@ public extension NSMutableURLRequest {
 		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
 	}
 	public func addJSONAcceptToHeader() {
-		self.addAccept(XUMutableURLRequestJSONHeaderFieldValue)
+		self.addAccept(NSURLRequest.ContentType.JSON)
 	}
 	public func addJSONContentToHeader() {
-		self.addContentType(XUMutableURLRequestJSONHeaderFieldValue)
+		self.addContentType(NSURLRequest.ContentType.JSON)
 	}
 	public func addMultipartFormDataContentToHeader() {
 		self.addContentType("multipart/form-data")
 	}
 	public func addWWWFormContentToHeader() {
-		self.addContentType(XUMutableURLRequestWWWFormHeaderFieldValue)
+		self.addContentType(NSURLRequest.ContentType.WWWForm)
 	}
 	public func addXMLAcceptToHeader() {
-		self.addAccept(XUMutableURLRequestXMLHeaderFieldValue)
+		self.addAccept(NSURLRequest.ContentType.XML)
 	}
 	public func addXMLContentToHeader() {
-		self.addContentType(XUMutableURLRequestXMLHeaderFieldValue)
+		self.addContentType(NSURLRequest.ContentType.XML)
 	}
 	
 	public var acceptType: String? {

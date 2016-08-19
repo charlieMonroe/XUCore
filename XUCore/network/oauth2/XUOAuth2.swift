@@ -275,7 +275,7 @@ public final class XUOAuth2Client {
 			
 			guard let obj = self.client.downloadCenter.downloadJSONDictionaryAtURL(self.client.configuration.tokenEndpointURL, withModifier: { (request) in
 				request.setUsername(self.client.configuration.clientID, andPassword: self.client.configuration.secret)
-				request.acceptType = XUMutableURLRequestJSONHeaderFieldValue
+				request.acceptType = NSURLRequest.ContentType.JSON
 				request.addWWWFormContentToHeader()
 				request["Cookie"] = nil
 				request.HTTPMethod = "POST"
@@ -418,7 +418,7 @@ public final class XUOAuth2Client {
 		
 		guard let obj = self.downloadCenter.downloadJSONDictionaryAtURL(self.configuration.tokenEndpointURL, withModifier: { (request) in
 			request.setUsername(self.configuration.clientID, andPassword: self.configuration.secret)
-			request.acceptType = XUMutableURLRequestJSONHeaderFieldValue
+			request.acceptType = NSURLRequest.ContentType.JSON
 			request.addWWWFormContentToHeader()
 			request["Cookie"] = nil
 			request.HTTPMethod = "POST"
