@@ -39,6 +39,16 @@ public extension NSAlert {
 		accessory.becomeFirstResponder()
 	}
 	
+	/// Adds a button with title "Cancel".
+	public func addCancelButton() {
+		self.addButtonWithTitle(XULocalizedString("Cancel", inBundle: XUCoreBundle))
+	}
+	
+	/// Adds a button with title "OK".
+	public func addOKButton() {
+		self.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
+	}
+	
 	/// Begins the alert as sheet from window with secure text field as accessory
 	/// view, containing initialValue.
 	public func beginSheetModalWithSecureTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {

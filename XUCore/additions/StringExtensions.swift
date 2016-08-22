@@ -209,6 +209,16 @@ public extension String {
 	public func isCaseInsensitivelyEqualToString(string: String) -> Bool {
 		return self.compare(string, options: .CaseInsensitiveSearch) == .OrderedSame
 	}
+	
+	/// Creates self from a base64 encoded string.
+	public init?(base64EncodedString: String) {
+		guard let data = NSData(base64EncodedString: base64EncodedString, options: NSDataBase64DecodingOptions()) else {
+			return nil
+		}
+		
+		self.init(data: data)
+	}
+	
 	/// This tries to create a string from data. First, UTF8 is tried as encoding,
 	/// then ASCII and then it just goes through the list of available string
 	/// encodings. This is pretty much a convenience initializer for cases where

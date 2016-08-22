@@ -64,7 +64,13 @@ public class XUDocumentSyncManager {
 		
 		let coordinator = NSFileCoordinator(filePresenter: nil)
 		coordinator.coordinateReadingItemAtURL(config.accountURL, options: .WithoutChanges, error: &error, byAccessor: { (newURL) in
-			let infoFileURL = config.accountURL.URLByDeletingLastPathComponent!.URLByAppendingPathComponent("Info.plist")
+			guard let infoFileURL = config.accountURL.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("Info.plist") else {
+				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreBundle)
+				])
+				return
+			}
+			
 			guard let accountDict = NSDictionary(contentsOfURL: infoFileURL) as? XUJSONDictionary else {
 				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreBundle)
@@ -106,11 +112,17 @@ public class XUDocumentSyncManager {
 			}
 		})
 		
-		if error != nil {
-			throw error!
+		if let error = error {
+			throw error
 		}
 		
-		return documentURL!
+		guard let docURL = documentURL else {
+			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+				NSLocalizedFailureReasonErrorKey : XULocalizedString("The document could not be downloaded at this moment.", inBundle: XUCoreBundle)
+			])
+		}
+		
+		return docURL
 	}
 	
 	/// This method goes through all the whole store uploads and looks for the
