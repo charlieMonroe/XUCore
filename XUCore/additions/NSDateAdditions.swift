@@ -181,6 +181,11 @@ public extension NSDate {
 		return self.timeIntervalSince1970 < date.timeIntervalSince1970
 	}
 	
+	/// Returns true iff date1 < self < date2.
+	public func isBetweenDate(date1: NSDate, andDate date2: NSDate) -> Bool {
+		return self.isAfterDate(date1) && self.isBeforeDate(date2)
+	}
+	
 	/// Returns true if the receiver referes to an newer date than in now.
 	public var isFuture: Bool {
 		return self.timeIntervalSinceReferenceDate > NSDate.timeIntervalSinceReferenceDate()
