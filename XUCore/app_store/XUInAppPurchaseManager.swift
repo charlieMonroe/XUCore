@@ -117,7 +117,9 @@ public class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKR
 		
 		SKPaymentQueue.defaultQueue().addTransactionObserver(self)
 		
-		if let savedPurchases = NSUserDefaults.standardUserDefaults().arrayForKey(XUInAppPurchasesDefaultsKey) as? [String] {
+		if XUAppSetup.isDebuggingInAppPurchases {
+			self.purchasedProductIdentifiers = self.delegate.availableProductIdentifiers
+		} else if let savedPurchases = NSUserDefaults.standardUserDefaults().arrayForKey(XUInAppPurchasesDefaultsKey) as? [String] {
 			let allowedIdentifiers = self.delegate.availableProductIdentifiers
 			for hashedIdentifier in savedPurchases {
 				for inAppPurchaseID in allowedIdentifiers {

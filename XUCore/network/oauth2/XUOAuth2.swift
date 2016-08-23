@@ -515,7 +515,7 @@ public final class XUOAuth2Client {
 
 	private convenience init?(dictionary: XUJSONDictionary) {
 		guard let
-			configurationDict = dictionary[ClientKeys.configurationKey] as? [String : String],
+			configurationDict = dictionary[ClientKeys.configurationKey] as? XUJSONDictionary,
 			accountDicts = dictionary[ClientKeys.accountsKey] as? [XUJSONDictionary] else {
 			return nil
 		}
@@ -537,12 +537,18 @@ public final class XUOAuth2Client {
 			_authorizationController!.runModal(withCompletionHandler: { result in
 				XUURLHandlingCenter.defaultCenter.removeHandler(self, forURLScheme: self.configuration.redirectionScheme)
 				completionHandler?(result)
+				
+				XUOAuth2Client.save()
 			})
 		}
 	#else
 		public func startAccountAuthorization(fromController controller: UIViewController, withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
 			_authorizationController = XUAuthorizationWebViewController(URL: self.configuration.authorizationURL)
-			_authorizationController!.present(fromController: controller, withCompletionHandler: completionHandler)
+			_authorizationController!.present(fromController: controller, withCompletionHandler: {
+				completionHandler?($0)
+			
+				XUOAuth2Client.save()
+			})
 		}
 	#endif
 	
