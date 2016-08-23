@@ -230,15 +230,15 @@ public class XUDownloadCenter {
 		
 		self._setupCookieFieldForURLRequest(request)
 		
-		if modifier != nil {
-			modifier!(request: request)
-		}
-		
-		if request.valueForHTTPHeaderField("Accept") == nil {
-			request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+		if request.acceptType == nil {
+			request.acceptType = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
 		}
 		
 		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)
+
+		if modifier != nil {
+			modifier!(request: request)
+		}
 		
 		if XUDebugLog.isLoggingEnabled && self.logTraffic {
 			var logString = "Method: \(request.HTTPMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
@@ -469,22 +469,14 @@ public class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequestToURL(URL: NSURL!, withReferer referer: String? = nil) -> NSHTTPURLResponse? {
-		return self.sendHeadRequestToURL(URL, withRequestModifier: { (request: NSMutableURLRequest) in
-			if referer != nil {
-				request.referer = referer
-			}
-		})
-	}
-	
-	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequestToURL(URL: NSURL!, withRequestModifier modifier: XUURLRequestModifier?) -> NSHTTPURLResponse? {
-		if (URL == nil) {
+	public func sendHeadRequestToURL(URL: NSURL!, withReferer referer: String? = nil, withRequestModifier modifier: XUURLRequestModifier? = nil) -> NSHTTPURLResponse? {
+		if URL == nil {
 			return nil
 		}
 		
 		let req = NSMutableURLRequest(URL: URL!)
 		req.HTTPMethod = "HEAD"
+		req.referer = referer
 		
 		self._setupCookieFieldForURLRequest(req)
 		
