@@ -83,6 +83,15 @@ public extension NSMutableURLRequest {
 		}
 	}
 	
+	public var origin: String? {
+		get {
+			return self["Origin"]
+		}
+		set {
+			self["Origin"] = newValue
+		}
+	}
+	
 	public var referer: String? {
 		get {
 			return self.valueForHTTPHeaderField("Referer")

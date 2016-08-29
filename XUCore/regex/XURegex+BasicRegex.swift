@@ -81,7 +81,10 @@ public extension String {
 	/// each time. Note that this method does not work property when the value
 	/// contains quotes.
 	public func valueOf(dataFieldNamed fieldName: String) -> String? {
-		return self.getRegexVariableNamed("VALUE", forRegexString: "data-\(fieldName)=\"(?P<VALUE>[^\"]+)\"")
+		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+			"data-\(fieldName)=\"(?P<VALUE>[^\"]+)\"",
+			"data-\(fieldName)='(?P<VALUE>[^']+)'"
+		)
 	}
 	
 	/// Returns a value of a meta HTML field in self. This cannot be achieved by
