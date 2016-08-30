@@ -28,6 +28,9 @@ public final class XUAlert {
 	/// When set to true, touching the dimmed background will dismiss the alert.
 	public var canBeDismissedByTouchingOutsideOfContentView: Bool = false
 	
+	/// Optional completion handler. Called when the controller is being dismissed.
+	public var completionHandler: (() -> Void)?
+	
 	/// View controller this instance was initialized with.
 	public let viewController: UIViewController
 
@@ -119,10 +122,15 @@ private final class _XUAlertViewController: UIViewController {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	private override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
 
 	private override func viewDidDisappear(animated: Bool) {
 		super.viewDidDisappear(animated)
 
+		self.alert.completionHandler?()
 		self.alert = nil
 	}
 
