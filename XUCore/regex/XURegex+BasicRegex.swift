@@ -76,6 +76,17 @@ public extension XURegex {
 
 public extension String {
 	
+	/// Returns a value of a data-`fieldName` HTML field in self. This is 
+	/// a convenience method so that a special regex doesn't have to be created
+	/// each time. Note that this method does not work property when the value
+	/// contains quotes.
+	public func valueOf(dataFieldNamed fieldName: String) -> String? {
+		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+			"data-\(fieldName)=\"(?P<VALUE>[^\"]+)\"",
+			"data-\(fieldName)='(?P<VALUE>[^']+)'"
+		)
+	}
+	
 	/// Returns a value of a meta HTML field in self. This cannot be achieved by
 	/// a single regex, since the name can be either before or after content,
 	/// and there is no way to ensure that at least one of the conditions is met.

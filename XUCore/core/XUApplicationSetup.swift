@@ -121,6 +121,12 @@ public class XUApplicationSetup {
 	public var isDarkModeEnabled: Bool {
 		return NSUserDefaults.standardUserDefaults().stringForKey("AppleInterfaceStyle") == "Dark"
 	}
+
+	/// Returns true, if the app is debugging in-app purchases. When true, the
+	/// XUInAppPurchasesManager will return all available IAPs as purchased. To
+	/// enabled this mode, edit the scheme of your project and add "--iap-debug" 
+	/// to the arguments list to enable it.
+	public let isDebuggingInAppPurchases: Bool
 	
 	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
 	/// where #if DEBUG macro can be applied, in Swift, this is a bit more
@@ -211,6 +217,7 @@ public class XUApplicationSetup {
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
 		
 		self.isRunningInDebugMode = NSProcessInfo.processInfo().arguments.contains("--debug")
+		self.isDebuggingInAppPurchases = NSProcessInfo.processInfo().arguments.contains("--iap-debug")
 		
 		self.trialClassName = infoDictionary["XUTrialClassName"] as? String
 		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? NSNumber)?.integerValue ?? 14

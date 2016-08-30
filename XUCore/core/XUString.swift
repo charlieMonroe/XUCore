@@ -69,6 +69,12 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 		return _buffer[index]
 	}
 	
+	/// Returns the inner string buffer. Should not be accessed, unless you have
+	/// a good reason for it..
+	public var characters: [XUChar] {
+		return _buffer
+	}
+	
 	/// Returns a copy of self.
 	public func copy() -> XUString {
 		return XUString(chars: _buffer)
@@ -216,6 +222,7 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 	}
 	
 	/// Returns the inner string buffer. Should not be accessed.
+	@available(*, unavailable, renamed="characters")
 	public var string: [XUChar] {
 		return _buffer
 	}
@@ -264,5 +271,45 @@ public class XUString: Equatable, CustomDebugStringConvertible, CustomStringConv
 		}
 	}
 	
+}
+
+/// Allow iteration of the string.
+extension XUString: SequenceType {
+	
+	public typealias Generator = XUStringGenerator
+	
+	public func generate() -> XUStringGenerator {
+		return XUStringGenerator(string: self)
+	}
 	
 }
+
+/// Generator for XUString.
+public class XUStringGenerator: GeneratorType {
+	
+	public typealias Element = XUString.XUChar
+	
+	/// Current index we're at.
+	public var currentIndex: Int
+	
+	/// The string we're iterating.
+	public let string: XUString
+	
+	/// Returns next element.
+	public func next() -> XUString.XUChar? {
+		if currentIndex + 1 >= self.string.length {
+			return nil
+		}
+		
+		self.currentIndex += 1
+		return self.string[self.currentIndex]
+	}
+	
+	/// Initializes with a string.
+	public init(string: XUString) {
+		self.string = string
+		self.currentIndex = 0
+	}
+	
+}
+

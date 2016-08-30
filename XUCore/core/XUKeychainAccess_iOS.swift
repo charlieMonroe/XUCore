@@ -15,7 +15,7 @@ public class XUKeychainAccess {
 	private func _dictionaryForUsername(username: String, inAccount account: String, accessGroup: String?) -> [String : AnyObject]? {
 		var genericPasswordQuery: [String : AnyObject] = [:]
 		genericPasswordQuery[kSecClass as String] = kSecClassGenericPassword
-		genericPasswordQuery[kSecAttrGeneric as String] = account + ": " + username
+		genericPasswordQuery[kSecAttrAccount as String] = "\(account): \(username)"
 		
 		if let accessGroup = accessGroup {
 			#if (arch(i386) || arch(x86_64)) && os(iOS)
@@ -85,12 +85,8 @@ public class XUKeychainAccess {
 			dict = currentDictionary
 			isNew = false
 		} else {
-			dict = [
-				(kSecAttrAccount as String): "",
-				(kSecAttrLabel as String): "",
-				(kSecAttrDescription as String): "",
-			]
-			
+			dict = [:]
+
 			if let accessGroup = accessGroup {
 				#if (arch(i386) || arch(x86_64)) && os(iOS)
 				#else
@@ -98,7 +94,8 @@ public class XUKeychainAccess {
 				#endif
 			}
 			
-			dict[kSecAttrGeneric as String] = account + ": " + username
+			dict[kSecClass as String] = kSecClassGenericPassword
+			dict[kSecAttrAccount as String] = "\(account): \(username)"
 			isNew = true
 		}
 		

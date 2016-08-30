@@ -41,6 +41,11 @@ extension Character {
 		return self.unicodeScalarValue < 128
 	}
 	
+	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
+	public var isASCIIOrPunctuation: Bool {
+		return self.isASCII || self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
+	}
+	
 	/// Returns true iff `self` is a-z or A-Z.
 	public var isASCIILetter: Bool {
 		return self.isLowercaseASCIILetter || self.isUppercaseASCIILetter

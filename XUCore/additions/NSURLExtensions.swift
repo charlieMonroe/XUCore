@@ -120,13 +120,13 @@ public extension NSURL {
 			return self
 		}
 
-		guard let URLComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 
-		URLComponents.fragment = nil
+		urlComponents.fragment = nil
 
-		return URLComponents.URL ?? self
+		return urlComponents.URL ?? self
 	}
 	
 	/// Returns URL with deleted query (i.e. the ? part). Fallbacks to self.
@@ -135,13 +135,28 @@ public extension NSURL {
 			return self
 		}
 		
-		guard let URLComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 		
-		URLComponents.query = nil
+		urlComponents.query = nil
 		
-		return URLComponents.URL ?? self
+		return urlComponents.URL ?? self
+	}
+	
+	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
+	public func URLWithQuery(query: XUJSONDictionary) -> NSURL {
+		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+			return self
+		}
+		
+		urlComponents.query = query.URLQueryString
+		
+		guard let result = urlComponents.URL else {
+			fatalError("Setting query from dictionary rendered invalid. This should not happen.")
+		}
+		
+		return result
 	}
 }
 

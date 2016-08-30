@@ -173,6 +173,7 @@ public extension String {
 		string = string.stringByReplacingOccurrencesOfString("'", withString: "&#x27;", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString(">", withString: "&gt;", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString("<", withString: "&lt;", options: .LiteralSearch)
+		
 		return string
 	}
 
@@ -187,7 +188,7 @@ public extension String {
 		string = string.stringByReplacingOccurrencesOfString("&apos;", withString: "'", options: .LiteralSearch)
 		string = string.stringByReplacingOccurrencesOfString("&reg;", withString: "®", options: .LiteralSearch)
 
-		let regex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]);", andOptions: .Caseless)
+		let regex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .Caseless)
 		let allOccurrences = self.allValuesOfVariableNamed("C", forRegex: regex).distinct()
 		for occurrence in allOccurrences {
 			let value: Int
