@@ -7,8 +7,6 @@
 //
 
 #import "XURegex.h"
-#import "NSArrayAdditions.h"
-
 #import "re2/re2.h"
 
 static NSLock *_evaluationLock;
@@ -53,10 +51,15 @@ static NSLock *_evaluationLock;
 	
 	return result;
 }
--(NSArray *)allOccurrencesOfVariableNamed:(NSString *)varName inString:(NSString *)string{
-	return [[self allOccurrencesInString:string] map:^id(NSString *match) {
-		return [self getVariableNamed:varName inString:match];
-	}];
+-(NSArray *)allOccurrencesOfVariableNamed:(NSString *)varName inString:(NSString *)string {
+	NSMutableArray *result = [NSMutableArray array];
+	for (NSString *match in [self allOccurrencesInString:string]) {
+		NSString *value = [self getVariableNamed:varName inString:match];
+		if (value != nil) {
+			[result addObject:value];
+		}
+	}
+	return result;
 }
 -(NSDictionary *)allVariablePairsInString:(NSString *)string{
 	NSArray *matches = [self allOccurrencesInString:string];

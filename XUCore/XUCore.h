@@ -15,14 +15,10 @@ FOUNDATION_EXPORT double XUCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Additions. */
-#import "NSArrayAdditions.h"
 #import "NSData+CommonCryptoSwift.h"
-#import "NSDictionaryAdditions.h"
-#import "NSStringAdditions.h"
 #import "NSXMLAdditions.h"
 
 /** Core. */
-#import "XUAbstract.h"
 #import "XUExceptionCatcher.h"
 
 /** Regex. */
