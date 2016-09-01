@@ -83,22 +83,41 @@ public extension XUDownloadCenterOwner {
 	
 }
 
-private class _XUSynchronousDataLoader {
+
+/// Synchronous data loader. This class will synchronously load data from the
+/// request using the session.
+public class XUSynchronousDataLoader {
 	
-	let request: NSURLRequest
+	/// Request to be loaded.
+	public let request: NSURLRequest
 	
-	init(request: NSURLRequest) {
+	/// Session to be used for the data load.
+	public let session: NSURLSession
+	
+	/// Designated initializer. Session defaults to NSURLSession.sharedSession().
+	public init(request: NSURLRequest, andSession session: NSURLSession = NSURLSession.sharedSession()) {
 		self.request = request
+		self.session = session
 	}
 	
-	func loadData() throws -> (NSData, NSURLResponse?) {
+	/// Loads data from self.request and either throws, or returns a tuple of 
+	/// NSData and NSURLResponse?. Note that the response can indeed be nil even
+	/// if the data part is nonnil.
+	///
+	/// IMPORTANT: This method asserts that the current queue != delegateQueue of
+	/// self.session, which usually is the main queue. It is important not to
+	/// invoke this method in such manner since it would lead to a deadlock.
+	public func loadData() throws -> (NSData, NSURLResponse?) {
+		assert(NSOperationQueue.currentQueue() != self.session.delegateQueue,
+		       "Can't be loading data on the same queue as is the session's delegate queue!")
+		
 		var data: NSData?
 		var response: NSURLResponse?
 		var error: NSError?
 		
 		let lock = NSConditionLock(condition: 0)
 		
-		NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+		self.session.dataTaskWithRequest(request, completionHandler: {
 			data = $0.0
 			response = $0.1
 			error = $0.2
@@ -127,23 +146,152 @@ private class _XUSynchronousDataLoader {
 /// Class that handles communication over HTTP and parsing the responses.
 public class XUDownloadCenter {
 	
-	/// TODO: Both should be @noescape. Depends on SR-2266.
-	public typealias XUPOSTFieldsModifier = (fields: inout [String : String]) -> Void
-	public typealias XUURLRequestModifier = (request: NSMutableURLRequest) -> Void
+	/// Configuration of the proxy.
+	public struct ProxyConfiguration {
+		
+		/// Type of the proxy. Currently only HTTP, HTTPS and SOCKS are supported.
+		public enum ProxyType {
+			
+			/// Pure HTTP proxy.
+			case HTTP
+			
+			/// HTTPS proxy. Not tested on iOS at this point. Use with caution.
+			case HTTPS
+			
+			/// SOCKS proxy. SOCKS 4 is currently not supported, this defaults
+			/// to SOCKS 5.
+			case SOCKS
+		}
+		
+		/// Structure encapsulating the host information.
+		public struct Host {
+			
+			/// Host address - typically an IP address.
+			let address: String
+			
+			/// Port of the host.
+			let port: Int
+			
+			/// Designated initializer.
+			public init(address: String, andPort port: Int) {
+				self.address = address
+				self.port = port
+			}
+		}
+		
+		/// Structure encapsulating username + password.
+		public struct Credentials {
+			
+			/// Password.
+			public let password: String
+			
+			/// Username.
+			public let username: String
+			
+			/// Designated initializer.
+			public init(username: String, andPassword password: String) {
+				self.username = username
+				self.password = password
+			}
+			
+		}
+		
+		/// Optionally, credentials. Applies to SOCKS only.
+		public let credentials: Credentials?
+		
+		/// Host of the proxy.
+		public let host: Host
+		
+		/// Type of the proxy.
+		public let proxyType: ProxyType
+		
+		public init(host: Host, type: ProxyType, andCredentials credentials: Credentials? = nil) {
+			self.host = host
+			self.proxyType = type
+			self.credentials = credentials
+		}
+		
+	}
 	
+	/// TODO: These should be @noescape. Depends on SR-2266.
+	
+	/// A closure typealias that takes fields as a parameter - this dictionary
+	/// should be modified and supplied with fields to be sent in a POST request.
+	public typealias POSTFieldsModifier = (fields: inout [String : String]) -> Void
+	
+	/// A closure typealias for modifying a NSMutableURLRequest.
+	public typealias URLRequestModifier = (request: NSMutableURLRequest) -> Void
+	
+	@available(*, deprecated, renamed="POSTFieldsModifier")
+	public typealias XUPOSTFieldsModifier = POSTFieldsModifier
+	
+	@available(*, deprecated, renamed="URLRequestModifier")
+	public typealias XUURLRequestModifier = URLRequestModifier
+	
+	
+	/// Returns the last error that occurred. Nil, if no error occurred yet.
 	public private(set) var lastError: NSError?
+	
+	/// Returns the last URL response. Nil, if this download center didn't download
+	/// anything yet.
 	public private(set) var lastHTTPURLResponse: NSHTTPURLResponse?
+	
+	/// If true, logs all traffic via XULog.
 	public var logTraffic: Bool = true
-	public weak var owner: XUDownloadCenterOwner!
+	
+	/// Owner of the download center. Used for delegation. Must be non-nil.
+	public private(set) weak var owner: XUDownloadCenterOwner!
+	
+	/// Proxy configuration. By default nil, set to nonnil value for proxy support.
+	public var proxyConfiguration: ProxyConfiguration? {
+		didSet {
+			guard let config = self.proxyConfiguration else {
+				self.session.configuration.connectionProxyDictionary = nil
+				return
+			}
+			
+			var dict: [String : AnyObject] = [:]
+			switch config.proxyType {
+			case .HTTP:
+				dict[kCFStreamPropertyHTTPProxyHost as String] = config.host.address
+				dict[kCFStreamPropertyHTTPProxyPort as String] = config.host.port
+			case .HTTPS:
+				dict[kCFStreamPropertyHTTPProxyHost as String] = config.host.address
+				dict[kCFStreamPropertyHTTPProxyPort as String] = config.host.port
+				
+				dict[kCFStreamPropertyHTTPSProxyHost as String] = config.host.address
+				dict[kCFStreamPropertyHTTPSProxyPort as String] = config.host.port
+			case .SOCKS:
+				dict[kCFStreamPropertySOCKSProxyHost as String] = config.host.address
+				dict[kCFStreamPropertySOCKSProxyPort as String] = config.host.port
+				
+				if let credentials = config.credentials {
+					dict[kCFStreamPropertySOCKSUser as String] = credentials.username
+					dict[kCFStreamPropertySOCKSPassword as String] = credentials.password
+				}
+			}
+			
+			self.session.configuration.connectionProxyDictionary = dict
+		}
+	}
+	
+	/// Session this download center was initialized with.
+	public let session: NSURLSession
 	
 	/// Initializer. The owner must keep itself alive as long as the download
 	/// center is alive. If the owner is to be dealloc'ed, dealloc the download
 	/// center as well.
-	public init(owner: XUDownloadCenterOwner) {
+	///
+	/// By default the session is populated with NSURLSession.sharedSession. It 
+	/// may be a good idea in many cases to create your own session instead,
+	/// mostly if you are setting the proxy configurations since that modifies
+	/// the session configuration which may lead to app-wide behavior changes.
+	public init(owner: XUDownloadCenterOwner, session: NSURLSession = NSURLSession.sharedSession()) {
 		self.owner = owner
+		self.session = session
 	}
 	
-	
+	/// Imports cookies from response to NSHTTPCookieStorage.
 	private func _importCookiesFromURLResponse(response: NSHTTPURLResponse) {
 		guard let
 			URL = response.URL,
@@ -204,7 +352,7 @@ public class XUDownloadCenter {
 			NSHTTPCookieValue: value,
 			NSHTTPCookiePath: "/",
 			NSHTTPCookieDomain: host
-			]) {
+		]) {
 			storage.setCookie(cookie)
 		}
 	}
@@ -219,7 +367,7 @@ public class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
-	public func downloadDataAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: XUURLRequestModifier? = nil) -> NSData? {
+	public func downloadDataAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> NSData? {
 		if URL == nil {
 			return nil
 		}
@@ -250,7 +398,7 @@ public class XUDownloadCenter {
 		}
 		
 		do {
-			let (data, response) = try _XUSynchronousDataLoader(request: request).loadData()
+			let (data, response) = try XUSynchronousDataLoader(request: request, andSession: self.session).loadData()
 			self.lastHTTPURLResponse = response as? NSHTTPURLResponse
 			return data
 		} catch let error as NSError {
@@ -261,7 +409,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionaryAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> XUJSONDictionary? {
+	public func downloadJSONDictionaryAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
 		guard let obj = self.downloadJSONAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -275,7 +423,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSONAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> AnyObject? {
+	public func downloadJSONAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> AnyObject? {
 		let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
 			request.addJSONAcceptToHeader()
 			
@@ -297,7 +445,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Downloads a pure website source.
-	public func downloadWebSiteSourceAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> String? {
+	public func downloadWebSiteSourceAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> String? {
 		if URL == nil {
 			return nil
 		}
@@ -332,7 +480,7 @@ public class XUDownloadCenter {
 	
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
-	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL!, withModifier modifier: XUPOSTFieldsModifier? = nil) -> String? {
+	public func downloadWebSiteSourceByPostingFormOnPage(source: String, toURL URL: NSURL!, withModifier modifier: POSTFieldsModifier? = nil) -> String? {
 		var inputFields = source.allVariablePairsForRegexString("<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairsForRegexString("<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
@@ -469,7 +617,7 @@ public class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequestToURL(URL: NSURL!, withReferer referer: String? = nil, withRequestModifier modifier: XUURLRequestModifier? = nil) -> NSHTTPURLResponse? {
+	public func sendHeadRequestToURL(URL: NSURL!, withReferer referer: String? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> NSHTTPURLResponse? {
 		if URL == nil {
 			return nil
 		}
@@ -485,7 +633,7 @@ public class XUDownloadCenter {
 		}
 		
 		do {
-			let (_, response) = try _XUSynchronousDataLoader(request: req).loadData()
+			let (_, response) = try XUSynchronousDataLoader(request: req, andSession: self.session).loadData()
 			
 			guard let HTTPResponse = response as? NSHTTPURLResponse else {
 				if self.logTraffic {
