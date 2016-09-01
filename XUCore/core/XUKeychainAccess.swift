@@ -15,16 +15,13 @@ public class XUKeychainAccess: NSObject {
 	
 	/// Fetches a password for username in account from Keychain.
 	public func passwordForUsername(username: String, inAccount account: String) -> String? {
-		let utf8account = (account as NSString).UTF8String
-		let utf8username = (username as NSString).UTF8String
-		
 		var passLen: UInt32 = 0
 		var passBytes: UnsafeMutablePointer<Void> = nil
 		var item: SecKeychainItemRef? = nil
 		
 		let result = SecKeychainFindGenericPassword(nil,
-			UInt32(strlen(utf8account)), utf8account,
-			UInt32(strlen(utf8username)), utf8username,
+			UInt32(strlen(account)), account,
+			UInt32(strlen(username)), username,
 			&passLen, &passBytes,
 			&item
 		)
@@ -49,14 +46,10 @@ public class XUKeychainAccess: NSObject {
 	/// Saves password for username in account to Keychain. Returns true if the
 	/// operation was successful, false otherwise.
 	public func savePassword(password: String, forUsername username: String, inAccount account: String) -> Bool {
-		let utf8username = (username as NSString).UTF8String
-		let utf8password = (password as NSString).UTF8String
-		let utf8account = (account as NSString).UTF8String
-		
 		let status = SecKeychainAddGenericPassword(nil,
-			UInt32(strlen(utf8account)), utf8account,
-			UInt32(strlen(utf8username)), utf8username,
-			UInt32(strlen(utf8password)), utf8password,
+			UInt32(strlen(account)), account,
+			UInt32(strlen(username)), username,
+			UInt32(strlen(password)), password,
 			nil
 		)
 		
@@ -75,8 +68,8 @@ public class XUKeychainAccess: NSObject {
 		var item: SecKeychainItemRef? = nil
 
 		let result = SecKeychainFindGenericPassword(nil,
-			UInt32(strlen(utf8account)), utf8account,
-			UInt32(strlen(utf8username)), utf8username,
+			UInt32(strlen(account)), account,
+			UInt32(strlen(username)), username,
 			&passLen, &passBytes,
 			&item
 		)
@@ -93,7 +86,7 @@ public class XUKeychainAccess: NSObject {
 			return true // It's the same password, ignore
 		}
 		
-		let modificationResult = SecKeychainItemModifyContent(item!, nil, UInt32(strlen(utf8password)), utf8password)
+		let modificationResult = SecKeychainItemModifyContent(item!, nil, UInt32(strlen(password)), password)
 		if modificationResult == noErr {
 			return true
 		}
