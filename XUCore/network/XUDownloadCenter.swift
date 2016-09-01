@@ -515,7 +515,7 @@ public class XUDownloadCenter {
 	#if os(OSX)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocumentAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: XUURLRequestModifier? = nil) -> NSXMLDocument? {
+	public func downloadXMLDocumentAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> NSXMLDocument? {
 		guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
