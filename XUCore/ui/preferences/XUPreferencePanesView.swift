@@ -166,7 +166,7 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 		let textSize = attributedString.string.sizeWithAttributes(attributes)
 		let textBounds = CGRect(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
 
-		let textFrame = CGRect(x: 0.0, y: 32.0, width: controlView.frame.width, height: textSize.height)
+		let textFrame = CGRect(x: 0.0, y: 34.0, width: controlView.frame.width, height: textSize.height)
 		attributedString.string.drawInRect(textFrame, withAttributes: attributes)
 		
 		return textBounds
@@ -213,7 +213,7 @@ private class XUPreferencePaneButton: NSButton {
 		
 		let textSize = attributedString.string.sizeWithAttributes(attributes)
 		var result = textSize
-		result.height = 32.0 + textSize.height
+		result.height = 32.0 + textSize.height + 2.0
 		return result
 	}
 

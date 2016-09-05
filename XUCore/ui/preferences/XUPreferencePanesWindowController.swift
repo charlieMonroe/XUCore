@@ -61,6 +61,9 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	/// Controller that shows the button for accessing all panes.
 	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
 	
+	/// Current view being displayed.
+	private var _currentView: NSView!
+	
 	/// Controller that shows the title.
 	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
 	
@@ -75,20 +78,26 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	public private(set) var sections: [XUPreferencePanesSection]!
 	
 	
-	/// Sets the current view to view and changes the window size.
+	/// Sets the current view to view and changes the window size. We're forcing
+	/// the 660px width here, though.
 	private func _setMainWindowContentView(view: NSView) {
 		let preferencesWindow = self.window!
-		if preferencesWindow.contentView != view {
+		if _currentView != view {
 			var winFrame = preferencesWindow.frame
 			let contSize = preferencesWindow.contentView!.bounds.size
-			let xDelta = contSize.width - view.bounds.size.width
-			winFrame.origin.x += xDelta / 2.0
-			winFrame.size.width -= xDelta
+			
+			winFrame.size.width = XUPreferencePanesView.viewWidth
+			
 			let yDelta = contSize.height - view.bounds.size.height
 			winFrame.origin.y += yDelta
 			winFrame.size.height -= yDelta
-			preferencesWindow.contentView = view
-			preferencesWindow.setFrame(winFrame, display: true, animate: true)
+			
+			NSAnimationContext.beginGrouping()
+			preferencesWindow.animator().contentView = view
+			preferencesWindow.animator().setFrame(winFrame, display: false)
+			NSAnimationContext.endGrouping()
+			
+			_currentView = view
 		}
 	}
 	
@@ -110,7 +119,9 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	}
 	
 	public override func showWindow(sender: AnyObject?) {
-		self.window!.center()
+		if !self.windowLoaded || !self.window!.visible {
+			self.window!.center()
+		}
 		super.showWindow(sender)
 	}
 	
@@ -124,7 +135,9 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 		self.window!.addTitlebarAccessoryViewController(_titleViewController)
 		
 		self.window!.setContentSize(self.allPanesView.frame.size)
-		self.window!.contentView = self.allPanesView
+		self.window!.contentView!.addSubview(self.allPanesView)
+		
+		_currentView = self.allPanesView
     }
     
 }

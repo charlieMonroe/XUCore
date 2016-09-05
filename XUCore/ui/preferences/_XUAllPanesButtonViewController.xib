@@ -17,8 +17,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P47-Vf-ZHL" customClass="XULongPressButton" customModule="XUCore" customModuleProvider="target">
-                    <rect key="frame" x="1" y="-1" width="46" height="32"/>
-                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSIconViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IHF-jY-HqO">
+                    <rect key="frame" x="-1" y="-1" width="50" height="32"/>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="AllPreferencePanes" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IHF-jY-HqO">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -35,6 +35,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSIconViewTemplate" width="10" height="10"/>
+        <image name="AllPreferencePanes" width="14" height="10"/>
     </resources>
 </document>
