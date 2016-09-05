@@ -21,14 +21,3 @@ public class XUArrayNotEmptyTransformer: NSValueTransformer {
 	}
 
 }
-
-@objc(FCArrayNotEmpty) public class FCArrayNotEmpty: XUArrayNotEmptyTransformer {
-	
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		return super.transformedValue(value)
-	}
-	
-}
-

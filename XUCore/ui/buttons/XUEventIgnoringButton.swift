@@ -23,15 +23,3 @@ public class XUEventIgnoringButton: NSButton {
 	}
 	
 }
-
-
-@available(*, deprecated)
-@objc(FCEventIgnoringButton) class FCEventIgnoringButton: XUEventIgnoringButton {
-	
-	override func awakeFromNib() {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		super.awakeFromNib()
-	}
-	
-}

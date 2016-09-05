@@ -27,14 +27,3 @@ public class XUStringTrimmingTransformer: NSValueTransformer {
 	}
 	
 }
-
-@objc(FCTrimmingTransformer) public class FCTrimmingTransformer: XUStringTrimmingTransformer {
-	
-	
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		return super.transformedValue(value)
-	}
-	
-}

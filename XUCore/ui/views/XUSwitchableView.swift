@@ -180,14 +180,3 @@ public class XUSwitchableView: NSView {
 	}
     
 }
-
-@available(*, deprecated)
-@objc(FCSwitchableView) public class FCSwitchableView: XUSwitchableView {
-	
-	public override func awakeFromNib() {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		super.awakeFromNib()
-	}
-	
-}

@@ -45,20 +45,3 @@ public class XUAttributedStringTransformer: NSValueTransformer {
 	}
 	
 }
-
-
-@objc(FCAttributedStringTransformer) public class FCAttributedStringTransformer: XUAttributedStringTransformer {
-	
-	
-	public override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		return super.reverseTransformedValue(value)
-	}
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		return super.transformedValue(value)
-	}
-}
-

@@ -33,14 +33,3 @@ public class XUMenuButton: NSButton {
 	}
     
 }
-
-/// This is a deprecated class for detecting use of deprecated FCMenuButton
-@objc(FCMenuButton) public class FCMenuButton: XUMenuButton {
-	
-	public override func awakeFromNib() {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		super.awakeFromNib()
-	}
-	
-}

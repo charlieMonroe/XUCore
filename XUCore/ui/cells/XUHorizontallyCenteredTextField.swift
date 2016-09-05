@@ -21,15 +21,3 @@ public class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
 	}
 	
 }
-
-@available(*, deprecated)
-@objc(FCHorizontallyCenteredTextField) class FCHorizontallyCenteredTextField: XUHorizontallyCenteredTextFieldCell {
-	
-	override func awakeFromNib() {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-		
-		super.awakeFromNib()
-	}
-	
-}
-

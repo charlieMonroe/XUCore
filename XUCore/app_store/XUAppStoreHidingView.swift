@@ -20,14 +20,3 @@ public class XUAppStoreHidingView: NSView {
 	}
 	
 }
-
-@objc(FCAppStoreHidingView) public class FCAppStoreHidingView: XUAppStoreHidingView {
-	
-	public override func awakeFromNib() {
-		super.awakeFromNib()
-		
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
-	}
-	
-}
-
