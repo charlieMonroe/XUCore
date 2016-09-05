@@ -199,6 +199,35 @@ public extension String {
 		return self.allVariablePairsForRegex(XURegex(pattern: regexString, andOptions: .Caseless))
 	}
 	
+	/// Returns components separated by regex. Works pretty much like separating
+	/// components by string or character set, but uses regex. Note that using an
+	/// infinite regex will cause the method to call fatalError since it would
+	/// lead to an infinite array.
+	public func components(separatedByRegex regex: XURegex) -> [String] {
+		var result: [String] = []
+		var searchString = self
+		while let match = searchString.firstOccurrenceOfRegex(regex) {
+			guard let range = searchString.rangeOfString(match) where !range.isEmpty else {
+				fatalError("The supplied regex \(regex) for components(separatedByRegex:) is infinite.")
+			}
+			
+			result.append(searchString.substringWithRange(searchString.startIndex ..< range.startIndex))
+			searchString = searchString.substringFromIndex(range.endIndex)
+		}
+		
+		if result.isEmpty {
+			return [self]
+		}
+		
+		return result
+	}
+	
+	/// @see components(separatedByRegex:) - this is a convenience method that 
+	/// takes in a regex string.
+	public func components(separatedByRegexString regexString: String) -> [String] {
+		return self.components(separatedByRegex: XURegex(pattern: regexString, andOptions: .Caseless))
+	}
+
 	/// The most basic usage - first regex match.
 	public func firstOccurrenceOfRegex(regex: XURegex) -> String? {
 		return regex.firstMatchInString(self)

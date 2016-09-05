@@ -221,10 +221,18 @@ public extension Array {
 	}
 	
 	/// Similar to filterMap(), but provides the index of the element.
+	@available(*, deprecated, renamed="flatMapIndexed")
 	public func filterMapIndexed<U>(@noescape mapper: (Generator.Element, Int) -> U?) -> [U] {
+		return self.flatMapIndexed({
+			mapper($1, $0)
+		})
+	}
+	
+	/// Similar to flatMap, but provides an index.
+	public func flatMapIndexed<U>(@noescape mapper: (Int, Generator.Element) -> U?) -> [U] {
 		var result: [U] = [ ]
-		for i in 0..<Int(self.count) {
-			if let obj = mapper(self[i], i) {
+		for i in 0 ..< self.count {
+			if let obj = mapper(i, self[i]) {
 				result.append(obj)
 			}
 		}
