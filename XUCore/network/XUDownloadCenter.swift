@@ -13,7 +13,7 @@ public let XUDownloadCenterMobileUserAgent = "Mozilla/5.0 (iPad; CPU OS 8_1 like
 
 public enum XUDownloadCenterError {
 	
-	/// This error represents a state where the NSURLConnection returns nil -
+	/// This error represents a state where the NSURLSession returns nil -
 	/// i.e. connection timeout or no internet connection at all.
 	case NoInternetConnection
 	
@@ -149,8 +149,15 @@ public class XUDownloadCenter {
 	/// Configuration of the proxy.
 	public struct ProxyConfiguration {
 		
+		/// Keys for dictionaryRepresentation and init(dictionary:)
+		private struct DictionaryKeys {
+			static let Host = "host"
+			static let ProxyType = "proxyType"
+			static let Username = "username"
+		}
+		
 		/// Type of the proxy. Currently only HTTP, HTTPS and SOCKS are supported.
-		public enum ProxyType {
+		public enum ProxyType: Int {
 			
 			/// Pure HTTP proxy.
 			case HTTP
@@ -166,16 +173,45 @@ public class XUDownloadCenter {
 		/// Structure encapsulating the host information.
 		public struct Host {
 			
+			/// Keys for dictionaryRepresentation and init(dictionary:)
+			private struct DictionaryKeys {
+				static let Address = "address"
+				static let Port = "port"
+			}
+			
 			/// Host address - typically an IP address.
-			let address: String
+			public let address: String
 			
 			/// Port of the host.
-			let port: Int
+			public let port: Int
+			
+			/// Serializes the host into a dictionary.
+			public var dictionaryRepresentation: XUJSONDictionary {
+				return [
+					DictionaryKeys.Address: self.address,
+					DictionaryKeys.Port: self.port
+				]
+			}
+			
+			/// Returns the address + port combined into "address:port".
+			public var fullAddress: String {
+				return "\(self.address):\(self.port)"
+			}
 			
 			/// Designated initializer.
 			public init(address: String, andPort port: Int) {
 				self.address = address
 				self.port = port
+			}
+			
+			/// Initializes self using a dictionary (@see dictionaryRepresentation).
+			public init?(dictionary: XUJSONDictionary) {
+				guard let address = dictionary[DictionaryKeys.Address] as? String,
+						port = dictionary[DictionaryKeys.Port] as? Int else {
+					return nil
+				}
+				
+				self.init(address: address, andPort: port)
 			}
 		}
 		
@@ -205,10 +241,84 @@ public class XUDownloadCenter {
 		/// Type of the proxy.
 		public let proxyType: ProxyType
 		
+		/// Returns a dictionary representation of the proxy. Note that this
+		/// does not save the credentials. To save the credentials, call 
+		/// saveCredentials() which will store the password in Keychain.
+		public var dictionaryRepresentation: XUJSONDictionary {
+			var dict: XUJSONDictionary = [
+				DictionaryKeys.Host: self.host.dictionaryRepresentation,
+				DictionaryKeys.ProxyType: self.proxyType.rawValue
+			]
+			
+			dict[DictionaryKeys.Username] = self.credentials?.username
+			return dict
+		}
+		
 		public init(host: Host, type: ProxyType, andCredentials credentials: Credentials? = nil) {
 			self.host = host
 			self.proxyType = type
 			self.credentials = credentials
+		}
+		
+		/// Inits self with dictionary. @see dictionaryRepresentation. Note that
+		/// this automatically tries to retrieve the password if the username is
+		/// stored within the dictionary.
+		public init?(dictionary: XUJSONDictionary) {
+			guard let hostDict = dictionary[DictionaryKeys.Host] as? XUJSONDictionary,
+					host = Host(dictionary: hostDict),
+					proxyTypeValue = dictionary[DictionaryKeys.ProxyType] as? Int,
+					proxyType = ProxyType(rawValue: proxyTypeValue) else {
+				return nil
+			}
+			
+			let credentials: Credentials?
+			if let username = hostDict[DictionaryKeys.Username] as? String {
+				if let password = XUKeychainAccess.sharedAccess.passwordForUsername(username, inAccount: host.fullAddress) {
+					credentials = Credentials(username: username, andPassword: password)
+				} else {
+					credentials = nil
+				}
+			} else {
+				credentials = nil
+			}
+			
+			self.init(host: host, type: proxyType, andCredentials: credentials)
+		}
+		
+		/// Saves password into the Keychain. See init(dictionary:). Will be 
+		/// no-op if self.credentials == nil.
+		public func saveCredentials() {
+			guard let credentials = self.credentials else {
+				return
+			}
+			
+			XUKeychainAccess.sharedAccess.savePassword(credentials.password, forUsername: credentials.password, inAccount: self.host.fullAddress)
+		}
+		
+		/// Returns a dictionary to be used with
+		/// NSURLSessionConfiguration.connectionProxyDictionary.
+		public var URLSessionProxyDictionary: [String : AnyObject] {
+			var dict: [String : AnyObject] = [:]
+			switch self.proxyType {
+			case .HTTP:
+				dict[kCFNetworkProxiesHTTPEnable as String] = true
+				dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address
+				dict[kCFNetworkProxiesHTTPPort as String] = self.host.port
+			case .HTTPS:
+				dict[kCFNetworkProxiesHTTPSEnable as String] = true
+				dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address
+				dict[kCFNetworkProxiesHTTPSPort as String] = self.host.port
+			case .SOCKS:
+				dict[kCFNetworkProxiesSOCKSEnable as String] = true
+				dict[kCFNetworkProxiesSOCKSProxy as String] = self.host.address
+				dict[kCFNetworkProxiesSOCKSPort as String] = self.host.port
+			}
+			
+			if let credentials = self.credentials {
+				dict[kCFProxyUsernameKey as String] = credentials.username
+				dict[kCFProxyPasswordKey as String] = credentials.password
+			}
+			return dict
 		}
 		
 	}
@@ -243,40 +353,18 @@ public class XUDownloadCenter {
 	public private(set) weak var owner: XUDownloadCenterOwner!
 	
 	/// Proxy configuration. By default nil, set to nonnil value for proxy support.
+	/// Note that this changes self.session since NSURLSessionConfiguration won't
+	/// stick the proxy unless a copy is made first.
 	public var proxyConfiguration: ProxyConfiguration? {
 		didSet {
-			guard let config = self.proxyConfiguration else {
-				self.session.configuration.connectionProxyDictionary = nil
-				return
-			}
-			
-			var dict: [String : AnyObject] = [:]
-			switch config.proxyType {
-			case .HTTP:
-				dict[kCFStreamPropertyHTTPProxyHost as String] = config.host.address
-				dict[kCFStreamPropertyHTTPProxyPort as String] = config.host.port
-			case .HTTPS:
-				dict[kCFStreamPropertyHTTPProxyHost as String] = config.host.address
-				dict[kCFStreamPropertyHTTPProxyPort as String] = config.host.port
-				
-				dict[kCFStreamPropertyHTTPSProxyHost as String] = config.host.address
-				dict[kCFStreamPropertyHTTPSProxyPort as String] = config.host.port
-			case .SOCKS:
-				dict[kCFStreamPropertySOCKSProxyHost as String] = config.host.address
-				dict[kCFStreamPropertySOCKSProxyPort as String] = config.host.port
-				
-				if let credentials = config.credentials {
-					dict[kCFStreamPropertySOCKSUser as String] = credentials.username
-					dict[kCFStreamPropertySOCKSPassword as String] = credentials.password
-				}
-			}
-			
-			self.session.configuration.connectionProxyDictionary = dict
+			let sessionConfig = self.session.configuration.copy() as! NSURLSessionConfiguration
+			sessionConfig.connectionProxyDictionary = self.proxyConfiguration?.URLSessionProxyDictionary
+			self.session = NSURLSession(configuration: sessionConfig)
 		}
 	}
 	
 	/// Session this download center was initialized with.
-	public let session: NSURLSession
+	public private(set) var session: NSURLSession
 	
 	/// Initializer. The owner must keep itself alive as long as the download
 	/// center is alive. If the owner is to be dealloc'ed, dealloc the download
@@ -425,7 +513,7 @@ public class XUDownloadCenter {
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSONAtURL(URL: NSURL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> AnyObject? {
 		let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
-			request.addJSONAcceptToHeader()
+			request.acceptType = NSURLRequest.ContentType.JSON
 			
 			if modifier != nil {
 				modifier!(request: request)

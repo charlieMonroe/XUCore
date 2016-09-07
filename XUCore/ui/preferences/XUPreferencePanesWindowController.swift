@@ -98,6 +98,10 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 			NSAnimationContext.endGrouping()
 			
 			_currentView = view
+			
+			XU_PERFORM_DELAYED_BLOCK(0.5, block: {
+				preferencesWindow.recalculateKeyViewLoop()
+			})
 		}
 	}
 	
@@ -235,6 +239,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryViewController {
 	
 	@IBOutlet weak var _titleLabel: NSTextField!
+	@IBOutlet weak var _iconImageView: NSImageView! // Currently unused.
 	private weak var _prefController: XUPreferencePanesWindowController!
 	
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {

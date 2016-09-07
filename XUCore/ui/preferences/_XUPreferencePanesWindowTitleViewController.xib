@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zz0-92-PhR">
-                    <rect key="frame" x="6" y="7" width="364" height="17"/>
+                    <rect key="frame" x="4" y="7" width="366" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Pvt-xB-2pS">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -27,7 +27,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="Zz0-92-PhR" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="4kT-pv-6yS"/>
-                <constraint firstItem="Zz0-92-PhR" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="8" id="c6f-fH-Z0C"/>
+                <constraint firstItem="Zz0-92-PhR" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="6" id="PoA-iB-7jG"/>
                 <constraint firstAttribute="trailing" secondItem="Zz0-92-PhR" secondAttribute="trailing" constant="8" id="ixB-pb-dKo"/>
             </constraints>
             <point key="canvasLocation" x="270" y="135.5"/>
