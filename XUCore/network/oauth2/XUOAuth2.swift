@@ -35,7 +35,7 @@ public final class XUOAuth2Configuration {
 			"redirect_uri": self.redirectionURLString
 		]
 		
-		return URL(string: self.authorizationBaseURL.absoluteString + "?" + queryDict.URLQueryString)!
+		return URL(string: self.authorizationBaseURL.absoluteString + "?" + queryDict.urlQueryString)!
 	}
 	
 	/// ID of the client.
@@ -279,7 +279,7 @@ public final class XUOAuth2Client {
 				request.addWWWFormContentToHeader()
 				request["Cookie"] = nil
 				request.httpMethod = "POST"
-				request.httpBody = postDict.URLQueryString.data(using: String.Encoding.utf8)
+				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
 			}) else {
 				return false
 			}
@@ -422,7 +422,7 @@ public final class XUOAuth2Client {
 			request.addWWWFormContentToHeader()
 			request["Cookie"] = nil
 			request.httpMethod = "POST"
-			request.httpBody = postDict.URLQueryString.data(using: String.Encoding.utf8)
+			request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
 		}) else {
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
@@ -488,7 +488,7 @@ public final class XUOAuth2Client {
 	/// On iOS, call this method from your app delegate's application(_:openURL:...).
 	/// On OS X, refrain from calling this method directly, XUOAuth2Client handles
 	/// this automatically for you via XUURLHandlingCenter.
-	public func handleRedirectURL(_ URL: Foundation.URL) {
+	public func handleRedirectURL(_ URL: URL) {
 		assert(_authorizationController != nil, "Handling an authorization call while no controller is being displayed!")
 		
 		guard let query = URL.query else {
@@ -497,7 +497,7 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		guard let code = query.URLQueryDictionary["code"] else {
+		guard let code = query.urlQueryDictionary["code"] else {
 			_authorizationController!.close(withResult: .error(.invalidRedirectionURL))
 			_authorizationController = nil
 			return
@@ -569,7 +569,7 @@ extension XUOAuth2Client: XUDownloadCenterOwner {
 #if os(OSX)
 	extension XUOAuth2Client: XUURLHandler {
 		
-		@objc public func handlerShouldProcessURL(_ URL: Foundation.URL) {
+		@objc public func handlerShouldProcessURL(_ URL: URL) {
 			self.handleRedirectURL(URL)
 		}
 

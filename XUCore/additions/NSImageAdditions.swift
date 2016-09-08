@@ -114,13 +114,13 @@ public extension NSImage {
 	}
 	
 	@available(OSX 10.10, *)
-	public convenience init?(thumbnailOfFileAtURL URL: Foundation.URL, withSize size: CGSize) {
+	public convenience init?(thumbnailOfFileAtURL fileURL: URL, withSize size: CGSize) {
 		let dict: [AnyHashable: Any] = [
 			kCGImageSourceCreateThumbnailFromImageIfAbsent as AnyHashable: kCFBooleanTrue,
 			kCGImageSourceThumbnailMaxPixelSize as AnyHashable: size.height
 		]
 		
-		guard let source = CGImageSourceCreateWithURL(URL as CFURL, dict as CFDictionary?) else {
+		guard let source = CGImageSourceCreateWithURL(fileURL as CFURL, dict as CFDictionary?) else {
 			return nil
 		}
 		

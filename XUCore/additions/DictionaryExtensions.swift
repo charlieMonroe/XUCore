@@ -234,7 +234,7 @@ public extension Dictionary {
 	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
 	/// percent encoding the value. If the value is not of NSString class - description
 	/// is called on that object.
-	public var URLQueryString: String {
+	public var urlQueryString: String {
 		var keyValuePairs: [String] = [ ]
 		for (key,value) in self {
 			let charSet = CharacterSet.alphanumerics

@@ -20,7 +20,7 @@ open class XUiCloudSyncManager: XUApplicationSyncManager {
 		return _rootURLForManagerWithName(self.name)
 	}
 	
-	fileprivate func _startDownloadingUbiquitousItemAtURL(_ URL: Foundation.URL) {
+	fileprivate func _startDownloadingUbiquitousItemAtURL(_ URL: URL) {
 		if URL.isDirectory {
 			let contents = FileManager.default.contentsOfDirectoryAtURL(URL)
 			for fileURL in contents {
@@ -46,7 +46,7 @@ open class XUiCloudSyncManager: XUApplicationSyncManager {
 		NotificationCenter.default.addObserver(self, selector: #selector(_updateUbiquityFolderURL), name:NSNotification.Name.NSUbiquityIdentityDidChange, object:nil)
 	}
 	
-	open override func startDownloadingItemAtURL(_ URL: Foundation.URL) throws {
+	open override func startDownloadingItemAtURL(_ URL: URL) throws {
 		self._startDownloadingUbiquitousItemAtURL(URL)
 		
 		try FileManager.default.startDownloadingUbiquitousItem(at: URL)

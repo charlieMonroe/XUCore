@@ -326,7 +326,7 @@ open class XUCSVDocument {
 		return string
 	}
 	
-	open func writeToURL(_ URL: Foundation.URL) throws {
+	open func writeToURL(_ URL: URL) throws {
 		try self.stringRepresentation.write(to: URL, atomically: true, encoding: String.Encoding.utf8)
 	}
 	

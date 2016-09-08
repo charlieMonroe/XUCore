@@ -21,7 +21,7 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 	fileprivate(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
 	
 	/// URL this controller was initialized with.
-	fileprivate(set) var URL: Foundation.URL!
+	fileprivate(set) var url: URL!
 	
 	
 	/// Closes the window and passes the result to self.completionHandler.
@@ -33,10 +33,10 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 	}
 	
 	/// Only initialize the controller with this initializer.
-	convenience init(URL: Foundation.URL) {
+	convenience init(URL: URL) {
 		self.init(windowNibName: "XUAuthorizationWebViewWindowController")
 		
-		self.URL = URL
+		self.url = URL
 	}
 	
 	@IBAction @objc fileprivate func cancel(_ sender: AnyObject?) {
@@ -69,8 +69,8 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
-		_webView.mainFrameURL = self.URL.absoluteString
-		_currentURLTextField.stringValue = self.URL.absoluteString
+		_webView.mainFrameURL = self.url.absoluteString
+		_currentURLTextField.stringValue = self.url.absoluteString
 	}
 	
 }

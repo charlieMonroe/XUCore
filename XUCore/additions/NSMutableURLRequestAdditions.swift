@@ -102,7 +102,7 @@ public extension NSMutableURLRequest {
 	}
 	
 	public func setFormBody(_ formBody: [String : String]) {
-		let bodyString = formBody.URLQueryString
+		let bodyString = formBody.urlQueryString
 		self.httpBody = bodyString.data(using: String.Encoding.utf8)
 	}
 	public func setJSONBody(_ obj: AnyObject) {

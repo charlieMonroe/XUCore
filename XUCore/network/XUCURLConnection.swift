@@ -53,7 +53,7 @@ open class XUCURLConnection: NSObject {
 	open var responseCodeOnly: Bool = false
 	
 	/// If initialized with NSURL, this property contains the URL
-	open let URL: Foundation.URL?
+	open let url: URL?
 	
 	/// If set to a non-null value, Basic AUTH is used.
 	fileprivate(set) open var username: String?
@@ -93,14 +93,14 @@ open class XUCURLConnection: NSObject {
 	/// Inits with URLString.
 	public init(URLString: String) {
 		self.forcedURLString = URLString
-		self.URL = nil
+		self.url = nil
 		
 		super.init()
 	}
 	
 	/// Inits with URL
-	public init(URL: Foundation.URL) {
-		self.URL = URL
+	public init(URL: URL) {
+		self.url = URL
 		self.forcedURLString = URL.absoluteString
 		
 		super.init()

@@ -20,7 +20,7 @@ open class XUAppScopeBookmarksManager: NSObject {
 	}
 	
 	/// Sets a URL for key. Returns if the save was successful.
-	open func setURL(_ URL: Foundation.URL?, forKey defaultsKey: String) -> Bool {
+	open func setURL(_ URL: URL?, forKey defaultsKey: String) -> Bool {
 		var newURL = URL
 		if newURL == nil {
 			_cache.removeValue(forKey: defaultsKey)

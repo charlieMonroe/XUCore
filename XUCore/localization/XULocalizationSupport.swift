@@ -92,8 +92,8 @@ public final class XULocalizationCenter: NSObject {
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
 	fileprivate func _languageBundleForLanguage(_ language: String, inBundle bundle: Bundle, fallbackToEnglish: Bool = true) -> Bundle? {
-		if let URL = bundle.url(forResource: language, withExtension: "lproj") {
-			return Bundle(url: URL)
+		if let url = bundle.url(forResource: language, withExtension: "lproj") {
+			return Bundle(url: url)
 		}
 		
 		// Fall back to en or "Base". Just check if the language is "en" so that if
@@ -212,7 +212,7 @@ public final class XULocalizationCenter: NSObject {
 			return key // No such localization
 		}
 		
-		guard let URL = languageBundle.url(forResource: "Localizable", withExtension: "strings", subdirectory: nil, localization: language), let data = try? Data(contentsOf: URL) else {
+		guard let url = languageBundle.url(forResource: "Localizable", withExtension: "strings", subdirectory: nil, localization: language), let data = try? Data(contentsOf: url) else {
 			XULog("No '\(language)' localizable strings in bundle \(bundle).")
 			
 			/// In order to prevent loading for each key, enter a fake entry

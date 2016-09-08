@@ -250,8 +250,8 @@ open class XUTimeBasedTrial: XUTrial {
 	/// Registers the app with the trial server.
 	fileprivate func _registerWithTrialServer() -> Bool {
 		let identifier = XUAppSetup.applicationIdentifier.stringByEncodingIllegalURLCharacters
-		let URL = Foundation.URL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
-		let request = NSMutableURLRequest(url: URL)
+		let url = URL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
+		let request = NSMutableURLRequest(url: url)
 		request.httpMethod = "POST"
 		
 		var genericResponse: URLResponse?

@@ -152,10 +152,10 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		/// The exception catcher doesn't even start without a valid URL. We assume
 		/// that it's still valid. This class is internal, so there should be no
 		/// calls to this from outside of XUCore.
-		let URL = XUAppSetup.exceptionHandlerReportURL!
+		let url = XUAppSetup.exceptionHandlerReportURL!
 		
 		
-		let request = NSMutableURLRequest(url: URL as URL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
+		let request = NSMutableURLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
 		request.addJSONContentToHeader()
 		request.httpMethod = "POST"
 		request.httpBody = try? JSONSerialization.data(withJSONObject: reportDictionary, options: JSONSerialization.WritingOptions())

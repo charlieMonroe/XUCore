@@ -11,88 +11,96 @@ import Foundation
 public extension String {
 	
 	fileprivate func _standardizedURLFromURLString(_ originalURLString: String) -> [URL]? {
-		var URLString = originalURLString
-		if URLString.hasPrefix("//") {
-			URLString = "http:" + URLString
-		}else if !URLString.hasPrefix("http") && !URLString.hasPrefix("rtmp") && !URLString.hasPrefix("rtme") {
-			URLString = "http://" + URLString
+		var urlString = originalURLString
+		if urlString.hasPrefix("//") {
+			urlString = "http:" + urlString
+		}else if !urlString.hasPrefix("http") && !urlString.hasPrefix("rtmp") && !urlString.hasPrefix("rtme") {
+			urlString = "http://" + urlString
 		}
 		
-		if URLString.range(of: "&amp;") != nil {
-			URLString = URLString.HTMLUnescapedString
+		if urlString.range(of: "&amp;") != nil {
+			urlString = urlString.HTMLUnescapedString
 		}
 		
-		if let decoded = URLString.removingPercentEncoding {
-			if URLString.range(of: "%3D") != nil && Foundation.URL(string: decoded) != nil {
-				URLString = decoded
+		if let decoded = urlString.removingPercentEncoding {
+			if urlString.range(of: "%3D") != nil && URL(string: decoded) != nil {
+				urlString = decoded
 			}
 		}
 		
-		if URLString.range(of: " ") != nil {
-			URLString = URLString.replacingOccurrences(of: " ", with: "%20")
+		if urlString.range(of: " ") != nil {
+			urlString = urlString.replacingOccurrences(of: " ", with: "%20")
 		}
 		
-		if URLString.components(separatedBy: "#").count > 2 {
-			URLString = URLString.replacingOccurrences(of: "#", with: "%23")
+		if urlString.components(separatedBy: "#").count > 2 {
+			urlString = urlString.replacingOccurrences(of: "#", with: "%23")
 		}
 		
-		var URL = Foundation.URL(string: URLString)
-		if URL == nil {
-			if let decoded = URLString.removingPercentEncoding {
-				URL = Foundation.URL(string: decoded)
+		var url = URL(string: urlString)
+		if url == nil {
+			if let decoded = urlString.removingPercentEncoding {
+				url = URL(string: decoded)
 			}
 		}
 		
-		if URL == nil {
-			URL = Foundation.URL(string: URLString.HTMLUnescapedString)
+		if url == nil {
+			url = URL(string: urlString.HTMLUnescapedString)
 		}
 		
-		if URL == nil {
+		if url == nil {
 			return nil
 		}
 		
-		if URL!.path.range(of: "//") != nil {
-			var path = URL!.path.replacingOccurrences(of: "//", with: "/") 
-			if path.characters.count == 0 {
+		if url!.path.range(of: "//") != nil {
+			var path = url!.path.replacingOccurrences(of: "//", with: "/") 
+			if path.isEmpty {
 				path = "/"
 			}
 			
-			if (URL!.scheme?.characters.count)! > 0 {
-				URL = NSURL(scheme: URL!.scheme!, host: URL!.host, path: path) as? URL
+			if let scheme = url!.scheme, !scheme.isEmpty {
+				var components = URLComponents()
+				components.scheme = scheme
+				components.host = url?.host
+				components.path = path
+				url = components.url
 			}
 		}
 		
-		URLString = URL!.absoluteString
-		if URLString.range(of: "&") != nil && URLString.range(of: "?") == nil {
-			if let firstURL = Foundation.URL(string: URLString.components(separatedBy: "&").first!) {
-				return [URL, firstURL].flatMap({ $0 })
+		urlString = url!.absoluteString
+		if urlString.range(of: "&") != nil && urlString.range(of: "?") == nil {
+			if let firstURL = URL(string: urlString.components(separatedBy: "&").first!) {
+				return [url, firstURL].flatMap({ $0 })
 			}
 		}
 		
-		return [URL!]
+		return [url!]
 	}
 	
 	fileprivate func _URLStringOccurrencesToNSURLs(_ occurrences: [String]) -> [URL] {
-		var URLs: [URL] = [ ]
+		var urls: [URL] = [ ]
 		
-		URLs += occurrences.flatMap({ (originalURLString) -> [URL]? in
+		urls += occurrences.flatMap({ (originalURLString) -> [URL]? in
 			return self._standardizedURLFromURLString(originalURLString)
 		}).joined()
 		
-		URLs = URLs.distinct({ ($0 == $1) })
-		URLs = URLs.flatMap({ (URL) -> Foundation.URL? in
-			if URL.host == nil {
+		urls = urls.distinct({ ($0 == $1) })
+		urls = urls.flatMap({ (url) -> URL? in
+			if url.host == nil {
 				return nil
 			}
 			
-			if URL.scheme?.characters.count == 0 {
-				return (NSURL(scheme: "http", host: URL.host, path: URL.path.characters.count == 0 ? "/" : URL.path) as? URL)
+			if url.scheme == nil || url.scheme!.isEmpty {
+				var components = URLComponents()
+				components.scheme = "http"
+				components.host = url.host
+				components.path = url.path.isEmpty ? "/" : url.path
+				return components.url
 			}
 			
-			return URL
+			return url
 		})
 		
-		return URLs
+		return urls
 	}
 	
 	/// All Occurrences of regex in self.

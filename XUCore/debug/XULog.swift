@@ -154,8 +154,8 @@ public final class XUDebugLog {
 			fflush(_logFile!)
 		}
 		
-		let URL = Foundation.URL(fileURLWithPath: XUDebugLog.logFilePath)
-		NSWorkspace.shared().open([URL], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+		let url = URL(fileURLWithPath: XUDebugLog.logFilePath)
+		NSWorkspace.shared().open([url], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
 	}
 	
 	/// Activates Finder and selects the debug log file.

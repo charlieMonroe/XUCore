@@ -115,7 +115,7 @@ public extension URL {
 	#endif
 
 	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.
-	public var URLByDeletingFragment: URL {
+	public var deletingFragment: URL {
 		if self.fragment == nil {
 			return self
 		}
@@ -130,7 +130,7 @@ public extension URL {
 	}
 	
 	/// Returns URL with deleted query (i.e. the ? part). Fallbacks to self.
-	public var URLByDeletingQuery: URL {
+	public var deletingQuery: URL {
 		if self.query == nil {
 			return self
 		}
@@ -145,12 +145,12 @@ public extension URL {
 	}
 	
 	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
-	public func URLWithQuery(_ query: XUJSONDictionary) -> URL {
+	public func appendingQuery(_ query: XUJSONDictionary) -> URL {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 		
-		urlComponents.query = query.URLQueryString
+		urlComponents.query = query.urlQueryString
 		
 		guard let result = urlComponents.url else {
 			fatalError("Setting query from dictionary rendered invalid. This should not happen.")

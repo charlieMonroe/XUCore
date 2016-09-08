@@ -297,7 +297,7 @@ open class XUDownloadCenter {
 		
 		/// Returns a dictionary to be used with
 		/// NSURLSessionConfiguration.connectionProxyDictionary.
-		public var URLSessionProxyDictionary: [String : AnyObject] {
+		public var urlSessionProxyDictionary: [String : AnyObject] {
 			var dict: [String : AnyObject] = [:]
 			switch self.proxyType {
 			case .http:
@@ -358,7 +358,7 @@ open class XUDownloadCenter {
 	open var proxyConfiguration: ProxyConfiguration? {
 		didSet {
 			let sessionConfig = self.session.configuration.copy() as! URLSessionConfiguration
-			sessionConfig.connectionProxyDictionary = self.proxyConfiguration?.URLSessionProxyDictionary
+			sessionConfig.connectionProxyDictionary = self.proxyConfiguration?.urlSessionProxyDictionary
 			self.session = URLSession(configuration: sessionConfig)
 		}
 	}
@@ -393,15 +393,15 @@ open class XUDownloadCenter {
 	
 	/// Sets the Cookie HTTP header field on request.
 	fileprivate func _setupCookieFieldForURLRequest(_ request: NSMutableURLRequest, andBaseURL originalBaseURL: URL? = nil) {
-		guard let URL = request.url else {
+		guard let url = request.url else {
 			return
 		}
 		
-		let baseURL: Foundation.URL!
+		let baseURL: URL!
 		if originalBaseURL != nil {
 			baseURL = originalBaseURL
 		} else {
-			baseURL = NSURL(scheme: URL.scheme!, host: URL.host, path: "/") as? URL
+			baseURL = NSURL(scheme: url.scheme!, host: url.host, path: "/") as? URL
 			if baseURL == nil {
 				return
 			}
@@ -446,7 +446,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Clears the cookie storage for a particular URL.
-	open func clearCookiesForURL(_ URL: Foundation.URL) {
+	open func clearCookiesForURL(_ URL: URL) {
 		let storage = HTTPCookieStorage.shared
 		guard let cookies = storage.cookies(for: URL) else {
 			return
@@ -455,7 +455,7 @@ open class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
-	open func downloadDataAtURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> Data? {
+	open func downloadDataAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> Data? {
 		if URL == nil {
 			return nil
 		}
@@ -497,7 +497,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	open func downloadJSONDictionaryAtURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
+	open func downloadJSONDictionaryAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
 		guard let obj = self.downloadJSONAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -511,7 +511,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	open func downloadJSONAtURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> AnyObject? {
+	open func downloadJSONAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> AnyObject? {
 		let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
 			request.acceptType = URLRequest.ContentType.JSON
 			
@@ -533,7 +533,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads a pure website source.
-	open func downloadWebSiteSourceAtURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> String? {
+	open func downloadWebSiteSourceAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> String? {
 		if URL == nil {
 			return nil
 		}
@@ -560,7 +560,7 @@ open class XUDownloadCenter {
 	
 	/// Does the same as the varian without the `fields` argument, but adds or
 	/// replaces some field values.
-	open func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL URL: Foundation.URL!, forceSettingFields fields: [String:String]) -> String? {
+	open func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL URL: URL!, forceSettingFields fields: [String:String]) -> String? {
 		return self.downloadWebSiteSourceByPostingFormOnPage(source, toURL: URL, withModifier: { (inputFields: inout [String:String]) in
 			inputFields += fields
 		})
@@ -568,7 +568,7 @@ open class XUDownloadCenter {
 	
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
-	open func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL URL: Foundation.URL!, withModifier modifier: POSTFieldsModifier? = nil) -> String? {
+	open func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL URL: URL!, withModifier modifier: POSTFieldsModifier? = nil) -> String? {
 		var inputFields = source.allVariablePairsForRegexString("<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairsForRegexString("<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
@@ -587,7 +587,7 @@ open class XUDownloadCenter {
 	
 	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
 	/// invoke this method that posts the specific values to URL.
-	open func downloadWebSiteSourceByPostingFormWithValues(_ values: [String : String], toURL URL: Foundation.URL!) -> String? {
+	open func downloadWebSiteSourceByPostingFormWithValues(_ values: [String : String], toURL URL: URL!) -> String? {
 		return self.downloadWebSiteSourceAtURL(URL, withReferer: self.owner.refererURL?.absoluteString, asAgent: self.owner.infoPageUserAgent, withModifier: { (request) in
 			request.httpMethod = "POST"
 			
@@ -595,7 +595,7 @@ open class XUDownloadCenter {
 				XULog("[\(self.owner.name)] POST fields: \(values)")
 			}
 			
-			let bodyString = values.URLQueryString
+			let bodyString = values.urlQueryString
 			request.httpBody = bodyString.data(using: String.Encoding.utf8)
 		})
 	}
@@ -603,7 +603,7 @@ open class XUDownloadCenter {
 	#if os(OSX)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
-	open func downloadXMLDocumentAtURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
+	open func downloadXMLDocumentAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
 		guard let source = self.downloadWebSiteSourceAtURL(URL, withReferer: referer, asAgent: agent, withModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -700,12 +700,12 @@ open class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL` and returns the status code or 0.
-	open func statusCodeForURL(_ URL: Foundation.URL!) -> Int {
+	open func statusCodeForURL(_ URL: URL!) -> Int {
 		return self.sendHeadRequestToURL(URL)?.statusCode ?? 0
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	open func sendHeadRequestToURL(_ URL: Foundation.URL!, withReferer referer: String? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
+	open func sendHeadRequestToURL(_ URL: URL!, withReferer referer: String? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
 		if URL == nil {
 			return nil
 		}

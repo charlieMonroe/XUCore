@@ -8,14 +8,14 @@
 
 import Foundation
 
-private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [String : Any]) -> NSURL? {
-	if let URLString = infoDictionary[key] as? String {
-		let URL = NSURL(string: URLString)
-		if URL == nil {
-			// NSURL creation failed, report this to the user
-			XULog("\(key) contains a nonnull value, but it doesn't seem to be a proper URL '\(URLString)'")
+private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [String : Any]) -> URL? {
+	if let urlString = infoDictionary[key] as? String {
+		let url = URL(string: urlString)
+		if url == nil {
+			// URL creation failed, report this to the user
+			XULog("\(key) contains a nonnull value, but it doesn't seem to be a proper URL '\(urlString)'")
 		}
-		return URL
+		return url
 	}else{
 		return nil
 	}
@@ -93,11 +93,11 @@ public class XUApplicationSetup {
 	/// @discussion - Only available on OS X.
 	public let betaExpirationTimeInterval: TimeInterval
 	
-	/// Returns a NSURL object that contains a URL where exception report is sent
+	/// Returns a URL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
 	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter
 	/// for more information.
-	public let exceptionHandlerReportURL: NSURL?
+	public let exceptionHandlerReportURL: URL?
 	
 	/// Returns true, if the current build is made for AppStore submission. To
 	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
@@ -149,19 +149,19 @@ public class XUApplicationSetup {
 	/// XUMessageCenterAppIdentifier in Info.plist.
 	public let messageCenterAppIdentifier: String
 	
-	/// Returns a NSURL object that contains a URL to the message feed handled
+	/// Returns a URL object that contains a URL to the message feed handled
 	/// by XUMessageCenter. To turn on the XUMessageCenter, fill the URL under
 	/// the key XUMessageCenterFeedURL in Info.plist.
-	public let messageCenterFeedURL: NSURL?
+	public let messageCenterFeedURL: URL?
 	
-	/// Returns a NSURL object that contains a URL to a page, where you can
+	/// Returns a URL object that contains a URL to a page, where you can
 	/// purchase the app. Required by XUTrial. Fill the URL under the key
 	/// XUPurchaseURL in Info.plist.
-	public let purchaseURL: NSURL?
+	public let purchaseURL: URL?
 	
-	/// Returns a NSURL object that contains a URL to your support page. Required
+	/// Returns a URL object that contains a URL to your support page. Required
 	/// by XUTrial. Fill the URL under the key XUSupportURL in Info.plist.
-	public let supportURL: NSURL?
+	public let supportURL: URL?
 	
 	/// Number of days allowed for time-based trials. Enter into Info.plist as
 	/// number under the key XUTimeBasedTrialDays. Default is 14.
@@ -176,10 +176,10 @@ public class XUApplicationSetup {
 	/// @note: This is completely ignored if AppStoreBuild is set to true.
 	public let trialClassName: String?
 	
-	/// Returns a NSURL object that contains a URL to a server which handles trial
+	/// Returns a URL object that contains a URL to a server which handles trial
 	/// sessions. Required by XUTrial. See XUTrial for details. Fill the URL 
 	/// under the key XUTrialSessionsURL in Info.plist.
-	public let trialSessionsURL: NSURL?
+	public let trialSessionsURL: URL?
 	
 	/// The initializer gets the main bundle's infoDictionary.
 	public required init(infoDictionary: XUJSONDictionary) {

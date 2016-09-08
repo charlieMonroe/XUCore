@@ -17,7 +17,7 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
 
 	/// URL this controller was initialized with.
-	let URL: NSURL
+	let url: NSURL
 
 	
 	
@@ -29,7 +29,7 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 	}
 	
 	init(URL: NSURL) {
-		self.URL = URL
+		self.url = URL
 		
 		super.init(nibName: nil, bundle: nil)
 		
@@ -60,7 +60,7 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 		self.title = XULocalizedString("Authentication", inBundle: XUCoreBundle)
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancel(_:)))
 		
-		_webView.loadRequest(NSURLRequest(URL: self.URL))
+		_webView.loadRequest(NSURLRequest(URL: self.url))
 	}
 	
 	

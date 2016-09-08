@@ -446,7 +446,7 @@ public extension String {
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
-	public var URLQueryDictionary: [String: String] {
+	public var urlQueryDictionary: [String: String] {
 		let variablePairs = self.allVariablePairsForRegexString("&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {

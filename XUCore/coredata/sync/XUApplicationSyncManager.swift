@@ -115,21 +115,21 @@ open class XUApplicationSyncManager {
 				continue
 			}
 	
-			guard let URL = item.value(forAttribute: NSMetadataItemURLKey) as? URL else {
+			guard let url = item.value(forAttribute: NSMetadataItemURLKey) as? URL else {
 				continue
 			}
 	
 			do {
-				try self.startDownloadingItemAtURL(URL)
+				try self.startDownloadingItemAtURL(url)
 			} catch let error as NSError {
-				XULog("Failed to start downloading item at URL \(URL) because \(error)")
+				XULog("Failed to start downloading item at URL \(url) because \(error)")
 			}
 		}
 	}
 
 	/// Should create a folder at URL. By default, this only invokes NSFileManager,
 	/// but subclasses may do additional work, such as contacting the server.
-	open func createDirectoryAtURL(_ URL: Foundation.URL) throws {
+	open func createDirectoryAtURL(_ URL: URL) throws {
 		try FileManager.default.createDirectory(at: URL, withIntermediateDirectories: true, attributes: nil)
 	}
 	
@@ -205,7 +205,7 @@ open class XUApplicationSyncManager {
 	/// Start downloading item at URL. The metadata query should automatically 
 	/// notice when the download is done. You can call scanForNewDocuments()
 	/// to make sure, though.
-	open func startDownloadingItemAtURL(_ URL: Foundation.URL) throws {
+	open func startDownloadingItemAtURL(_ URL: URL) throws {
 		XUThrowAbstractException("\(self)")
 	}
 	
