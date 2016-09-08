@@ -11,19 +11,19 @@ import MapKit
 
 public extension MKPolygon {
 	
-	private class func _parseCoordinatesFromString(string: String) -> [CLLocation] {
-		let polygonStrings = string.componentsSeparatedByString("),(")
+	fileprivate class func _parseCoordinatesFromString(_ string: String) -> [CLLocation] {
+		let polygonStrings = string.components(separatedBy: "),(")
 		let exteriorRingString = polygonStrings.first!
 		
-		let coordinatesRegex = XURegex(pattern: "([-\\d\\.]+\\s[-\\d\\.]+)", andOptions: .Caseless)
+		let coordinatesRegex = XURegex(pattern: "([-\\d\\.]+\\s[-\\d\\.]+)", andOptions: .caseless)
 		let matches = exteriorRingString.allOccurrencesOfRegex(coordinatesRegex)
 		return matches.map({ (match) -> CLLocation in
 			return self._parseCoordinateFromString(match)
 		})
 	}
 	
-	private class func _parseCoordinateFromString(coordinateString: String) -> CLLocation {
-		let points = coordinateString.componentsSeparatedByString(" ")
+	fileprivate class func _parseCoordinateFromString(_ coordinateString: String) -> CLLocation {
+		let points = coordinateString.components(separatedBy: " ")
 		let lon = points.first!
 		let lat = points.last!
 		return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)

@@ -11,6 +11,6 @@ import Foundation
 /// This sync change represents a deletion change. We don't need any further
 /// information, since we have the syncID.
 @objc(XUDeletionSyncChange)
-public class XUDeletionSyncChange: XUSyncChange {
+open class XUDeletionSyncChange: XUSyncChange {
 
 }

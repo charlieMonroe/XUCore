@@ -13,7 +13,7 @@ import Foundation
 public protocol XUSearchable {
 
 	/// Returns a string in which the needle occurrs.
-	func searchForString(needle: String) -> String?
+	func searchForString(_ needle: String) -> String?
 
 }
 
@@ -28,7 +28,7 @@ extension Dictionary: XUSearchable {
 	///
 	/// If it finds something, it returns the entire value where the needle was
 	/// found.
-	public func searchForString(needle: String) -> String? {
+	public func searchForString(_ needle: String) -> String? {
 		for (_, value) in self {
 			if let searchable = value as? XUSearchable {
 				if let result = searchable.searchForString(needle) {
@@ -45,8 +45,8 @@ extension Dictionary: XUSearchable {
 extension String: XUSearchable {
 	
 	/// Returns self, if the range of needle (case insensitive), is found.
-	public func searchForString(needle: String) -> String? {
-		if self.rangeOfString(needle, options: .CaseInsensitiveSearch) != nil {
+	public func searchForString(_ needle: String) -> String? {
+		if self.range(of: needle, options: .caseInsensitive) != nil {
 			return self
 		}
 		return nil
@@ -57,8 +57,8 @@ extension String: XUSearchable {
 extension NSString: XUSearchable {
 	
 	/// Returns self, if the range of needle (case insensitive), is found.
-	public func searchForString(needle: String) -> String? {
-		if self.rangeOfString(needle, options: .CaseInsensitiveSearch).location != NSNotFound {
+	public func searchForString(_ needle: String) -> String? {
+		if self.range(of: needle, options: .caseInsensitive).location != NSNotFound {
 			return self as String
 		}
 		return nil
@@ -68,8 +68,8 @@ extension NSString: XUSearchable {
 
 extension NSNumber: XUSearchable {
 	
-	public func searchForString(needle: String) -> String? {
-		if self.stringValue.rangeOfString(needle, options: .CaseInsensitiveSearch) != nil {
+	public func searchForString(_ needle: String) -> String? {
+		if self.stringValue.range(of: needle, options: .caseInsensitive) != nil {
 			return self.stringValue
 		}
 		return nil
@@ -77,10 +77,10 @@ extension NSNumber: XUSearchable {
 	
 }
 
-extension NSDate: XUSearchable {
+extension Date: XUSearchable {
 	
-	public func searchForString(needle: String) -> String? {
-		if self.description.rangeOfString(needle, options: .CaseInsensitiveSearch) != nil {
+	public func searchForString(_ needle: String) -> String? {
+		if self.description.range(of: needle, options: .caseInsensitive) != nil {
 			return self.description
 		}
 		return nil
@@ -90,7 +90,7 @@ extension NSDate: XUSearchable {
 
 extension Array: XUSearchable {
 	
-	public func searchForString(needle: String) -> String? {
+	public func searchForString(_ needle: String) -> String? {
 		for value in self {
 			if let searchable = value as? XUSearchable {
 				if let result = searchable.searchForString(needle) {

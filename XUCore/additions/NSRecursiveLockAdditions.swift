@@ -17,7 +17,7 @@ public extension NSRecursiveLock {
 		self.name = name
 	}
 	
-	public func performLockedBlock(block: (Void) -> Void) {
+	public func performLockedBlock(_ block: @escaping (Void) -> Void) {
 		self.lock()
 		
 		let handler = XUExceptionCatcher(catchHandler: { (exception) -> Void in
@@ -27,7 +27,7 @@ public extension NSRecursiveLock {
 			exception.raise() // Rethrow the exception
 		}) { /* No-op finally. */ }
 		
-		handler.performBlock { () -> Void in
+		handler.perform { () -> Void in
 			block()
 			self.unlock()
 		}

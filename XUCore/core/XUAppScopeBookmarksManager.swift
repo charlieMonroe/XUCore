@@ -9,45 +9,45 @@
 import Foundation
 
 
-public class XUAppScopeBookmarksManager: NSObject {
+open class XUAppScopeBookmarksManager: NSObject {
 	
-	public static var sharedManager = XUAppScopeBookmarksManager()
+	open static var sharedManager = XUAppScopeBookmarksManager()
 
-	private var _cache: [String : NSURL] = [ : ]
+	fileprivate var _cache: [String : URL] = [ : ]
 	
-	private override init() {
+	fileprivate override init() {
 		super.init()
 	}
 	
 	/// Sets a URL for key. Returns if the save was successful.
-	public func setURL(URL: NSURL?, forKey defaultsKey: String) -> Bool {
+	open func setURL(_ URL: Foundation.URL?, forKey defaultsKey: String) -> Bool {
 		var newURL = URL
 		if newURL == nil {
-			_cache.removeValueForKey(defaultsKey)
+			_cache.removeValue(forKey: defaultsKey)
 			
-			NSUserDefaults.standardUserDefaults().removeObjectForKey(defaultsKey)
+			UserDefaults.standard.removeObject(forKey: defaultsKey)
 		}else{
 			// Make sure the path is different from the current one -> otherwise 
 			// we probably haven't opened the open dialog -> will fail
 			let savedURL = self.URLForKey(defaultsKey)
-			if savedURL == nil || !savedURL!.isEqual(newURL!) {
+			if savedURL == nil || (savedURL! != newURL!) {
 				#if os(iOS)
 					NSUserDefaults.standardUserDefaults().setObject(URL!.absoluteString, forKey: defaultsKey)
 				#else
-					newURL!.startAccessingSecurityScopedResource()
+					_ = newURL!.startAccessingSecurityScopedResource()
 					
-					guard let bookmarkData = try? newURL!.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: [ ], relativeToURL: nil) else {
+					guard let bookmarkData = try? (newURL! as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [ ], relativeTo: nil) else {
 						XULog("Failed to create bookmark data for URL \(newURL!)")
 						return false
 					}
 					
-					XULog("trying to save bookmark data for path \(newURL!.path ?? "<>") - bookmark data length = \(bookmarkData.length)")
+					XULog("trying to save bookmark data for path \(newURL!.path) - bookmark data length = \(bookmarkData.count)")
 					
-					NSUserDefaults.standardUserDefaults().setObject(bookmarkData, forKey: defaultsKey)
+					UserDefaults.standard.set(bookmarkData, forKey: defaultsKey)
 					
 					newURL!.stopAccessingSecurityScopedResource()
 					
-					let reloadedURL = try? NSURL(byResolvingBookmarkData: bookmarkData, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: nil)
+					let reloadedURL = try? (NSURL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: nil) as URL)
 					if reloadedURL != nil {
 						newURL = reloadedURL
 					}
@@ -55,7 +55,7 @@ public class XUAppScopeBookmarksManager: NSObject {
 				
 				_cache[defaultsKey] = newURL
 				
-				NSUserDefaults.standardUserDefaults().synchronize()
+				UserDefaults.standard.synchronize()
 			}
 		}
 		
@@ -63,24 +63,24 @@ public class XUAppScopeBookmarksManager: NSObject {
 	}
 	
 	/// Returns URL for key.
-	public func URLForKey(defaultsKey: String) -> NSURL? {
+	open func URLForKey(_ defaultsKey: String) -> URL? {
 		if let result = _cache[defaultsKey] {
 			return result
 		}
 		
-		let result: NSURL?
+		let result: URL?
 		#if os(iOS)
 			guard let absoluteURLString = NSUserDefaults.standardUserDefaults().stringForKey(defaultsKey) else {
 				return nil
 			}
 			result = NSURL(string: absoluteURLString)
 		#else
-			guard let bookmarkData = NSUserDefaults.standardUserDefaults().dataForKey(defaultsKey) else {
+			guard let bookmarkData = UserDefaults.standard.data(forKey: defaultsKey) else {
 				return nil
 			}
 		
-			result = try? NSURL(byResolvingBookmarkData: bookmarkData, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: nil)
-			XULog("resolved bookmark data (length: \(bookmarkData.length)) to \(result.descriptionWithDefaultValue())")
+			result = try? (NSURL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: nil) as URL)
+			XULog("resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
 		#endif
 		
 		if result != nil {

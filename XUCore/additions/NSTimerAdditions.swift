@@ -11,29 +11,29 @@ import Foundation
 /// Private class that is for holding the timer fire block.
 private class __XUTimerBlockHolder {
 	
-	let timerBlock: NSTimer.XUTimerBlock
+	let timerBlock: Timer.XUTimerBlock
 	
-	init(timerBlock: NSTimer.XUTimerBlock) {
+	init(timerBlock: @escaping Timer.XUTimerBlock) {
 		self.timerBlock = timerBlock
 	}
 	
 }
 
-public extension NSTimer {
+public extension Timer {
 	
-	public typealias XUTimerBlock = (NSTimer) -> Void
+	public typealias XUTimerBlock = (Timer) -> Void
 	
-	@objc private class func __executionMethod(timer: NSTimer) {
+	@objc fileprivate class func __executionMethod(_ timer: Timer) {
 		let holder = timer.userInfo as! __XUTimerBlockHolder
 		holder.timerBlock(timer)
 	}
 	
-	public class func scheduledTimerWithTimeInterval(seconds: NSTimeInterval, repeats: Bool, usingBlock fireBlock: XUTimerBlock) -> NSTimer {
-		return self.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(NSTimer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
+	public class func scheduledTimerWithTimeInterval(_ seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping XUTimerBlock) -> Timer {
+		return self.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	
-	public class func timerWithTimeInterval(seconds: NSTimeInterval, repeats: Bool, usingBlock fireBlock: XUTimerBlock) -> NSTimer {
-		return self.init(timeInterval: seconds, target: self, selector: #selector(NSTimer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
+	public class func timerWithTimeInterval(_ seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping XUTimerBlock) -> Timer {
+		return self.init(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	
 }

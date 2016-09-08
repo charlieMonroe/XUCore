@@ -13,14 +13,14 @@ import Foundation
 public let kXUMenuItemAppStoreTag = 127
 
 /// Removes menu items with tag kXUMenuItemAppStoreTag.
-public func XUCleanMenu(menu: NSMenu) {
-	for i in (0 ..< menu.numberOfItems).reverse() {
-		guard let menuItem = menu.itemAtIndex(i) else {
+public func XUCleanMenu(_ menu: NSMenu) {
+	for i in (0 ..< menu.numberOfItems).reversed() {
+		guard let menuItem = menu.item(at: i) else {
 			continue
 		}
 		
 		if menuItem.tag == 127 {
-			menu.removeItemAtIndex(i)
+			menu.removeItem(at: i)
 			continue
 		}
 		
@@ -39,10 +39,10 @@ public func XUCleanMenuBar() {
 }
 
 
-public class XUMenuBarCleaner: NSObject {
+open class XUMenuBarCleaner: NSObject {
 	
 	/// Should be only called from ObjC. To be removed soon.
-	public class func cleanMenuBar() {
+	open class func cleanMenuBar() {
 		XUCleanMenuBar()
 	}
 	

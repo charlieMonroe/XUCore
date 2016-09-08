@@ -9,18 +9,18 @@
 import Foundation
 
 /// Value for the accept/content header field.
-@available(*, deprecated, renamed="NSURLRequest.ContentType.JSON")
+@available(*, deprecated, renamed: "NSURLRequest.ContentType.JSON")
 public let XUMutableURLRequestJSONHeaderFieldValue = "application/json;charset=UTF-8"
 
 /// Value for the accept/content header field.
-@available(*, deprecated, renamed="NSURLRequest.ContentType.XML")
+@available(*, deprecated, renamed: "NSURLRequest.ContentType.XML")
 public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml;charset=UTF-8"
 
 /// Value for the accept/content header field.
-@available(*, deprecated, renamed="NSURLRequest.ContentType.WWWForm")
+@available(*, deprecated, renamed: "NSURLRequest.ContentType.WWWForm")
 public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded;charset=UTF-8"
 
-public extension NSURLRequest {
+public extension URLRequest {
 	
 	public struct ContentType {
 		
@@ -40,34 +40,34 @@ public extension NSURLRequest {
 
 public extension NSMutableURLRequest {
 	
-	public func addAccept(accept: String) {
+	public func addAccept(_ accept: String) {
 		self.addValue(accept, forHTTPHeaderField: "Accept")
 	}
-	public func addContentType(contentType: String) {
+	public func addContentType(_ contentType: String) {
 		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
 	}
 	public func addJSONAcceptToHeader() {
-		self.addAccept(NSURLRequest.ContentType.JSON)
+		self.addAccept(URLRequest.ContentType.JSON)
 	}
 	public func addJSONContentToHeader() {
-		self.addContentType(NSURLRequest.ContentType.JSON)
+		self.addContentType(URLRequest.ContentType.JSON)
 	}
 	public func addMultipartFormDataContentToHeader() {
 		self.addContentType("multipart/form-data")
 	}
 	public func addWWWFormContentToHeader() {
-		self.addContentType(NSURLRequest.ContentType.WWWForm)
+		self.addContentType(URLRequest.ContentType.WWWForm)
 	}
 	public func addXMLAcceptToHeader() {
-		self.addAccept(NSURLRequest.ContentType.XML)
+		self.addAccept(URLRequest.ContentType.XML)
 	}
 	public func addXMLContentToHeader() {
-		self.addContentType(NSURLRequest.ContentType.XML)
+		self.addContentType(URLRequest.ContentType.XML)
 	}
 	
 	public var acceptType: String? {
 		get {
-			return self.valueForHTTPHeaderField("Accept")
+			return self.value(forHTTPHeaderField: "Accept")
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: "Accept")
@@ -76,7 +76,7 @@ public extension NSMutableURLRequest {
 	
 	public var contentType: String? {
 		get {
-			return self.valueForHTTPHeaderField("Content-Type")
+			return self.value(forHTTPHeaderField: "Content-Type")
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: "Content-Type")
@@ -94,22 +94,22 @@ public extension NSMutableURLRequest {
 	
 	public var referer: String? {
 		get {
-			return self.valueForHTTPHeaderField("Referer")
+			return self.value(forHTTPHeaderField: "Referer")
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: "Referer")
 		}
 	}
 	
-	public func setFormBody(formBody: [String : String]) {
+	public func setFormBody(_ formBody: [String : String]) {
 		let bodyString = formBody.URLQueryString
-		self.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
+		self.httpBody = bodyString.data(using: String.Encoding.utf8)
 	}
-	public func setJSONBody(obj: AnyObject) {
-		self.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions())
+	public func setJSONBody(_ obj: AnyObject) {
+		self.httpBody = try? JSONSerialization.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
 	}
-	public func setUsername(name: String, andPassword password: String) {
-		guard let b64 = "\(name):\(password)".dataUsingEncoding(NSUTF8StringEncoding)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions()) else {
+	public func setUsername(_ name: String, andPassword password: String) {
+		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString(options: NSData.Base64EncodingOptions()) else {
 			XULog("Failed to set name and password - cannot create a base64-encoded string!")
 			return
 		}
@@ -119,7 +119,7 @@ public extension NSMutableURLRequest {
 	/// You can subscript the URL request and get/set HTTP header fields.
 	public subscript(field: String) -> String? {
 		get {
-			return self.valueForHTTPHeaderField(field)
+			return self.value(forHTTPHeaderField: field)
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: field)
@@ -128,7 +128,7 @@ public extension NSMutableURLRequest {
 	
 	public var userAgent: String? {
 		get {
-			return self.valueForHTTPHeaderField("User-Agent")
+			return self.value(forHTTPHeaderField: "User-Agent")
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: "User-Agent")

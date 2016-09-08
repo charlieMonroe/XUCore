@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension NSHTTPURLResponse {
+public extension HTTPURLResponse {
 	
 	/// Return Content-Type from allHeaderFields
 	public var contentType: String? {

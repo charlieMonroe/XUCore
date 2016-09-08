@@ -9,25 +9,25 @@
 import Foundation
 
 /// Used by +today
-private var __today: NSDate?
-private var __validUntil: NSTimeInterval = 0
+private var __today: Date?
+private var __validUntil: TimeInterval = 0
 
 /// Contains time intervals, like hour, minute, day, week. Ideally, this would
 /// be NSTimeInterval extension. Unfortunately, NSTimeInterval is only a typealias
 /// for Double, so Double.day would be valid as well, which we don't want.
 public struct XUTimeInterval {
 	
-	public static let day: NSTimeInterval = 24.0 * 3600.0
-	public static let hour: NSTimeInterval = 3600.0
-	public static let minute: NSTimeInterval = 60.0
-	public static let week: NSTimeInterval = 7.0 * 24.0 * 3600.0
+	public static let day: TimeInterval = 24.0 * 3600.0
+	public static let hour: TimeInterval = 3600.0
+	public static let minute: TimeInterval = 60.0
+	public static let week: TimeInterval = 7.0 * 24.0 * 3600.0
 	
-	private init() {}
+	fileprivate init() {}
 }
 
 
 
-public struct XUMonth : OptionSetType {
+public struct XUMonth : OptionSet {
 	public let rawValue: Int
 	
 	public init(rawValue: Int) { self.rawValue = rawValue }
@@ -109,13 +109,13 @@ public struct XUMonth : OptionSetType {
 }
 
 
-public extension NSDate {
+public extension Date {
 	
 	/// Returns date with day/month/year values, if valid.
 	///
 	/// @note - cannot currently be an initializer since there is no initializer
 	///			that takes NSDateComponents as an arguments
-	public class func dateWithDay(day: Int, month: Int, andYear year: Int) -> NSDate? {
+	public static func dateWithDay(_ day: Int, month: Int, andYear year: Int) -> Date? {
 		return self.dateWithDay(day, month: month, year: year, hour: 0, minute: 0, andSecond: 0)
 	}
 	
@@ -123,23 +123,23 @@ public extension NSDate {
 	///
 	/// @note - cannot currently be an initializer since there is no initializer
 	///			that takes NSDateComponents as an arguments
-	public class func dateWithDay(day: Int, month: Int, year: Int, hour: Int, minute: Int, andSecond second: Int) -> NSDate? {
-		let components = NSDateComponents()
+	public static func dateWithDay(_ day: Int, month: Int, year: Int, hour: Int, minute: Int, andSecond second: Int) -> Date? {
+		var components = DateComponents()
 		components.day = day
 		components.month = month
 		components.year = year
 		components.hour = hour
 		components.minute = minute
 		components.second = second
-		return NSCalendar.currentCalendar().dateFromComponents(components)
+		return Calendar.current.date(from: components)
 	}
 	
 	/// Returns today at 00:00:00.
-	public class func today() -> NSDate {
-		if __today == nil || __validUntil <= NSDate.timeIntervalSinceReferenceDate() {
-			let date = NSDate()
-			let calendar = NSCalendar.currentCalendar()
-			__today = calendar.startOfDayForDate(date)
+	public static func today() -> Date {
+		if __today == nil || __validUntil <= Date.timeIntervalSinceReferenceDate {
+			let date = Date()
+			let calendar = Calendar.current
+			__today = calendar.startOfDay(for: date)
 			__validUntil = __today!.timeIntervalSinceReferenceDate + XUTimeInterval.day
 		}
 		return __today!
@@ -147,115 +147,115 @@ public extension NSDate {
 	
 	
 	/// Converts this date to target time zone.
-	public func dateByConvertingFromTimeZone(originZone: NSTimeZone, toZone targetZone: NSTimeZone) -> NSDate {
+	public func dateByConvertingFromTimeZone(_ originZone: TimeZone, toZone targetZone: TimeZone) -> Date {
 		var convertedDate = self.timeIntervalSinceReferenceDate
-		convertedDate -= NSTimeInterval(originZone.secondsFromGMT) - NSTimeInterval(targetZone.secondsFromGMT)
-		return NSDate(timeIntervalSinceReferenceDate: convertedDate)
+		convertedDate -= TimeInterval(originZone.secondsFromGMT()) - TimeInterval(targetZone.secondsFromGMT())
+		return Date(timeIntervalSinceReferenceDate: convertedDate)
 	}
 	
 	public var day: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Day, fromDate: self)
-		return components.day
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.day, from: self)
+		return components.day!
 	}
 	
 	public var hour: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Hour, fromDate: self)
-		return components.hour
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.hour, from: self)
+		return components.hour!
 	}
 	
 	/// Returns a new date object that is rounded down to seconds.
-	public var integralDate: NSDate {
+	public var integralDate: Date {
 		let interval = floor(self.timeIntervalSince1970)
-		return NSDate(timeIntervalSince1970: interval)
+		return Date(timeIntervalSince1970: interval)
 	}
 	
 	/// Returns true if the receiver is after date.
-	public func isAfterDate(date: NSDate) -> Bool {
+	public func isAfterDate(_ date: Date) -> Bool {
 		return date.timeIntervalSince1970 < self.timeIntervalSince1970
 	}
 	
 	/// Returns true if the receiver is before date.
-	public func isBeforeDate(date: NSDate) -> Bool {
+	public func isBeforeDate(_ date: Date) -> Bool {
 		return self.timeIntervalSince1970 < date.timeIntervalSince1970
 	}
 	
 	/// Returns true iff date1 < self < date2.
-	public func isBetweenDate(date1: NSDate, andDate date2: NSDate) -> Bool {
+	public func isBetweenDate(_ date1: Date, andDate date2: Date) -> Bool {
 		return self.isAfterDate(date1) && self.isBeforeDate(date2)
 	}
 	
 	/// Returns true if the receiver referes to an newer date than in now.
 	public var isFuture: Bool {
-		return self.timeIntervalSinceReferenceDate > NSDate.timeIntervalSinceReferenceDate()
+		return self.timeIntervalSinceReferenceDate > Date.timeIntervalSinceReferenceDate
 	}
 	
 	/// Returns true if the receiver referes to an older date than in now.
 	public var isPast: Bool {
-		return self.timeIntervalSinceReferenceDate < NSDate.timeIntervalSinceReferenceDate()
+		return self.timeIntervalSinceReferenceDate < Date.timeIntervalSinceReferenceDate
 	}
 	
 	/// Returns true if the receiver's day, month and year match the one of now.
 	public var isToday: Bool {
-		let now = NSDate()
+		let now = Date()
 		return now.day == self.day && now.month == self.month && now.year == self.year
 	}
 	
-	public func isWithinMonths(months: XUMonth) -> Bool {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Month, fromDate: self)
+	public func isWithinMonths(_ months: XUMonth) -> Bool {
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.month, from: self)
 		
-		let month = XUMonth(rawValue: (1 << (components.month - 1)))
+		let month = XUMonth(rawValue: (1 << (components.month! - 1)))
 		return months.contains(month)
 	}
 	
-	public func isWithinYear(year: Int) -> Bool {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Year, fromDate: self)
+	public func isWithinYear(_ year: Int) -> Bool {
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.year, from: self)
 		return components.year == year
 	}
 	
 	public var minute: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Minute, fromDate: self)
-		return components.minute
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.minute, from: self)
+		return components.minute!
 	}
 	
 	public var month: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Month, fromDate: self)
-		return components.month
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.month, from: self)
+		return components.month!
 	}
 	
 	public var second: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Second, fromDate: self)
-		return components.second
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.second, from: self)
+		return components.second!
 	}
 	
 	public var shortDescription: String {
-		let formatter = NSDateFormatter()
-		formatter.dateStyle = .ShortStyle
-		formatter.timeStyle = .NoStyle
-		return formatter.stringFromDate(self)
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		formatter.timeStyle = .none
+		return formatter.string(from: self)
 	}
 	
 	public var shortEuropeanDescription: String {
-		let components = NSCalendar.currentCalendar().components([ .Day, .Month, .Year ], fromDate: self)
-		return String(format: "%02i.%02i.%04i", components.day, components.month, components.year)
+		let components = (Calendar.current as NSCalendar).components([ .day, .month, .year ], from: self)
+		return String(format: "%02i.%02i.%04i", components.day!, components.month!, components.year!)
 	}
 	
 	/// Returns a date that is within the same day as self, but has 0 hours,
 	/// 0 minutes and 0 seconds.
-	public var startOfDay: NSDate {
-		return NSDate.dateWithDay(self.day, month: self.month, andYear: self.year) ?? self
+	public var startOfDay: Date {
+		return Date.dateWithDay(self.day, month: self.month, andYear: self.year) ?? self
 	}
 	
 	public var year: Int {
-		let calendar = NSCalendar.currentCalendar()
-		let components = calendar.components(.Year, fromDate: self)
-		return components.year
+		let calendar = Calendar.current
+		let components = (calendar as NSCalendar).components(.year, from: self)
+		return components.year!
 		
 	}
 	

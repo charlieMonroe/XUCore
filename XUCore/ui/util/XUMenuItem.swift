@@ -15,7 +15,7 @@ public final class XUMenuItem: NSMenuItem {
 	/// Action handler.
 	public let actionHandler: ((XUMenuItem) -> Void)?
 	
-	@objc private func _actionHandler(sender: XUMenuItem) {
+	@objc fileprivate func _actionHandler(_ sender: XUMenuItem) {
 		self.actionHandler?(sender)
 	}
 	
@@ -26,7 +26,7 @@ public final class XUMenuItem: NSMenuItem {
 		self.target = self
 	}
 	
-	public required init?(coder aDecoder: NSCoder) {
+	public required init(coder aDecoder: NSCoder) {
 		self.actionHandler = nil
 		super.init(coder: aDecoder)
 	}

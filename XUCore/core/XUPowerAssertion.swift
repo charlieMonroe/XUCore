@@ -18,19 +18,19 @@ public func ==(lhs: XUPowerAssertion, rhs: XUPowerAssertion) -> Bool {
 ///
 /// Currently, doesn't allow you to define the type of assertion, prevents computer
 /// from going to sleep by default.
-public class XUPowerAssertion: Equatable {
+open class XUPowerAssertion: Equatable {
 	
-	private let __assertionID: IOPMAssertionID
+	fileprivate let __assertionID: IOPMAssertionID
 	
 	/// You can optionally store some context reference here.
-	public weak var context: AnyObject?
+	open weak var context: AnyObject?
 	
 	/// Name of the assertion
-	public let name: String
+	open let name: String
 	
 	/// If timeout is non-zero, the power assertion is released automatically
 	/// after this period of time.
-	public let timeout: NSTimeInterval
+	open let timeout: TimeInterval
 	
 	
 	/// Calls the designated initializer with 0 timeout.
@@ -42,13 +42,13 @@ public class XUPowerAssertion: Equatable {
 	/// more information.
 	///
 	/// May return nil if the power assertion fails to be created.
-	public init?(name: String, andTimeOut timeout: NSTimeInterval) {
+	public init?(name: String, andTimeOut timeout: TimeInterval) {
 		
 		self.name = name
 		self.timeout = timeout
 		
 		var assertionID: IOPMAssertionID = IOPMAssertionID(0)
-		let result = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleSystemSleep, IOPMAssertionLevel(kIOPMAssertionLevelOn), name, &assertionID)
+		let result = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleSystemSleep as CFString!, IOPMAssertionLevel(kIOPMAssertionLevelOn), name as CFString!, &assertionID)
 		
 		__assertionID = assertionID
 		
@@ -58,13 +58,13 @@ public class XUPowerAssertion: Equatable {
 		}
 		
 		if timeout != 0.0 {
-			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutKey, timeout)
-			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutActionKey, kIOPMAssertionTimeoutActionRelease)
+			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutKey as CFString!, timeout as CFTypeRef!)
+			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutActionKey as CFString!, kIOPMAssertionTimeoutActionRelease as CFTypeRef!)
 		}
 	}
 	
 	// Stops the assertion from being active.
-	public func stop() {
+	open func stop() {
 		if __assertionID != 0 {
 			IOPMAssertionRelease(__assertionID)
 		}

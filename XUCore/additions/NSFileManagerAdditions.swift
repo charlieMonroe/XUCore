@@ -9,15 +9,16 @@
 import Foundation
 
 /// Convenience methods that ignore some of the arguments of longer methods.
-public extension NSFileManager {
+public extension FileManager {
 	
-	public func contentsOfDirectoryAtURL(url: NSURL) -> [NSURL] {
-		return (try? self.contentsOfDirectoryAtURL(url, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())) ?? []
+	public func contentsOfDirectoryAtURL(_ url: URL) -> [URL] {
+		return (try? self.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())) ?? []
 	}
 	
-	public func createDirectoryAtURL(url: NSURL, withIntermediateDirectories intermediate: Bool = true) -> Bool {
+	@discardableResult
+	public func createDirectoryAtURL(_ url: URL, withIntermediateDirectories intermediate: Bool = true) -> Bool {
 		do {
-			try self.createDirectoryAtURL(url, withIntermediateDirectories: intermediate, attributes: nil)
+			try self.createDirectory(at: url, withIntermediateDirectories: intermediate, attributes: nil)
 			return true
 		} catch _ {
 			return false

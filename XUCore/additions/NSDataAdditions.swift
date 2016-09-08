@@ -8,72 +8,53 @@
 
 import Foundation
 
-private func _hexValueOfChar(c: Character) -> Int {
+private func _hexValueOfChar(_ c: Character) -> UInt8 {
 	if c >= Character("0") && c <= Character("9") {
-		return Int(c.UTF8Value - Character("0").UTF8Value)
+		return c.UTF8Value - Character("0").UTF8Value
 	}
 
 	if c >= Character("a") && c <= Character("f") {
-		return Int(c.UTF8Value - Character("a").UTF8Value) + 10
+		return (c.UTF8Value - Character("a").UTF8Value) + 10
 	}
 
 	if c >= Character("A") && c <= Character("F") {
-		return Int(c.UTF8Value - Character("A").UTF8Value) + 10
+		return (c.UTF8Value - Character("A").UTF8Value) + 10
 	}
 
 	return 0
 }
 
-public extension NSData {
+public extension Data {
 	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
-	public convenience init(hexEncodedString hexString: String) {
+	public init(hexEncodedString hexString: String) {
 		if hexString.characters.count % 2 != 0 {
 			self.init()
 			return
 		}
 		
+		self.init()
 		
-		let data = NSMutableData()
 		var i = hexString.startIndex
 		while i < hexString.endIndex {
 			let byte1 = _hexValueOfChar(hexString.characters[i]) << 4
-			let byte2 = _hexValueOfChar(hexString.characters[i.successor()])
+			let byte2 = _hexValueOfChar(hexString.characters[hexString.characters.index(after: i)])
 			
 			var byte = byte1 | byte2
-			data.appendBytes(&byte, length: 1)
+			self.append(&byte, count: 1)
 			
-			i = i.advancedBy(2)
+			i = hexString.characters.index(i, offsetBy: 2)
 		}
-		
-		self.init(data: data)
-	}
-	
-	/// Returns self.bytes as Int8. If includeZeros is false, this function remove
-	/// bytes that are == 0.
-	@available(*, deprecated, message="Use filteredByteArray")
-	public func byteArrayWithZerosIncluded(includeZeros: Bool) -> [Int8] {
-		var result: [Int8] = []
-		let bytes = UnsafePointer<Int8>(self.bytes)
-		for i in 0 ..< self.length {
-			let c = bytes[i]
-			if c == 0 && !includeZeros {
-				continue
-			}
-			result.append(c)
-		}
-		
-		return result
 	}
 	
 	/// Returns `self.bytes` as `Int8` with `filter` applied. If nil is passed as
 	/// `filter` (default value of `filter`), all bytes are included.
-	public func filteredByteArray(filter: ((index: Int, byte: Int8) -> Bool)! = nil) -> [Int8] {
+	public func filteredByteArray(_ filter: ((_ index: Int, _ byte: Int8) -> Bool)! = nil) -> [Int8] {
 		var result: [Int8] = []
-		let bytes = UnsafePointer<Int8>(self.bytes)
-		for i in 0 ..< self.length {
+		let bytes = (self as NSData).bytes.bindMemory(to: Int8.self, capacity: self.count)
+		for i in 0 ..< self.count {
 			let c = bytes[i]
-			if filter != nil && !filter(index: i, byte: c) {
+			if filter != nil && !filter(i, c) {
 				continue
 			}
 			result.append(c)
@@ -84,12 +65,12 @@ public extension NSData {
 	
 	/// Returns a string such as 194736ca92698d0282b76e979f32b1fa7b9b6d
 	public var hexEncodedString: String {
-		let dataLength = self.length
+		let dataLength = self.count
 		if dataLength == 0 {
 			return ""
 		}
 		
-		let bytes = UnsafePointer<UInt8>(self.bytes)
+		let bytes = (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count)
 		var hexString = ""
 		for i in 0 ..< dataLength {
 			hexString += String(format: "%02x", bytes[i])
@@ -98,36 +79,23 @@ public extension NSData {
 	}
 	
 	/// Returns first occurrence of bytes within `self`. If it doesn't contain
-	/// the data, NSNotFound is returned since this method is based on 
+	/// the data, nil is returned since this method is based on
 	/// self.rangeOfData(_:options:range:).
-	public func indexOfFirstOccurrenceOfBytes(bytes: UnsafeMutablePointer<Void>, ofLength length: Int) -> Int {
-		return self.rangeOfData(NSData(bytesNoCopy: bytes, length: length, freeWhenDone: false), options: NSDataSearchOptions(), range: NSMakeRange(0, self.length)).location
+	public func indexOfFirstOccurrenceOfBytes(_ bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
+		let byteData = Data(bytesNoCopy: bytes, count: length, deallocator: .none)
+		return self.range(of: byteData)?.lowerBound
 	}
 	
 	public var MD5Digest: String {
-		return NSData.MD5DigestOfBytes(self.bytes, ofLength: self.length)
+		return NSData.md5Digest(ofBytes: (self as NSData).bytes, ofLength: self.count)
 	}
 	
 	/// Reads Int-typed value from stream.
-	public func readIntegerStartingAtIndex<T: IntegerType>(index: Int) -> T {
-		let bytes = UnsafePointer<Int8>(self.bytes).advancedBy(index)
-		let pointer = UnsafePointer<T>(bytes)
-		return pointer.memory
+	public func readInteger<T: Integer>(startingAtByte index: Int) -> T {
+		return self.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> T in
+			let bytes = bytes.advanced(by: index)
+			return bytes.withMemoryRebound(to: T.self, capacity: 1, { $0.pointee })
+		}
 	}
 	
-	@available(*, deprecated, message="Use generic readIntegerStartingAtIndex().")
-	public func readIntegerOfLength(length: Int, startingAtIndex index: Int) -> Int {
-		assert(length <= sizeof(Int), "This is a way too big of an int!")
-		
-		var result = 0
-		let bytes = UnsafePointer<Int8>(self.bytes)
-		
-		for i in 0 ..< length {
-			let c = Int(bytes[index + i])
-			result |= c << (8 * (length - i - 1))
-		}
-		
-		return result
-	}
-
 }

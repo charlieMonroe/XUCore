@@ -11,5 +11,5 @@ import Foundation
 /// Unfortunately, Swift compiler sometimes has an issue compiling
 /// NSBundle.mainBundle() and crashes. This can be easily solved by creating
 /// an internal lazy-loaded variable such as this one.
-public let XUMainBundle = NSBundle.mainBundle()
+public let XUMainBundle = Bundle.main
 

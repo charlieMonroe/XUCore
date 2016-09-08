@@ -11,16 +11,16 @@ import Foundation
 @objc public protocol XUArrowKeyEventsObserver: AnyObject {
 	
 	/// Esc was pressed
-	func cancelationKeyWasPressed(event: NSEvent)
+	func cancelationKeyWasPressed(_ event: NSEvent)
 	
 	/// Either enter or return was pressed
-	func confirmationKeyWasPressed(event: NSEvent)
+	func confirmationKeyWasPressed(_ event: NSEvent)
 	
 	/// Key down was pressed
-	func keyDownWasPressed(event: NSEvent)
+	func keyDownWasPressed(_ event: NSEvent)
 	
 	/// Key up was pressed
-	func keyUpWasPressed(event: NSEvent)
+	func keyUpWasPressed(_ event: NSEvent)
 	
 	/// If true, the observer is notified even when the key responder is a text
 	/// field or text view.
@@ -32,7 +32,7 @@ private extension NSView {
 	var suitableFirstResponder: NSView? {
 		for view in self.subviews {
 			if let field = view as? NSTextField {
-				if field.editable {
+				if field.isEditable {
 					return view
 				}
 			}
@@ -51,41 +51,41 @@ private extension NSView {
 /// shortcut.
 public let XUApp: XUApplication! = NSApp as? XUApplication
 
-public class XUApplication: NSApplication {
+open class XUApplication: NSApplication {
 	
-	private var _isModal: Bool = false
-	private weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
+	fileprivate var _isModal: Bool = false
+	fileprivate weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
 		
 	
 	/// Returns the current key events observer
-	public var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {
+	open var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {
 		return _arrowKeyEventObserver
 	}
 	
 	/// Returns whether the current application is in foreground.
-	public var isForegroundApplication: Bool {
-		return NSRunningApplication.currentApplication().active
+	open var isForegroundApplication: Bool {
+		return NSRunningApplication.current().isActive
 	}
 	
 	/// Returns true when running in modal mode
-	public var isRunningInModalMode: Bool {
+	open var isRunningInModalMode: Bool {
 		return _isModal
 	}
 	
 	/// Registers a new key events observer.
-	public func registerArrowKeyEventsObserver(observer: XUArrowKeyEventsObserver) {
+	open func registerArrowKeyEventsObserver(_ observer: XUArrowKeyEventsObserver) {
 		XULog("registering \(observer) as arrow key event observer")
 		_arrowKeyEventObserver = observer
 	}
 	
 	/// Unregisters current key events observer.
-	public func unregisterArrowKeyEventsObserver() {
+	open func unregisterArrowKeyEventsObserver() {
 		XULog("unregistering \(_arrowKeyEventObserver.descriptionWithDefaultValue()) as arrow key event observer")
 		_arrowKeyEventObserver = nil
 	}
 	
-	public override func runModalForWindow(theWindow: NSWindow) -> Int {
-		self.activateIgnoringOtherApps(true)
+	open override func runModal(for theWindow: NSWindow) -> Int {
+		self.activate(ignoringOtherApps: true)
 		
 		_isModal = true
 		
@@ -96,24 +96,24 @@ public class XUApplication: NSApplication {
 		
 		theWindow.makeFirstResponder(firstResp)
 		
-		return super.runModalForWindow(theWindow)
+		return super.runModal(for: theWindow)
 	}
 	
-	public override func sendEvent(theEvent: NSEvent) {
-		if _isModal && theEvent.type == .KeyDown {
+	open override func sendEvent(_ theEvent: NSEvent) {
+		if _isModal && theEvent.type == .keyDown {
 			guard let w = self.keyWindow else {
 				super.sendEvent(theEvent)
 				return
 			}
 			
 			let keyCode = theEvent.keyCode
-			if keyCode == XUKeyCode.Escape.rawValue || keyCode == XUKeyCode.Enter.rawValue || keyCode == XUKeyCode.Return.rawValue {
+			if keyCode == XUKeyCode.escape.rawValue || keyCode == XUKeyCode.enter.rawValue || keyCode == XUKeyCode.return.rawValue {
 				w.makeFirstResponder(w.nextResponder)
-				w.keyDown(theEvent)
-			}else if keyCode == 9 && theEvent.modifierFlags.contains(.CommandKeyMask) {
+				w.keyDown(with: theEvent)
+			}else if keyCode == 9 && theEvent.modifierFlags.contains(.command) {
 				// Command-V
 				if let textView = w.firstResponder as? NSTextView {
-					if NSPasteboard.generalPasteboard().stringForType(NSPasteboardTypeString) != nil {
+					if NSPasteboard.general().string(forType: NSPasteboardTypeString) != nil {
 						textView.paste(nil)
 					}
 				}else{
@@ -127,31 +127,31 @@ public class XUApplication: NSApplication {
 		}
 		
 		// Not modal
-		var windowIsEditingAField = self.mainWindow?.firstResponder.isKindOfClass(NSTextView.self) ?? false
+		var windowIsEditingAField = self.mainWindow?.firstResponder.isKind(of: NSTextView.self) ?? false
 		if _arrowKeyEventObserver != nil && _arrowKeyEventObserver!.observeEvenWhenEditing {
 			windowIsEditingAField = false
 		}
 		
-		if theEvent.type == .KeyDown && !windowIsEditingAField {
+		if theEvent.type == .keyDown && !windowIsEditingAField {
 			let flags = theEvent.modifierFlags
-			if !flags.contains(.CommandKeyMask) && !flags.contains(.ShiftKeyMask) && !flags.contains(.AlternateKeyMask) {
+			if !flags.contains(.command) && !flags.contains(.shift) && !flags.contains(.option) {
 				let keyCode = theEvent.keyCode
-				if keyCode == XUKeyCode.KeyDown.rawValue && _arrowKeyEventObserver != nil {
+				if keyCode == XUKeyCode.keyDown.rawValue && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.keyDownWasPressed(theEvent)
 					return
-				}else if keyCode == XUKeyCode.KeyUp.rawValue && _arrowKeyEventObserver != nil {
+				}else if keyCode == XUKeyCode.keyUp.rawValue && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.keyUpWasPressed(theEvent)
 					return
-				}else if (keyCode == XUKeyCode.Return.rawValue || keyCode == XUKeyCode.Enter.rawValue) && _arrowKeyEventObserver != nil {
+				}else if (keyCode == XUKeyCode.return.rawValue || keyCode == XUKeyCode.enter.rawValue) && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.confirmationKeyWasPressed(theEvent)
 					return
 				}
 			}
 		}
 		
-		if theEvent.type == .KeyUp && !windowIsEditingAField {
+		if theEvent.type == .keyUp && !windowIsEditingAField {
 			let keyCode = theEvent.keyCode
-			if (keyCode == XUKeyCode.Escape.rawValue) && _arrowKeyEventObserver != nil {
+			if (keyCode == XUKeyCode.escape.rawValue) && _arrowKeyEventObserver != nil {
 				_arrowKeyEventObserver!.cancelationKeyWasPressed(theEvent)
 				return
 			}
@@ -160,15 +160,15 @@ public class XUApplication: NSApplication {
 		super.sendEvent(theEvent)
 	}
 	
-	public override func stopModal() {
+	open override func stopModal() {
 		_isModal = false
 		super.stopModal()
 	}
 	
-	public override func stopModalWithCode(returnCode: Int) {
+	open override func stopModal(withCode returnCode: Int) {
 		_isModal = false
 		
-		super.stopModalWithCode(returnCode)
+		super.stopModal(withCode: returnCode)
 	}
 	
 }

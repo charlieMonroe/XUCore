@@ -10,7 +10,7 @@ import Foundation
 
 public extension NSAlert {
 	
-	private func _isDefaultButton(response: NSModalResponse) -> Bool {
+	fileprivate func _isDefaultButton(_ response: NSModalResponse) -> Bool {
 		if self.buttons.count == 0 {
 			return true // The alert only has one default OK button
 		}
@@ -19,11 +19,11 @@ public extension NSAlert {
 			return response == NSAlertFirstButtonReturn
 		}
 		
-		NSException(name: NSInternalInconsistencyException, reason: "Running a deprecated NSAlert instance!", userInfo: nil).raise()
+		NSException(name: NSExceptionName.internalInconsistencyException, reason: "Running a deprecated NSAlert instance!", userInfo: nil).raise()
 		abort()
 	}
 	
-	private func _prepareAccessoryTextFieldWithInitialValue(initialValue: String, secure: Bool) {
+	fileprivate func _prepareAccessoryTextFieldWithInitialValue(_ initialValue: String, secure: Bool) {
 		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {
@@ -41,32 +41,32 @@ public extension NSAlert {
 	
 	/// Adds a button with title "Cancel".
 	public func addCancelButton() {
-		self.addButtonWithTitle(XULocalizedString("Cancel", inBundle: XUCoreBundle))
+		self.addButton(withTitle: XULocalizedString("Cancel", inBundle: XUCoreBundle))
 	}
 	
 	/// Adds a button with title "OK".
 	public func addOKButton() {
-		self.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
+		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreBundle))
 	}
 	
 	/// Begins the alert as sheet from window with secure text field as accessory
 	/// view, containing initialValue.
-	public func beginSheetModalWithSecureTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
+	public func beginSheetModalWithSecureTextField(_ initialValue: String, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
 		self.beginSheetModalWithTextField(initialValue, secure: true, forWindow: window, completionHandler: handler)
 	}
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue.
-	public func beginSheetModalWithTextField(initialValue: String, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
+	public func beginSheetModalWithTextField(_ initialValue: String, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
 		self.beginSheetModalWithTextField(initialValue, secure: false, forWindow: window, completionHandler: handler)
 	}
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue. If secure is true, the text field is secure.
-	private func beginSheetModalWithTextField(initialValue: String, secure: Bool, forWindow window: NSWindow, completionHandler handler: (NSModalResponse, String?) -> Void) {
+	fileprivate func beginSheetModalWithTextField(_ initialValue: String, secure: Bool, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
 
 		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
-		self.beginSheetModalForWindow(window, completionHandler: { (response) in
+		self.beginSheetModal(for: window, completionHandler: { (response) in
 			if response == NSAlertFirstButtonReturn {
 				handler(response, (self.accessoryView as! NSTextField).stringValue)
 			} else {
@@ -82,7 +82,7 @@ public extension NSAlert {
 	
 	/// Create a pop up button as its own accessory view in the alert and populates
 	/// it with menuItems.
-	public func createAccessoryPopUpButtonWithMenuItems(menuItems: [NSMenuItem]) -> NSPopUpButton {
+	public func createAccessoryPopUpButtonWithMenuItems(_ menuItems: [NSMenuItem]) -> NSPopUpButton {
 		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
 		self.accessoryView = popUpButton
 		
@@ -101,13 +101,14 @@ public extension NSAlert {
 		popUpButton.menu = menu
 		
 		if anyImageTooLargeForInlineDisplay {
-			(popUpButton.cell as? NSPopUpButtonCell)?.imageScaling = .ScaleProportionallyDown
+			(popUpButton.cell as? NSPopUpButtonCell)?.imageScaling = .scaleProportionallyDown
 		}
 		return popUpButton
 	}
 	
 	/// Ensures that the alert is run on main thread. If current thread isn't main,
-	/// the thread is blocked until the alert is dismissed.0
+	/// the thread is blocked until the alert is dismissed.
+	@discardableResult
 	public func runModalOnMainThread() -> NSModalResponse {
 		var result: NSModalResponse = NSAlertFirstButtonReturn
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
@@ -120,14 +121,14 @@ public extension NSAlert {
 	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but 
 	/// NSAlertFirstButtonReturn.
-	public func runModalWithTextField(initialValue: String) -> String? {
+	public func runModalWithTextField(_ initialValue: String) -> String? {
 		return self.runModalWithTextField(initialValue, secure: false)
 	}
 	
 	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. If secure is ture, the text field is secure.
-	public func runModalWithTextField(initialValue: String, secure: Bool) -> String? {
+	public func runModalWithTextField(_ initialValue: String, secure: Bool) -> String? {
 		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
 		
 		if !self._isDefaultButton(self.runModal()) {
@@ -140,7 +141,7 @@ public extension NSAlert {
 	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. Makes sure that the alert is run on main thread.
-	public func runModalWithTextFieldOnMainThread(initialValue: String) -> String? {
+	public func runModalWithTextFieldOnMainThread(_ initialValue: String) -> String? {
 		return self.runModalWithTextFieldOnMainThread(initialValue, secure: false)
 	}
 	
@@ -148,7 +149,7 @@ public extension NSAlert {
 	/// the text field is secure. Nil is returned when the user dismisses the 
 	/// dialog with anything else but NSAlertFirstButtonReturn. Makes sure that
 	/// the alert is run on main thread.
-	public func runModalWithTextFieldOnMainThread(initialValue: String, secure: Bool) -> String? {
+	public func runModalWithTextFieldOnMainThread(_ initialValue: String, secure: Bool) -> String? {
 		var result: String? = nil
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in

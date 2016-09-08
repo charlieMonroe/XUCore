@@ -10,15 +10,15 @@ import Cocoa
 
 /// This is a button that does literally nothing. It is used for padding between
 /// buttons of the same appearance.
-public class XUEventIgnoringButton: NSButton {
+open class XUEventIgnoringButton: NSButton {
 	
-	public override func acceptsFirstMouse(theEvent: NSEvent?) -> Bool {
+	open override func acceptsFirstMouse(for theEvent: NSEvent?) -> Bool {
 		return false
 	}
-	public override var acceptsFirstResponder: Bool {
+	open override var acceptsFirstResponder: Bool {
 		return false
 	}
-	public override func mouseDown(theEvent: NSEvent) {
+	open override func mouseDown(with theEvent: NSEvent) {
 		// No-op
 	}
 	

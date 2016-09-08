@@ -21,13 +21,13 @@ public final class XUWeakReference<T: AnyObject> {
 	}
 }
 
-public struct XUWeakArray<T: AnyObject>: SequenceType {
+public struct XUWeakArray<T: AnyObject>: Sequence {
 	
 	typealias GeneratorType = XUWeakArrayGenerator<T>
 
-	private var _innerArray: [XUWeakReference<T>] = []
+	fileprivate var _innerArray: [XUWeakReference<T>] = []
 	
-	public mutating func append(value: T?) {
+	public mutating func append(_ value: T?) {
 		_innerArray.append(XUWeakReference(objectValue: value))
 	}
 	
@@ -41,7 +41,7 @@ public struct XUWeakArray<T: AnyObject>: SequenceType {
 		return self[0]
 	}
 	
-	public func generate() -> XUWeakArrayGenerator<T> {
+	public func makeIterator() -> XUWeakArrayGenerator<T> {
 		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).sliceWithRange(0 ..< _innerArray.count))
 	}
 	
@@ -50,7 +50,7 @@ public struct XUWeakArray<T: AnyObject>: SequenceType {
 	}
 	
 	public mutating func remove(atIndex index: Int) {
-		_innerArray.removeAtIndex(index)
+		_innerArray.remove(at: index)
 	}
 	
 	subscript(index: Int) -> T? {
@@ -64,11 +64,11 @@ public struct XUWeakArray<T: AnyObject>: SequenceType {
 	
 }
 
-public struct XUWeakArrayGenerator<T: AnyObject>: GeneratorType {
+public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
 	
 	public typealias Element = T
 	
-	private var _items: ArraySlice<T?>
+	fileprivate var _items: ArraySlice<T?>
 	
 	mutating public func next() -> T? {
 		while !_items.isEmpty {
@@ -81,7 +81,7 @@ public struct XUWeakArrayGenerator<T: AnyObject>: GeneratorType {
 		return nil
 	}
 	
-	private init(slice: ArraySlice<T?>) {
+	fileprivate init(slice: ArraySlice<T?>) {
 		self._items = slice
 	}
 

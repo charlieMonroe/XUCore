@@ -13,7 +13,7 @@ import ObjectiveC
 /// This is achieved by climbing the class tree hierarchy using class_getSuperclass
 /// runtime function. This is useful when examining classes that do not have
 /// NSObject as root (e.g. NSProxy subclasses).
-private func XUClassKindOfClass(inspectedClass: AnyClass?, wantedSuperclass: AnyClass?) -> Bool {
+private func XUClassKindOfClass(_ inspectedClass: AnyClass?, wantedSuperclass: AnyClass?) -> Bool {
 	// We've hit the root, so no, it's not
 	if inspectedClass == nil {
 		return false
@@ -30,12 +30,12 @@ private func XUClassKindOfClass(inspectedClass: AnyClass?, wantedSuperclass: Any
 
 /// Works pretty much as +isKindOfClass: on NSObject, but will work fine even with
 /// NSProxy subclasses, which do not respond to +isKindOfClass:
-public func XUClassIsSubclassOfClass(superclass: AnyClass, subclass: AnyClass) -> Bool {
+public func XUClassIsSubclassOfClass(_ superclass: AnyClass, subclass: AnyClass) -> Bool {
 	return XUClassKindOfClass(subclass, wantedSuperclass: superclass)
 }
 
 /// Returns a list of subclasses of class T. Doesn't include the root T class.
-public func XUAllSubclassesOfClass<T: AnyObject>(aClass: T.Type) -> [T.Type] {
+public func XUAllSubclassesOfClass<T: AnyObject>(_ aClass: T.Type) -> [T.Type] {
 	var result: [T.Type] = []
 
 	var numClasses: Int32 = 0
@@ -45,12 +45,13 @@ public func XUAllSubclassesOfClass<T: AnyObject>(aClass: T.Type) -> [T.Type] {
 
 	if numClasses > 0 {
 		// Get them all
-		let memory = malloc(sizeof(AnyClass) * Int(numClasses))
+		let memory = malloc(MemoryLayout<AnyClass>.size * Int(numClasses))!
 		defer {
 			free(memory)
 		}
 		
-		let classes = AutoreleasingUnsafeMutablePointer<AnyClass?>(memory)
+		let classesPtr = memory.assumingMemoryBound(to: Optional<AnyClass>.self)
+		let classes = AutoreleasingUnsafeMutablePointer<AnyClass?>(classesPtr)
 		numClasses = objc_getClassList(classes, numClasses)
 
 		for i in 0 ..< Int(numClasses) {
@@ -71,9 +72,9 @@ public func XUAllSubclassesOfClass<T: AnyObject>(aClass: T.Type) -> [T.Type] {
 }
 
 /// This class allows the functions to be accessible from Objective-C.
-public class XUSubclassCollector: NSObject {
+open class XUSubclassCollector: NSObject {
 
-	public class func allSubclassesOfClass(aClass: AnyClass) -> [AnyClass] {
+	open class func allSubclassesOfClass(_ aClass: AnyClass) -> [AnyClass] {
 		return XUAllSubclassesOfClass(aClass as! NSObject.Type)
 	}
 

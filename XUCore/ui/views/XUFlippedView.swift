@@ -9,9 +9,9 @@
 import Foundation
 
 /// A view that is flipped.
-public class XUFlippedView: NSView {
+open class XUFlippedView: NSView {
 	
-	public override var flipped: Bool {
+	open override var isFlipped: Bool {
 		return true
 	}
 	

@@ -14,7 +14,7 @@ public extension NSTextField {
 	
 	/// If downwards flag is NO, it only updates the frame's height, keeping the
 	/// origin.
-	public func sizeToFitKeepingWidth(resizeDownwards: Bool) -> CGRect {
+	public func sizeToFitKeepingWidth(_ resizeDownwards: Bool) -> CGRect {
 		let textFrame = self.bounds.insetBy(dx: kBorderWidth, dy: kBorderWidth)
 		let textHeight = self.stringValue.sizeWithAttributes([NSFontAttributeName: self.font!], maxWidth: textFrame.width).height
 		let deltaHeight = textFrame.height - textHeight

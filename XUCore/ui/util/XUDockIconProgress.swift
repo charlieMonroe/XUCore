@@ -9,16 +9,16 @@
 import AppKit
 
 /// This class represents the Dock icon's progress bar.
-public class XUDockIconProgress: NSObject {
+open class XUDockIconProgress: NSObject {
 
-	private let kXUDockProgressBarHeight: CGFloat = 20.0
-	private let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
+	fileprivate let kXUDockProgressBarHeight: CGFloat = 20.0
+	fileprivate let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
 
-	private var _lastUpdated: Double = 0.0
+	fileprivate var _lastUpdated: Double = 0.0
 
-	public static let sharedProgress: XUDockIconProgress = XUDockIconProgress()
+	open static let sharedProgress: XUDockIconProgress = XUDockIconProgress()
 	
-	private func _createProgressImage() -> NSImage {
+	fileprivate func _createProgressImage() -> NSImage {
 		let im: NSImage = NSImage(named: "NSApplicationIcon")?.copy() as! NSImage
 		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: kXUDockProgressBarHeight)
 
@@ -31,27 +31,27 @@ public class XUDockIconProgress: NSObject {
 
 		var bounds = barRect
 		var bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
-		NSColor.whiteColor().set()
+		NSColor.white.set()
 		bezierPath.fill()
 
 		bounds = bounds.insetBy(dx: 2.0, dy: 2.0)
 		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
-		NSColor.blackColor().set()
+		NSColor.black.set()
 		bezierPath.fill()
 
 		bounds = bounds.insetBy(dx: 2.0, dy: 2.0)
 		bounds.size.width = bounds.width * CGFloat(progress)
 		bezierPath = NSBezierPath(roundedRect: bounds, xRadius: bounds.height / 2.0, yRadius: bounds.height / 2.0)
-		NSColor.whiteColor().set()
+		NSColor.white.set()
 		bezierPath.fill()
 
 		im.unlockFocus()
 		return im
 	}
 
-	private func _updateDockIcon() -> Void {
-		if !NSThread.isMainThread() {
-			dispatch_async(dispatch_get_main_queue(), {
+	fileprivate func _updateDockIcon() -> Void {
+		if !Thread.isMainThread {
+			DispatchQueue.main.async(execute: {
 				self._updateDockIcon()
 			})
 			return
@@ -62,13 +62,13 @@ public class XUDockIconProgress: NSObject {
 		
 		if progress > 0.0 && progress < 1.0 {
 			let image = self._createProgressImage()
-			NSApplication.sharedApplication().applicationIconImage = image
+			NSApplication.shared().applicationIconImage = image
 		} else {
-			NSApplication.sharedApplication().applicationIconImage = nil
+			NSApplication.shared().applicationIconImage = nil
 		}
 	}
 
-	public var progressValue: Double = 0.0 {
+	open var progressValue: Double = 0.0 {
 		didSet {
 			let needsVisualUpdate = abs(Double(_lastUpdated - progressValue)) > 0.01 || _lastUpdated == 0.0
 			if needsVisualUpdate {

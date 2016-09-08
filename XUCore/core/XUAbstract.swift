@@ -9,10 +9,10 @@
 import Foundation
 
 /** Throws an abstraction exception. */
-@noreturn public func XUThrowAbstractException(additionalInformation: String = "", file: String = #file.componentsSeparatedByString("/").last!, line: Int = #line, method: String = #function) {
+public func XUThrowAbstractException(_ additionalInformation: String = "", file: String = #file.components(separatedBy: "/").last!, line: Int = #line, method: String = #function) -> Never  {
 	
 	let reason = "XUAbstractException: [\(file):\(line) \(method)] \(additionalInformation)"
-	NSException(name: "XUAbstractExceptionName", reason: reason, userInfo: nil).raise()
+	NSException(name: NSExceptionName(rawValue: "XUAbstractExceptionName"), reason: reason, userInfo: nil).raise()
 	abort()
 }
 

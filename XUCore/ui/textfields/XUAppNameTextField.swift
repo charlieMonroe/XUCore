@@ -10,15 +10,15 @@ import Cocoa
 
 /// Text field that replaces %AppName% with the app's name. Used in XIB files
 /// that are used in multiple apps.
-public class XUAppNameTextField: NSTextField {
+open class XUAppNameTextField: NSTextField {
 
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		self.localizeView()
 		
-		let appName = NSProcessInfo().processName
-		self.stringValue = self.stringValue.stringByReplacingOccurrencesOfString("%AppName%", withString: appName)
+		let appName = ProcessInfo().processName
+		self.stringValue = self.stringValue.replacingOccurrences(of: "%AppName%", with: appName)
 	}
     
 }

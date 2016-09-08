@@ -24,17 +24,17 @@ public extension NSView {
 	}
 	
 	/// Sets enabled on subviews.
-	public func setDeepEnabled(flag: Bool) {
+	public func setDeepEnabled(_ flag: Bool) {
 		for view in self.subviews {
 			if let control = view as? NSControl {
-				control.enabled = flag
+				control.isEnabled = flag
 			}else{
 				view.setDeepEnabled(flag)
 			}
 		}
 	}
 	
-	@available(*, deprecated, renamed="screenCoordinates")
+	@available(*, deprecated, renamed: "screenCoordinates")
 	public var screenCoordinatesOfSelf: CGRect {
 		return self.screenCoordinates
 	}
@@ -43,24 +43,24 @@ public extension NSView {
 		return self.screenCoordinatesOfFrame(self.bounds)
 	}
 	
-	public func screenCoordinatesOfFrame(frame: CGRect) -> CGRect {
+	public func screenCoordinatesOfFrame(_ frame: CGRect) -> CGRect {
 		if self.window == nil {
 			return CGRect()
 		}
 		
-		var rect = self.convertRect(frame, toView: nil)
+		var rect = self.convert(frame, to: nil)
 		let windowFrame = self.window!.frame
 		rect.origin.x += windowFrame.minX
 		rect.origin.y += windowFrame.minY
 		return rect
 	}
 	
-	public func screenCoordinatesOfPoint(point: CGPoint) -> CGPoint {
+	public func screenCoordinatesOfPoint(_ point: CGPoint) -> CGPoint {
 		if self.window == nil {
 			return CGPoint()
 		}
 		
-		var localPoint = self.convertPoint(point, toView: nil)
+		var localPoint = self.convert(point, to: nil)
 		let windowFrame = self.window!.frame
 		localPoint.x += windowFrame.minX
 		localPoint.y += windowFrame.minY

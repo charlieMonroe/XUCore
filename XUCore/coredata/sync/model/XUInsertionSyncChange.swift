@@ -12,7 +12,7 @@ import CoreData
 /// This class represents a sync change where an object has been inserted
 /// into the MOC.
 @objc(XUInsertionSyncChange)
-public class XUInsertionSyncChange: XUSyncChange {
+open class XUInsertionSyncChange: XUSyncChange {
 	
 	/// A list of all attributes. Created by -initWithObject:. Relationships are
 	/// handled by separate relationship changes.
@@ -20,10 +20,10 @@ public class XUInsertionSyncChange: XUSyncChange {
 	/// The dictionary is marked as Transformable, hence it's not all that efficient
 	/// when it comes to deserialization - if possible, query this property as little
 	/// as possible.
-	@NSManaged public private(set) var attributes: [String : AnyObject]
+	@NSManaged open fileprivate(set) var attributes: [String : AnyObject]
 	
 	/// Name of the entity being inserted. Created by -initWithObject:.
-	@NSManaged public private(set) var insertedEntityName: String
+	@NSManaged open fileprivate(set) var insertedEntityName: String
 	
 	public override init(object: XUManagedObject) {
 		super.init(object: object)
@@ -32,15 +32,15 @@ public class XUInsertionSyncChange: XUSyncChange {
 		let objectAttributeNames = object.entity.attributesByName
 		var attributeValues: [String : AnyObject] = [:]
 		for (attributeName, _) in objectAttributeNames {
-			attributeValues[attributeName] = object.valueForKey(attributeName)
+			attributeValues[attributeName] = object.value(forKey: attributeName) as AnyObject?
 		}
 		
 		self.attributes = attributeValues
 		self.insertedEntityName = object.entity.name!
 	}
 	
-	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	internal override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertInto: context)
 	}
 	
 }
@@ -48,12 +48,12 @@ public class XUInsertionSyncChange: XUSyncChange {
 /// This class represents a change where an object was added into a -to-many
 /// relationship set.
 @objc(XUToManyRelationshipAdditionSyncChange)
-public class XUToManyRelationshipAdditionSyncChange: XURelationshipSyncChange { }
+open class XUToManyRelationshipAdditionSyncChange: XURelationshipSyncChange { }
 
 /// This class represents a change where an object was removed from a -to-many
 /// relationship set.
 @objc(XUToManyRelationshipDeletionSyncChange)
-public class XUToManyRelationshipDeletionSyncChange: XURelationshipSyncChange { }
+open class XUToManyRelationshipDeletionSyncChange: XURelationshipSyncChange { }
 
 @objc(XUToOneRelationshipSyncChange)
-public class XUToOneRelationshipSyncChange: XURelationshipSyncChange { }
+open class XUToOneRelationshipSyncChange: XURelationshipSyncChange { }

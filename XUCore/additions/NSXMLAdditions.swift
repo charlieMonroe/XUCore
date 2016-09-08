@@ -23,28 +23,28 @@ public extension NSXMLNode {
 }
 */
 
-public extension NSXMLNode {
+public extension XMLNode {
 	
 	public var integerValue: Int {
 		return self.stringValue?.integerValue ?? 0
 	}
 	
-	public func firstNodeOnXPath(xpath: String) -> NSXMLNode? {
-		return self.nodesForXPath(xpath).first
+	public func firstNodeOnXPath(_ xpath: String) -> XMLNode? {
+		return self.nodes(forXPath: xpath).first
 	}
-	public func integerValueOfFirstNodeOnXPath(xpath: String) -> Int {
+	public func integerValueOfFirstNodeOnXPath(_ xpath: String) -> Int {
 		return self.integerValueOfFirstNodeOnXPaths([ xpath ])
 	}
-	public func integerValueOfFirstNodeOnXPaths(xpaths: [String]) -> Int {
+	public func integerValueOfFirstNodeOnXPaths(_ xpaths: [String]) -> Int {
 		return self.stringValueOfFirstNodeOnXPaths(xpaths)?.integerValue ?? 0
 	}
-	public func lastNodeOnXPath(xpath: String) -> NSXMLNode? {
-		return self.nodesForXPath(xpath).last
+	public func lastNodeOnXPath(_ xpath: String) -> XMLNode? {
+		return self.nodes(forXPath: xpath).last
 	}
-	public func stringValueOfFirstNodeOnXPath(xpath: String) -> String? {
+	public func stringValueOfFirstNodeOnXPath(_ xpath: String) -> String? {
 		return self.firstNodeOnXPath(xpath)?.stringValue
 	}
-	public func stringValueOfFirstNodeOnXPaths(xpaths: [String]) -> String? {
+	public func stringValueOfFirstNodeOnXPaths(_ xpaths: [String]) -> String? {
 		for path in xpaths {
 			if let result = self.stringValueOfFirstNodeOnXPath(path) {
 				if result.characters.count > 0 {
@@ -54,59 +54,59 @@ public extension NSXMLNode {
 		}
 		return nil
 	}
-	public func stringValueOfLastNodeOnXPath(xpath: String) -> String? {
+	public func stringValueOfLastNodeOnXPath(_ xpath: String) -> String? {
 		return self.lastNodeOnXPath(xpath)?.stringValue
 	}
-	public func integerValueOfAttributeNamed(attributeName: String) -> Int {
+	public func integerValueOfAttributeNamed(_ attributeName: String) -> Int {
 		return 0
 	}
-	public func stringValueOfAttributeNamed(attributeName: String) -> String? {
+	public func stringValueOfAttributeNamed(_ attributeName: String) -> String? {
 		return nil
 	}
 	
 }
 
-public extension NSXMLElement {
+public extension XMLElement {
 	
-	public override func integerValueOfAttributeNamed(attributeName: String) -> Int {
-		return self.attributeForName(attributeName)?.integerValue ?? 0
+	public override func integerValueOfAttributeNamed(_ attributeName: String) -> Int {
+		return self.attribute(forName: attributeName)?.integerValue ?? 0
 	}
-	public override func stringValueOfAttributeNamed(attributeName: String) -> String? {
-		return self.attributeForName(attributeName)?.stringValue
+	public override func stringValueOfAttributeNamed(_ attributeName: String) -> String? {
+		return self.attribute(forName: attributeName)?.stringValue
 	}
 	
 }
 
-public extension NSXMLDocument {
+public extension XMLDocument {
 	
 	public convenience init?(string: String, andOptions mask: Int) {
-		try? self.init(XMLString: string, options: mask)
+		try? self.init(xmlString: string, options: mask)
 	}
 	
 }
 
-public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
 	
-	public func XMLElementWithName(elementName: String) -> NSXMLElement {
-		let formatter = NSDateFormatter()
+	public func XMLElementWithName(_ elementName: String) -> XMLElement {
+		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
-		let element = NSXMLElement(name: elementName)
+		let element = XMLElement(name: elementName)
 		for (k, value) in self {
-			let key = String(k)
+			let key = String(describing: k)
 			if let val =  value as? String {
-				element.addChild(NSXMLElement(name: key, stringValue: val))
+				element.addChild(XMLElement(name: key, stringValue: val))
 			}else if let val = value as? NSDecimalNumber {
-				element.addChild(NSXMLElement(name: key, stringValue: String(format: "%0.4f", val)))
+				element.addChild(XMLElement(name: key, stringValue: String(format: "%0.4f", val)))
 			}else if let val = value as? NSNumber {
-				element.addChild(NSXMLElement(name: key, stringValue: "\(val.stringValue)"))
-			}else if let val = value as? NSDate {
-				element.addChild(NSXMLElement(name: key, stringValue: formatter.stringFromDate(val)))
+				element.addChild(XMLElement(name: key, stringValue: "\(val.stringValue)"))
+			}else if let val = value as? Date {
+				element.addChild(XMLElement(name: key, stringValue: formatter.string(from: val)))
 			}else if let val = value as? NSDictionary {
 				if val.count == 0 {
 					continue
 				}
-				element.addChild(val.XMLElementWithName(key))
+				element.addChild(val.xmlElement(withName: key))
 			}else if let val = value as? [Dictionary] {
 				if val.count == 0 {
 					continue
@@ -118,7 +118,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
 				}
 				
 			}else{
-				NSException(name: NSInternalInconsistencyException, reason: "Dictionary contains a value of unsupported type.", userInfo: nil).raise()
+				NSException(name: NSExceptionName.internalInconsistencyException, reason: "Dictionary contains a value of unsupported type.", userInfo: nil).raise()
 			}
 		}
 		return element

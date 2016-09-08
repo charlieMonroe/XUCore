@@ -12,11 +12,11 @@ import Cocoa
 	
 	/// This method must be called when the operation is complete. It forces
 	/// the window to close.
-	func progressableOperationDidFinish(operation: XUProgressableOperation)
+	func progressableOperationDidFinish(_ operation: XUProgressableOperation)
 
 	/// This method must be called when the operation progress changes. It forces
 	/// the window to update.
-	func progressableOperationDidUpdateProgress(operation: XUProgressableOperation)
+	func progressableOperationDidUpdateProgress(_ operation: XUProgressableOperation)
 
 	
 }
@@ -46,28 +46,28 @@ import Cocoa
 
 /// This is a window controller for a window with a progress bar and a Cancel 
 /// button. It can be easily re-used.
-public class XUOperationProgressWindowController: NSWindowController, XUProgressableOperationDelegate {
+open class XUOperationProgressWindowController: NSWindowController, XUProgressableOperationDelegate {
 	
-	@IBOutlet public private(set) weak var currentActionNameLabel: NSTextField!
-	@IBOutlet public private(set) weak var currentProgressLabel: NSTextField!
-	@IBOutlet public private(set) weak var progressIndicator: NSProgressIndicator!
+	@IBOutlet open fileprivate(set) weak var currentActionNameLabel: NSTextField!
+	@IBOutlet open fileprivate(set) weak var currentProgressLabel: NSTextField!
+	@IBOutlet open fileprivate(set) weak var progressIndicator: NSProgressIndicator!
 	
 	/// The operation.
-	public private(set) var operation: XUProgressableOperation!
+	open fileprivate(set) var operation: XUProgressableOperation!
 	
 	/// By default true. If true, shows the textual progress such as 12/100.
-	public var showsTextualProgress: Bool = true {
+	open var showsTextualProgress: Bool = true {
 		didSet {
-			self.currentProgressLabel?.hidden = !self.showsTextualProgress
+			self.currentProgressLabel?.isHidden = !self.showsTextualProgress
 		}
 	}
 	
-	@IBAction public func cancel(sender: AnyObject?) {
+	@IBAction open func cancel(_ sender: AnyObject?) {
 		self.operation.cancel()
 	}
 	
 	
-	public class func operationProgressWindowControllerWithOperation(operation: XUProgressableOperation) -> XUOperationProgressWindowController {
+	open class func operationProgressWindowControllerWithOperation(_ operation: XUProgressableOperation) -> XUOperationProgressWindowController {
 		let controller = XUOperationProgressWindowController(windowNibName: "XUOperationProgressWindowController")
 		controller.operation = operation
 		operation.delegate = controller
@@ -75,7 +75,7 @@ public class XUOperationProgressWindowController: NSWindowController, XUProgress
 	}
 	
 	
-	private func _update() {
+	fileprivate func _update() {
 		self.currentActionNameLabel.stringValue = self.operation.currentActionName
 		self.progressIndicator.minValue = 0.0
 		self.progressIndicator.maxValue = Double(self.operation.numberOfSteps)
@@ -84,19 +84,19 @@ public class XUOperationProgressWindowController: NSWindowController, XUProgress
 		self.currentProgressLabel.stringValue = "\(self.operation.currentStep)/\(self.operation.numberOfSteps)"
 	}
 	
-	public func progressableOperationDidFinish(operation: XUProgressableOperation) {
+	open func progressableOperationDidFinish(_ operation: XUProgressableOperation) {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
 			self.window?.orderOut(nil)
 		}
 	}
 	
-	public func progressableOperationDidUpdateProgress(operation: XUProgressableOperation) {
+	open func progressableOperationDidUpdateProgress(_ operation: XUProgressableOperation) {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 			self._update()
 		}
 	}
 	
-    public override func windowDidLoad() {
+    open override func windowDidLoad() {
         super.windowDidLoad()
 
 		self._update()

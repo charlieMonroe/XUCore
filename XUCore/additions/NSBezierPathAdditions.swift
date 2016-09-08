@@ -10,7 +10,7 @@ import Cocoa
 
 public extension NSBezierPath {
 
-	public func fillWithInnerShadow(shadow: NSShadow) {
+	public func fillWithInnerShadow(_ shadow: NSShadow) {
 		NSGraphicsContext.saveGraphicsState()
 
 		var offset = shadow.shadowOffset
@@ -22,23 +22,23 @@ public extension NSBezierPath {
 
 		shadow.shadowOffset = offset
 
-		let transform = NSAffineTransform()
-		if NSGraphicsContext.currentContext()!.flipped {
-			transform.translateXBy(0, yBy: bounds.height)
+		var transform = AffineTransform.identity
+		if NSGraphicsContext.current()!.isFlipped {
+			transform.translate(x: 0, y: bounds.height)
 		} else {
-			transform.translateXBy(0, yBy: -bounds.height)
+			transform.translate(x: 0, y: -bounds.height)
 		}
 
 		let drawingPath = NSBezierPath(rect: bounds)
-		drawingPath.windingRule = .EvenOddWindingRule
-		drawingPath.appendBezierPath(self)
-		drawingPath.transformUsingAffineTransform(transform)
+		drawingPath.windingRule = .evenOddWindingRule
+		drawingPath.append(self)
+		drawingPath.transform(using: transform)
 
 		self.addClip()
 
 		shadow.set()
 
-		NSColor.blackColor().set()
+		NSColor.black.set()
 
 		drawingPath.fill()
 		shadow.shadowOffset = originalOffset
@@ -46,7 +46,7 @@ public extension NSBezierPath {
 		NSGraphicsContext.restoreGraphicsState()
 	}
 
-	public func drawBlurWithColor(color: NSColor, andRadius radius: CGFloat) {
+	public func drawBlurWithColor(_ color: NSColor, andRadius radius: CGFloat) {
 		let bounds = self.bounds.insetBy(dx: -radius, dy: -radius)
 
 		let shadow = NSShadow()
@@ -55,19 +55,19 @@ public extension NSBezierPath {
 		shadow.shadowColor = color
 
 		let path = self.copy() as! NSBezierPath
-		let transform = NSAffineTransform()
-		if NSGraphicsContext.currentContext()!.flipped {
-			transform.translateXBy(0, yBy: bounds.height)
+		var transform = AffineTransform.identity
+		if NSGraphicsContext.current()!.isFlipped {
+			transform.translate(x: 0, y: bounds.height)
 		} else {
-			transform.translateXBy(0, yBy: -bounds.height)
+			transform.translate(x: 0, y: -bounds.height)
 		}
-		path.transformUsingAffineTransform(transform)
+		path.transform(using: transform)
 
 		NSGraphicsContext.saveGraphicsState()
 
 		shadow.set()
 
-		NSColor.blackColor().set()
+		NSColor.black.set()
 		NSRectClip(bounds)
 
 		path.fill()
@@ -92,42 +92,42 @@ public extension NSBezierPath {
 		self.init()
 		
 		// Lower edge and lower-right corner
-		self.moveToPoint(CGPoint(x: theEdges.minX, y: inRect.minY))
-		self.lineToPoint(CGPoint(x: theEdges.maxX, y: inRect.minY))
-		self.curveToPoint(CGPoint(x: inRect.maxX, y: theEdges.minY), controlPoint1: CGPoint(x: theEdges.maxX + theControlX, y: inRect.minY), controlPoint2: CGPoint(x: inRect.maxX, y: theEdges.minY - theControlY))
+		self.move(to: CGPoint(x: theEdges.minX, y: inRect.minY))
+		self.line(to: CGPoint(x: theEdges.maxX, y: inRect.minY))
+		self.curve(to: CGPoint(x: inRect.maxX, y: theEdges.minY), controlPoint1: CGPoint(x: theEdges.maxX + theControlX, y: inRect.minY), controlPoint2: CGPoint(x: inRect.maxX, y: theEdges.minY - theControlY))
 		
 		// Right edge and upper-right corner
-		self.lineToPoint(CGPoint(x: inRect.maxX, y: theEdges.maxY))
-		self.curveToPoint(CGPoint(x: theEdges.maxX, y: inRect.maxY), controlPoint1: CGPoint(x: inRect.maxX, y: theEdges.maxY + theControlY), controlPoint2: CGPoint(x: theEdges.maxX + theControlX, y: inRect.maxY))
+		self.line(to: CGPoint(x: inRect.maxX, y: theEdges.maxY))
+		self.curve(to: CGPoint(x: theEdges.maxX, y: inRect.maxY), controlPoint1: CGPoint(x: inRect.maxX, y: theEdges.maxY + theControlY), controlPoint2: CGPoint(x: theEdges.maxX + theControlX, y: inRect.maxY))
 		
 		// triangle:
 		// Right edge
-		self.lineToPoint(CGPoint(x: triangleTopX + 14.0 - inRect.minX / 2.0, y: inRect.minY + inRect.height))
+		self.line(to: CGPoint(x: triangleTopX + 14.0 - inRect.minX / 2.0, y: inRect.minY + inRect.height))
 		
 		// Center
-		self.lineToPoint(CGPoint(x: triangleTopX, y: inRect.minY / 2.0 + inRect.height + 14.0))
+		self.line(to: CGPoint(x: triangleTopX, y: inRect.minY / 2.0 + inRect.height + 14.0))
 		
 		// Left edge
-		self.lineToPoint(CGPoint(x: triangleTopX - 14.0 + inRect.minX / 2.0, y: inRect.minY + inRect.height))
+		self.line(to: CGPoint(x: triangleTopX - 14.0 + inRect.minX / 2.0, y: inRect.minY + inRect.height))
 		
 		// Top edge and upper-left corner
-		self.lineToPoint(CGPoint(x: theEdges.minX, y: inRect.maxY))
-		self.curveToPoint(CGPoint(x: inRect.minX, y: theEdges.maxY), controlPoint1: CGPoint(x: theEdges.minX - theControlX, y: inRect.maxY), controlPoint2: CGPoint(x: inRect.minX, y: theEdges.maxY + theControlY))
+		self.line(to: CGPoint(x: theEdges.minX, y: inRect.maxY))
+		self.curve(to: CGPoint(x: inRect.minX, y: theEdges.maxY), controlPoint1: CGPoint(x: theEdges.minX - theControlX, y: inRect.maxY), controlPoint2: CGPoint(x: inRect.minX, y: theEdges.maxY + theControlY))
 		
 		// Left edge and lower-left corner
-		self.lineToPoint(CGPoint(x: inRect.minX, y: theEdges.minY))
-		self.curveToPoint(CGPoint(x: theEdges.minX, y: inRect.minY), controlPoint1: CGPoint(x: inRect.minX, y: theEdges.minY - theControlY), controlPoint2: CGPoint(x: theEdges.minX - theControlX, y: inRect.minY))
+		self.line(to: CGPoint(x: inRect.minX, y: theEdges.minY))
+		self.curve(to: CGPoint(x: theEdges.minX, y: inRect.minY), controlPoint1: CGPoint(x: inRect.minX, y: theEdges.minY - theControlY), controlPoint2: CGPoint(x: theEdges.minX - theControlX, y: inRect.minY))
 		
 		// Finish up and return
-		self.closePath()
+		self.close()
 	}
 
 	public func strokeInside() {
 		self.strokeInsideWithinRect(CGRect())
 	}
 
-	public func strokeInsideWithinRect(clipRect: CGRect) {
-		let thisContext = NSGraphicsContext.currentContext()
+	public func strokeInsideWithinRect(_ clipRect: CGRect) {
+		let thisContext = NSGraphicsContext.current()
 
 		let lineWidth = self.lineWidth
 
@@ -142,7 +142,7 @@ public extension NSBezierPath {
 
 		// Further clip drawing to clipRect, usually the view's frame.
 		if clipRect.width > 0.0 && clipRect.height > 0.0 {
-			NSBezierPath.clipRect(clipRect)
+			NSBezierPath.clip(clipRect)
 		}
 
 		// Stroke the path.

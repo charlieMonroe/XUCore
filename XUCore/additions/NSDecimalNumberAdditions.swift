@@ -40,70 +40,66 @@ public func >=(lhs: NSDecimalNumber, rhs: Double) -> Bool {
 }
 
 
-public func +=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+public func +=(lhs: inout NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs + rhs
 }
-public func -=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+public func -=(lhs: inout NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs - rhs
 }
-public func *=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+public func *=(lhs: inout NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs * rhs
 }
-public func /=(inout lhs: NSDecimalNumber, rhs: NSDecimalNumber) {
+public func /=(lhs: inout NSDecimalNumber, rhs: NSDecimalNumber) {
 	lhs = lhs / rhs
 }
 
-public func +=(inout lhs: NSDecimalNumber, rhs: Double) {
+public func +=(lhs: inout NSDecimalNumber, rhs: Double) {
 	lhs = lhs + rhs
 }
-public func -=(inout lhs: NSDecimalNumber, rhs: Double) {
+public func -=(lhs: inout NSDecimalNumber, rhs: Double) {
 	lhs = lhs - rhs
 }
-public func *=(inout lhs: NSDecimalNumber, rhs: Double) {
+public func *=(lhs: inout NSDecimalNumber, rhs: Double) {
 	lhs = lhs * rhs
 }
-public func /=(inout lhs: NSDecimalNumber, rhs: Double) {
+public func /=(lhs: inout NSDecimalNumber, rhs: Double) {
 	lhs = lhs / rhs
 }
 
 public func +(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.decimalNumberByAdding(rhs)
+	return lhs.adding(rhs)
 }
 public func -(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.decimalNumberBySubtracting(rhs)
+	return lhs.subtracting(rhs)
 }
 public func *(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.decimalNumberByMultiplyingBy(rhs)
+	return lhs.multiplying(by: rhs)
 }
 public func /(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-	return lhs.decimalNumberByDividingBy(rhs)
+	return lhs.dividing(by: rhs)
 }
 
 public func +(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.decimalNumberByAdding(NSDecimalNumber(double: rhs))
+	return lhs.adding(NSDecimalNumber(value: rhs as Double))
 }
 public func -(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.decimalNumberBySubtracting(NSDecimalNumber(double: rhs))
+	return lhs.subtracting(NSDecimalNumber(value: rhs as Double))
 }
 public func *(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.decimalNumberByMultiplyingBy(NSDecimalNumber(double: rhs))
+	return lhs.multiplying(by: NSDecimalNumber(value: rhs as Double))
 }
 public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.decimalNumberByDividingBy(NSDecimalNumber(double: rhs))
+	return lhs.dividing(by: NSDecimalNumber(value: rhs as Double))
 }
 
 public extension NSDecimalNumber {
 	
-	public override class func initialize() {
-		self.setDefaultBehavior(NSDecimalNumberHandler(roundingMode: .RoundBankers, scale: 8, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false))
+	public class func decimalNumberWithDouble(_ value: Double) -> NSDecimalNumber {
+		return self.decimalNumberWithNumber(value as NSNumber?)
 	}
-	
-	public class func decimalNumberWithDouble(value: Double) -> NSDecimalNumber {
-		return self.decimalNumberWithNumber(value)
-	}
-	public class func decimalNumberWithNumber(number: NSNumber?) -> NSDecimalNumber {
+	public class func decimalNumberWithNumber(_ number: NSNumber?) -> NSDecimalNumber {
 		if number == nil {
-			return NSDecimalNumber.zero()
+			return NSDecimalNumber.zero
 		}
 		
 		if let decimal = number as? NSDecimalNumber {
@@ -115,9 +111,9 @@ public extension NSDecimalNumber {
 	
 	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
 	/// NSDecimalNumber, (NS)String and NSNumber.
-	public class func decimalNumberWithValue(value: AnyObject?) -> NSDecimalNumber {
+	public class func decimalNumberWithValue(_ value: AnyObject?) -> NSDecimalNumber {
 		if value == nil {
-			return NSDecimalNumber.zero()
+			return NSDecimalNumber.zero
 		}
 		
 		if let number = value as? NSDecimalNumber {
@@ -133,7 +129,7 @@ public extension NSDecimalNumber {
 		}
 		
 		XULogStacktrace("Trying to create NSDecimalNumber from unsupported kind of value \(value!)")
-		return NSDecimalNumber.zero()
+		return NSDecimalNumber.zero
 	}
 	
 	
@@ -153,7 +149,7 @@ public extension NSDecimalNumber {
 			return self
 		}
 		
-		return NSDecimalNumber(double: ceil(self.doubleValue))
+		return NSDecimalNumber(value: ceil(self.doubleValue) as Double)
 	}
 	
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
@@ -163,7 +159,7 @@ public extension NSDecimalNumber {
 	
 	/// Returns number without the decimal part.
 	public var integralDecimalNumber: NSDecimalNumber {
-		return NSDecimalNumber(double: Double(Int(self.doubleValue)))
+		return NSDecimalNumber(value: Double(Int(self.doubleValue)) as Double)
 	}
 	
 	/// Rounds the decimal number.
@@ -172,7 +168,7 @@ public extension NSDecimalNumber {
 			/* Consider self already rounded. */
 			return self
 		}
-		return NSDecimalNumber(double: round(self.doubleValue))
+		return NSDecimalNumber(value: round(self.doubleValue) as Double)
 	}
 	
 	/// Returns whether this number is an integer, i.e. is the decimalPart is 0.0

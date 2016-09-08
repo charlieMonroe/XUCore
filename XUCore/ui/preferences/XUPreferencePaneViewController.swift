@@ -17,11 +17,11 @@ import Cocoa
 /// - paneSmallIcon (optional)
 /// - loadPreferences
 /// - savePreferences
-public class XUPreferencePaneViewController: NSViewController {
+open class XUPreferencePaneViewController: NSViewController {
 
 	/// Icon of the pane. Should be 32x32px. This must be overridden by subclasses
 	/// since the default implementation ends in fatalError.
-	public var paneIcon: NSImage {
+	open var paneIcon: NSImage {
 		XUThrowAbstractException()
 	}
 	
@@ -30,29 +30,29 @@ public class XUPreferencePaneViewController: NSViewController {
 	///
 	/// This doesn't necessarily need to be implemented, the default implementation
 	/// resizes self.paneIcon to 16x16.
-	public var paneSmallIcon: NSImage {
+	open var paneSmallIcon: NSImage {
 		return self.paneIcon.imageWithSingleImageRepOfSize(CGSize(width: 16.0, height: 16.0))!
 	}
 	
 	/// Localized name of the pane. This must be overridden by subclasses since
 	/// the default implementation ends in fatalError.
-	public var paneName: String {
+	open var paneName: String {
 		XUThrowAbstractException()
 	}
 
 	
 	/// Load the preferences and populate UI.
-	public func loadPreferences() {
+	open func loadPreferences() {
 		// no-op
 	}
 	
 	/// Save the preferences from the UI.
-	public func savePreferences() {
+	open func savePreferences() {
 		
 	}
 	
 	/// Automatically calls localizeView() on self.view.
-	public override func viewDidLoad() {
+	open override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.view.localizeView()

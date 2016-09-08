@@ -13,7 +13,7 @@
 #endif
 
 /// Returns degrees converted to radian.
-public func XUDegreesToRadian(degrees: CGFloat) -> CGFloat {
+public func XUDegreesToRadian(_ degrees: CGFloat) -> CGFloat {
 	return degrees * CGFloat(M_PI / 180.0)
 }
 

@@ -11,9 +11,9 @@ import Foundation
 extension Character {
 	
 	/// Returns a random character from a range. The range represents UTF8 codes.
-	public static func randomCharacterInRange(range: Range<Int>) -> Character {
-		let randomInt = XURandomGenerator.sharedGenerator.randomUnsignedIntegerInRange(UInt(range.startIndex)..<UInt(range.endIndex))
-		return Character(UnicodeScalar(UInt32(randomInt)))
+	public static func randomCharacterInRange(_ range: Range<Int>) -> Character {
+		let randomInt = XURandomGenerator.sharedGenerator.randomUnsignedIntegerInRange(UInt(range.lowerBound)..<UInt(range.upperBound))
+		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
 	/// Returns a random ASCII character (0-127).
@@ -33,7 +33,7 @@ extension Character {
 			randomInt += 0x20
 		}
 		
-		return Character(UnicodeScalar(UInt32(randomInt)))
+		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
 	/// Returns true if `self` is < 128.
@@ -43,7 +43,7 @@ extension Character {
 	
 	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
 	public var isASCIIOrPunctuation: Bool {
-		return self.isASCII || self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
+		return self.isASCII || self.isMemberOfCharacterSet(CharacterSet.punctuationCharacters)
 	}
 	
 	/// Returns true iff `self` is a-z or A-Z.
@@ -62,8 +62,8 @@ extension Character {
 	}
 	
 	/// Returns true if the character is a member of character set.
-	public func isMemberOfCharacterSet(characterSet: NSCharacterSet) -> Bool {
-		return characterSet.characterIsMember(String(self).utf16.first!)
+	public func isMemberOfCharacterSet(_ characterSet: CharacterSet) -> Bool {
+		return characterSet.contains(UnicodeScalar(String(self).utf16.first!)!)
 	}
 	
 	/// Returns true iff `self` is A-Z.
@@ -72,7 +72,7 @@ extension Character {
 	}
 	
 	public init(_ byte: UInt8) {
-		self.init(UnicodeScalar(UInt32(byte)))
+		self.init(UnicodeScalar(UInt32(byte))!)
 	}
 	
 	/// Returns the value of the character as viewed in UTF8

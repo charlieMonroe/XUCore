@@ -10,7 +10,7 @@ import Cocoa
 
 /// This is a view that manages switching between screens. An example usage is
 /// in a tutorial, where you slide one screen after another.
-public class XUSwitchableView: NSView {
+open class XUSwitchableView: NSView {
 
 	//Only for debug purposes
 	/*
@@ -20,23 +20,23 @@ public class XUSwitchableView: NSView {
 	}
 	*/
 	
-	private var _isAnimating: Bool = false
-	private var _otherView: NSView?
+	fileprivate var _isAnimating: Bool = false
+	fileprivate var _otherView: NSView?
 	
 	
-	@objc private func _frameChanged(sender: AnyObject?) {
+	@objc fileprivate func _frameChanged(_ sender: AnyObject?) {
 		//! NSEqualRects([self bounds], [[self superview] bounds])
 		if _isAnimating {
 			return
 		}
 		
 		self.currentView?.frame = self.bounds
-		if _otherView != nil && !_otherView!.hidden {
-			_otherView?.hidden = true
+		if _otherView != nil && !_otherView!.isHidden {
+			_otherView?.isHidden = true
 		}
 	}
 	
-	@objc private func _unsetAnimation(sender: AnyObject?) {
+	@objc fileprivate func _unsetAnimation(_ sender: AnyObject?) {
 		_isAnimating = false
 		
 		//Remove the previous cached view
@@ -47,7 +47,7 @@ public class XUSwitchableView: NSView {
 	}
 	
 	/// Current view displayed.
-	public var currentView: NSView? {
+	open var currentView: NSView? {
 		didSet (oldView) {
 			if oldView == nil && self.currentView != nil {
 				self.currentView?.frame = self.bounds
@@ -56,41 +56,41 @@ public class XUSwitchableView: NSView {
 		}
 	}
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		
 		self.postsFrameChangedNotifications = true
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSViewFrameDidChangeNotification, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
 	}
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
 		self.postsFrameChangedNotifications = true
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSViewFrameDidChangeNotification, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
 	}
 	
-	public override var flipped: Bool {
+	open override var isFlipped: Bool {
 		return true
 	}
-	public override var mouseDownCanMoveWindow: Bool {
+	open override var mouseDownCanMoveWindow: Bool {
 		return true
 	}
 	
 	/// Switches to a new view in direction specified. Doesn't adjust window size.
-	public func switchToView(view: NSView, inDirection direction: XUDirection) {
+	open func switchToView(_ view: NSView, inDirection direction: XUDirection) {
 		self.switchToView(view, inDirection: direction, adjustWindow: false)
 	}
 	
 	/// Switches to a new view in direction specified and if adjustWindow is true,
 	/// the window size is adjusted as well.
-	public func switchToView(view: NSView, inDirection direction: XUDirection, adjustWindow: Bool) {
+	open func switchToView(_ view: NSView, inDirection direction: XUDirection, adjustWindow: Bool) {
 		_isAnimating = true
 		
 		// Make sure the view isn't hidden
-		if _otherView != nil && _otherView!.hidden {
-			_otherView!.hidden = false
+		if _otherView != nil && _otherView!.isHidden {
+			_otherView!.isHidden = false
 		}
 		
 		if self.currentView == nil {
@@ -140,19 +140,19 @@ public class XUSwitchableView: NSView {
 		
 		// The rect where the current view should move out to make place for the new view
 		switch direction {
-			case .LeftToRight:
+			case .leftToRight:
 				// From left to right
 				newViewRect = CGRect(x: oldViewSize.width, y: 0.0, width: targetSize.width, height: targetSize.height)
 				toBeMoved = CGRect(x: -oldViewSize.width, y: 0.0, width: oldViewSize.width, height: oldViewSize.height)
-			case .RightToLeft:
+			case .rightToLeft:
 				// From right to left
 				newViewRect = CGRect(x: -newViewSize.width, y: 0.0, width: newViewSize.width, height: newViewSize.height)
 				toBeMoved = CGRect(x: oldViewSize.width, y: 0.0, width: oldViewSize.width, height: oldViewSize.height)
-			case .TopToBottom:
+			case .topToBottom:
 				// From up to down
 				newViewRect = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
 				toBeMoved = CGRect(x: 0, y: -r.height, width: r.width, height: r.height)
-			case .BottomToTop:
+			case .bottomToTop:
 				// FCTop - from down to up
 				newViewRect = CGRect(x: 0, y: -r.height, width: r.width, height: r.height)
 				toBeMoved = CGRect(x: 0, y: r.height, width: r.width, height: r.height)
@@ -176,7 +176,7 @@ public class XUSwitchableView: NSView {
 		_otherView = self.currentView
 		self.currentView = view
 		
-		NSTimer.scheduledTimerWithTimeInterval(NSAnimationContext.currentContext().duration, target: self, selector: #selector(XUSwitchableView._unsetAnimation(_:)), userInfo: nil, repeats: false)
+		Timer.scheduledTimer(timeInterval: NSAnimationContext.current().duration, target: self, selector: #selector(XUSwitchableView._unsetAnimation(_:)), userInfo: nil, repeats: false)
 	}
     
 }

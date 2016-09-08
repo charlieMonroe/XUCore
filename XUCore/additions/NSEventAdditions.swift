@@ -11,22 +11,22 @@ import Carbon
 
 /// This enum holds key-code values of some less common keys
 @objc public enum XUKeyCode: UInt16 {
-	case Return = 36
-	case Enter = 76
-	case Escape = 53
-	case Backscape = 51
-	case Delete = 117
-	case Spacebar = 49
-	case KeyLeft = 123
-	case KeyRight = 124
-	case KeyDown = 125
-	case KeyUp = 126
+	case `return` = 36
+	case enter = 76
+	case escape = 53
+	case backscape = 51
+	case delete = 117
+	case spacebar = 49
+	case keyLeft = 123
+	case keyRight = 124
+	case keyDown = 125
+	case keyUp = 126
 }
 
 
 public extension NSEvent {
 	
-	private class func _isKeyDown(key: UInt32) -> Bool {
+	fileprivate class func _isKeyDown(_ key: UInt32) -> Bool {
 		let currentKeyModifiers = GetCurrentKeyModifiers()
 		let result = currentKeyModifiers & key
 		return result != 0

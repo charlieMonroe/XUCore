@@ -13,27 +13,27 @@ private let XULanguageDefaultsKey = "XULanguage"
 
 /// Returns the identifier of current localization.
 @inline(__always)
-public func XUCurrentLocalizationIdentifierForBundle(bundle: NSBundle) -> String {
+public func XUCurrentLocalizationIdentifierForBundle(_ bundle: Bundle) -> String {
 	return XULocalizationCenter.sharedCenter.localizationIdentifierForBundle(bundle)
 }
 
 /// Sets the language identifier as the default langauge.
 @inline(__always)
-public func XUSetCurrentLocalizationLanguageIdentifier(identifier: String) {
+public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
 	XULocalizationCenter.sharedCenter.setCurrentLocalizationIdentifier(identifier)
 }
 
 /// Returns a localized string.
 @inline(__always)
-public func XULocalizedString(key: String, inBundle bundle: NSBundle = XUMainBundle, withLocale language: String? = nil) -> String {
+public func XULocalizedString(_ key: String, inBundle bundle: Bundle = XUMainBundle, withLocale language: String? = nil) -> String {
 	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifierForBundle(bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
 @inline(__always)
-public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType..., withLocale language: String? = nil, inBundle bundle: NSBundle = XUMainBundle) -> String {
-	return String(format: XULocalizedString(format, withLocale: language, inBundle: bundle), arguments: arguments)
+public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = XUMainBundle) -> String {
+	return String(format: XULocalizedString(format, inBundle: bundle, withLocale: language), arguments: arguments)
 }
 
 /// A new format function which takes `values` and replaces placeholders within `key`
@@ -48,7 +48,7 @@ public func XULocalizedFormattedString(format: String, _ arguments: CVarArgType.
 ///
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
-public func XULocalizedStringWithFormatValues(key: String, andValues values: [String : AnyObject]) -> String {
+public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : AnyObject]) -> String {
 	return XULocalizationCenter.sharedCenter.localizedStringWithFormatValues(key, andValues: values)
 }
 
@@ -62,22 +62,22 @@ public final class XULocalizationCenter: NSObject {
 	public static var sharedCenter = XULocalizationCenter()
 
 	/// Cached identifiers
-	private var _cachedLanguageIdentifiers: [NSBundle : String] = [:]
+	fileprivate var _cachedLanguageIdentifiers: [Bundle : String] = [:]
 	
 	/// Cached language dictionaries.
-	private var _cachedLanguageDicts: [NSBundle: [String : [String : String]]] = [ : ]
+	fileprivate var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [ : ]
 	
 	/// Lock for modifying _cachedLanguageDicts
-	private let _lock: NSLock = NSLock(name: "com.charliemonroe.XULocalization")
+	fileprivate let _lock: NSLock = NSLock(name: "com.charliemonroe.XULocalization")
 	
 	/// The language is often e.g. en-US - we need to find the language identifier
 	/// that is in that particular bundle.
-	private func _identifierFromComposedIdentifier(language: String, inBundle bundle: NSBundle) -> String? {
+	fileprivate func _identifierFromComposedIdentifier(_ language: String, inBundle bundle: Bundle) -> String? {
 		// Starting macOS 10.12, there are even more specific identifiers
 		// such as zn-Hans-CN. We'll remove one specifier at a time.
-		var components: ArraySlice<String> = ArraySlice(language.componentsSeparatedByString("-"))
+		var components: ArraySlice<String> = ArraySlice(language.components(separatedBy: "-"))
 		while !components.isEmpty {
-			let identifier = components.joinWithSeparator("-")
+			let identifier = components.joined(separator: "-")
 			if self._languageBundleForLanguage(identifier, inBundle: bundle, fallbackToEnglish: false) != nil {
 				return identifier
 			}
@@ -91,9 +91,9 @@ public final class XULocalizationCenter: NSObject {
 	
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
-	private func _languageBundleForLanguage(language: String, inBundle bundle: NSBundle, fallbackToEnglish: Bool = true) -> NSBundle? {
-		if let URL = bundle.URLForResource(language, withExtension: "lproj") {
-			return NSBundle(URL: URL)
+	fileprivate func _languageBundleForLanguage(_ language: String, inBundle bundle: Bundle, fallbackToEnglish: Bool = true) -> Bundle? {
+		if let URL = bundle.url(forResource: language, withExtension: "lproj") {
+			return Bundle(url: URL)
 		}
 		
 		// Fall back to en or "Base". Just check if the language is "en" so that if
@@ -116,19 +116,19 @@ public final class XULocalizationCenter: NSObject {
 	/// Returns a localization identifier for a particular bundle. The identifier
 	/// may be different for each bundle. E.g. one bundle may contain en-US, while
 	/// the other just en.
-	public func localizationIdentifierForBundle(bundle: NSBundle) -> String {
+	public func localizationIdentifierForBundle(_ bundle: Bundle) -> String {
 		if let identifier = _cachedLanguageIdentifiers[bundle] {
 			return identifier
 		}
 		
-		if let identifier = NSUserDefaults.standardUserDefaults().stringForKey(XULanguageDefaultsKey) {
+		if let identifier = UserDefaults.standard.string(forKey: XULanguageDefaultsKey) {
 			_lock.performLockedBlock {
 				self._cachedLanguageIdentifiers[bundle] = identifier
 			}
 			return identifier
 		}
 		
-		if let languages = NSUserDefaults.standardUserDefaults().arrayForKey("AppleLanguages") as? [String] {
+		if let languages = UserDefaults.standard.array(forKey: "AppleLanguages") as? [String] {
 			for language in languages {
 				if let identifier = self._identifierFromComposedIdentifier(language, inBundle: bundle) {
 					_lock.performLockedBlock {
@@ -139,7 +139,7 @@ public final class XULocalizationCenter: NSObject {
 			}
 		}
 		
-		if let identifier = self._identifierFromComposedIdentifier(NSLocale.currentLocale().localeIdentifier, inBundle: bundle) {
+		if let identifier = self._identifierFromComposedIdentifier(Locale.current.identifier, inBundle: bundle) {
 			_lock.performLockedBlock {
 				self._cachedLanguageIdentifiers[bundle] = identifier
 			}
@@ -148,7 +148,7 @@ public final class XULocalizationCenter: NSObject {
 		
 		/// This is pure desperation - the bundle is unlikely to have localization
 		/// for any requested languages.
-		let identifier = NSLocale.currentLocale().localeIdentifier
+		let identifier = Locale.current.identifier
 		_lock.performLockedBlock {
 			self._cachedLanguageIdentifiers[bundle] = identifier
 		}
@@ -157,16 +157,16 @@ public final class XULocalizationCenter: NSObject {
 	}
 	
 	/// Set a localization identifier.
-	public func setCurrentLocalizationIdentifier(identifier: String) {
-		let defs = NSUserDefaults.standardUserDefaults()
-		var languages = defs.arrayForKey("AppleLanguages") as? [String] ?? [ ]
-		if let index = languages.indexOf(identifier) {
-			languages.removeAtIndex(index)
+	public func setCurrentLocalizationIdentifier(_ identifier: String) {
+		let defs = UserDefaults.standard
+		var languages = defs.array(forKey: "AppleLanguages") as? [String] ?? [ ]
+		if let index = languages.index(of: identifier) {
+			languages.remove(at: index)
 		}
-		languages.insert(identifier, atIndex: 0)
+		languages.insert(identifier, at: 0)
 		
-		defs.setObject(identifier, forKey: XULanguageDefaultsKey)
-		defs.setObject(languages, forKey: "AppleLanguages")
+		defs.set(identifier, forKey: XULanguageDefaultsKey)
+		defs.set(languages, forKey: "AppleLanguages")
 		defs.synchronize()
 		
 		_lock.performLockedBlock {
@@ -175,7 +175,7 @@ public final class XULocalizationCenter: NSObject {
 	}
 	
 	/// Returns a localized string.
-	public func localizedString(key: String, withLocale _language: String? = nil, inBundle bundle: NSBundle = XUMainBundle) -> String {
+	public func localizedString(_ key: String, withLocale _language: String? = nil, inBundle bundle: Bundle = XUMainBundle) -> String {
 		let language = _language ?? self.localizationIdentifierForBundle(bundle)
 		
 		if key.isEmpty {
@@ -190,7 +190,7 @@ public final class XULocalizationCenter: NSObject {
 		/// Now, we know that the string isn't in the localization. There are two
 		/// options. Either the localization doesn't contain this phrase, or it
 		/// hasn't been loaded yet.
-		if let languageDict = _cachedLanguageDicts[bundle]?[language] where !languageDict.isEmpty {
+		if let languageDict = _cachedLanguageDicts[bundle]?[language] , !languageDict.isEmpty {
 			/// The language has already been loaded -> no point in reloading it.
 			return key
 		}
@@ -212,7 +212,7 @@ public final class XULocalizationCenter: NSObject {
 			return key // No such localization
 		}
 		
-		guard let URL = languageBundle.URLForResource("Localizable", withExtension: "strings", subdirectory: nil, localization: language), data = NSData(contentsOfURL: URL) else {
+		guard let URL = languageBundle.url(forResource: "Localizable", withExtension: "strings", subdirectory: nil, localization: language), let data = try? Data(contentsOf: URL) else {
 			XULog("No '\(language)' localizable strings in bundle \(bundle).")
 			
 			/// In order to prevent loading for each key, enter a fake entry
@@ -223,9 +223,9 @@ public final class XULocalizationCenter: NSObject {
 		}
 		
 		do {
-			let object = try NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil)
+			let object = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.MutabilityOptions(), format: nil)
 			guard let d = object as? [String : String] else {
-				XULog("Invalid localization loaded - '\(language)' \(object.dynamicType) \(object).")
+				XULog("Invalid localization loaded - '\(language)' \(type(of: object)) \(object).")
 				
 				/// In order to prevent loading for each key, enter a fake entry
 				/// into the localization.
@@ -260,21 +260,21 @@ public final class XULocalizationCenter: NSObject {
 	///
 	/// @note `values` can have values other than NSString - -description is called
 	///            on the values.
-	public func localizedStringWithFormatValues(key: String, andValues values: [String : AnyObject]) -> String {
+	public func localizedStringWithFormatValues(_ key: String, andValues values: [String : AnyObject]) -> String {
 		var localizedString = self.localizedString(key)
 		for (key, value) in values {
 			let needle = "{\(key)}"
-			if localizedString.rangeOfString(needle) == nil {
+			if localizedString.range(of: needle) == nil {
 				XULogStacktrace("Localized string \(localizedString) doesn't have a placeholder for key \(key)")
 			}
 			
-			localizedString = localizedString.stringByReplacingOccurrencesOfString(needle, withString: value.description)
+			localizedString = localizedString.replacingOccurrences(of: needle, with: value.description)
 		}
 		return localizedString
 	}
 
 	/// Returns the identifier of current localization.
-	@available(*, deprecated, message="Use the variations with bundle specifications.")
+	@available(*, deprecated, message: "Use the variations with bundle specifications.")
 	public var currentLocalizationLanguageIdentifier: String {
 		get {
 			return self.localizationIdentifierForBundle(XUMainBundle)
@@ -291,7 +291,7 @@ public final class XULocalizationCenter: NSObject {
 
 
 /// Returns the identifier of current localization.
-@available(*, deprecated, message="Use XUCurrentLocalizationIdentifierForBundle instead.")
+@available(*, deprecated, message: "Use XUCurrentLocalizationIdentifierForBundle instead.")
 public func XUCurrentLocalizationLanguageIdentifier() -> String {
 	return XULocalizationCenter.sharedCenter.currentLocalizationLanguageIdentifier
 }

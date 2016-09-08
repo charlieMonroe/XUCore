@@ -13,7 +13,7 @@
 #endif
 
 /// Adds a rounded rect to the CGContextRef.
-public func CGContextAddRoundedRect(c: CGContextRef, rect: CGRect, cornerRadius: CGFloat) {
+public func CGContextAddRoundedRect(_ c: CGContext, rect: CGRect, cornerRadius: CGFloat) {
 	let x_left = rect.minX
 	let x_left_center = rect.minX + cornerRadius
 	let x_right_center = rect.minX + rect.width - cornerRadius
@@ -24,25 +24,25 @@ public func CGContextAddRoundedRect(c: CGContextRef, rect: CGRect, cornerRadius:
 	let y_bottom = rect.minY + rect.height
 	
 	/* Begin! */
-	CGContextBeginPath(c)
-	CGContextMoveToPoint(c, x_left, y_top_center)
+	c.beginPath()
+	c.move(to: CGPoint(x: x_left, y: y_top_center))
 	
 	/* First corner */
-	CGContextAddArcToPoint(c, x_left, y_top, x_left_center, y_top, cornerRadius)
-	CGContextAddLineToPoint(c, x_right_center, y_top)
+	c.addArc(tangent1End: CGPoint(x: x_left, y: y_top), tangent2End: CGPoint(x: x_left_center, y: y_top), radius: cornerRadius)
+	c.addLine(to: CGPoint(x: x_right_center, y: y_top))
 	
 	/* Second corner */
-	CGContextAddArcToPoint(c, x_right, y_top, x_right, y_top_center, cornerRadius)
-	CGContextAddLineToPoint(c, x_right, y_bottom_center)
+	c.addArc(tangent1End: CGPoint(x: x_right, y: y_top), tangent2End: CGPoint(x: x_right, y: y_top_center), radius: cornerRadius)
+	c.addLine(to: CGPoint(x: x_right, y: y_bottom_center))
 	
 	/* Third corner */
-	CGContextAddArcToPoint(c, x_right, y_bottom, x_right_center, y_bottom, cornerRadius)
-	CGContextAddLineToPoint(c, x_left_center, y_bottom)
+	c.addArc(tangent1End: CGPoint(x: x_right, y: y_bottom), tangent2End: CGPoint(x: x_right_center, y: y_bottom), radius: cornerRadius)
+	c.addLine(to: CGPoint(x: x_left_center, y: y_bottom))
 	
 	/* Fourth corner */
-	CGContextAddArcToPoint(c, x_left, y_bottom, x_left, y_bottom_center, cornerRadius)
-	CGContextAddLineToPoint(c, x_left, y_top_center)
+	c.addArc(tangent1End: CGPoint(x: x_left, y: y_bottom), tangent2End: CGPoint(x: x_left, y: y_bottom_center), radius: cornerRadius)
+	c.addLine(to: CGPoint(x: x_left, y: y_top_center))
 	
 	/* Done */
-	CGContextClosePath(c)
+	c.closePath()
 }

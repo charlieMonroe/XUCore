@@ -18,34 +18,34 @@ internal protocol XUPreferencePanesViewDelegate: AnyObject {
 internal class XUPreferencePanesView: NSView {
 
 	/// Width between the buttons.
-	private static let buttonPadding: CGFloat = 16.0
+	fileprivate static let buttonPadding: CGFloat = 16.0
 
 	/// Width of the buttons.
-	private static let buttonWidth: CGFloat = 78.0
+	fileprivate static let buttonWidth: CGFloat = 78.0
 
 	/// Size of the icon.
-	private static let iconSize: CGFloat = 32.0
+	fileprivate static let iconSize: CGFloat = 32.0
 
 	/// Height of each section.
-	private static let sectionHeight: CGFloat = 92.0
+	fileprivate static let sectionHeight: CGFloat = 92.0
 
 	/// Attributes of the title.
-	private static let titleAttributes: [String: AnyObject] = [
-		NSForegroundColorAttributeName: NSColor.textColor(),
+	fileprivate static let titleAttributes: [String: AnyObject] = [
+		NSForegroundColorAttributeName: NSColor.textColor,
 		NSFontAttributeName: XUPreferencePanesView.titleFont
 	]
 
 	/// Font used for button titles.
-	private static let titleFont: NSFont = NSFont.systemFontOfSize(12.0)
+	fileprivate static let titleFont: NSFont = NSFont.systemFont(ofSize: 12.0)
 
 	/// Width of the window. This is always the same.
 	internal static let viewWidth: CGFloat = 660.0
 
 	/// Buttons.
-	private let _buttons: [[XUPreferencePaneButton]]
+	fileprivate let _buttons: [[XUPreferencePaneButton]]
 
 	/// Cached heights of the sections.
-	private let _sectionHeights: [CGFloat]
+	fileprivate let _sectionHeights: [CGFloat]
 
 	/// Delegate.
 	weak var delegate: XUPreferencePanesViewDelegate!
@@ -53,13 +53,13 @@ internal class XUPreferencePanesView: NSView {
 	/// Sections.
 	let sections: [XUPreferencePanesSection]
 
-	@objc private func _didSelectPane(paneButton: XUPreferencePaneButton) {
+	@objc fileprivate func _didSelectPane(_ paneButton: XUPreferencePaneButton) {
 		self.delegate.preferencePaneView(didSelectPane: paneButton.paneController)
 	}
 
-	override func drawRect(dirtyRect: CGRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		var y: CGFloat = 0.0
-		for (index, height) in _sectionHeights.enumerate() {
+		for (index, height) in _sectionHeights.enumerated() {
 			if index % 2 != 0 {
 				NSColor(white: 0.8667, alpha: 1.0).set()
 				NSBezierPath(rect: CGRect(x: 0.0, y: y, width: XUPreferencePanesView.viewWidth, height: height)).fill()
@@ -76,7 +76,7 @@ internal class XUPreferencePanesView: NSView {
 		}
 	}
 
-	override var flipped: Bool {
+	override var isFlipped: Bool {
 		return true
 	}
 
@@ -88,7 +88,7 @@ internal class XUPreferencePanesView: NSView {
 
 		// Unfortunately, this isn't as easy as it sounds since we need to make
 		// sure that all sections fit within one row.
-		for (sectionIndex, section) in sections.enumerate() {
+		for (sectionIndex, section) in sections.enumerated() {
 			var x: CGFloat = XUPreferencePanesView.buttonPadding
 			for pane in section.paneControllers {
 				x += XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding
@@ -111,7 +111,7 @@ internal class XUPreferencePanesView: NSView {
 
 		super.init(frame: frame)
 
-		for button in buttons.flatten() {
+		for button in buttons.joined() {
 			self.addSubview(button)
 			button.target = self
 			button.action = #selector(_didSelectPane(_:))
@@ -126,12 +126,12 @@ internal class XUPreferencePanesView: NSView {
 		super.layout()
 
 		var y: CGFloat = XUPreferencePanesView.sectionHeight
-		for (sectionIndex, section) in sections.enumerate() {
+		for (sectionIndex, section) in sections.enumerated() {
 			var x: CGFloat = XUPreferencePanesView.buttonPadding
-			for (paneIndex, _) in section.paneControllers.enumerate() {
+			for (paneIndex, _) in section.paneControllers.enumerated() {
 				let button = _buttons[sectionIndex][paneIndex]
 				var size = button.sizeThatFits(CGSize(width: XUPreferencePanesView.buttonWidth, height: XUPreferencePanesView.sectionHeight))
-				if button.paneController.paneName.rangeOfString(" ") != nil {
+				if button.paneController.paneName.range(of: " ") != nil {
 					size.width = min(size.width, XUPreferencePanesView.buttonWidth)
 				}
 
@@ -152,22 +152,22 @@ internal class XUPreferencePanesView: NSView {
 
 private class XUPreferencePaneButtonCell: NSButtonCell {
 	
-	override func drawTitle(title: NSAttributedString, withFrame frame: CGRect, inView controlView: NSView) -> CGRect {
-		let attributedString = NSAttributedString(string: title.string.stringByReplacingOccurrencesOfString(" ", withString: "\n"))
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
+		let attributedString = NSAttributedString(string: title.string.replacingOccurrences(of: " ", with: "\n"))
 		
-		let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-		paragraphStyle.alignment = .Center
+		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		paragraphStyle.alignment = .center
 
 		let attributes = [
 			NSFontAttributeName: XUPreferencePanesView.titleFont,
 			NSParagraphStyleAttributeName: paragraphStyle
 		]
 
-		let textSize = attributedString.string.sizeWithAttributes(attributes)
+		let textSize = attributedString.string.size(withAttributes: attributes)
 		let textBounds = CGRect(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
 
 		let textFrame = CGRect(x: 0.0, y: 34.0, width: controlView.frame.width, height: textSize.height)
-		attributedString.string.drawInRect(textFrame, withAttributes: attributes)
+		attributedString.string.draw(in: textFrame, withAttributes: attributes)
 		
 		return textBounds
 	}
@@ -190,28 +190,28 @@ private class XUPreferencePaneButton: NSButton {
 		self.translatesAutoresizingMaskIntoConstraints = false
 		self.title = paneController.paneName
 		self.image = paneController.paneIcon
-		self.imagePosition = .ImageAbove
+		self.imagePosition = .imageAbove
 		self.font = XUPreferencePanesView.titleFont
-		self.bordered = false
-		self.setButtonType(.MomentaryChangeButton)
+		self.isBordered = false
+		self.setButtonType(.momentaryChange)
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private override func sizeThatFits(size: CGSize) -> CGSize {
-		let attributedString = NSAttributedString(string: self.title.stringByReplacingOccurrencesOfString(" ", withString: "\n"))
+	fileprivate override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let attributedString = NSAttributedString(string: self.title.replacingOccurrences(of: " ", with: "\n"))
 		
-		let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-		paragraphStyle.alignment = .Center
+		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		paragraphStyle.alignment = .center
 		
 		let attributes = [
 			NSFontAttributeName: XUPreferencePanesView.titleFont,
 			NSParagraphStyleAttributeName: paragraphStyle
 		]
 		
-		let textSize = attributedString.string.sizeWithAttributes(attributes)
+		let textSize = attributedString.string.size(withAttributes: attributes)
 		var result = textSize
 		result.height = 32.0 + textSize.height + 2.0
 		return result

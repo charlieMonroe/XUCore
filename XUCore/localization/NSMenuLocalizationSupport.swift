@@ -11,12 +11,12 @@ import Foundation
 
 public extension NSMenu {
 	
-	public func localizeMenu(bundle: NSBundle = XUMainBundle) {
+	public func localizeMenu(_ bundle: Bundle = XUMainBundle) {
 		self.title = XULocalizedString(self.title)
-		for item in self.itemArray {
+		for item in self.items {
 			if let attributedTitle = item.attributedTitle {
 				let localizedTitle = XULocalizedString(attributedTitle.string, inBundle: bundle)
-				let localizedAttributedTitle = NSAttributedString(string: localizedTitle, attributes: attributedTitle.attributesAtIndex(0, effectiveRange: nil))
+				let localizedAttributedTitle = NSAttributedString(string: localizedTitle, attributes: attributedTitle.attributes(at: 0, effectiveRange: nil))
 				item.attributedTitle = localizedAttributedTitle
 			}else{
 				item.title = XULocalizedString(item.title, inBundle: bundle)

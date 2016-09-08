@@ -17,11 +17,11 @@ private var kBaseSize: Double = 0.0
 
 /// Somewhat similar to NSByteCountTransformer, but return "-- kB" in case of 0.
 /// Shouldn't be used in new code, however.
-public class XUFileSizeTransformer: NSValueTransformer {
+open class XUFileSizeTransformer: ValueTransformer {
 
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
+	open override func transformedValue(_ value: Any?) -> Any? {
 		if !_cachedBaseSize {
-			if NSUserDefaults.standardUserDefaults().boolForKey(XUUseBinarySizesDefaultsKey) {
+			if UserDefaults.standard.bool(forKey: XUUseBinarySizesDefaultsKey) {
 				kBaseSize = 1024.0
 			}else{
 				kBaseSize = 1000.0
@@ -49,10 +49,10 @@ public class XUFileSizeTransformer: NSValueTransformer {
 }
 
 
-@objc public class FCFileSizeTransformer: XUFileSizeTransformer {
+@objc open class FCFileSizeTransformer: XUFileSizeTransformer {
 	
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
-		XULog("WARNING: Deprecated use of \(self.dynamicType) - use XUCore.\(self.superclass!) instead")
+	open override func transformedValue(_ value: Any?) -> Any? {
+		XULog("WARNING: Deprecated use of \(type(of: self)) - use XUCore.\(self.superclass!) instead")
 		
 		return super.transformedValue(value)
 	}

@@ -9,11 +9,11 @@
 import Foundation
 
 /// Adding &= operator for Bool.
-public func &=(inout lhs: Bool, rhs: Bool) {
+public func &=(lhs: inout Bool, rhs: Bool) {
 	lhs = lhs && rhs
 }
 
 /// Adding |= operator for Bool.
-public func |=(inout lhs: Bool, rhs: Bool) {
+public func |=(lhs: inout Bool, rhs: Bool) {
 	lhs = lhs || rhs
 }

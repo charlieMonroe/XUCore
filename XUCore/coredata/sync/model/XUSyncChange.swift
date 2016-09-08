@@ -16,38 +16,38 @@ import CoreData
 /// XUManagedObject to be an actual entity, but this kind of went downhill due
 /// to maintaining backward compatibility with TICDS...
 @objc(XUSyncChange)
-public class XUSyncChange: NSManagedObject {
+open class XUSyncChange: NSManagedObject {
 	
 	/// Change set this change belongs to. Nil during initialization, hence nullable,
 	/// but otherwise should be nonnull.
-	@NSManaged public private(set) var changeSet: XUSyncChangeSet!
+	@NSManaged open fileprivate(set) var changeSet: XUSyncChangeSet!
 	
 	/// Name of the entity.
-	@NSManaged public private(set) var objectEntityName: String
+	@NSManaged open fileprivate(set) var objectEntityName: String
 	
 	/// This is generally all we need to identify the object.
-	@NSManaged public private(set) var objectSyncID: String
+	@NSManaged open fileprivate(set) var objectSyncID: String
 	
 	/// Object that is being sync'ed. Only stored locally.
-	public private(set) weak var syncObject: XUManagedObject!
+	open fileprivate(set) weak var syncObject: XUManagedObject!
 	
 	/// Timestamp of the change.
-	@NSManaged public private(set) var timestamp: NSTimeInterval
+	@NSManaged open fileprivate(set) var timestamp: TimeInterval
 	
 	/// Creates a new sync change.
 	public init(object: XUManagedObject) {
 		let ctx = object.managedObjectContext!.documentSyncManager!.syncManagedObjectContext
-		super.init(entity: NSEntityDescription.entityForName(NSStringFromClass(self.dynamicType), inManagedObjectContext:ctx)!, insertIntoManagedObjectContext: ctx)
+		super.init(entity: NSEntityDescription.entity(forEntityName: NSStringFromClass(type(of: self)), in:ctx)!, insertInto: ctx)
 		
 		self.syncObject = object
 		
 		self.objectEntityName = object.entity.name!
 		self.objectSyncID = object.syncUUID
-		self.timestamp = NSDate.timeIntervalSinceReferenceDate()
+		self.timestamp = Date.timeIntervalSinceReferenceDate
 	}
 
-	internal override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-		super.init(entity: entity, insertIntoManagedObjectContext: context)
+	internal override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertInto: context)
 	}
 
 }

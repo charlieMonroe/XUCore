@@ -11,7 +11,7 @@ import Foundation
 public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
-	private func _imageWithSingleImageRepOfSize(size: CGSize) -> XUImage? {
+	fileprivate func _imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
 		if size == CGSize() {
 			return nil
 		}
@@ -22,7 +22,7 @@ public extension NSImage {
 			return self
 		}
 		
-		var scale = NSScreen.mainScreen()?.backingScaleFactor ?? 0.0
+		var scale = NSScreen.main()?.backingScaleFactor ?? 0.0
 		if scale == 0.0 {
 			scale = 1.0
 		}
@@ -38,7 +38,7 @@ public extension NSImage {
 		
 		
 		let fromRect = CGRect(x: (newSize.width - width) / 2.0, y: (newSize.height - height) / 2.0, width: width, height: height)
-		self.drawInRect(fromRect, fromRect: CGRect(x: 0.0, y: 0.0, width: s.width, height: s.height), operation: .CompositeCopy, fraction: 1.0)
+		self.draw(in: fromRect, from: CGRect(x: 0.0, y: 0.0, width: s.width, height: s.height), operation: .copy, fraction: 1.0)
 		
 		icon.unlockFocus()
 		
@@ -60,7 +60,7 @@ public extension NSImage {
 			return nil
 		}
 		
-		guard let bwRep = rep.bitmapImageRepByConvertingToColorSpace(NSColorSpace.deviceGrayColorSpace(), renderingIntent: .Default) else {
+		guard let bwRep = rep.converting(to: NSColorSpace.deviceGray, renderingIntent: .default) else {
 			return nil
 		}
 		
@@ -71,60 +71,60 @@ public extension NSImage {
 	
 	/// Draws the image at point from rect. If respectFlipped is true, the current
 	/// context's flip is respected.
-	public func drawAtPoint(point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
+	public func drawAtPoint(_ point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
 		var rect: CGRect = CGRect()
 		rect.origin = point
 		rect.size = self.size
 		
-		self.drawInRect(rect, fromRect: fromRect, operation: op, fraction: delta, respectFlipped: respectFlipped, hints: nil)
+		self.draw(in: rect, from: fromRect, operation: op, fraction: delta, respectFlipped: respectFlipped, hints: nil)
 	}
 
 	/// Inits with GCImageRef.
 	@available(OSX 10.10, *)
-	public convenience init?(CGImage: CGImageRef, asBitmapImageRep: Bool) {
-		let width = CGImageGetWidth(CGImage);
-		let height = CGImageGetHeight(CGImage);
+	public convenience init?(CGImage: CGImage, asBitmapImageRep: Bool) {
+		let width = CGImage.width;
+		let height = CGImage.height;
 		
 		self.init(size: CGSize(width: CGFloat(width), height: CGFloat(height)))
 		
 		if asBitmapImageRep {
-			let hasAlpha = CGImageGetAlphaInfo(CGImage) == .None ? false : true
+			let hasAlpha = CGImage.alphaInfo == .none ? false : true
 			let bps = 8; // hardwiring to 8 bits per sample is fine for general purposes
 			let spp = hasAlpha ? 4 : 3;
 			
-			guard let bitmapImageRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: width, pixelsHigh: height, bitsPerSample: bps, samplesPerPixel: spp, hasAlpha: hasAlpha, isPlanar: false, colorSpaceName: NSDeviceRGBColorSpace, bitmapFormat: .NSAlphaFirstBitmapFormat, bytesPerRow: 0, bitsPerPixel: 0) else {
+			guard let bitmapImageRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: width, pixelsHigh: height, bitsPerSample: bps, samplesPerPixel: spp, hasAlpha: hasAlpha, isPlanar: false, colorSpaceName: NSDeviceRGBColorSpace, bitmapFormat: .alphaFirst, bytesPerRow: 0, bitsPerPixel: 0) else {
 				return nil
 			}
 			
 			let bitmapContext = NSGraphicsContext(bitmapImageRep: bitmapImageRep)
 			
 			NSGraphicsContext.saveGraphicsState()
-			NSGraphicsContext.setCurrentContext(bitmapContext)
+			NSGraphicsContext.setCurrent(bitmapContext)
 			
-			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)), CGImage)
+			NSGraphicsContext.current()!.cgContext.draw(CGImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
 			
 			NSGraphicsContext.restoreGraphicsState()
 			
 			self.addRepresentation(bitmapImageRep)
 		}else{
 			self.lockFocus()
-			CGContextDrawImage(NSGraphicsContext.currentContext()!.CGContext, CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)), CGImage)
+			NSGraphicsContext.current()!.cgContext.draw(CGImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
 			self.unlockFocus()
 		}
 	}
 	
 	@available(OSX 10.10, *)
-	public convenience init?(thumbnailOfFileAtURL URL: NSURL, withSize size: CGSize) {
-		let dict: [NSObject : AnyObject] = [
-			kCGImageSourceCreateThumbnailFromImageIfAbsent: kCFBooleanTrue,
-			kCGImageSourceThumbnailMaxPixelSize: size.height
+	public convenience init?(thumbnailOfFileAtURL URL: Foundation.URL, withSize size: CGSize) {
+		let dict: [AnyHashable: Any] = [
+			kCGImageSourceCreateThumbnailFromImageIfAbsent as AnyHashable: kCFBooleanTrue,
+			kCGImageSourceThumbnailMaxPixelSize as AnyHashable: size.height
 		]
 		
-		guard let source = CGImageSourceCreateWithURL(URL, dict) else {
+		guard let source = CGImageSourceCreateWithURL(URL as CFURL, dict as CFDictionary?) else {
 			return nil
 		}
 		
-		guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, dict) else {
+		guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, dict as CFDictionary?) else {
 			return nil
 		}
 		
@@ -134,7 +134,7 @@ public extension NSImage {
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
-	public func imageWithSingleImageRepOfSize(size: CGSize) -> XUImage? {
+	public func imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
 		var result: XUImage? = nil
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
 			result = self._imageWithSingleImageRepOfSize(size)
@@ -143,67 +143,67 @@ public extension NSImage {
 	}
 	
 	/// Returns NSData with a bitmap image file type representation.
-	public func representationForFileType(fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> NSData? {
-		guard let temp = self.TIFFRepresentation else {
+	public func representationForFileType(_ fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> Data? {
+		guard let temp = self.tiffRepresentation else {
 			return nil
 		}
 		
 		let bitmap = NSBitmapImageRep(data: temp)
-		let imgData = bitmap?.representationUsingType(fileType, properties: [ : ])
+		let imgData = bitmap?.representation(using: fileType, properties: [ : ])
 		return imgData
 	}
 	
 	/// Returns a basic BMP image representation.
-	public var BMPRepresentation: NSData? {
-		return self.representationForFileType(.NSBMPFileType)
+	public var BMPRepresentation: Data? {
+		return self.representationForFileType(.BMP)
 	}
 	
 	/// Returns a basic GIF image representation.
-	public var GIFRepresentation: NSData? {
-		return self.representationForFileType(.NSGIFFileType)
+	public var GIFRepresentation: Data? {
+		return self.representationForFileType(.GIF)
 	}
 	
 	/// Returns a GIF image representation
-	public func GIFRepresentationWithDitheredTransparency(dither: Bool) -> NSData? {
-		return self.representationForFileType(.NSGIFFileType, properties: [ NSImageDitherTransparency: dither ])
+	public func GIFRepresentationWithDitheredTransparency(_ dither: Bool) -> Data? {
+		return self.representationForFileType(.GIF, properties: [ NSImageDitherTransparency: dither as AnyObject ])
 	}
 	
 	/// Returns a basic JPEG image representation.
-	public var JPEGRepresentation: NSData? {
-		return self.representationForFileType(.NSJPEGFileType)
+	public var JPEGRepresentation: Data? {
+		return self.representationForFileType(.JPEG)
 	}
 	
 	/// Returns a JPEG image representation with specified quality.
-	public func JPEGRepresentationUsingCompressionFactor(compressionFactor: Int, progressive: Bool) -> NSData? {
+	public func JPEGRepresentationUsingCompressionFactor(_ compressionFactor: Int, progressive: Bool) -> Data? {
 		let properties: [String : AnyObject] = [
-			NSImageCompressionFactor: compressionFactor,
-			NSImageProgressive: progressive
+			NSImageCompressionFactor: compressionFactor as AnyObject,
+			NSImageProgressive: progressive as AnyObject
 		]
-		return self.representationForFileType(.NSJPEGFileType, properties: properties)
+		return self.representationForFileType(.JPEG, properties: properties)
 	}
 	
 	/// Returns a basic JPEG 2000 image representation.
-	public var JPEG2000Representation: NSData? {
-		return self.representationForFileType(.NSJPEG2000FileType)
+	public var JPEG2000Representation: Data? {
+		return self.representationForFileType(.JPEG)
 	}
 	
 	/// Returns a basic PNG image representation.
-	public var PNGRepresentation: NSData? {
-		return self.representationForFileType(.NSPNGFileType)
+	public var PNGRepresentation: Data? {
+		return self.representationForFileType(.PNG)
 	}
 	
 	/// Returns a PNG image representation with interlace as defined.
-	public func PNGRepresentationInterlaced(interlace: Bool) -> NSData? {
-		return self.representationForFileType(.NSPNGFileType, properties: [ NSImageInterlaced : interlace ])
+	public func PNGRepresentationInterlaced(_ interlace: Bool) -> Data? {
+		return self.representationForFileType(.PNG, properties: [ NSImageInterlaced : interlace as AnyObject ])
 	}
 	
 	/// Returns a TIFF image representation with defined compression.
-	public func TIFFRepresentationUsingCompression(compression: NSTIFFCompression) -> NSData? {
-		return self.representationForFileType(.NSTIFFFileType, properties: [ NSImageCompressionMethod: compression.rawValue ])
+	public func TIFFRepresentationUsingCompression(_ compression: NSTIFFCompression) -> Data? {
+		return self.representationForFileType(.TIFF, properties: [ NSImageCompressionMethod: compression.rawValue as AnyObject ])
 	}
 	
 	/// Draws the image as tile in specified rect.
-	public func tileInRect(rect: CGRect) {
+	public func tileInRect(_ rect: CGRect) {
 		let size = self.size
 		var destRect = CGRect(x: rect.minX, y: rect.minY, width: size.width, height: size.height)
 		let top = rect.minY + rect.height
@@ -225,7 +225,7 @@ public extension NSImage {
 				}
 				
 				// Draw and shift
-				self.drawAtPoint(destRect.origin, fromRect: sourceRect, operation: .CompositeSourceOver, fraction: 1.0)
+				self.draw(at: destRect.origin, from: sourceRect, operation: .sourceOver, fraction: 1.0)
 				destRect.origin.x += destRect.width
 			}
 			

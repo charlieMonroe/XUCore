@@ -10,14 +10,14 @@ import Foundation
 
 /// Unlike regular text field cell, this cell centers the content horizontally
 /// as well.
-public class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
+open class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
 	
-	public override func drawWithFrame(cellFrame: CGRect, inView controlView: NSView) {
-		let color = self.highlighted ? NSColor.whiteColor() : (self.textColor ?? NSColor.blackColor())
-		let attributes = [ NSFontAttributeName: self.font!, NSForegroundColorAttributeName: color ]
-		let textSize = self.stringValue.sizeWithAttributes(attributes)
+	open override func draw(withFrame cellFrame: CGRect, in controlView: NSView) {
+		let color = self.isHighlighted ? NSColor.white : (self.textColor ?? NSColor.black)
+		let attributes = [ NSFontAttributeName: self.font!, NSForegroundColorAttributeName: color ] as [String : Any]
+		let textSize = self.stringValue.size(withAttributes: attributes)
 		
-		self.stringValue.drawAtPoint(CGPoint(x: cellFrame.minX, y: cellFrame.minY + ((cellFrame.height - textSize.height) / 2.0)), withAttributes: attributes)
+		self.stringValue.draw(at: CGPoint(x: cellFrame.minX, y: cellFrame.minY + ((cellFrame.height - textSize.height) / 2.0)), withAttributes: attributes)
 	}
 	
 }

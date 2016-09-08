@@ -19,17 +19,17 @@ import Foundation
 #endif
 
 public enum XUDirection: Int {
-	case LeftToRight
-	case RightToLeft
-	case BottomToTop
-	case TopToBottom
+	case leftToRight
+	case rightToLeft
+	case bottomToTop
+	case topToBottom
 	
 	#if os(OSX)
 	
 	/// If the context is flipped, the opposite direction is returned for bottom/
 	/// top.
 	public var directionInCurrentGraphicsContext: XUDirection {
-		guard let graphicsContext = NSGraphicsContext.currentContext() where graphicsContext.flipped else {
+		guard let graphicsContext = NSGraphicsContext.current() , graphicsContext.isFlipped else {
 			return self
 		}
 		
@@ -44,34 +44,34 @@ public enum XUDirection: Int {
 	
 	/// Returns true if self == .LeftToRight or .RightToLeft
 	public var isHorizontal: Bool {
-		return self == .LeftToRight || self == .RightToLeft
+		return self == .leftToRight || self == .rightToLeft
 	}
 	
 	/// Returns true if self == .TopToBottom or .BottomToTop
 	public var isVertical: Bool {
-		return self == .TopToBottom || self == .BottomToTop
+		return self == .topToBottom || self == .bottomToTop
 	}
 	
 	/// Returns opposite direction.
 	public var opposite: XUDirection {
 		switch self {
-		case .LeftToRight:
-			return .RightToLeft
-		case .RightToLeft:
-			return .LeftToRight
-		case .TopToBottom:
-			return .BottomToTop
-		case .BottomToTop:
-			return .TopToBottom
+		case .leftToRight:
+			return .rightToLeft
+		case .rightToLeft:
+			return .leftToRight
+		case .topToBottom:
+			return .bottomToTop
+		case .bottomToTop:
+			return .topToBottom
 		}
 	}
 }
 
 public extension __XUBezierPath {
 	
-	private func _addLineToPoint(point: CGPoint) {
+	fileprivate func _addLineToPoint(_ point: CGPoint) {
 		#if os(OSX)
-			self.lineToPoint(point)
+			self.line(to: point)
 		#else
 			self.addLineToPoint(point)
 		#endif
@@ -92,25 +92,25 @@ public extension __XUBezierPath {
 			}
 		#endif
 		switch correctDirection {
-		case .BottomToTop:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.minY))
+		case .bottomToTop:
+			self.move(to: CGPoint(x: rect.minX, y: rect.minY))
 			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
 			self._addLineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.maxY))
-		case .TopToBottom:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
+		case .topToBottom:
+			self.move(to: CGPoint(x: rect.minX, y: rect.maxY))
 			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
 			self._addLineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.minY))
-		case .RightToLeft:
-			self.moveToPoint(CGPoint(x: rect.minX, y: rect.maxY))
+		case .rightToLeft:
+			self.move(to: CGPoint(x: rect.minX, y: rect.maxY))
 			self._addLineToPoint(CGPoint(x: rect.minX, y: rect.minY))
 			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
-		case .LeftToRight:
-			self.moveToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
+		case .leftToRight:
+			self.move(to: CGPoint(x: rect.maxX, y: rect.maxY))
 			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
 			self._addLineToPoint(CGPoint(x: rect.minX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
 		}
 		
-		self.closePath()
+		self.close()
 	}
 	
 }

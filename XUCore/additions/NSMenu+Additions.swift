@@ -12,7 +12,7 @@ public extension NSMenu {
 	
 	/// Adds menu items to the menu. A convenience method so that one can use
 	/// array.map() to create menu items.
-	public func addItems(menuItems: [NSMenuItem]) {
+	public func addItems(_ menuItems: [NSMenuItem]) {
 		menuItems.forEach({ self.addItem($0) })
 	}
 	

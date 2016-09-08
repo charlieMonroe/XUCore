@@ -46,25 +46,25 @@ public struct XUApplicationStateItem {
 /// Basic application state provider. Maintains some information about the application
 /// and provides an easy way to supply additional information in a key-value
 /// manner.
-public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
+open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	
 	/// Automatically initialized to NSDate(), providing how long has the app been
 	/// running.
-	public let launchTime: NSDate = NSDate()
+	open let launchTime: Date = Date()
 	
 	/// Returns state values. By default, this contains run-time, window list
 	/// including names and perhaps in the future additional values. Override
 	/// this var and append your values to what super returns.
-	public var stateItems: [XUApplicationStateItem] {
+	open var stateItems: [XUApplicationStateItem] {
 		var stateItems: [XUApplicationStateItem] = [
-			XUApplicationStateItem(name: "Locale", andValue: NSLocale.currentLocale().localeIdentifier),
+			XUApplicationStateItem(name: "Locale", andValue: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "AppStore", andValue: "\(XUAppSetup.isAppStoreBuild)"),
-			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(NSDate.timeIntervalSinceReferenceDate() - self.launchTime.timeIntervalSinceReferenceDate)),
+			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
 		]
 		
 		#if os(OSX)
-			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joinWithSeparator("\n")
+			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")
 			stateItems.append(XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)", requiresAdditionalTrailingNewLine: true))
 		#endif
 		
@@ -73,14 +73,14 @@ public class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	
 	public init() {}
 	
-	public func provideApplicationState() -> String {
+	open func provideApplicationState() -> String {
 		return self.stateItems.map({
 			var itemString = "\($0.name): \($0.value)"
 			if $0.requiresAdditionalTrailingNewLine {
 				itemString += "\n"
 			}
 			return itemString
-		}).joinWithSeparator("\n")
+		}).joined(separator: "\n")
 	}
 	
 }

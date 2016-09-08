@@ -11,27 +11,27 @@ import Foundation
 public protocol XUApplicationSyncManagerDelegate: AnyObject {
 	
 	/// Called when the manager found a new document. It might not be downloaded yet.
-	func applicationSyncManager(manager: XUApplicationSyncManager, didFindNewDocumentWithID documentID: String)
+	func applicationSyncManager(_ manager: XUApplicationSyncManager, didFindNewDocumentWithID documentID: String)
 	
 }
 
-private func _XULogFileAtURL(rootURL: NSURL, fileURL: NSURL, level: Int) {
+private func _XULogFileAtURL(_ rootURL: URL, fileURL: URL, level: Int) {
 	for _ in 0 ..< level {
 		print("|\t", terminator: "")
 	}
 	
 	// Just print relative path
-	let path = fileURL.lastPathComponent ?? "<<no lastPathComponent>>"
+	let path = fileURL.lastPathComponent 
 	print("- \(path)");
 	
 	// Don't care if the URL isn't a folder - file mananger will simple return
 	// nothing
-	for aURL in NSFileManager.defaultManager().contentsOfDirectoryAtURL(fileURL) {
+	for aURL in FileManager.default.contentsOfDirectoryAtURL(fileURL) {
 		_XULogFileAtURL(rootURL, fileURL: aURL, level: level + 1)
 	}
 }
 
-private func _XULogFolderContentsStartingAtURL(rootURL: NSURL?, manager: XUApplicationSyncManager) {
+private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUApplicationSyncManager) {
 	guard XUDebugLog.isLoggingEnabled else {
 		return
 	}
@@ -54,25 +54,25 @@ private let XUApplicationSyncManagerErrorDomain = "XUApplicationSyncManagerError
 
 /// This is an abstract class that represents a sync manager. You should only
 /// create one instance per subclass within the app.
-public class XUApplicationSyncManager {
+open class XUApplicationSyncManager {
 	
 	/// Timer that checks for new documents every 30 seconds.
-	private var _documentCheckerTimer: NSTimer!
+	fileprivate var _documentCheckerTimer: Timer!
 	
 	/// UUIDs of documents that have been downloaded.
-	private var _downloadedDocumentUUIDs: [String] = []
+	fileprivate var _downloadedDocumentUUIDs: [String] = []
 	
 	/// Use query to detect new files on iCloud and download them.
-	private let _metadataQuery: NSMetadataQuery = NSMetadataQuery()
+	fileprivate let _metadataQuery: NSMetadataQuery = NSMetadataQuery()
 
 	/// UUIDs of documents that have been downloaded or up for download.
-	public private(set) var availableDocumentUUIDs: [String] = []
+	open fileprivate(set) var availableDocumentUUIDs: [String] = []
 	
 	/// Delegate of the app sync manager.
-	public weak var delegate: XUApplicationSyncManagerDelegate?
+	open weak var delegate: XUApplicationSyncManagerDelegate?
 	
 	/// Name of the app, usually. Whatever passed in -initWithName:.
-	public let name: String
+	open let name: String
 	
 	/// URL of the folder that's designated for sync data for this manager.
 	///
@@ -81,22 +81,19 @@ public class XUApplicationSyncManager {
 	/// any potential duplicates.
 	///
 	/// Changes to this var should only be done by subclasses.
-	public var syncRootFolderURL: NSURL?
+	open var syncRootFolderURL: URL?
 
 	
 	
-	private func _checkForNewDocuments() {
+	fileprivate func _checkForNewDocuments() {
 		if self.syncRootFolderURL == nil {
 			return
 		}
 	
-		let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(self.syncRootFolderURL!)
+		let contents = FileManager.default.contentsOfDirectoryAtURL(self.syncRootFolderURL!)
 		for fileURL in contents {
-			guard let documentUUID = fileURL.lastPathComponent else {
-				continue
-			}
-			
-			if documentUUID == ".DS_Store" {
+			let documentUUID = fileURL.lastPathComponent
+			if documentUUID == ".DS_Store" || documentUUID.isEmpty {
 				continue // Just a precaution
 			}
 	
@@ -112,13 +109,13 @@ public class XUApplicationSyncManager {
 		}
 	}
 	
-	@objc private func _metadataQueryGotUpdated(aNotif: NSNotification) {
+	@objc fileprivate func _metadataQueryGotUpdated(_ aNotif: Notification) {
 		for obj in _metadataQuery.results {
 			guard let item = obj as? NSMetadataItem else {
 				continue
 			}
 	
-			guard let URL = item.valueForAttribute(NSMetadataItemURLKey) as? NSURL else {
+			guard let URL = item.value(forAttribute: NSMetadataItemURLKey) as? URL else {
 				continue
 			}
 	
@@ -132,15 +129,15 @@ public class XUApplicationSyncManager {
 
 	/// Should create a folder at URL. By default, this only invokes NSFileManager,
 	/// but subclasses may do additional work, such as contacting the server.
-	public func createDirectoryAtURL(URL: NSURL) throws {
-		try NSFileManager.defaultManager().createDirectoryAtURL(URL, withIntermediateDirectories: true, attributes: nil)
+	open func createDirectoryAtURL(_ URL: Foundation.URL) throws {
+		try FileManager.default.createDirectory(at: URL, withIntermediateDirectories: true, attributes: nil)
 	}
 	
 	/// The document manager will notify the app sync manager that it has written
 	/// into (or created) a file at fileURL. Note that the fileURL may lead to a
 	/// folder. Use this on subclasses to upload the file. Note that if the upload
 	/// fails, the subclass is responsible for deferring the upload.
-	public func didUpdateFileAtURL(fileURL: NSURL) {
+	open func didUpdateFileAtURL(_ fileURL: URL) {
 		/// No-op.
 	}
 	
@@ -149,10 +146,10 @@ public class XUApplicationSyncManager {
 	///
 	/// The documentURL within the response is nonnull upon success and contains 
 	/// a URL to the document file.
-	public func downloadDocumentWithID(documentID: String, toURL fileURL: NSURL, withCompletionHandler completionHandler: (success: Bool, documentURL: NSURL?, error: NSError?) -> Void) {
+	open func downloadDocumentWithID(_ documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
 		XU_PERFORM_BLOCK_ASYNC { 
 			var err: NSError?
-			var documentURL: NSURL?
+			var documentURL: URL?
 			do {
 				documentURL = try XUDocumentSyncManager.downloadDocumentWithID(documentID, forApplicationSyncManager: self, toURL: fileURL)
 			} catch let error as NSError {
@@ -162,53 +159,53 @@ public class XUApplicationSyncManager {
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				// Remove document ID from available, since the download failed
 				if documentURL == nil {
-					if let index = self.availableDocumentUUIDs.indexOf(documentID) {
-						self.availableDocumentUUIDs.removeAtIndex(index)
+					if let index = self.availableDocumentUUIDs.index(of: documentID) {
+						self.availableDocumentUUIDs.remove(at: index)
 					}
 				}
 				
-				completionHandler(success: documentURL != nil, documentURL: documentURL, error: err);
+				completionHandler(documentURL != nil, documentURL, err);
 			}
 		}
 	}
 	
 	/// Designated initialized. Name should be e.g. name of the app.
-	public init(name: String, rootFolder: NSURL?, andDelegate delegate: XUApplicationSyncManagerDelegate) {
+	public init(name: String, rootFolder: URL?, andDelegate delegate: XUApplicationSyncManagerDelegate) {
 		self.name = name
 		self.delegate = delegate
 		self.syncRootFolderURL = rootFolder
 		
-		if let downloadedDocumentUUIDs = NSUserDefaults.standardUserDefaults().arrayForKey(XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey) as? [String] {
+		if let downloadedDocumentUUIDs = UserDefaults.standard.array(forKey: XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey) as? [String] {
 			_downloadedDocumentUUIDs += downloadedDocumentUUIDs
 			self.availableDocumentUUIDs += downloadedDocumentUUIDs
 		}
 		
-		_documentCheckerTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(scanForNewDocuments), userInfo: nil, repeats: true)
+		_documentCheckerTimer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(scanForNewDocuments), userInfo: nil, repeats: true)
 		
 		self._checkForNewDocuments()
 		
 		self.logRootSyncFolderContents()
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSMetadataQueryDidUpdateNotification, object: _metadataQuery)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSMetadataQueryDidFinishGatheringNotification, object: _metadataQuery)
+		NotificationCenter.default.addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSNotification.Name.NSMetadataQueryDidUpdate, object: _metadataQuery)
+		NotificationCenter.default.addObserver(self, selector: #selector(_metadataQueryGotUpdated(_:)), name:NSNotification.Name.NSMetadataQueryDidFinishGathering, object: _metadataQuery)
 		
-		_metadataQuery.startQuery()
+		_metadataQuery.start()
 	}
 	
 	/// Debugging method that logs all contents on the folder at syncRootFolderURL.
-	public func logRootSyncFolderContents() {
-		_XULogFolderContentsStartingAtURL(self.syncRootFolderURL?.URLByDeletingLastPathComponent, manager: self)
+	open func logRootSyncFolderContents() {
+		_XULogFolderContentsStartingAtURL(self.syncRootFolderURL?.deletingLastPathComponent(), manager: self)
 	}
 	
 	/// Starts scanning for new documents.
-	@objc public func scanForNewDocuments() {
+	@objc open func scanForNewDocuments() {
 		self._checkForNewDocuments()
 	}
 	
 	/// Start downloading item at URL. The metadata query should automatically 
 	/// notice when the download is done. You can call scanForNewDocuments()
 	/// to make sure, though.
-	public func startDownloadingItemAtURL(URL: NSURL) throws {
+	open func startDownloadingItemAtURL(_ URL: Foundation.URL) throws {
 		XUThrowAbstractException("\(self)")
 	}
 	

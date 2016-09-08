@@ -10,9 +10,9 @@ import Foundation
 
 /// Transformed value returns an attributed string, reverse transformed value
 /// returns a plain string. Always returns non-null value.
-public class XUAttributedStringTransformer: NSValueTransformer {
+open class XUAttributedStringTransformer: ValueTransformer {
 
-	public override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+	open override func reverseTransformedValue(_ value: Any?) -> Any? {
 		if value == nil {
 			return ""
 		}
@@ -28,7 +28,7 @@ public class XUAttributedStringTransformer: NSValueTransformer {
 		return ""
 	}
 	
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
+	open override func transformedValue(_ value: Any?) -> Any? {
 		if value == nil {
 			return ""
 		}

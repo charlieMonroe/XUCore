@@ -8,21 +8,21 @@
 
 import Foundation
 
-public extension NSURL {
+public extension URL {
 	
 	@available(*, deprecated)
-	public class func fileReferenceURLWithPath(path: String) -> NSURL? {
-		let fileURL = NSURL(fileURLWithPath: path)
-		return fileURL.fileReferenceURL()
+	public static func fileReferenceURLWithPath(_ path: String) -> URL? {
+		let fileURL = URL(fileURLWithPath: path)
+		return (fileURL as NSURL).fileReferenceURL()
 	}
 	
 	@available(*, deprecated)
 	public var fileSizeString: String {
-		if !self.fileURL {
+		if !self.isFileURL {
 			return "Not Applicable (\(self))"
 		}
 		
-		return NSByteCountFormatter.stringFromByteCount(Int64(self.fileSize), countStyle: .File)
+		return ByteCountFormatter.string(fromByteCount: Int64(self.fileSize), countStyle: .file)
 	}
 	
 }

@@ -13,15 +13,15 @@ import WebKit
 /// the client receives a redirection.
 internal final class XUAuthorizationWebViewWindowController: NSWindowController, WebFrameLoadDelegate {
 	
-	@IBOutlet private weak var _currentURLTextField: NSTextField!
-	@IBOutlet private weak var _progressIndicator: NSProgressIndicator!
-	@IBOutlet private weak var _webView: WebView!
+	@IBOutlet fileprivate weak var _currentURLTextField: NSTextField!
+	@IBOutlet fileprivate weak var _progressIndicator: NSProgressIndicator!
+	@IBOutlet fileprivate weak var _webView: WebView!
 	
 	/// Completion handler
-	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
+	fileprivate(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
 	
 	/// URL this controller was initialized with.
-	private(set) var URL: NSURL!
+	fileprivate(set) var URL: Foundation.URL!
 	
 	
 	/// Closes the window and passes the result to self.completionHandler.
@@ -33,14 +33,14 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 	}
 	
 	/// Only initialize the controller with this initializer.
-	convenience init(URL: NSURL) {
+	convenience init(URL: Foundation.URL) {
 		self.init(windowNibName: "XUAuthorizationWebViewWindowController")
 		
 		self.URL = URL
 	}
 	
-	@IBAction @objc private func cancel(sender: AnyObject?) {
-		self.close(withResult: .Error(.UserCancelled))
+	@IBAction @objc fileprivate func cancel(_ sender: AnyObject?) {
+		self.close(withResult: .error(.userCancelled))
 	}
 	
 	/// Runs the window modally and will call completionHandler when it gets closed
@@ -51,18 +51,18 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 		self.window!.center()
 		self.window!.makeKeyAndOrderFront(nil)
 		
-		NSApp.runModalForWindow(self.window!)
+		NSApp.runModal(for: self.window!)
 	}
 	
-	func webView(sender: WebView, didStartProvisionalLoadForFrame frame: WebFrame) {
+	func webView(_ sender: WebView, didStartProvisionalLoadFor frame: WebFrame) {
 		_progressIndicator.startAnimation(nil)
 	}
 	
-	func webView(sender: WebView!, didCommitLoadForFrame frame: WebFrame!) {
+	func webView(_ sender: WebView!, didCommitLoadFor frame: WebFrame!) {
 		_currentURLTextField.stringValue = sender.mainFrameURL
 	}
 	
-	func webView(sender: WebView, didFinishLoadForFrame frame: WebFrame) {
+	func webView(_ sender: WebView, didFinishLoadFor frame: WebFrame) {
 		_progressIndicator.stopAnimation(nil)
 	}
 	

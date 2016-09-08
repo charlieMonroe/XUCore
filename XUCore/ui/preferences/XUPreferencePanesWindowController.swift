@@ -28,13 +28,13 @@ public struct XUPreferencePanesSection {
 	
 }
 
-public class XUPreferencePanesWindowController: NSWindowController, XUPreferencePanesViewDelegate {
+open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePanesViewDelegate {
 
-	private static var _sharedController: XUPreferencePanesWindowController? = nil
+	fileprivate static var _sharedController: XUPreferencePanesWindowController? = nil
 	
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
-	public class func controller(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
+	open class func controller(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
 		let controller = XUPreferencePanesWindowController(windowNibName: "XUPreferencePanesWindowController")
 		controller.sections = sections
 		return controller
@@ -44,7 +44,7 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	/// property. This allows you to have an app-wide preferences controller,
 	/// which is the typical scenario. If you need e.g. a per-account controller,
 	/// use the initializer and create as many controllers as needed.
-	public class func createSharedController(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
+	open class func createSharedController(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
 		assert(_sharedController == nil, "Can't be creating the shared controller for the second time.")
 		
 		_sharedController = XUPreferencePanesWindowController.controller(withSections: sections)
@@ -53,34 +53,34 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	
 	/// Shared controller. Will return nil until createSharedController(withSections:)
 	/// is called.
-	public class var sharedController: XUPreferencePanesWindowController! {
+	open class var sharedController: XUPreferencePanesWindowController! {
 		return _sharedController
 	}
 	
 	
 	/// Controller that shows the button for accessing all panes.
-	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
+	fileprivate lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
 	
 	/// Current view being displayed.
-	private var _currentView: NSView!
+	fileprivate var _currentView: NSView!
 	
 	/// Controller that shows the title.
-	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
+	fileprivate lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
 	
 	/// View that displays all the panes. It's currently private, but it may be
 	/// exposed in the future to allow customizations.
-	private lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
+	fileprivate lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
 	
 	/// Current pane.
-	public private(set) var currentPaneController: XUPreferencePaneViewController?
+	open fileprivate(set) var currentPaneController: XUPreferencePaneViewController?
 	
 	/// Sections.
-	public private(set) var sections: [XUPreferencePanesSection]!
+	open fileprivate(set) var sections: [XUPreferencePanesSection]!
 	
 	
 	/// Sets the current view to view and changes the window size. We're forcing
 	/// the 660px width here, though.
-	private func _setMainWindowContentView(view: NSView) {
+	fileprivate func _setMainWindowContentView(_ view: NSView) {
 		let preferencesWindow = self.window!
 		if _currentView != view {
 			var winFrame = preferencesWindow.frame
@@ -114,7 +114,7 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 	}
 	
 	/// This will cause the controller to display the icon view of all the panes.
-	public func showAllPanes() {
+	open func showAllPanes() {
 		self._setMainWindowContentView(self.allPanesView)
 		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreBundle)
 		
@@ -122,19 +122,19 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 		self.currentPaneController = nil
 	}
 	
-	public override func showWindow(sender: AnyObject?) {
-		if !self.windowLoaded || !self.window!.visible {
+	open override func showWindow(_ sender: Any?) {
+		if !self.isWindowLoaded || !self.window!.isVisible {
 			self.window!.center()
 		}
 		super.showWindow(sender)
 	}
 	
-    public override func windowDidLoad() {
+    open override func windowDidLoad() {
         super.windowDidLoad()
 
 		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreBundle)
 		
-		self.window!.titleVisibility = .Hidden
+		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
 		self.window!.addTitlebarAccessoryViewController(_titleViewController)
 		
@@ -149,25 +149,25 @@ public class XUPreferencePanesWindowController: NSWindowController, XUPreference
 /// Button that after a long press shows a menu instead of sending the action.
 internal class XULongPressButton: NSButton {
 	
-	private var _mouseDownDate: NSTimeInterval = 0.0
+	fileprivate var _mouseDownDate: TimeInterval = 0.0
 	
-	@objc private func _showMenu() {
-		self.menu!.popUpMenuPositioningItem(nil, atLocation: CGPoint(x: 0.0, y: self.bounds.height), inView: self)
+	@objc fileprivate func _showMenu() {
+		self.menu!.popUp(positioning: nil, at: CGPoint(x: 0.0, y: self.bounds.height), in: self)
 	}
 	
-	override func mouseDown(theEvent: NSEvent) {
-		_mouseDownDate = NSDate.timeIntervalSinceReferenceDate()
+	override func mouseDown(with theEvent: NSEvent) {
+		_mouseDownDate = Date.timeIntervalSinceReferenceDate
 		
-		self.highlighted = true
+		self.isHighlighted = true
 		
-		let eventMask: NSEventMask = [.LeftMouseDownMask, .LeftMouseDraggedMask, .LeftMouseUpMask]
-		while let nextEvent = NSApp.nextEventMatchingMask(Int(eventMask.rawValue), untilDate: NSDate.distantFuture(), inMode: NSEventTrackingRunLoopMode, dequeue: true) where nextEvent.type != .LeftMouseUp {
+		let eventMask: NSEventMask = [.leftMouseDown, .leftMouseDragged, .leftMouseUp]
+		while let nextEvent = NSApp.nextEvent(matching: NSEventMask(rawValue: UInt64(Int(eventMask.rawValue))), until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) , nextEvent.type != .leftMouseUp {
 			// No-op
 		}
 		
-		self.highlighted = false
+		self.isHighlighted = false
 		
-		let timeDelta = NSDate.timeIntervalSinceReferenceDate() - _mouseDownDate
+		let timeDelta = Date.timeIntervalSinceReferenceDate - _mouseDownDate
 		if timeDelta > 0.5 {
 			XU_PERFORM_DELAYED_BLOCK(0.01) {
 				self._showMenu()
@@ -178,7 +178,7 @@ internal class XULongPressButton: NSButton {
 		self.sendAction(self.action, to: self.target)
 	}
 	
-	override func rightMouseDown(theEvent: NSEvent) {
+	override func rightMouseDown(with theEvent: NSEvent) {
 		self._showMenu()
 	}
 	
@@ -186,11 +186,11 @@ internal class XULongPressButton: NSButton {
 
 private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController {
 	
-	@IBOutlet private weak var _button: NSButton!
+	@IBOutlet fileprivate weak var _button: NSButton!
 	
-	private weak var _prefController: XUPreferencePanesWindowController!
+	fileprivate weak var _prefController: XUPreferencePanesWindowController!
 	
-	@objc private func _showPane(menuItem: NSMenuItem) {
+	@objc fileprivate func _showPane(_ menuItem: NSMenuItem) {
 		let pane = menuItem.representedObject as! XUPreferencePaneViewController
 		_prefController.preferencePaneView(didSelectPane: pane)
 	}
@@ -201,12 +201,12 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCoreBundle)!
 		
 		self.fullScreenMinHeight = 48.0
-		self.layoutAttribute = .Left
+		self.layoutAttribute = .left
 		
 		self.loadView()
 		
 		let menu = NSMenu()
-		let panes = preferencePanesWindowController.sections.map({ $0.paneControllers }).flatten().sort({ $0.paneName < $1.paneName })
+		let panes = preferencePanesWindowController.sections.map({ $0.paneControllers }).joined().sorted(by: { $0.paneName < $1.paneName })
 		
 		let menuItem = { () -> NSMenuItem in
 			let item = NSMenuItem(title: XULocalizedString("Show All"), action: #selector(showAll(_:)), keyEquivalent: "")
@@ -214,7 +214,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 			item.image = NSImage(named: NSImageNamePreferencesGeneral)!.imageWithSingleImageRepOfSize(CGSize(width: 16.0, height: 16.0))
 			return item
 		}()
-		menu.addItems([menuItem, NSMenuItem.separatorItem()])
+		menu.addItems([menuItem, NSMenuItem.separator()])
 		
 		menu.addItems(panes.map({
 			let item = NSMenuItem(title: $0.paneName, action: #selector(_showPane(_:)), keyEquivalent: "")
@@ -230,7 +230,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@IBAction @objc func showAll(sender: AnyObject) {
+	@IBAction @objc func showAll(_ sender: AnyObject) {
 		_prefController.showAllPanes()
 	}
 	
@@ -240,14 +240,14 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	
 	@IBOutlet weak var _titleLabel: NSTextField!
 	@IBOutlet weak var _iconImageView: NSImageView! // Currently unused.
-	private weak var _prefController: XUPreferencePanesWindowController!
+	fileprivate weak var _prefController: XUPreferencePanesWindowController!
 	
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
 		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCoreBundle)!
 		
-		self.layoutAttribute = .Left
+		self.layoutAttribute = .left
 		self.loadView() // Required so that _titleLabel is available
 	}
 	

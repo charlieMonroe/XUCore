@@ -19,7 +19,7 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
 		assert(platformExpert != 0, "Failed to obtain computer UUID.")
 		
-		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber", kCFAllocatorDefault, 0).takeRetainedValue()
+		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber" as CFString!, kCFAllocatorDefault, 0).takeRetainedValue()
 		
 		IOObjectRelease(platformExpert)
 		
@@ -29,7 +29,7 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 		
 		// Put in the user salt as well - we may have two users on the same computer
 		let computerID = UUIDString + NSUserName()
-		return computerID.MD5Digest.uppercaseString
+		return computerID.MD5Digest.uppercased()
 	}()
 #endif
 
@@ -50,50 +50,50 @@ internal class XUSyncManagerPathUtilities {
 	
 	/// Returns the device specific folder for the document -
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID.
-	class func deviceSpecificFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.documentFolderURLForSyncManager(syncManager, andDocumentUUID: UUID)?.URLByAppendingPathComponent(computerID)
+	class func deviceSpecificFolderURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.documentFolderURLForSyncManager(syncManager, andDocumentUUID: UUID)?.appendingPathComponent(computerID)
 	}
 	
 	/// Returns the document folder - SYNC_ROOT/DOC_UUID. */
-	class func documentFolderURLForSyncManager(syncManager: XUApplicationSyncManager, andDocumentUUID UUID: String) -> NSURL! {
-		return syncManager.syncRootFolderURL?.URLByAppendingPathComponent(UUID)
+	class func documentFolderURLForSyncManager(_ syncManager: XUApplicationSyncManager, andDocumentUUID UUID: String) -> URL! {
+		return syncManager.syncRootFolderURL?.appendingPathComponent(UUID)
 	}
 	
 	/// Returns the Info.plist for particular document's whole store - 
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID/whole_store/Info.plist.
-	class func entireDocumentInfoFileURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.entireDocumentFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("Info.plist")
+	class func entireDocumentInfoFileURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.entireDocumentFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("Info.plist")
 	}
 	
 	/// Returns the store for the dev's doc whole-upload store folder - 
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID/whole_store.
-	class func entireDocumentFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("whole_store")
+	class func entireDocumentFolderURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("whole_store")
 	}
 	
 	/// Returns the URL of the Info.plist that contains information about last 
 	/// timestamp read by this computer. - 
 	/// SYNC_ROOT/DOC_UUID/DEV_UUID/sync_store/stamps/THIS_DEV_UUID.plist.
-	class func persistentSyncStorageInfoURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.timestampsDirectoryURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("\(self.currentDeviceIdentifier).plist")
+	class func persistentSyncStorageInfoURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.timestampsDirectoryURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("\(self.currentDeviceIdentifier).plist")
 	}
 	
 	/// Returns the URL of folder where the document sync manager keeps its sync 
 	/// data. - SYNC_ROOT/DOC_UUID/DEV_UUID/sync_store.
-	class func persistentSyncStorageFolderURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("sync_store")
+	class func persistentSyncStorageFolderURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.deviceSpecificFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("sync_store")
 	}
 	
 	/// Returns the URL of the actual SQL databse where sync manager keeps its
 	/// sync data. - SYNC_ROOT/DOC_UUID/DEV_UUID/sync_store/persistent_store.sql.
-	class func persistentSyncStorageURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.persistentSyncStorageFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("persistent_store.sql")
+	class func persistentSyncStorageURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.persistentSyncStorageFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("persistent_store.sql")
 	}
 	
 	/// Returns the URL of the folder that contains information about last timestamp
 	/// read by computers. - SYNC_ROOT/DOC_UUID/DEV_UUID/sync_store/stamps.
-	class func timestampsDirectoryURLForSyncManager(syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> NSURL! {
-		return self.persistentSyncStorageFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.URLByAppendingPathComponent("stamps")
+	class func timestampsDirectoryURLForSyncManager(_ syncManager: XUApplicationSyncManager, computerID: String, andDocumentUUID UUID: String) -> URL! {
+		return self.persistentSyncStorageFolderURLForSyncManager(syncManager, computerID: computerID, andDocumentUUID: UUID)?.appendingPathComponent("stamps")
 	}
 	
 }

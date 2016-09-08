@@ -11,21 +11,21 @@ import Foundation
 /// Direction of the rounding
 @objc public enum XUTimeRoundingDirection: Int {
 	/// Floor
-	case Floor = 0
+	case floor = 0
 	
 	/// Nearest
-	case Nearest = 1
+	case nearest = 1
 	
 	/// Ceiling
-	case Ceiling = 2
+	case ceiling = 2
 }
 
 /// A class that contains various time-related methods.
-public class XUTime {
+open class XUTime {
 	
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
-	public class func localizedTimeString(seconds: NSTimeInterval) -> String {
-		if seconds < 0 || !seconds.isFinite || NSTimeInterval(Int64.max) < seconds {
+	open class func localizedTimeString(_ seconds: TimeInterval) -> String {
+		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return XULocalizedString("1 second", inBundle: XUCoreBundle)
 		}
 		
@@ -66,7 +66,7 @@ public class XUTime {
 		}
 		
 		var composedString = "\(hourString) \(minuteString) \(secondsString)"
-		composedString = composedString.stringByReplacingOccurrencesOfString("  ", withString: " ").stringByTrimmingWhitespace
+		composedString = composedString.replacingOccurrences(of: "  ", with: " ").stringByTrimmingWhitespace
 		
 		return composedString
 
@@ -74,8 +74,8 @@ public class XUTime {
 
 	/// Rounds time to certain second count. E.g. by setting seconds to 30, it
 	/// will round the time to 5 minutes.
-	public class func roundTime(time: NSTimeInterval, direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> NSTimeInterval {
-		if seconds < 0 || !time.isFinite || NSTimeInterval(Int64.max) < time {
+	open class func roundTime(_ time: TimeInterval, direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> TimeInterval {
+		if seconds < 0 || !time.isFinite || TimeInterval(Int64.max) < time {
 			return 0.0
 		}
 		
@@ -87,13 +87,13 @@ public class XUTime {
 			return time
 		}
 		
-		if direction == .Floor || (direction == .Nearest && (remains < UInt64(seconds / 2))) {
+		if direction == .floor || (direction == .nearest && (remains < UInt64(seconds / 2))) {
 			t -= remains
 		}else{
 			t += (UInt64(seconds) - remains)
 		}
 		
-		return NSTimeInterval(t)
+		return TimeInterval(t)
 	}
 	
 	/// Converts the seconds to a time string (00:00:00 format).
@@ -101,8 +101,8 @@ public class XUTime {
 	/// - Parameter seconds - The time in seconds.
 	/// - Parameter skipHours - If the time is < 1 hour, only includes minutes 
 	///							and seconds. True by default.
- 	public class func timeString(seconds: NSTimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
-		if seconds < 0 || !seconds.isFinite || NSTimeInterval(Int64.max) < seconds {
+ 	open class func timeString(_ seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
+		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return "00:00"
 		}
 		
@@ -131,7 +131,7 @@ public class XUTime {
 }
 
 
-@available(*, deprecated, renamed="XUTime.roundTime")
-public func XURoundTime(time: NSTimeInterval, direction: XUTimeRoundingDirection, seconds: UInt) -> NSTimeInterval {
+@available(*, deprecated, renamed: "XUTime.roundTime")
+public func XURoundTime(_ time: TimeInterval, direction: XUTimeRoundingDirection, seconds: UInt) -> TimeInterval {
 	return XUTime.roundTime(time, direction: direction, roundingBase: Int(seconds))
 }

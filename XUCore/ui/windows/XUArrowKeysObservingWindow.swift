@@ -10,37 +10,37 @@ import Foundation
 
 /// The window only overrides the sendEvent(_) method and distributes arrow
 /// key down events to the methods.
-public class XUArrowKeysObservingWindow: NSWindow {
+open class XUArrowKeysObservingWindow: NSWindow {
 	
-	public func arrowKeyDownPressed(event: NSEvent) {
+	open func arrowKeyDownPressed(_ event: NSEvent) {
 		super.sendEvent(event)
 	}
 	
-	public func arrowKeyLeftPressed(event: NSEvent) {
+	open func arrowKeyLeftPressed(_ event: NSEvent) {
 		super.sendEvent(event)
 	}
 	
-	public func arrowKeyRightPressed(event: NSEvent) {
+	open func arrowKeyRightPressed(_ event: NSEvent) {
 		super.sendEvent(event)
 	}
 	
-	public func arrowKeyUpPressed(event: NSEvent) {
+	open func arrowKeyUpPressed(_ event: NSEvent) {
 		super.sendEvent(event)
 	}
 	
-	public override func sendEvent(theEvent: NSEvent) {
-		if theEvent.type == .KeyDown {
+	open override func sendEvent(_ theEvent: NSEvent) {
+		if theEvent.type == .keyDown {
 			switch theEvent.keyCode {
-			case XUKeyCode.KeyUp.rawValue:
+			case XUKeyCode.keyUp.rawValue:
 				self.arrowKeyUpPressed(theEvent)
 				return
-			case XUKeyCode.KeyDown.rawValue:
+			case XUKeyCode.keyDown.rawValue:
 				self.arrowKeyDownPressed(theEvent)
 				return
-			case XUKeyCode.KeyRight.rawValue:
+			case XUKeyCode.keyRight.rawValue:
 				self.arrowKeyRightPressed(theEvent)
 				return
-			case XUKeyCode.KeyLeft.rawValue:
+			case XUKeyCode.keyLeft.rawValue:
 				self.arrowKeyLeftPressed(theEvent)
 				return
 			default:

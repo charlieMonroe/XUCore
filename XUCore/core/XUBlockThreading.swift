@@ -10,32 +10,32 @@ import Foundation
 
 /// Performs the block on main thread synchronously. If the current thread already
 /// is main thread, the block is performed immediately, preventing dead-lock.
-public func XU_PERFORM_BLOCK_ON_MAIN_THREAD(block: () -> Void) {
-	if NSThread.isMainThread() {
+public func XU_PERFORM_BLOCK_ON_MAIN_THREAD(_ block: () -> Void) {
+	if Thread.isMainThread {
 		block()
 	}else{
-		dispatch_sync(dispatch_get_main_queue(), block)
+		DispatchQueue.main.sync(execute: block)
 	}
 }
 
 /// Performs the block on main thread asynchronously. If the current thread already
 /// is main thread, the block is performed immediately, preventing dead-lock.
-public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(block: () -> Void) {
-	if NSThread.isMainThread() {
+public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(_ block: @escaping () -> Void) {
+	if Thread.isMainThread {
 		block()
 	}else{
-		dispatch_async(dispatch_get_main_queue(), block)
+		DispatchQueue.main.async(execute: block)
 	}
 }
 
 /// Creates a new thread on the default priority queue and executes the block.
-public func XU_PERFORM_BLOCK_ASYNC(block: () -> Void) {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+public func XU_PERFORM_BLOCK_ASYNC(_ block: @escaping () -> Void) {
+	DispatchQueue.global(qos: .default).async(execute: block)
 }
 
 /// Dispatches the block after delay on queue. By default, queue is the main queue.
-public func XU_PERFORM_DELAYED_BLOCK(delay: NSTimeInterval, queue: dispatch_queue_t = dispatch_get_main_queue(), block: () -> Void) {
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * NSTimeInterval(NSEC_PER_SEC))), queue, {
+public func XU_PERFORM_DELAYED_BLOCK(_ delay: TimeInterval, queue: DispatchQueue = DispatchQueue.main, block: @escaping () -> Void) {
+	queue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * TimeInterval(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
 		block()
 	})
 

@@ -10,16 +10,16 @@ import Foundation
 
 
 /// Trims the string to the first line
-public class XUStringTrimmingTransformer: NSValueTransformer {
+open class XUStringTrimmingTransformer: ValueTransformer {
 
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
+	open override func transformedValue(_ value: Any?) -> Any? {
 		if value == nil {
 			//Or return nil? This partially solves the crash in removing selected snippet (in Kousek)...
 			return ""
 		}
 		
 		guard let str = value as? String else {
-			NSException(name: NSInternalInconsistencyException, reason: "**** XUStringTrimmingTransformer: value not string \(value!.dynamicType)", userInfo: nil).raise()
+			NSException(name: NSExceptionName.internalInconsistencyException, reason: "**** XUStringTrimmingTransformer: value not string \(type(of: (value!) as AnyObject))", userInfo: nil).raise()
 			return nil
 		}
 		

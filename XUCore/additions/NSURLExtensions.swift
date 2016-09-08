@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension NSURL {
+public extension URL {
 
-	private func _booleanResourceValueForKey(key: String, defaultValue: Bool = false) -> Bool {
+	fileprivate func _booleanResourceValueForKey(_ key: String, defaultValue: Bool = false) -> Bool {
 		var value: AnyObject?
-		_ = try? self.getResourceValue(&value, forKey: key)
+		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
 
 		guard let number = value as? NSNumber else {
 			return defaultValue // Fallback to defaultValue
@@ -21,69 +21,69 @@ public extension NSURL {
 		return number.boolValue
 	}
 
-	private func _resourceValueForKey<T>(key: String) -> T? {
+	fileprivate func _resourceValueForKey<T>(_ key: String) -> T? {
 		var value: AnyObject?
-		_ = try? self.getResourceValue(&value, forKey: key)
+		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
 		return value as? T
 	}
 	
-	private func _setBooleanResourceValue(value: Bool, forKey key: String) {
-		_ = try? self.setResourceValue(value, forKey: key)
+	fileprivate func _setBooleanResourceValue(_ value: Bool, forKey key: String) {
+		_ = try? (self as NSURL).setResourceValue(value, forKey: URLResourceKey(rawValue: key))
 	}
 	
-	private func _setResourceValue(value: AnyObject?, forKey key: String) {
-		_ = try? self.setResourceValue(value, forKey: key)
+	fileprivate func _setResourceValue(_ value: AnyObject?, forKey key: String) {
+		_ = try? (self as NSURL).setResourceValue(value, forKey: URLResourceKey(rawValue: key))
 	}
 	
 	/// Date the URL was created at.
-	public var creationDate: NSDate? {
+	public var creationDate: Date? {
 		get {
-			return self._resourceValueForKey(NSURLCreationDateKey)
+			return self._resourceValueForKey(URLResourceKey.creationDateKey.rawValue)
 		}
 		set {
-			self._setResourceValue(newValue, forKey: NSURLCreationDateKey)
+			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.creationDateKey.rawValue)
 		}
 	}
 
 	/// Returns the file size.
 	public var fileSize: Int {
 		var value: AnyObject?
-		_ = try? self.getResourceValue(&value, forKey: NSURLFileSizeKey)
+		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.fileSizeKey)
 
 		guard let number = value as? NSNumber else {
 			return 0 // Fallback to 0
 		}
 
-		return number.integerValue
+		return number.intValue
 	}
 
 	/// Returns true if the current URL is a directory.
 	public var isDirectory: Bool {
-		return self._booleanResourceValueForKey(NSURLIsDirectoryKey)
+		return self._booleanResourceValueForKey(URLResourceKey.isDirectoryKey.rawValue)
 	}
 
 	/// Returns true if the current URL is a directory.
 	public var isExcludedFromBackup: Bool {
 		get {
-			return self._booleanResourceValueForKey(NSURLIsExcludedFromBackupKey)
+			return self._booleanResourceValueForKey(URLResourceKey.isExcludedFromBackupKey.rawValue)
 		}
 		set {
-			self._setBooleanResourceValue(newValue, forKey: NSURLIsExcludedFromBackupKey)
+			self._setBooleanResourceValue(newValue, forKey: URLResourceKey.isExcludedFromBackupKey.rawValue)
 		}
 	}
 
 	/// Returns true if the URL is writable.
 	public var isWritable: Bool {
-		return _booleanResourceValueForKey(NSURLIsWritableKey)
+		return _booleanResourceValueForKey(URLResourceKey.isWritableKey.rawValue)
 	}
 
 	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
-	public var modificationDate: NSDate? {
+	public var modificationDate: Date? {
 		get {
-			return self._resourceValueForKey(NSURLContentModificationDateKey)
+			return self._resourceValueForKey(URLResourceKey.contentModificationDateKey.rawValue)
 		}
 		set {
-			self._setResourceValue(newValue, forKey: NSURLContentModificationDateKey)
+			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.contentModificationDateKey.rawValue)
 		}
 	}
 
@@ -91,14 +91,14 @@ public extension NSURL {
 	/// an empty dictionary.
 	public var queryDictionary: [String: String] {
 		var dict: [String: String] = [:]
-		for part in(self.query ?? "").componentsSeparatedByString("&") {
-			let nameValParts = part.componentsSeparatedByString("=")
-			let name = nameValParts[0].stringByRemovingPercentEncoding ?? ""
+		for part in(self.query ?? "").components(separatedBy: "&") {
+			let nameValParts = part.components(separatedBy: "=")
+			let name = nameValParts[0].removingPercentEncoding ?? ""
 			let value: String
 			if nameValParts.count < 2 {
 				value = ""
 			} else {
-				value = nameValParts[1].stringByRemovingPercentEncoding ?? ""
+				value = nameValParts[1].removingPercentEncoding ?? ""
 			}
 
 			dict[name] = value
@@ -110,49 +110,49 @@ public extension NSURL {
 	#if os(OSX)
 		/// Thumbnail image for supported files.
 		public var thumbnailImage: XUImage? {
-			return self._resourceValueForKey(NSURLThumbnailKey)
+			return self._resourceValueForKey(URLResourceKey.thumbnailKey.rawValue)
 		}
 	#endif
 
 	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.
-	public var URLByDeletingFragment: NSURL {
+	public var URLByDeletingFragment: URL {
 		if self.fragment == nil {
 			return self
 		}
 
-		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 
 		urlComponents.fragment = nil
 
-		return urlComponents.URL ?? self
+		return urlComponents.url ?? self
 	}
 	
 	/// Returns URL with deleted query (i.e. the ? part). Fallbacks to self.
-	public var URLByDeletingQuery: NSURL {
+	public var URLByDeletingQuery: URL {
 		if self.query == nil {
 			return self
 		}
 		
-		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 		
 		urlComponents.query = nil
 		
-		return urlComponents.URL ?? self
+		return urlComponents.url ?? self
 	}
 	
 	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
-	public func URLWithQuery(query: XUJSONDictionary) -> NSURL {
-		guard let urlComponents = NSURLComponents(URL: self, resolvingAgainstBaseURL: true) else {
+	public func URLWithQuery(_ query: XUJSONDictionary) -> URL {
+		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 		
 		urlComponents.query = query.URLQueryString
 		
-		guard let result = urlComponents.URL else {
+		guard let result = urlComponents.url else {
 			fatalError("Setting query from dictionary rendered invalid. This should not happen.")
 		}
 		

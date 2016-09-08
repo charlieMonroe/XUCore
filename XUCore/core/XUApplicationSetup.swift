@@ -8,7 +8,7 @@
 
 import Foundation
 
-private func _URLForKey(key: String, inInfoDictionary infoDictionary: [String : AnyObject]) -> NSURL? {
+private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [String : Any]) -> NSURL? {
 	if let URLString = infoDictionary[key] as? String {
 		let URL = NSURL(string: URLString)
 		if URL == nil {
@@ -49,7 +49,7 @@ public class XUApplicationSetup {
 	
 	/// Returns the shared setup.
 	public static let sharedSetup: XUApplicationSetup = {
-		let infoDictionary = NSBundle.mainBundle().infoDictionary ?? [ : ]
+		let infoDictionary = XUMainBundle.infoDictionary ?? [ : ]
 		let setupClass: XUApplicationSetup.Type
 		if let className = infoDictionary["XUApplicationSetupClass"] as? String {
 			guard let genericClass = NSClassFromString(className) else {
@@ -91,7 +91,7 @@ public class XUApplicationSetup {
 	/// key. If you enter 0, the betas never expires.
 	///
 	/// @discussion - Only available on OS X.
-	public let betaExpirationTimeInterval: NSTimeInterval
+	public let betaExpirationTimeInterval: TimeInterval
 	
 	/// Returns a NSURL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
@@ -119,7 +119,7 @@ public class XUApplicationSetup {
 	@available(OSX 10.0, *)
 	@available(iOS, unavailable)
 	public var isDarkModeEnabled: Bool {
-		return NSUserDefaults.standardUserDefaults().stringForKey("AppleInterfaceStyle") == "Dark"
+		return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
 	}
 
 	/// Returns true, if the app is debugging in-app purchases. When true, the
@@ -195,7 +195,7 @@ public class XUApplicationSetup {
 			self.isBetaBuild = false
 		}
 		
-		if let betaExpirationTimeInterval = infoDictionary["XUBetaExpiration"] as? NSNumber where betaExpirationTimeInterval.doubleValue > 0.0 {
+		if let betaExpirationTimeInterval = infoDictionary["XUBetaExpiration"] as? NSNumber, betaExpirationTimeInterval.doubleValue > 0.0 {
 			self.betaExpirationTimeInterval = betaExpirationTimeInterval.doubleValue
 		}else{
 			self.betaExpirationTimeInterval = 7.0 * XUTimeInterval.day
@@ -205,24 +205,24 @@ public class XUApplicationSetup {
 		applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
 		applicationVersionNumber = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"
 		
-		exceptionHandlerReportURL = _URLForKey("XUExceptionReporterURL", inInfoDictionary: infoDictionary)
-		messageCenterFeedURL = _URLForKey("XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)
-		purchaseURL = _URLForKey("XUPurchaseURL", inInfoDictionary: infoDictionary)
-		supportURL = _URLForKey("XUSupportURL", inInfoDictionary: infoDictionary)
-		trialSessionsURL = _URLForKey("XUTrialSessionsURL", inInfoDictionary: infoDictionary)
+		exceptionHandlerReportURL = _createURL(forKey: "XUExceptionReporterURL", inInfoDictionary: infoDictionary)
+		messageCenterFeedURL = _createURL(forKey: "XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)
+		purchaseURL = _createURL(forKey: "XUPurchaseURL", inInfoDictionary: infoDictionary)
+		supportURL = _createURL(forKey: "XUSupportURL", inInfoDictionary: infoDictionary)
+		trialSessionsURL = _createURL(forKey: "XUTrialSessionsURL", inInfoDictionary: infoDictionary)
 		
 		
-		let appIdentifier = NSBundle.mainBundle().bundleIdentifier ?? NSProcessInfo.processInfo().processName
+		let appIdentifier = XUMainBundle.bundleIdentifier ?? ProcessInfo.processInfo.processName
 		self.applicationIdentifier = appIdentifier
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
 		
-		self.isRunningInDebugMode = NSProcessInfo.processInfo().arguments.contains("--debug")
-		self.isDebuggingInAppPurchases = NSProcessInfo.processInfo().arguments.contains("--iap-debug")
+		self.isRunningInDebugMode = ProcessInfo.processInfo.arguments.contains("--debug")
+		self.isDebuggingInAppPurchases = ProcessInfo.processInfo.arguments.contains("--iap-debug")
 		
 		self.trialClassName = infoDictionary["XUTrialClassName"] as? String
-		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? NSNumber)?.integerValue ?? 14
+		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? Int) ?? 14
 		
-		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? NSNumber)?.integerValue ?? 10
+		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? Int) ?? 10
 		self.itemBasedTrialItemName = (infoDictionary["XUItemBasedTrialItemName"] as? String) ?? "items"
 	}
 	

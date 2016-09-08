@@ -10,10 +10,10 @@ import Foundation
 
 /// Random number generator based on random() - where the seed is set in init
 /// to something random
-public class XURandomGenerator: NSObject {
+open class XURandomGenerator: NSObject {
 
 	/// Returns a shared generator.
-	public static let sharedGenerator = XURandomGenerator()
+	open static let sharedGenerator = XURandomGenerator()
 	
 	public override init() {
 		super.init()
@@ -26,35 +26,35 @@ public class XURandomGenerator: NSObject {
 	
 	/// Returns a random boolean. Does so by getting a random byte and returning
 	/// byte % 2 == 0
-	public var randomBool: Bool {
+	open var randomBool: Bool {
 		return self.randomByte % 2 == 0
 	}
 	
 	/// Returns a random byte.
-	public var randomByte: UInt8 {
-		return UInt8(random() % 256)
+	open var randomByte: UInt8 {
+		return UInt8(arc4random() % 256)
 	}
 	
 	/// Returns a random unsigned integer.
-	public var randomUnsignedInteger: UInt {
-		return UInt(random())
+	open var randomUnsignedInteger: UInt {
+		return UInt(arc4random())
 	}
 	
 	/// Returns an unsigned integer in range.
-	public func randomUnsignedIntegerInRange(range: Range<UInt>) -> UInt {
-		return range.startIndex + (self.randomUnsignedInteger % UInt(range.count))
+	open func randomUnsignedIntegerInRange(_ range: Range<UInt>) -> UInt {
+		return range.lowerBound + (self.randomUnsignedInteger % UInt(range.count))
 	}
 	
 	/// Returns an unsigned integer of max value.
-	public func randomUnsignedIntegerOfMaxValue(max: UInt) -> UInt {
+	open func randomUnsignedIntegerOfMaxValue(_ max: UInt) -> UInt {
 		return self.randomUnsignedIntegerInRange(0..<max)
 	}
 	
 	/// Returns an UInt64 value.
-	public var randomUnsignedLongLong: UInt64 {
-		var value = UInt64(random())
+	open var randomUnsignedLongLong: UInt64 {
+		var value = UInt64(arc4random())
 		value <<= 32
-		value |= UInt64(random())
+		value |= UInt64(arc4random())
 		return value
 	}
 	

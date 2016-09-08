@@ -8,31 +8,31 @@
 
 import Foundation
 
-private func _rootURLForManagerWithName(name: String) -> NSURL? {
-	return NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)?.URLByAppendingPathComponent(name)
+private func _rootURLForManagerWithName(_ name: String) -> URL? {
+	return FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent(name)
 }
 
 /// Manager for syncing via iCloud.
-public class XUiCloudSyncManager: XUApplicationSyncManager {
+open class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	
-	private var _rootURL: NSURL? {
+	fileprivate var _rootURL: URL? {
 		return _rootURLForManagerWithName(self.name)
 	}
 	
-	private func _startDownloadingUbiquitousItemAtURL(URL: NSURL) {
+	fileprivate func _startDownloadingUbiquitousItemAtURL(_ URL: Foundation.URL) {
 		if URL.isDirectory {
-			let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(URL)
+			let contents = FileManager.default.contentsOfDirectoryAtURL(URL)
 			for fileURL in contents {
 				self._startDownloadingUbiquitousItemAtURL(fileURL)
 			}
 		} else {
-			_ = try? NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(URL)
+			_ = try? FileManager.default.startDownloadingUbiquitousItem(at: URL)
 		}
 	}
 	
-	@objc private func _updateUbiquityFolderURL() {
-		if let ubiquityFolderURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)?.URLByAppendingPathComponent(self.name) {
+	@objc fileprivate func _updateUbiquityFolderURL() {
+		if let ubiquityFolderURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent(self.name) {
 			self.syncRootFolderURL = ubiquityFolderURL
 			self._startDownloadingUbiquitousItemAtURL(ubiquityFolderURL)
 		}
@@ -43,13 +43,13 @@ public class XUiCloudSyncManager: XUApplicationSyncManager {
 		
 		self._updateUbiquityFolderURL()
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(_updateUbiquityFolderURL), name:NSUbiquityIdentityDidChangeNotification, object:nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_updateUbiquityFolderURL), name:NSNotification.Name.NSUbiquityIdentityDidChange, object:nil)
 	}
 	
-	public override func startDownloadingItemAtURL(URL: NSURL) throws {
+	open override func startDownloadingItemAtURL(_ URL: Foundation.URL) throws {
 		self._startDownloadingUbiquitousItemAtURL(URL)
 		
-		try NSFileManager.defaultManager().startDownloadingUbiquitousItemAtURL(URL)
+		try FileManager.default.startDownloadingUbiquitousItem(at: URL)
 	}
 	
 }

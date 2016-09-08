@@ -23,12 +23,12 @@ import Foundation
 public extension XUImage {
 	
 	/// Draws the rect centered within rect with fraction 1.0.
-	public func drawCenteredInRect(rect: CGRect) {
+	public func drawCenteredInRect(_ rect: CGRect) {
 		self.drawCenteredInRect(rect, fraction: 1.0)
 	}
 	
 	/// Draws the rect centered within rect. The image is scaled, if necessary.
-	public func drawCenteredInRect(rect: CGRect, fraction: CGFloat) {
+	public func drawCenteredInRect(_ rect: CGRect, fraction: CGFloat) {
 		let image = self
 		let mySize = image.size
 		var targetRect = rect
@@ -47,12 +47,12 @@ public extension XUImage {
 		#if os(iOS)
 			image.drawInRect(targetRect, blendMode: .Normal, alpha: fraction)
 		#else
-			image.drawInRect(targetRect, fromRect: CGRect(), operation: .CompositeSourceOver, fraction: fraction, respectFlipped: true, hints: nil)
+			image.draw(in: targetRect, from: CGRect(), operation: .sourceOver, fraction: fraction, respectFlipped: true, hints: nil)
 		#endif
 	}
 	
 	/// Proportionally scales the image to maximum size.
-	public func proportinallyScaledSizeForMaxSize(size: CGSize) -> CGSize {
+	public func proportinallyScaledSizeForMaxSize(_ size: CGSize) -> CGSize {
 		let image = self
 		let mySize = image.size
 		if mySize.width < size.width && mySize.height < size.height {

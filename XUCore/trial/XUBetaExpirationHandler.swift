@@ -12,78 +12,78 @@ private let XUBetaDidShowExpirationWarningDefaultsKey = "XUBetaDidShowExpiration
 private let XULastBetaBuildNumberDefaultsKey = "XULastBetaBuildNumber"
 private let XULastBetaTimestampDefaultsKey = "XULastBetaTimestamp"
 
-public class XUBetaExpirationHandler: NSObject {
+open class XUBetaExpirationHandler: NSObject {
 	
-	public static let sharedExpirationHandler: XUBetaExpirationHandler = XUBetaExpirationHandler()
+	open static let sharedExpirationHandler: XUBetaExpirationHandler = XUBetaExpirationHandler()
 	
 	/// Returns number of seconds left in the beta mode.
-	public var expiresInSeconds: NSTimeInterval {
-		let defaults = NSUserDefaults.standardUserDefaults()
-		guard let date = defaults.objectForKey(XULastBetaTimestampDefaultsKey) as? NSDate else {
+	open var expiresInSeconds: TimeInterval {
+		let defaults = UserDefaults.standard
+		guard let date = defaults.object(forKey: XULastBetaTimestampDefaultsKey) as? Date else {
 			// We're missing date -> someone has tempered with the defaults.
 			self._handleExpiration()
 			return -1.0
 		}
 		
-		let timeInterval = abs(NSDate().timeIntervalSinceDate(date))
+		let timeInterval = abs(Date().timeIntervalSince(date))
 		return XUAppSetup.betaExpirationTimeInterval - timeInterval
 	}
 	
-	private func _showFirstBetaLaunchDialog() {
+	fileprivate func _showFirstBetaLaunchDialog() {
 		if NSApp == nil {
-			NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationDidFinishLaunchingNotification, object: nil, queue: nil, usingBlock: { (_) -> Void in
+			NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
 				self._showFirstBetaLaunchDialog()
 			})
 			return
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", NSProcessInfo().processName, inBundle: XUCoreBundle)
+		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", ProcessInfo().processName, inBundle: XUCoreBundle)
 		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCoreBundle)
-		alert.addButtonWithTitle("OK")
+		alert.addButton(withTitle: "OK")
 		alert.runModal()
 	}
 	
-	private func _showWarningAndScheduleOneHourExpiration() {
+	fileprivate func _showWarningAndScheduleOneHourExpiration() {
 		
 	}
 	
 	@objc
-	private func _handleExpiration() {
+	fileprivate func _handleExpiration() {
 		if NSApp == nil {
-			NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationDidFinishLaunchingNotification, object: nil, queue: nil, usingBlock: { (_) -> Void in
+			NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
 				self._handleExpiration()
 			})
 			return
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", NSProcessInfo().processName, inBundle: XUCoreBundle)
+		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", ProcessInfo().processName, inBundle: XUCoreBundle)
 		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCoreBundle)
-		alert.addButtonWithTitle("OK")
+		alert.addButton(withTitle: "OK")
 		alert.runModal()
 		
 		exit(0)
 	}
 	
-	private override init() {
+	fileprivate override init() {
 		super.init()
 		
 		if !XUAppSetup.isBetaBuild {
 			return
 		}
 		
-		let defaults = NSUserDefaults.standardUserDefaults()
+		let defaults = UserDefaults.standard
 		let currentBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 		
-		if let number = defaults.objectForKey(XULastBetaBuildNumberDefaultsKey) as? NSNumber where number.integerValue == currentBuildNumber {
+		if let number = defaults.object(forKey: XULastBetaBuildNumberDefaultsKey) as? NSNumber , number.intValue == currentBuildNumber {
 			/// We're continuing to use the same beta build.
 			
 			/// The user may have not used the beta in a week and we don't simply
 			/// want to cut him out of the app since he may simply want to update
 			/// it (e.g. via Sparkle), but the expiration dialog would have prevented
 			/// him to do so.
-			let didShowWarning = defaults.boolForKey(XUBetaDidShowExpirationWarningDefaultsKey)
+			let didShowWarning = defaults.bool(forKey: XUBetaDidShowExpirationWarningDefaultsKey)
 			
 			let timeInterval = self.expiresInSeconds
 			
@@ -100,14 +100,14 @@ public class XUBetaExpirationHandler: NSObject {
 				// No return
 			}
 			
-			NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: #selector(XUBetaExpirationHandler._handleExpiration), userInfo: nil, repeats: false)
+			Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(XUBetaExpirationHandler._handleExpiration), userInfo: nil, repeats: false)
 			return
 		}
 		
 		// First use with this build number.
-		defaults.setBool(false, forKey: XUBetaDidShowExpirationWarningDefaultsKey)
-		defaults.setObject(NSNumber(integer: currentBuildNumber), forKey: XULastBetaBuildNumberDefaultsKey)
-		defaults.setObject(NSDate(), forKey: XULastBetaTimestampDefaultsKey)
+		defaults.set(false, forKey: XUBetaDidShowExpirationWarningDefaultsKey)
+		defaults.set(NSNumber(value: currentBuildNumber as Int), forKey: XULastBetaBuildNumberDefaultsKey)
+		defaults.set(Date(), forKey: XULastBetaTimestampDefaultsKey)
 		defaults.synchronize()
 		
 		// Show a dialog.

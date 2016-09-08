@@ -13,10 +13,10 @@ private let kXUColorSampleItemHeight: CGFloat = 24.0
 
 private class _XU_NSColorDraggingSource: NSObject, NSDraggingSource {
 	
-	@objc private func draggingSession(session: NSDraggingSession, sourceOperationMaskForDraggingContext context: NSDraggingContext) -> NSDragOperation {
-		return .Copy
+	@objc fileprivate func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
+		return .copy
 	}
-	@objc private func draggingSession(session: NSDraggingSession, endedAtPoint screenPoint: CGPoint, operation: NSDragOperation) {
+	@objc fileprivate func draggingSession(_ session: NSDraggingSession, endedAt screenPoint: CGPoint, operation: NSDragOperation) {
 		
 	}
 	
@@ -27,9 +27,9 @@ private var _draggingSession: NSDraggingSession?
 
 extension NSColor: NSPasteboardItemDataProvider {
 	
-	private var _imagePreview: NSImage {
+	fileprivate var _imagePreview: NSImage {
 		let image = NSImage(size: CGSize(width: kXUColorSampleItemWidth, height: kXUColorSampleItemHeight))
-		image.backgroundColor = NSColor.clearColor()
+		image.backgroundColor = NSColor.clear
 		image.lockFocus()
 		
 		self.set()
@@ -44,20 +44,20 @@ extension NSColor: NSPasteboardItemDataProvider {
 	
 	/// Creates a new dragging session with the color. The view is used as the
 	/// source of the drag.
-	public func dragWithEvent(event: NSEvent, sourceView view: NSView) {
+	public func dragWithEvent(_ event: NSEvent, sourceView view: NSView) {
 		let image = NSImage(size: CGSize(width: 12.0, height: 12.0))
 		image.lockFocus()
 		
 		// Draw color swatch
-		self.drawSwatchInRect(CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0))
+		self.drawSwatch(in: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0))
 		
 		// Draw border
-		NSColor.blackColor().set()
+		NSColor.black.set()
 		NSBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 12.0)).stroke()
 		
 		image.unlockFocus()
 		
-		var p = view.convertPoint(event.locationInWindow, fromView: nil)
+		var p = view.convert(event.locationInWindow, from: nil)
 		p.x -= 6.0
 		p.y -= 6.0
 		
@@ -74,10 +74,10 @@ extension NSColor: NSPasteboardItemDataProvider {
 		let colorItem = NSDraggingItem(pasteboardWriter: self)
 		
 		colorItem.setDraggingFrame(CGRect(x: p.x, y: p.y, width: 12.0, height: 12.0), contents: image)
-		_draggingSession = view.beginDraggingSessionWithItems([ colorItem ], event: event, source: _source)
+		_draggingSession = view.beginDraggingSession(with: [ colorItem ], event: event, source: _source)
 		
 		let pasteboard = _draggingSession!.draggingPasteboard
-		let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+		let data = NSKeyedArchiver.archivedData(withRootObject: self)
 		pasteboard.setData(data, forType: NSColorPboardType)
 		pasteboard.setData(data, forType: NSPasteboardTypeColor)
 		pasteboard.writeObjects([self])
@@ -85,17 +85,17 @@ extension NSColor: NSPasteboardItemDataProvider {
 		XULog("\(_draggingSession!)")
 	}
 	
-	public func pasteboard(pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
+	public func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
 		switch type {
 		case NSPasteboardTypeTIFF:
-			pasteboard?.setData(self._imagePreview.TIFFRepresentation, forType: type)
+			pasteboard?.setData(self._imagePreview.tiffRepresentation, forType: type)
 			break
 		case NSPasteboardTypePNG:
-			pasteboard?.setData(self._imagePreview.PNGRepresentation, forType: type)
+			pasteboard?.setData(self._imagePreview.PNGRepresentation as Data?, forType: type)
 			break
 		case NSPasteboardTypeColor: fallthrough
 		case NSColorPboardType:
-			let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+			let data = NSKeyedArchiver.archivedData(withRootObject: self)
 			pasteboard?.setData(data, forType: NSColorPboardType)
 			pasteboard?.setData(data, forType: NSPasteboardTypeColor)
 			pasteboard?.writeObjects([self])

@@ -10,17 +10,17 @@ import Cocoa
 
 /// This is a button that displays self.menu on click as well as on rightMouseDown
 /// - positioned correctly.
-public class XUMenuButton: NSButton {
+open class XUMenuButton: NSButton {
 
-	@objc private func _displayMenu() {
+	@objc fileprivate func _displayMenu() {
 		guard let menu = self.menu else {
 			return
 		}
 		
-		menu.popUpMenuPositioningItem(nil, atLocation: CGPoint(x: 0.0, y: self.bounds.height), inView: self)
+		menu.popUp(positioning: nil, at: CGPoint(x: 0.0, y: self.bounds.height), in: self)
 	}
 	
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		self.target = self
 		self.action = #selector(XUMenuButton._displayMenu)
 		
@@ -28,7 +28,7 @@ public class XUMenuButton: NSButton {
 		
 		super.awakeFromNib()
 	}
-	public override func rightMouseDown(event: NSEvent) {
+	open override func rightMouseDown(with event: NSEvent) {
 		self._displayMenu()
 	}
     

@@ -14,7 +14,7 @@ private let kXUZoomAnimationTimeMultiplier = 0.4
 
 private class __XUZoomWindow: NSPanel {
 	
-	@objc override func animationResizeTime(newWindowFrame: CGRect) -> NSTimeInterval {
+	@objc override func animationResizeTime(_ newWindowFrame: CGRect) -> TimeInterval {
 		return super.animationResizeTime(newWindowFrame) * kXUZoomAnimationTimeMultiplier
 	}
 	
@@ -22,15 +22,15 @@ private class __XUZoomWindow: NSPanel {
 
 public extension NSWindow {
 	
-	private static var __zoomWindow: NSWindow?
+	fileprivate static var __zoomWindow: NSWindow?
 	
 	/// Creates a new zoom window in screen rect. Nil is returned when there is
 	/// no contentView, or the view fails to create the bitmap image representation.
-	private func _createZoomWindowWithRect(rect: CGRect) -> NSPanel? {
+	fileprivate func _createZoomWindowWithRect(_ rect: CGRect) -> NSPanel? {
 		let frame = self.frame
-		let isOneShot = self.oneShot
+		let isOneShot = self.isOneShot
 		if isOneShot {
-			self.oneShot = false
+			self.isOneShot = false
 		}
 		
 		if self.windowNumber <= 0 {
@@ -45,28 +45,28 @@ public extension NSWindow {
 		guard let view = self.contentView?.superview else {
 			return nil
 		}
-		guard let imageRep = view.bitmapImageRepForCachingDisplayInRect(view.bounds) else {
+		guard let imageRep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
 			return nil
 		}
 		
-		view.cacheDisplayInRect(view.bounds, toBitmapImageRep: imageRep)
+		view.cacheDisplay(in: view.bounds, to: imageRep)
 		image.addRepresentation(imageRep)
 		
-		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: NSBorderlessWindowMask, backing: .Buffered, defer: false)
+		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: NSBorderlessWindowMask, backing: .buffered, defer: false)
 		zoomWindow.backgroundColor = NSColor(deviceWhite: 0.0, alpha: 0.0)
 		zoomWindow.hasShadow = self.hasShadow
-		zoomWindow.level = Int(CGWindowLevelForKey(.ModalPanelWindowLevelKey))
-		zoomWindow.opaque = false
+		zoomWindow.level = Int(CGWindowLevelForKey(.modalPanelWindow))
+		zoomWindow.isOpaque = false
 		
-		let imageView = NSImageView(frame: zoomWindow.contentRectForFrameRect(frame))
+		let imageView = NSImageView(frame: zoomWindow.contentRect(forFrameRect: frame))
 		imageView.image = image
-		imageView.imageFrameStyle = .None
-		imageView.imageScaling = .ScaleAxesIndependently
-		imageView.autoresizingMask = [ .ViewWidthSizable, .ViewHeightSizable ]
+		imageView.imageFrameStyle = .none
+		imageView.imageScaling = .scaleAxesIndependently
+		imageView.autoresizingMask = [ .viewWidthSizable, .viewHeightSizable ]
 		zoomWindow.contentView = imageView
 		
 		// Reset one shot flag
-		self.oneShot = isOneShot
+		self.isOneShot = isOneShot
 		
 		NSWindow.__zoomWindow = zoomWindow
 		
@@ -74,8 +74,8 @@ public extension NSWindow {
 	}
 	
 	/// Pops the window on screen from startRect.
-	public func zoomInFromRect(startRect: CGRect) {
-		if self.visible {
+	public func zoomInFromRect(_ startRect: CGRect) {
+		if self.isVisible {
 			return // Do nothing if we're already on-screen
 		}
 		
@@ -108,7 +108,7 @@ public extension NSWindow {
 		self.display()
 		
 		let frame = self.frame
-		if self.visible {
+		if self.isVisible {
 			return // Already visible
 		}
 		
@@ -138,8 +138,8 @@ public extension NSWindow {
 	}
 	
 	/// Removes the window from screen by zooming off to endRect.
-	public func zoomOutToRect(endRect: CGRect) {
-		if !self.visible {
+	public func zoomOutToRect(_ endRect: CGRect) {
+		if !self.isVisible {
 			return // Already off screen
 		}
 		

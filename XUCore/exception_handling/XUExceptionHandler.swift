@@ -33,16 +33,16 @@ public final class XUExceptionHandler: NSObject {
 	}
 	
 	/// Registers the exception handler.
-	@objc private func _registerExceptionHandler() {
-		let handler = NSExceptionHandler.defaultExceptionHandler()
-		handler.setDelegate(self)
+	@objc fileprivate func _registerExceptionHandler() {
+		let handler = NSExceptionHandler.default()
+		handler?.setDelegate(self)
 		
 		let mask = (NSHandleUncaughtExceptionMask | NSHandleUncaughtSystemExceptionMask | NSHandleUncaughtRuntimeErrorMask)
-		handler.setExceptionHandlingMask(mask)
-		handler.setExceptionHangingMask(0)
+		handler?.setExceptionHandlingMask(mask)
+		handler?.setExceptionHangingMask(0)
 	}
 	
-	@objc public override func exceptionHandler(sender: NSExceptionHandler!, shouldHandleException exception: NSException!, mask aMask: Int) -> Bool {
+	@objc public override func exceptionHandler(_ sender: NSExceptionHandler!, shouldHandle exception: NSException!, mask aMask: Int) -> Bool {
 		
 		// This method can be called from any thread, under any circumstances,
 		// which is why we just note down the exception and we periodically check
@@ -52,7 +52,7 @@ public final class XUExceptionHandler: NSObject {
 		
 		if let provider = XUAppSetup.applicationStateProvider {
 			let exceptionCatcher = XUExceptionCatcher()
-			exceptionCatcher.performBlock({ 
+			exceptionCatcher.perform({ 
 				stackTraceString += provider.provideApplicationState() + "\n\n"
 			}, withCatchHandler: { (exception) in
 				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
@@ -67,8 +67,8 @@ public final class XUExceptionHandler: NSObject {
 		}
 		
 		if let stackTraceSymbolsString = exception.userInfo?[NSStackTraceKey] as? String {
-			let stackTraceSymbols = stackTraceSymbolsString.componentsSeparatedByString("  ").map({ NSNumber(integer: $0.stringByDeletingPrefix("0x").hexValue) })
-			stackTraceString += _XUBacktrace.backtraceStringForAddresses(stackTraceSymbols).joinWithSeparator("\n")
+			let stackTraceSymbols = stackTraceSymbolsString.components(separatedBy: "  ").map({ NSNumber(value: $0.stringByDeletingPrefix("0x").hexValue as Int) })
+			stackTraceString += _XUBacktrace.backtraceString(forAddresses: stackTraceSymbols).joined(separator: "\n")
 			stackTraceString += "\n\n"
 		}
 		
@@ -78,12 +78,12 @@ public final class XUExceptionHandler: NSObject {
 		return true
 	}
 	
-	private override init() {
+	fileprivate override init() {
 		super.init()
 		
 		// Do not allow FCExceptionCatcher in apps using XUCore.
 		if NSClassFromString("FCExceptionCatcher") != nil {
-			NSException(name: NSInternalInconsistencyException, reason: "Do not use FCExceptionCatcher.", userInfo: nil).raise()
+			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Do not use FCExceptionCatcher.", userInfo: nil).raise()
 		}
 		
 		// Since NSApplication installs its own handler, we need to make sure that
@@ -91,7 +91,7 @@ public final class XUExceptionHandler: NSObject {
 		// by checking NSApp for nil.
 		if NSApp == nil {
 			// App not yet fully launched, defer the handler registration.
-			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUExceptionHandler._registerExceptionHandler), name: NSApplicationDidFinishLaunchingNotification, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(XUExceptionHandler._registerExceptionHandler), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
 		}else{
 			// The app is fully launched.
 			self._registerExceptionHandler()

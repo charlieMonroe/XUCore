@@ -8,23 +8,23 @@
 
 import Foundation
 
-public class XUCSVDocument {
+open class XUCSVDocument {
 	
 	/// Column separator. "," by default.
-	private var _columnSeparator: Character = Character(",")
+	fileprivate var _columnSeparator: Character = Character(",")
 	
 	/// Array of key -> value dictionaries. Key is either header name, or a
 	/// stringified number for headerless documents.
-	private var _content: [[String : AnyObject]] = []
+	fileprivate var _content: [[String : AnyObject]] = []
 	
 	/// Array of header/column names.
-	private var _headerNames: [String] = []
+	fileprivate var _headerNames: [String] = []
 	
 	
-	private func _parseString(csv: String) -> Bool {
+	fileprivate func _parseString(_ csv: String) -> Bool {
 		let len = csv.characters.endIndex
 		var ptr = csv.characters.startIndex
-		let importantChars = NSCharacterSet(charactersInString: "\(_columnSeparator)\"\n")
+		let importantChars = CharacterSet(charactersIn: "\(_columnSeparator)\"\n")
 		var column = 0
 		var firstLine = true
 		var insideQuotes = false
@@ -36,7 +36,7 @@ public class XUCSVDocument {
 			let c = csv.characters[ptr]
 			if !c.isMemberOfCharacterSet(importantChars) {
 				// Unimportant char -> skip
-				ptr = ptr.successor()
+				ptr = csv.characters.index(after: ptr)
 				continue
 			}
 			
@@ -44,12 +44,12 @@ public class XUCSVDocument {
 			if c == _columnSeparator {
 				if insideQuotes {
 					// Comma inside a quoted string -> all right
-					ptr = ptr.successor()
+					ptr = csv.characters.index(after: ptr)
 					continue
 				}
 				
 				// It's a comma and not inside quotes -> get the string
-				var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+				var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at the
 					// beginning and at the end and replace double-quotes with
@@ -62,7 +62,7 @@ public class XUCSVDocument {
 					field = field.stringByDeletingSuffix("\"")
 					
 					// Replacing all double quotes with single quotes
-					field = field.stringByReplacingOccurrencesOfString("\"\"", withString: "\"")
+					field = field.replacingOccurrences(of: "\"\"", with: "\"")
 				}
 				
 				if firstLine {
@@ -80,26 +80,26 @@ public class XUCSVDocument {
 				}
 				
 				column += 1
-				ptr = ptr.successor()
+				ptr = csv.characters.index(after: ptr)
 				startIndex = ptr
 			} else if c == Character("\"") {
 				// It's quotes - a few possibilities:
 				if insideQuotes {
 					// a) next char is also quotes -> quotes don't end yet
-					if ptr < len.predecessor() && csv.characters[ptr.successor()] == Character("\"") {
-						ptr = ptr.advancedBy(2)
+					if ptr < csv.characters.index(before: len) && csv.characters[csv.characters.index(after: ptr)] == Character("\"") {
+						ptr = csv.characters.index(ptr, offsetBy: 2)
 						continue
 					} else {
 						// b) either end of document on the quotes end
-						if ptr < len.predecessor() {
+						if ptr < csv.characters.index(before: len) {
 							// End of quotes
 							insideQuotes = false
-							ptr = ptr.successor()
+							ptr = csv.characters.index(after: ptr)
 						} else {
 							// c) end of document
-							ptr = ptr.successor()
+							ptr = csv.characters.index(after: ptr)
 							
-							var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+							var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 							
 							if field.hasPrefix("\"") {
 								// The field begins with a quote -> remove quote at
@@ -113,12 +113,12 @@ public class XUCSVDocument {
 								field = field.stringByDeletingSuffix("\"")
 								
 								// Replacing all double quotes with single quotes
-								field = field.stringByReplacingOccurrencesOfString("\"\"", withString: "\"")
+								field = field.replacingOccurrences(of: "\"\"", with: "\"")
 							}
 							
 							dict[_headerNames[column]] = field
 							
-							_content.append(dict)
+							_content.append(dict as [String : AnyObject])
 							
 							dict = [ : ] // A stopper
 						}
@@ -127,17 +127,17 @@ public class XUCSVDocument {
 					// d) Start of quotes
 					insideQuotes = true
 					startIndex = ptr
-					ptr = ptr.successor()
+					ptr = csv.characters.index(after: ptr)
 				}
 			} else if c == Character("\n") {
 				// New line
 				if insideQuotes {
 					// Can be a new line inside quoted string
-					ptr = ptr.successor()
+					ptr = csv.characters.index(after: ptr)
 					continue
 				}
 				
-				var field = csv.substringWithRange(startIndex..<ptr).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+				var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at
 					// the beginning and at the end and replace
@@ -150,7 +150,7 @@ public class XUCSVDocument {
 					field = field.stringByDeletingSuffix("\"")
 					
 					// Replacing all double quotes with single quotes
-					field = field.stringByReplacingOccurrencesOfString("\"\"", withString: "\"")
+					field = field.replacingOccurrences(of: "\"\"", with: "\"")
 				}
 				
 				if firstLine {
@@ -168,31 +168,31 @@ public class XUCSVDocument {
 				}
 				
 				if !firstLine {
-					_content.append(dict)
+					_content.append(dict as [String : AnyObject])
 					dict = [ : ]
 				}
 				
 				firstLine = false
 				column = 0
-				ptr = ptr.successor()
+				ptr = csv.characters.index(after: ptr)
 				startIndex = ptr
 			}
 		}
 		
 		if !dict.isEmpty {
 			// We need to add it
-			_content.append(dict)
+			_content.append(dict as [String : AnyObject])
 		}
 		return true
 	}
 	
-	public func addContentItem(item: [String : AnyObject]) {
+	open func addContentItem(_ item: [String : AnyObject]) {
 		_content.append(item)
 	}
 	
 	/// Char that separates columns. ',' by default, but some files use ';' 
 	/// instead.
-	public var columnSeparator: Character {
+	open var columnSeparator: Character {
 		get {
 			return _columnSeparator
 		}
@@ -201,7 +201,7 @@ public class XUCSVDocument {
 		}
 	}
 	
-	public var content: [[String : AnyObject]] {
+	open var content: [[String : AnyObject]] {
 		get {
 			return _content
 		}
@@ -210,7 +210,7 @@ public class XUCSVDocument {
 		}
 	}
 	
-	public var headerNames: [String] {
+	open var headerNames: [String] {
 		get {
 			return _headerNames
 		}
@@ -231,24 +231,24 @@ public class XUCSVDocument {
 		}
 	}
 	
-	public convenience init(fileURL: NSURL, headerless: Bool = false, andColumnSeparator columnSeparator: Character = Character(",")) throws {
+	public convenience init(fileURL: URL, headerless: Bool = false, andColumnSeparator columnSeparator: Character = Character(",")) throws {
 		
-		var csv = (try NSString(contentsOfURL: fileURL, encoding: NSUTF8StringEncoding)) as String
+		var csv = (try NSString(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)) as String
 
 		if headerless {
 			let firstLine = csv.firstLine
-			let components = firstLine.componentsSeparatedByString("\(columnSeparator)")
+			let components = firstLine.components(separatedBy: "\(columnSeparator)")
 			var headerNames: [String] = [ ]
 			for i in 0..<components.count {
 				headerNames.append("\(i + 1)")
 			}
 			
-			let headerLine = headerNames.joinWithSeparator("\(columnSeparator)")
+			let headerLine = headerNames.joined(separator: "\(columnSeparator)")
 			
 			csv = headerLine + "\n\(csv)"
 			
 			/// A hack - it would be best to allow some kind of a preprocessor.
-			csv = csv.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
+			csv = csv.replacingOccurrences(of: "&amp;", with: "&")
 		}
 		
 		try self.init(string: csv, andColumnSeparator: columnSeparator)
@@ -265,11 +265,11 @@ public class XUCSVDocument {
 		}
 	}
 	
-	public var stringRepresentation: String {
-		let formatter = NSDateFormatter()
+	open var stringRepresentation: String {
+		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
-		var string = _headerNames.joinWithSeparator(String(_columnSeparator))
+		var string = _headerNames.joined(separator: String(_columnSeparator))
 
 		// New line
 		string += "\n"
@@ -284,7 +284,7 @@ public class XUCSVDocument {
 				}
 				
 				if var string = obj as? String {
-					string = "\"" + string.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
+					string = "\"" + string.replacingOccurrences(of: "\"", with: "\"\"") + "\""
 					return string
 				}
 				
@@ -296,8 +296,8 @@ public class XUCSVDocument {
 					return "\(number.doubleValue)"
 				}
 				
-				if let date = obj as? NSDate {
-					return formatter.stringFromDate(date)
+				if let date = obj as? Date {
+					return formatter.string(from: date)
 				}
 				
 				if let dict = obj as? [String : AnyObject] {
@@ -305,7 +305,7 @@ public class XUCSVDocument {
 						return ""
 					} else {
 						let document = XUCSVDocument(dictionaries: [dict])
-						return "\"" + document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
+						return "\"" + document.stringRepresentation.replacingOccurrences(of: "\"", with: "\"\"") + "\""
 					}
 				}
 				
@@ -314,20 +314,20 @@ public class XUCSVDocument {
 						return ""
 					} else {
 						let document = XUCSVDocument(dictionaries: arr)
-						return "\"" + document.stringRepresentation.stringByReplacingOccurrencesOfString("\"", withString: "\"\"") + "\""
+						return "\"" + document.stringRepresentation.replacingOccurrences(of: "\"", with: "\"\"") + "\""
 					}
 				}
 				
 				// Unknown value kind.
 				XUThrowAbstractException()
-			}).joinWithSeparator(String(_columnSeparator))
-		}).joinWithSeparator("\n")
+			}).joined(separator: String(_columnSeparator))
+		}).joined(separator: "\n")
 		
 		return string
 	}
 	
-	public func writeToURL(URL: NSURL) throws {
-		try self.stringRepresentation.writeToURL(URL, atomically: true, encoding: NSUTF8StringEncoding)
+	open func writeToURL(_ URL: Foundation.URL) throws {
+		try self.stringRepresentation.write(to: URL, atomically: true, encoding: String.Encoding.utf8)
 	}
 	
 }

@@ -19,11 +19,11 @@ import CoreData
 /// - modelFileName
 /// - persistentStoreFileName
 ///
-public class XUManagedObjectContextManager {
+open class XUManagedObjectContextManager {
 	
-	private var _managedObjectContext: NSManagedObjectContext!
-	private var _managedObjectModel: NSManagedObjectModel!
-	private var _persistentStoreCoordinator: NSPersistentStoreCoordinator!
+	fileprivate var _managedObjectContext: NSManagedObjectContext!
+	fileprivate var _managedObjectModel: NSManagedObjectModel!
+	fileprivate var _persistentStoreCoordinator: NSPersistentStoreCoordinator!
 	
 	public final var managedObjectContext: NSManagedObjectContext {
 		return _managedObjectContext
@@ -40,49 +40,49 @@ public class XUManagedObjectContextManager {
 	/// This will throw is there is any issue creating the MOC.
 	public init() throws {
 		// Model:
-		guard let modelURL = NSBundle.mainBundle().URLForResource(self.modelFileName, withExtension: "momd") else {
+		guard let modelURL = Bundle.main.url(forResource: self.modelFileName, withExtension: "momd") else {
 			throw NSError(domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError, userInfo: nil)
 		}
 		
-		_managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
+		_managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)
 		guard _managedObjectModel != nil else {
 			throw NSError(domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError, userInfo: nil)
 		}
 		
-		let storeURL = self.persistentStoreLocationURL.URLByAppendingPathComponent(self.persistentStoreFileName).URLByAppendingPathExtension("sqlite")
+		let storeURL = self.persistentStoreLocationURL.appendingPathComponent(self.persistentStoreFileName).appendingPathExtension("sqlite")
 		
 		_persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-		try _persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: [
+		try _persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: [
 			NSMigratePersistentStoresAutomaticallyOption: true
 		])
 		
-		_managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+		_managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		_managedObjectContext.persistentStoreCoordinator = _persistentStoreCoordinator
 		_managedObjectContext.propagatesDeletesAtEndOfEvent = false
 		
 	}
 	
 	/// File name of the CoreData model.
-	public var modelFileName: String {
+	open var modelFileName: String {
 		XUThrowAbstractException()
 	}
 	
 	/// Name of the persistent store file name. The file is stored in 
 	/// self.persistentStoreLocationURL
-	public var persistentStoreFileName: String {
+	open var persistentStoreFileName: String {
 		XUThrowAbstractException()
 	}
 	
 	/// This points to the folder where the manager saves the persistent store.
 	/// By default, this is within the app's Application Support folder.
-	public var persistentStoreLocationURL: NSURL {
-		return try! NSFileManager.defaultManager().URLForDirectory(.ApplicationSupportDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+	open var persistentStoreLocationURL: URL {
+		return try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 	}
 	
 	/// Processes pending changes and saves context.
-	public func saveContext() {
+	open func saveContext() {
 		let ctx = self.managedObjectContext
-		ctx.performBlockAndWait {
+		ctx.performAndWait {
 			ctx.processPendingChanges()
 			if ctx.hasChanges {
 				do {

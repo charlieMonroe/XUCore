@@ -9,13 +9,13 @@
 import AppKit
 
 /// Hides itself if the current app configuration is an AppStore build.
-public class XUAppStoreHidingView: NSView {
+open class XUAppStoreHidingView: NSView {
 	
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		if XUAppSetup.isAppStoreBuild {
-			self.hidden = true
+			self.isHidden = true
 		}
 	}
 	

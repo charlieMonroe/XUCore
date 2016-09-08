@@ -11,16 +11,16 @@ import Foundation
 /// This view will automatically find its height constraint (will throw 
 /// an exception if it doesn't) and will set it to 0.0 when hidden and restore
 /// its previous value if not.
-public class XUAutocollapsingView: __XUBridgedView {
+open class XUAutocollapsingView: __XUBridgedView {
 	
-	private var _originalHeight: CGFloat = 0.0
+	fileprivate var _originalHeight: CGFloat = 0.0
 	
 	/// Marked as YES on -initWithCoder: and NO at the end. Needed because layout
 	 /// constraints aren't loaded yet.
-	private var _inCoderInit: Bool = true
+	fileprivate var _inCoderInit: Bool = true
 	
 	/// Called from -setHidden: to perform hide or unhide.
-	private func _performHide(hidden: Bool) {
+	fileprivate func _performHide(_ hidden: Bool) {
 		guard let constraint = self.collapsibleContstraint else {
 			return
 		}
@@ -39,18 +39,18 @@ public class XUAutocollapsingView: __XUBridgedView {
 		#endif
 	}
 	
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		if self.hidden {
+		if self.isHidden {
 			self._performHide(true)
 		}
 	}
 	
 	/// Returns the constraint that is collapsible. It will return nil before
 	/// the view is loaded from XIB.
-	public var collapsibleContstraint: NSLayoutConstraint! {
-		let constraint = self.constraints.find({ $0.firstAttribute == .Height })
+	open var collapsibleContstraint: NSLayoutConstraint! {
+		let constraint = self.constraints.find({ $0.firstAttribute == .height })
 		if constraint == nil && !_inCoderInit {
 			fatalError("XUAutocollapsingView needs to have a collapsible constraint!")
 		}
@@ -64,18 +64,18 @@ public class XUAutocollapsingView: __XUBridgedView {
 		_inCoderInit = false
 	}
 	
-	public override var hidden: Bool {
+	open override var isHidden: Bool {
 		get {
-			return super.hidden
+			return super.isHidden
 		}
 		set {
-			if newValue == self.hidden {
+			if newValue == self.isHidden {
 				// No action
 				return
 			}
 			
 			self._performHide(newValue)
-			super.hidden = newValue
+			super.isHidden = newValue
 		}
 	}
 	

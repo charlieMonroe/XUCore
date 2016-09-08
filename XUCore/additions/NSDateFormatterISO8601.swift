@@ -12,69 +12,69 @@ import Foundation
 @objc public enum XUISO8601Option: Int {
 	
 	/// The format includes time.
-	case WithTime
+	case withTime
 	
 	/// The date is formatted as day - month - year only.
-	case WithoutTime
+	case withoutTime
 }
 
-public extension NSDateFormatter {
+public extension DateFormatter {
 	
-	private static var _ISO8601Formatter: NSDateFormatter = {
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.lenient = true
-		dateFormatter.timeZone = NSTimeZone(name: "UTC")
+	fileprivate static var _ISO8601Formatter: DateFormatter = {
+		let dateFormatter = DateFormatter()
+		dateFormatter.isLenient = true
+		dateFormatter.timeZone = TimeZone(identifier: "UTC")
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-		dateFormatter.AMSymbol = ""
-		dateFormatter.PMSymbol = ""
+		dateFormatter.amSymbol = ""
+		dateFormatter.pmSymbol = ""
 		
-		let formatterLocale = NSLocale(localeIdentifier: "en_GB")
+		let formatterLocale = Locale(identifier: "en_GB")
 		dateFormatter.locale = formatterLocale
 		return dateFormatter
 	}()
 	
-	private static var _ISO8601FormatterWithoutTime: NSDateFormatter = {
-		let dateFormatter = NSDateFormatter()
+	fileprivate static var _ISO8601FormatterWithoutTime: DateFormatter = {
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
 		return dateFormatter
 	}()
 	
-	private static var _isMonthBeforeDayInDateFormat: Bool = {
-		let formatter = NSDateFormatter()
-		formatter.timeStyle = .NoStyle
-		formatter.dateStyle = .ShortStyle
-		let formattedDate = formatter.stringFromDate(NSDate.dateWithDay(4, month: 5, andYear: 1999)!)
-		return formattedDate.rangeOfString("5")!.startIndex < formattedDate.rangeOfString("4")!.startIndex
+	fileprivate static var _isMonthBeforeDayInDateFormat: Bool = {
+		let formatter = DateFormatter()
+		formatter.timeStyle = .none
+		formatter.dateStyle = .short
+		let formattedDate = formatter.string(from: Date.dateWithDay(4, month: 5, andYear: 1999)!)
+		return formattedDate.range(of: "5")!.lowerBound < formattedDate.range(of: "4")!.lowerBound
 	}()
 	
 	/// Returns true if the current locale places the month before day.
 	public static var isMonthBeforeDayInDateFormat: Bool {
 		get {
-			return NSDateFormatter._isMonthBeforeDayInDateFormat
+			return DateFormatter._isMonthBeforeDayInDateFormat
 		}
 	}
 	
 }
 
-public extension NSDate {
+public extension Date {
 	
 	/// Tries to parse the string as an ISO 8601 string.
-	public class func dateWithISO8601String(string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>) -> NSDate? {
+	public static func dateWithISO8601String(_ string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Date? {
 		var date: AnyObject?
-		if !NSDateFormatter._ISO8601Formatter.getObjectValue(&date, forString: string, errorDescription: error) {
-			NSDateFormatter._ISO8601FormatterWithoutTime.getObjectValue(&date, forString: string, errorDescription: error)
+		if !DateFormatter._ISO8601Formatter.getObjectValue(&date, for: string, errorDescription: error) {
+			DateFormatter._ISO8601FormatterWithoutTime.getObjectValue(&date, for: string, errorDescription: error)
 		}
 		
-		return date as? NSDate
+		return date as? Date
 	}
 	
 	/// Returns a formatted string with options.
-	func ISO8601FormattedStringWithOptions(options: XUISO8601Option) -> String {
+	func ISO8601FormattedStringWithOptions(_ options: XUISO8601Option) -> String {
 		switch options {
-			case .WithoutTime:
-				return NSDateFormatter._ISO8601FormatterWithoutTime.stringFromDate(self)
-			case .WithTime:
-				return NSDateFormatter._ISO8601Formatter.stringFromDate(self)
+			case .withoutTime:
+				return DateFormatter._ISO8601FormatterWithoutTime.string(from: self)
+			case .withTime:
+				return DateFormatter._ISO8601Formatter.string(from: self)
 		}
 	}
 	

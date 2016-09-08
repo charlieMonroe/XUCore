@@ -9,15 +9,15 @@
 import Foundation
 import Security
 
-public class XUKeychainAccess: NSObject {
+open class XUKeychainAccess: NSObject {
 	
-	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
+	open static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
 	
 	/// Fetches a password for username in account from Keychain.
-	public func passwordForUsername(username: String, inAccount account: String) -> String? {
+	open func passwordForUsername(_ username: String, inAccount account: String) -> String? {
 		var passLen: UInt32 = 0
-		var passBytes: UnsafeMutablePointer<Void> = nil
-		var item: SecKeychainItemRef? = nil
+		var passBytes: UnsafeMutableRawPointer? = nil
+		var item: SecKeychainItem? = nil
 		
 		let result = SecKeychainFindGenericPassword(nil,
 			UInt32(strlen(account)), account,
@@ -36,7 +36,7 @@ public class XUKeychainAccess: NSObject {
 		}
 		
 		if passLen > 0 {
-			let str = NSString(bytes: passBytes, length: Int(passLen), encoding: NSString.defaultCStringEncoding())
+			let str = NSString(bytes: passBytes!, length: Int(passLen), encoding: NSString.defaultCStringEncoding)
 			return str as String?
 		} else {
 			return "" // if we have noErr but also no length, password is empty
@@ -45,7 +45,8 @@ public class XUKeychainAccess: NSObject {
 	
 	/// Saves password for username in account to Keychain. Returns true if the
 	/// operation was successful, false otherwise.
-	public func savePassword(password: String, forUsername username: String, inAccount account: String) -> Bool {
+	@discardableResult
+	open func savePassword(_ password: String, forUsername username: String, inAccount account: String) -> Bool {
 		let status = SecKeychainAddGenericPassword(nil,
 			UInt32(strlen(account)), account,
 			UInt32(strlen(username)), username,
@@ -64,8 +65,8 @@ public class XUKeychainAccess: NSObject {
 		}
 		
 		var passLen: UInt32 = 0
-		var passBytes: UnsafeMutablePointer<Void> = nil
-		var item: SecKeychainItemRef? = nil
+		var passBytes: UnsafeMutableRawPointer? = nil
+		var item: SecKeychainItem? = nil
 
 		let result = SecKeychainFindGenericPassword(nil,
 			UInt32(strlen(account)), account,
@@ -82,7 +83,8 @@ public class XUKeychainAccess: NSObject {
 		}
 		
 		SecKeychainItemFreeContent(nil, passBytes)
-		if NSString(bytes: passBytes, length: Int(passLen), encoding: NSString.defaultCStringEncoding()) == password {
+		let savedPassword = NSString(bytes: passBytes!, length: Int(passLen), encoding: NSString.defaultCStringEncoding) as String?
+		if savedPassword == password {
 			return true // It's the same password, ignore
 		}
 		
@@ -96,7 +98,7 @@ public class XUKeychainAccess: NSObject {
 	}
 	
 	
-	private override init() {
+	fileprivate override init() {
 		
 	}
 	

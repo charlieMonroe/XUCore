@@ -35,10 +35,10 @@ private var _attributeValueChanges: [String : [String : AnyObject]] = [:]
 private var _relationshipValueChanges: [String : [String : Set<String>]] = [:]
 
 private extension XUManagedObject {
-	@NSManaged private var ticdsSyncID: String
+	@NSManaged var ticdsSyncID: String
 }
 
-private func _lockInit(isSync: Bool) {
+private func _lockInit(_ isSync: Bool) {
 	// We cannot assign _isBeingCreatedBySyncEngine = sync, since CoreData
 	// re-allocates the object as an instance of a generated subclass,
 	// which hence loses the data. The new instance also has a different
@@ -61,19 +61,19 @@ private func _lockInit(isSync: Bool) {
 /// In your model, however, you need to create an attribute ticdsSyncID instead,
 /// since this framework is designed to be compatible with existing stores that
 /// use TICDS.
-public class XUManagedObject: NSManagedObject {
+open class XUManagedObject: NSManagedObject {
 	
 	/// Call this when processing an insertion change - this will let the managed
 	/// object class know that an object with this syncUUID has been inserted, so
 	/// that it doesn't create an unnecessary sync change.
-	public class func noticeSyncInsertionOfObjectWithID(syncUUID: String) {
+	open class func noticeSyncInsertionOfObjectWithID(_ syncUUID: String) {
 		_changesLock.lock()
 		_insertionChanges.insert(syncUUID)
 		_changesLock.unlock()
 	}
 	
 	
-	private func _applyAttributeSyncChange(syncChange: XUAttributeSyncChange) {
+	fileprivate func _applyAttributeSyncChange(_ syncChange: XUAttributeSyncChange) {
 		var value = syncChange.attributeValue
 		if value is NSNull {
 			value = nil
@@ -95,26 +95,26 @@ public class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	private func _applyDeletionSyncChange(syncChange: XUDeletionSyncChange) {
+	fileprivate func _applyDeletionSyncChange(_ syncChange: XUDeletionSyncChange) {
 		// Delete
 		let UUID = self.syncUUID
-		self.managedObjectContext!.deleteObject(self)
+		self.managedObjectContext!.delete(self)
 		
 		_changesLock.performLockedBlock {
 			_deletionChanges.insert(UUID)
 		}
 	}
 	
-	private func _applyToManyRelationshipAdditionSyncChange(syncChange: XUToManyRelationshipAdditionSyncChange) {
+	fileprivate func _applyToManyRelationshipAdditionSyncChange(_ syncChange: XUToManyRelationshipAdditionSyncChange) {
 		let targetUUID = syncChange.valueSyncID!
 		let entityName = syncChange.valueEntityName!
 		
 		// We need to fetch this object. Since all synchable objects are subclasses
 		// of XUManagedObject, we can look for XUManagedObject with such sync ID.
-	 	let fetchRequest = NSFetchRequest(entityName: entityName)
+	 	let fetchRequest = NSFetchRequest<XUManagedObject>(entityName: entityName)
 		fetchRequest.predicate = NSPredicate(format: "ticdsSyncID == %@", targetUUID)
 		
-		guard let items = try? self.managedObjectContext!.executeFetchRequest(fetchRequest) else {
+		guard let items = try? self.managedObjectContext!.fetch(fetchRequest) else {
 			XULog("Can't fetch items from MOC \(fetchRequest).")
 			return
 		}
@@ -124,8 +124,8 @@ public class XUManagedObject: NSManagedObject {
 			return
 		}
 		
-		var valueSet = (self.valueForKey(syncChange.relationshipName) as? Set<NSObject>) ?? Set()
-		valueSet.insert(items.first! as! NSManagedObject)
+		var valueSet = (self.value(forKey: syncChange.relationshipName) as? Set<NSObject>) ?? Set()
+		valueSet.insert(items.first!)
 		
 		self.setValue(valueSet, forKey: syncChange.relationshipName)
 		
@@ -140,10 +140,10 @@ public class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	private func _applyToManyRelationshipDeletionSyncChange(syncChange: XUToManyRelationshipDeletionSyncChange) {
+	fileprivate func _applyToManyRelationshipDeletionSyncChange(_ syncChange: XUToManyRelationshipDeletionSyncChange) {
 		let targetUUID = syncChange.valueSyncID!
 		
-		guard var valueSet = self.valueForKey(syncChange.relationshipName) as? Set<XUManagedObject> else {
+		guard var valueSet = self.value(forKey: syncChange.relationshipName) as? Set<XUManagedObject> else {
 			XULog("Trying to apply to-many-relationship-deletion sync change on a property that doesn't return a Set with XUManagedObjects.")
 			return
 		}
@@ -169,11 +169,11 @@ public class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	private func _applyToOneRelationshipSyncChange(syncChange: XUToOneRelationshipSyncChange) {
+	fileprivate func _applyToOneRelationshipSyncChange(_ syncChange: XUToOneRelationshipSyncChange) {
 		guard let targetUUID = syncChange.valueSyncID else {
 			// Removing relationship - don't really care if the _relationshipValueChanges
 			// actually contains a value
-			if self.valueForKey(syncChange.relationshipName) != nil {
+			if self.value(forKey: syncChange.relationshipName) != nil {
 				// It's already nil -> do not set it, since it could mark the entity
 				// as updated.
 				return
@@ -197,10 +197,10 @@ public class XUManagedObject: NSManagedObject {
 			fatalError("-[XUManagedObject _applyToOneRelationshipSyncChange:] - targetUUID != nil and entityName == nil!")
 		}
 		
-		let fetchRequest = NSFetchRequest(entityName: entityName)
+		let fetchRequest = NSFetchRequest<XUManagedObject>(entityName: entityName)
 		fetchRequest.predicate = NSPredicate(format: "ticdsSyncID == %@", targetUUID)
 		
-		guard let items = try? self.managedObjectContext!.executeFetchRequest(fetchRequest) else {
+		guard let items = try? self.managedObjectContext!.fetch(fetchRequest) else {
 			XULog("Can't fetch items from MOC \(fetchRequest).")
 			return
 		}
@@ -221,7 +221,7 @@ public class XUManagedObject: NSManagedObject {
 		}
 	}
 		
-	private func _createDeletionChanges() -> [XUSyncChange] {
+	fileprivate func _createDeletionChanges() -> [XUSyncChange] {
 		_changesLock.lock()
 		
 		if _deletionChanges.contains(self.syncUUID) {
@@ -233,12 +233,12 @@ public class XUManagedObject: NSManagedObject {
 		_changesLock.unlock()
 		
 		let deletionSyncChange = XUDeletionSyncChange(object: self)
-		XULog("Created deletion sync change for \(self.syncUUID) [\(self.dynamicType)]")
+		XULog("Created deletion sync change for \(self.syncUUID) [\(type(of: self))]")
 		
 		return [ deletionSyncChange ]
 	}
 	
-	private func _createInsertionChanges() -> [XUSyncChange] {
+	fileprivate func _createInsertionChanges() -> [XUSyncChange] {
 		_changesLock.lock()
 		
 		if _insertionChanges.contains(self.syncUUID) {
@@ -250,41 +250,41 @@ public class XUManagedObject: NSManagedObject {
 		_changesLock.unlock()
 		
 		let syncChange = XUInsertionSyncChange(object: self)
-		XULog("Created insertion sync change for \(self.syncUUID) [\(self.dynamicType)]")
+		XULog("Created insertion sync change for \(self.syncUUID) [\(type(of: self))]")
 		
 		return self._createRelationshipChanges() + [syncChange]
 	}
 	
-	private func _createRelationshipChangesForRelationship(relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	fileprivate func _createRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let inverseRelationship = relationship.inverseRelationship
-		if relationship.toMany && inverseRelationship != nil && !inverseRelationship!.toMany {
+		if relationship.isToMany && inverseRelationship != nil && !inverseRelationship!.isToMany {
 			// With relationships that have inverse relationships, prefer the -to-one
 			// side of the relationship
 			return []
 		}
 		
-		if relationship.toMany && inverseRelationship != nil && inverseRelationship!.toMany && relationship.name.caseInsensitiveCompare(inverseRelationship!.name) == .OrderedDescending {
+		if relationship.isToMany && inverseRelationship != nil && inverseRelationship!.isToMany && relationship.name.caseInsensitiveCompare(inverseRelationship!.name) == .orderedDescending {
 			// Both relationships (this and the inverse) are -to-many - in order, 
 			// not to sync both sides, just sync the relationship that is first 
 			// alphabetically
 			return []
 		}
 		
-		if !relationship.toMany && inverseRelationship != nil && !inverseRelationship!.toMany && relationship.name.caseInsensitiveCompare(inverseRelationship!.name) == .OrderedDescending {
+		if !relationship.isToMany && inverseRelationship != nil && !inverseRelationship!.isToMany && relationship.name.caseInsensitiveCompare(inverseRelationship!.name) == .orderedDescending {
 			// Both relationships (this and the inverse) are -to-one - in order, 
 			// not to sync both sides, just sync the relationship that is first 
 			// alphabetically
 			return []
 		}
 		
-		if relationship.toMany {
+		if relationship.isToMany {
 			return self._createToManyRelationshipChangesForRelationship(relationship)
 		} else {
 			return self._createToOneRelationshipChangesForRelationship(relationship)
 		}
 	}
 	
-	private func _createRelationshipChanges() -> [XUSyncChange] {
+	fileprivate func _createRelationshipChanges() -> [XUSyncChange] {
 		let objectRelationshipsByName = self.entity.relationshipsByName
 		var changes: [XUSyncChange] = []
 		for (_, relationship) in objectRelationshipsByName {
@@ -293,14 +293,14 @@ public class XUManagedObject: NSManagedObject {
 		return changes
 	}
 	
-	private func _createToManyRelationshipChangesForRelationship(relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	fileprivate func _createToManyRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let relationshipName = relationship.name
-		guard let objects = self.valueForKey(relationshipName) as? Set<XUManagedObject> else {
-			fatalError("\(self.dynamicType).\(relationshipName) returned a non-Set value.")
+		guard let objects = self.value(forKey: relationshipName) as? Set<XUManagedObject> else {
+			fatalError("\(type(of: self)).\(relationshipName) returned a non-Set value.")
 		}
 		
 		
-		guard let commitedObjects = self.committedValuesForKeys([relationshipName])[relationshipName] as? Set<XUManagedObject> else {
+		guard let commitedObjects = self.committedValues(forKeys: [relationshipName])[relationshipName] as? Set<XUManagedObject> else {
 			return [] // Most likely no objects
 		}
 		
@@ -353,7 +353,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 	
 			let syncChange = XUToManyRelationshipAdditionSyncChange(object: self, relationshipName: relationshipName, andValue: obj)
-			XULog("Created to-many addition sync change for \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] \(obj.dynamicType) [\(objUUID)]")
+			XULog("Created to-many addition sync change for \(type(of: self)).\(relationshipName) [\(self.syncUUID)] \(type(of: obj)) [\(objUUID)]")
 	
 			changes.append(syncChange)
 		}
@@ -381,7 +381,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 	
 			let syncChange = XUToManyRelationshipDeletionSyncChange(object: self, relationshipName: relationshipName, andValue: obj)
-			XULog("Created to-many deletion sync change for \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] \(obj.dynamicType) [\(objUUID)]")
+			XULog("Created to-many deletion sync change for \(type(of: self)).\(relationshipName) [\(self.syncUUID)] \(type(of: obj)) [\(objUUID)]")
 			
 			changes.append(syncChange)
 		}
@@ -389,14 +389,14 @@ public class XUManagedObject: NSManagedObject {
 		return changes
 	}
 	
-	private func _createToOneRelationshipChangesForRelationship(relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	fileprivate func _createToOneRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let relationshipName = relationship.name
 		
-		let genericValue = self.valueForKey(relationshipName)
+		let genericValue = self.value(forKey: relationshipName)
 		let value = genericValue as? XUManagedObject
-		let valueClassName = "\((value?.dynamicType).descriptionWithDefaultValue())"
+		let valueClassName = "\(type(of: value))"
 		if genericValue != nil && value == nil {
-			XULog("Skipping sync of [\(self.dynamicType) \(relationshipName)]{\(self.syncUUID)} because value isn't subclass of XUManagedObject (\(valueClassName)).")
+			XULog("Skipping sync of [\(type(of: self)) \(relationshipName)]{\(self.syncUUID)} because value isn't subclass of XUManagedObject (\(valueClassName)).")
 			return []
 		}
 	
@@ -429,11 +429,11 @@ public class XUManagedObject: NSManagedObject {
 	
 	
 		let syncChange = XUToOneRelationshipSyncChange(object: self, relationshipName: relationshipName, andValue:value)
-		XULog("Creating to-one relationship change on \(self.dynamicType).\(relationshipName) [\(self.syncUUID)] -> \(valueClassName) [\((value?.syncUUID).descriptionWithDefaultValue())]")
+		XULog("Creating to-one relationship change on \(type(of: self)).\(relationshipName) [\(self.syncUUID)] -> \(valueClassName) [\((value?.syncUUID).descriptionWithDefaultValue())]")
 		return [syncChange]
 	}
 
-	private func _createUpdateChanges() -> [XUSyncChange] {
+	fileprivate func _createUpdateChanges() -> [XUSyncChange] {
 		var changes: [XUSyncChange] = []
 		
 		for (propertyName, changedValue) in self.changedValues() {
@@ -453,7 +453,7 @@ public class XUManagedObject: NSManagedObject {
 			if changedValue is NSNull {
 				value = nil
 			} else {
-				value = changedValue
+				value = changedValue as AnyObject?
 			}
 			
 
@@ -464,7 +464,7 @@ public class XUManagedObject: NSManagedObject {
 					// It's the same -> unlock the lock and continue
 					_changesLock.unlock()
 					continue
-				} else if let nsValue = value as? NSObject, nsObjValue = objValue as? NSObject where nsValue.isEqual(nsObjValue) {
+				} else if let nsValue = value as? NSObject, let nsObjValue = objValue as? NSObject , nsValue.isEqual(nsObjValue) {
 					_changesLock.unlock()
 					continue
 				}
@@ -481,7 +481,7 @@ public class XUManagedObject: NSManagedObject {
 			_changesLock.unlock()
 
 			let change = XUAttributeSyncChange(object: self, attributeName: propertyName, andValue: value)
-			XULog("Creating value change on \(self.dynamicType).\(propertyName) [\(self.syncUUID)]")
+			XULog("Creating value change on \(type(of: self)).\(propertyName) [\(self.syncUUID)]")
 			
 			changes.append(change)
 		}
@@ -491,7 +491,7 @@ public class XUManagedObject: NSManagedObject {
 	
 	/// This applies the sync change. It asserts that [self syncUUID] ==
 	/// [syncChange objectSyncID].
-	public func applySyncChange(syncChange: XUSyncChange) {
+	open func applySyncChange(_ syncChange: XUSyncChange) {
 		let previousValue = self.isApplyingSyncChange
 		self.isApplyingSyncChange = true
 	
@@ -527,8 +527,8 @@ public class XUManagedObject: NSManagedObject {
 	///
 	/// @note - you must NOT create new entities within -awakeFromInsert! It would
 	///			lead to a deadlock. Use -awakeFromNonSyncInsert instead.
-	@available(*, deprecated, message="Use awakeFromNonSyncInsert instead.")
- 	public override func awakeFromInsert() {
+	@available(*, deprecated, message: "Use awakeFromNonSyncInsert instead.")
+ 	open override func awakeFromInsert() {
 		super.awakeFromInsert()
 		
 		if !self.isBeingCreatedBySyncEngine {
@@ -541,32 +541,32 @@ public class XUManagedObject: NSManagedObject {
 	///
 	/// @note - for this to work, all instances need to be created using
 	///			-initWithEntity:insertIntoManagedObjectContext:
- 	public func awakeFromNonSyncInsert() {
+ 	open func awakeFromNonSyncInsert() {
 		// Sets a new TICDS Sync ID
 		self.ticdsSyncID = String.UUIDString
 	}
 
 	/// This method will create sync change if necessary for this object.
-	public func createSyncChanges() -> [XUSyncChange] {
+	open func createSyncChanges() -> [XUSyncChange] {
 		if self.managedObjectContext?.documentSyncManager == nil {
-			XULog("Skipping creating sync change for object \(self.dynamicType)[\(self.ticdsSyncID)] since there is no document sync manager!")
+			XULog("Skipping creating sync change for object \(type(of: self))[\(self.ticdsSyncID)] since there is no document sync manager!")
 			return []
 		}
 		
-		if self.inserted {
+		if self.isInserted {
 			return self._createInsertionChanges()
 		}
-		if self.updated {
+		if self.isUpdated {
 			return self._createUpdateChanges()
 		}
-		if self.deleted {
+		if self.isDeleted {
 			return self._createDeletionChanges()
 		}
 		
 		return []
 	}
 	
-	public required override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+	public required override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
 		_lockInit(false)
 		
 		defer {
@@ -575,7 +575,7 @@ public class XUManagedObject: NSManagedObject {
 			_initializationLock.unlock()
 		}
 		
-		super.init(entity: entity, insertIntoManagedObjectContext: context)
+		super.init(entity: entity, insertInto: context)
 	}
 	
 	public required init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?, asResultOfSyncAction isSync: Bool) {
@@ -587,27 +587,27 @@ public class XUManagedObject: NSManagedObject {
 			_initializationLock.unlock()
 		}
 		
-		super.init(entity: entity, insertIntoManagedObjectContext: context)
+		super.init(entity: entity, insertInto: context)
 	}
 	
 	
 	/// Marked as true if the engine is currently applying a sync change. If you
 	/// are observing some changes made to the object, and creating further changes
 	/// based on that observation, you can opt-out based on this property.
-	public internal(set) var isApplyingSyncChange: Bool = false
+	open internal(set) var isApplyingSyncChange: Bool = false
 
 	/// This is an important property that returns YES if the object is being 
 	/// created by the sync engine - i.e. the entity was inserted into the context.
 	///
 	/// While it may seem unnecessary, you usually populate fields with initial 
 	/// values within -awakeFromInsert.
-	public var isBeingCreatedBySyncEngine: Bool {
+	open var isBeingCreatedBySyncEngine: Bool {
 		return _currentInitInitiatedInSync
 	}
 
 	/// Sync UUID. This property is only a proxy to the underlying ticdsSyncID 
 	/// which is implemented for backward compatibility with existing stores.
-	public var syncUUID: String {
+	open var syncUUID: String {
 		return self.ticdsSyncID
 	}
 	
@@ -617,5 +617,5 @@ public class XUManagedObject: NSManagedObject {
 
 /// This is just a compatibility class.
 @available(*, deprecated)
-public class TICDSSynchronizedManagedObject: XUManagedObject { }
+open class TICDSSynchronizedManagedObject: XUManagedObject { }
 

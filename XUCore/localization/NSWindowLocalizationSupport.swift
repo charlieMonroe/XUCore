@@ -10,7 +10,7 @@ import Foundation
 
 public extension NSWindow {
 	
-	public func localizeWindow(bundle: NSBundle = XUMainBundle) {
+	public func localizeWindow(_ bundle: Bundle = XUMainBundle) {
 		self.title = XULocalizedString(self.title, inBundle: bundle)
 		
 		self.contentView?.localizeView(bundle)

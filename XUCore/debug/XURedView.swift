@@ -10,13 +10,13 @@ import Foundation
 
 /// Debugging view that is painted red, which allows you to easily see the view
 /// boundaries.
-public class XURedView: NSView {
+open class XURedView: NSView {
 	
-	public override func drawRect(dirtyRect: CGRect) {
-		NSColor.redColor().set()
+	open override func draw(_ dirtyRect: CGRect) {
+		NSColor.red.set()
 		NSRectFill(dirtyRect)
 	}
-	public override var flipped: Bool {
+	open override var isFlipped: Bool {
 		return true
 	}
 	

@@ -10,14 +10,14 @@ import Foundation
 
 /// Transforms the value into Bool. If the value is an array and it is not empty,
 /// true is returned, false otherwise.
-public class XUArrayNotEmptyTransformer: NSValueTransformer {
+open class XUArrayNotEmptyTransformer: ValueTransformer {
 	
-	public override func transformedValue(value: AnyObject?) -> AnyObject? {
+	open override func transformedValue(_ value: Any?) -> Any? {
 		guard let arr = value as? Array<Any> else {
-			return NSNumber(bool: false)
+			return NSNumber(value: false as Bool)
 		}
 		
-		return NSNumber(bool: arr.count > 0)
+		return NSNumber(value: (arr.count > 0) as Bool)
 	}
 
 }

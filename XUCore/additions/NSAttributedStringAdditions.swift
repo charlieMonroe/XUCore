@@ -20,7 +20,7 @@ public extension NSAttributedString {
 			var N = 0
 			repeat {
 				var theEffectiveRange: NSRange = NSMakeRange(0, 0)
-				let theAttributes = self.attributesAtIndex(N, longestEffectiveRange: &theEffectiveRange, inRange: stringRange)
+				let theAttributes = self.attributes(at: N, longestEffectiveRange: &theEffectiveRange, in: stringRange)
 				if let attachment = theAttributes[NSAttachmentAttributeName] as? NSTextAttachment {
 					attachments.append(attachment)
 				}

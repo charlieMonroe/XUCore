@@ -11,7 +11,7 @@ import Cocoa
 @objc public protocol XUURLHandler: AnyObject {
 	
 	/// Called when the application opens a URL via Apple Events.
-	func handlerShouldProcessURL(URL: NSURL)
+	func handlerShouldProcessURL(_ URL: URL)
 	
 }
 
@@ -19,36 +19,36 @@ import Cocoa
 /// This object handles opening of URLs on OS X. On OS X, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
-public class XUURLHandlingCenter: NSObject {
+open class XUURLHandlingCenter: NSObject {
 
-	public static let defaultCenter = XUURLHandlingCenter()
+	open static let defaultCenter = XUURLHandlingCenter()
 	
 	
-	private var _handlers: [String : [XUURLHandler]] = [ : ]
+	fileprivate var _handlers: [String : [XUURLHandler]] = [ : ]
 	
 	
 	/// Adds a handler for scheme. Multiple handlers per scheme are allowed).
 	/// A strong reference is made to the handler.
-	public func addHandler(handler: XUURLHandler, forURLScheme scheme: String) {
+	open func addHandler(_ handler: XUURLHandler, forURLScheme scheme: String) {
 		var handlers = _handlers[scheme] ?? [ ]
 		handlers.append(handler)
 		_handlers[scheme] = handlers
 	}
 	
 	/// Private function that handler the AppleEvent calls.
-	@objc private func handleURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
-		guard let receivedURLString = event.paramDescriptorForKeyword(UInt32(keyDirectObject))?.stringValue else {
+	@objc fileprivate func handleURLEvent(_ event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
+		guard let receivedURLString = event.paramDescriptor(forKeyword: UInt32(keyDirectObject))?.stringValue else {
 			XULog("Cannot handle apple event - \(event)")
 			return
 		}
 		
-		guard let URL = NSURL(string: receivedURLString) else {
+		guard let URL = URL(string: receivedURLString) else {
 			XULog("Invalid URLString - \(receivedURLString)")
 			return
 		}
 		
-		guard let handlers = _handlers[URL.scheme.lowercaseString] else {
-			XULog("No handler for URL scheme \(URL.scheme) - \(URL)")
+		guard let handlers = _handlers[(URL.scheme?.lowercased())!] else {
+			XULog("No handler for URL scheme \(URL.scheme!) - \(URL)")
 			return
 		}
 		
@@ -58,32 +58,32 @@ public class XUURLHandlingCenter: NSObject {
 	}
 	
 	/// Removes the handler for all schemes.
-	public func removeHandler(handler: XUURLHandler) {
+	open func removeHandler(_ handler: XUURLHandler) {
 		for scheme in _handlers.keys {
 			self.removeHandler(handler, forURLScheme: scheme)
 		}
 	}
 	
 	/// Removes the handler for a particular scheme.
-	public func removeHandler(handler: XUURLHandler, forURLScheme scheme: String) {
+	open func removeHandler(_ handler: XUURLHandler, forURLScheme scheme: String) {
 		guard var schemes = _handlers[scheme] else {
 			return
 		}
 		
-		guard let index = schemes.indexOf({ $0 === handler }) else {
+		guard let index = schemes.index(where: { $0 === handler }) else {
 			return // Not registered for this scheme
 		}
 		
-		schemes.removeAtIndex(index)
+		schemes.remove(at: index)
 		_handlers[scheme] = schemes
 	}
 	
 	
 	/// Making init private
-	private override init() {
+	fileprivate override init() {
 		super.init()
 		
-		NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector: #selector(XUURLHandlingCenter.handleURLEvent(_:withReplyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
+		NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(XUURLHandlingCenter.handleURLEvent(_:withReplyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
 	}
 	
 }

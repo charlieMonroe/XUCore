@@ -12,7 +12,7 @@ import MapKit
 public extension MKCoordinateRegion {
 	
 	/// Returns true is the region contains this location.
-	public func containsLocation(location: CLLocationCoordinate2D) -> Bool {
+	public func containsLocation(_ location: CLLocationCoordinate2D) -> Bool {
 		let minLatitude = self.center.latitude - self.span.latitudeDelta
 		let maxLatitude = self.center.latitude + self.span.latitudeDelta
 		
@@ -24,7 +24,7 @@ public extension MKCoordinateRegion {
 	}
 	
 	/// Convenience wrapper for CLLocation.
-	public func containsLocation(location: CLLocation) -> Bool {
+	public func containsLocation(_ location: CLLocation) -> Bool {
 		return self.containsLocation(location.coordinate)
 	}
 	

@@ -10,31 +10,31 @@ import Foundation
 
 /// This is a window that allows being updated like a NSView - just override
 // / -drawRect:.
-public class XUBorderlessWindow: NSWindow {
+open class XUBorderlessWindow: NSWindow {
 	
-	private func _innerInit() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindowDidResizeNotification, object: self)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindowDidMoveNotification, object: self)
+	fileprivate func _innerInit() {
+		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSNotification.Name.NSWindowDidResize, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSNotification.Name.NSWindowDidMove, object: self)
 		
-		self.collectionBehavior = .CanJoinAllSpaces
+		self.collectionBehavior = .canJoinAllSpaces
 		self.hasShadow = true
-		self.opaque = false
+		self.isOpaque = false
 		self.updateBackground()
 	}
 	
 	/// Override this method to customize the window content.
-	public func drawRect(rect: CGRect) {
+	open func drawRect(_ rect: CGRect) {
 	}
 	
-	public override var canBecomeKeyWindow: Bool {
+	open override var canBecomeKey: Bool {
 		return true
 	}
 	
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 	
-	public override init(contentRect: CGRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
+	public override init(contentRect: CGRect, styleMask aStyle: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
 		// Don't allow zero sizes;
 		var frame = contentRect
 		if frame.width < 1.0 || frame.height < 1.0 {
@@ -43,23 +43,17 @@ public class XUBorderlessWindow: NSWindow {
 			frame.size.height = 200.0
 		}
 		
-		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: flag)
+		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.buffered, defer: flag)
 		
 		self._innerInit()
 	}
 
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		
-		self._innerInit()
-	}
-	
 	/// Updates the background by redrawing. You should seldomly need to call
 	/// this method directly.
-	@objc public func updateBackground() {
+	@objc open func updateBackground() {
 		let windowSize = self.frame.size
 		
-		if isnan(windowSize.width) || isnan(windowSize.height) {
+		if windowSize.width.isNaN || windowSize.height.isNaN {
 			return
 		}
 		

@@ -12,12 +12,12 @@ private protocol _XUOptional {}
 extension Optional: _XUOptional {}
 
 /// Returns true if anyValue represents an optional.
-public func isOptional(anyValue: Any) -> Bool {
+public func isOptional(_ anyValue: Any) -> Bool {
 	return anyValue is _XUOptional
 }
 
 /// If anyValue is an Optional, it will be returned.
-public func asOptional<T>(anyValue: Any) -> T? {
+public func asOptional<T>(_ anyValue: Any) -> T? {
 	if let val = anyValue as? T {
 		return val
 	}
@@ -26,7 +26,7 @@ public func asOptional<T>(anyValue: Any) -> T? {
 
 public extension String {
 	
-	@available(*, deprecated, message="Interpolation of optionals is deprecated.")
+	@available(*, deprecated, message: "Interpolation of optionals is deprecated.")
 	public init<T>(stringInterpolationSegment segment: Optional<T>) {
 		self.init(stringInterpolationSegment: segment as Any)
 	}
@@ -37,11 +37,11 @@ public extension Optional {
 
 	/// Returns a description which returns defaultValue for nil and "value" for
 	/// non-nil values.
-	public func descriptionWithDefaultValue(defaultValue: String = "nil") -> String {
+	public func descriptionWithDefaultValue(_ defaultValue: String = "nil") -> String {
 		if self == nil {
 			return String(defaultValue)
 		} else {
-			return String(self!)
+			return String(describing: self!)
 		}
 	}
 	

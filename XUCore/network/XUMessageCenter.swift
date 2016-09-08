@@ -31,13 +31,13 @@ private let XUMessageCenterLastIDDefaultsKey = "XUMessageCenterLastID"
 @objc public enum XUMessageTarget: Int {
 	
 	/// All build types will receive the message.
-	case All = 0
+	case all = 0
 	
 	/// Only apps that have AppStoreBuild true in XUApplicationSetup.
-	case AppStore = 1
+	case appStore = 1
 	
 	/// Only apps that have AppStoreBuild false in XUApplicationSetup.
-	case NonAppStore = 2
+	case nonAppStore = 2
 	
 }
 
@@ -81,24 +81,24 @@ private let XUMessageCenterLastIDDefaultsKey = "XUMessageCenterLastID"
 ///		- XUOpenURL - the value must contains a string with the URL.
 ///		- XUBlockApp - the value must be a string, but can contain anything.
 ///
-public class XUMessageCenter: NSObject {
+open class XUMessageCenter: NSObject {
 	
-	public static let sharedMessageCenter = XUMessageCenter()
+	open static let sharedMessageCenter = XUMessageCenter()
 	
 
 	/// When set to true, the app was remotely blocked.
-	public private(set) var appBlocked: Bool = false
+	open fileprivate(set) var appBlocked: Bool = false
 	
 	
-	private typealias XUMessageDictionary = [String : AnyObject]
+	fileprivate typealias XUMessageDictionary = [String : AnyObject]
 	
-	private func _markMessageWithIDAsRead(messageID: Int) {
+	fileprivate func _markMessageWithIDAsRead(_ messageID: Int) {
 		// Save the message ID
-		NSUserDefaults.standardUserDefaults().setInteger(messageID, forKey: XUMessageCenterLastIDDefaultsKey)
-		NSUserDefaults.standardUserDefaults().synchronize()
+		UserDefaults.standard.set(messageID, forKey: XUMessageCenterLastIDDefaultsKey)
+		UserDefaults.standard.synchronize()
 	}
 	
-	private func _processActionsFromMessageDict(message: XUMessageDictionary, withMessageID messageID: Int) {
+	fileprivate func _processActionsFromMessageDict(_ message: XUMessageDictionary, withMessageID messageID: Int) {
 		guard let actions = message["XUActions"] as? [String : String] else {
 			XULog("Invalid message \(message)")
 			return
@@ -106,7 +106,7 @@ public class XUMessageCenter: NSObject {
 		
 		for (key, value) in actions {
 			if key == "XUOpenURL" {
-				guard let url = NSURL(string: value) else {
+				guard let url = URL(string: value) else {
 					XULog("Invalid URL string: \(value)")
 					continue
 				}
@@ -114,7 +114,7 @@ public class XUMessageCenter: NSObject {
 				#if os(iOS)
 					UIApplication.sharedApplication().openURL(url)
 				#else
-					NSWorkspace.sharedWorkspace().openURL(url)
+					NSWorkspace.shared().open(url)
 				#endif
 			}else if key == "XUBlockApp" {
 				self.appBlocked = false
@@ -125,11 +125,11 @@ public class XUMessageCenter: NSObject {
 					continue
 				}
 				
-				NSUserDefaults.standardUserDefaults().setBool(true, forKey: XUMessageCenterAppBlockedDefaultsKey)
-				NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: XUMessageCenterAppBlockedDateDefaultsKey)
-				NSUserDefaults.standardUserDefaults().setInteger(maxVersion, forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
+				UserDefaults.standard.set(true, forKey: XUMessageCenterAppBlockedDefaultsKey)
+				UserDefaults.standard.set(Date(), forKey: XUMessageCenterAppBlockedDateDefaultsKey)
+				UserDefaults.standard.set(maxVersion, forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 				
-				let appName = NSProcessInfo.processInfo().processName
+				let appName = ProcessInfo.processInfo.processName
 				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCoreBundle)
 				
 				#if os(iOS)
@@ -149,7 +149,7 @@ public class XUMessageCenter: NSObject {
 		self._markMessageWithIDAsRead(messageID)
 	}
 	
-	@objc private func _launchMessageCenter() {
+	@objc fileprivate func _launchMessageCenter() {
 		if XUAppSetup.messageCenterFeedURL == nil {
 			return // Ignore, if the feed URL is nil
 		}
@@ -159,35 +159,35 @@ public class XUMessageCenter: NSObject {
 			self.checkForMessages()
 		}
 		
-		if let blockedDate = NSUserDefaults.standardUserDefaults().objectForKey(XUMessageCenterAppBlockedDateDefaultsKey) as? NSDate {
+		if let blockedDate = UserDefaults.standard.object(forKey: XUMessageCenterAppBlockedDateDefaultsKey) as? Date {
 			// We are more lenient now and give the user 24 hours to update
-			if NSDate.timeIntervalSinceReferenceDate() - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
+			if Date.timeIntervalSinceReferenceDate - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
 				return
 			}
 			
-			self.appBlocked = NSUserDefaults.standardUserDefaults().boolForKey(XUMessageCenterAppBlockedDefaultsKey)
+			self.appBlocked = UserDefaults.standard.bool(forKey: XUMessageCenterAppBlockedDefaultsKey)
 			let appBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
-			let maxVersion = NSUserDefaults.standardUserDefaults().integerForKey(XUMessageCenterAppBlockedMaxVersionDefaultsKey)
+			let maxVersion = UserDefaults.standard.integer(forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 			if self.appBlocked && maxVersion < appBuildNumber {
 				self.appBlocked = false
 				
-				NSUserDefaults.standardUserDefaults().setBool(false, forKey: XUMessageCenterAppBlockedDefaultsKey)
-				NSUserDefaults.standardUserDefaults().synchronize()
+				UserDefaults.standard.set(false, forKey: XUMessageCenterAppBlockedDefaultsKey)
+				UserDefaults.standard.synchronize()
 			}
 		}
 	}
 	
 	/// Checks for messages with the server. Must not be called from main thread.
-	private func checkForMessages() {
+	fileprivate func checkForMessages() {
 		guard let feedURL = XUAppSetup.messageCenterFeedURL else {
 			return
 		}
 		
-		guard let dict = NSDictionary(contentsOfURL: feedURL) else {
+		guard let dict = NSDictionary(contentsOf: feedURL as URL) else {
 			return
 		}
 
-		let lastMessageID = NSUserDefaults.standardUserDefaults().integerForKey(XUMessageCenterLastIDDefaultsKey)
+		let lastMessageID = UserDefaults.standard.integer(forKey: XUMessageCenterLastIDDefaultsKey)
 		let appBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 		
 		let isAppStoreBuild = XUAppSetup.isAppStoreBuild
@@ -204,18 +204,18 @@ public class XUMessageCenter: NSObject {
 				continue
 			}
 			
-			let messageID = messageIDNumber.integerValue
+			let messageID = messageIDNumber.intValue
 			if messageID <= lastMessageID {
 				// Already seen it
 				continue
 			}
 			
-			guard let minVersion = (message["XUMinVersion"] as? NSNumber)?.integerValue else {
+			guard let minVersion = (message["XUMinVersion"] as? NSNumber)?.intValue else {
 				XULog("Invalid message (missing min version) \(message)")
 				continue
 			}
 			
-			guard let maxVersion = (message["XUMaxVersion"] as? NSNumber)?.integerValue else {
+			guard let maxVersion = (message["XUMaxVersion"] as? NSNumber)?.intValue else {
 				XULog("Invalid message (missing max version) \(message)")
 				continue
 			}
@@ -229,12 +229,12 @@ public class XUMessageCenter: NSObject {
 				continue
 			}
 			
-			guard let target = XUMessageTarget(rawValue: targetNumber.integerValue) else {
+			guard let target = XUMessageTarget(rawValue: targetNumber.intValue) else {
 				XULog("Invalid message (unknown target) \(message)")
 				continue
 			}
 			
-			if (target == .AppStore && !isAppStoreBuild) || (target == .NonAppStore && isAppStoreBuild) {
+			if (target == .appStore && !isAppStoreBuild) || (target == .nonAppStore && isAppStoreBuild) {
 				continue
 			}
 			
@@ -271,9 +271,9 @@ public class XUMessageCenter: NSObject {
 				let alert = NSAlert()
 				alert.messageText = messageText
 				alert.informativeText = (message["XUDescription"] as? String) ?? ""
-				alert.addButtonWithTitle(XULocalizedString("OK", inBundle: XUCoreBundle))
+				alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreBundle))
 				if allowsIgnoringMessage {
-					alert.addButtonWithTitle(ignoreButtonTitle)
+					alert.addButton(withTitle: ignoreButtonTitle)
 				}
 				
 				if alert.runModalOnMainThread() == NSAlertFirstButtonReturn {
@@ -289,24 +289,24 @@ public class XUMessageCenter: NSObject {
 		
 	}
 		
-	private override init() {
+	fileprivate override init() {
 		super.init()
 		
 		// Do not allow FCMessageCenter in apps using XUCore.
 		if NSClassFromString("FCMessageCenter") != nil {
-			NSException(name: NSInternalInconsistencyException, reason: "Do not use FCMessageCenter.", userInfo: nil).raise()
+			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Do not use FCMessageCenter.", userInfo: nil).raise()
 		}
 		
 		#if os(iOS)
 			let notificationName = UIApplicationDidFinishLaunchingNotification
 		#else
-			let notificationName = NSApplicationDidFinishLaunchingNotification
+			let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
 		#endif
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
 		
 		// Repeat this every hour.
-		NSTimer.scheduledTimerWithTimeInterval(XUTimeInterval.hour, repeats: true) { (_) -> Void in
+		_ = Timer.scheduledTimerWithTimeInterval(XUTimeInterval.hour, repeats: true) { (_) -> Void in
 			XU_PERFORM_BLOCK_ASYNC({ () -> Void in
 				self.checkForMessages()
 			})

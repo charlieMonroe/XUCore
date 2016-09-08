@@ -10,10 +10,10 @@ import Cocoa
 
 /// This class represents a notification similar to the window that OS X uses
 /// for volume/brightness changes, or Xcode uses them as well.
-public class XUSystemNotification: NSObject {
+open class XUSystemNotification: NSObject {
 	
-	public let icon: NSImage
-	public let message: String
+	open let icon: NSImage
+	open let message: String
 	
 	public init(icon: NSImage, andMessage message: String) {
 		self.icon = icon
@@ -22,22 +22,22 @@ public class XUSystemNotification: NSObject {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public convenience init(confirmationMessage: String) {
-		self.init(icon: XUCoreBundle.imageForResource("Checkmark")!, andMessage: confirmationMessage)
+		self.init(icon: XUCoreBundle.image(forResource: "Checkmark")!, andMessage: confirmationMessage)
 	}
 	
 }
 
 /// This class is used for dispatching the XUSystemNotification objects. Note:
 /// all methods must be called from the main thread.
-public class XUSystemNotificationCenter: NSObject {
+open class XUSystemNotificationCenter: NSObject {
 	
-	public static var sharedNotificationCenter: XUSystemNotificationCenter = XUSystemNotificationCenter()
+	open static var sharedNotificationCenter: XUSystemNotificationCenter = XUSystemNotificationCenter()
 	
-	private var _currentController: NSWindowController!
-	private var _currentNotification: XUSystemNotification!
-	private var _queue: [XUSystemNotification] = []
+	fileprivate var _currentController: NSWindowController!
+	fileprivate var _currentNotification: XUSystemNotification!
+	fileprivate var _queue: [XUSystemNotification] = []
 	
-	@objc private func _hideNotification() {
+	@objc fileprivate func _hideNotification() {
 		_currentController.window?.close()
 		_currentController = nil
 		_currentNotification = nil
@@ -49,7 +49,7 @@ public class XUSystemNotificationCenter: NSObject {
 		}
 	}
 	
-	private func _show() {
+	fileprivate func _show() {
 		_currentNotification = _queue.first!
 		
 		_currentController = XUSystemNotificationWindowController(window: nil)
@@ -59,13 +59,13 @@ public class XUSystemNotificationCenter: NSObject {
 		window.messageField.stringValue = _currentNotification.message
 		window.iconView.image = _currentNotification.icon
 				
-		NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
+		Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
 	}
 	
 	
 	/// Displays the notification. If another notification is already being 
 	/// displayed, this notification gets queued.
-	public func showNotification(notification: XUSystemNotification) {
+	open func showNotification(_ notification: XUSystemNotification) {
 		_queue.append(notification)
 		
 		if _queue.count == 1 {
@@ -77,14 +77,14 @@ public class XUSystemNotificationCenter: NSObject {
 
 private class XUSystemNotificationWindowController: NSWindowController {
 	
-	private override func loadWindow() {
-		NSNib(nibNamed: "SystemNotification", bundle: XUCoreBundle)!.instantiateWithOwner(self, topLevelObjects: nil)
+	fileprivate override func loadWindow() {
+		NSNib(nibNamed: "SystemNotification", bundle: XUCoreBundle)!.instantiate(withOwner: self, topLevelObjects: nil)
 	}
 	override var owner: AnyObject {
 		return self
 	}
 	override var windowNibPath: String? {
-		return XUCoreBundle.pathForResource("SystemNotification", ofType: "nib")
+		return XUCoreBundle.path(forResource: "SystemNotification", ofType: "nib")
 	}
 	
 	
@@ -94,9 +94,9 @@ private class XUSystemNotificationWindowController: NSWindowController {
 // be slightly randomized, causing issues with Interface Builder.
 internal class XUSystemNotificationWindow: NSWindow {
 	
-	@IBOutlet private weak var iconView: NSImageView!
-	@IBOutlet private weak var messageField: NSTextField!
-	@IBOutlet private weak var visualEffectView: NSVisualEffectView!
+	@IBOutlet fileprivate weak var iconView: NSImageView!
+	@IBOutlet fileprivate weak var messageField: NSTextField!
+	@IBOutlet fileprivate weak var visualEffectView: NSVisualEffectView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -104,32 +104,32 @@ internal class XUSystemNotificationWindow: NSWindow {
 		let image = NSImage(size: self.frame.size)
 		image.lockFocus()
 		
-		NSColor.blackColor().set()
+		NSColor.black.set()
 		NSBezierPath(roundedRect: CGRect(origin: CGPoint(), size: self.frame.size), xRadius: 15.0, yRadius: 15.0).fill()
 		
 		image.unlockFocus()
 		self.visualEffectView.maskImage = image
 		
 		if XUAppSetup.isDarkModeEnabled {
-			self.visualEffectView.material = .Dark
+			self.visualEffectView.material = .dark
 			
-			self.messageField.textColor = NSColor.whiteColor()
+			self.messageField.textColor = NSColor.white
 		}else{
 			if #available(OSX 10.11, *) {
-			    self.visualEffectView.material = .MediumLight
+			    self.visualEffectView.material = .mediumLight
 			} else {
-			    self.visualEffectView.material = .Light
+			    self.visualEffectView.material = .light
 			}
 			
-			self.messageField.textColor = NSColor.blackColor()
+			self.messageField.textColor = NSColor.black
 		}
 		
-		self.level = Int(CGWindowLevelForKey(CGWindowLevelKey.ScreenSaverWindowLevelKey))
+		self.level = Int(CGWindowLevelForKey(CGWindowLevelKey.screenSaverWindow))
 		
-		self.backgroundColor = NSColor.clearColor()
+		self.backgroundColor = NSColor.clear
 		
 		var windowFrame = self.frame
-		let screenFrame = NSScreen.mainScreen()!.frame
+		let screenFrame = NSScreen.main()!.frame
 		
 		windowFrame.origin.x = (screenFrame.width / 2.0) - (windowFrame.width / 2.0)
 		windowFrame.origin.y = screenFrame.height / 4.0
