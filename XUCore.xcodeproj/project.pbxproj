@@ -185,6 +185,7 @@
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B521BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
 		073E6B531BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
+		0742EFFE1D807D7800A3CE16 /* XUMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */; };
 		074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */; };
 		074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446AD1C529AB60026F5DD /* XUSystemNotification.swift */; };
 		074446B11C529F270026F5DD /* SystemNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074446B01C529F270026F5DD /* SystemNotification.xib */; };
@@ -475,6 +476,7 @@
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
 		074147A01CD72649007482D5 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUMenuItem.swift; path = util/XUMenuItem.swift; sourceTree = "<group>"; };
 		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
 		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		074446B01C529F270026F5DD /* SystemNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SystemNotification.xib; path = util/SystemNotification.xib; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */,
+				0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */,
 				074446AD1C529AB60026F5DD /* XUSystemNotification.swift */,
 				074446B01C529F270026F5DD /* SystemNotification.xib */,
 			);
@@ -1451,6 +1454,7 @@
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */,
+				0742EFFE1D807D7800A3CE16 /* XUMenuItem.swift in Sources */,
 				073E6ADB1BE1F86D00706283 /* re2.cc in Sources */,
 				07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */,
 				0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */,
