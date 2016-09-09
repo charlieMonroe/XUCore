@@ -12,11 +12,16 @@ private let kBorderWidth: CGFloat = 10.0
 
 public extension NSTextField {
 	
+	@available(*, deprecated, renamed: "sizeToFit(keepingWidth:)")
+	public func sizeToFitKeepingWidth(_ resizeDownwards: Bool) -> CGRect {
+		return self.sizeToFit(keepingWidth: resizeDownwards)
+	}
+	
 	/// If downwards flag is NO, it only updates the frame's height, keeping the
 	/// origin.
-	public func sizeToFitKeepingWidth(_ resizeDownwards: Bool) -> CGRect {
+	public func sizeToFit(keepingWidth resizeDownwards: Bool) -> CGRect {
 		let textFrame = self.bounds.insetBy(dx: kBorderWidth, dy: kBorderWidth)
-		let textHeight = self.stringValue.sizeWithAttributes([NSFontAttributeName: self.font!], maxWidth: textFrame.width).height
+		let textHeight = self.stringValue.size(withAttributes: [NSFontAttributeName: self.font!], maximumWidth: textFrame.width).height
 		let deltaHeight = textFrame.height - textHeight
 		
 		var myFrame = self.frame

@@ -11,14 +11,14 @@ import Foundation
 extension Character {
 	
 	/// Returns a random character from a range. The range represents UTF8 codes.
-	public static func randomCharacterInRange(_ range: Range<Int>) -> Character {
+	public static func randomCharacter(in range: Range<Int>) -> Character {
 		let randomInt = XURandomGenerator.sharedGenerator.randomUnsignedIntegerInRange(UInt(range.lowerBound)..<UInt(range.upperBound))
 		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
 	/// Returns a random ASCII character (0-127).
 	public static var randomASCIICharacter: Character {
-		return self.randomCharacterInRange(0..<127)
+		return self.randomCharacter(in: 0 ..< 127)
 	}
 	
 	/// Returns a random letter character (a-Z).
@@ -43,7 +43,7 @@ extension Character {
 	
 	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
 	public var isASCIIOrPunctuation: Bool {
-		return self.isASCII || self.isMemberOfCharacterSet(CharacterSet.punctuationCharacters)
+		return self.isASCII || self.isMember(of: CharacterSet.punctuationCharacters)
 	}
 	
 	/// Returns true iff `self` is a-z or A-Z.
@@ -62,7 +62,7 @@ extension Character {
 	}
 	
 	/// Returns true if the character is a member of character set.
-	public func isMemberOfCharacterSet(_ characterSet: CharacterSet) -> Bool {
+	public func isMember(of characterSet: CharacterSet) -> Bool {
 		return characterSet.contains(UnicodeScalar(String(self).utf16.first!)!)
 	}
 	
@@ -85,5 +85,14 @@ extension Character {
 		return String(self).utf16.first!
 	}
 
+	@available(*, deprecated, renamed: "randomCharacter(in:)")
+	public static func randomCharacterInRange(_ range: Range<Int>) -> Character {
+		return self.randomCharacter(in: range)
+	}
+	
+	@available(*, deprecated, renamed: "isMember(of:)")
+	public func isMemberOfCharacterSet(_ characterSet: CharacterSet) -> Bool {
+		return self.isMember(of: characterSet)
+	}
 }
 

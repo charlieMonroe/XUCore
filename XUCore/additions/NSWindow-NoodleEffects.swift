@@ -74,7 +74,7 @@ public extension NSWindow {
 	}
 	
 	/// Pops the window on screen from startRect.
-	public func zoomInFromRect(_ startRect: CGRect) {
+	public func zoomIn(fromRect startRect: CGRect) {
 		if self.isVisible {
 			return // Do nothing if we're already on-screen
 		}
@@ -100,7 +100,7 @@ public extension NSWindow {
 		frame.size.width = 20.0
 		frame.size.height = 20.0
 		
-		self.zoomOutToRect(frame)
+		self.zoomOut(toRect: frame)
 	}
 	
 	/// Pops the window on screen from the middle of self.frame.
@@ -138,7 +138,7 @@ public extension NSWindow {
 	}
 	
 	/// Removes the window from screen by zooming off to endRect.
-	public func zoomOutToRect(_ endRect: CGRect) {
+	public func zoomOut(toRect endRect: CGRect) {
 		if !self.isVisible {
 			return // Already off screen
 		}

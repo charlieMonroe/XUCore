@@ -29,7 +29,7 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 		
 		// Put in the user salt as well - we may have two users on the same computer
 		let computerID = UUIDString + NSUserName()
-		return computerID.MD5Digest.uppercased()
+		return computerID.md5Digest.uppercased()
 	}()
 #endif
 

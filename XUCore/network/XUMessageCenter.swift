@@ -306,7 +306,7 @@ open class XUMessageCenter: NSObject {
 		NotificationCenter.default.addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
 		
 		// Repeat this every hour.
-		_ = Timer.scheduledTimerWithTimeInterval(XUTimeInterval.hour, repeats: true) { (_) -> Void in
+		_ = Timer.scheduledTimer(timeInterval: XUTimeInterval.hour, repeats: true) { (_) -> Void in
 			XU_PERFORM_BLOCK_ASYNC({ () -> Void in
 				self.checkForMessages()
 			})

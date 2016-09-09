@@ -10,21 +10,32 @@ import Foundation
 
 public extension NSMutableDictionary {
 	
+	@available(*, deprecated)
 	public func setBool(_ aBool: Bool, forKey key: Key) {
 		self[key] = aBool
 	}
+	
+	@available(*, deprecated)
 	public func setFloat(_ aFloat: Float, forKey key: Key) {
 		self[key] = aFloat
 	}
+	
+	@available(*, deprecated)
 	public func setInt(_ anInt: Int32, forKey key: Key) {
 		self[key] = NSNumber(value: anInt as Int32)
 	}
+	
+	@available(*, deprecated)
 	public func setUnsignedInt(_ anInt: UInt32, forKey key: Key) {
 		self[key] = NSNumber(value: anInt as UInt32)
 	}
+	
+	@available(*, deprecated)
 	public func setUnsignedShort(_ aShort: UInt16, forKey key: Key) {
 		self[key] = NSNumber(value: aShort as UInt16)
 	}
+	
+	@available(*, deprecated)
 	public func setObjectConditionally(_ object: AnyObject?, forKey key: Key) -> Bool {
 		if object != nil {
 			self[key] = object!

@@ -86,7 +86,7 @@ public extension Data {
 		return self.range(of: byteData)?.lowerBound
 	}
 	
-	public var MD5Digest: String {
+	public var md5Digest: String {
 		return NSData.md5Digest(ofBytes: (self as NSData).bytes, ofLength: self.count)
 	}
 	

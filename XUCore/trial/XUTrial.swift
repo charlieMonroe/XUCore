@@ -66,8 +66,8 @@ open class XUTrial: NSObject {
 	
 	/// Returns a unique identifier of this computer and user.
 	fileprivate var _sessionIdentifier: String {
-		let macAddress = XUHardwareInfo.sharedHardwareInfo.serialNumber.MD5Digest
-		let sessionIdentifier = macAddress + NSUserName().MD5Digest
+		let macAddress = XUHardwareInfo.sharedHardwareInfo.serialNumber.md5Digest
+		let sessionIdentifier = macAddress + NSUserName().md5Digest
 		return sessionIdentifier
 	}
 	
@@ -249,7 +249,7 @@ open class XUTimeBasedTrial: XUTrial {
 	
 	/// Registers the app with the trial server.
 	fileprivate func _registerWithTrialServer() -> Bool {
-		let identifier = XUAppSetup.applicationIdentifier.stringByEncodingIllegalURLCharacters
+		let identifier = XUAppSetup.applicationIdentifier.encodingIllegalURLCharacters
 		let url = URL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
 		let request = NSMutableURLRequest(url: url)
 		request.httpMethod = "POST"
@@ -286,7 +286,7 @@ open class XUTimeBasedTrial: XUTrial {
 		}
 		
 		let identifier = XUAppSetup.applicationIdentifier
-		guard let appDict = apps.find({ $0["app_identifier"] == identifier }) else {
+		guard let appDict = apps.find(where: { $0["app_identifier"] == identifier }) else {
 			if self._registerWithTrialServer() {
 				_secondsLeft = TimeInterval(XUAppSetup.timeBasedTrialDays) * XUTimeInterval.day
 				_wasFirstRun = true

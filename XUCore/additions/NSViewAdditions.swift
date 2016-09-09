@@ -40,10 +40,10 @@ public extension NSView {
 	}
 	
 	public var screenCoordinates: CGRect {
-		return self.screenCoordinatesOfFrame(self.bounds)
+		return self.screenCoordinates(ofRect: self.bounds)
 	}
 	
-	public func screenCoordinatesOfFrame(_ frame: CGRect) -> CGRect {
+	public func screenCoordinates(ofRect frame: CGRect) -> CGRect {
 		if self.window == nil {
 			return CGRect()
 		}
@@ -55,7 +55,7 @@ public extension NSView {
 		return rect
 	}
 	
-	public func screenCoordinatesOfPoint(_ point: CGPoint) -> CGPoint {
+	public func screenCoordinates(ofPoint point: CGPoint) -> CGPoint {
 		if self.window == nil {
 			return CGPoint()
 		}

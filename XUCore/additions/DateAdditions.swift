@@ -32,67 +32,67 @@ public struct XUMonth : OptionSet {
 	
 	public init(rawValue: Int) { self.rawValue = rawValue }
 	
-	public static let January = XUMonth(rawValue: 1 << 0)
-	public static let February = XUMonth(rawValue: 1 << 1)
-	public static let March = XUMonth(rawValue: 1 << 2)
-	public static let April = XUMonth(rawValue: 1 << 3)
-	public static let May = XUMonth(rawValue: 1 << 4)
-	public static let June = XUMonth(rawValue: 1 << 5)
-	public static let July = XUMonth(rawValue: 1 << 6)
-	public static let August = XUMonth(rawValue: 1 << 7)
-	public static let September = XUMonth(rawValue: 1 << 8)
-	public static let October = XUMonth(rawValue: 1 << 9)
-	public static let November = XUMonth(rawValue: 1 << 10)
-	public static let December = XUMonth(rawValue: 1 << 11)
+	public static let january = XUMonth(rawValue: 1 << 0)
+	public static let february = XUMonth(rawValue: 1 << 1)
+	public static let march = XUMonth(rawValue: 1 << 2)
+	public static let april = XUMonth(rawValue: 1 << 3)
+	public static let may = XUMonth(rawValue: 1 << 4)
+	public static let june = XUMonth(rawValue: 1 << 5)
+	public static let july = XUMonth(rawValue: 1 << 6)
+	public static let august = XUMonth(rawValue: 1 << 7)
+	public static let september = XUMonth(rawValue: 1 << 8)
+	public static let october = XUMonth(rawValue: 1 << 9)
+	public static let november = XUMonth(rawValue: 1 << 10)
+	public static let december = XUMonth(rawValue: 1 << 11)
 	
 	/// Contains a mask for the entire quarter.
-	public static let Quarter1: XUMonth = [ .January, .February, .March ]
+	public static let quarter1: XUMonth = [ .january, .february, .march ]
 	
 	/// Contains a mask for the entire quarter.
-	public static let Quarter2: XUMonth = [ .April, .May, .June ]
+	public static let quarter2: XUMonth = [ .april, .may, .june ]
 	
 	/// Contains a mask for the entire quarter.
-	public static let Quarter3: XUMonth = [ .July, .August, .September ]
+	public static let quarter3: XUMonth = [ .july, .august, .september ]
 	
 	/// Contains a mask for the entire quarter.
-	public static let Quarter4: XUMonth = [ .October, .November, .December ]
+	public static let quarter4: XUMonth = [ .october, .november, .december ]
 	
-	public static let AllMonths: XUMonth = [
-		.Quarter1, .Quarter2, .Quarter3, .Quarter4
+	public static let allMonths: XUMonth = [
+		.quarter1, .quarter2, .quarter3, .quarter4
 	]
 	
 	/// Returns true if the current mask is a single month.
 	public var isSingleMonth: Bool {
-		return XUMonth.AllMonthsArray.count({ self.contains($0) }) == 1
+		return XUMonth.allMonthsArray.count(where: { self.contains($0) }) == 1
 	}
 	
 	/// This will return the month integer (1-12). If the option set contains
 	/// more than one month, this will call fatalError(_).
 	public var month: Int {
 		switch self {
-		case XUMonth.January:
+		case XUMonth.january:
 			return 1
-		case XUMonth.February:
+		case XUMonth.february:
 			return 2
-		case XUMonth.March:
+		case XUMonth.march:
 			return 3
-		case XUMonth.April:
+		case XUMonth.april:
 			return 4
-		case XUMonth.May:
+		case XUMonth.may:
 			return 5
-		case XUMonth.June:
+		case XUMonth.june:
 			return 6
-		case XUMonth.July:
+		case XUMonth.july:
 			return 7
-		case XUMonth.August:
+		case XUMonth.august:
 			return 8
-		case XUMonth.September:
+		case XUMonth.september:
 			return 9
-		case XUMonth.October:
+		case XUMonth.october:
 			return 10
-		case XUMonth.November:
+		case XUMonth.november:
 			return 11
-		case XUMonth.December:
+		case XUMonth.december:
 			return 12
 			
 		default:
@@ -101,9 +101,9 @@ public struct XUMonth : OptionSet {
 	}
 	
 	/// Array of all months.
-	public static let AllMonthsArray: [XUMonth] = [
-		.January, .February, .March, .April, .May, .June,
-		.July, .August, .September, .November, .October, .December
+	public static let allMonthsArray: [XUMonth] = [
+		.january, .february, .march, .april, .may, .june,
+		.july, .august, .september, .november, .october, .december
 	]
 	
 }
@@ -111,19 +111,11 @@ public struct XUMonth : OptionSet {
 
 public extension Date {
 	
-	/// Returns date with day/month/year values, if valid.
-	///
-	/// @note - cannot currently be an initializer since there is no initializer
-	///			that takes NSDateComponents as an arguments
-	public static func dateWithDay(_ day: Int, month: Int, andYear year: Int) -> Date? {
-		return self.dateWithDay(day, month: month, year: year, hour: 0, minute: 0, andSecond: 0)
-	}
-	
 	/// Returns date with day/month/year/hour/minute/second values, if valid.
 	///
 	/// @note - cannot currently be an initializer since there is no initializer
 	///			that takes NSDateComponents as an arguments
-	public static func dateWithDay(_ day: Int, month: Int, year: Int, hour: Int, minute: Int, andSecond second: Int) -> Date? {
+	public static func date(withDay day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, andSecond second: Int = 0) -> Date? {
 		var components = DateComponents()
 		components.day = day
 		components.month = month
@@ -147,7 +139,7 @@ public extension Date {
 	
 	
 	/// Converts this date to target time zone.
-	public func dateByConvertingFromTimeZone(_ originZone: TimeZone, toZone targetZone: TimeZone) -> Date {
+	public func converting(from originZone: TimeZone, to targetZone: TimeZone) -> Date {
 		var convertedDate = self.timeIntervalSinceReferenceDate
 		convertedDate -= TimeInterval(originZone.secondsFromGMT()) - TimeInterval(targetZone.secondsFromGMT())
 		return Date(timeIntervalSinceReferenceDate: convertedDate)
@@ -172,18 +164,18 @@ public extension Date {
 	}
 	
 	/// Returns true if the receiver is after date.
-	public func isAfterDate(_ date: Date) -> Bool {
+	public func isAfter(_ date: Date) -> Bool {
 		return date.timeIntervalSince1970 < self.timeIntervalSince1970
 	}
 	
 	/// Returns true if the receiver is before date.
-	public func isBeforeDate(_ date: Date) -> Bool {
+	public func isBefore(_ date: Date) -> Bool {
 		return self.timeIntervalSince1970 < date.timeIntervalSince1970
 	}
 	
 	/// Returns true iff date1 < self < date2.
-	public func isBetweenDate(_ date1: Date, andDate date2: Date) -> Bool {
-		return self.isAfterDate(date1) && self.isBeforeDate(date2)
+	public func isBetween(_ date1: Date, and date2: Date) -> Bool {
+		return self.isAfter(date1) && self.isBefore(date2)
 	}
 	
 	/// Returns true if the receiver referes to an newer date than in now.
@@ -202,7 +194,7 @@ public extension Date {
 		return now.day == self.day && now.month == self.month && now.year == self.year
 	}
 	
-	public func isWithinMonths(_ months: XUMonth) -> Bool {
+	public func isWithin(months: XUMonth) -> Bool {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.month, from: self)
 		
@@ -210,7 +202,7 @@ public extension Date {
 		return months.contains(month)
 	}
 	
-	public func isWithinYear(_ year: Int) -> Bool {
+	public func isWithin(year: Int) -> Bool {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.year, from: self)
 		return components.year == year
@@ -249,7 +241,7 @@ public extension Date {
 	/// Returns a date that is within the same day as self, but has 0 hours,
 	/// 0 minutes and 0 seconds.
 	public var startOfDay: Date {
-		return Date.dateWithDay(self.day, month: self.month, andYear: self.year) ?? self
+		return Date.date(withDay: self.day, month: self.month, year: self.year) ?? self
 	}
 	
 	public var year: Int {
@@ -261,4 +253,48 @@ public extension Date {
 	
 }
 
+
+public extension Date {
+	
+	@available(*, deprecated, renamed: "date(withDay:month:year:hour:minute:andSecond:)")
+	public static func dateWithDay(_ day: Int, month: Int, year: Int, hour: Int, minute: Int, andSecond second: Int) -> Date? {
+		return self.date(withDay: day, month: month, year: year, hour: hour, minute: minute, andSecond: second)
+	}
+	
+	@available(*, deprecated, renamed: "date(withDay:month:year:)")
+	public static func dateWithDay(_ day: Int, month: Int, andYear year: Int) -> Date? {
+		return self.date(withDay: day, month: month, year: year)
+	}
+	
+	@available(*, deprecated, renamed: "converting(from:to:)")
+	public func dateByConvertingFromTimeZone(_ originZone: TimeZone, toZone targetZone: TimeZone) -> Date {
+		return self.converting(from: originZone, to: targetZone)
+	}
+	
+	@available(*, deprecated, renamed: "isAfter(_:)")
+	public func isAfterDate(_ date: Date) -> Bool {
+		return self.isAfter(date)
+	}
+	
+	@available(*, deprecated, renamed: "isBefore(_:)")
+	public func isBeforeDate(_ date: Date) -> Bool {
+		return self.isBefore(date)
+	}
+	
+	@available(*, deprecated, renamed: "isBetween(_:and:)")
+	public func isBetweenDate(_ date1: Date, andDate date2: Date) -> Bool {
+		return self.isBetween(date1, and: date2)
+	}
+	
+	@available(*, deprecated, renamed: "isWithin(months:)")
+	public func isWithinMonths(_ months: XUMonth) -> Bool {
+		return self.isWithin(months: months)
+	}
+	
+	@available(*, deprecated, renamed: "isWithin(year:)")
+	public func isWithinYear(_ year: Int) -> Bool {
+		return self.isWithin(year: year)
+	}
+	
+}
 

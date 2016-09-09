@@ -40,7 +40,7 @@ public enum XUEmailValidationFormat {
 public extension String {
 
 	/// Creates a new UUID string.
-	public static var UUIDString: String {
+	public static var uuidString: String {
 		let UIDRef = CFUUIDCreate(nil)
 		let UID = CFUUIDCreateString(nil, UIDRef)
 		return UID as! String
@@ -59,6 +59,7 @@ public extension String {
 
 	/// Returns true if the other string is not empty and is contained in self
 	/// case-insensitive.
+	@available(*, deprecated, renamed: "hasCaseInsensitive(substring:)")
 	public func containsCaseInsensitiveString(_ otherString: String) -> Bool {
 		if otherString.isEmpty {
 			return false
@@ -67,14 +68,16 @@ public extension String {
 	}
 
 	/// Draws `self` centered in rect with attributes.
-	public func drawCenteredInRect(_ rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
+	@discardableResult
+	public func draw(centeredIn rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
 		let stringSize = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0), withAttributes: atts)
 		return CGRect(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0, width: stringSize.width, height: stringSize.height)
 	}
 
 	/// Draws `self` aligned right to point.
-	func drawRightAlignedToPoint(_ point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
+	@discardableResult
+	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
 		let s = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
@@ -104,7 +107,7 @@ public extension String {
 
 	/// Returns true if the receiver has prefix `prefix` in case-insensitive
 	/// comparison.
-	public func hasCaseInsensitivePrefix(_ prefix: String) -> Bool {
+	public func hasCaseInsensitive(prefix: String) -> Bool {
 		guard let range = self.range(of: prefix, options: .caseInsensitive) else {
 			return false
 		}
@@ -114,13 +117,13 @@ public extension String {
 
 	/// Returns true if the receiver has `substring` in case-insensitive
 	/// comparison.
-	public func hasCaseInsensitiveSubstring(_ substring: String) -> Bool {
+	public func hasCaseInsensitive(substring: String) -> Bool {
 		return self.range(of: substring, options: .caseInsensitive) != nil
 	}
 
 	/// Returns true if the receiver has prefix `suffix` in case-insensitive
 	/// comparison.
-	public func hasCaseInsensitiveSuffix(_ suffix: String) -> Bool {
+	public func hasCaseInsensitive(suffix: String) -> Bool {
 		guard let range = self.range(of: suffix, options: .caseInsensitive) else {
 			return false
 		}
@@ -132,7 +135,7 @@ public extension String {
 	public var hexValue: Int {
 		let components = self.components(separatedBy: "x")
 		var suffix = components.count < 2 ? self : components[1]
-		suffix = suffix.stringByTrimmingLeftCharactersInSet(CharacterSet(charactersIn: "0"))
+		suffix = suffix.trimmingLeftCharacters(in: CharacterSet(charactersIn: "0"))
 
 		var result = 0
 		for c in self.characters {
@@ -181,7 +184,7 @@ public extension String {
 			let value: Int
 			if occurrence.hasPrefix("x") {
 				// Hex
-				value = occurrence.stringByDeletingPrefix("x").hexValue
+				value = occurrence.deleting(prefix: "x").hexValue
 			} else {
 				value = occurrence.integerValue
 			}
@@ -194,7 +197,7 @@ public extension String {
 	
 	/// Returns if the receiver is equal to the other string in a case
 	/// insensitive manner.
-	public func isCaseInsensitivelyEqualToString(_ string: String) -> Bool {
+	public func isCaseInsensitivelyEqual(to string: String) -> Bool {
 		return self.compare(string, options: .caseInsensitive) == .orderedSame
 	}
 	
@@ -273,17 +276,17 @@ public extension String {
 	}
 
 	/// Computes MD5 digest of self
-	public var MD5Digest: String {
+	public var md5Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
 		
-		return data.MD5Digest
+		return data.md5Digest
 	}
 	
 	/// Truncates the string in the middle with '...' in order to fit the width, 
 	/// similarily as NSTextField does.
-	public func middleTruncatedStringToFitWidth(_ width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
+	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
 		var front = ""
 		var tail = ""
 		
@@ -307,9 +310,9 @@ public extension String {
 	public mutating func prepend(_ string: String) {
 		self.insert(contentsOf: string.characters, at: self.startIndex)
 	}
-
+	
 	/// Returns a reverse string.
-	public var reverseString: String {
+	public func reversed() -> String {
 		return String(self.characters.reversed())
 	}
 	
@@ -324,7 +327,7 @@ public extension String {
 	}
 	
 	/// Returns size with attributes, limited to width.
-	public func sizeWithAttributes(_ attrs: [String : AnyObject], maxWidth width: CGFloat) -> CGSize {
+	public func size(withAttributes attrs: [String : AnyObject], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		#if os(iOS)
 			return self.boundingRectWithSize(constraintSize, options: .UsesLineFragmentOrigin, attributes: attrs, context: nil).size
@@ -334,7 +337,7 @@ public extension String {
 	}
 
 	/// Capitalizes the first letter of the string.
-	public var stringByCapitalizingFirstLetter: String {
+	public var capitalizingFirstLetter: String {
 		if self.characters.count == 0 {
 			return self
 		}
@@ -345,7 +348,7 @@ public extension String {
 		return firstLetter.uppercased() + restOfString
 	}
 
-	public var stringByDeletingLastCharacter: String {
+	public var deletingLastCharacter: String {
 		if self.isEmpty {
 			fatalError("Cannot delete last character from an empty string!")
 		}
@@ -354,7 +357,7 @@ public extension String {
 	}
 
 	/// Removes the prefix from the string.
-	public func stringByDeletingPrefix(_ prefix: String) -> String {
+	public func deleting(prefix: String) -> String {
 		if !self.hasPrefix(prefix) {
 			return self
 		}
@@ -363,7 +366,7 @@ public extension String {
 	}
 
 	/// Removes the suffix from the string.
-	public func stringByDeletingSuffix(_ suffix: String) -> String {
+	public func deleting(suffix: String) -> String {
 		if !self.hasSuffix(suffix) {
 			return self
 		}
@@ -375,12 +378,12 @@ public extension String {
 	/// Encodes string by adding percent escapes. Unlike
 	/// stringByAddingPercentEncodingWithAllowedCharacters(...), this never
 	/// returns nil, but instead falls back to self.
-	public var stringByEncodingIllegalURLCharacters: String {
+	public var encodingIllegalURLCharacters: String {
 		return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? self
 	}
 
 	/// Lowercases the first letter of the string.
-	public var stringByLowercasingFirstLetter: String {
+	public var lowercasingFirstLetter: String {
 		if self.characters.count == 0 {
 			return self
 		}
@@ -392,7 +395,7 @@ public extension String {
 	}
 
 	/// Trims the string to maximum length of maxLen, trimming the middle.
-	public func stringByMiddleTrimmingToMaximumLengthOf(_ maxLen: Int) -> String {
+	public func truncatingMiddle(toMaximumLengthOf maxLen: Int) -> String {
 		if self.characters.count < maxLen {
 			return self
 		}
@@ -403,7 +406,7 @@ public extension String {
 	}
 
 	/// Prepends prefix enough times so that it has the specific length.
-	public func stringByPaddingFrontToLength(_ length: Int, withString padString: String) -> String {
+	public func paddingFront(toLength length: Int, withString padString: String) -> String {
 		var str = self
 		while str.characters.count + padString.characters.count < length {
 			str = padString + str
@@ -411,10 +414,15 @@ public extension String {
 		return str
 	}
 	
+	/// Returns the suffix of length. Doesn't do any range checking.
+	public func suffix(ofLength length: Int) -> String {
+		return self.substring(from: self.characters.index(self.endIndex, offsetBy: -1 * length))
+	}
+	
 	/// Removes characters from the set from the beginning of the string.
-	public func stringByTrimmingLeftCharactersInSet(_ set: CharacterSet) -> String {
+	public func trimmingLeftCharacters(in set: CharacterSet) -> String {
 		var index = 0
-		while index < self.characters.count && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMemberOfCharacterSet(set) {
+		while index < self.characters.count && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index += 1
 		}
 		
@@ -422,9 +430,9 @@ public extension String {
 	}
 	
 	/// Removes characters from the set from the end of the string.
-	public func stringByTrimmingRightCharactersInSet(_ set: CharacterSet) -> String {
+	public func trimmingRightCharacters(in set: CharacterSet) -> String {
 		var index = self.characters.count - 1
-		while index >= 0 && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMemberOfCharacterSet(set) {
+		while index >= 0 && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index -= 1
 		}
 		
@@ -434,15 +442,10 @@ public extension String {
 	}
 
 	/// Trims whitespace whitespace and newlines.
-	public var stringByTrimmingWhitespace: String {
+	public var trimmingWhitespace: String {
 		return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 	}
 	
-	/// Returns the suffix of length. Doesn't do any range checking.
-	public func suffixOfLength(_ length: Int) -> String {
-		return self.substring(from: self.characters.index(self.endIndex, offsetBy: -1 * length))
-	}
-
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
@@ -472,9 +475,9 @@ public extension String {
 		}
 		
 		// It's about right, see for some obviously phony emails
-		if self.hasCaseInsensitiveSubstring("fuck") || self.hasCaseInsensitiveSubstring("shit")
-			|| self.hasCaseInsensitiveSubstring("qwert") || self.hasCaseInsensitiveSubstring("asdf")
-			|| self.hasCaseInsensitiveSubstring("mail@mail.com") || self.hasCaseInsensitiveSubstring("1234") {
+		if self.hasCaseInsensitive(substring: "fuck") || self.hasCaseInsensitive(substring: "shit")
+			|| self.hasCaseInsensitive(substring: "qwert") || self.hasCaseInsensitive(substring: "asdf")
+			|| self.hasCaseInsensitive(substring: "mail@mail.com") || self.hasCaseInsensitive(substring: "1234") {
 			return .phony
 		}
 		
@@ -482,6 +485,121 @@ public extension String {
 	}
 	
 }
+
+
+public extension String {
+	
+	@available(*, deprecated, renamed: "draw(centeredIn:withAttributes:)")
+	public func drawCenteredInRect(_ rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
+		return self.draw(centeredIn: rect, withAttributes: atts)
+	}
+	
+	@available(*, deprecated, renamed: "draw(rightAlignedTo:withAttributes:)")
+	public func drawRightAlignedToPoint(_ point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
+		return self.draw(rightAlignedTo: point, withAttributes: atts)
+	}
+	
+	@available(*, deprecated, renamed: "hasCaseInsensitive(prefix:)")
+	public func hasCaseInsensitivePrefix(_ prefix: String) -> Bool {
+		return self.hasCaseInsensitive(prefix: prefix)
+	}
+	
+	@available(*, deprecated, renamed: "hasCaseInsensitive(substring:)")
+	public func hasCaseInsensitiveSubstring(_ substring: String) -> Bool {
+		return self.hasCaseInsensitive(substring: substring)
+	}
+	
+	@available(*, deprecated, renamed: "hasCaseInsensitive(suffix:)")
+	public func hasCaseInsensitiveSuffix(_ suffix: String) -> Bool {
+		return self.hasCaseInsensitive(suffix: suffix)
+	}
+	
+	@available(*, deprecated, renamed: "isCaseInsensitivelyEqual(to:)")
+	public func isCaseInsensitivelyEqualToString(_ string: String) -> Bool {
+		return self.isCaseInsensitivelyEqual(to: string)
+	}
+	
+	@available(*, deprecated, renamed: "md5Digest")
+	public var MD5Digest: String {
+		return self.md5Digest
+	}
+	
+	@available(*, deprecated, renamed: "middleTruncated(toFitWidth:withAttributes:)")
+	public func middleTruncatedStringToFitWidth(_ width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
+		return self.truncatingMiddle(toFitWidth: width, withAttributes: atts)
+	}
+	
+	@available(*, deprecated, renamed: "reversed()")
+	public var reverseString: String {
+		return self.reversed()
+	}
+	
+	@available(*, deprecated, renamed: "size(withAttributes:maximumWidth:)")
+	public func sizeWithAttributes(_ attrs: [String : AnyObject], maxWidth width: CGFloat) -> CGSize {
+		return self.size(withAttributes: attrs, maximumWidth: width)
+	}
+	
+	@available(*, deprecated, renamed: "capitalizingFirstLetter")
+	public var stringByCapitalizingFirstLetter: String {
+		return self.capitalizingFirstLetter
+	}
+	
+	@available(*, deprecated, renamed: "deletingLastCharacter")
+	public var stringByDeletingLastCharacter: String {
+		return self.deletingLastCharacter
+	}
+	
+	@available(*, deprecated, renamed: "deleting(prefix:)")
+	public func stringByDeletingPrefix(_ prefix: String) -> String {
+		return self.deleting(prefix: prefix)
+	}
+	
+	@available(*, deprecated, renamed: "deleting(suffix:)")
+	public func stringByDeletingSuffix(_ suffix: String) -> String {
+		return self.deleting(suffix: suffix)
+	}
+	
+	@available(*, deprecated, renamed: "encodingIllegalURLCharacters")
+	public var stringByEncodingIllegalURLCharacters: String {
+		return self.encodingIllegalURLCharacters
+	}
+	
+	@available(*, deprecated, renamed: "lowercasingFirstLetter")
+	public var stringByLowercasingFirstLetter: String {
+		return self.lowercasingFirstLetter
+	}
+
+	@available(*, deprecated, renamed: "truncatingMiddle(toMaximumLengthOf:)")
+	public func stringByMiddleTrimmingToMaximumLengthOf(_ maxLen: Int) -> String {
+		return self.truncatingMiddle(toMaximumLengthOf: maxLen)
+	}
+	
+	@available(*, deprecated, renamed: "paddingFront(toLength:withString:)")
+	public func stringByPaddingFrontToLength(_ length: Int, withString padString: String) -> String {
+		return self.paddingFront(toLength: length, withString: padString)
+	}
+	
+	@available(*, deprecated, renamed: "trimmingLeftCharacters(in:)")
+	public func stringByTrimmingLeftCharactersInSet(_ set: CharacterSet) -> String {
+		return self.trimmingLeftCharacters(in: set)
+	}
+	
+	@available(*, deprecated, renamed: "trimmingRightCharacters(in:)")
+	public func stringByTrimmingRightCharactersInSet(_ set: CharacterSet) -> String {
+		return self.trimmingRightCharacters(in: set)
+	}
+	
+	@available(*, deprecated, renamed: "trimmingWhitespace")
+	public var stringByTrimmingWhitespace: String {
+		return self.trimmingWhitespace
+	}
+	
+	@available(*, deprecated, renamed: "suffix(ofLength:)")
+	public func suffixOfLength(_ length: Int) -> String {
+		return self.suffix(ofLength: length)
+	}
+}
+
 
 /// Numeric methods
 public extension String {
@@ -506,7 +624,7 @@ public extension String {
 				}
 			}
 
-			if char.isMemberOfCharacterSet(charSet) {
+			if char.isMember(of: charSet) {
 				numberString.append(char)
 			} else {
 				break
@@ -526,7 +644,7 @@ public extension String {
 		let charSet = CharacterSet(charactersIn: "0123456789")
 		var numberString = ""
 		for char in self.characters {
-			if char.isMemberOfCharacterSet(charSet) {
+			if char.isMember(of: charSet) {
 				numberString.append(char)
 			} else {
 				break

@@ -122,7 +122,7 @@ public final class XULocalizationCenter: NSObject {
 		}
 		
 		if let identifier = UserDefaults.standard.string(forKey: XULanguageDefaultsKey) {
-			_lock.performLockedBlock {
+			_lock.perform {
 				self._cachedLanguageIdentifiers[bundle] = identifier
 			}
 			return identifier
@@ -131,7 +131,7 @@ public final class XULocalizationCenter: NSObject {
 		if let languages = UserDefaults.standard.array(forKey: "AppleLanguages") as? [String] {
 			for language in languages {
 				if let identifier = self._identifierFromComposedIdentifier(language, inBundle: bundle) {
-					_lock.performLockedBlock {
+					_lock.perform {
 						self._cachedLanguageIdentifiers[bundle] = identifier
 					}
 					return identifier
@@ -140,7 +140,7 @@ public final class XULocalizationCenter: NSObject {
 		}
 		
 		if let identifier = self._identifierFromComposedIdentifier(Locale.current.identifier, inBundle: bundle) {
-			_lock.performLockedBlock {
+			_lock.perform {
 				self._cachedLanguageIdentifiers[bundle] = identifier
 			}
 			return identifier
@@ -149,7 +149,7 @@ public final class XULocalizationCenter: NSObject {
 		/// This is pure desperation - the bundle is unlikely to have localization
 		/// for any requested languages.
 		let identifier = Locale.current.identifier
-		_lock.performLockedBlock {
+		_lock.perform {
 			self._cachedLanguageIdentifiers[bundle] = identifier
 		}
 
@@ -169,7 +169,7 @@ public final class XULocalizationCenter: NSObject {
 		defs.set(languages, forKey: "AppleLanguages")
 		defs.synchronize()
 		
-		_lock.performLockedBlock {
+		_lock.perform {
 			self._cachedLanguageIdentifiers = [:]
 		}
 	}

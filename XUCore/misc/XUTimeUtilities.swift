@@ -66,7 +66,7 @@ open class XUTime {
 		}
 		
 		var composedString = "\(hourString) \(minuteString) \(secondsString)"
-		composedString = composedString.replacingOccurrences(of: "  ", with: " ").stringByTrimmingWhitespace
+		composedString = composedString.replacingOccurrences(of: "  ", with: " ").trimmingWhitespace
 		
 		return composedString
 

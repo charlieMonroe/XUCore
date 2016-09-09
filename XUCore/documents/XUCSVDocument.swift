@@ -34,7 +34,7 @@ open class XUCSVDocument {
 		// Go through the CSV file
 		while ptr < len {
 			let c = csv.characters[ptr]
-			if !c.isMemberOfCharacterSet(importantChars) {
+			if !c.isMember(of: importantChars) {
 				// Unimportant char -> skip
 				ptr = csv.characters.index(after: ptr)
 				continue
@@ -56,10 +56,10 @@ open class XUCSVDocument {
 					// single quotes
 					
 					// Cutting the quote at the beginning
-					field = field.stringByDeletingPrefix("\"")
+					field = field.deleting(prefix: "\"")
 					
 					// Cutting the quote at the end
-					field = field.stringByDeletingSuffix("\"")
+					field = field.deleting(suffix: "\"")
 					
 					// Replacing all double quotes with single quotes
 					field = field.replacingOccurrences(of: "\"\"", with: "\"")
@@ -107,10 +107,10 @@ open class XUCSVDocument {
 								// double-quotes with single quotes
 								
 								// Cutting the quote at the beginning
-								field = field.stringByDeletingPrefix("\"")
+								field = field.deleting(prefix: "\"")
 								
 								// Cutting the quote at the end
-								field = field.stringByDeletingSuffix("\"")
+								field = field.deleting(suffix: "\"")
 								
 								// Replacing all double quotes with single quotes
 								field = field.replacingOccurrences(of: "\"\"", with: "\"")
@@ -144,10 +144,10 @@ open class XUCSVDocument {
 					// double-quotes with single quotes
 					
 					// Cutting the quote at the beginning
-					field = field.stringByDeletingPrefix("\"")
+					field = field.deleting(prefix: "\"")
 					
 					// Cutting the quote at the end
-					field = field.stringByDeletingSuffix("\"")
+					field = field.deleting(suffix: "\"")
 					
 					// Replacing all double quotes with single quotes
 					field = field.replacingOccurrences(of: "\"\"", with: "\"")

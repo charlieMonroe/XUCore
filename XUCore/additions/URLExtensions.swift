@@ -10,7 +10,7 @@ import Foundation
 
 public extension URL {
 
-	fileprivate func _booleanResourceValueForKey(_ key: String, defaultValue: Bool = false) -> Bool {
+	fileprivate func _booleanResourceValue(forKey key: String, defaultValue: Bool = false) -> Bool {
 		var value: AnyObject?
 		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
 
@@ -21,7 +21,7 @@ public extension URL {
 		return number.boolValue
 	}
 
-	fileprivate func _resourceValueForKey<T>(_ key: String) -> T? {
+	fileprivate func _resourceValue<T>(forKey key: String) -> T? {
 		var value: AnyObject?
 		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
 		return value as? T
@@ -38,7 +38,7 @@ public extension URL {
 	/// Date the URL was created at.
 	public var creationDate: Date? {
 		get {
-			return self._resourceValueForKey(URLResourceKey.creationDateKey.rawValue)
+			return self._resourceValue(forKey: URLResourceKey.creationDateKey.rawValue)
 		}
 		set {
 			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.creationDateKey.rawValue)
@@ -59,13 +59,13 @@ public extension URL {
 
 	/// Returns true if the current URL is a directory.
 	public var isDirectory: Bool {
-		return self._booleanResourceValueForKey(URLResourceKey.isDirectoryKey.rawValue)
+		return self._booleanResourceValue(forKey: URLResourceKey.isDirectoryKey.rawValue)
 	}
 
 	/// Returns true if the current URL is a directory.
 	public var isExcludedFromBackup: Bool {
 		get {
-			return self._booleanResourceValueForKey(URLResourceKey.isExcludedFromBackupKey.rawValue)
+			return self._booleanResourceValue(forKey: URLResourceKey.isExcludedFromBackupKey.rawValue)
 		}
 		set {
 			self._setBooleanResourceValue(newValue, forKey: URLResourceKey.isExcludedFromBackupKey.rawValue)
@@ -74,13 +74,13 @@ public extension URL {
 
 	/// Returns true if the URL is writable.
 	public var isWritable: Bool {
-		return _booleanResourceValueForKey(URLResourceKey.isWritableKey.rawValue)
+		return _booleanResourceValue(forKey: URLResourceKey.isWritableKey.rawValue)
 	}
 
 	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
 	public var modificationDate: Date? {
 		get {
-			return self._resourceValueForKey(URLResourceKey.contentModificationDateKey.rawValue)
+			return self._resourceValue(forKey: URLResourceKey.contentModificationDateKey.rawValue)
 		}
 		set {
 			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.contentModificationDateKey.rawValue)
@@ -110,7 +110,7 @@ public extension URL {
 	#if os(OSX)
 		/// Thumbnail image for supported files.
 		public var thumbnailImage: XUImage? {
-			return self._resourceValueForKey(URLResourceKey.thumbnailKey.rawValue)
+			return self._resourceValue(forKey: URLResourceKey.thumbnailKey.rawValue)
 		}
 	#endif
 

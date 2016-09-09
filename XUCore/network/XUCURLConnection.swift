@@ -12,10 +12,10 @@ public let XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "XUCURLConnect
 
 /// This class is somewhat similar to NSURLConnection, except supports only HTTP
 /// and internally uses the CURL command.
-open class XUCURLConnection: NSObject {
+public final class XUCURLConnection: NSObject {
 	
 	/// Returns if the response is within 200-299 range.
-	open class func connectionResponseWithin200Range(_ data: Data) -> Bool {
+	public class func connectionResponseWithin200Range(_ data: Data) -> Bool {
 		guard let response = String(data: data) else {
 			return false
 		}
@@ -28,65 +28,65 @@ open class XUCURLConnection: NSObject {
 	fileprivate var _headerFields: [String] = [ ]
 	
 	/// If set to true, the connection follows redirects.
-	open var allowsRedirects: Bool = false
+	public var allowsRedirects: Bool = false
 	
 	/// Allows custom URL. By default, contains the same value as URL
-	open var forcedURLString: String
+	public var forcedURLString: String
 	
 	/// HTTP body.
-	open var HTTPBody: String?
+	public var httpBody: String?
 	
 	/// HTTP method used.
-	open var HTTPMethod: String = "GET"
+	public var httpMethod: String = "GET"
 	
 	/// If true, ignores invalid certificates.
-	open var ignoresInvalidCertificates: Bool = false
+	public var ignoresInvalidCertificates: Bool = false
 	
 	/// If true, the response data contains header fields.
-	open var includeHeadersInResponse: Bool = false
+	public var includeHeadersInResponse: Bool = false
 	
 	/// If set to a non-null value, Basic AUTH is used.
-	fileprivate(set) open var password: String?
+	fileprivate(set) public var password: String?
 	
 	/// If set to true, the request only gets the response code (doesn't download
 	/// the body of the response).
-	open var responseCodeOnly: Bool = false
+	public var responseCodeOnly: Bool = false
 	
 	/// If initialized with NSURL, this property contains the URL
-	open let url: URL?
+	public let url: URL?
 	
 	/// If set to a non-null value, Basic AUTH is used.
-	fileprivate(set) open var username: String?
+	fileprivate(set) public var username: String?
 	
 	
 	
 	/// Adds a custom header field
-	open func addHeaderField(_ field: String) {
+	public func addHeaderField(_ field: String) {
 		_headerFields.append(field)
 	}
 	
 	/// Adds JSON to the accept header field
-	open func addJSONAcceptToHeader() {
+	public func addJSONAcceptToHeader() {
 		self.addHeaderField("Accept: application/json")
 	}
 	
 	/// Adds JSON to the content header field
-	open func addJSONContentToHeader() {
+	public func addJSONContentToHeader() {
 		self.addHeaderField("Content-Type: application/json")
 	}
 	
 	/// Adds X-WWW-FORM-URLENCODED to the accept header field
-	open func addURLEncodedWebFormContentToHeader() {
+	public func addURLEncodedWebFormContentToHeader() {
 		self.addHeaderField("Content-Type: application/x-www-form-urlencoded")
 	}
 	
 	/// Adds XML to the accept header field
-	open func addXMLAcceptToHeader() {
+	public func addXMLAcceptToHeader() {
 		self.addHeaderField("Accept: application/xml")
 	}
 	
 	/// Adds XML to the content header field
-	open func addXMLContentToHeader() {
+	public func addXMLContentToHeader() {
 		self.addHeaderField("Content-Type: application/xml")
 	}
 	
@@ -107,7 +107,7 @@ open class XUCURLConnection: NSObject {
 	}
 	
 	/// Sends a synchronous request and returns data. Always nonnull.
-	open func sendSynchronousRequest() -> Data {
+	public func sendSynchronousRequest() -> Data {
 		var args: [String] = [ ]
 		if self.responseCodeOnly {
 			args.append("-sL")
@@ -119,13 +119,13 @@ open class XUCURLConnection: NSObject {
 			}
 		}
 		
-		if self.HTTPBody != nil {
+		if self.httpBody != nil {
 			args.append("-d")
-			args.append(self.HTTPBody!)
+			args.append(self.httpBody!)
 		}
 		
 		args.append("-X")
-		args.append(self.HTTPMethod)
+		args.append(self.httpMethod)
 		
 		if self.allowsRedirects {
 			args.append("-L")
@@ -202,7 +202,7 @@ open class XUCURLConnection: NSObject {
 	}
 	
 	/// Uses self.sendSynchronousRequest and then attempts to deserialize the data
-	open func sendSynchronousRequestAndReturnJSONObject() -> AnyObject? {
+	public func sendSynchronousRequestAndReturnJSONObject() -> AnyObject? {
 		let data = self.sendSynchronousRequest()
 		let obj = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 		if obj == nil {
@@ -213,19 +213,19 @@ open class XUCURLConnection: NSObject {
 	}
 	
 	/// Sets HTTP body data and sets the method to POST if POST is true
-	open func setHTTPBody(_ data: String, withPOSTRequest POST: Bool = true) {
-		self.HTTPBody = data
-		self.HTTPMethod = "POST"
+	public func setHTTPBody(_ data: String, withPOSTRequest POST: Bool = true) {
+		self.httpBody = data
+		self.httpMethod = "POST"
 	}
 	
 	/// Sets username and password.
-	open func setUsername(_ name: String, andPassword pass: String) {
+	public func setUsername(_ name: String, andPassword pass: String) {
 		self.username = name
 		self.password = pass
 	}
 	
 	/// Sets a value for header field. The value may be anything.
-	open func setValue(_ value: AnyObject, forHTTPHeaderField field: String) {
+	public func setValue(_ value: AnyObject, forHTTPHeaderField field: String) {
 		_headerFields.append("\(field): \(value)")
 	}
 	

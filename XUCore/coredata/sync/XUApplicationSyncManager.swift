@@ -26,7 +26,7 @@ private func _XULogFileAtURL(_ rootURL: URL, fileURL: URL, level: Int) {
 	
 	// Don't care if the URL isn't a folder - file mananger will simple return
 	// nothing
-	for aURL in FileManager.default.contentsOfDirectoryAtURL(fileURL) {
+	for aURL in FileManager.default.contentsOfDirectory(at: fileURL) {
 		_XULogFileAtURL(rootURL, fileURL: aURL, level: level + 1)
 	}
 }
@@ -90,7 +90,7 @@ open class XUApplicationSyncManager {
 			return
 		}
 	
-		let contents = FileManager.default.contentsOfDirectoryAtURL(self.syncRootFolderURL!)
+		let contents = FileManager.default.contentsOfDirectory(at: self.syncRootFolderURL!)
 		for fileURL in contents {
 			let documentUUID = fileURL.lastPathComponent
 			if documentUUID == ".DS_Store" || documentUUID.isEmpty {

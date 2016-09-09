@@ -46,7 +46,7 @@ public extension NSBezierPath {
 		NSGraphicsContext.restoreGraphicsState()
 	}
 
-	public func drawBlurWithColor(_ color: NSColor, andRadius radius: CGFloat) {
+	public func drawBlur(with color: NSColor, andRadius radius: CGFloat) {
 		let bounds = self.bounds.insetBy(dx: -radius, dy: -radius)
 
 		let shadow = NSShadow()
@@ -123,10 +123,10 @@ public extension NSBezierPath {
 	}
 
 	public func strokeInside() {
-		self.strokeInsideWithinRect(CGRect())
+		self.strokeInside(within: CGRect())
 	}
 
-	public func strokeInsideWithinRect(_ clipRect: CGRect) {
+	public func strokeInside(within clipRect: CGRect) {
 		let thisContext = NSGraphicsContext.current()
 
 		let lineWidth = self.lineWidth

@@ -13,7 +13,9 @@ private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [St
 		let url = URL(string: urlString)
 		if url == nil {
 			// URL creation failed, report this to the user
-			XULog("\(key) contains a nonnull value, but it doesn't seem to be a proper URL '\(urlString)'")
+			// Don't use XULog here, since this is called from XUAppSetup.init
+			// and XULog accesses XUAppSetup when it initializes.
+			print("\(key) contains a nonnull value, but it doesn't seem to be a proper URL '\(urlString)'")
 		}
 		return url
 	}else{

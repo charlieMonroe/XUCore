@@ -177,7 +177,7 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	
 	/// Returns MD5 digest of the data.
 	open var MD5Digest: String {
-		return self.data.MD5Digest
+		return self.data.md5Digest
 	}
 	
 	/// Removes character at index by shifting the remainder of the string left.

@@ -42,7 +42,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	}
 	
 	public func makeIterator() -> XUWeakArrayGenerator<T> {
-		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).sliceWithRange(0 ..< _innerArray.count))
+		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).slice(with: 0 ..< _innerArray.count))
 	}
 	
 	public var last: T? {

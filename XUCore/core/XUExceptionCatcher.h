@@ -27,10 +27,10 @@ typedef void(^XUExceptionFinallyHandler)(void);
 /// Performs a block within try statement and calls the finallyHandler when executed
 /// without an exception. Must be invoked only if the instance has been created
 /// with -initWithCatchHandler:andFinallyBlock:
--(void)performBlock:(nonnull void(^)(void))block;
+-(void)performBlock:(nonnull __attribute__((__noescape__)) void(^)(void))block;
 
 /// Performs the block with custom catch handler and finally block.
--(void)performBlock:(nonnull void(^)(void))block withCatchHandler:(nonnull XUExceptionCatchHandler)catchHandler andFinallyBlock:(nonnull XUExceptionFinallyHandler)finallyBlock;
+-(void)performBlock:(nonnull __attribute__((__noescape__)) void(^)(void))block withCatchHandler:(nonnull __attribute__((__noescape__)) XUExceptionCatchHandler)catchHandler andFinallyBlock:(nonnull __attribute__((__noescape__)) XUExceptionFinallyHandler)finallyBlock;
 
 
 /// Catch handler.

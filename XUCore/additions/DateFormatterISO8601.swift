@@ -43,7 +43,7 @@ public extension DateFormatter {
 		let formatter = DateFormatter()
 		formatter.timeStyle = .none
 		formatter.dateStyle = .short
-		let formattedDate = formatter.string(from: Date.dateWithDay(4, month: 5, andYear: 1999)!)
+		let formattedDate = formatter.string(from: Date.date(withDay: 4, month: 5, year: 1999)!)
 		return formattedDate.range(of: "5")!.lowerBound < formattedDate.range(of: "4")!.lowerBound
 	}()
 	
@@ -59,7 +59,7 @@ public extension DateFormatter {
 public extension Date {
 	
 	/// Tries to parse the string as an ISO 8601 string.
-	public static func dateWithISO8601String(_ string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Date? {
+	public static func date(withISO8601 string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>? = nil) -> Date? {
 		var date: AnyObject?
 		if !DateFormatter._ISO8601Formatter.getObjectValue(&date, for: string, errorDescription: error) {
 			DateFormatter._ISO8601FormatterWithoutTime.getObjectValue(&date, for: string, errorDescription: error)
@@ -68,8 +68,13 @@ public extension Date {
 		return date as? Date
 	}
 	
+	@available(*, deprecated, renamed: "date(withISO8601:andReturnError:)")
+	public static func dateWithISO8601String(_ string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Date? {
+		return self.date(withISO8601: string, andReturnError: error)
+	}
+	
 	/// Returns a formatted string with options.
-	func ISO8601FormattedStringWithOptions(_ options: XUISO8601Option) -> String {
+	public func iso8601FormattedString(withOptions options: XUISO8601Option) -> String {
 		switch options {
 			case .withoutTime:
 				return DateFormatter._ISO8601FormatterWithoutTime.string(from: self)

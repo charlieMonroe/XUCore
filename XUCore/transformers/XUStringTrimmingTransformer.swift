@@ -23,7 +23,7 @@ open class XUStringTrimmingTransformer: ValueTransformer {
 			return nil
 		}
 		
-		return str.lines.first!.stringByTrimmingWhitespace
+		return str.lines.first!.trimmingWhitespace
 	}
 	
 }

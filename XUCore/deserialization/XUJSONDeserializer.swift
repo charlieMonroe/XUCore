@@ -436,10 +436,10 @@ public final class XUJSONDeserializer {
 		}
 		
 		/// Bool value
-		if str.hasCaseInsensitivePrefix("t") || str.hasCaseInsensitivePrefix("y") {
+		if str.hasCaseInsensitive(prefix: "t") || str.hasCaseInsensitive(prefix: "y") {
 			// true / yes
 			return (value: true, error: .none)
-		} else if str.hasCaseInsensitivePrefix("f") || str.hasCaseInsensitivePrefix("n") {
+		} else if str.hasCaseInsensitive(prefix: "f") || str.hasCaseInsensitive(prefix: "n") {
 			// false / no
 			return (value: false, error: .none)
 		}
@@ -450,7 +450,7 @@ public final class XUJSONDeserializer {
 				return (value: date, error: .none)
 			}
 		} else {
-			if let date = Date.dateWithISO8601String(str, andReturnError: nil) {
+			if let date = Date.date(withISO8601: str, andReturnError: nil) {
 				return (value: date, error: .none)
 			}
 		}
@@ -483,7 +483,7 @@ public final class XUJSONDeserializer {
 		if object.dateFromString != nil {
 			dateOptional = object.dateFromString!(str, forKey: key)
 		} else {
-			dateOptional = Date.dateWithISO8601String(str, andReturnError: nil)
+			dateOptional = Date.date(withISO8601: str, andReturnError: nil)
 		}
 
 		guard let date = dateOptional else {
@@ -513,7 +513,7 @@ public final class XUJSONDeserializer {
 	
 	fileprivate func _transformValueToDecimalNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: XUJSONDeserializationError) {
 		if let number = value as? NSNumber {
-			return (NSDecimalNumber.decimalNumberWithNumber(number), .none)
+			return (NSDecimalNumber.decimalNumber(withNumber: number), .none)
 		}
 		
 		if let str = value as? String {

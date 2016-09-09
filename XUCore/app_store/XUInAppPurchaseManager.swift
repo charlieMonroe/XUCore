@@ -127,7 +127,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 			let allowedIdentifiers = self.delegate.availableProductIdentifiers
 			for hashedIdentifier in savedPurchases {
 				for inAppPurchaseID in allowedIdentifiers {
-					let hashedInAppIdentifier = inAppPurchaseID + ProcessInfo.processInfo.processName.MD5Digest.MD5Digest
+					let hashedInAppIdentifier = inAppPurchaseID + ProcessInfo.processInfo.processName.md5Digest.md5Digest
 					if hashedInAppIdentifier == hashedIdentifier && !self.purchasedProductIdentifiers.contains(inAppPurchaseID) {
 						self.purchasedProductIdentifiers.append(inAppPurchaseID)
 					}
@@ -283,7 +283,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		XULog("Saving in app purchases \(self.purchasedProductIdentifiers)")
 		
 		let hashedIdentifiers = self.purchasedProductIdentifiers.map { (identifier) -> String in
-			return identifier + ProcessInfo.processInfo.processName.MD5Digest.MD5Digest
+			return identifier + ProcessInfo.processInfo.processName.md5Digest.md5Digest
 		}
 		
 		UserDefaults.standard.set(hashedIdentifiers, forKey: XUInAppPurchasesDefaultsKey)

@@ -11,9 +11,9 @@ import Foundation
 /// Private class that is for holding the timer fire block.
 private class __XUTimerBlockHolder {
 	
-	let timerBlock: Timer.XUTimerBlock
+	let timerBlock: Timer.TimerBlock
 	
-	init(timerBlock: @escaping Timer.XUTimerBlock) {
+	init(timerBlock: @escaping Timer.TimerBlock) {
 		self.timerBlock = timerBlock
 	}
 	
@@ -21,6 +21,9 @@ private class __XUTimerBlockHolder {
 
 public extension Timer {
 	
+	public typealias TimerBlock = (Timer) -> Void
+	
+	@available(*, deprecated, renamed: "TimerBlock")
 	public typealias XUTimerBlock = (Timer) -> Void
 	
 	@objc fileprivate class func __executionMethod(_ timer: Timer) {
@@ -28,11 +31,12 @@ public extension Timer {
 		holder.timerBlock(timer)
 	}
 	
-	public class func scheduledTimerWithTimeInterval(_ seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping XUTimerBlock) -> Timer {
+	@discardableResult
+	public class func scheduledTimer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
 		return self.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	
-	public class func timerWithTimeInterval(_ seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping XUTimerBlock) -> Timer {
+	public class func timer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
 		return self.init(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	

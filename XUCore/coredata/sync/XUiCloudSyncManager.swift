@@ -22,7 +22,7 @@ open class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	fileprivate func _startDownloadingUbiquitousItemAtURL(_ URL: URL) {
 		if URL.isDirectory {
-			let contents = FileManager.default.contentsOfDirectoryAtURL(URL)
+			let contents = FileManager.default.contentsOfDirectory(at: URL)
 			for fileURL in contents {
 				self._startDownloadingUbiquitousItemAtURL(fileURL)
 			}

@@ -86,11 +86,11 @@ public final class XUObjCProperty: CustomStringConvertible, Hashable {
 		
 		/// ObjC type. If it's an object, starts with @, followed by ", class
 		/// name and ", e.g. @"NSString"
-		let typeProperty = allProperties.find({ $0.hasPrefix("T") })?.stringByDeletingPrefix("T") ?? ""
+		let typeProperty = allProperties.find(where: { $0.hasPrefix("T") })?.deleting(prefix: "T") ?? ""
 		self.isScalar = !typeProperty.hasPrefix("@")
 		
 		if !self.isScalar && typeProperty.characters.count > 3 {
-			let typeString = typeProperty.stringByDeletingPrefix("@\"").stringByDeletingSuffix("\"")
+			let typeString = typeProperty.deleting(prefix: "@\"").deleting(suffix: "\"")
 			self.className = typeString
 		} else {
 			self.className = nil

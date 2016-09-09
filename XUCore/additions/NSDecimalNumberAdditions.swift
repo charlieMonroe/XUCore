@@ -94,10 +94,11 @@ public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
 
 public extension NSDecimalNumber {
 	
-	public class func decimalNumberWithDouble(_ value: Double) -> NSDecimalNumber {
-		return self.decimalNumberWithNumber(value as NSNumber?)
+	public class func decimalNumber(withDouble value: Double) -> NSDecimalNumber {
+		return self.decimalNumber(withNumber: value as NSNumber?)
 	}
-	public class func decimalNumberWithNumber(_ number: NSNumber?) -> NSDecimalNumber {
+	
+	public class func decimalNumber(withNumber number: NSNumber?) -> NSDecimalNumber {
 		if number == nil {
 			return NSDecimalNumber.zero
 		}
@@ -111,7 +112,7 @@ public extension NSDecimalNumber {
 	
 	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
 	/// NSDecimalNumber, (NS)String and NSNumber.
-	public class func decimalNumberWithValue(_ value: AnyObject?) -> NSDecimalNumber {
+	public class func decimalNumber(withValue value: Any?) -> NSDecimalNumber {
 		if value == nil {
 			return NSDecimalNumber.zero
 		}
@@ -125,7 +126,7 @@ public extension NSDecimalNumber {
 		}
 		
 		if let number = value as? NSNumber {
-			return NSDecimalNumber.decimalNumberWithNumber(number)
+			return NSDecimalNumber.decimalNumber(withNumber: number)
 		}
 		
 		XULogStacktrace("Trying to create NSDecimalNumber from unsupported kind of value \(value!)")
@@ -133,8 +134,13 @@ public extension NSDecimalNumber {
 	}
 	
 	
-	/// Returns an absolute value of the decimal number.
+	@available(*, deprecated, renamed: "absoluteValue")
 	public var absoluteValueDecimalNumber: NSDecimalNumber {
+		return self.absoluteValue
+	}
+	
+	/// Returns an absolute value of the decimal number.
+	public var absoluteValue: NSDecimalNumber {
 		if self.doubleValue < 0.0 {
 			return self * (-1.0)
 		}
@@ -142,8 +148,13 @@ public extension NSDecimalNumber {
 		return self
 	}
 	
-	/// Returns a ceiled decimal number.
+	@available(*, deprecated, renamed: "ceiled")
 	public var ceiledDecimalNumber: NSDecimalNumber {
+		return self.ceiled
+	}
+	
+	/// Returns a ceiled decimal number.
+	public var ceiled: NSDecimalNumber {
 		if self.decimalPart.doubleValue < 0.01 {
 			/* Consider self already ceiled. */
 			return self
@@ -154,11 +165,16 @@ public extension NSDecimalNumber {
 	
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
 	public var decimalPart: NSDecimalNumber {
-		return self - self.integralDecimalNumber
+		return self - self.integral
+	}
+	
+	@available(*, deprecated, renamed: "integral")
+	public var integralDecimalNumber: NSDecimalNumber {
+		return self.integral
 	}
 	
 	/// Returns number without the decimal part.
-	public var integralDecimalNumber: NSDecimalNumber {
+	public var integral: NSDecimalNumber {
 		return NSDecimalNumber(value: Double(Int(self.doubleValue)) as Double)
 	}
 	

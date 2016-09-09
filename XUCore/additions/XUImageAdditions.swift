@@ -23,12 +23,18 @@ import Foundation
 public extension XUImage {
 	
 	/// Draws the rect centered within rect with fraction 1.0.
+	@available(*, deprecated, renamed: "drawCentered(in:)")
 	public func drawCenteredInRect(_ rect: CGRect) {
 		self.drawCenteredInRect(rect, fraction: 1.0)
 	}
 	
-	/// Draws the rect centered within rect. The image is scaled, if necessary.
+	@available(*, deprecated, renamed: "drawCentered(in:fraction:)")
 	public func drawCenteredInRect(_ rect: CGRect, fraction: CGFloat) {
+		self.drawCentered(in: rect, fraction: fraction)
+	}
+	
+	/// Draws the rect centered within rect. The image is scaled, if necessary.
+	public func drawCentered(in rect: CGRect, fraction: CGFloat = 1.0) {
 		let image = self
 		let mySize = image.size
 		var targetRect = rect

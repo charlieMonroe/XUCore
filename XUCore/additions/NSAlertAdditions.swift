@@ -49,21 +49,9 @@ public extension NSAlert {
 		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreBundle))
 	}
 	
-	/// Begins the alert as sheet from window with secure text field as accessory
-	/// view, containing initialValue.
-	public func beginSheetModalWithSecureTextField(_ initialValue: String, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
-		self.beginSheetModalWithTextField(initialValue, secure: true, forWindow: window, completionHandler: handler)
-	}
-	
-	/// Begins the alert as sheet from window with a text field as accessory view,
-	/// containing initialValue.
-	public func beginSheetModalWithTextField(_ initialValue: String, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
-		self.beginSheetModalWithTextField(initialValue, secure: false, forWindow: window, completionHandler: handler)
-	}
-	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue. If secure is true, the text field is secure.
-	fileprivate func beginSheetModalWithTextField(_ initialValue: String, secure: Bool, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
+	public func beginSheetModal(withTextField initialValue: String, secure: Bool = false, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
 
 		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
 		self.beginSheetModal(for: window, completionHandler: { (response) in
@@ -82,7 +70,7 @@ public extension NSAlert {
 	
 	/// Create a pop up button as its own accessory view in the alert and populates
 	/// it with menuItems.
-	public func createAccessoryPopUpButtonWithMenuItems(_ menuItems: [NSMenuItem]) -> NSPopUpButton {
+	public func createAccessoryPopUpButton(withMenuItems menuItems: [NSMenuItem]) -> NSPopUpButton {
 		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
 		self.accessoryView = popUpButton
 		
@@ -119,45 +107,25 @@ public extension NSAlert {
 	}
 	
 	/// Runs modal and displays a text field as accessory view. Nil is returned
-	/// when the user dismisses the dialog with anything else but 
-	/// NSAlertFirstButtonReturn.
-	public func runModalWithTextField(_ initialValue: String) -> String? {
-		return self.runModalWithTextField(initialValue, secure: false)
-	}
-	
-	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. If secure is ture, the text field is secure.
-	public func runModalWithTextField(_ initialValue: String, secure: Bool) -> String? {
+	public func runModal(withTextField initialValue: String, secure: Bool = false) -> String? {
 		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
 		
-		if !self._isDefaultButton(self.runModal()) {
+		if !self._isDefaultButton(self.runModalOnMainThread()) {
 			return nil // Cancelled
 		}
 		
 		return (self.accessoryView as! NSTextField).stringValue
 	}
 	
-	/// Runs modal and displays a text field as accessory view. Nil is returned
-	/// when the user dismisses the dialog with anything else but
-	/// NSAlertFirstButtonReturn. Makes sure that the alert is run on main thread.
-	public func runModalWithTextFieldOnMainThread(_ initialValue: String) -> String? {
-		return self.runModalWithTextFieldOnMainThread(initialValue, secure: false)
-	}
+}
+
+public extension NSAlert {
 	
-	/// Runs modal and displays a text field as accessory view. If secure is true,
-	/// the text field is secure. Nil is returned when the user dismisses the 
-	/// dialog with anything else but NSAlertFirstButtonReturn. Makes sure that
-	/// the alert is run on main thread.
-	public func runModalWithTextFieldOnMainThread(_ initialValue: String, secure: Bool) -> String? {
-		var result: String? = nil
-		
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
-			result = self.runModalWithTextField(initialValue, secure: secure)
-		}
-		
-		return result
+	@available(*, deprecated, renamed: "runModal(withTextField:secure:)")
+	public func runModalWithTextFieldOnMainThread(_ initialValue: String, secure: Bool = false) -> String? {
+		return self.runModal(withTextField: initialValue, secure: secure)
 	}
-	
 }
 

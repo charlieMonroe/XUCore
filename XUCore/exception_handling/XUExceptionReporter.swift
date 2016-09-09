@@ -61,7 +61,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	fileprivate let _exception: NSException
 	fileprivate let _nib: NSNib
-	fileprivate var _topLevelObjects: NSArray?
+	fileprivate var _topLevelObjects: NSArray = []
 	
 	@IBOutlet fileprivate var _reporterWindow: NSWindow!
 	
@@ -83,7 +83,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		super.init()
 		
-		_nib.instantiate(withOwner: self, topLevelObjects: &_topLevelObjects!)
+		_nib.instantiate(withOwner: self, topLevelObjects: &_topLevelObjects)
 		
 		_reporterWindow.delegate = self
 		_reporterWindow.localizeWindow(XUCoreBundle)
@@ -155,13 +155,13 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		let url = XUAppSetup.exceptionHandlerReportURL!
 		
 		
-		let request = NSMutableURLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
+		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
 		request.addJSONContentToHeader()
 		request.httpMethod = "POST"
-		request.httpBody = try? JSONSerialization.data(withJSONObject: reportDictionary, options: JSONSerialization.WritingOptions())
+		request.setJSONBody(reportDictionary)
 		
 		var genericResponse: URLResponse?
-		let _ = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: &genericResponse)
+		let _ = try? NSURLConnection.sendSynchronousRequest(request, returning: &genericResponse)
 		guard let response = genericResponse as? HTTPURLResponse else {
 			self._reportFailedReportSend()
 			return

@@ -56,13 +56,13 @@ public protocol XUDownloadCenterOwner: AnyObject {
 	var refererURL: URL? { get }
 	
 	/// Possibility to modify the request for downloading a page. No-op by default.
-	func setupURLRequest(_ request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: URL)
+	func setupURLRequest(_ request: inout URLRequest, forDownloadingPageAtURL pageURL: URL)
 }
 
 public extension XUDownloadCenterOwner {
 	
 	/// Possibility to modify the request for downloading a page. No-op by default.
-	public func setupURLRequest(_ request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: URL) {
+	public func setupURLRequest(_ request: inout URLRequest, forDownloadingPageAtURL pageURL: URL) {
 		// No-op
 	}
 	
@@ -329,8 +329,8 @@ open class XUDownloadCenter {
 	/// should be modified and supplied with fields to be sent in a POST request.
 	public typealias POSTFieldsModifier = (_ fields: inout [String : String]) -> Void
 	
-	/// A closure typealias for modifying a NSMutableURLRequest.
-	public typealias URLRequestModifier = (_ request: NSMutableURLRequest) -> Void
+	/// A closure typealias for modifying a URLRequest.
+	public typealias URLRequestModifier = (_ request: inout URLRequest) -> Void
 	
 	@available(*, deprecated, renamed: "POSTFieldsModifier")
 	public typealias XUPOSTFieldsModifier = POSTFieldsModifier
@@ -392,7 +392,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Sets the Cookie HTTP header field on request.
-	fileprivate func _setupCookieFieldForURLRequest(_ request: NSMutableURLRequest, andBaseURL originalBaseURL: URL? = nil) {
+	fileprivate func _setupCookieFieldForURLRequest(_ request: inout URLRequest, andBaseURL originalBaseURL: URL? = nil) {
 		guard let url = request.url else {
 			return
 		}
@@ -455,34 +455,32 @@ open class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
-	open func downloadDataAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> Data? {
-		if URL == nil {
+	open func downloadDataAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> Data? {
+		if url == nil {
 			return nil
 		}
 		
-		let request = NSMutableURLRequest(url: URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
+		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
 		request.userAgent = agent
 		request.referer = referer
 		
-		self._setupCookieFieldForURLRequest(request)
+		self._setupCookieFieldForURLRequest(&request)
 		
 		if request.acceptType == nil {
 			request.acceptType = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
 		}
 		
-		self.owner.setupURLRequest(request, forDownloadingPageAtURL: URL!)
+		self.owner.setupURLRequest(&request, forDownloadingPageAtURL: url!)
 
-		if modifier != nil {
-			modifier!(request)
-		}
+		modifier?(&request)
 		
 		if XUDebugLog.isLoggingEnabled && self.logTraffic {
-			var logString = "Method: \(request.httpMethod)\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
+			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
 			if request.httpBody != nil && request.httpBody!.count > 0 {
 				logString += "\nHTTP Body: \(String(data: request.httpBody) ?? "")"
 			}
 			
-			XULog("[\(self.owner.name)] Will be downloading URL \(URL!):\n\(logString)", method: referingFunction)
+			XULog("[\(self.owner.name)] Will be downloading URL \(url!):\n\(logString)", method: referingFunction)
 		}
 		
 		do {
@@ -515,9 +513,7 @@ open class XUDownloadCenter {
 		let data = self.downloadDataAtURL(URL, withReferer: referer, asAgent: agent) { (request) -> Void in
 			request.acceptType = URLRequest.ContentType.JSON
 			
-			if modifier != nil {
-				modifier!(request)
-			}
+			modifier?(&request)
 		}
 		
 		if data == nil {
@@ -533,7 +529,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads a pure website source.
-	open func downloadWebSiteSourceAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> String? {
+	open func downloadWebSiteSourceAtURL(_ URL: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: ((inout URLRequest) -> Void)? = nil) -> String? {
 		if URL == nil {
 			return nil
 		}
@@ -695,8 +691,8 @@ open class XUDownloadCenter {
 	
 	/// Based on the request's URL, the Cookie field is filled with cookies from
 	/// the default storage.
-	open func setupCookieFieldForURLRequest(_ request: NSMutableURLRequest, andBaseURL baseURL: URL? = nil) {
-		self._setupCookieFieldForURLRequest(request, andBaseURL: baseURL)
+	open func setupCookieFieldForURLRequest(_ request: inout URLRequest, andBaseURL baseURL: URL? = nil) {
+		self._setupCookieFieldForURLRequest(&request, andBaseURL: baseURL)
 	}
 	
 	/// Sends a HEAD request to `URL` and returns the status code or 0.
@@ -710,18 +706,16 @@ open class XUDownloadCenter {
 			return nil
 		}
 		
-		let req = NSMutableURLRequest(url: URL!)
+		var req = URLRequest(url: URL!)
 		req.httpMethod = "HEAD"
 		req.referer = referer
 		
-		self._setupCookieFieldForURLRequest(req)
+		self._setupCookieFieldForURLRequest(&req)
 		
-		if modifier != nil {
-			modifier!(req)
-		}
+		modifier?(&req)
 		
 		do {
-			let (_, response) = try XUSynchronousDataLoader(request: req as URLRequest, andSession: self.session).loadData()
+			let (_, response) = try XUSynchronousDataLoader(request: req, andSession: self.session).loadData()
 			
 			guard let HTTPResponse = response as? HTTPURLResponse else {
 				if self.logTraffic {

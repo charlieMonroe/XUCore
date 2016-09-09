@@ -17,7 +17,12 @@ public extension NSRecursiveLock {
 		self.name = name
 	}
 	
-	public func performLockedBlock(_ block: @escaping (Void) -> Void) {
+	@available(*, deprecated, renamed: "perform(locked:)")
+	public func performLockedBlock(_ block: (Void) -> Void) {
+		self.perform(locked: block)
+	}
+	
+	public func perform(locked block: (Void) -> Void) {
 		self.lock()
 		
 		let handler = XUExceptionCatcher(catchHandler: { (exception) -> Void in

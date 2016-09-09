@@ -11,18 +11,18 @@ import MapKit
 
 public extension MKPolygon {
 	
-	fileprivate class func _parseCoordinatesFromString(_ string: String) -> [CLLocation] {
+	fileprivate class func _parseCoordinates(fromString string: String) -> [CLLocation] {
 		let polygonStrings = string.components(separatedBy: "),(")
 		let exteriorRingString = polygonStrings.first!
 		
 		let coordinatesRegex = XURegex(pattern: "([-\\d\\.]+\\s[-\\d\\.]+)", andOptions: .caseless)
 		let matches = exteriorRingString.allOccurrencesOfRegex(coordinatesRegex)
 		return matches.map({ (match) -> CLLocation in
-			return self._parseCoordinateFromString(match)
+			return self._parseCoordinate(fromString: match)
 		})
 	}
 	
-	fileprivate class func _parseCoordinateFromString(_ coordinateString: String) -> CLLocation {
+	fileprivate class func _parseCoordinate(fromString coordinateString: String) -> CLLocation {
 		let points = coordinateString.components(separatedBy: " ")
 		let lon = points.first!
 		let lat = points.last!
@@ -32,13 +32,13 @@ public extension MKPolygon {
 	/// Parses the string as WKT and returns an MKPolygon.
 	/// If the string is a point, a single-point polygon is returned.
 	/// Nil is returned if no points are found.
-	public convenience init?(WKTString string: String!) {
+	public convenience init?(wktString string: String!) {
 		if string == nil {
 			return nil
 		}
 		
 		/** We currently only support points and polygons. */
-		let coordinates = MKPolygon._parseCoordinatesFromString(string)
+		let coordinates = MKPolygon._parseCoordinates(fromString: string)
 		if coordinates.count == 0 {
 			return nil
 		}

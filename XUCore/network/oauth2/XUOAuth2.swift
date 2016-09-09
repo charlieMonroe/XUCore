@@ -107,7 +107,7 @@ public final class XUOAuth2Configuration {
 		self.init(authorizationBaseURL: authorizationBaseURL, clientID: clientID,
 		          name: name, redirectionScheme: redirectionScheme,
 		          secret: secret, tokenEndpointURL: tokenEndpointURL,
-		          tokenNeverExpires: dict.booleanForKey(ConfigurationKeys.tokenNeverExpiresKey))
+		          tokenNeverExpires: dict.boolean(forKey: ConfigurationKeys.tokenNeverExpiresKey))
 	}
 	
 }
@@ -218,7 +218,7 @@ public final class XUOAuth2Client {
 		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String?, andExpirationDate expirationDate: Date) {
 			self.client = client
 			self.accessToken = accessToken
-			self.identifier = String.UUIDString
+			self.identifier = String.uuidString
 			self.refreshToken = refreshToken
 			self.tokenExpirationDate = expirationDate
 
@@ -288,7 +288,7 @@ public final class XUOAuth2Client {
 				return false
 			}
 			
-			let expiresInSeconds: TimeInterval = obj.doubleForKey("expires_in")
+			let expiresInSeconds: TimeInterval = obj.double(forKey: "expires_in")
 			self.accessToken = accessToken
 			self.tokenExpirationDate = Date(timeIntervalSinceNow: expiresInSeconds)
 			
@@ -308,7 +308,7 @@ public final class XUOAuth2Client {
 			XUOAuth2Client.save()
 		}
 		
-		public func setupURLRequest(_ request: NSMutableURLRequest, forDownloadingPageAtURL pageURL: URL) {
+		public func setupURLRequest(_ request: inout URLRequest, forDownloadingPageAtURL pageURL: URL) {
 			if self.isTokenExpired {
 				_ = self.renewToken() // TODO: if we fail, notify the delegate
 			}
@@ -335,7 +335,7 @@ public final class XUOAuth2Client {
 	
 	/// Returns a clint with `name`, if it is registered.
 	public class func client(named name: String) -> XUOAuth2Client? {
-		return self.registeredClients.find({ $0.configuration.name == name })
+		return self.registeredClients.find(where: { $0.configuration.name == name })
 	}
 	
 	/// Reads clients from defaults. This is currently a private method, just 
@@ -462,7 +462,7 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		var expiresInSeconds: TimeInterval = obj.doubleForKey("expires_in")
+		var expiresInSeconds: TimeInterval = obj.double(forKey: "expires_in")
 		if self.configuration.tokenNeverExpires {
 			expiresInSeconds = Date.distantFuture.timeIntervalSinceReferenceDate
 		} else if expiresInSeconds == 0.0 {

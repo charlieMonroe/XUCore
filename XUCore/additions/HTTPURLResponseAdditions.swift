@@ -15,8 +15,13 @@ public extension HTTPURLResponse {
 		return self.allHeaderFields["Content-Type"] as? String
 	}
 	
-	/// Returns whether the statusCode of self is > 200 and < 300.
+	@available(*, deprecated, renamed: "isStatusCodeWithin200Range")
 	public var statusCodeWithin200Range: Bool {
+		return self.isStatusCodeWithin200Range
+	}
+	
+	/// Returns whether the statusCode of self is > 200 and < 300.
+	public var isStatusCodeWithin200Range: Bool {
 		return self.statusCode >= 200 && self.statusCode < 300
 	}
 	

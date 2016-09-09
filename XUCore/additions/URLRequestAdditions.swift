@@ -38,30 +38,30 @@ public extension URLRequest {
 }
 
 
-public extension NSMutableURLRequest {
+public extension URLRequest {
 	
-	public func addAccept(_ accept: String) {
+	public mutating func addAccept(_ accept: String) {
 		self.addValue(accept, forHTTPHeaderField: "Accept")
 	}
-	public func addContentType(_ contentType: String) {
+	public mutating func addContentType(_ contentType: String) {
 		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
 	}
-	public func addJSONAcceptToHeader() {
+	public mutating func addJSONAcceptToHeader() {
 		self.addAccept(URLRequest.ContentType.JSON)
 	}
-	public func addJSONContentToHeader() {
+	public mutating func addJSONContentToHeader() {
 		self.addContentType(URLRequest.ContentType.JSON)
 	}
-	public func addMultipartFormDataContentToHeader() {
+	public mutating func addMultipartFormDataContentToHeader() {
 		self.addContentType("multipart/form-data")
 	}
-	public func addWWWFormContentToHeader() {
+	public mutating func addWWWFormContentToHeader() {
 		self.addContentType(URLRequest.ContentType.WWWForm)
 	}
-	public func addXMLAcceptToHeader() {
+	public mutating func addXMLAcceptToHeader() {
 		self.addAccept(URLRequest.ContentType.XML)
 	}
-	public func addXMLContentToHeader() {
+	public mutating func addXMLContentToHeader() {
 		self.addContentType(URLRequest.ContentType.XML)
 	}
 	
@@ -101,14 +101,14 @@ public extension NSMutableURLRequest {
 		}
 	}
 	
-	public func setFormBody(_ formBody: [String : String]) {
+	public mutating func setFormBody(_ formBody: [String : String]) {
 		let bodyString = formBody.urlQueryString
 		self.httpBody = bodyString.data(using: String.Encoding.utf8)
 	}
-	public func setJSONBody(_ obj: AnyObject) {
+	public mutating func setJSONBody(_ obj: Any) {
 		self.httpBody = try? JSONSerialization.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
 	}
-	public func setUsername(_ name: String, andPassword password: String) {
+	public mutating func setUsername(_ name: String, andPassword password: String) {
 		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString(options: NSData.Base64EncodingOptions()) else {
 			XULog("Failed to set name and password - cannot create a base64-encoded string!")
 			return

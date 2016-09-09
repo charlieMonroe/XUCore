@@ -99,7 +99,7 @@ public class XUKeychainAccess {
 			isNew = true
 		}
 		
-		dict[kSecValueData as String] = password.dataUsingEncoding(NSUTF8StringEncoding)
+		dict[kSecValueData as String] = password.dataUsingEncoding(.utf8)
 
 		if isNew {
 			return SecItemAdd(dict, nil) == noErr

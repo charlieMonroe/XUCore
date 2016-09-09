@@ -71,7 +71,7 @@ public extension NSImage {
 	
 	/// Draws the image at point from rect. If respectFlipped is true, the current
 	/// context's flip is respected.
-	public func drawAtPoint(_ point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
+	public func draw(at point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
 		var rect: CGRect = CGRect()
 		rect.origin = point
 		rect.size = self.size
@@ -143,7 +143,7 @@ public extension NSImage {
 	}
 	
 	/// Returns NSData with a bitmap image file type representation.
-	public func representationForFileType(_ fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> Data? {
+	public func representation(forFileType fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> Data? {
 		guard let temp = self.tiffRepresentation else {
 			return nil
 		}
@@ -154,56 +154,56 @@ public extension NSImage {
 	}
 	
 	/// Returns a basic BMP image representation.
-	public var BMPRepresentation: Data? {
-		return self.representationForFileType(.BMP)
+	public var bmpRepresentation: Data? {
+		return self.representation(forFileType: .BMP)
 	}
 	
 	/// Returns a basic GIF image representation.
-	public var GIFRepresentation: Data? {
-		return self.representationForFileType(.GIF)
+	public var gifRepresentation: Data? {
+		return self.representation(forFileType: .GIF)
 	}
 	
 	/// Returns a GIF image representation
-	public func GIFRepresentationWithDitheredTransparency(_ dither: Bool) -> Data? {
-		return self.representationForFileType(.GIF, properties: [ NSImageDitherTransparency: dither as AnyObject ])
+	public func gifRepresentation(withDitheredTransparency dither: Bool) -> Data? {
+		return self.representation(forFileType: .GIF, properties: [ NSImageDitherTransparency: dither as AnyObject ])
 	}
 	
 	/// Returns a basic JPEG image representation.
-	public var JPEGRepresentation: Data? {
-		return self.representationForFileType(.JPEG)
+	public var jpegRepresentation: Data? {
+		return self.representation(forFileType: .JPEG)
 	}
 	
 	/// Returns a JPEG image representation with specified quality.
-	public func JPEGRepresentationUsingCompressionFactor(_ compressionFactor: Int, progressive: Bool) -> Data? {
+	public func jpegRepresentation(usingCompressionFactor compressionFactor: Int, progressive: Bool) -> Data? {
 		let properties: [String : AnyObject] = [
 			NSImageCompressionFactor: compressionFactor as AnyObject,
 			NSImageProgressive: progressive as AnyObject
 		]
-		return self.representationForFileType(.JPEG, properties: properties)
+		return self.representation(forFileType: .JPEG, properties: properties)
 	}
 	
 	/// Returns a basic JPEG 2000 image representation.
-	public var JPEG2000Representation: Data? {
-		return self.representationForFileType(.JPEG)
+	public var jpeg2000Representation: Data? {
+		return self.representation(forFileType: .JPEG)
 	}
 	
 	/// Returns a basic PNG image representation.
-	public var PNGRepresentation: Data? {
-		return self.representationForFileType(.PNG)
+	public var pngRepresentation: Data? {
+		return self.representation(forFileType: .PNG)
 	}
 	
 	/// Returns a PNG image representation with interlace as defined.
-	public func PNGRepresentationInterlaced(_ interlace: Bool) -> Data? {
-		return self.representationForFileType(.PNG, properties: [ NSImageInterlaced : interlace as AnyObject ])
+	public func pngRepresentation(interlaced interlace: Bool) -> Data? {
+		return self.representation(forFileType: .PNG, properties: [ NSImageInterlaced : interlace as AnyObject ])
 	}
 	
 	/// Returns a TIFF image representation with defined compression.
-	public func TIFFRepresentationUsingCompression(_ compression: NSTIFFCompression) -> Data? {
-		return self.representationForFileType(.TIFF, properties: [ NSImageCompressionMethod: compression.rawValue as AnyObject ])
+	public func tiffRepresentation(usingCompression compression: NSTIFFCompression) -> Data? {
+		return self.representation(forFileType: .TIFF, properties: [ NSImageCompressionMethod: compression.rawValue as AnyObject ])
 	}
 	
 	/// Draws the image as tile in specified rect.
-	public func tileInRect(_ rect: CGRect) {
+	public func tile(inRect rect: CGRect) {
 		let size = self.size
 		var destRect = CGRect(x: rect.minX, y: rect.minY, width: size.width, height: size.height)
 		let top = rect.minY + rect.height

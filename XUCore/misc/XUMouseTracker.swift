@@ -51,14 +51,14 @@ open class XUMouseTracker: NSObject {
 	open static var sharedMouseTracker = XUMouseTracker()
 
 	fileprivate func _notifyObserversAboutClickAtPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
-		_lock.performLockedBlock {
+		_lock.perform {
 			for observer in self._observers {
 				observer.mouseClickedAtPoint(point, atDisplay: displayID, withEventFlags: flags)
 			}
 		}
 	}
 	fileprivate func _notifyObserversAboutMovementToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
-		_lock.performLockedBlock {
+		_lock.perform {
 			for observer in self._observers {
 				observer.mouseMovedToPoint(point, atDisplay: displayID, withEventFlags: flags)
 			}
@@ -87,7 +87,7 @@ open class XUMouseTracker: NSObject {
 	}
 
 	open func addObserver(_ observer: XUMouseTrackingObserver) {
-		_lock.performLockedBlock {
+		_lock.perform {
 			XULog("adding an observer \(observer)")
 			self._observers.append(observer)
 		}
@@ -102,7 +102,7 @@ open class XUMouseTracker: NSObject {
 	}
 
 	open func removeObserver(_ observer: XUMouseTrackingObserver) {
-		_lock.performLockedBlock {
+		_lock.perform {
 			if let index = self._observers.index(where: { $0 === observer }) {
 				self._observers.remove(at: index)
 			}

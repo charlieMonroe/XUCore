@@ -81,7 +81,7 @@ open class XUManagedObject: NSManagedObject {
 		
 		self.setValue(value, forKey: syncChange.attributeName)
 	
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			var changes = _attributeValueChanges[self.syncUUID] ?? [:]
 			
 			// Change it back to null if necessary
@@ -100,7 +100,7 @@ open class XUManagedObject: NSManagedObject {
 		let UUID = self.syncUUID
 		self.managedObjectContext!.delete(self)
 		
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			_deletionChanges.insert(UUID)
 		}
 	}
@@ -129,7 +129,7 @@ open class XUManagedObject: NSManagedObject {
 		
 		self.setValue(valueSet, forKey: syncChange.relationshipName)
 		
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			var relationshipValues = _relationshipValueChanges[self.syncUUID] ?? [:]
 			
 			var UUIDs = relationshipValues[syncChange.relationshipName] ?? Set()
@@ -149,7 +149,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 		
 		// Need to find the object
-		guard let objectToDelete = valueSet.find({ $0.syncUUID == targetUUID }) else {
+		guard let objectToDelete = valueSet.find(where: { $0.syncUUID == targetUUID }) else {
 			XULog("Cannot remove object with syncID \(targetUUID) - should be removed for relationship \(syncChange.relationshipName)")
 			return
 		}
@@ -157,7 +157,7 @@ open class XUManagedObject: NSManagedObject {
 		valueSet.remove(objectToDelete)
 		self.setValue(valueSet, forKey: syncChange.relationshipName)
 		
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			var relationshipValues = _relationshipValueChanges[self.syncUUID] ?? [:]
 			
 			// Don't care if the array doesn't exist
@@ -181,7 +181,7 @@ open class XUManagedObject: NSManagedObject {
 		
 			self.setValue(nil, forKey: syncChange.relationshipName)
 		
-			_changesLock.performLockedBlock({
+			_changesLock.perform(locked: {
 				var relationshipValues = _relationshipValueChanges[self.syncUUID] ?? [:]
 				
 				relationshipValues[syncChange.relationshipName] = Set()
@@ -213,7 +213,7 @@ open class XUManagedObject: NSManagedObject {
 		let value = items.first!
 		self.setValue(value, forKey: syncChange.relationshipName)
 		
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			var relationshipValues = _relationshipValueChanges[self.syncUUID] ?? [:]
 			
 			relationshipValues[syncChange.relationshipName] = Set(arrayLiteral: targetUUID)
@@ -321,7 +321,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	
 		// We now make sure that the last values saved are non-nil.
-		_changesLock.performLockedBlock {
+		_changesLock.perform {
 			var objDict = _relationshipValueChanges[self.syncUUID] ?? [:]
 			
 			let UUIDs: Set<String> = Set(commitedObjects.map({ $0.syncUUID }))
@@ -543,7 +543,7 @@ open class XUManagedObject: NSManagedObject {
 	///			-initWithEntity:insertIntoManagedObjectContext:
  	open func awakeFromNonSyncInsert() {
 		// Sets a new TICDS Sync ID
-		self.ticdsSyncID = String.UUIDString
+		self.ticdsSyncID = String.uuidString
 	}
 
 	/// This method will create sync change if necessary for this object.

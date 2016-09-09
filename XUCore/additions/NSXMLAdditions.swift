@@ -29,24 +29,25 @@ public extension XMLNode {
 		return self.stringValue?.integerValue ?? 0
 	}
 	
-	public func firstNodeOnXPath(_ xpath: String) -> XMLNode? {
+	
+	public func firstNode(onXPath xpath: String) -> XMLNode? {
 		return self.nodes(forXPath: xpath).first
 	}
-	public func integerValueOfFirstNodeOnXPath(_ xpath: String) -> Int {
-		return self.integerValueOfFirstNodeOnXPaths([ xpath ])
+	public func integerValue(ofFirstNodeOnXPath xpath: String) -> Int {
+		return self.integerValue(ofFirstNodeOnXPaths: [ xpath ])
 	}
-	public func integerValueOfFirstNodeOnXPaths(_ xpaths: [String]) -> Int {
-		return self.stringValueOfFirstNodeOnXPaths(xpaths)?.integerValue ?? 0
+	public func integerValue(ofFirstNodeOnXPaths xpaths: [String]) -> Int {
+		return self.stringValue(ofFirstNodeOnXPaths: xpaths)?.integerValue ?? 0
 	}
-	public func lastNodeOnXPath(_ xpath: String) -> XMLNode? {
+	public func lastNode(onXPath xpath: String) -> XMLNode? {
 		return self.nodes(forXPath: xpath).last
 	}
-	public func stringValueOfFirstNodeOnXPath(_ xpath: String) -> String? {
-		return self.firstNodeOnXPath(xpath)?.stringValue
+	public func stringValue(ofFirstNodeOnXPath xpath: String) -> String? {
+		return self.firstNode(onXPath: xpath)?.stringValue
 	}
-	public func stringValueOfFirstNodeOnXPaths(_ xpaths: [String]) -> String? {
+	public func stringValue(ofFirstNodeOnXPaths xpaths: [String]) -> String? {
 		for path in xpaths {
-			if let result = self.stringValueOfFirstNodeOnXPath(path) {
+			if let result = self.stringValue(ofFirstNodeOnXPath: path) {
 				if result.characters.count > 0 {
 					return result
 				}
@@ -54,13 +55,13 @@ public extension XMLNode {
 		}
 		return nil
 	}
-	public func stringValueOfLastNodeOnXPath(_ xpath: String) -> String? {
-		return self.lastNodeOnXPath(xpath)?.stringValue
+	public func stringValue(ofLastNodeOnXPath xpath: String) -> String? {
+		return self.lastNode(onXPath: xpath)?.stringValue
 	}
-	public func integerValueOfAttributeNamed(_ attributeName: String) -> Int {
+	public func integerValue(ofAttributeNamed attributeName: String) -> Int {
 		return 0
 	}
-	public func stringValueOfAttributeNamed(_ attributeName: String) -> String? {
+	public func stringValue(ofAttributeNamed attributeName: String) -> String? {
 		return nil
 	}
 	
@@ -68,10 +69,10 @@ public extension XMLNode {
 
 public extension XMLElement {
 	
-	public override func integerValueOfAttributeNamed(_ attributeName: String) -> Int {
+	public override func integerValue(ofAttributeNamed attributeName: String) -> Int {
 		return self.attribute(forName: attributeName)?.integerValue ?? 0
 	}
-	public override func stringValueOfAttributeNamed(_ attributeName: String) -> String? {
+	public override func stringValue(ofAttributeNamed attributeName: String) -> String? {
 		return self.attribute(forName: attributeName)?.stringValue
 	}
 	
@@ -87,7 +88,7 @@ public extension XMLDocument {
 
 public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
 	
-	public func XMLElementWithName(_ elementName: String) -> XMLElement {
+	public func xmlElement(withName elementName: String) -> XMLElement {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
@@ -114,11 +115,11 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObj
 				
 				// We require all objects of the array to contain NSDictionaries
 				for obj in val {
-					element.addChild(obj.XMLElementWithName(key))
+					element.addChild(obj.xmlElement(withName: key))
 				}
 				
 			}else{
-				NSException(name: NSExceptionName.internalInconsistencyException, reason: "Dictionary contains a value of unsupported type.", userInfo: nil).raise()
+				fatalError("Dictionary contains a value of unsupported type.")
 			}
 		}
 		return element

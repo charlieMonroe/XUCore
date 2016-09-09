@@ -17,7 +17,12 @@ public extension NSLock {
 		self.name = name
 	}
 	
-	public func performLockedBlock(_ block: @escaping (Void) -> Void) {
+	@available(*, deprecated, renamed: "perform(locked:)")
+	public func performLockedBlock(_ block: (Void) -> Void) {
+		self.perform(locked: block)
+	}
+	
+	public func perform(locked block: (Void) -> Void) {
 		self.lock()
 		
 		let handler = XUExceptionCatcher(catchHandler: { (exception) -> Void in
@@ -25,7 +30,7 @@ public extension NSLock {
 			// occurrs, the lock is unlocked within performing the block.
 			self.unlock()
 			exception.raise() // Rethrow the exception
-			}) { /* No-op finally. */ }
+		}) { /* No-op finally. */ }
 		
 		handler.perform { () -> Void in
 			block()

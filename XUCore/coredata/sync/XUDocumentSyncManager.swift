@@ -80,7 +80,7 @@ open class XUDocumentSyncManager {
 				return
 			}
 		
-			FileManager.default.createDirectoryAtURL(fileURL)
+			FileManager.default.createDirectory(at: fileURL)
 		
 			let remoteDocumentURL = config.accountURL.appendingPathComponent(documentName)
 			let localDocumentURL = fileURL.appendingPathComponent(documentName)
@@ -100,7 +100,7 @@ open class XUDocumentSyncManager {
 				
 				try appSyncManager.createDirectoryAtURL(syncInfoURL.deletingLastPathComponent())
 				
-				let timeStamp = accountDict.doubleForKey(XUDocumentLastUploadDateKey)
+				let timeStamp = accountDict.double(forKey: XUDocumentLastUploadDateKey)
 				let syncInfoDict: NSDictionary = [
 					XUDocumentLastProcessedChangeSetKey: timeStamp
 				]
@@ -146,7 +146,7 @@ open class XUDocumentSyncManager {
 		var newestComputerID: String?
 		
 		coordinator.coordinate(readingItemAt: folderURL, options: .withoutChanges, error:nil, byAccessor: { (newURL) in
-			let contents = FileManager.default.contentsOfDirectoryAtURL(newURL)
+			let contents = FileManager.default.contentsOfDirectory(at: newURL)
 			for computerURL in contents {
 				let computerID = computerURL.lastPathComponent
 				guard computerID != ".DS_Store", !computerID.isEmpty else {
@@ -162,7 +162,7 @@ open class XUDocumentSyncManager {
 					continue
 				}
 			
-				let timeInterval = dict.doubleForKey(XUDocumentLastUploadDateKey)
+				let timeInterval = dict.double(forKey: XUDocumentLastUploadDateKey)
 				if timeInterval == 0.0 {
 					continue
 				}
@@ -407,7 +407,7 @@ open class XUDocumentSyncManager {
 		}
 		
 		var latestTimeStamp = TimeInterval(CGFloat.greatestFiniteMagnitude)
-		let contents = FileManager.default.contentsOfDirectoryAtURL(timestampsFolderURL)
+		let contents = FileManager.default.contentsOfDirectory(at: timestampsFolderURL)
 		for timestampURL in contents {
 			if timestampURL.pathExtension !=  "plist" {
 				continue
@@ -417,7 +417,7 @@ open class XUDocumentSyncManager {
 				continue
 			}
 			
-			let timestamp = dict.doubleForKey(XUDocumentLastProcessedChangeSetKey)
+			let timestamp = dict.double(forKey: XUDocumentLastProcessedChangeSetKey)
 			if timestamp == 0.0 {
 				continue
 			}
@@ -489,7 +489,7 @@ open class XUDocumentSyncManager {
 			])
 		}
 		
-		for computerURL in FileManager.default.contentsOfDirectoryAtURL(documentFolder) {
+		for computerURL in FileManager.default.contentsOfDirectory(at: documentFolder) {
 			// The computerURL is a folder that contains computer-specific sync data
 			let computerID = computerURL.lastPathComponent
 			guard computerID != ".DS_Store", !computerID.isEmpty else {
@@ -559,7 +559,7 @@ open class XUDocumentSyncManager {
 		/// We don't care if the dictionary exists or not - if it doesn't, we'll
 		/// include all the changes.
 		let infoDict = NSDictionary(contentsOf: infoDictURL) as? XUJSONDictionary
-		let lastTimestampSeen = infoDict?.doubleForKey(XUDocumentLastProcessedChangeSetKey) ?? 0.0
+		let lastTimestampSeen = infoDict?.double(forKey: XUDocumentLastProcessedChangeSetKey) ?? 0.0
 	
 		// If this is the first sync, lastTimestampSeen will be 0.0, hence 
 		// everything will be applied.
@@ -620,7 +620,7 @@ open class XUDocumentSyncManager {
 		_syncModel = NSManagedObjectModel.mergedModel(from: [ XUCoreBundle ])!
 		_syncStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: _syncModel)
 		
-		_currentComputerTempSyncURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.UUIDString + ".sql")
+		_currentComputerTempSyncURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.uuidString + ".sql")
 		
 		self.managedObjectContext = managedObjectContext
 		self.managedObjectContext.documentSyncManager = self
@@ -746,9 +746,9 @@ open class XUDocumentSyncManager {
 	
 		// Copy the document somewhere else, since the upload may take some time 
 		// and changes may be made.
-		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.UUIDString)
+		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.uuidString)
 		
-		FileManager.default.createDirectoryAtURL(tempFolderURL)
+		FileManager.default.createDirectory(at: tempFolderURL)
 	
 		do {
 			try FileManager.default.copyItem(at: fileURL, to: tempFolderURL.appendingPathComponent(fileURL.lastPathComponent))
@@ -781,7 +781,7 @@ open class XUDocumentSyncManager {
 				// Delete the old whole-store
 				do {
 					_ = try? FileManager.default.removeItem(at: targetURL) // It may not exist
-					FileManager.default.createDirectoryAtURL(tempFolderURL, withIntermediateDirectories: true)
+					FileManager.default.createDirectory(at: tempFolderURL, withIntermediateDirectories: true)
 					
 					try FileManager.default.copyItem(at: tempFolderURL.appendingPathComponent(fileURL.lastPathComponent), to: targetURL)
 					

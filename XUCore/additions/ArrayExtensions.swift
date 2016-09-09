@@ -31,26 +31,15 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 public extension Sequence {
 	
-	public typealias XUFilter = (Self.Iterator.Element) -> Bool
+	public typealias Filter = (Self.Iterator.Element) -> Bool
 	
 	/// Returns true if all of the elements in self match the filter
-	public func all(_ filter: XUFilter) -> Bool {
-		return self.find({ !filter($0) }) == nil
-	}
-	
-	/// Returns a new array by removing objects that match the filter
-	public func arrayByRemovingObjectsMatching(_ filter: XUFilter) -> [Self.Iterator.Element] {
-		var arr: [Self.Iterator.Element] = [ ]
-		for obj in self {
-			if !filter(obj) {
-				arr.append(obj)
-			}
-		}
-		return arr
+	public func all(matching filter: Filter) -> Bool {
+		return self.find(where: { !filter($0) }) == nil
 	}
 	
 	/// Counts elements that match the filter
-	public func count( _ filter: XUFilter) -> Int {
+	public func count(where filter: XUFilter) -> Int {
 		let count =  self.sum({ (obj) -> Int in
 			return filter(obj) ? 1 : 0
 		})
@@ -58,7 +47,7 @@ public extension Sequence {
 	}
 	
 	/// Returns the first element in self that matches the filter
-	public func find( _ filter: XUFilter) -> Self.Iterator.Element? {
+	public func find(where filter: Filter) -> Self.Iterator.Element? {
 		for obj in self {
 			if filter(obj) {
 				return obj
@@ -144,6 +133,17 @@ public extension Sequence {
 		return minValue
 	}
 	
+	/// Returns a new array by removing objects that match the filter
+	public func removing(matching filter: Filter) -> [Self.Iterator.Element] {
+		var arr: [Self.Iterator.Element] = [ ]
+		for obj in self {
+			if !filter(obj) {
+				arr.append(obj)
+			}
+		}
+		return arr
+	}
+	
 	/// Sums up values of elements in self.
 	public func sum<T: SignedInteger>(_ numerator: (Self.Iterator.Element) -> T) -> T {
 		var result: T = 0
@@ -189,6 +189,28 @@ public extension Sequence {
 		return result
 	}
 	
+	@available(*, deprecated, renamed: "Filter")
+	public typealias XUFilter = Filter
+	
+	@available(*, deprecated, renamed: "all(matching:)")
+	public func all(_ filter: XUFilter) -> Bool {
+		return self.all(matching: filter)
+	}
+	
+	@available(*, deprecated, renamed: "removing(matching:)")
+	public func arrayByRemovingObjectsMatching(_ filter: XUFilter) -> [Self.Iterator.Element] {
+		return self.removing(matching: filter)
+	}
+	
+	@available(*, deprecated, renamed: "count(where:)")
+	public func count( _ filter: XUFilter) -> Int {
+		return self.count(where: filter)
+	}
+	
+	@available(*, deprecated, renamed: "find(where:)")
+	public func find( _ filter: XUFilter) -> Self.Iterator.Element? {
+		return self.find(where: filter)
+	}
 	
 }
 
@@ -196,8 +218,8 @@ public extension Sequence where Iterator.Element : Equatable {
 	
 	/// Returns true if the otherArray contains the same elements as self, but
 	/// the order may differ.
-	public func containsAllObjectsFromArray(_ otherArray: [Self.Iterator.Element]) -> Bool {
-		return self.all({ otherArray.contains($0) })
+	public func containsAll(from otherArray: [Self.Iterator.Element]) -> Bool {
+		return self.all(matching: { otherArray.contains($0) })
 	}
 	
 	/// Returns a distinct array. This means that it will toss away any duplicate
@@ -210,6 +232,11 @@ public extension Sequence where Iterator.Element : Equatable {
 			}
 		}
 		return unique
+	}
+	
+	@available(*, deprecated, renamed: "containsAll(from:)")
+	public func containsAllObjectsFromArray(_ otherArray: [Self.Iterator.Element]) -> Bool {
+		return containsAll(from: otherArray)
 	}
 	
 }
@@ -262,7 +289,7 @@ public extension Array {
 	}
 	
 	/// Moves object from one index to another.
-	public mutating func moveObjectAtIndex(_ fromIndex: Int, toIndex: Int) {
+	public mutating func move(at fromIndex: Int, to toIndex: Int) {
 		if toIndex == fromIndex {
 			return
 		}
@@ -283,10 +310,19 @@ public extension Array {
 	}
 	
 	/// Returns a slice in range.
-	public func sliceWithRange(_ range: Range<Int>) -> ArraySlice<Iterator.Element> {
+	public func slice(with range: Range<Int>) -> ArraySlice<Iterator.Element> {
 		return self[range.lowerBound ..< range.upperBound]
 	}
 	
+	@available(*, deprecated, renamed: "move(at:to:)")
+	public mutating func moveObjectAtIndex(_ fromIndex: Int, toIndex: Int) {
+		self.move(at: fromIndex, to: toIndex)
+	}
+	
+	@available(*, deprecated, renamed: "slice(with:)")
+	public func sliceWithRange(_ range: Range<Int>) -> ArraySlice<Iterator.Element> {
+		return self.slice(with: range)
+	}
 }
 
 public extension Collection where Self.IndexDistance : Comparable {
@@ -316,12 +352,17 @@ public extension Collection where Self.IndexDistance : Comparable {
 public extension Array where Element : Equatable {
 
 	/// Replaces all occurrences of `element` with `newElement`.
-	public mutating func replaceAllOccurrences(_ element: Iterator.Element, withElement newElement: Iterator.Element) {
+	public mutating func replaceAllOccurrences(of element: Iterator.Element, with newElement: Iterator.Element) {
 		assert(element != newElement, "Trying to replace a value with the same value!")
 		
 		while let index = self.index(of: element) {
 			self[index] = newElement
 		}
+	}
+	
+	@available(*, deprecated, renamed: "replaceAllOccurrences(of:with:)")
+	public mutating func replaceAllOccurrences(_ element: Iterator.Element, withElement newElement: Iterator.Element) {
+		self.replaceAllOccurrences(of: element, with: newElement)
 	}
 	
 }

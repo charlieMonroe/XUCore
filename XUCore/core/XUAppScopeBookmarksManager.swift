@@ -9,7 +9,7 @@
 import Foundation
 
 
-open class XUAppScopeBookmarksManager: NSObject {
+public final class XUAppScopeBookmarksManager: NSObject {
 	
 	open static var sharedManager = XUAppScopeBookmarksManager()
 
@@ -20,7 +20,8 @@ open class XUAppScopeBookmarksManager: NSObject {
 	}
 	
 	/// Sets a URL for key. Returns if the save was successful.
-	open func setURL(_ URL: URL?, forKey defaultsKey: String) -> Bool {
+	@discardableResult
+	public func setURL(_ URL: URL?, forKey defaultsKey: String) -> Bool {
 		var newURL = URL
 		if newURL == nil {
 			_cache.removeValue(forKey: defaultsKey)
@@ -63,7 +64,7 @@ open class XUAppScopeBookmarksManager: NSObject {
 	}
 	
 	/// Returns URL for key.
-	open func URLForKey(_ defaultsKey: String) -> URL? {
+	public func URLForKey(_ defaultsKey: String) -> URL? {
 		if let result = _cache[defaultsKey] {
 			return result
 		}
