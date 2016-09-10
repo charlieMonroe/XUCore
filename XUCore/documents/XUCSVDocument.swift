@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class XUCSVDocument {
+public final class XUCSVDocument {
 	
 	/// Column separator. "," by default.
 	fileprivate var _columnSeparator: Character = Character(",")
@@ -186,13 +186,13 @@ open class XUCSVDocument {
 		return true
 	}
 	
-	open func addContentItem(_ item: [String : AnyObject]) {
+	public func addContentItem(_ item: [String : AnyObject]) {
 		_content.append(item)
 	}
 	
 	/// Char that separates columns. ',' by default, but some files use ';' 
 	/// instead.
-	open var columnSeparator: Character {
+	public var columnSeparator: Character {
 		get {
 			return _columnSeparator
 		}
@@ -201,7 +201,7 @@ open class XUCSVDocument {
 		}
 	}
 	
-	open var content: [[String : AnyObject]] {
+	public var content: [[String : AnyObject]] {
 		get {
 			return _content
 		}
@@ -210,7 +210,7 @@ open class XUCSVDocument {
 		}
 	}
 	
-	open var headerNames: [String] {
+	public var headerNames: [String] {
 		get {
 			return _headerNames
 		}
@@ -260,12 +260,12 @@ open class XUCSVDocument {
 		if !self._parseString(string) {
 			// Could not parse string
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.", inBundle: XUCoreBundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.", inBundle: XUCore.bundle)
 			])
 		}
 	}
 	
-	open var stringRepresentation: String {
+	public var stringRepresentation: String {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
@@ -326,8 +326,8 @@ open class XUCSVDocument {
 		return string
 	}
 	
-	open func writeToURL(_ URL: URL) throws {
-		try self.stringRepresentation.write(to: URL, atomically: true, encoding: String.Encoding.utf8)
+	public func write(to url: URL) throws {
+		try self.stringRepresentation.write(to: url, atomically: true, encoding: String.Encoding.utf8)
 	}
 	
 }

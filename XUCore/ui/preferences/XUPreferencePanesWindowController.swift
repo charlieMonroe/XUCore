@@ -116,7 +116,7 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
 	/// This will cause the controller to display the icon view of all the panes.
 	open func showAllPanes() {
 		self._setMainWindowContentView(self.allPanesView)
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreBundle)
+		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCore.bundle)
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = nil
@@ -132,7 +132,7 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
     open override func windowDidLoad() {
         super.windowDidLoad()
 
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreBundle)
+		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCore.bundle)
 		
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
@@ -198,7 +198,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCoreBundle)!
+		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCore.bundle)!
 		
 		self.fullScreenMinHeight = 48.0
 		self.layoutAttribute = .left
@@ -245,7 +245,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCoreBundle)!
+		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCore.bundle)!
 		
 		self.layoutAttribute = .left
 		self.loadView() // Required so that _titleLabel is available

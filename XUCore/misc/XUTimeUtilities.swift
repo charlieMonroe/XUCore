@@ -21,12 +21,12 @@ import Foundation
 }
 
 /// A class that contains various time-related methods.
-open class XUTime {
+public final class XUTime {
 	
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
-	open class func localizedTimeString(_ seconds: TimeInterval) -> String {
+	public class func localizedTimeString(_ seconds: TimeInterval) -> String {
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
-			return XULocalizedString("1 second", inBundle: XUCoreBundle)
+			return XULocalizedString("1 second", inBundle: XUCore.bundle)
 		}
 		
 		var hourString = ""
@@ -38,9 +38,9 @@ open class XUTime {
 			// i.e. at least one hour
 			let hours = eta / 3600
 			if hours == 1 {
-				hourString = XULocalizedString("1 hour", inBundle: XUCoreBundle)
+				hourString = XULocalizedString("1 hour", inBundle: XUCore.bundle)
 			} else {
-				hourString = XULocalizedFormattedString("%li hours", hours, inBundle: XUCoreBundle)
+				hourString = XULocalizedFormattedString("%li hours", hours, inBundle: XUCore.bundle)
 			}
 		}
 		
@@ -49,9 +49,9 @@ open class XUTime {
 		if eta > 60 {
 			let minutes = eta / 60
 			if minutes == 1 {
-				minuteString = XULocalizedString("1 minute", inBundle: XUCoreBundle)
+				minuteString = XULocalizedString("1 minute", inBundle: XUCore.bundle)
 			} else {
-				minuteString = XULocalizedFormattedString("%li minutes", minutes, inBundle: XUCoreBundle)
+				minuteString = XULocalizedFormattedString("%li minutes", minutes, inBundle: XUCore.bundle)
 			}
 		}
 		
@@ -59,9 +59,9 @@ open class XUTime {
 		
 		if eta > 0 {
 			if eta == 1 {
-				secondsString = XULocalizedString("1 second", inBundle: XUCoreBundle)
+				secondsString = XULocalizedString("1 second", inBundle: XUCore.bundle)
 			} else {
-				secondsString = XULocalizedFormattedString("%li seconds", eta, inBundle: XUCoreBundle)
+				secondsString = XULocalizedFormattedString("%li seconds", eta, inBundle: XUCore.bundle)
 			}
 		}
 		
@@ -74,7 +74,7 @@ open class XUTime {
 
 	/// Rounds time to certain second count. E.g. by setting seconds to 30, it
 	/// will round the time to 5 minutes.
-	open class func roundTime(_ time: TimeInterval, direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> TimeInterval {
+	public class func round(time: TimeInterval, inDirection direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> TimeInterval {
 		if seconds < 0 || !time.isFinite || TimeInterval(Int64.max) < time {
 			return 0.0
 		}
@@ -101,7 +101,7 @@ open class XUTime {
 	/// - Parameter seconds - The time in seconds.
 	/// - Parameter skipHours - If the time is < 1 hour, only includes minutes 
 	///							and seconds. True by default.
- 	open class func timeString(_ seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
+ 	public class func timeString(from seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return "00:00"
 		}
@@ -128,10 +128,4 @@ open class XUTime {
 		return String(format: "%02li:%02li:%02li", hours, minutes, seconds)
 	}
 	
-}
-
-
-@available(*, deprecated, renamed: "XUTime.roundTime")
-public func XURoundTime(_ time: TimeInterval, direction: XUTimeRoundingDirection, seconds: UInt) -> TimeInterval {
-	return XUTime.roundTime(time, direction: direction, roundingBase: Int(seconds))
 }

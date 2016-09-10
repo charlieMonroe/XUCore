@@ -66,13 +66,13 @@ open class XUApplicationSyncManager {
 	fileprivate let _metadataQuery: NSMetadataQuery = NSMetadataQuery()
 
 	/// UUIDs of documents that have been downloaded or up for download.
-	open fileprivate(set) var availableDocumentUUIDs: [String] = []
+	public fileprivate(set) var availableDocumentUUIDs: [String] = []
 	
 	/// Delegate of the app sync manager.
-	open weak var delegate: XUApplicationSyncManagerDelegate?
+	public weak var delegate: XUApplicationSyncManagerDelegate?
 	
 	/// Name of the app, usually. Whatever passed in -initWithName:.
-	open let name: String
+	public let name: String
 	
 	/// URL of the folder that's designated for sync data for this manager.
 	///
@@ -81,7 +81,7 @@ open class XUApplicationSyncManager {
 	/// any potential duplicates.
 	///
 	/// Changes to this var should only be done by subclasses.
-	open var syncRootFolderURL: URL?
+	public var syncRootFolderURL: URL?
 
 	
 	
@@ -120,38 +120,55 @@ open class XUApplicationSyncManager {
 			}
 	
 			do {
-				try self.startDownloadingItemAtURL(url)
+				try self.startDownloading(itemAt: url)
 			} catch let error as NSError {
 				XULog("Failed to start downloading item at URL \(url) because \(error)")
 			}
 		}
 	}
 
+	@available(*, unavailable, renamed: "createDirectory(at:)")
+	open func createDirectoryAtURL(_ url: URL) throws {
+		try self.createDirectory(at: url)
+	}
+	
 	/// Should create a folder at URL. By default, this only invokes NSFileManager,
 	/// but subclasses may do additional work, such as contacting the server.
-	open func createDirectoryAtURL(_ URL: URL) throws {
-		try FileManager.default.createDirectory(at: URL, withIntermediateDirectories: true, attributes: nil)
+	open func createDirectory(at url: URL) throws {
+		try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+	}
+	
+	@available(*, unavailable, renamed: "didUpdateFile(at:)")
+	open func didUpdateFileAtURL(_ fileURL: URL) {
+		self.didUpdateFile(at: fileURL)
 	}
 	
 	/// The document manager will notify the app sync manager that it has written
 	/// into (or created) a file at fileURL. Note that the fileURL may lead to a
 	/// folder. Use this on subclasses to upload the file. Note that if the upload
 	/// fails, the subclass is responsible for deferring the upload.
-	open func didUpdateFileAtURL(_ fileURL: URL) {
+	open func didUpdateFile(at fileURL: URL) {
 		/// No-op.
 	}
+	
+	@available(*, deprecated, renamed: "downloadDocument(withID:toURL:withCompletionHandler:)")
+	open func downloadDocumentWithID(_ documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
+		self.downloadDocument(withID: documentID, toURL: fileURL, withCompletionHandler: completionHandler)
+	}
+	
+		
 	
 	/// Downloads or copies document with ID to URL and calls completion handler
 	/// upon completion. The handler is always called on the main thread.
 	///
 	/// The documentURL within the response is nonnull upon success and contains 
 	/// a URL to the document file.
-	open func downloadDocumentWithID(_ documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
+	open func downloadDocument(withID documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
 		XU_PERFORM_BLOCK_ASYNC { 
 			var err: NSError?
 			var documentURL: URL?
 			do {
-				documentURL = try XUDocumentSyncManager.downloadDocumentWithID(documentID, forApplicationSyncManager: self, toURL: fileURL)
+				documentURL = try XUDocumentSyncManager.downloadDocument(withID: documentID, forApplicationSyncManager: self, toURL: fileURL)
 			} catch let error as NSError {
 				err = error
 			}
@@ -202,10 +219,15 @@ open class XUApplicationSyncManager {
 		self._checkForNewDocuments()
 	}
 	
+	@available(*, unavailable, renamed: "startDownloading(itemAt:)")
+	open func startDownloadingItemAtURL(_ url: URL) throws {
+		try self.startDownloading(itemAt: url)
+	}
+	
 	/// Start downloading item at URL. The metadata query should automatically 
 	/// notice when the download is done. You can call scanForNewDocuments()
 	/// to make sure, though.
-	open func startDownloadingItemAtURL(_ URL: URL) throws {
+	open func startDownloading(itemAt url: URL) throws {
 		XUThrowAbstractException("\(self)")
 	}
 	

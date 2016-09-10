@@ -207,11 +207,6 @@ public extension Sequence {
 		return self.count(where: filter)
 	}
 	
-	@available(*, deprecated, renamed: "find(where:)")
-	public func find( _ filter: XUFilter) -> Self.Iterator.Element? {
-		return self.find(where: filter)
-	}
-	
 }
 
 public extension Sequence where Iterator.Element : Equatable {

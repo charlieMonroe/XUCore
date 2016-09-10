@@ -179,7 +179,7 @@ public extension String {
 		string = string.replacingOccurrences(of: "&reg;", with: "®", options: .literal)
 
 		let regex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .caseless)
-		let allOccurrences = self.allValuesOfVariableNamed("C", forRegex: regex).distinct()
+		let allOccurrences = self.allValues(ofVariableNamed: "C", forRegex: regex).distinct()
 		for occurrence in allOccurrences {
 			let value: Int
 			if occurrence.hasPrefix("x") {
@@ -450,7 +450,7 @@ public extension String {
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
 	public var urlQueryDictionary: [String: String] {
-		let variablePairs = self.allVariablePairsForRegexString("&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)")
+		let variablePairs = self.allVariablePairs(forRegexString: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
 			guard let
@@ -524,7 +524,7 @@ public extension String {
 		return self.md5Digest
 	}
 	
-	@available(*, deprecated, renamed: "middleTruncated(toFitWidth:withAttributes:)")
+	@available(*, deprecated, renamed: "truncatingMiddle(toFitWidth:withAttributes:)")
 	public func middleTruncatedStringToFitWidth(_ width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
 		return self.truncatingMiddle(toFitWidth: width, withAttributes: atts)
 	}

@@ -11,7 +11,7 @@ import Foundation
 
 public final class XUAppScopeBookmarksManager: NSObject {
 	
-	open static var sharedManager = XUAppScopeBookmarksManager()
+	public static var sharedManager = XUAppScopeBookmarksManager()
 
 	fileprivate var _cache: [String : URL] = [ : ]
 	
@@ -21,8 +21,8 @@ public final class XUAppScopeBookmarksManager: NSObject {
 	
 	/// Sets a URL for key. Returns if the save was successful.
 	@discardableResult
-	public func setURL(_ URL: URL?, forKey defaultsKey: String) -> Bool {
-		var newURL = URL
+	public func setURL(_ url: URL?, forKey defaultsKey: String) -> Bool {
+		var newURL = url
 		if newURL == nil {
 			_cache.removeValue(forKey: defaultsKey)
 			
@@ -30,7 +30,7 @@ public final class XUAppScopeBookmarksManager: NSObject {
 		}else{
 			// Make sure the path is different from the current one -> otherwise 
 			// we probably haven't opened the open dialog -> will fail
-			let savedURL = self.URLForKey(defaultsKey)
+			let savedURL = self.url(forKey: defaultsKey)
 			if savedURL == nil || (savedURL! != newURL!) {
 				#if os(iOS)
 					NSUserDefaults.standardUserDefaults().setObject(URL!.absoluteString, forKey: defaultsKey)
@@ -63,8 +63,13 @@ public final class XUAppScopeBookmarksManager: NSObject {
 		return true
 	}
 	
-	/// Returns URL for key.
+	@available(*, deprecated, renamed: "url(forKey:)")
 	public func URLForKey(_ defaultsKey: String) -> URL? {
+		return self.url(forKey: defaultsKey)
+	}
+	
+	/// Returns URL for key.
+	public func url(forKey defaultsKey: String) -> URL? {
 		if let result = _cache[defaultsKey] {
 			return result
 		}

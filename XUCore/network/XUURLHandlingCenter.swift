@@ -19,9 +19,9 @@ import Cocoa
 /// This object handles opening of URLs on OS X. On OS X, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
-open class XUURLHandlingCenter: NSObject {
+public final class XUURLHandlingCenter: NSObject {
 
-	open static let defaultCenter = XUURLHandlingCenter()
+	public static let defaultCenter = XUURLHandlingCenter()
 	
 	
 	fileprivate var _handlers: [String : [XUURLHandler]] = [ : ]
@@ -29,7 +29,7 @@ open class XUURLHandlingCenter: NSObject {
 	
 	/// Adds a handler for scheme. Multiple handlers per scheme are allowed).
 	/// A strong reference is made to the handler.
-	open func addHandler(_ handler: XUURLHandler, forURLScheme scheme: String) {
+	public func add(handler: XUURLHandler, forURLScheme scheme: String) {
 		var handlers = _handlers[scheme] ?? [ ]
 		handlers.append(handler)
 		_handlers[scheme] = handlers
@@ -58,14 +58,14 @@ open class XUURLHandlingCenter: NSObject {
 	}
 	
 	/// Removes the handler for all schemes.
-	open func removeHandler(_ handler: XUURLHandler) {
+	public func remove(handler: XUURLHandler) {
 		for scheme in _handlers.keys {
-			self.removeHandler(handler, forURLScheme: scheme)
+			self.remove(handler: handler, forURLScheme: scheme)
 		}
 	}
 	
 	/// Removes the handler for a particular scheme.
-	open func removeHandler(_ handler: XUURLHandler, forURLScheme scheme: String) {
+	public func remove(handler: XUURLHandler, forURLScheme scheme: String) {
 		guard var schemes = _handlers[scheme] else {
 			return
 		}

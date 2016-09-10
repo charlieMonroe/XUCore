@@ -80,8 +80,8 @@ public extension String {
 	/// a convenience method so that a special regex doesn't have to be created
 	/// each time. Note that this method does not work property when the value
 	/// contains quotes.
-	public func valueOf(dataFieldNamed fieldName: String) -> String? {
-		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+	public func value(ofDataFieldNamed fieldName: String) -> String? {
+		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
 			"data-\(fieldName)=\"(?P<VALUE>[^\"]+)\"",
 			"data-\(fieldName)='(?P<VALUE>[^']+)'"
 		)
@@ -90,8 +90,8 @@ public extension String {
 	/// Returns a value of a meta HTML field in self. This cannot be achieved by
 	/// a single regex, since the name can be either before or after content,
 	/// and there is no way to ensure that at least one of the conditions is met.
-	public func valueOfMetaFieldNamed(_ fieldName: String) -> String? {
-		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+	public func value(ofMetaFieldNamed fieldName: String) -> String? {
+		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
 			"<meta[^>]+(itemprop|name|property)=\"\(fieldName)\"[^>]+content=\"(?P<VALUE>[^\"]+)\"",
 			"<meta[^>]+content=\"(?P<VALUE>[^\"]+)\"[^>]+(itemprop|name|property)=\"\(fieldName)\""
 		)
@@ -100,11 +100,21 @@ public extension String {
 	/// Returns a value of an input HTML field in self. This cannot be achieved by
 	/// a single regex, since the name can be either before or after content,
 	/// and there is no way to ensure that at least one of the conditions is met.
-	public func valueOfInputField(named fieldName: String) -> String? {
-		return self.getRegexVariableNamed("VALUE", forRegexStrings:
+	public func value(ofInputFieldNamed fieldName: String) -> String? {
+		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
 			"<input[^>]+(name|id)=\"\(fieldName)\"[^>]+value=\"(?P<VALUE>[^\"]+)\"",
 		    "<input[^>]+value=\"(?P<VALUE>[^\"]+)\"[^>]+(name|id)=\"\(fieldName)\""
 		)
+	}
+
+	@available(*, deprecated, renamed: "value(ofMetaFieldNamed:)")
+	public func valueOfMetaFieldNamed(_ fieldName: String) -> String? {
+		return self.value(ofMetaFieldNamed: fieldName)
+	}
+	
+	@available(*, deprecated, renamed: "value(ofInputFieldNamed:)")
+	public func valueOfInputField(named fieldName: String) -> String? {
+		return self.value(ofInputFieldNamed: fieldName)
 	}
 	
 }

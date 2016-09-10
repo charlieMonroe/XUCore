@@ -51,8 +51,9 @@ open class XUPreferencePaneViewController: NSViewController {
 		
 	}
 	
-	/// Automatically calls localizeView() on self.view.
-	open override func viewDidLoad() {
+	/// Automatically calls localizeView() on self.view. It is final and a preferred
+	/// way to update anything is in loadPreferences()
+	public final override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.view.localizeView()

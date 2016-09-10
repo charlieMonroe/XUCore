@@ -13,7 +13,7 @@ private func _rootURLForManagerWithName(_ name: String) -> URL? {
 }
 
 /// Manager for syncing via iCloud.
-open class XUiCloudSyncManager: XUApplicationSyncManager {
+public final class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	
 	fileprivate var _rootURL: URL? {
@@ -46,10 +46,10 @@ open class XUiCloudSyncManager: XUApplicationSyncManager {
 		NotificationCenter.default.addObserver(self, selector: #selector(_updateUbiquityFolderURL), name:NSNotification.Name.NSUbiquityIdentityDidChange, object:nil)
 	}
 	
-	open override func startDownloadingItemAtURL(_ URL: URL) throws {
-		self._startDownloadingUbiquitousItemAtURL(URL)
+	public override func startDownloading(itemAt url: URL) throws {
+		self._startDownloadingUbiquitousItemAtURL(url)
 		
-		try FileManager.default.startDownloadingUbiquitousItem(at: URL)
+		try FileManager.default.startDownloadingUbiquitousItem(at: url)
 	}
 	
 }

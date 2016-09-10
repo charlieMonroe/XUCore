@@ -130,7 +130,7 @@ open class XUMessageCenter: NSObject {
 				UserDefaults.standard.set(maxVersion, forKey: XUMessageCenterAppBlockedMaxVersionDefaultsKey)
 				
 				let appName = ProcessInfo.processInfo.processName
-				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCoreBundle)
+				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCore.bundle)
 				
 				#if os(iOS)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
@@ -240,7 +240,7 @@ open class XUMessageCenter: NSObject {
 			
 			let allowsIgnoringMessage = (message["XUCanIgnoreMessage"] as? NSNumber)?.boolValue ?? false
 			
-			var ignoreButtonTitle = XULocalizedString("Cancel", inBundle: XUCoreBundle)
+			var ignoreButtonTitle = XULocalizedString("Cancel", inBundle: XUCore.bundle)
 			if allowsIgnoringMessage {
 				if let customIgnoreButtonTitle = message["XUIgnoreButtonTitle"] as? String {
 					ignoreButtonTitle = customIgnoreButtonTitle
@@ -271,7 +271,7 @@ open class XUMessageCenter: NSObject {
 				let alert = NSAlert()
 				alert.messageText = messageText
 				alert.informativeText = (message["XUDescription"] as? String) ?? ""
-				alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreBundle))
+				alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCore.bundle))
 				if allowsIgnoringMessage {
 					alert.addButton(withTitle: ignoreButtonTitle)
 				}

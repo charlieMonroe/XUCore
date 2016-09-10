@@ -16,23 +16,23 @@ import CoreData
 /// XUManagedObject to be an actual entity, but this kind of went downhill due
 /// to maintaining backward compatibility with TICDS...
 @objc(XUSyncChange)
-open class XUSyncChange: NSManagedObject {
+public class XUSyncChange: NSManagedObject {
 	
 	/// Change set this change belongs to. Nil during initialization, hence nullable,
 	/// but otherwise should be nonnull.
-	@NSManaged open fileprivate(set) var changeSet: XUSyncChangeSet!
+	@NSManaged public fileprivate(set) var changeSet: XUSyncChangeSet!
 	
 	/// Name of the entity.
-	@NSManaged open fileprivate(set) var objectEntityName: String
+	@NSManaged public fileprivate(set) var objectEntityName: String
 	
 	/// This is generally all we need to identify the object.
-	@NSManaged open fileprivate(set) var objectSyncID: String
+	@NSManaged public fileprivate(set) var objectSyncID: String
 	
 	/// Object that is being sync'ed. Only stored locally.
-	open fileprivate(set) weak var syncObject: XUManagedObject!
+	public fileprivate(set) weak var syncObject: XUManagedObject!
 	
 	/// Timestamp of the change.
-	@NSManaged open fileprivate(set) var timestamp: TimeInterval
+	@NSManaged public fileprivate(set) var timestamp: TimeInterval
 	
 	/// Creates a new sync change.
 	public init(object: XUManagedObject) {

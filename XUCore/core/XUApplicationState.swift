@@ -60,7 +60,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			XUApplicationStateItem(name: "Locale", andValue: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "AppStore", andValue: "\(XUAppSetup.isAppStoreBuild)"),
-			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
+			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
 		]
 		
 		#if os(OSX)

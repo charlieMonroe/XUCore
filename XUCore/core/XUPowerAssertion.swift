@@ -18,19 +18,19 @@ public func ==(lhs: XUPowerAssertion, rhs: XUPowerAssertion) -> Bool {
 ///
 /// Currently, doesn't allow you to define the type of assertion, prevents computer
 /// from going to sleep by default.
-open class XUPowerAssertion: Equatable {
+public final class XUPowerAssertion: Equatable {
 	
 	fileprivate let __assertionID: IOPMAssertionID
 	
 	/// You can optionally store some context reference here.
-	open weak var context: AnyObject?
+	public weak var context: AnyObject?
 	
 	/// Name of the assertion
-	open let name: String
+	public let name: String
 	
 	/// If timeout is non-zero, the power assertion is released automatically
 	/// after this period of time.
-	open let timeout: TimeInterval
+	public let timeout: TimeInterval
 	
 	
 	/// Calls the designated initializer with 0 timeout.
@@ -64,7 +64,7 @@ open class XUPowerAssertion: Equatable {
 	}
 	
 	// Stops the assertion from being active.
-	open func stop() {
+	public func stop() {
 		if __assertionID != 0 {
 			IOPMAssertionRelease(__assertionID)
 		}

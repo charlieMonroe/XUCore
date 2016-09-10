@@ -9,12 +9,17 @@
 import Foundation
 import Security
 
-open class XUKeychainAccess: NSObject {
+public final class XUKeychainAccess {
 	
-	open static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
+	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
+	
+	@available(*, deprecated, renamed: "password(forUsername:inAccount:)")
+	public func passwordForUsername(_ username: String, inAccount account: String) -> String? {
+		return self.password(forUsername: username, inAccount: account)
+	}
 	
 	/// Fetches a password for username in account from Keychain.
-	open func passwordForUsername(_ username: String, inAccount account: String) -> String? {
+	public func password(forUsername username: String, inAccount account: String) -> String? {
 		var passLen: UInt32 = 0
 		var passBytes: UnsafeMutableRawPointer? = nil
 		var item: SecKeychainItem? = nil
@@ -43,10 +48,16 @@ open class XUKeychainAccess: NSObject {
 		}
 	}
 	
+	@available(*, deprecated, renamed: "save(password:forUsername:inAccount:)")
+	@discardableResult
+	public func savePassword(_ password: String, forUsername username: String, inAccount account: String) -> Bool {
+		return self.save(password: password, forUsername: username, inAccount: account)
+	}
+	
 	/// Saves password for username in account to Keychain. Returns true if the
 	/// operation was successful, false otherwise.
 	@discardableResult
-	open func savePassword(_ password: String, forUsername username: String, inAccount account: String) -> Bool {
+	public func save(password: String, forUsername username: String, inAccount account: String) -> Bool {
 		let status = SecKeychainAddGenericPassword(nil,
 			UInt32(strlen(account)), account,
 			UInt32(strlen(username)), username,
@@ -98,7 +109,7 @@ open class XUKeychainAccess: NSObject {
 	}
 	
 	
-	fileprivate override init() {
+	private init() {
 		
 	}
 	

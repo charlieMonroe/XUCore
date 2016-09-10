@@ -11,13 +11,13 @@ import IOKit
 
 /// This class contains various methods and properties for obtaining information
 /// about the underlying hardware.
-open class XUHardwareInfo: NSObject {
+public final class XUHardwareInfo {
 	
 	/// Shared hardware info object.
-	open static let sharedHardwareInfo = XUHardwareInfo()
+	public static let shared: XUHardwareInfo = XUHardwareInfo()
 	
 	/// Returns the serial number of the computer.
-	open let serialNumber: String = {
+	public let serialNumber: String = {
 		let serviceName = "IOPlatformExpertDevice"
 		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(serviceName))
 		let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)

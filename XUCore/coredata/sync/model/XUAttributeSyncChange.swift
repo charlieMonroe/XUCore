@@ -11,13 +11,13 @@ import CoreData
 
 /// This class represents a change of attribute's value.
 @objc(XUAttributeSyncChange)
-open class XUAttributeSyncChange: XUSyncChange {
+public final class XUAttributeSyncChange: XUSyncChange {
 	
 	/// Name of the attribute.
-	@NSManaged open fileprivate(set) var attributeName: String
+	@NSManaged public fileprivate(set) var attributeName: String
 	
 	/// Value of the attribute.
-	@NSManaged open fileprivate(set) var attributeValue: AnyObject?
+	@NSManaged public fileprivate(set) var attributeValue: AnyObject?
 
 	
 	public init(object: XUManagedObject, attributeName name: String, andValue value: AnyObject?) {

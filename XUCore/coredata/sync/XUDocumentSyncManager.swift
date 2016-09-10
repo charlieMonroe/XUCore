@@ -44,18 +44,23 @@ private let XUDocumentLastProcessedChangeSetKey = "XUDocumentLastProcessedChange
 
 open class XUDocumentSyncManager {
 	
+	@available(*, deprecated, renamed: "downloadDocument(withID:forApplicationSyncManager:toURL:)")
+	open class func downloadDocumentWithID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager, toURL fileURL: URL) throws -> URL {
+		return try self.downloadDocument(withID: documentID, forApplicationSyncManager: appSyncManager, toURL: fileURL)
+	}
+	
 	/// Synchronously downloads document with document ID to URL and returns error,
 	/// if the download wasn't successful.
 	///
 	/// The returned NSURL points to the actual document.
-	open class func downloadDocumentWithID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager, toURL fileURL: URL) throws -> URL {
+	open class func downloadDocument(withID documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager, toURL fileURL: URL) throws -> URL {
 		
-		guard let config = self.URLOfNewestEntireDocumentWithUUID(documentID, forApplicationSyncManager: appSyncManager) else {
+		guard let config = self.urlOfNewestEntireDocument(withUUID: documentID, forApplicationSyncManager: appSyncManager) else {
 			
 			XULog("Document sync manager was unable to find whole-store upload for document with ID \(documentID)")
 			
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot find such document. Check back later, it might not have synced through.", inBundle: XUCoreBundle)
+				NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot find such document. Check back later, it might not have synced through.", inBundle: XUCore.bundle)
 			])
 		}
 		
@@ -68,14 +73,14 @@ open class XUDocumentSyncManager {
 			
 			guard let accountDict = NSDictionary(contentsOf: infoFileURL) as? XUJSONDictionary else {
 				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreBundle)
+					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCore.bundle)
 				])
 				return
 			}
 		
 			guard let documentName = accountDict[XUDocumentNameKey] as? String else {
 				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: XUCoreBundle)
+					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: XUCore.bundle)
 				])
 				return
 			}
@@ -93,12 +98,12 @@ open class XUDocumentSyncManager {
 				// We need to copy the sync timestamp
 				guard let syncInfoURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(appSyncManager, computerID: config.computerID, andDocumentUUID: documentID) else {
 					error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-						NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreBundle)
+						NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCore.bundle)
 						])
 					return
 				}
 				
-				try appSyncManager.createDirectoryAtURL(syncInfoURL.deletingLastPathComponent())
+				try appSyncManager.createDirectory(at: syncInfoURL.deletingLastPathComponent())
 				
 				let timeStamp = accountDict.double(forKey: XUDocumentLastUploadDateKey)
 				let syncInfoDict: NSDictionary = [
@@ -106,7 +111,7 @@ open class XUDocumentSyncManager {
 				]
 				
 				syncInfoDict.write(to: syncInfoURL, atomically: true)
-				appSyncManager.didUpdateFileAtURL(syncInfoURL)
+				appSyncManager.didUpdateFile(at: syncInfoURL)
 			} catch let localError as NSError {
 				error = localError
 			}
@@ -118,11 +123,16 @@ open class XUDocumentSyncManager {
 		
 		guard let docURL = documentURL else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey : XULocalizedString("The document could not be downloaded at this moment.", inBundle: XUCoreBundle)
+				NSLocalizedFailureReasonErrorKey : XULocalizedString("The document could not be downloaded at this moment.", inBundle: XUCore.bundle)
 			])
 		}
 		
 		return docURL
+	}
+	
+	@available(*, deprecated, renamed: "urlOfNewestEntireDocument(withUUID:forApplicationSyncManager:)")
+	open class func URLOfNewestEntireDocumentWithUUID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager) -> (accountURL: URL, computerID: String)? {
+		return self.urlOfNewestEntireDocument(withUUID: documentID, forApplicationSyncManager: appSyncManager)
 	}
 	
 	/// This method goes through all the whole store uploads and looks for the
@@ -135,7 +145,7 @@ open class XUDocumentSyncManager {
 	///
 	/// computerIDPtr contains the ID of the computer from which we're downloading 
 	/// the document. Nil if not successful.
-	open class func URLOfNewestEntireDocumentWithUUID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager) -> (accountURL: URL, computerID: String)? {
+	open class func urlOfNewestEntireDocument(withUUID documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager) -> (accountURL: URL, computerID: String)? {
 		guard let folderURL = XUSyncManagerPathUtilities.documentFolderURLForSyncManager(appSyncManager, andDocumentUUID: documentID) else {
 			return nil
 		}
@@ -158,7 +168,7 @@ open class XUDocumentSyncManager {
 				}
 				
 				guard let dict = NSDictionary(contentsOf: infoFileURL) as? XUJSONDictionary else {
-					_ = try? appSyncManager.startDownloadingItemAtURL(infoFileURL)
+					_ = try? appSyncManager.startDownloading(itemAt: infoFileURL)
 					continue
 				}
 			
@@ -190,19 +200,19 @@ open class XUDocumentSyncManager {
 	
 	/// The app sync manager this document is tied to. This connection is required
 	/// since we need to know where to put the sync data.
-	open let applicationSyncManager: XUApplicationSyncManager
+	public final let applicationSyncManager: XUApplicationSyncManager
 	
 	/// Delegate.
-	open weak var delegate: XUDocumentSyncManagerDelegate?
+	public final weak var delegate: XUDocumentSyncManagerDelegate?
 	
 	/// Main object context that was passed in the initializer.
-	open let managedObjectContext: NSManagedObjectContext
+	public final let managedObjectContext: NSManagedObjectContext
 	
 	/// MOC used for sync changes.
-	open let syncManagedObjectContext: NSManagedObjectContext
+	public final let syncManagedObjectContext: NSManagedObjectContext
 	
 	/// UUID of the document.
-	open let UUID: String
+	public final let UUID: String
 
 
 	/// URL to the CoreData file that contains sync changes.
@@ -235,8 +245,7 @@ open class XUDocumentSyncManager {
 	///
 	/// objCache is a mutable dictionary with UUID -> obj mapping that is kept 
 	/// during the sync, so that we don't have to perform fetches unless necessary.
-	
-	fileprivate func _applyChangeSet(_ changeSet: XUSyncChangeSet, withObjectCache objCache: inout [String : XUManagedObject]) -> [NSError] {
+	fileprivate func _apply(changeSet: XUSyncChangeSet, withObjectCache objCache: inout [String : XUManagedObject]) -> [NSError] {
 		let changes = changeSet.changes
 	
 		var errors: [NSError] = []
@@ -289,7 +298,7 @@ open class XUDocumentSyncManager {
 				})
 			}
 	
-			XUManagedObject.noticeSyncInsertionOfObjectWithID(obj.syncUUID)
+			XUManagedObject.noticeSyncInsertionOfObject(withID: obj.syncUUID)
 			objCache[obj.syncUUID] = obj
 		}
 	
@@ -313,7 +322,7 @@ open class XUDocumentSyncManager {
 				continue
 			}
 		
-			obj.applySyncChange(change)
+			obj.apply(syncChange: change)
 		}
 		
 		return errors
@@ -329,9 +338,9 @@ open class XUDocumentSyncManager {
 		XULog("\(self) - managed object context will save, creating sync changes.")
 	
 		var changes: [XUSyncChange] = []
-		changes += self._createSyncChangesForObjects(self.managedObjectContext.insertedObjects)
-		changes += self._createSyncChangesForObjects(self.managedObjectContext.updatedObjects)
-		changes += self._createSyncChangesForObjects(self.managedObjectContext.deletedObjects)
+		changes += self._createSyncChanges(forObjects: self.managedObjectContext.insertedObjects)
+		changes += self._createSyncChanges(forObjects: self.managedObjectContext.updatedObjects)
+		changes += self._createSyncChanges(forObjects: self.managedObjectContext.deletedObjects)
 	
 		if changes.count == 0 {
 			// Do not create anything.
@@ -356,17 +365,17 @@ open class XUDocumentSyncManager {
 			// cloud.
 			guard let originalData = try? Data(contentsOf: _currentComputerTempSyncURL) else {
 				throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not read synchronization change data.", inBundle: XUCoreBundle)
+					NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not read synchronization change data.", inBundle: XUCore.bundle)
 				])
 			}
 			
 			guard (try? originalData.write(to: _currentComputerSyncURL, options: [.atomic])) != nil else {
 				throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not copy synchronization change data to the cloud.", inBundle: XUCoreBundle)
+					NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not copy synchronization change data to the cloud.", inBundle: XUCore.bundle)
 				])
 			}
 			
-			self.applicationSyncManager.didUpdateFileAtURL(_currentComputerSyncURL)
+			self.applicationSyncManager.didUpdateFile(at: _currentComputerSyncURL)
 			
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD({ 
 				self.delegate?.documentSyncManagerDidSuccessfullyFinishSynchronization(self)
@@ -380,7 +389,7 @@ open class XUDocumentSyncManager {
 		}
 	}
 	
-	fileprivate func _createSyncChangesForObjects(_ objects: Set<NSManagedObject>) -> [XUSyncChange] {
+	fileprivate func _createSyncChanges(forObjects objects: Set<NSManagedObject>) -> [XUSyncChange] {
 		var changes: [XUSyncChange] = []
 		for obj in objects {
 			guard let managedObj = obj as? XUManagedObject else {
@@ -442,7 +451,7 @@ open class XUDocumentSyncManager {
 		latestTimeStamp = min(latestTimeStamp, Date.timeIntervalSinceReferenceDate - XUTimeInterval.day)
 	
 		// Get all change sets.
-		let syncChangeSets = XUSyncChangeSet.allChangeSetsInManagedObjectContext(self.syncManagedObjectContext, withTimestampNewerThan: 0.0)
+		let syncChangeSets = XUSyncChangeSet.allChangeSets(inContext: self.syncManagedObjectContext, withTimestampNewerThan: 0.0)
 		for changeSet in syncChangeSets {
 			if changeSet.timestamp < latestTimeStamp {
 				// Delete
@@ -460,7 +469,7 @@ open class XUDocumentSyncManager {
 	/// This method is an observer for NSManagedObjectContextWillSaveNotification.
 	/// We start a sync after each save.
 	@objc fileprivate func _startSync(_ aNotif: Notification) {
-		self.startSynchronizingWithCompletionHandler { (success, error) in
+		self.startSynchronizing { (success, error) in
 			if success {
 				XULog("\(self) - successfully completed synchronization.")
 			} else {
@@ -531,7 +540,7 @@ open class XUDocumentSyncManager {
 	
 		
 		
-		_ = try? self.applicationSyncManager.startDownloadingItemAtURL(fileURL)
+		_ = try? self.applicationSyncManager.startDownloading(itemAt: fileURL)
 	
 		let options = [
 			NSReadOnlyPersistentStoreOption: true,
@@ -554,7 +563,7 @@ open class XUDocumentSyncManager {
 				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for computer %@.", computerID)
 			])
 		}
-		try self.applicationSyncManager.createDirectoryAtURL(infoDictURL.deletingLastPathComponent())
+		try self.applicationSyncManager.createDirectory(at: infoDictURL.deletingLastPathComponent())
 	
 		/// We don't care if the dictionary exists or not - if it doesn't, we'll
 		/// include all the changes.
@@ -564,7 +573,7 @@ open class XUDocumentSyncManager {
 		// If this is the first sync, lastTimestampSeen will be 0.0, hence 
 		// everything will be applied.
 	
-		let changeSets = XUSyncChangeSet.allChangeSetsInManagedObjectContext(ctx, withTimestampNewerThan: lastTimestampSeen)
+		let changeSets = XUSyncChangeSet.allChangeSets(inContext: ctx, withTimestampNewerThan: lastTimestampSeen)
 		if changeSets.count  == 0 {
 			// A likely scenario -> bail out
 			XULog("\(computerID) - No change sets.")
@@ -580,7 +589,7 @@ open class XUDocumentSyncManager {
 			for changeSet in changeSets {
 				XULog("\(self.UUID) Processing change set \(changeSet.timestamp) for \(computerID).")
 				
-				let changeSetErros = self._applyChangeSet(changeSet, withObjectCache: &objCache)
+				let changeSetErros = self._apply(changeSet: changeSet, withObjectCache: &objCache)
 				
 				if errors.count > 0 {
 					XULog("\(self.UUID) Applying change set \(changeSet.timestamp) from \(computerID) failed due to errors \(changeSetErros).")
@@ -588,7 +597,7 @@ open class XUDocumentSyncManager {
 			}
 			
 			if !errors.isEmpty {
-				blockError = XUCompoundError(domain: XUDocumentSyncManagerErrorDomain, localizedFailureReason: XULocalizedString("Failing to apply change sets.", inBundle: XUCoreBundle), andErrors: errors)
+				blockError = XUCompoundError(domain: XUDocumentSyncManagerErrorDomain, localizedFailureReason: XULocalizedString("Failing to apply change sets.", inBundle: XUCore.bundle), andErrors: errors)
 			}
 		}
 	
@@ -600,7 +609,7 @@ open class XUDocumentSyncManager {
 		// Since each device has its own file, we don't need to lock the file 
 		// anyhow, or worry about some collision issues.
 		newInfoDict.write(to: infoDictURL, atomically: true)
-		self.applicationSyncManager.didUpdateFileAtURL(infoDictURL)
+		self.applicationSyncManager.didUpdateFile(at: infoDictURL)
 		
 		/// We will mark the sync changes as seen anyway, since we'd run into
 		/// them in the next sync cycle anyway.
@@ -617,7 +626,7 @@ open class XUDocumentSyncManager {
 
 		/// We're running all syncing on the main thread.
 		self.syncManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-		_syncModel = NSManagedObjectModel.mergedModel(from: [ XUCoreBundle ])!
+		_syncModel = NSManagedObjectModel.mergedModel(from: [ XUCore.bundle ])!
 		_syncStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: _syncModel)
 		
 		_currentComputerTempSyncURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.uuidString + ".sql")
@@ -627,7 +636,7 @@ open class XUDocumentSyncManager {
 	
 		if let deviceFolderURL = XUSyncManagerPathUtilities.deviceSpecificFolderURLForSyncManager(appSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: UUID) {
 			do {
-				try appSyncManager.createDirectoryAtURL(deviceFolderURL)
+				try appSyncManager.createDirectory(at: deviceFolderURL)
 			} catch let error as NSError {
 				XULog("\(self) - failed to create device specific folder URL \(deviceFolderURL), error \(error)")
 			}
@@ -639,7 +648,7 @@ open class XUDocumentSyncManager {
 			])
 		}
 	
-		try appSyncManager.createDirectoryAtURL(persistentStoreURL.deletingLastPathComponent())
+		try appSyncManager.createDirectory(at: persistentStoreURL.deletingLastPathComponent())
 	
 		let dict = [
 			NSSQLitePragmasOption: [ "journal_mode" : "DELETE" ],
@@ -660,14 +669,19 @@ open class XUDocumentSyncManager {
 		NotificationCenter.default.addObserver(self, selector: #selector(_startSync(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: managedObjectContext)
 	}
 
-	/// Starts synchronization with other devices.
+	@available(*, deprecated, renamed: "startSynchronizing(withCompletionHandler:)")
 	open func startSynchronizingWithCompletionHandler(_ completionHandler: @escaping (Bool, NSError?) -> Void) {
+		self.startSynchronizing(withCompletionHandler: completionHandler)
+	}
+	
+	/// Starts synchronization with other devices.
+	open func startSynchronizing(withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
 		_synchronizationLock.lock()
 		if _isSyncing {
 			// Already syncing
 			_synchronizationLock.unlock()
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization is already in progress.", inBundle: XUCoreBundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization is already in progress.", inBundle: XUCore.bundle)
 			]))
 			return
 		}
@@ -716,15 +730,20 @@ open class XUDocumentSyncManager {
 		}
 	}
 	
-	/// Uploads the entire document to the cloud.
+	@available(*, deprecated, renamed: "uploadEntireDocument(fromURL:withCompletionHandler:)")
 	open func uploadEntireDocumentFromURL(_ fileURL: URL, withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
+		self.uploadEntireDocument(fromURL: fileURL, withCompletionHandler: completionHandler)
+	}
+	
+	/// Uploads the entire document to the cloud.
+	open func uploadEntireDocument(fromURL fileURL: URL, withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
 		assert(Thread.isMainThread, "This methos must be called from the main thread!")
 		
 		// The _isUploadingEntireDocument flag is only changed from main thread
 		// so no locks are necessary
 		if _isUploadingEntireDocument {
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("An upload operation is already in progress.", inBundle: XUCoreBundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("An upload operation is already in progress.", inBundle: XUCore.bundle)
 			]))
 			return
 		}
@@ -738,7 +757,7 @@ open class XUDocumentSyncManager {
 		//
 		// Since we perform all syncing on main thread, it is guaranteed that the
 		// lastChangeSet will indeed be last.
-		let lastChangeSet = XUSyncChangeSet.newestChangeSetInManagedObjectContext(self.syncManagedObjectContext)
+		let lastChangeSet = XUSyncChangeSet.newestChangeSet(inContext: self.syncManagedObjectContext)
 	
 		// We don't care if lastChangeSet == nil, since that will simply make
 		// lastChangeSetTimestamp == 0.0 which works just fine
@@ -774,7 +793,7 @@ open class XUDocumentSyncManager {
 			coordinator.coordinate(writingItemAt: entireDocumentFolderURL, options: .forReplacing, error: &err, byAccessor: { (newURL) in
 				let docURL = newURL.appendingPathComponent("Document")
 				
-				_ = try? self.applicationSyncManager.createDirectoryAtURL(docURL)
+				_ = try? self.applicationSyncManager.createDirectory(at: docURL)
 	
 				let targetURL = docURL.appendingPathComponent(fileURL.lastPathComponent)
 	
@@ -785,7 +804,7 @@ open class XUDocumentSyncManager {
 					
 					try FileManager.default.copyItem(at: tempFolderURL.appendingPathComponent(fileURL.lastPathComponent), to: targetURL)
 					
-					self.applicationSyncManager.didUpdateFileAtURL(targetURL)
+					self.applicationSyncManager.didUpdateFile(at: targetURL)
 				} catch let error as NSError {
 					err = error
 					success = false
@@ -802,12 +821,12 @@ open class XUDocumentSyncManager {
 				if !documentConfig.write(to: configURL, atomically: true) {
 					success = false
 					err = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.", inBundle: XUCoreBundle)
+						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.", inBundle: XUCore.bundle)
 					])
 					return
 				}
 	
-				self.applicationSyncManager.didUpdateFileAtURL(configURL)
+				self.applicationSyncManager.didUpdateFile(at: configURL)
 				success = true
 			})
 	

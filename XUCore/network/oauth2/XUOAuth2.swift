@@ -141,13 +141,13 @@ public enum XUOAuth2ClientError: Int {
 		
 		switch self {
 		case .invalidTokenType:
-			errorString = XULocalizedString("Server responded with unknown token type.", inBundle: XUCoreBundle)
+			errorString = XULocalizedString("Server responded with unknown token type.", inBundle: XUCore.bundle)
 		case .invalidAuthorizationResponse:
-			errorString = XULocalizedString("Server provided invalid authorization response.", inBundle: XUCoreBundle)
+			errorString = XULocalizedString("Server provided invalid authorization response.", inBundle: XUCore.bundle)
 		case .invalidRedirectionURL:
-			errorString = XULocalizedString("Server has redirected with invalid URL.", inBundle: XUCoreBundle)
+			errorString = XULocalizedString("Server has redirected with invalid URL.", inBundle: XUCore.bundle)
 		case .userCancelled:
-			errorString = XULocalizedString("User cancelled the authorization.", inBundle: XUCoreBundle)
+			errorString = XULocalizedString("User cancelled the authorization.", inBundle: XUCore.bundle)
 		}
 		
 		return NSError(domain: XUOAuth2ClientErrorDomain, code: self.rawValue, userInfo: [
@@ -233,11 +233,11 @@ public final class XUOAuth2Client {
 			}
 			
 			let keychain = XUKeychainAccess.sharedAccess
-			guard let accessToken = keychain.passwordForUsername(identifier + "_access", inAccount: client.configuration.name) else {
+			guard let accessToken = keychain.password(forUsername: identifier + "_access", inAccount: client.configuration.name) else {
 				return nil
 			}
 			
-			let refreshToken = keychain.passwordForUsername(identifier + "_refresh", inAccount: client.configuration.name)
+			let refreshToken = keychain.password(forUsername: identifier + "_refresh", inAccount: client.configuration.name)
 			if refreshToken == nil && !client.configuration.tokenNeverExpires {
 				return nil
 			}
@@ -266,7 +266,7 @@ public final class XUOAuth2Client {
 				fatalError("The client's configuration assumes token expiration, yet there is no refresh token available.")
 			}
 			
-			XULog("Renewing token - expired \(XUTime.timeString(abs(Date.timeIntervalSinceReferenceDate - self.tokenExpirationDate.timeIntervalSinceReferenceDate))) ago.")
+			XULog("Renewing token - expired \(XUTime.timeString(from: abs(Date.timeIntervalSinceReferenceDate - self.tokenExpirationDate.timeIntervalSinceReferenceDate))) ago.")
 			
 			let postDict: [String : String] = [
 				"grant_type": "refresh_token",
@@ -299,10 +299,10 @@ public final class XUOAuth2Client {
 		
 		/// Force-saves the token and refresh token. Currently a private method.
 		fileprivate func save() {
-			XUKeychainAccess.sharedAccess.savePassword(self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
+			XUKeychainAccess.sharedAccess.save(password: self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
 			
 			if let refreshToken = self.refreshToken {
-				XUKeychainAccess.sharedAccess.savePassword(refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+				XUKeychainAccess.sharedAccess.save(password: refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
 			}
 			
 			XUOAuth2Client.save()
@@ -379,7 +379,7 @@ public final class XUOAuth2Client {
 			self.registeredClients.remove(at: index)
 			
 			#if os(OSX)
-				XUURLHandlingCenter.defaultCenter.removeHandler(client)
+				XUURLHandlingCenter.defaultCenter.remove(handler: client)
 			#endif
 		}
 	}
@@ -531,11 +531,11 @@ public final class XUOAuth2Client {
 	
 	#if os(OSX)
 		public func startAccountAuthorization(withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
-			XUURLHandlingCenter.defaultCenter.addHandler(self, forURLScheme: configuration.redirectionScheme)
+			XUURLHandlingCenter.defaultCenter.add(handler: self, forURLScheme: configuration.redirectionScheme)
 			
 			_authorizationController = XUAuthorizationWebViewWindowController(URL: self.configuration.authorizationURL)
 			_authorizationController!.runModal(withCompletionHandler: { result in
-				XUURLHandlingCenter.defaultCenter.removeHandler(self, forURLScheme: self.configuration.redirectionScheme)
+				XUURLHandlingCenter.defaultCenter.remove(handler: self, forURLScheme: self.configuration.redirectionScheme)
 				completionHandler?(result)
 				
 				XUOAuth2Client.save()

@@ -66,7 +66,7 @@ open class XUManagedObject: NSManagedObject {
 	/// Call this when processing an insertion change - this will let the managed
 	/// object class know that an object with this syncUUID has been inserted, so
 	/// that it doesn't create an unnecessary sync change.
-	open class func noticeSyncInsertionOfObjectWithID(_ syncUUID: String) {
+	public final class func noticeSyncInsertionOfObject(withID syncUUID: String) {
 		_changesLock.lock()
 		_insertionChanges.insert(syncUUID)
 		_changesLock.unlock()
@@ -491,7 +491,7 @@ open class XUManagedObject: NSManagedObject {
 	
 	/// This applies the sync change. It asserts that [self syncUUID] ==
 	/// [syncChange objectSyncID].
-	open func applySyncChange(_ syncChange: XUSyncChange) {
+	public final func apply(syncChange: XUSyncChange) {
 		let previousValue = self.isApplyingSyncChange
 		self.isApplyingSyncChange = true
 	
@@ -547,7 +547,7 @@ open class XUManagedObject: NSManagedObject {
 	}
 
 	/// This method will create sync change if necessary for this object.
-	open func createSyncChanges() -> [XUSyncChange] {
+	public final func createSyncChanges() -> [XUSyncChange] {
 		if self.managedObjectContext?.documentSyncManager == nil {
 			XULog("Skipping creating sync change for object \(type(of: self))[\(self.ticdsSyncID)] since there is no document sync manager!")
 			return []
@@ -594,20 +594,20 @@ open class XUManagedObject: NSManagedObject {
 	/// Marked as true if the engine is currently applying a sync change. If you
 	/// are observing some changes made to the object, and creating further changes
 	/// based on that observation, you can opt-out based on this property.
-	open internal(set) var isApplyingSyncChange: Bool = false
+	public final internal(set) var isApplyingSyncChange: Bool = false
 
 	/// This is an important property that returns YES if the object is being 
 	/// created by the sync engine - i.e. the entity was inserted into the context.
 	///
 	/// While it may seem unnecessary, you usually populate fields with initial 
 	/// values within -awakeFromInsert.
-	open var isBeingCreatedBySyncEngine: Bool {
+	public final var isBeingCreatedBySyncEngine: Bool {
 		return _currentInitInitiatedInSync
 	}
 
 	/// Sync UUID. This property is only a proxy to the underlying ticdsSyncID 
 	/// which is implemented for backward compatibility with existing stores.
-	open var syncUUID: String {
+	public final var syncUUID: String {
 		return self.ticdsSyncID
 	}
 	

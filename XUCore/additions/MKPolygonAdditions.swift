@@ -16,7 +16,7 @@ public extension MKPolygon {
 		let exteriorRingString = polygonStrings.first!
 		
 		let coordinatesRegex = XURegex(pattern: "([-\\d\\.]+\\s[-\\d\\.]+)", andOptions: .caseless)
-		let matches = exteriorRingString.allOccurrencesOfRegex(coordinatesRegex)
+		let matches = exteriorRingString.allOccurrences(ofRegex: coordinatesRegex)
 		return matches.map({ (match) -> CLLocation in
 			return self._parseCoordinate(fromString: match)
 		})

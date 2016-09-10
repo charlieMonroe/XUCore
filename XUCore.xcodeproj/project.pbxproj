@@ -926,7 +926,6 @@
 				077AFDFD1BBD101400872A48 /* app_store */,
 				077AFE081BBD101400872A48 /* core */,
 				075DC7761CF069290043EBD0 /* coredata */,
-				077AFE1A1BBD101400872A48 /* data */,
 				077AFE231BBD101400872A48 /* debug */,
 				07FD4BD21C7CDF6700559CF0 /* deserialization */,
 				077AFE451BBD101400872A48 /* documents */,
@@ -1056,13 +1055,6 @@
 				07B211001D4903DC005203F0 /* XUWeakArray.swift */,
 			);
 			path = core;
-			sourceTree = "<group>";
-		};
-		077AFE1A1BBD101400872A48 /* data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = data;
 			sourceTree = "<group>";
 		};
 		077AFE231BBD101400872A48 /* debug */ = {

@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
 	
-	fileprivate func _standardizedURLFromURLString(_ originalURLString: String) -> [URL]? {
+	fileprivate func _standardizedURL(fromURLString originalURLString: String) -> [URL]? {
 		var urlString = originalURLString
 		if urlString.hasPrefix("//") {
 			urlString = "http:" + urlString
@@ -76,11 +76,11 @@ public extension String {
 		return [url!]
 	}
 	
-	fileprivate func _URLStringOccurrencesToNSURLs(_ occurrences: [String]) -> [URL] {
+	fileprivate func _URLStringOccurrencesToURLs(_ occurrences: [String]) -> [URL] {
 		var urls: [URL] = [ ]
 		
 		urls += occurrences.flatMap({ (originalURLString) -> [URL]? in
-			return self._standardizedURLFromURLString(originalURLString)
+			return self._standardizedURL(fromURLString: originalURLString)
 		}).joined()
 		
 		urls = urls.distinct({ ($0 == $1) })
@@ -103,8 +103,69 @@ public extension String {
 		return urls
 	}
 	
-	/// All Occurrences of regex in self.
+	@available(*, deprecated, renamed: "allOccurrences(ofRegex:)")
 	public func allOccurrencesOfRegex(_ regex: XURegex) -> [String] {
+		return self.allOccurrences(ofRegex: regex)
+	}
+	
+	@available(*, deprecated, renamed: "allOccurrences(ofRegexString:)")
+	public func allOccurrencesOfRegexString(_ regexString: String) -> [String] {
+		return self.allOccurrences(ofRegexString: regexString)
+	}
+	
+	@available(*, deprecated, renamed: "allRelativeURLs(to:)")
+	public func allRelativeURLsToURL(_ baseURL: URL) -> [URL] {
+		return self.allRelativeURLs(to: baseURL)
+	}
+	
+	@available(*, deprecated, renamed: "allRelativeURLs(withHost:)")
+	public func allRelativeURLsWithHost(_ host: String) -> [URL] {
+		return self.allRelativeURLs(withHost: host)
+	}
+	
+	@available(*, deprecated, renamed: "allValues(ofVariableNamed:forRegex:)")
+	public func allValuesOfVariableNamed(_ varName: String, forRegex regex: XURegex) -> [String] {
+		return self.allValues(ofVariableNamed: varName, forRegex: regex)
+	}
+	
+	@available(*, deprecated, renamed: "allValues(ofVariableNamed:forRegexString:)")
+	public func allValuesOfVariableNamed(_ varName: String, forRegexString regexString: String) -> [String] {
+		return self.allValues(ofVariableNamed: varName, forRegexString: regexString)
+	}
+	
+	@available(*, deprecated, renamed: "allVariablePairs(forRegex:)")
+	public func allVariablePairsForRegex(_ regex: XURegex) -> [String : String] {
+		return self.allVariablePairs(forRegex: regex)
+	}
+	
+	@available(*, deprecated, renamed: "allVariablePairs(forRegexString:)")
+	public func allVariablePairsForRegexString(_ string: String) -> [String : String] {
+		return self.allVariablePairs(forRegexString: string)
+	}
+	
+	@available(*, deprecated, renamed: "firstOccurrence(ofRegex:)")
+	public func firstOccurrenceOfRegex(_ regex: XURegex) -> String? {
+		return self.firstOccurrence(ofRegex: regex)
+	}
+	
+	@available(*, deprecated, renamed: "firstOccurrence(ofRegexString:)")
+	public func firstOccurrenceOfRegexString(_ string: String) -> String? {
+		return self.firstOccurrence(ofRegexString: string)
+	}
+	
+	@available(*, deprecated, renamed: "firstOccurrence(ofRegexStrings:)")
+	public func firstOccurrenceOfRegexStrings(_ regexStrings: [String]) -> String? {
+		return self.firstOccurrence(ofRegexStrings: regexStrings)
+	}
+	
+	@available(*, deprecated, renamed: "firstOccurrence(ofRegexStrings:)")
+	public func firstOccurrenceOfRegexStrings(_ regexStrings: String...) -> String? {
+		return self.firstOccurrence(ofRegexStrings: regexStrings)
+	}
+	
+	
+	/// All Occurrences of regex in self.
+	public func allOccurrences(ofRegex regex: XURegex) -> [String] {
 		return regex.allOccurrences(in: self)
 	}
 	
@@ -113,19 +174,19 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allOccurrencesOfRegexString(_ regexString: String) -> [String] {
-		return self.allOccurrencesOfRegex(XURegex(pattern: regexString, andOptions: .caseless))
+	public func allOccurrences(ofRegexString regexString: String) -> [String] {
+		return self.allOccurrences(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Attempts to find all relative URLs in the self.
-	public func allRelativeURLsToURL(_ baseURL: URL) -> [URL] {
+	public func allRelativeURLs(to baseURL: URL) -> [URL] {
 		let regex = XURegex(pattern: "(?i)/[^\\s'\"<>]+", andOptions: XURegexOptions())
 		
 		var occurrences = regex.allOccurrences(in: self)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.sourceSource.regexString)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.videoSource.regexString)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.iframeSource.regexString)
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.sourceSource.regexString)
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.videoSource.regexString)
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.iframeSource.regexString)
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
 		
 		occurrences = occurrences.flatMap({ (URLString) -> String? in
 			if URLString.hasPrefix("http") || URLString.hasPrefix("//") {
@@ -135,15 +196,15 @@ public extension String {
 			return URL(string: URLString, relativeTo: baseURL)?.absoluteString
 		})
 		
-		return self._URLStringOccurrencesToNSURLs(occurrences)
+		return self._URLStringOccurrencesToURLs(occurrences)
 	}
 	
 	/// Returns all relative URLs to URL created by "/" path and http scheme.
-	public func allRelativeURLsWithHost(_ host: String) -> [URL] {
+	public func allRelativeURLs(withHost host: String) -> [URL] {
 		guard let baseURL = NSURL(scheme: "http", host: host, path: "/") as? URL else {
 			return [ ]
 		}
-		return self.allRelativeURLsToURL(baseURL)
+		return self.allRelativeURLs(to: baseURL)
 	}
 	
 	/// Attempts to find all absolute URLs in self. Uses various heuristics to
@@ -153,17 +214,17 @@ public extension String {
 		var occurrences = regex.allOccurrences(in: self.replacingOccurrences(of: "\r", with: "\n"))
 		
 		/** Unfortunely some sites idiotically include spaces in the URLs. This is an easy workaround... */
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
-		occurrences += self.allValuesOfVariableNamed("URL", forRegexString: XURegex.URL.iframeSource.regexString)
-		if let ogVideo = self.getRegexVariableNamed("URL", forRegex: XURegex.URL.metaOGVideo.regex) {
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
+		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.iframeSource.regexString)
+		if let ogVideo = self.value(ofVariableNamed: "URL", inRegex: XURegex.URL.metaOGVideo.regex) {
 			occurrences.append(ogVideo)
 		}
 		
-		return self._URLStringOccurrencesToNSURLs(occurrences)
+		return self._URLStringOccurrencesToURLs(occurrences)
 	}
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
-	public func allValuesOfVariableNamed(_ varName: String, forRegex regex: XURegex) -> [String] {
+	public func allValues(ofVariableNamed varName: String, forRegex regex: XURegex) -> [String] {
 		return regex.allOccurrences(ofVariableNamed: varName, in: self)
 	}
 	
@@ -172,8 +233,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allValuesOfVariableNamed(_ varName: String, forRegexString regexString: String) -> [String] {
-		return self.allValuesOfVariableNamed(varName, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func allValues(ofVariableNamed varName: String, forRegexString regexString: String) -> [String] {
+		return self.allValues(ofVariableNamed: varName, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Returns a dictionary of keys and values. This dictionary is created by
@@ -184,7 +245,7 @@ public extension String {
 	/// Example:
 	///
 	/// (?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)
-	public func allVariablePairsForRegex(_ regex: XURegex) -> [String : String] {
+	public func allVariablePairs(forRegex regex: XURegex) -> [String : String] {
 		return regex.allVariablePairs(in: self)
 	}
 	
@@ -200,8 +261,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allVariablePairsForRegexString(_ regexString: String) -> [String : String] {
-		return self.allVariablePairsForRegex(XURegex(pattern: regexString, andOptions: .caseless))
+	public func allVariablePairs(forRegexString regexString: String) -> [String : String] {
+		return self.allVariablePairs(forRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Returns components separated by regex. Works pretty much like separating
@@ -211,7 +272,7 @@ public extension String {
 	public func components(separatedByRegex regex: XURegex) -> [String] {
 		var result: [String] = []
 		var searchString = self
-		while let match = searchString.firstOccurrenceOfRegex(regex) {
+		while let match = searchString.firstOccurrence(ofRegex: regex) {
 			guard let range = searchString.range(of: match) , !range.isEmpty else {
 				fatalError("The supplied regex \(regex) for components(separatedByRegex:) is infinite.")
 			}
@@ -234,7 +295,7 @@ public extension String {
 	}
 
 	/// The most basic usage - first regex match.
-	public func firstOccurrenceOfRegex(_ regex: XURegex) -> String? {
+	public func firstOccurrence(ofRegex regex: XURegex) -> String? {
 		return regex.firstMatch(in: self)
 	}
 	
@@ -243,8 +304,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrenceOfRegexString(_ regexString: String) -> String? {
-		return self.firstOccurrenceOfRegex(XURegex(pattern: regexString, andOptions: .caseless))
+	public func firstOccurrence(ofRegexString regexString: String) -> String? {
+		return self.firstOccurrence(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Iterates regex strings and returns the first one to return a nonnull match.
@@ -252,9 +313,9 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrenceOfRegexStrings(_ regexStrings: [String]) -> String? {
+	public func firstOccurrence(ofRegexStrings regexStrings: [String]) -> String? {
 		for str in regexStrings {
-			if let match = self.firstOccurrenceOfRegexString(str) {
+			if let match = self.firstOccurrence(ofRegexString: str) {
 				return match
 			}
 		}
@@ -266,14 +327,69 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrenceOfRegexStrings(_ regexStrings: String...) -> String? {
-		return self.firstOccurrenceOfRegexStrings(regexStrings)
+	public func firstOccurrence(ofRegexStrings regexStrings: String...) -> String? {
+		return self.firstOccurrence(ofRegexStrings: regexStrings)
 	}
 	
 	
+	
+	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegex:)")
+	public func getRegexVariableNamed(_ name: String, forRegex regex: XURegex) -> String? {
+		return self.value(ofVariableNamed: name, inRegex: regex)
+	}
+	
+	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexString:)")
+	public func getRegexVariableNamed(_ name: String, forRegexString regex: String) -> String? {
+		return self.value(ofVariableNamed: name, inRegexString: regex)
+	}
+	
+	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexStrings:)")
+	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: String...) -> String? {
+		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
+	}
+	
+	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexStrings:)")
+	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: [String]) -> String? {
+		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
+	}
+	
+	@available(*, deprecated, renamed: "matches(anyOfRegexStrings:)")
+	public func matchesAnyOfRegexStrings(_ regexStrings: [String]) -> Bool {
+		return self.matches(anyOfRegexStrings: regexStrings)
+	}
+	
+	@available(*, deprecated, renamed: "matches(regex:)")
+	public func matchesRegex(_ regex: XURegex) -> Bool {
+		return self.matches(regex: regex)
+	}
+	@available(*, deprecated, renamed: "matches(regexString:)")
+	public func matchesRegexString(_ regexString: String) -> Bool {
+		return self.matches(regexString: regexString)
+	}
+	
+	
+	/// Returns true if any of the regex strings matches self.
+	public func matches(anyOfRegexStrings regexStrings: [String]) -> Bool {
+		return regexStrings.contains(where: { self.matches(regexString: $0) })
+	}
+	
+	/// Returns true if the regex matches self.
+	public func matches(regex: XURegex) -> Bool {
+		return self.firstOccurrence(ofRegex: regex) != nil
+	}
+	
+	/// Returns true if the regex matches self.
+	///
+	/// Convenience method that takes String as an argument rather than XURegex.
+	/// Note that as the rest of these functions, all regex strings are compiled
+	/// as caseless by default.
+	public func matches(regexString: String) -> Bool {
+		return self.matches(regex: XURegex(pattern: regexString, andOptions: .caseless))
+	}
+	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func getRegexVariableNamed(_ name: String, forRegex regex: XURegex) -> String? {
+	public func value(ofVariableNamed name: String, inRegex regex: XURegex) -> String? {
 		return regex.getVariableNamed(name, in: self)
 	}
 	
@@ -283,44 +399,25 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func getRegexVariableNamed(_ name: String, forRegexString regexString: String) -> String? {
-		return self.getRegexVariableNamed(name, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func value(ofVariableNamed name: String, inRegexString regexString: String) -> String? {
+		return self.value(ofVariableNamed: name, inRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: String...) -> String? {
-		return self.getRegexVariableNamed(name, forRegexStrings: regexStrings)
+	public func value(ofVariableNamed name: String, inRegexStrings regexStrings: String...) -> String? {
+		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: [String]) -> String? {
+	public func value(ofVariableNamed name: String, inRegexStrings regexStrings: [String]) -> String? {
 		for regexString in regexStrings {
-			if let match = self.getRegexVariableNamed(name, forRegexString: regexString) {
+			if let match = self.value(ofVariableNamed: name, inRegexString: regexString) {
 				return match
 			}
 		}
 		return nil
-	}
-	
-	/// Returns true if any of the regex strings matches self.
-	public func matchesAnyOfRegexStrings(_ regexStrings: [String]) -> Bool {
-		return regexStrings.contains(where: { self.matchesRegexString($0) })
-	}
-	
-	/// Returns true if the regex matches self.
-	public func matchesRegex(_ regex: XURegex) -> Bool {
-		return self.firstOccurrenceOfRegex(regex) != nil
-	}
-	
-	/// Returns true if the regex matches self.
-	///
-	/// Convenience method that takes String as an argument rather than XURegex.
-	/// Note that as the rest of these functions, all regex strings are compiled
-	/// as caseless by default.
-	public func matchesRegexString(_ regexString: String) -> Bool {
-		return self.matchesRegex(XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 }

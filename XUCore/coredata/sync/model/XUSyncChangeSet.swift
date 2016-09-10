@@ -13,18 +13,28 @@ import CoreData
 /// This allows XUSyncEngine to go just through a few change sets, instead of
 /// potentially hundreds or even thousands of actual changes.
 @objc(XUSyncChangeSet)
-open class XUSyncChangeSet: NSManagedObject {
+public final class XUSyncChangeSet: NSManagedObject {
 
+	@available(*, deprecated, renamed: "allChangeSets(inContext:withTimestampNewerThan:)")
+	public class func allChangeSetsInManagedObjectContext(_ ctx: NSManagedObjectContext, withTimestampNewerThan timestamp: TimeInterval) -> [XUSyncChangeSet] {
+		return self.allChangeSets(inContext: ctx, withTimestampNewerThan: timestamp)
+	}
+	
 	/// Fetches all change sets in the supplied MOC.
-	open class func allChangeSetsInManagedObjectContext(_ ctx: NSManagedObjectContext, withTimestampNewerThan timestamp: TimeInterval) -> [XUSyncChangeSet] {
+	public class func allChangeSets(inContext ctx: NSManagedObjectContext, withTimestampNewerThan timestamp: TimeInterval) -> [XUSyncChangeSet] {
 		let request = NSFetchRequest<XUSyncChangeSet>(entityName: NSStringFromClass(self))
 		let allValues = (try? ctx.fetch(request)) ?? []
 		let allChangeSets = allValues
 		return allChangeSets.filter({ $0.timestamp > timestamp })
 	}
 	
+	@available(*, deprecated, renamed: "newestChangeSet(inContext:)")
+	public class func newestChangeSetInManagedObjectContext(_ ctx: NSManagedObjectContext) -> XUSyncChangeSet? {
+		return self.newestChangeSet(inContext: ctx)
+	}
+	
 	/// Returns the newest change set in MOC, if one exists.
-	open class func newestChangeSetInManagedObjectContext(_ ctx: NSManagedObjectContext) -> XUSyncChangeSet? {
+	public class func newestChangeSet(inContext ctx: NSManagedObjectContext) -> XUSyncChangeSet? {
 		let request = NSFetchRequest<XUSyncChangeSet>(entityName: NSStringFromClass(self))
 		request.sortDescriptors = [ NSSortDescriptor(key: "timestamp", ascending: false) ]
 		request.fetchLimit = 1
@@ -35,10 +45,10 @@ open class XUSyncChangeSet: NSManagedObject {
 
 	
 	/// A set of changes within this change set.
-	@NSManaged open fileprivate(set) var changes: Set<XUSyncChange>
+	@NSManaged public fileprivate(set) var changes: Set<XUSyncChange>
 	
 	/// Timestamp of the sync change set.
-	@NSManaged open fileprivate(set) var timestamp: TimeInterval
+	@NSManaged public fileprivate(set) var timestamp: TimeInterval
 
 
 	/// Desginated initializer.

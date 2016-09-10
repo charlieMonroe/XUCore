@@ -12,22 +12,25 @@
 import Foundation
 
 /// Private class which is needed for XUCoreBundle.
-private class XUCore {
+public final class XUCore {
+	
+	/// Contains NSBundle of XUCore(Mobile) framework.
+	public static let bundle = Bundle(for: XUCore.self)
 	
 }
 
-/// Contains NSBundle of XUCore(Mobile) framework.
+@available(*, deprecated, renamed: "XUCore.bundle")
 public let XUCoreBundle = Bundle(for: XUCore.self)
 
 /// Private class that loads all the singletons in XUCore. This is called by 
 /// _XUCoreLoader which implements +load which is not available in Swift. We need,
 /// however, the loader to be in Swift since not all classes are NSObject-based
 /// anymore.
-@objc open class _XUSwiftCoreLoader: NSObject {
+@objc public class _XUSwiftCoreLoader: NSObject {
 	
 	fileprivate static var _didLoad: Bool = false
 	
-	open class func loadSingletons() {
+	public final class func loadSingletons() {
 		guard !_didLoad else {
 			fatalError("Calling _XUSwiftCoreLoader for the second time.")
 		}

@@ -43,7 +43,7 @@ private func XUMouseMovementEventCallback(_ proxy: CGEventTapProxy, type: CGEven
 }
 
 /// This class allows mouse tracking.
-open class XUMouseTracker: NSObject {
+public final class XUMouseTracker: NSObject {
 
 	fileprivate let _lock = NSLock()
 	fileprivate var _observers: [XUMouseTrackingObserver] = []
@@ -86,7 +86,7 @@ open class XUMouseTracker: NSObject {
 		CFRunLoopRun()
 	}
 
-	open func addObserver(_ observer: XUMouseTrackingObserver) {
+	public func add(observer: XUMouseTrackingObserver) {
 		_lock.perform {
 			XULog("adding an observer \(observer)")
 			self._observers.append(observer)
@@ -101,7 +101,7 @@ open class XUMouseTracker: NSObject {
 		}
 	}
 
-	open func removeObserver(_ observer: XUMouseTrackingObserver) {
+	public func remove(observer: XUMouseTrackingObserver) {
 		_lock.perform {
 			if let index = self._observers.index(where: { $0 === observer }) {
 				self._observers.remove(at: index)

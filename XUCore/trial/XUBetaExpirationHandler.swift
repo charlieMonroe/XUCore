@@ -12,12 +12,12 @@ private let XUBetaDidShowExpirationWarningDefaultsKey = "XUBetaDidShowExpiration
 private let XULastBetaBuildNumberDefaultsKey = "XULastBetaBuildNumber"
 private let XULastBetaTimestampDefaultsKey = "XULastBetaTimestamp"
 
-open class XUBetaExpirationHandler: NSObject {
+public final class XUBetaExpirationHandler {
 	
-	open static let sharedExpirationHandler: XUBetaExpirationHandler = XUBetaExpirationHandler()
+	public static let sharedExpirationHandler: XUBetaExpirationHandler = XUBetaExpirationHandler()
 	
 	/// Returns number of seconds left in the beta mode.
-	open var expiresInSeconds: TimeInterval {
+	public var expiresInSeconds: TimeInterval {
 		let defaults = UserDefaults.standard
 		guard let date = defaults.object(forKey: XULastBetaTimestampDefaultsKey) as? Date else {
 			// We're missing date -> someone has tempered with the defaults.
@@ -38,14 +38,20 @@ open class XUBetaExpirationHandler: NSObject {
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", ProcessInfo().processName, inBundle: XUCoreBundle)
-		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCoreBundle)
+		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", ProcessInfo().processName, inBundle: XUCore.bundle)
+		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCore.bundle)
 		alert.addButton(withTitle: "OK")
 		alert.runModal()
 	}
 	
 	fileprivate func _showWarningAndScheduleOneHourExpiration() {
+		let alert = NSAlert()
+		alert.messageText = XULocalizedString("This beta build will expire in less than an hour.", inBundle: XUCore.bundle)
+		alert.informativeText = XULocalizedString("Please update your copy of this beta build.", inBundle: XUCore.bundle)
+		alert.addButton(withTitle: "OK")
+		alert.runModal()
 		
+		Timer.scheduledTimer(timeInterval: XUTimeInterval.hour, target: self, selector: #selector(XUBetaExpirationHandler._handleExpiration), userInfo: nil, repeats: false)
 	}
 	
 	@objc
@@ -58,17 +64,15 @@ open class XUBetaExpirationHandler: NSObject {
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", ProcessInfo().processName, inBundle: XUCoreBundle)
-		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCoreBundle)
+		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", ProcessInfo().processName, inBundle: XUCore.bundle)
+		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCore.bundle)
 		alert.addButton(withTitle: "OK")
 		alert.runModal()
 		
 		exit(0)
 	}
 	
-	fileprivate override init() {
-		super.init()
-		
+	fileprivate init() {
 		if !XUAppSetup.isBetaBuild {
 			return
 		}

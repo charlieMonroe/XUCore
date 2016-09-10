@@ -6,11 +6,11 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 /// Debugging view that is painted red, which allows you to easily see the view
 /// boundaries.
-open class XURedView: NSView {
+public final class XURedView: NSView {
 	
 	open override func draw(_ dirtyRect: CGRect) {
 		NSColor.red.set()

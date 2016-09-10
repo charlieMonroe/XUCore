@@ -273,7 +273,7 @@ open class XUDownloadCenter {
 			
 			let credentials: Credentials?
 			if let username = hostDict[DictionaryKeys.Username] as? String {
-				if let password = XUKeychainAccess.sharedAccess.passwordForUsername(username, inAccount: host.fullAddress) {
+				if let password = XUKeychainAccess.sharedAccess.password(forUsername: username, inAccount: host.fullAddress) {
 					credentials = Credentials(username: username, andPassword: password)
 				} else {
 					credentials = nil
@@ -292,7 +292,7 @@ open class XUDownloadCenter {
 				return
 			}
 			
-			XUKeychainAccess.sharedAccess.savePassword(credentials.password, forUsername: credentials.password, inAccount: self.host.fullAddress)
+			XUKeychainAccess.sharedAccess.save(password: credentials.password, forUsername: credentials.password, inAccount: self.host.fullAddress)
 		}
 		
 		/// Returns a dictionary to be used with
@@ -565,8 +565,8 @@ open class XUDownloadCenter {
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
 	open func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL URL: URL!, withModifier modifier: POSTFieldsModifier? = nil) -> String? {
-		var inputFields = source.allVariablePairsForRegexString("<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
-		inputFields += source.allVariablePairsForRegexString("<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
+		var inputFields = source.allVariablePairs(forRegexString: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
+		inputFields += source.allVariablePairs(forRegexString: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - no input fields in \(source)")
@@ -672,7 +672,7 @@ open class XUDownloadCenter {
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
 	open func JSONObjectFromCallbackString(_ JSONString: String!) -> AnyObject? {
-		guard let innerJSON = JSONString?.getRegexVariableNamed("JSON", forRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
+		guard let innerJSON = JSONString?.value(ofVariableNamed: "JSON", inRegexStrings: "\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - no inner JSON in callback string \(JSONString ?? "")")

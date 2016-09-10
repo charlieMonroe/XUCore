@@ -58,11 +58,11 @@ private let XUInAppPurchasesDefaultsKey = "XUInAppPurchases"
 	
 }
 
-open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKRequestDelegate, SKProductsRequestDelegate {
+public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKRequestDelegate, SKProductsRequestDelegate {
 
 	/// You need to call this prior to calling sharedManager. Do not call this
 	/// unless the current application setup is set to AppStore.
-	open class func createSharedManagerWithDelegate(_ delegate: XUInAppPurchaseManagerDelegate) {
+	public class func createSharedManagerWithDelegate(_ delegate: XUInAppPurchaseManagerDelegate) {
 		if !XUAppSetup.isAppStoreBuild {
 			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Trying to create in-app purchase manager, while this is not an AppStore build.", userInfo: nil).raise()
 		}
@@ -72,7 +72,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 	
 	/// This is the shared instance of the manager. Make sure that you call
 	/// createSharedManagerWithDelegate() before using this!
-	open fileprivate(set) static var sharedManager: XUInAppPurchaseManager!
+	public fileprivate(set) static var sharedManager: XUInAppPurchaseManager!
 	
 	
 	/// The delegate. Unlike the convention, the manager keeps a strong reference
@@ -81,16 +81,16 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 	/// - the delegate is required. Weak implicates nullable.
 	/// - the manager is a singleton, hence there is no reason for you to keep
 	///		reference to it, hence no retain cycles should be created.
-	open let delegate: XUInAppPurchaseManagerDelegate
+	public let delegate: XUInAppPurchaseManagerDelegate
 	
 	/// Returns true if the manager is currently loading products.
-	open fileprivate(set) var isLoadingProducts: Bool = false
+	public fileprivate(set) var isLoadingProducts: Bool = false
 	
 	/// Products available for purchse.
-	open fileprivate(set) var productsAvailableForPurchase: [SKProduct] = [ ]
+	public fileprivate(set) var productsAvailableForPurchase: [SKProduct] = [ ]
 	
 	/// A list of identifiers of purchased products.
-	open fileprivate(set) var purchasedProductIdentifiers: [String] = [ ]
+	public fileprivate(set) var purchasedProductIdentifiers: [String] = [ ]
 	
 	
 	/// Called from a notification, so that we remove self from observers when the
@@ -160,7 +160,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager._removeAsObserver(_:)), name: notificationName, object: nil)
 	}
 	
-	open func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 		XULog("Payment queue got updated with transactions \(transactions)")
 		
 		for transaction in transactions {
@@ -208,7 +208,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 	}
 	
 	
-	open func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+	public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
 		XULog("Restoration failed with an error \(error)")
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
@@ -216,7 +216,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		}
 	}
 	
-	open func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+	public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
 		XULog("Finished restoration.")
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
@@ -224,7 +224,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		}
 	}
 	
-	open func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC({
 			let products = response.products
 			if products.count > 0 {
@@ -244,16 +244,21 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		})
 	}
 	
+	@available(*, deprecated, renamed: "purchase(product:)")
+	public func purchaseProduct(_ product: SKProduct) {
+		self.purchase(product: product)
+	}
+	
 	/// Starts a purchase. This is asynchronous and the delegate is notified about
 	/// the outcome.
-	open func purchaseProduct(_ product: SKProduct) {
+	public func purchase(product: SKProduct) {
 		let payment = SKPayment(product: product)
 		SKPaymentQueue.default().add(payment)
 	}
 	
 	/// Reloads products available for purchase. Usually is done automatically,
 	/// but you may re-trigger this e.g. on network failure.
-	open func reloadProductsAvailableForPurchase() {
+	public func reloadProductsAvailableForPurchase() {
 		if isLoadingProducts {
 			// Already loading
 			return
@@ -263,7 +268,7 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 		__XUInAppPurchaseManagerHelper.requestProducts(withIdentifiers: self.delegate.availableProductIdentifiers, with: self)
 	}
 	
-	open func request(_ request: SKRequest, didFailWithError error: Error) {
+	public func request(_ request: SKRequest, didFailWithError error: Error) {
 		XULog("An error getting products occurred: \(error)")
 		
 		isLoadingProducts = false
@@ -274,12 +279,12 @@ open class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserver, SKReq
 	}
 	
 	/// Starts restoration of purchases. See delegate methods for callbacks.
-	open func restorePurchases() {
+	public func restorePurchases() {
 		SKPaymentQueue.default().restoreCompletedTransactions()
 	}
 	
 	/// Saves the in-app purchases. Seldomly needed to be called manually.
-	open func save() {
+	public func save() {
 		XULog("Saving in app purchases \(self.purchasedProductIdentifiers)")
 		
 		let hashedIdentifiers = self.purchasedProductIdentifiers.map { (identifier) -> String in

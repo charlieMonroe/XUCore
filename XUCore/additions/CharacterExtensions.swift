@@ -12,7 +12,7 @@ extension Character {
 	
 	/// Returns a random character from a range. The range represents UTF8 codes.
 	public static func randomCharacter(in range: Range<Int>) -> Character {
-		let randomInt = XURandomGenerator.sharedGenerator.randomUnsignedIntegerInRange(UInt(range.lowerBound)..<UInt(range.upperBound))
+		let randomInt = XURandomGenerator.sharedGenerator.randomUnsignedInteger(in: UInt(range.lowerBound) ..< UInt(range.upperBound))
 		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
@@ -28,7 +28,7 @@ extension Character {
 		// What we're going to do is to get a random from A-Z and then get another
 		// random byte - which is positive, we add 0x20 to lower-case the char.
 		
-		var randomInt = XURandomGenerator.sharedGenerator.randomUnsignedIntegerInRange(0x41..<0x5a)
+		var randomInt = XURandomGenerator.sharedGenerator.randomUnsignedInteger(in: 0x41 ..< 0x5a)
 		if XURandomGenerator.sharedGenerator.randomBool {
 			randomInt += 0x20
 		}

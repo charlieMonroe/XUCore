@@ -71,12 +71,3 @@ public func XUAllSubclassesOfClass<T: AnyObject>(_ aClass: T.Type) -> [T.Type] {
 	return result
 }
 
-/// This class allows the functions to be accessible from Objective-C.
-open class XUSubclassCollector: NSObject {
-
-	open class func allSubclassesOfClass(_ aClass: AnyClass) -> [AnyClass] {
-		return XUAllSubclassesOfClass(aClass as! NSObject.Type)
-	}
-
-}
-

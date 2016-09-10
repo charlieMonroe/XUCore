@@ -46,7 +46,7 @@ public enum XUJSONDeserializationError {
 	/// you are setting e.g. a NSNumber into a NSString property.
 	case error
 
-	public func isMoreSevereThan(_ otherError: XUJSONDeserializationError) -> Bool {
+	public func isMoreSevere(than otherError: XUJSONDeserializationError) -> Bool {
 		if otherError == self {
 			return false
 		}
@@ -215,7 +215,7 @@ public final class XUJSONDeserializer {
 		}
 
 		if _cachedProperties[classIdentifier] == nil {
-			let properties = XUObjCProperty.propertiesOnClass(type(of: object), includingSuperclasses: true)
+			let properties = XUObjCProperty.properties(on: type(of: object), includingSuperclasses: true)
 			var propertyMapping: [String : XUObjCProperty] = [:]
 			for prop in properties {
 				propertyMapping[prop.name] = prop
@@ -626,11 +626,11 @@ public final class XUJSONDeserializer {
 			case .error:
 				result = .error
 			case .unhandled(let error):
-				if error.isMoreSevereThan(result) {
+				if error.isMoreSevere(than: result) {
 					result = error
 				}
 			case .deserializedValue(let property, let value, let error):
-				if error.isMoreSevereThan(result) {
+				if error.isMoreSevere(than: result) {
 					result = error
 				}
 				

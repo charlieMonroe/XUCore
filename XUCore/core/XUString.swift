@@ -13,15 +13,15 @@ public func ==(lhs: XUString, rhs: XUString) -> Bool {
 }
 
 public func +=(lhs: inout XUString, rhs: XUString) {
-	lhs = lhs.stringByAppendingString(rhs)
+	lhs = lhs.appending(rhs)
 }
 
 public func +=(lhs: inout XUString, rhs: String) {
-	lhs = lhs.stringByAppendingString(XUString(string: rhs))
+	lhs = lhs.appending(XUString(string: rhs))
 }
 
 public func +=(lhs: XUString, rhs: XUString.XUChar) {
-	lhs.appendCharacter(rhs)
+	lhs.append(rhs)
 }
 
 public extension Sequence where Iterator.Element == XUString {
@@ -36,9 +36,9 @@ public extension Sequence where Iterator.Element == XUString {
 		var previous: XUString? = nil
 		for item in self {
 			if previous != nil {
-				result = result.stringByAppendingString(separator)
+				result = result.appending(separator)
 			}
-			result = result.stringByAppendingString(item)
+			result = result.appending(item)
 			previous = item
 		}
 		return result
@@ -46,54 +46,119 @@ public extension Sequence where Iterator.Element == XUString {
 	
 }
 
-
+public extension XUString {
+	
+	@available(*, deprecated, renamed: "append")
+	public func appendCharacter(_ char: Character) {
+		self.append(char)
+	}
+	
+	@available(*, deprecated, renamed: "character(at:)")
+	public func characterAtIndex(_ index: Int) -> Character {
+		return self.character(at: index)
+	}
+	
+	@available(*, deprecated, renamed: "index(of:)")
+	public func indexOfCharacter(_ char: XUChar) -> Int? {
+		return self.index(of: char)
+	}
+	
+	@available(*, deprecated, renamed: "remove(at:)")
+	public func removeCharacterAtIndex(_ index: Int) {
+		self.remove(at: index)
+	}
+	
+	@available(*, deprecated, renamed: "removeSubrange(_:)")
+	public func removeCharactersInRange(_ range: Range<Int>) {
+		self.removeSubrage(range)
+	}
+	
+	@available(*, deprecated, renamed: "remove(passingTest:)")
+	public func removeCharactersPassingTest(_ test: (_ character: XUChar, _ index: Int) -> Bool) {
+		self.remove(passingTest: test)
+	}
+	
+	@available(*, deprecated, renamed: "appending(_:)")
+	public func stringByAppendingString(_ string: XUString) -> XUString {
+		return self.appending(string)
+	}
+	
+	@available(*, deprecated, renamed: "substring(from:)")
+	public func substringFromIndex(_ index: Int) -> XUString {
+		return self.substring(from: index)
+	}
+	
+	@available(*, deprecated, renamed: "substring(to:)")
+	public func substringToIndex(_ index: Int) -> XUString {
+		return self.substring(to: index)
+	}
+	
+	@available(*, deprecated, renamed: "substring(with:)")
+	public func substringWithRange(_ range: Range<Int>) -> XUString {
+		return self.substring(with: range)
+	}
+	
+	@available(*, deprecated, renamed: "swap(characterAt:withCharacterAt:)")
+	public func swapCharacterAtIndex(_ index1: Int, withCharacterAtIndex index2: Int) {
+		self.swap(characterAt: index1, withCharacterAt: index2)
+	}
+	
+}
 
 /// This is a class that helps dealing with various string computations by
 /// allowing direct modification of characters in the string. The string is just
 /// a byte array, hence can be used even for data.
-open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConvertible {
+public final class XUString: Equatable, CustomDebugStringConvertible, CustomStringConvertible {
 	
 	/// A typealias for the char. We're using UInt8.
+	public typealias Character = UInt8
+	
+	@available(*, deprecated, renamed: "Character")
 	public typealias XUChar = UInt8
 	
-	fileprivate var _buffer: [XUChar]
+	fileprivate var _buffer: [Character]
 	
 	
 	/// Appends a character at the end of the buffer.
-	open func appendCharacter(_ char: XUChar) {
+	public func append(_ char: Character) {
 		_buffer.append(char)
 	}
 	
+	/// Returns a string by appending another string.
+	public func appending(_ string: XUString) -> XUString {
+		return XUString(chars: _buffer + string._buffer)
+	}
+	
 	/// Returns character at index.
-	open func characterAtIndex(_ index: Int) -> XUChar {
+	public func character(at index: Int) -> Character {
 		return _buffer[index]
 	}
 	
 	/// Returns the inner string buffer. Should not be accessed, unless you have
 	/// a good reason for it..
-	open var characters: [XUChar] {
+	public var characters: [Character] {
 		return _buffer
 	}
 	
 	/// Returns a copy of self.
-	open func copy() -> XUString {
+	public func copy() -> XUString {
 		return XUString(chars: _buffer)
 	}
 	
 	/// Returns bytes wrapped in NSData.
-	open var data: Data {
+	public var data: Data {
 		return Data(bytes: _buffer)
 	}
 	
-	open var debugDescription: String {
+	public var debugDescription: String {
 		return self.description
 	}
 	
-	open var description: String {
+	public var description: String {
 		return "XUString<\(Unmanaged.passUnretained(self).toOpaque())> [length: \(self.length)] - \(self.stringValue)"
 	}
 	
-	open func hasPrefix(_ prefix: XUString) -> Bool {
+	public func hasPrefix(_ prefix: XUString) -> Bool {
 		if prefix.length > self.length {
 			return false
 		}
@@ -108,12 +173,12 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	}
 	
 	/// Returns an index of the first occurrence of the char.
-	open func indexOfCharacter(_ char: XUChar) -> Int? {
+	public func index(of char: Character) -> Int? {
 		return _buffer.index(of: char)
 	}
 	
 	/// Designated initializer.
-	public init(chars: [XUChar]) {
+	public init(chars: [Character]) {
 		_buffer = chars
 	}
 
@@ -122,18 +187,11 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 		self.init(chars: [ ])
 	}
 	
-	/// Takes an array of NSNumber's which represent individual chars.
-	@available(*, deprecated, message: "Use init(chars:) instead.")
-	public convenience init(characterCodes: [NSNumber]) {
-		let chars = characterCodes.map({ $0.uint8Value })
-		self.init(chars: chars)
-	}
-	
 	/// Interprets NSData as a const char *
 	public convenience init(dataBytes data: Data) {
 		let count = data.count
 		
-		var chars = Array<XUChar>(repeating: 0, count: count)
+		var chars = Array<Character>(repeating: 0, count: count)
 		(data as NSData).getBytes(&chars, length: count)
 		
 		self.init(chars: chars)
@@ -141,57 +199,57 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	
 	/// Convenience method that fills the string with str[0] = 0, str[1] = 1, ...
 	public convenience init(filledWithASCIITableOfLength length: Int) {
-		var chars: [XUChar] = [ ]
+		var chars: [Character] = [ ]
 		for i in 0 ..< length {
-			chars.append(XUChar(i))
+			chars.append(Character(i))
 		}
 		
 		self.init(chars: chars)
 	}
 	
 	/// Convenience method that fills the string with c.
-	public convenience init(filledWithChar c: XUChar, ofLength length: Int) {
-		let chars = Array<XUChar>(repeating: c, count: length)
+	public convenience init(filledWithCharacter c: Character, ofLength length: Int) {
+		let chars = Array<Character>(repeating: c, count: length)
 		self.init(chars: chars)
 	}
 	
 	/// Inits with a string.
 	public convenience init(string: String) {
-		var chars: [XUChar] = [ ]
+		var chars: [Character] = [ ]
 		for x in string.utf8 {
 			chars.append(x)
 		}
 		self.init(chars: chars)
 	}
 	
-	open var lastCharacter: XUChar {
+	public var lastCharacter: Character {
 		assert(self.length > 0)
 		
-		return self.characterAtIndex(self.length - 1)
+		return self.character(at: self.length - 1)
 	}
 	
 	/// Returns the length of the string.
-	open var length: Int {
+	public var length: Int {
 		return _buffer.count
 	}
 	
 	/// Returns MD5 digest of the data.
-	open var MD5Digest: String {
+	public var md5Digest: String {
 		return self.data.md5Digest
 	}
 	
 	/// Removes character at index by shifting the remainder of the string left.
-	open func removeCharacterAtIndex(_ index: Int) {
+	public func remove(at index: Int) {
 		_buffer.remove(at: index)
 	}
 	
 	/// Removes characters in range by shifting the remainder of the string left.
-	open func removeCharactersInRange(_ range: Range<Int>) {
+	public func removeSubrage(_ range: Range<Int>) {
 		_buffer.removeSubrange(range)
 	}
 	
 	/// Removes all characters passing the filter.
-	open func removeCharactersPassingTest(_ test: (_ character: XUChar, _ index: Int) -> Bool) {
+	public func remove(passingTest test: (_ character: Character, _ index: Int) -> Bool) {
 		for i in (0..<_buffer.count).reversed() {
 			if test(_buffer[i], i) {
 				_buffer.remove(at: i)
@@ -200,35 +258,24 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	}
 	
 	/// Removes last character.
-	open func removeLastCharacter() {
+	public func removeLastCharacter() {
 		assert(self.length > 0)
 		
-		self.removeCharacterAtIndex(self.length - 1)
+		self.remove(at: self.length - 1)
 	}
 	
 	/// Removes all characters with value > 127
-	open func removeNonASCIICharacters() {
-		self.removeCharactersPassingTest({ $0.0 > 127 })
+	public func removeNonASCIICharacters() {
+		self.remove(passingTest: { $0.0 > 127 })
 	}
 	
 	/// Sets a character at index. Will throw if the index is out of bounds.
-	open func setCharacter(_ char: XUChar, atIndex index: Int) {
+	public func setCharacter(_ char: Character, atIndex index: Int) {
 		_buffer[index] = char
 	}
 	
-	/// Returns a string by appending another string.
-	open func stringByAppendingString(_ string: XUString) -> XUString {
-		return XUString(chars: _buffer + string._buffer)
-	}
-	
-	/// Returns the inner string buffer. Should not be accessed.
-	@available(*, unavailable, renamed: "characters")
-	open var string: [XUChar] {
-		return _buffer
-	}
-	
 	/// Returns a constructed string from the chars.
-	open var stringValue: String {
+	public var stringValue: String {
 		var value = ""
 		for c in _buffer {
 			value.append(String(describing: UnicodeScalar(UInt32(c))))
@@ -237,23 +284,23 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	}
 	
 	/// Returns a string containing everything after index.
-	open func substringFromIndex(_ index: Int) -> XUString {
-		return self.substringWithRange(index..<self.length)
+	public func substring(from index: Int) -> XUString {
+		return self.substring(with: index..<self.length)
 	}
 	
 	/// Returns a string containing `length` first characters.
-	open func substringToIndex(_ index: Int) -> XUString {
-		return self.substringWithRange(0..<index)
+	public func substring(to index: Int) -> XUString {
+		return self.substring(with: 0..<index)
 	}
 	
 	/// Returns a substring in range.
-	open func substringWithRange(_ range: Range<Int>) -> XUString {
+	public func substring(with range: Range<Int>) -> XUString {
 		let slice = _buffer[range]
-		return XUString(chars: Array<XUChar>(slice))
+		return XUString(chars: Array<Character>(slice))
 	}
 	
 	/// Swaps the two characters.
-	open func swapCharacterAtIndex(_ index1: Int, withCharacterAtIndex index2: Int) {
+	public func swap(characterAt index1: Int, withCharacterAt index2: Int) {
 		let c1 = _buffer[index1]
 		let c2 = _buffer[index2]
 		
@@ -262,9 +309,9 @@ open class XUString: Equatable, CustomDebugStringConvertible, CustomStringConver
 	}
 
 	
-	open subscript(index: Int) -> XUChar {
+	public subscript(index: Int) -> Character {
 		get {
-			return self.characterAtIndex(index)
+			return self.character(at: index)
 		}
 		set {
 			self.setCharacter(newValue, atIndex: index)
@@ -285,18 +332,18 @@ extension XUString: Sequence {
 }
 
 /// Generator for XUString.
-open class XUStringGenerator: IteratorProtocol {
+public class XUStringGenerator: IteratorProtocol {
 	
 	public typealias Element = XUString.XUChar
 	
 	/// Current index we're at.
-	open var currentIndex: Int
+	public var currentIndex: Int
 	
 	/// The string we're iterating.
-	open let string: XUString
+	public let string: XUString
 	
 	/// Returns next element.
-	open func next() -> XUString.XUChar? {
+	public func next() -> XUString.XUChar? {
 		if currentIndex + 1 >= self.string.length {
 			return nil
 		}
