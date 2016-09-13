@@ -157,17 +157,20 @@ open class XUDownloadCenter {
 		}
 		
 		/// Type of the proxy. Currently only HTTP, HTTPS and SOCKS are supported.
+		/// iOS supports only HTTP.
 		public enum ProxyType: Int {
 			
 			/// Pure HTTP proxy.
 			case http
 			
+			#if os(OSX)
 			/// HTTPS proxy. Not tested on iOS at this point. Use with caution.
 			case https
 			
 			/// SOCKS proxy. SOCKS 4 is currently not supported, this defaults
 			/// to SOCKS 5.
 			case socks
+			#endif
 		}
 		
 		/// Structure encapsulating the host information.
@@ -297,26 +300,39 @@ open class XUDownloadCenter {
 		
 		/// Returns a dictionary to be used with
 		/// NSURLSessionConfiguration.connectionProxyDictionary.
-		public var urlSessionProxyDictionary: [String : AnyObject] {
-			var dict: [String : AnyObject] = [:]
-			switch self.proxyType {
-			case .http:
-				dict[kCFNetworkProxiesHTTPEnable as String] = true as AnyObject?
-				dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address as AnyObject?
-				dict[kCFNetworkProxiesHTTPPort as String] = self.host.port as AnyObject?
-			case .https:
-				dict[kCFNetworkProxiesHTTPSEnable as String] = true as AnyObject?
-				dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address as AnyObject?
-				dict[kCFNetworkProxiesHTTPSPort as String] = self.host.port as AnyObject?
-			case .socks:
-				dict[kCFNetworkProxiesSOCKSEnable as String] = true as AnyObject?
-				dict[kCFNetworkProxiesSOCKSProxy as String] = self.host.address as AnyObject?
-				dict[kCFNetworkProxiesSOCKSPort as String] = self.host.port as AnyObject?
-			}
+		public var urlSessionProxyDictionary: [String : Any] {
+			var dict: [String : Any] = [:]
+			#if os(OSX)
+				switch self.proxyType {
+				case .http:
+					dict[kCFNetworkProxiesHTTPEnable as String] = true
+					dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address
+					dict[kCFNetworkProxiesHTTPPort as String] = self.host.port
+				case .https:
+					dict[kCFNetworkProxiesHTTPEnable as String] = true
+					dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address
+					dict[kCFNetworkProxiesHTTPPort as String] = self.host.port
+
+					dict[kCFNetworkProxiesHTTPSEnable as String] = true
+					dict[kCFNetworkProxiesHTTPSProxy as String] = self.host.address
+					dict[kCFNetworkProxiesHTTPSPort as String] = self.host.port
+				case .socks:
+					dict[kCFNetworkProxiesSOCKSEnable as String] = true
+					dict[kCFNetworkProxiesSOCKSProxy as String] = self.host.address
+					dict[kCFNetworkProxiesSOCKSPort as String] = self.host.port
+				}
+			#else
+				switch self.proxyType {
+				case .http:
+					dict[kCFNetworkProxiesHTTPEnable as String] = true
+					dict[kCFNetworkProxiesHTTPProxy as String] = self.host.address
+					dict[kCFNetworkProxiesHTTPPort as String] = self.host.port
+				}
+			#endif
 			
 			if let credentials = self.credentials {
-				dict[kCFProxyUsernameKey as String] = credentials.username as AnyObject?
-				dict[kCFProxyPasswordKey as String] = credentials.password as AnyObject?
+				dict[kCFProxyUsernameKey as String] = credentials.username
+				dict[kCFProxyPasswordKey as String] = credentials.password
 			}
 			return dict
 		}

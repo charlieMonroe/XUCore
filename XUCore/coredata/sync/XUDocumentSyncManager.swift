@@ -690,7 +690,7 @@ open class XUDocumentSyncManager {
 		_synchronizationLock.unlock()
 	
 		#if os(iOS)
-			_syncBackgroundTaskIdentifier = UIApplication.sharedApplication().beginBackgroundTaskWithName("XUDocumentSyncManager.Sync", expirationHandler: {
+			_syncBackgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(withName: "XUDocumentSyncManager.Sync", expirationHandler: {
 				if self._syncBackgroundTaskIdentifier == UIBackgroundTaskInvalid {
 					return
 				}
@@ -699,11 +699,11 @@ open class XUDocumentSyncManager {
 				self._syncBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 
 				let notification = UILocalNotification()
-				notification.alertTitle = XULocalizedFormattedString("%@ couldn't finish synchronization in the background.", NSProcessInfo.processInfo().processName)
-				notification.alertBody =  XULocalizedFormattedString("Please switch back to %@ so that the synchronization can finish.", NSProcessInfo.processInfo().processName)
-				notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
+				notification.alertTitle = XULocalizedFormattedString("%@ couldn't finish synchronization in the background.", ProcessInfo.processInfo.processName)
+				notification.alertBody =  XULocalizedFormattedString("Please switch back to %@ so that the synchronization can finish.", ProcessInfo.processInfo.processName)
+				notification.fireDate = NSDate(timeIntervalSinceNow: 1.0) as Date
 		
-				UIApplication.sharedApplication().scheduleLocalNotification(notification)
+				UIApplication.shared.scheduleLocalNotification(notification)
 			})
 		#endif
 	
@@ -721,7 +721,7 @@ open class XUDocumentSyncManager {
 	
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD({ 
 				#if os(iOS)
-					UIApplication.sharedApplication().endBackgroundTask(self._syncBackgroundTaskIdentifier)
+					UIApplication.shared.endBackgroundTask(self._syncBackgroundTaskIdentifier)
 					self._syncBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 				#endif
 				

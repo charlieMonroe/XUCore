@@ -11,5 +11,5 @@ import UIKit
 /// Unfortunately, Swift compiler sometimes has an issue compiling
 /// UIDevice.currentDevice() and crashes. This can be easily solved by creating
 /// an internal lazy-loaded variable such as this one.
-public let XUCurrentDevice = UIDevice.currentDevice()
+public let XUCurrentDevice = UIDevice.current
 

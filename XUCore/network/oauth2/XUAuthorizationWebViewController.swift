@@ -17,19 +17,19 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
 
 	/// URL this controller was initialized with.
-	let url: NSURL
+	let url: URL
 
 	
 	
 	/// Closes the window and passes the result to self.completionHandler.
 	func close(withResult result: XUOAuth2Client.AuthorizationResult) {
-		self.dismissViewControllerAnimated(true) {
+		self.dismiss(animated: true) {
 			self.completionHandler?(result)
 		}
 	}
 	
-	init(URL: NSURL) {
-		self.url = URL
+	init(url: URL) {
+		self.url = url
 		
 		super.init(nibName: nil, bundle: nil)
 		
@@ -40,8 +40,8 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@IBAction @objc private func cancel(sender: AnyObject?) {
-		self.close(withResult: .Error(.UserCancelled))
+	@IBAction @objc private func cancel(_ sender: AnyObject?) {
+		self.close(withResult: .error(.userCancelled))
 	}
 	
 	/// Runs the window modally and will call completionHandler when it gets closed
@@ -50,17 +50,17 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 		self.completionHandler = completionHandler
 		
 		let navController = UINavigationController(rootViewController: self)
-		controller.presentViewController(navController, animated: true, completion: nil)
+		controller.present(navController, animated: true, completion: nil)
 	}
 
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.title = XULocalizedString("Authentication", inBundle: XUCoreBundle)
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancel(_:)))
+		self.title = XULocalizedString("Authentication", inBundle: XUCore.bundle)
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
 		
-		_webView.loadRequest(NSURLRequest(URL: self.url))
+		_webView.load(URLRequest(url: self.url))
 	}
 	
 	

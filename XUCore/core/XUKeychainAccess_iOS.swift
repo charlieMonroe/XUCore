@@ -12,10 +12,10 @@ public class XUKeychainAccess {
 	
 	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
 	
-	private func _dictionaryForUsername(username: String, inAccount account: String, accessGroup: String?) -> [String : AnyObject]? {
-		var genericPasswordQuery: [String : AnyObject] = [:]
+	private func _dictionaryForUsername(username: String, inAccount account: String, accessGroup: String?) -> [String : Any]? {
+		var genericPasswordQuery: [String : Any] = [:]
 		genericPasswordQuery[kSecClass as String] = kSecClassGenericPassword
-		genericPasswordQuery[kSecAttrAccount as String] = "\(account): \(username)"
+		genericPasswordQuery[kSecAttrAccount as String] = "\(account): \(username)" as AnyObject?
 		
 		if let accessGroup = accessGroup {
 			#if (arch(i386) || arch(x86_64)) && os(iOS)
@@ -37,11 +37,11 @@ public class XUKeychainAccess {
 		genericPasswordQuery[kSecReturnAttributes as String] = kCFBooleanTrue
 		
 		var genericResult: AnyObject? = nil
-		if SecItemCopyMatching(genericPasswordQuery, &genericResult) != noErr {
+		if SecItemCopyMatching(genericPasswordQuery as CFDictionary, &genericResult) != noErr {
 			return nil
 		}
 		
-		guard let currentDictionary = genericResult as? [String : AnyObject] else {
+		guard let currentDictionary = genericResult as? [String : Any] else {
 			XULog("Result returned for user \(username) in account \(account) is not a dictionary: \(genericResult.descriptionWithDefaultValue()).")
 			return nil
 		}
@@ -51,8 +51,8 @@ public class XUKeychainAccess {
 	
 	
 	/// Fetches a password for username in account from Keychain.
-	public func passwordForUsername(username: String, inAccount account: String, accessGroup: String? = nil) -> String? {
-		guard let currentDictionary = self._dictionaryForUsername(username, inAccount: account, accessGroup: accessGroup) else {
+	public func password(forUsername username: String, inAccount account: String, accessGroup: String? = nil) -> String? {
+		guard let currentDictionary = self._dictionaryForUsername(username: username, inAccount: account, accessGroup: accessGroup) else {
 			XULog("Failed to fetch password for \(username) in \(account).")
 			return nil
 		}
@@ -63,12 +63,12 @@ public class XUKeychainAccess {
 		]
 		
 		var genericPasswordData: AnyObject?
-		guard SecItemCopyMatching(returnDictionary, &genericPasswordData) == noErr else {
+		guard SecItemCopyMatching(returnDictionary as CFDictionary, &genericPasswordData) == noErr else {
 			XULog("Failed to copy password data for user \(username) in account \(account).")
 			return nil
 		}
 		
-		guard let data = genericPasswordData as? NSData, password = String(data: data) else {
+		guard let data = genericPasswordData as? Data, let password = String(data: data) else {
 			XULog("Failed to create password from password data \(genericPasswordData.descriptionWithDefaultValue())")
 			return nil
 		}
@@ -78,10 +78,11 @@ public class XUKeychainAccess {
 	
 	/// Saves password for username in account to Keychain. Returns true if the
 	/// operation was successful, false otherwise.
-	public func savePassword(password: String, forUsername username: String, inAccount account: String, accessGroup: String? = nil) -> Bool {
-		var dict: [String : AnyObject]
+	@discardableResult
+	public func save(password: String, forUsername username: String, inAccount account: String, accessGroup: String? = nil) -> Bool {
+		var dict: [String : Any]
 		let isNew: Bool
-		if let currentDictionary = self._dictionaryForUsername(username, inAccount: account, accessGroup: accessGroup) {
+		if let currentDictionary = self._dictionaryForUsername(username: username, inAccount: account, accessGroup: accessGroup) {
 			dict = currentDictionary
 			isNew = false
 		} else {
@@ -99,10 +100,10 @@ public class XUKeychainAccess {
 			isNew = true
 		}
 		
-		dict[kSecValueData as String] = password.dataUsingEncoding(.utf8)
+		dict[kSecValueData as String] = password.data(using: .utf8)
 
 		if isNew {
-			return SecItemAdd(dict, nil) == noErr
+			return SecItemAdd(dict as CFDictionary, nil) == noErr
 		} else {
 			var updateItem = dict
 			updateItem[kSecClass as String] = kSecClassGenericPassword
@@ -110,7 +111,7 @@ public class XUKeychainAccess {
 			dict[kSecClass as String] = nil
 			dict[kSecAttrAccessGroup as String] = nil
 			
-			return SecItemUpdate(updateItem, dict) == noErr
+			return SecItemUpdate(updateItem as CFDictionary, dict as CFDictionary) == noErr
 		}
 	}
 	

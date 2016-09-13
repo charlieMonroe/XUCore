@@ -26,10 +26,10 @@ public extension UIColor {
 		
 		self.set()
 		
-		CGContextAddRoundedRect(ctx, rect: dstRect, cornerRadius: radius)
-		CGContextFillPath(ctx)
+		ctx.addRoundedRect(dstRect, withCornerRadius: radius)
+		ctx.fillPath()
 		
-		UIColor.whiteColor().set()
+		UIColor.white.set()
 		
 		let maskedImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
@@ -40,15 +40,15 @@ public extension UIColor {
 	public convenience init?(hexString originalHexString: String) {
 		var hexString = originalHexString
 		if hexString.characters.count == 6 || hexString.characters.count == 7 {
-			hexString = hexString.stringByDeletingPrefix("#")
+			hexString = hexString.deleting(prefix: "#")
 		} else {
 			return nil // Wrong fromat
 		}
 		
 		let startIndex = hexString.startIndex
-		let redByte = hexString.substringWithRange(startIndex ..< startIndex.advancedBy(2)).hexValue
-		let greenByte = hexString.substringWithRange(startIndex.advancedBy(2) ..< startIndex.advancedBy(4)).hexValue
-		let blueByte = hexString.substringWithRange(startIndex.advancedBy(4) ..< startIndex.advancedBy(6)).hexValue
+		let redByte = hexString.substring(with: startIndex ..< hexString.index(startIndex, offsetBy: 2)).hexValue
+		let greenByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 2) ..< hexString.index(startIndex, offsetBy: 4)).hexValue
+		let blueByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 4) ..< hexString.index(startIndex, offsetBy: 6)).hexValue
 		
 		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: 1.0)
 	}

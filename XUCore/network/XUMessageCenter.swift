@@ -112,7 +112,7 @@ open class XUMessageCenter: NSObject {
 				}
 				
 				#if os(iOS)
-					UIApplication.sharedApplication().openURL(url)
+					UIApplication.shared.openURL(url)
 				#else
 					NSWorkspace.shared().open(url)
 				#endif
@@ -133,9 +133,9 @@ open class XUMessageCenter: NSObject {
 				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCore.bundle)
 				
 				#if os(iOS)
-					let controller = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
-					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: nil))
-					UIApplication.sharedApplication().windows.first!.rootViewController?.presentViewController(controller, animated: true, completion: nil)
+					let controller = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCore.bundle), style: .default, handler: nil))
+					UIApplication.shared.windows.first!.rootViewController?.present(controller, animated: true, completion: nil)
 				#else
 					let alert = NSAlert()
 					alert.messageText = title
@@ -254,18 +254,18 @@ open class XUMessageCenter: NSObject {
 			
 			// We should display this message!
 			#if os(iOS)
-				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .Alert)
-				alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: { (_) -> Void in
+				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCore.bundle), style: .default, handler: { (_) -> Void in
 					self._processActionsFromMessageDict(message, withMessageID: messageID)
 				}))
 				if allowsIgnoringMessage {
-					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .Cancel, handler: { (_) -> Void in
+					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .cancel, handler: { (_) -> Void in
 						self._markMessageWithIDAsRead(messageID)
 					}))
 				}
 
 				XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
-					UIApplication.sharedApplication().windows.first!.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+					UIApplication.shared.windows.first!.rootViewController?.present(alert, animated: true, completion: nil)
 				})
 			#else
 				let alert = NSAlert()
@@ -298,7 +298,7 @@ open class XUMessageCenter: NSObject {
 		}
 		
 		#if os(iOS)
-			let notificationName = UIApplicationDidFinishLaunchingNotification
+			let notificationName = NSNotification.Name.UIApplicationDidFinishLaunching
 		#else
 			let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
 		#endif

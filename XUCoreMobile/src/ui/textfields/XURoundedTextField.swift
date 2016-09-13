@@ -19,17 +19,17 @@ import UIKit
 		if let placeholder = self.placeholder {
 			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
 				NSForegroundColorAttributeName: UIColor(white: 0.3, alpha: 1.0),
-				NSFontAttributeName: self.font ?? UIFont.systemFontOfSize(13.0)
+				NSFontAttributeName: self.font ?? UIFont.systemFont(ofSize: 13.0)
 			])
 		}
 	}
 	
-	public override func drawRect(rect: CGRect) {
+	public override func draw(_ rect: CGRect) {
 		let bounds = self.bounds
-		UIColor.whiteColor().set()
+		UIColor.white.set()
 		UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height / 2.0).fill()
 		
-		super.drawRect(rect)
+		super.draw(rect)
 	}
 	
 	public override var bounds: CGRect {

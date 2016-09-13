@@ -39,7 +39,7 @@ internal class XUSyncManagerPathUtilities {
 		#if os(iOS)
 			#if (arch(i386) || arch(x86_64)) && os(iOS)
 				/// Simulator changes vender ID each run.
-				return NSBundle.mainBundle().bundleURL.path!.componentsSeparatedByString("data/Containers/Bundle")[0].MD5Digest.uppercaseString
+				return Bundle.main.bundleURL.path.components(separatedBy: "data/Containers/Bundle")[0].md5Digest.uppercased()
 			#else
 				return UIDevice.currentDevice().identifierForVendor!.UUIDString.uppercaseString
 			#endif

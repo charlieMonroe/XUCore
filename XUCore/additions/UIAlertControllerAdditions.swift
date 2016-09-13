@@ -13,8 +13,8 @@ public extension UIAlertController {
 	/// See the init method.
 	public class func alertControllerWithError(error: NSError?, andCompletionHandler completionHandler: ((Void)->Void)? = nil) -> UIAlertController {
 		if error == nil {
-			let alert = UIAlertController(title: XULocalizedString("Unknown error.", inBundle: XUCoreBundle), message: nil, preferredStyle: .Alert)
-			alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: nil))
+			let alert = UIAlertController(title: XULocalizedString("Unknown error.", inBundle: XUCore.bundle), message: nil, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCore.bundle), style: .default, handler: nil))
 			return alert
 		}
 		
@@ -28,15 +28,15 @@ public extension UIAlertController {
 	
 	/// Adds an action with localized "OK" title.
 	public func addOKAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {
-		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: completionHandler))
+		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCore.bundle), style: .default, handler: completionHandler))
 	}
 	
 	/// Creates a new alert controller with information from the error. By default,
 	/// also adds an OK button. If you want all buttons of the alert to be custom,
 	/// remove the existing action on the controller.
 	public convenience init(error: NSError, andCompletionHandler completionHandler: ((Void)->Void)? = nil) {
-		self.init(title: error.localizedFailureReason, message: error.localizedDescription, preferredStyle: .Alert)
-		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreBundle), style: .Default, handler: { (_) in
+		self.init(title: error.localizedFailureReason, message: error.localizedDescription, preferredStyle: .alert)
+		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCore.bundle), style: .default, handler: { (_) in
 			if let handler = completionHandler {
 				handler()
 			}
@@ -59,7 +59,7 @@ public extension UIAlertAction {
 	
 	/// A conveniece for a Cancel action.
 	public convenience init(cancelWithCompletionHandler completionHandler: ((UIAlertAction) -> Void)?) {
-		self.init(title: XULocalizedString("Cancel", inBundle: XUCoreBundle), style: .Cancel, handler: completionHandler)
+		self.init(title: XULocalizedString("Cancel", inBundle: XUCore.bundle), style: .cancel, handler: completionHandler)
 	}
 	
 }

@@ -19,15 +19,15 @@ public extension UIImage {
 		
 		let context = UIGraphicsGetCurrentContext()
 		
-		CGContextScaleCTM(context, 1.0, -1.0)
-		CGContextTranslateCTM(context, 0.0, -(imageRect.height))
-		CGContextClipToMask(context, imageRect, self.CGImage)
-		CGContextSetFillColorWithColor(context, color.CGColor)
-		CGContextFillRect(context, imageRect)
+		context!.scaleBy(x: 1.0, y: -1.0)
+		context!.translateBy(x: 0.0, y: -(imageRect.height))
+		context!.clip(to: imageRect, mask: self.cgImage!)
+		context!.setFillColor(color.cgColor)
+		context!.fill(imageRect)
 		
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
-		return newImage
+		return newImage!
 	}
 	
 	/// Returns a proportionally resized image to targetSize.
@@ -59,14 +59,14 @@ public extension UIImage {
 		}
 		
 		UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-		self.drawInRect(CGRect(x: 0.0, y: 0.0, width: newSize.width, height: newSize.height))
+		self.draw(in: CGRect(x: 0.0, y: 0.0, width: newSize.width, height: newSize.height))
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
-		return newImage
+		return newImage!
 	}
 	
 	/// Returns PNG representation of the image.
-	public var PNGRepresentation: NSData? {
+	public var PNGRepresentation: Data? {
 		return UIImagePNGRepresentation(self)
 	}
 	

@@ -73,7 +73,7 @@ public extension __XUBezierPath {
 		#if os(OSX)
 			self.line(to: point)
 		#else
-			self.addLineToPoint(point)
+			self.addLine(to: point)
 		#endif
 	}
 	

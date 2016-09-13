@@ -11,7 +11,7 @@
 import UIKit
 
 /// This value is set to true if the current device is an iPhone.
-public let XURunningPhoneDevice: Bool = (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
+public let XURunningPhoneDevice: Bool = (UIDevice.current.userInterfaceIdiom == .phone)
 
 /// This value contains the iOS version - e.g. iOS 8.2.1 -> 8, iOS 9.1 -> 9.
-public let XUSystemMajorVersion: Int = NSProcessInfo.processInfo().operatingSystemVersion.majorVersion
+public let XUSystemMajorVersion: Int = ProcessInfo.processInfo.operatingSystemVersion.majorVersion

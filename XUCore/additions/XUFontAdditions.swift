@@ -41,23 +41,23 @@ public enum XUFontWeight: Int {
 	public var value: CGFloat {
 		#if os(iOS)
 			switch self {
-			case .UltraLight:
+			case .ultraLight:
 				return UIFontWeightUltraLight
-			case .Thin:
+			case .thin:
 				return UIFontWeightThin
-			case .Light:
+			case .light:
 				return UIFontWeightLight
-			case .Regular:
+			case .regular:
 				return UIFontWeightRegular
-			case .Medium:
+			case .medium:
 				return UIFontWeightMedium
-			case .Semibold:
+			case .semibold:
 				return UIFontWeightSemibold
-			case .Bold:
+			case .bold:
 				return UIFontWeightBold
-			case .Heavy:
+			case .heavy:
 				return UIFontWeightHeavy
-			case .Black:
+			case .black:
 				return UIFontWeightBlack
 			}
 		#elseif os(OSX)
@@ -129,8 +129,8 @@ public extension XUFont {
 	/// Returns the same font with bold trait.
 	public var boldFont: XUFont? {
 		#if os(iOS)
-			let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold)
-			return XUFont(descriptor: descriptor, size: self.pointSize)
+			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitBold)
+			return XUFont(descriptor: descriptor!, size: self.pointSize)
 		#else
 			let manager = NSFontManager.shared()
 			return manager.convert(self, toHaveTrait: .boldFontMask)
@@ -154,8 +154,8 @@ public extension XUFont {
 	/// Returns the same font with italic trait.
 	public var italicFont: XUFont? {
 		#if os(iOS)
-			let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic)
-			return XUFont(descriptor: descriptor, size: self.pointSize)
+			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitItalic)
+			return XUFont(descriptor: descriptor!, size: self.pointSize)
 		#else
 			let manager = NSFontManager.shared()
 			return manager.convert(self, toHaveTrait: .italicFontMask)

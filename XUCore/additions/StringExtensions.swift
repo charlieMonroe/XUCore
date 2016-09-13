@@ -70,7 +70,11 @@ public extension String {
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
 	public func draw(centeredIn rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
-		let stringSize = self.size(withAttributes: atts)
+		#if os(OSX)
+			let stringSize = self.size(withAttributes: atts)
+		#else
+			let stringSize = (self as NSString).size(attributes: atts)
+		#endif
 		self.draw(at: CGPoint(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0), withAttributes: atts)
 		return CGRect(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0, width: stringSize.width, height: stringSize.height)
 	}
@@ -78,7 +82,11 @@ public extension String {
 	/// Draws `self` aligned right to point.
 	@discardableResult
 	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
-		let s = self.size(withAttributes: atts)
+		#if os(OSX)
+			let s = self.size(withAttributes: atts)
+		#else
+			let s = (self as NSString).size(attributes: atts)
+		#endif
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
 	}
@@ -294,7 +302,13 @@ public extension String {
 		var tailIndex = frontIndex
 		
 		var result = self
-		var size = result.size(withAttributes: atts)
+		
+		#if os(OSX)
+			var size = self.size(withAttributes: atts)
+		#else
+			var size = (self as NSString).size(attributes: atts)
+		#endif
+		
 		while size.width > width {
 			frontIndex = self.characters.index(before: frontIndex)
 			tailIndex = self.characters.index(after: tailIndex)
@@ -302,7 +316,12 @@ public extension String {
 			front = self.substring(to: frontIndex)
 			tail = self.substring(from: tailIndex)
 			result = "\(front)...\(tail)"
-			size = result.size(withAttributes: atts)
+			
+			#if os(OSX)
+				size = self.size(withAttributes: atts)
+			#else
+				size = (self as NSString).size(attributes: atts)
+			#endif
 		}
 		return result
 	}
@@ -330,7 +349,7 @@ public extension String {
 	public func size(withAttributes attrs: [String : AnyObject], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		#if os(iOS)
-			return self.boundingRectWithSize(constraintSize, options: .UsesLineFragmentOrigin, attributes: attrs, context: nil).size
+			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs, context: nil).size
 		#else
 			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs).size
 		#endif

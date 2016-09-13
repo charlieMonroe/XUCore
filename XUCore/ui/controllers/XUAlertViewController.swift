@@ -44,14 +44,14 @@ public final class XUAlert {
 	/// call `self.dismissViewControllerAnimated(_:,completion:)` directly on
 	/// your controller.
 	public func dismiss() {
-		self.viewController.dismissViewControllerAnimated(true, completion: nil)
+		self.viewController.dismiss(animated: true, completion: nil)
 	}
 
 	/// Presents the alert from controller. Presentation of the alert requires
 	/// a parent controller.
 	public func presentFromController(controller: UIViewController) {
 		_internalController.alert = self
-		controller.presentViewController(_internalController, animated: true, completion: nil)
+		controller.present(_internalController, animated: true, completion: nil)
 	}
 
 }
@@ -69,12 +69,12 @@ private final class _XUAlertView: UIControl {
 	init(alert: XUAlert) {
 		self.alert = alert
 
-		super.init(frame: UIScreen.mainScreen().bounds)
+		super.init(frame: UIScreen.main.bounds)
 
 		self.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
 		self.addSubview(alert.viewController.view)
 		
-		self.addTarget(self, action: #selector(_dismiss), forControlEvents: .TouchUpInside)
+		self.addTarget(self, action: #selector(_dismiss), for: .touchUpInside)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -85,10 +85,10 @@ private final class _XUAlertView: UIControl {
 		super.layoutSubviews()
 
 		let view = alert.viewController.view
-		view.bounds.size = alert.viewController.preferredContentSize
-		view.center = self.bounds.center
+		view?.bounds.size = alert.viewController.preferredContentSize
+		view?.center = self.bounds.center
 
-		view.layer.cornerRadius = 3.0
+		view?.layer.cornerRadius = 3.0
 	}
 
 }
@@ -115,7 +115,7 @@ private final class _XUAlertViewController: UIViewController {
 		self.providesPresentationContextTransitionStyle = true
 		self.definesPresentationContext = true
 
-		self.modalPresentationStyle = .Custom
+		self.modalPresentationStyle = .custom
 		self.transitioningDelegate = self
 	}
 
@@ -123,11 +123,11 @@ private final class _XUAlertViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
+	private override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
 	}
-
-	private override func viewDidDisappear(animated: Bool) {
+	
+	private override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
 		self.alert.completionHandler?()
@@ -151,11 +151,11 @@ extension _XUAlertViewController: UIViewControllerTransitioningDelegate {
 private final class _XUAlertModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	private func _animateDismissal(transitionContext: UIViewControllerContextTransitioning) {
-		guard let source = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
+		guard let source = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
 			fatalError("Transition context is missing source.")
 		}
 		
-		UIView.animateWithDuration(0.5, animations: {
+		UIView.animate(withDuration: 0.5, animations: {
 			source.view.alpha = 0.0
 		}, completion: { (finished: Bool) in
 			source.view.removeFromSuperview()
@@ -164,36 +164,36 @@ private final class _XUAlertModalTransitionAnimator: NSObject, UIViewControllerA
 	}
 
 	private func _animatePresentation(transitionContext: UIViewControllerContextTransitioning) {
-		guard let destination = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey),
-				  container = transitionContext.containerView() else {
-			fatalError("Transition context is missing destination or containerView.")
+		guard let destination = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
+					let destinationView = destination.view else {
+			fatalError("Transition context is missing destination or destinationView.")
 		}
-
-		let destinationView = destination.view
+		
+		let container = transitionContext.containerView
 
 		container.addSubview(destinationView)
 		destinationView.alpha = 0.0
 		
-		UIView.animateWithDuration(0.5, animations: {
+		UIView.animate(withDuration: 0.5, animations: {
 			destinationView.alpha = 1.0
 		}, completion: { (finished: Bool) in
 			transitionContext.completeTransition(finished)
 		})
 	}
 
-	@objc private func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-		guard let destination = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
+	@objc fileprivate func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		guard let destination = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
 			fatalError("No destination controller!")
 		}
 
-		if destination.isBeingPresented() {
-			self._animatePresentation(transitionContext)
+		if destination.isBeingPresented {
+			self._animatePresentation(transitionContext: transitionContext)
 		} else {
-			self._animateDismissal(transitionContext)
+			self._animateDismissal(transitionContext: transitionContext)
 		}
 	}
 
-	@objc private func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+	@objc fileprivate func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
 		return 5.0
 	}
 

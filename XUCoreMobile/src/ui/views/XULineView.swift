@@ -21,7 +21,7 @@ import Foundation
 	}
 
 	/// Color of the line.
-	@IBInspectable public var lineColor: UIColor = UIColor.clearColor() {
+	@IBInspectable public var lineColor: UIColor = UIColor.clear {
 		didSet {
 			self.setNeedsDisplay()
 		}
@@ -37,10 +37,10 @@ import Foundation
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 
-		self.opaque = false
+		self.isOpaque = false
 	}
 
-	public override func drawRect(rect: CGRect) {
+	public override func draw(_ rect: CGRect) {
 		self.lineColor.set()
 
 		let bounds = self.bounds
@@ -63,14 +63,14 @@ import Foundation
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		self.opaque = false
+		self.isOpaque = false
 		self.backgroundColor = nil
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
 	    super.init(coder: aDecoder)
 		
-		self.opaque = false
+		self.isOpaque = false
 		self.backgroundColor = nil
 	}
 

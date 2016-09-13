@@ -34,7 +34,7 @@ public extension UIView {
 	
 	/// Returns the first responder, if there is one in the subview hierarchy.
 	public var firstResponder: UIView? {
-		if self.isFirstResponder() {
+		if self.isFirstResponder {
 			return self
 		}
 		

@@ -11,7 +11,7 @@ import Foundation
 public extension UIView {
 	
 	/// Frame origin.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var frameOrigin: CGPoint {
 		get {
 			return self.frame.origin
@@ -22,7 +22,7 @@ public extension UIView {
 	}
 	
 	/// Frame size.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var frameSize: CGSize {
 		get {
 			return self.frame.size
@@ -33,7 +33,7 @@ public extension UIView {
 	}
 	
 	/// Height.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var height: CGFloat {
 		get {
 			return self.frame.height
@@ -44,7 +44,7 @@ public extension UIView {
 	}
 	
 	/// Width.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var width: CGFloat {
 		get {
 			return self.frame.width
@@ -55,7 +55,7 @@ public extension UIView {
 	}
 	
 	/// X of the frame.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var x: CGFloat {
 		get {
 			return self.frame.minX
@@ -66,7 +66,7 @@ public extension UIView {
 	}
 	
 	/// Y of the frame.
-	@available(*, deprecated, message="Use Swift's ability to update struct parts.")
+	@available(*, deprecated, message: "Use Swift's ability to update struct parts.")
 	public var y: CGFloat {
 		get {
 			return self.frame.minY

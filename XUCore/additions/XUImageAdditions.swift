@@ -51,7 +51,7 @@ public extension XUImage {
 		}
 		
 		#if os(iOS)
-			image.drawInRect(targetRect, blendMode: .Normal, alpha: fraction)
+			image.draw(in: targetRect, blendMode: .normal, alpha: fraction)
 		#else
 			image.draw(in: targetRect, from: CGRect(), operation: .sourceOver, fraction: fraction, respectFlipped: true, hints: nil)
 		#endif

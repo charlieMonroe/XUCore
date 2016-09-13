@@ -543,7 +543,7 @@ public final class XUOAuth2Client {
 		}
 	#else
 		public func startAccountAuthorization(fromController controller: UIViewController, withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
-			_authorizationController = XUAuthorizationWebViewController(URL: self.configuration.authorizationURL)
+			_authorizationController = XUAuthorizationWebViewController(url: self.configuration.authorizationURL)
 			_authorizationController!.present(fromController: controller, withCompletionHandler: {
 				completionHandler?($0)
 			
