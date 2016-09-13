@@ -15,7 +15,7 @@ public final class XUCSVDocument {
 	
 	/// Array of key -> value dictionaries. Key is either header name, or a
 	/// stringified number for headerless documents.
-	fileprivate var _content: [[String : AnyObject]] = []
+	fileprivate var _content: [[String : Any]] = []
 	
 	/// Array of header/column names.
 	fileprivate var _headerNames: [String] = []
@@ -118,7 +118,7 @@ public final class XUCSVDocument {
 							
 							dict[_headerNames[column]] = field
 							
-							_content.append(dict as [String : AnyObject])
+							_content.append(dict as [String : Any])
 							
 							dict = [ : ] // A stopper
 						}
@@ -168,7 +168,7 @@ public final class XUCSVDocument {
 				}
 				
 				if !firstLine {
-					_content.append(dict as [String : AnyObject])
+					_content.append(dict as [String : Any])
 					dict = [ : ]
 				}
 				
@@ -181,12 +181,12 @@ public final class XUCSVDocument {
 		
 		if !dict.isEmpty {
 			// We need to add it
-			_content.append(dict as [String : AnyObject])
+			_content.append(dict as [String : Any])
 		}
 		return true
 	}
 	
-	public func addContentItem(_ item: [String : AnyObject]) {
+	public func addContentItem(_ item: [String : Any]) {
 		_content.append(item)
 	}
 	
@@ -201,7 +201,7 @@ public final class XUCSVDocument {
 		}
 	}
 	
-	public var content: [[String : AnyObject]] {
+	public var content: [[String : Any]] {
 		get {
 			return _content
 		}
@@ -219,7 +219,7 @@ public final class XUCSVDocument {
 		}
 	}
 	
-	public init(dictionaries: [[String : AnyObject]]) {
+	public init(dictionaries: [[String : Any]]) {
 		_content = dictionaries
 
 		for dict in dictionaries {
@@ -300,7 +300,7 @@ public final class XUCSVDocument {
 					return formatter.string(from: date)
 				}
 				
-				if let dict = obj as? [String : AnyObject] {
+				if let dict = obj as? [String : Any] {
 					if dict.isEmpty {
 						return ""
 					} else {
@@ -309,7 +309,7 @@ public final class XUCSVDocument {
 					}
 				}
 				
-				if let arr = obj as? [[String : AnyObject]] {
+				if let arr = obj as? [[String : Any]] {
 					if arr.isEmpty {
 						return ""
 					} else {
