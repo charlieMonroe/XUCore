@@ -273,7 +273,7 @@ public final class XUOAuth2Client {
 				"refresh_token": refreshToken
 			]
 			
-			guard let obj = self.client.downloadCenter.downloadJSONDictionaryAtURL(self.client.configuration.tokenEndpointURL, withModifier: { (request) in
+			guard let obj = self.client.downloadCenter.downloadJSONDictionary(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 				request.setUsername(self.client.configuration.clientID, andPassword: self.client.configuration.secret)
 				request.acceptType = URLRequest.ContentType.JSON
 				request.addWWWFormContentToHeader()
@@ -416,7 +416,7 @@ public final class XUOAuth2Client {
 			"redirect_uri": self.configuration.redirectionURLString
 		]
 		
-		guard let obj = self.downloadCenter.downloadJSONDictionaryAtURL(self.configuration.tokenEndpointURL, withModifier: { (request) in
+		guard let obj = self.downloadCenter.downloadJSONDictionary(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 			request.setUsername(self.configuration.clientID, andPassword: self.configuration.secret)
 			request.acceptType = URLRequest.ContentType.JSON
 			request.addWWWFormContentToHeader()

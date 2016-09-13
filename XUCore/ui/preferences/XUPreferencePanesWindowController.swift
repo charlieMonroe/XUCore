@@ -120,6 +120,8 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = nil
+		
+		UserDefaults.standard.synchronize()
 	}
 	
 	open override func showWindow(_ sender: Any?) {

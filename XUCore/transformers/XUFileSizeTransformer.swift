@@ -48,13 +48,3 @@ open class XUFileSizeTransformer: ValueTransformer {
 	
 }
 
-
-@objc open class FCFileSizeTransformer: XUFileSizeTransformer {
-	
-	open override func transformedValue(_ value: Any?) -> Any? {
-		XULog("WARNING: Deprecated use of \(type(of: self)) - use XUCore.\(self.superclass!) instead")
-		
-		return super.transformedValue(value)
-	}
-	
-}
