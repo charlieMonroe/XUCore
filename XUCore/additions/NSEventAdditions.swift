@@ -63,4 +63,9 @@ public extension NSEvent {
 		return self._isKeyDown(UInt32(optionKey))
 	}
 	
+	/// Returns whether the Shift key is currently held down.
+	public class var isShiftKeyDown: Bool {
+		return self._isKeyDown(UInt32(shiftKey))
+	}
+	
 }

@@ -73,6 +73,11 @@ public extension URL {
 	}
 
 	/// Returns true if the URL is writable.
+	public var isReadable: Bool {
+		return _booleanResourceValue(forKey: URLResourceKey.isReadableKey.rawValue)
+	}
+	
+	/// Returns true if the URL is writable.
 	public var isWritable: Bool {
 		return _booleanResourceValue(forKey: URLResourceKey.isWritableKey.rawValue)
 	}
