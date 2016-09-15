@@ -47,7 +47,7 @@ public var XUAppSetup: XUApplicationSetup {
 ///
 /// }
 ///
-public class XUApplicationSetup {
+open class XUApplicationSetup {
 	
 	/// Returns the shared setup.
 	public static let sharedSetup: XUApplicationSetup = {

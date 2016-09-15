@@ -48,7 +48,7 @@ public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg...
 ///
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
-public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : AnyObject]) -> String {
+public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
 	return XULocalizationCenter.sharedCenter.localizedStringWithFormatValues(key, andValues: values)
 }
 
@@ -260,7 +260,7 @@ public final class XULocalizationCenter: NSObject {
 	///
 	/// @note `values` can have values other than NSString - -description is called
 	///            on the values.
-	public func localizedStringWithFormatValues(_ key: String, andValues values: [String : AnyObject]) -> String {
+	public func localizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
 		var localizedString = self.localizedString(key)
 		for (key, value) in values {
 			let needle = "{\(key)}"
@@ -268,7 +268,7 @@ public final class XULocalizationCenter: NSObject {
 				XULogStacktrace("Localized string \(localizedString) doesn't have a placeholder for key \(key)")
 			}
 			
-			localizedString = localizedString.replacingOccurrences(of: needle, with: value.description)
+			localizedString = localizedString.replacingOccurrences(of: needle, with: String(describing: value))
 		}
 		return localizedString
 	}

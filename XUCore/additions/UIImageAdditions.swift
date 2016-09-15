@@ -36,7 +36,7 @@ public extension UIImage {
 	}
 	
 	@available(*, deprecated, renamed: "resized(to:)")
-	public func imageResizedToSize(targetSize: CGSize) -> UIImage {
+	public func imageResizedToSize(_ targetSize: CGSize) -> UIImage {
 		return self.resized(to: targetSize)
 	}
 	
