@@ -10,8 +10,13 @@ import UIKit
 
 public extension UIImage {
 	
+	@available(*, deprecated, renamed: "applying(tint:)")
+	public func imageByApplyingTintColor(_ color: UIColor) -> UIImage {
+		return self.applying(tint: color)
+	}
+	
 	/// Applies color tint to the image.
-	public func imageByApplyingTintColor(color: UIColor) -> UIImage {
+	public func applying(tint color: UIColor) -> UIImage {
 		var imageRect = CGRect()
 		imageRect.size = self.size
 		
@@ -30,8 +35,13 @@ public extension UIImage {
 		return newImage!
 	}
 	
-	/// Returns a proportionally resized image to targetSize.
+	@available(*, deprecated, renamed: "resized(to:)")
 	public func imageResizedToSize(targetSize: CGSize) -> UIImage {
+		return self.resized(to: targetSize)
+	}
+	
+	/// Returns a proportionally resized image to targetSize.
+	public func resized(to targetSize: CGSize) -> UIImage {
 		let size = self.size
 		if size.width <= targetSize.width && size.height <= targetSize.height {
 			return self
@@ -66,7 +76,7 @@ public extension UIImage {
 	}
 	
 	/// Returns PNG representation of the image.
-	public var PNGRepresentation: Data? {
+	public var pngRepresentation: Data? {
 		return UIImagePNGRepresentation(self)
 	}
 	
