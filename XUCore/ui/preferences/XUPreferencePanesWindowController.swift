@@ -28,7 +28,7 @@ public struct XUPreferencePanesSection {
 	
 }
 
-open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePanesViewDelegate {
+open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelegate, XUPreferencePanesViewDelegate {
 
 	fileprivate static var _sharedController: XUPreferencePanesWindowController? = nil
 	
@@ -72,10 +72,10 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
 	fileprivate lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
 	
 	/// Current pane.
-	open fileprivate(set) var currentPaneController: XUPreferencePaneViewController?
+	public final fileprivate(set) var currentPaneController: XUPreferencePaneViewController?
 	
 	/// Sections.
-	open fileprivate(set) var sections: [XUPreferencePanesSection]!
+	public final fileprivate(set) var sections: [XUPreferencePanesSection]!
 	
 	
 	/// Sets the current view to view and changes the window size. We're forcing
@@ -136,6 +136,7 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
 
 		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCore.bundle)
 		
+		self.window!.delegate = self
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
 		self.window!.addTitlebarAccessoryViewController(_titleViewController)
@@ -145,6 +146,10 @@ open class XUPreferencePanesWindowController: NSWindowController, XUPreferencePa
 		
 		_currentView = self.allPanesView
     }
+	
+	public func windowWillClose(_ notification: Notification) {
+		self.currentPaneController?.savePreferences()
+	}
     
 }
 

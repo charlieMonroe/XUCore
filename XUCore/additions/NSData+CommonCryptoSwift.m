@@ -34,4 +34,8 @@
 	return [self HMACWithAlgorithm:kCCHmacAlgSHA1 key:key];
 }
 
+-(NSData *)SHA512Digest {
+	return [self SHA512Hash];
+}
+
 @end

@@ -90,6 +90,12 @@ public extension Data {
 		return NSData.md5Digest(ofBytes: (self as NSData).bytes, ofLength: self.count)
 	}
 	
+	public var sha512Digest: String {
+		let data = (self as NSData).sha512Digest()
+		let bytes = data.map { String(format: "%02x", $0) }
+		return bytes.joined()
+	}
+	
 	/// Reads Int-typed value from stream.
 	public func readInteger<T: Integer>(startingAtByte index: Int) -> T {
 		return self.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> T in

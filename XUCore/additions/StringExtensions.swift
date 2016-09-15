@@ -292,6 +292,14 @@ public extension String {
 		return data.md5Digest
 	}
 	
+	public var sha512Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha512Digest
+	}
+	
 	/// Truncates the string in the middle with '...' in order to fit the width, 
 	/// similarily as NSTextField does.
 	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
@@ -318,9 +326,9 @@ public extension String {
 			result = "\(front)...\(tail)"
 			
 			#if os(OSX)
-				size = self.size(withAttributes: atts)
+				size = result.size(withAttributes: atts)
 			#else
-				size = (self as NSString).size(attributes: atts)
+				size = (result as NSString).size(attributes: atts)
 			#endif
 		}
 		return result
