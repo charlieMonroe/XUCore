@@ -86,7 +86,7 @@ public extension XMLDocument {
 	
 }
 
-public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
+public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 	
 	public func xmlElement(withName elementName: String) -> XMLElement {
 		let formatter = DateFormatter()

@@ -353,6 +353,13 @@ public extension String {
 		return self.characters[self.characters.index(self.startIndex, offsetBy: 1)]
 	}
 	
+	#if os(iOS)
+	/// Apparantly, this is missing in Swift 3 on iOS.
+	public func size(withAttributes attrs: [String : AnyObject]?) -> CGSize {
+		return (self as NSString).size(attributes: attrs)
+	}
+	#endif
+	
 	/// Returns size with attributes, limited to width.
 	public func size(withAttributes attrs: [String : AnyObject], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)

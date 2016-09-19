@@ -281,7 +281,7 @@ open class XUDocumentSyncManager {
 				continue
 			}
 	
-			obj = cl.init(entity: entityDescription, insertIntoManagedObjectContext: self.managedObjectContext, asResultOfSyncAction: true)
+			obj = cl.init(entity: entityDescription, insertInto: self.managedObjectContext, asResultOfSyncAction: true)
 			
 			let exceptionHandler = XUExceptionCatcher()
 			

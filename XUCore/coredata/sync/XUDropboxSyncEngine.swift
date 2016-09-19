@@ -22,8 +22,8 @@ private let XUDropboxSetupModificationDatesKey = "XUDropboxSetupModificationDate
 private let XUDropboxSetupFailedUploadsKey = "XUDropboxSetupFailedUploads"
 
 /// Since it's all asynchronous with dropbox, we solve this by copying everything
-/// locally. This allows us to use the NSFileManager-based sync.
-open class XUDropboxSyncManager: XUApplicationSyncManager {
+/// locally. This allows us to use the FileManager-based sync.
+public class XUDropboxSyncManager: XUApplicationSyncManager {
 	
 	fileprivate var _failedFileUploads: [URL] {
 		didSet {
@@ -49,11 +49,11 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 	fileprivate let _rootFolder: URL
 	fileprivate var _syncTimer: Timer?
 	
-	let client: DropboxClient
+	public let client: DropboxClient
 	
 	fileprivate func _createFolderAtURL(_ folderURL: URL) {
 		let path = self._relativePathToURL(folderURL)
-		self.client.files.createFolder(path: path).response({ _, error in
+		_ = self.client.files.createFolder(path: path).response({ _, error in
 			// Ignore. This is likely just the folder already existing.
 		})
 	}
@@ -62,8 +62,8 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 		_syncCounter += 1
 		
 		let targetURL = self._rootFolder.appendingPathComponent(filePath)
-		self.client.files.download(path: filePath, destination: { _ -> URL in
-			_ = try? NSFileManager.defaultManager().removeItemAtURL(targetURL)
+		_ = self.client.files.download(path: filePath, destination: { _ -> URL in
+			_ = try? FileManager.default.removeItem(at: targetURL)
 			return targetURL
 		}).response({ (response, error) in
 			defer {
@@ -90,11 +90,11 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 			return
 		}
 		
-		FileManager.default.createDirectoryAtURL(_rootFolder.URLByAppendingPathComponent(path))
+		FileManager.default.createDirectory(at: _rootFolder.appendingPathComponent(path))
 		
 		if result.hasMore {
 			_syncCounter += 1
-			self.client.files.listFolderContinue(cursor: result.cursor).response({ self._handleListingResultAtPath(path, result: $0, error: $1) })
+			_ = self.client.files.listFolderContinue(cursor: result.cursor).response({ self._handleListingResultAtPath(path, result: $0, error: $1) })
 		}
 		
 		for fileEntry in result.entries {
@@ -109,7 +109,7 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 			}
 			
 			let filePath = path + "/" + file.name
-			if let date = _modificationDates[filePath] , file.serverModified.isBeforeDate(date) {
+			if let date = _modificationDates[filePath] , file.serverModified.isBefore(date) {
 				/// The dates match
 				continue
 			}
@@ -124,7 +124,7 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 		let rootPath = _rootFolder.path
 		assert(path.hasPrefix(rootPath), "Trying to upload a file that is out of the Dropbox sync sandbox.")
 		
-		return path.stringByDeletingPrefix(rootPath)
+		return path.deleting(prefix: rootPath)
 	}
 	
 	fileprivate func _save() {
@@ -132,7 +132,7 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 			XUDropboxSetupFailedUploadsKey: self._failedFileUploads.map({ $0.path }),
 			XUDropboxSetupModificationDatesKey: self._modificationDates
 		] as [String : Any]
-		dict.write(to: self._setupURL, atomically: true)
+		(dict as NSDictionary).write(to: self._setupURL, atomically: true)
 	}
 	
 	@objc fileprivate func _syncFiles() {
@@ -150,7 +150,7 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 	
 	fileprivate func _syncFilesAtPath(_ path: String) {
 		_syncCounter += 1
-		self.client.files.listFolder(path: path).response { (result, error) in
+		_ = self.client.files.listFolder(path: path).response { (result, error) in
 			self._handleListingResultAtPath(path, result: result, error: error)
 		}
 	}
@@ -161,11 +161,11 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 	
 	fileprivate func _uploadFileAtURL(_ fileURL: URL) {
 		let path = self._relativePathToURL(fileURL)
-		self.client.files.upload(path: path, mode: .Overwrite, body: fileURL).response { (result, error) in
+		_ = self.client.files.upload(path: path, mode: Files.WriteMode.overwrite, input: fileURL).response { (result, error) in
 			if error != nil {
 				XULog("Failed to upload file at path \(path) - queued reupload.")
 				
-				if self._failedFileUploads.indexOf(fileURL) == nil {
+				if self._failedFileUploads.index(of: fileURL) == nil {
 					self._failedFileUploads.append(fileURL)
 				}
 				return
@@ -173,13 +173,13 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 			
 			self._modificationDates[path] = result!.serverModified
 			
-			if let index = self._failedFileUploads.indexOf(fileURL) {
-				self._failedFileUploads.removeAtIndex(index)
+			if let index = self._failedFileUploads.index(of: fileURL) {
+				self._failedFileUploads.remove(at: index)
 			}
 		}
 	}
 	
-	open override func createDirectory(at URL: Foundation.URL) throws {
+	public override func createDirectory(at URL: Foundation.URL) throws {
 		try super.createDirectory(at: URL)
 		
 		self._createFolderAtURL(URL)
@@ -189,11 +189,11 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 		_syncTimer?.invalidate()
 	}
 	
-	open override func didUpdateFile(at fileURL: URL) {
+	public override func didUpdateFile(at fileURL: URL) {
 		if fileURL.isDirectory {
 			self._createFolderAtURL(fileURL)
 			
-			for file in FileManager.default.contentsOfDirectoryAtURL(fileURL) {
+			for file in FileManager.default.contentsOfDirectory(at: fileURL) {
 				self.didUpdateFile(at: file)
 			}
 		} else {
@@ -204,18 +204,18 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 	public init(name: String, client: DropboxClient, andDelegate delegate: XUApplicationSyncManagerDelegate) {
 		self.client = client
 		
-		guard var rootURL = try? NSFileManager.defaultManager().URLForDirectory(.ApplicationSupportDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true) else {
+		guard var rootURL = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
 			fatalError("Can't create Application Support directory!")
 		}
 		
-		rootURL = rootURL.URLByAppendingPathComponent("DropBox.sync")
-		NSFileManager.defaultManager().createDirectoryAtURL(rootURL)
+		rootURL = rootURL.appendingPathComponent("DropBox.sync")
+		FileManager.default.createDirectory(at: rootURL)
 		
-		_setupURL = rootURL.URLByAppendingPathComponent("Setup.plist")
-		if let dict = NSDictionary(contentsOfURL: _setupURL) as? XUJSONDictionary {
-			_modificationDates = (dict[XUDropboxSetupModificationDatesKey] as? [String : NSDate]) ?? [:]
+		_setupURL = rootURL.appendingPathComponent("Setup.plist")
+		if let dict = NSDictionary(contentsOf: _setupURL) as? XUJSONDictionary {
+			_modificationDates = (dict[XUDropboxSetupModificationDatesKey] as? [String : Date]) ?? [:]
 			if let failedUploadPaths = dict[XUDropboxSetupFailedUploadsKey] as? [String] {
-				_failedFileUploads = failedUploadPaths.map({ NSURL(fileURLWithPath: $0) })
+				_failedFileUploads = failedUploadPaths.map({ URL(fileURLWithPath: $0) })
 			} else {
 				_failedFileUploads = []
 			}
@@ -224,23 +224,23 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 			_modificationDates = [ : ]
 		}
 		
-		rootURL = rootURL.URLByAppendingPathComponent("Contents")
-		NSFileManager.defaultManager().createDirectoryAtURL(rootURL)
+		rootURL = rootURL.appendingPathComponent("Contents")
+		FileManager.default.createDirectory(at: rootURL)
 		
 		_rootFolder = rootURL
 		
 		super.init(name: name, rootFolder: rootURL, andDelegate: delegate)
 		
 		self._syncFiles()
-		_syncTimer = NSTimer.scheduledTimerWithTimeInterval(90.0, target: self, selector: #selector(_syncFiles), userInfo: nil, repeats: true)
+		_syncTimer = Timer.scheduledTimer(timeInterval: 90.0, target: self, selector: #selector(_syncFiles), userInfo: nil, repeats: true)
 	}
 	
 	/// Returns true if we're downloading data from Dropbox.
-	open var isDownloadingData: Bool {
+	public var isDownloadingData: Bool {
 		return _syncCounter != 0
 	}
 	
-	open override func scanForNewDocuments() {
+	public override func scanForNewDocuments() {
 		if self.isDownloadingData {
 			return // Wait for the next time
 		}
@@ -248,7 +248,7 @@ open class XUDropboxSyncManager: XUApplicationSyncManager {
 		super.scanForNewDocuments()
 	}
 	
-	open override func startDownloading(itemAt URL: Foundation.URL) throws {
+	public override func startDownloading(itemAt URL: Foundation.URL) throws {
 		// No-op, since it's already downloaded.
 	}
 	

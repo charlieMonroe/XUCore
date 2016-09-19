@@ -578,7 +578,7 @@ open class XUManagedObject: NSManagedObject {
 		super.init(entity: entity, insertInto: context)
 	}
 	
-	public required init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?, asResultOfSyncAction isSync: Bool) {
+	public required init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?, asResultOfSyncAction isSync: Bool) {
 		_lockInit(isSync)
 		
 		defer {

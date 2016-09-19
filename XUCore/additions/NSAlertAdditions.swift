@@ -70,6 +70,7 @@ public extension NSAlert {
 	
 	/// Create a pop up button as its own accessory view in the alert and populates
 	/// it with menuItems.
+	@discardableResult
 	public func createAccessoryPopUpButton(withMenuItems menuItems: [NSMenuItem]) -> NSPopUpButton {
 		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
 		self.accessoryView = popUpButton
