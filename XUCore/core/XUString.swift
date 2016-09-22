@@ -276,11 +276,9 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns a constructed string from the chars.
 	public var stringValue: String {
-		var value = ""
-		for c in _buffer {
-			value.append(String(describing: UnicodeScalar(UInt32(c))))
-		}
-		return value
+		return String(self.characters.map({ (c: XUString.Character) -> Swift.Character in
+			return Swift.Character(UnicodeScalar(c))
+		}))
 	}
 	
 	/// Returns a string containing everything after index.

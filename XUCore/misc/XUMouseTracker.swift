@@ -18,7 +18,8 @@ import Foundation
 
 }
 
-private func XUMouseMovementEventCallback(_ proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer) -> Unmanaged<CGEvent>? {
+
+private func XUMouseMovementEventCallback(_ proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
 	let point = event.location
 	var displayID: CGDirectDisplayID = 0
 	var numOfDisplays: UInt32 = 0
@@ -58,16 +59,18 @@ public final class XUMouseTracker: NSObject {
 		}
 	}
 	fileprivate func _notifyObserversAboutMovementToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
-		_lock.perform {
-			for observer in self._observers {
-				observer.mouseMovedToPoint(point, atDisplay: displayID, withEventFlags: flags)
+		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			self._lock.perform {
+				for observer in self._observers {
+					observer.mouseMovedToPoint(point, atDisplay: displayID, withEventFlags: flags)
+				}
 			}
 		}
 	}
 	@objc fileprivate func _trackingThread() {
 		let eventMask = CGEventMask(1 << CGEventType.mouseMoved.rawValue) | CGEventMask(1 << CGEventType.leftMouseDown.rawValue) | CGEventMask(1 << CGEventType.leftMouseDragged.rawValue)
 		let ptrToSelf = Unmanaged.passUnretained(self).toOpaque()
-		guard let machPort = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap, options: .listenOnly, eventsOfInterest: eventMask, callback: XUMouseMovementEventCallback as! CGEventTapCallBack, userInfo: ptrToSelf) else {
+		guard let machPort = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap, options: .listenOnly, eventsOfInterest: eventMask, callback: XUMouseMovementEventCallback, userInfo: ptrToSelf) else {
 			XULog("NULL event port")
 			return
 		}

@@ -33,6 +33,7 @@ public extension XURegex {
 		/// Name of the variable within these regexes.
 		public static let variableName: String = "URL"
 		
+		public static let imageSource: RegexString = RegexString(regexString: "<img[^>]+src=[\"'](?P<URL>[^\"']+)[\"']")
 		public static let metaOGImage: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:image\"[^>]+content=\"(?P<URL>[^\"]+)\"")
 		public static let metaOGVideo: RegexString = RegexString(regexString: "<meta[^>]+(name|property)=\"og:video(:url)?\"[^>]+content=\"(?P<URL>[^\"]+)\"")
 		public static let sourceSource: RegexString = RegexString(regexString: "<source[^>]+src=[\"'](?P<URL>[^\"']+)[\"']")

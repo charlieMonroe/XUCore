@@ -208,7 +208,11 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCore.bundle)!
 		
 		self.fullScreenMinHeight = 48.0
-		self.layoutAttribute = .left
+		if #available(OSX 10.11, *) {
+			self.layoutAttribute = .left
+		} else {
+			self.layoutAttribute = .right
+		}
 		
 		self.loadView()
 		
@@ -254,8 +258,18 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCore.bundle)!
 		
-		self.layoutAttribute = .left
+		if #available(OSX 10.11, *) {
+			self.layoutAttribute = .left
+		} else {
+			self.layoutAttribute = .right
+		}
+		
 		self.loadView() // Required so that _titleLabel is available
+		
+		if #available(OSX 10.11, *) {
+		} else {
+			_titleLabel.alignment = .right
+		}
 	}
 	
 	required init?(coder: NSCoder) {
