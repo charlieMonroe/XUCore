@@ -558,7 +558,7 @@ public final class XUJSONDeserializer {
 			return (value: nil, error: .none)
 		}
 		
-		if propertyClass == Date.self {
+		if propertyClass == Date.self || propertyClass == NSDate.self {
 			return self._transformValueToDate(value, forObject: object, andKey: key)
 		}
 		
