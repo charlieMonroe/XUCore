@@ -379,11 +379,6 @@ public final class XUJSONDeserializer {
 				return (nil, .none)
 			}
 			
-			if object.createObjectForKey == nil {
-				self._addLogEntry(.error, objectClass: type(of: object), key: key, additionalInformation: "The class \(type(of: object)) doesn't implement createObjectForKey(:_)!")
-				return (nil, .error)
-			}
-			
 			let result = dicts.flatMap({ (dict) -> Any? in
 				guard let obj = self._fetchOrCreateObjectForDictionary(dict, forKey: key, onObject: object, toProperty: property).value else {
 					return nil // Can be some filtering.
