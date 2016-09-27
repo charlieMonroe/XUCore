@@ -41,7 +41,7 @@ internal class XUSyncManagerPathUtilities {
 				/// Simulator changes vender ID each run.
 				return Bundle.main.bundleURL.path.components(separatedBy: "data/Containers/Bundle")[0].md5Digest.uppercased()
 			#else
-				return UIDevice.currentDevice().identifierForVendor!.UUIDString.uppercaseString
+				return UIDevice.current.identifierForVendor!.uuidString.uppercased()
 			#endif
 		#else
 			return _cachedID
