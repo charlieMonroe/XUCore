@@ -409,7 +409,7 @@ open class XUDownloadCenter {
 	
 	/// Sets the Cookie HTTP header field on request.
 	fileprivate func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
-		guard let url = request.url else {
+		guard let url = request.url, url.scheme != nil else {
 			return
 		}
 		
@@ -417,7 +417,11 @@ open class XUDownloadCenter {
 		if originalBaseURL != nil {
 			baseURL = originalBaseURL
 		} else {
-			baseURL = NSURL(scheme: url.scheme!, host: url.host, path: "/") as? URL
+			var components = URLComponents()
+			components.scheme = url.scheme
+			components.host = url.host
+			components.path = "/"
+			baseURL = components.url
 			if baseURL == nil {
 				return
 			}

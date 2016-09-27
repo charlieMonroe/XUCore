@@ -111,10 +111,40 @@ internal class XUPreferencePanesView: NSView {
 
 		super.init(frame: frame)
 
-		for button in buttons.joined() {
-			self.addSubview(button)
-			button.target = self
-			button.action = #selector(_didSelectPane(_:))
+		var y: CGFloat = XUPreferencePanesView.sectionHeight
+		for (sectionIndex, section) in sections.enumerated() {
+			var x: CGFloat = XUPreferencePanesView.buttonPadding
+			for (paneIndex, _) in section.paneControllers.enumerated() {
+				let button = _buttons[sectionIndex][paneIndex]
+				button.target = self
+				button.action = #selector(_didSelectPane(_:))
+				
+				
+				var size = button.sizeThatFits(CGSize(width: XUPreferencePanesView.buttonWidth, height: XUPreferencePanesView.sectionHeight))
+				
+				button.frame = CGRect(x: x + (XUPreferencePanesView.buttonWidth - size.width) / 2.0, y: y - XUPreferencePanesView.sectionHeight + 16.0, width: size.width, height: size.height).integral
+				
+				button.addConstraints([
+					NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.width),
+					NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.height)
+				])
+				
+				self.addSubview(button)
+				
+				self.addConstraints([
+					NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: x + (XUPreferencePanesView.buttonWidth - size.width) / 2.0),
+					NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: y - XUPreferencePanesView.sectionHeight + 16.0)
+				])
+				
+				
+				x += XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding
+				if x + XUPreferencePanesView.buttonPadding > XUPreferencePanesView.viewWidth {
+					x = XUPreferencePanesView.buttonPadding
+					y += XUPreferencePanesView.sectionHeight
+				}
+			}
+			
+			y += XUPreferencePanesView.sectionHeight
 		}
 	}
 
@@ -122,51 +152,58 @@ internal class XUPreferencePanesView: NSView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	override func layout() {
-		super.layout()
-
-		var y: CGFloat = XUPreferencePanesView.sectionHeight
-		for (sectionIndex, section) in sections.enumerated() {
-			var x: CGFloat = XUPreferencePanesView.buttonPadding
-			for (paneIndex, _) in section.paneControllers.enumerated() {
-				let button = _buttons[sectionIndex][paneIndex]
-				var size = button.sizeThatFits(CGSize(width: XUPreferencePanesView.buttonWidth, height: XUPreferencePanesView.sectionHeight))
-				if button.paneController.paneName.range(of: " ") != nil {
-					size.width = min(size.width, XUPreferencePanesView.buttonWidth)
-				}
-
-				button.frame = CGRect(x: x + (XUPreferencePanesView.buttonWidth - size.width) / 2.0, y: y - XUPreferencePanesView.sectionHeight + 16.0, width: size.width, height: size.height).integral
-
-				x += XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding
-				if x + XUPreferencePanesView.buttonPadding > XUPreferencePanesView.viewWidth {
-					x = XUPreferencePanesView.buttonPadding
-					y += XUPreferencePanesView.sectionHeight
-				}
-			}
-
-			y += XUPreferencePanesView.sectionHeight
-		}
-	}
-
 }
 
 private class XUPreferencePaneButtonCell: NSButtonCell {
 	
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
-		let attributedString = NSAttributedString(string: title.string.replacingOccurrences(of: " ", with: "\n"))
+		var attributes: [String : AnyObject] = [NSFontAttributeName: XUPreferencePanesView.titleFont]
+		let parts: [String] = title.string.components(separatedBy: " ")
+		var lineParts: [String] = []
+		
+		if parts.count == 1 {
+			lineParts = parts
+		} else {
+			let lineWidth = " ".size(withAttributes: attributes).width
+			var x: CGFloat = 0.0
+			var currentLineParts: [String] = []
+			for part in parts {
+				let size = part.size(withAttributes: attributes)
+				if x + size.width < frame.width {
+					if x != 0.0 {
+						x += lineWidth
+					}
+					x += size.width
+					currentLineParts.append(part)
+				} else {
+					x = size.width
+					if !currentLineParts.isEmpty {
+						lineParts.append(currentLineParts.joined(separator: " "))
+					}
+					
+					currentLineParts = [part]
+				}
+			}
+			
+			if currentLineParts.count > 0 {
+				lineParts.append(currentLineParts.joined(separator: " "))
+			}
+		}
+		
+		let attributedString = NSAttributedString(string: lineParts.joined(separator: "\n"))
 		
 		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
 		paragraphStyle.alignment = .center
+		if lineParts.count > 2 {
+			paragraphStyle.maximumLineHeight = 12.0
+		}
 
-		let attributes = [
-			NSFontAttributeName: XUPreferencePanesView.titleFont,
-			NSParagraphStyleAttributeName: paragraphStyle
-		]
+		attributes[NSParagraphStyleAttributeName] = paragraphStyle
 
 		let textSize = attributedString.string.size(withAttributes: attributes)
 		let textBounds = CGRect(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
 
-		let textFrame = CGRect(x: 0.0, y: 34.0, width: controlView.frame.width, height: textSize.height)
+		let textFrame = CGRect(x: 0.0, y: frame.minY, width: controlView.frame.width, height: frame.height + 5.0)
 		attributedString.string.draw(in: textFrame, withAttributes: attributes)
 		
 		return textBounds
@@ -201,19 +238,51 @@ private class XUPreferencePaneButton: NSButton {
 	}
 	
 	fileprivate override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let attributedString = NSAttributedString(string: self.title.replacingOccurrences(of: " ", with: "\n"))
+		var attributes: [String : AnyObject] = [NSFontAttributeName: XUPreferencePanesView.titleFont]
+		let parts: [String] = self.title.components(separatedBy: " ")
+		var lineParts: [String] = []
+		
+		if parts.count == 1 {
+			lineParts = parts
+		} else {
+			let lineWidth = " ".size(withAttributes: attributes).width
+			var x: CGFloat = 0.0
+			var currentLineParts: [String] = []
+			for part in parts {
+				let partSize = part.size(withAttributes: attributes)
+				if x + partSize.width < size.width {
+					if x != 0.0 {
+						x += lineWidth
+					}
+					x += partSize.width
+					currentLineParts.append(part)
+				} else {
+					x = partSize.width
+					if !currentLineParts.isEmpty {
+						lineParts.append(currentLineParts.joined(separator: " "))
+					}
+					
+					currentLineParts = [part]
+				}
+			}
+			
+			if currentLineParts.count > 0 {
+				lineParts.append(currentLineParts.joined(separator: " "))
+			}
+		}
 		
 		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
 		paragraphStyle.alignment = .center
+		if parts.count > 2 {
+			paragraphStyle.maximumLineHeight = 12.0
+		}
 		
-		let attributes = [
-			NSFontAttributeName: XUPreferencePanesView.titleFont,
-			NSParagraphStyleAttributeName: paragraphStyle
-		]
+		attributes[NSParagraphStyleAttributeName] = paragraphStyle
 		
-		let textSize = attributedString.string.size(withAttributes: attributes)
+		let textSize = lineParts.joined(separator: "\n").size(withAttributes: attributes)
 		var result = textSize
-		result.height = 32.0 + textSize.height + 2.0
+		result.width += 2.0
+		result.height += 38.0
 		return result
 	}
 
