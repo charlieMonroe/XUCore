@@ -8,31 +8,38 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesBoolForKey(_ key: String, defaultValue: Bool = false) -> Bool {
 	guard let value = UserDefaults.standard.object(forKey: key) as? NSNumber else {
 		return defaultValue
 	}
 	return value.boolValue
 }
+
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesSetBoolForKey(_ value: Bool, key: String) {
 	UserDefaults.standard.set(value, forKey: key)
 }
 
-
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesIntegerForKey(_ key: String, defaultValue: Int = 0) -> Int {
 	guard let value = UserDefaults.standard.object(forKey: key) as? NSNumber else {
 		return defaultValue
 	}
 	return value.intValue
 }
+
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesSetIntegerForKey(_ value: Int, key: String) {
 	UserDefaults.standard.set(value, forKey: key)
 }
 
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesValueForKey<T>(_ key: String) -> T? {
 	return UserDefaults.standard.object(forKey: key) as? T
 }
 
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesValueForKey<T>(_ key: String, defaultValue: T) -> T {
 	guard let obj = UserDefaults.standard.object(forKey: key) as? T else  {
 		return defaultValue
@@ -40,6 +47,7 @@ public func XUPreferencesValueForKey<T>(_ key: String, defaultValue: T) -> T {
 	return obj
 }
 
+@available(*, deprecated, message: "Use XUPreferences")
 public func XUPreferencesSetValueForKey(_ value: Any?, key: String) {
 	if (value == nil){
 		UserDefaults.standard.removeObject(forKey: key)

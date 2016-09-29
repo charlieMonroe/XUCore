@@ -1,12 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "Finishing...";
 "1 hour" = "1 hour";
 "1 minute" = "1 minute";
 "1 second" = "1 second";
-"%lu hours" = "%lu hours";
-"%lu minutes" = "%lu minutes";
-"%lu seconds" = "%lu seconds";
 "Unknown error." = "Unknown error.";
 
 "OK" = "OK";
@@ -84,7 +80,6 @@
 "Cannot find entity with ID %@" = "Cannot find entity with ID %@";
 "Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
 "Can't find synchronization folder for computer %@." = "Can't find synchronization folder for computer %@.";
-"Can't open info dictionary computer %@." = "Can't open info dictionary computer %@.";
 "Can't find sync folder for document %@." = "Can't find sync folder for document %@.";
 "%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
 "Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
@@ -117,3 +112,14 @@
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
 "Log Current Application State" = "Log Current Application State";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
+"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "Show All";
+"Preferences" = "Preferences";

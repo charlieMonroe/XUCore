@@ -139,7 +139,9 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self.window!.delegate = self
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
-		self.window!.addTitlebarAccessoryViewController(_titleViewController)
+		if #available(OSX 10.11, *) {
+			self.window!.addTitlebarAccessoryViewController(_titleViewController)
+		}
 		
 		self.window!.setContentSize(self.allPanesView.frame.size)
 		self.window!.contentView!.addSubview(self.allPanesView)

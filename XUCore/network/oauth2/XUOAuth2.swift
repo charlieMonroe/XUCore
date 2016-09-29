@@ -158,7 +158,22 @@ public enum XUOAuth2ClientError: Int {
 }
 
 
-private let XUOAuth2AccountsKey = "XUOAuth2Accounts"
+private extension XUPreferences {
+	
+	var oAuth2ClientDictionaries: [XUJSONDictionary]? {
+		get {
+			return self.value(for: .oAuth2Accounts)
+		}
+		set {
+			self.set(value: newValue, forKey: .oAuth2Accounts)
+		}
+	}
+	
+}
+
+private extension XUPreferences.Key {
+	static let oAuth2Accounts = XUPreferences.Key(rawValue: "XUOAuth2Accounts")
+}
 
 public final class XUOAuth2Client {
 	
@@ -341,7 +356,7 @@ public final class XUOAuth2Client {
 	/// Reads clients from defaults. This is currently a private method, just 
 	/// as save is.
 	fileprivate class func readClientsFromDefaults() -> [XUOAuth2Client] {
-		guard let dicts: [XUJSONDictionary] = XUPreferencesValueForKey(XUOAuth2AccountsKey) else {
+		guard let dicts: [XUJSONDictionary] = XUPreferences.shared.oAuth2ClientDictionaries else {
 			return []
 		}
 		
@@ -370,7 +385,7 @@ public final class XUOAuth2Client {
 	
 	/// Saves the accounts to user defaults. Currently, it's a private method.
 	fileprivate class func save() {
-		XUPreferencesSetValueForKey(self.registeredClients.map({ $0.dictionaryRepresentation }), key: XUOAuth2AccountsKey)
+		XUPreferences.shared.oAuth2ClientDictionaries = self.registeredClients.map({ $0.dictionaryRepresentation })
 	}
 	
 	/// Unregisters a client.

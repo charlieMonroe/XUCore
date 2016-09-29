@@ -48,9 +48,9 @@ public struct XUApplicationStateItem {
 /// manner.
 open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	
-	/// Automatically initialized to NSDate(), providing how long has the app been
+	/// Automatically initialized to Date(), providing how long has the app been
 	/// running.
-	open let launchTime: Date = Date()
+	public let launchTime: Date = Date()
 	
 	/// Returns state values. By default, this contains run-time, window list
 	/// including names and perhaps in the future additional values. Override
@@ -62,6 +62,10 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			XUApplicationStateItem(name: "AppStore", andValue: "\(XUAppSetup.isAppStoreBuild)"),
 			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
 		]
+		
+		if XUPreferences.isApplicationUsingPreferences, let reflectablePreferences = XUPreferences.shared as? XUReflectablePreferences {
+			stateItems.append(reflectablePreferences.preferencesStateItem)
+		}
 		
 		#if os(OSX)
 			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")
@@ -84,3 +88,4 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	}
 	
 }
+

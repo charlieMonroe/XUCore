@@ -308,6 +308,8 @@
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */; };
+		07A1DFC21D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
+		07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; };
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
@@ -561,6 +563,7 @@
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24A91C048BA9002E159A /* XUHorizontallyCenteredTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUHorizontallyCenteredTextField.swift; path = cells/XUHorizontallyCenteredTextField.swift; sourceTree = "<group>"; };
+		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
@@ -1050,6 +1053,7 @@
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
 				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
 				073E6A6A1BE1F62C00706283 /* XUPreferencesFunctions.swift */,
+				07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
 				07B211001D4903DC005203F0 /* XUWeakArray.swift */,
@@ -1509,6 +1513,7 @@
 				07758A2D1BEFC5D8004B29A8 /* NSOpenPanelAdditions.swift in Sources */,
 				070329C51C3F8C8F0058F914 /* XUDockIconProgress.swift in Sources */,
 				073E6ACD1BE1F86D00706283 /* perl_groups.cc in Sources */,
+				07A1DFC21D9D082A00A7AD6C /* XUPreferences.swift in Sources */,
 				073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */,
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
 				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
@@ -1576,6 +1581,7 @@
 				0779E1871BF2334600832858 /* XUFileSizeTransformer.swift in Sources */,
 				073E6B161BE1F86D00706283 /* stringprintf.cc in Sources */,
 				0779E17D1BF2307100832858 /* UIView+Enclosing.swift in Sources */,
+				07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */,
 				075DC7A21CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
 				077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */,
 				0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
