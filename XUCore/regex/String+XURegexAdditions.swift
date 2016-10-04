@@ -83,7 +83,6 @@ public extension String {
 			return self._standardizedURL(fromURLString: originalURLString)
 		}).joined()
 		
-		urls = urls.distinct({ ($0 == $1) })
 		urls = urls.flatMap({ (url) -> URL? in
 			if url.host == nil {
 				return nil
@@ -94,11 +93,15 @@ public extension String {
 				components.scheme = "http"
 				components.host = url.host
 				components.path = url.path.isEmpty ? "/" : url.path
+				components.query = url.query
+				components.fragment = url.fragment
 				return components.url
 			}
 			
 			return url
 		})
+		
+		urls = urls.distinct({ ($0 == $1) })
 		
 		return urls
 	}
