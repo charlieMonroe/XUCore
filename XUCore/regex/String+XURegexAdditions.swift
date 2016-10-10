@@ -390,6 +390,40 @@ public extension String {
 		return self.matches(regex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
+	/// Replaces occurrences of `regex` with `replacement`. Note that `replacement`
+	/// currently needs to be a static string and can't refer to groups in `regex`.
+	/// This method will call `fatalError` under 2 circumstances:
+	///
+	/// 1) When the replacement matches the regex. This would lead to infinite 
+	///		loop and instead of looping, this is checked.
+	/// 2) When the match is an empty string - again, this would lead to an 
+	///		infinite loop and is caught.
+	///
+	/// While this is checked, there are still cases, where an infinite loop can
+	/// be caused when the replacment will only partially match the regex.
+	public func replacingOccurrences(ofRegex regex: XURegex, with replacement: String) -> String {
+		if replacement.matches(regex: regex) {
+			fatalError("Replacement matches the regex. This would lead to infinite loop.")
+		}
+		
+		var result = self
+		while let match = result.firstOccurrence(ofRegex: regex) {
+			if match.isEmpty {
+				fatalError("Supplied regex is infinite - matches an empty string.")
+			}
+			
+			result = result.replacingOccurrences(of: match, with: replacement)
+		}
+		
+		return result
+	}
+	
+	/// Convenience method that takes a regex string instead. See the XURegex
+	/// variant for more information.
+	public func replacingOccurrences(ofRegex regex: String, with replacement: String) -> String {
+		return self.replacingOccurrences(ofRegex: XURegex(pattern: regex, andOptions: .caseless), with: replacement)
+	}
+	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
 	public func value(ofVariableNamed name: String, inRegex regex: XURegex) -> String? {

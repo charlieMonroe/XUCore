@@ -31,7 +31,7 @@ public final class XUBetaExpirationHandler {
 	
 	fileprivate func _showFirstBetaLaunchDialog() {
 		if NSApp == nil {
-			NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
+			NotificationCenter.default.addObserver(forName: .NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
 				self._showFirstBetaLaunchDialog()
 			})
 			return
@@ -44,7 +44,13 @@ public final class XUBetaExpirationHandler {
 		alert.runModal()
 	}
 	
+	@objc
 	fileprivate func _showWarningAndScheduleOneHourExpiration() {
+		if NSApp == nil {
+			NotificationCenter.default.addObserver(self, selector: #selector(_showWarningAndScheduleOneHourExpiration), name: .NSApplicationDidFinishLaunching, object: nil)
+			return
+		}
+		
 		let alert = NSAlert()
 		alert.messageText = XULocalizedString("This beta build will expire in less than an hour.", inBundle: XUCore.bundle)
 		alert.informativeText = XULocalizedString("Please update your copy of this beta build.", inBundle: XUCore.bundle)

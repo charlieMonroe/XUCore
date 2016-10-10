@@ -106,7 +106,7 @@ public extension URLRequest {
 		self.httpBody = bodyString.data(using: String.Encoding.utf8)
 	}
 	public mutating func setJSONBody(_ obj: Any) {
-		self.httpBody = try? JSONSerialization.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
+		self.httpBody = try? JSONSerialization.data(withJSONObject: obj)
 	}
 	public mutating func setUsername(_ name: String, andPassword password: String) {
 		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString(options: NSData.Base64EncodingOptions()) else {

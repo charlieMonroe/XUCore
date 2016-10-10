@@ -17,3 +17,13 @@ public extension NSMenu {
 	}
 	
 }
+
+public extension NSMenuItem {
+	
+	/// Convenience initializer that passes nil as action and empty key equivalent.
+	public convenience init(title: String) {
+		self.init(title: title, action: nil, keyEquivalent: "")
+	}
+	
+}
+

@@ -202,14 +202,14 @@ public final class XUCURLConnection: NSObject {
 	}
 	
 	/// Uses self.sendSynchronousRequest and then attempts to deserialize the data
-	public func sendSynchronousRequestAndReturnJSONObject() -> AnyObject? {
+	public func sendSynchronousRequestAndReturnJSONObject() -> Any? {
 		let data = self.sendSynchronousRequest()
-		let obj = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-		if obj == nil {
+		guard let obj = try? JSONSerialization.jsonObject(with: data) else {
 			XULog("failed to deserialize JSON data (\(data))")
+			return nil
 		}
 		
-		return obj as AnyObject?
+		return obj
 	}
 	
 	/// Sets HTTP body data and sets the method to POST if POST is true

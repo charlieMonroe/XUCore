@@ -20,6 +20,10 @@ public final class XUKeychainAccess {
 	
 	/// Fetches a password for username in account from Keychain.
 	public func password(forUsername username: String, inAccount account: String) -> String? {
+		if username.isEmpty {
+			return nil
+		}
+		
 		var passLen: UInt32 = 0
 		var passBytes: UnsafeMutableRawPointer? = nil
 		var item: SecKeychainItem? = nil
@@ -58,6 +62,10 @@ public final class XUKeychainAccess {
 	/// operation was successful, false otherwise.
 	@discardableResult
 	public func save(password: String, forUsername username: String, inAccount account: String) -> Bool {
+		if username.isEmpty {
+			return false
+		}
+		
 		let status = SecKeychainAddGenericPassword(nil,
 			UInt32(strlen(account)), account,
 			UInt32(strlen(username)), username,

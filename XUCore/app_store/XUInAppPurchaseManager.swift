@@ -19,6 +19,15 @@ extension Notification.Name {
 
 }
 
+public extension Sequence where Iterator.Element: SKProduct {
+	
+	/// Sorts products by localizedTitle.
+	public func sortedByTitle() -> [Iterator.Element] {
+		return self.sorted(by: { $0.localizedTitle.compare($1.localizedTitle, options: .caseInsensitive) == .orderedAscending })
+	}
+	
+}
+
 @available(*, unavailable, renamed: "Notification.Name.availableProductsDidLoadNotification")
 public let XUInAppPurchaseManagerAvailableProductsDidLoadNotification = Notification.Name.availableProductsDidLoadNotification
 
@@ -230,6 +239,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			if products.count > 0 {
 				XULog("Found new product identifiers \(products)")
 				self.productsAvailableForPurchase += products
+				self.productsAvailableForPurchase = self.productsAvailableForPurchase.sortedByTitle()
 			}
 			
 			NotificationCenter.default.post(name: .availableProductsDidLoadNotification, object: self)

@@ -106,6 +106,26 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	}
 	
 	func preferencePaneView(didSelectPane paneController: XUPreferencePaneViewController) {
+		self.selectPane(paneController)
+	}
+	
+	/// Selects a pane with identifier. The identifier is taken from 
+	/// XUPreferencePaneViewController.paneIdentifier.
+	///
+	/// This method asserts that a pane with this identifier exists.
+	public func selectPane(withIdentifier identifier: String) {
+		guard let pane = self.sections.map({ $0.paneControllers }).joined().find(where: { $0.paneIdentifier == identifier }) else {
+			fatalError("There is no preference pane with identifier \(identifier)!")
+		}
+		
+		self.selectPane(pane)
+	}
+	
+	/// Selects a pane. This method assets that this pane is contained in 
+	/// self.sections.
+	public func selectPane(_ paneController: XUPreferencePaneViewController) {
+		assert(self.sections.map({ $0.paneControllers }).joined().contains(where: { $0 === paneController }))
+		
 		self._setMainWindowContentView(paneController.view)
 		_titleViewController._titleLabel.stringValue = paneController.paneName
 		

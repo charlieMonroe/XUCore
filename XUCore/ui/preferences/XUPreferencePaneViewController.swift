@@ -25,6 +25,14 @@ open class XUPreferencePaneViewController: NSViewController {
 		XUThrowAbstractException()
 	}
 	
+	/// Returns a unique identifier for the view controller. This is used to
+	/// identify a particular preference pane within the preferences. Default
+	/// implementation uses the controller's class name as identifier, but subclasses
+	/// may change this behavior.
+	open var paneIdentifier: String {
+		return "\(self)"
+	}
+	
 	/// Small icon of the pane. Should be 16x16px. This is used in the menu of
 	/// all panes in the window.
 	///

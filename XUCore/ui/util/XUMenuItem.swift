@@ -22,8 +22,12 @@ public final class XUMenuItem: NSMenuItem {
 	/// Designated initializer.
 	public init(title: String, andActionHandler actionHandler: ((XUMenuItem) -> Void)? = nil) {
 		self.actionHandler = actionHandler
+		
 		super.init(title: title, action: #selector(_actionHandler(_:)), keyEquivalent: "")
-		self.target = self
+		
+		if actionHandler != nil {
+			self.target = self
+		}
 	}
 	
 	public required init(coder aDecoder: NSCoder) {

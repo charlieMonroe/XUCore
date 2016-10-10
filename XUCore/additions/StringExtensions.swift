@@ -442,7 +442,7 @@ public extension String {
 	/// Prepends prefix enough times so that it has the specific length.
 	public func paddingFront(toLength length: Int, withString padString: String) -> String {
 		var str = self
-		while str.characters.count + padString.characters.count < length {
+		while str.characters.count + padString.characters.count <= length {
 			str = padString + str
 		}
 		return str

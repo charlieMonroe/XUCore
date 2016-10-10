@@ -42,13 +42,13 @@ public final class XUURLHandlingCenter: NSObject {
 			return
 		}
 		
-		guard let url = URL(string: receivedURLString) else {
+		guard let url = URL(string: receivedURLString), let scheme = url.scheme else {
 			XULog("Invalid URLString - \(receivedURLString)")
 			return
 		}
 		
-		guard let handlers = _handlers[(url.scheme?.lowercased())!] else {
-			XULog("No handler for URL scheme \(url.scheme!) - \(url)")
+		guard let handlers = _handlers[scheme.lowercased()] else {
+			XULog("No handler for URL scheme \(scheme) - \(url)")
 			return
 		}
 		

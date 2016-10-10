@@ -30,12 +30,11 @@ public extension Sequence where Iterator.Element == XUString {
 	/// the result.  For example:
 	///
 	///     ["foo", "bar", "baz"].joinWithSeparator("-|-") // "foo-|-bar-|-baz"
-	
-	public func joinWithSeparator(_ separator: XUString) -> XUString {
+	public func joined(separator: XUString = XUString()) -> XUString {
 		var result = XUString()
 		var previous: XUString? = nil
 		for item in self {
-			if previous != nil {
+			if previous != nil && !separator.isEmpty {
 				result = result.appending(separator)
 			}
 			result = result.appending(item)
@@ -147,7 +146,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns bytes wrapped in NSData.
 	public var data: Data {
-		return Data(bytes: _buffer)
+		return Data(bytes: _buffer, count: self.length)
 	}
 	
 	public var debugDescription: String {
@@ -192,7 +191,11 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 		let count = data.count
 		
 		var chars = Array<Character>(repeating: 0, count: count)
-		(data as NSData).getBytes(&chars, length: count)
+		data.withUnsafeBytes { (bytes: UnsafePointer<Character>) in
+			for i in 0 ..< count {
+				chars[i] = bytes[i]
+			}
+		}
 		
 		self.init(chars: chars)
 	}
@@ -215,11 +218,16 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Inits with a string.
 	public convenience init(string: String) {
-		var chars: [Character] = [ ]
+		var chars: [Character] = []
 		for x in string.utf8 {
 			chars.append(x)
 		}
 		self.init(chars: chars)
+	}
+	
+	/// Return true iff self.length == 0.
+	public var isEmpty: Bool {
+		return self.length == 0
 	}
 	
 	public var lastCharacter: Character {
@@ -250,7 +258,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Removes all characters passing the filter.
 	public func remove(passingTest test: (_ character: Character, _ index: Int) -> Bool) {
-		for i in (0..<_buffer.count).reversed() {
+		for i in (0 ..< _buffer.count).reversed() {
 			if test(_buffer[i], i) {
 				_buffer.remove(at: i)
 			}
@@ -276,19 +284,21 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns a constructed string from the chars.
 	public var stringValue: String {
-		return String(self.characters.map({ (c: XUString.Character) -> Swift.Character in
-			return Swift.Character(UnicodeScalar(c))
-		}))
+		var value = ""
+		for c in _buffer {
+			value.append(Swift.Character(c))
+		}
+		return value
 	}
 	
 	/// Returns a string containing everything after index.
 	public func substring(from index: Int) -> XUString {
-		return self.substring(with: index..<self.length)
+		return self.substring(with: index ..< self.length)
 	}
 	
 	/// Returns a string containing `length` first characters.
 	public func substring(to index: Int) -> XUString {
-		return self.substring(with: 0..<index)
+		return self.substring(with: 0 ..< index)
 	}
 	
 	/// Returns a substring in range.
