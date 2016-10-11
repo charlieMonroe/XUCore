@@ -10,31 +10,31 @@
 
 "Failed to parse CSV file." = "Analisi del file CSV fallita.";
 
-"Send Report" = "Invia Report";
+"Send Report" = "Invia Segnalazione";
 "Privacy Information..." = "Informazioni sulla privacy...";
 "%AppName% has encountered a problem." = "%AppName% ha rilevato un problema.";
-"%AppName% will terminate after sending the report." = "%AppName% verrà chiusa dopo aver inviato il report.";
-"Report to be sent:" = "Report da inviare:";
+"%AppName% will terminate after sending the report." = "%AppName% verrà chiusa dopo aver inviato il segnalazione.";
+"Report to be sent:" = "Segnalazione da inviare:";
 "Your Email:" = "La tua Email:";
 "Description:" = "Descrizione:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Per cortesia, descrivi la situazione in cui si è verificato questo problema e se possibile fornisci i passaggi per riprodurlo. Inserisci il tuo indirizzo email qui sotto - ti faremo sapere quando questo problema sarà risolto o, se necessario, potremmo chiederti ulteriori dettagli. Il tuo indirizzo email non sarà inserito in alcun database e non riceverai alcuna mail indesiderata. Fornendo questo report ci aiurerai a migliorare questo software. Grazie!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Per favore, descrivi la situazione in cui si è verificato questo problema e se possibile fornisci i passaggi per riprodurlo. Inserisci il tuo indirizzo email qui sotto - ti faremo sapere quando questo problema sarà stato risolto o, se necessario, potremmo chiederti ulteriori dettagli. Il tuo indirizzo email non sarà inserito in alcun database e non riceverai alcuna mail indesiderata. Fornendo questa segnalazione ci aiurerai a migliorare questo software. Grazie!";
 
 "Report Problem" = "Segnala problema";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Per noi il tuo feedback è importante e non oseremmo raccogliere informazioni non fornite volutamente. Il tuo indirizzo mail non sarà memorizzato da nessuna parte e verrà usato solo per informarti quando questo problema sarà risolto o quando avremo bisogno di più informazioni per risolverlo.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Per noi il tuo feedback è importante e non oseremmo raccogliere informazioni non fornite volutamente. Il tuo indirizzo mail non sarà memorizzato da nessuna parte e verrà usato solo per informarti quando questo problema sarà stato risolto o quando avremo bisogno di più informazioni per risolverlo.";
 
 "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Solo le seguenti informazioni saranno inviate:\n• Il messaggio che hai scritto.\n• Le seguenti informazioni sull'errore.\n• Versione di questa applicazione.\n• Versione del tuo sistema operativo.\n• Modello del tuo computer (nessun indirizzo MAC o infomazioni simili che potrebbero identificare il tuo computer).";
 
-"Could not post your report." = "Non è stato possibile inviare il tuo report.";
+"Could not post your report." = "Non è stato possibile inviare la tua segnalazione.";
 "Check your Internet connection and try again." = "Controlla la tua connessione a internet e riprova.";
 "Heh, nice try. Please, enter a valid email address." = "Eh, bel tentativo. Per favore, inserisci un indirizzo email valido.";
 "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Potremmo aver bisogno di metterci in contatto con te al fine di correggere questo problema. Non devi preoccuparti, non venderemo a nessuno l'indirizzo email, né lo useremo in altro modo. Lo promettiamo.";
 "You need to enter a valid email address." = "Devi inserire un indirizzo email valido.";
 "We may need to get in touch with you in order to fix this." = "Potremmo aver bisogno di metterci in contatto con te per sistemare questo bug.";
 "Please, provide some details as to when this exception happened." = "Per favore, fornisci alcuni dettagli su come si è verificato questo problema.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Includi informazioni circa le attività in esecuzione nell'applicazione, se l'applicazione era in primo piano o in background, se hai cliccato su qualcosa, ecc. Tentare di trovare un bug usando solo il report può essere difficile o impossibile, senza ulteriori informazioni.";
-"Thank you for the report!" = "Grazie per il report!";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Includi informazioni circa le attività in esecuzione nell'applicazione, se l'applicazione era in primo piano o in background, se hai cliccato su qualcosa, ecc. Tentare di trovare un bug usando solo la segnalazione può essere difficile o impossibile, senza ulteriori informazioni.";
+"Thank you for the report!" = "Grazie per la segnalazione!";
 "We'll fix it as soon as possible!" = "Risolveremo nel più breve tempo possibile!";
 
 "Welcome to beta testing of %@." = "Benvenuto al beta testing di %@.";
@@ -58,12 +58,12 @@
 "Progress" = "Progresso";
 "Posted successfully" = "Inviato correttamente";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuerà a funzionare per le prossime 24 ore, dopo le quali le sue funzionalità saranno bloccate. Per cortesia aggiora %@ per mantenerla funzionante.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuerà a funzionare per le prossime 24 ore, dopo le quali le sue funzionalità saranno bloccate. Per favore aggiora %@ per mantenerla funzionante.";
 "Please download a new build." = "Per favore scaricare una nuova versione.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Puoi comunque inviare il report, ma se il messaggio non è in inglese non sarò in grado di fornirti un aiuto completo.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Il tuo messaggio contiene un carattere speciale che solitamente indica che il messaggio non è scritto in inglese. Ti avvisiamo che sebbene %@ sia tradotta in varie lingue, il supporto è fonrito solamente in inglese. Grazie per la tua comprensione.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Puoi comunque inviare la segnalazione, ma se il messaggio non è in inglese non sarò in grado di fornirti un aiuto completo.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Il tuo messaggio contiene un carattere speciale che solitamente indica che il messaggio non è scritto in inglese. Ti avvisiamo che sebbene %@ sia tradotto in varie lingue, il supporto è fornito solamente in inglese. Grazie per la tua comprensione.";
 "%li hours" = "%li ore";
 "%li minutes" = "%li minuti";
 "%li seconds" = "%li secondi";
@@ -107,7 +107,7 @@
 "Show Log in Finder" = "Mostra il Log nel Finder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Il log di debug è un file di testo che contiene alcuni dettagli tecnici riguardo cosa %@ esegue in background. Mi è utile per correggere rapidamente gli errori poiché mi permette di vedere cosa sta succedendo. Per ottenre il log di debug segui questi semplici passi:";
-"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Se questo non è il primo log di debut che mandi, per cortesia, seleziona Pulisci il Log di Debug dal menù di Debug.\n2) Nel menù di Debug, assicurati che la Registrazione Log di Debug sia su On.\n3) Esegui le azioni per cui si verifica il problema.\n4) Nel menù di Debug, disattiva la Registrazione Log di Debug impostandola su Off.\n5) Nel menù di Debug, seleziona Mostra il Log nel Finder. Questi seleziona il Log nel Finder così che tu possa inviarmelo facilmente. Per cortesia, allega il file alla mail piuttosto che copia-incollarne il contenuto.\n\nIl file di log non contiene alcun dato personale, puoi verificarlo aprendolo (è un semplice file di testo). Se consideri alcuni dei dati confidenziali o personali, per favore rimpiazzali con qualcosa che possa essere facilmente identificato come segnaposto (ad esempio XXXXXXXX) e fammi sapere che hai modificato il file di log.";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Se questo non è il primo log di debut che mandi, per favore, seleziona Pulisci il Log di Debug dal menù di Debug.\n2) Nel menù di Debug, assicurati che la Registrazione Log di Debug sia su On.\n3) Esegui le azioni per cui si verifica il problema.\n4) Nel menù di Debug, disattiva la Registrazione Log di Debug impostandola su Off.\n5) Nel menù di Debug, seleziona Mostra il Log nel Finder. Questi seleziona il Log nel Finder così che tu possa inviarmelo facilmente. Per favore, allega il file alla mail piuttosto che copia-incollarne il contenuto.\n\nIl file di log non contiene alcun dato personale, puoi verificarlo aprendolo (è un semplice file di testo). Se consideri alcuni dei dati confidenziali o personali, per favore rimpiazzali con qualcosa che possa essere facilmente identificato come segnaposto (ad esempio XXXXXXXX) e fammi sapere che hai modificato il file di log.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Il documento non può essere scaricato in questo momento.";
@@ -117,7 +117,7 @@
 
 // Beta testing related.
 "This beta build will expire in less than an hour." = "Questa beta build scadrà in meno di un'ora.";
-"Please update your copy of this beta build." = "Per cortesia aggiorna la tua copia di questa beta build.";
+"Please update your copy of this beta build." = "Per favore aggiorna la tua copia di questa beta build.";
 
 // Preferences.
 "All Preferences" = "Tutte le Preferenze";

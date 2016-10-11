@@ -26,55 +26,55 @@
 
 "Report Problem" = "Relatar Problema";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Valorizamos seus comentários e não coletamos informações não relacionadas ao problema. Seu endereço de e-mail não será armazenado e será usado apenas para informá-lo   quando este problema for resolvido ou se precisarmos de mais informações para corrigi-lo.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Valorizamos seus comentários e não nos atrevemos a coletar informações não relacionadas ao problema. Seu endereço de e-mail não será armazenado em lugar nenum e será usado apenas para informá-lo quando este problema for resolvido ou se precisarmos de mais informações para corrigi-lo.";
 
 "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Apenas as informações a seguir serão enviadas:\n• A descrição fornecida;\n• As informações da exceção abaixo;\n• A versão deste aplicativo;\n• A versão do sistema (OS);\n• O modelo do computador (exceto por informações como endereço MAC e similares, que poderiam identificar o computador).";
 
 "Could not post your report." = "Não foi possível publicar o relatório.";
 "Check your Internet connection and try again." = "Verifique sua conexão à Internet e tente novamente.";
-"Heh, nice try. Please, enter a valid email address." = "Digite um endereço de e-mail válido.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Pode ser necessário contatá-lo para solucionar isto. Seu endereço de e-mail não será vendido nem usado para outros propósitos.";
-"You need to enter a valid email address." = "Digite um endereço de e-mail válido.";
+"Heh, nice try. Please, enter a valid email address." = "Há!, Boa Tentativa. Por favor, digite um endereço de e-mail válido.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Pode ser necessário contatá-lo para solucionar isto. Não mordemos. Não iremos vender seu endereço de e-mail para ninguém ou usá-lo para qualquer outro propósito. Nós prometemos.";
+"You need to enter a valid email address." = "Você precisa digitar um endereço de e-mail válido.";
 "We may need to get in touch with you in order to fix this." = "Pode ser necessário contatá-lo para solucionar isto.";
-"Please, provide some details as to when this exception happened." = "Forneça alguns detalhes sobre quando esta exceção ocorreu.";
+"Please, provide some details as to when this exception happened." = "Por favor, forneça alguns detalhes sobre quando esta exceção ocorreu.";
 "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inclua informações sobre tarefas que estavam em andamento, se o aplicativo estava em 1º ou 2º plano, se você clicou em algo, etc. É muito difícil entender o erro somente com o relatório — e impossível sem informações adicionais.";
 "Thank you for the report!" = "Obrigado pelo relatório!";
 "We'll fix it as soon as possible!" = "Este erro será corrigido assim que possível!";
 
 "Welcome to beta testing of %@." = "Bem-vindo ao beta do %@.";
-"This is the first time you run a beta build %@." = "Está é a primeira vez que você abre um beta do %@.";
+"This is the first time you run a beta build %@." = "Esta é a primeira vez que você abre um beta do %@.";
 "This beta build of %@ has expired." = "Este beta do %@ expirou.";
 "Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Curta o software! Caso tenha dúvidas ou encontre erros, fique à vontade para entrar em contato na página de suporte: %@";
 
 "Continue" = "Continuar";
 "Purchase..." = "Comprar...";
-"I'm Still Not Sure" = "Ainda Não Sei";
+"I'm Still Not Sure" = "Eu ainda não tenho certeza";
 
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "O %@ não pôde conectar-se à Internet. O aplicativo será encerrado em uma hora.";
-"%@ requires connection to the Internet to continue the trial properly." = "É necessária uma conexão à Internet para que a avaliação do %@ continue.";
+"%@ requires connection to the Internet to continue the trial properly." = "É necessário uma conexão à Internet para que a avaliação do %@ continue.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Você será direcionado à página onde poderá comprar uma cópia. Caso não tenha certeza se o %@ é exatamente o que você quer e ainda tiver dúvidas, contate-nos.%@";
 "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %li dias sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %li dias. Para continuar usando o %@, é preciso comprar uma cópia.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %i %@ dias sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %i %@ sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %i %@. Para continuar usando o %@, é preciso comprar uma cópia.";
 "Working..." = "Processando...";
 
 "Progress" = "Progresso";
-"Posted successfully" = "Publicado corretamente";
+"Posted successfully" = "Publicado com sucesso";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "O %@ continuará funcionando pelas próximas 24 horas. Depois disso, sua funcionalidade será bloqueada. Atualize o %@ para mantê-lo em funcionamento.";
-"Please download a new build." = "Transfira uma nova versão.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "O %@ continuará funcionando pelas próximas 24 horas. Depois disso, sua funcionalidade será bloqueada. Atualize o %@ para mantê-lo funcionando.";
+"Please download a new build." = "Por favor, baixe uma nova versão.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Você pode enviar o relatório mesmo assim, mas se a mensagem não for escrita em inglês, não será possível oferecer o devido suporte.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "A mensagem contém caracteres especiais que indicam que ela não foi escrita em inglês. Embora o %@ esteja traduzido em vários idiomas, o suporte é oferecido apenas em inglês.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Você pode enviar o relatório mesmo assim, mas se a mensagem não for escrita em inglês, não será possível oferecer um suporte completo.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "A mensagem contém caracteres especiais que indicam que ela não foi escrita em inglês. Embora o %@ esteja traduzido em vários idiomas, o suporte é oferecido apenas em inglês. Obrigado por entender.";
 "%li hours" = "%li horas";
 "%li minutes" = "%li minutos";
 "%li seconds" = "%li segundos";
 
 /// XUSyncEngine
 "Cannot find such document. Check back later, it might not have synced through." = "Não é possível encontrar o documento. A sincronização pode não ter ocorrido ainda. Verifique mais tarde.";
-"Cannot open document metadata file." = "Não é possível abrir o arquivo de metadados do documento.";
+"Cannot open document metadata file." = "Não é possível abrir o arquivo de metadados.";
 "Metadata file doesn't contain required information." = "O arquivo de metadados não contém as informações necessárias.";
 "Synchronization is already in progress." = "A sincronização já está em andamento.";
 "An upload operation is already in progress." = "Uma operação de envio já está em andamento";
@@ -85,21 +85,21 @@
 "Can't find synchronization folder for document %@." = "Não é possível encontrar a pasta de sincronização do documento %@.";
 "Can't find synchronization folder for computer %@." = "Não é possível encontrar a pasta de sincronização do computador %@.";
 "Can't open info dictionary computer %@." = "Não é possível abrir o dicionário de informações do computador %@.";
-"Can't find sync folder for document %@." = "Não é possível encontrar a pasta de sincronização do documento %@.";
+"Can't find sync folder for document %@." = "Não é possível encontrar a pasta de sincronização para documento %@.";
 "%@ couldn't finish synchronization in the background." = "O %@ não pôde concluir a sincronização em segundo plano.";
-"Please switch back to %@ so that the synchronization can finish." = "Alterne para o %@ para que a sincronização seja concluída.";
+"Please switch back to %@ so that the synchronization can finish." = "Por favor, volte para o %@ para que a sincronização seja concluída.";
 
 /// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Não foi possível ler os dados de alteração da sincronização.";
-"Could not copy synchronization change data to the cloud." = "Não foi possível copiar os dados de alteração da sincronização para a nuvem.";
+"Could not read synchronization change data." = "Não foi possível ler os dados alterados da sincronização .";
+"Could not copy synchronization change data to the cloud." = "Não foi possível copiar os dados alterados da sincronização para a nuvem.";
 "Failing to apply change sets." = "Falha ao aplicar conjuntos de alterações.";
 "Synchronization changes from computer %@ haven't been downloaded yet." = "As alterações de sincronização do computador %@ ainda não foram transferidas.";
 
 /// XUOAuth2
 "Authentication" = "Autenticação";
-"Server responded with unknown token type." = "O servidor respondeu com um tipo de token desconhecido.";
+"Server responded with unknown token type." = "O servidor respondeu com um tipo de chave desconhecida.";
 "Server provided invalid authorization response." = "O servidor forneceu uma reposta de autorização inválida.";
-"Server has redirected with invalid URL." = "O servidor foi redirecionado com um URL inválido.";
+"Server has redirected with invalid URL." = "O servidor foi redirecionado com uma URL inválido.";
 "User cancelled the authorization." = "O usuário cancelou a autorização.";
 
 /// Debug Log Menu
@@ -111,20 +111,20 @@
 "Clear Debug Log" = "Limpar Registro de Depuração";
 "Show Log in Finder" = "Mostrar Registro no Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "O registro de depuração é um arquivo de texto que contém alguns detalhes técnicos sobre as tarefas em segundo plano do %@. Ele é útil para corrigir erros do aplicativo, pois permite que o desenvolvedor analise o que está ocorrendo. Para obter o registro de depuração, siga estes passos:";
-"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Caso este não seja o primeiro registro de depuração que estiver enviando, selecione “Limpar Registro de Depuração” no menu Depurar.\n2) No menu Depurar, verifique se “Registro de Depuração” está ativado.\n3) Realize o procedimento com o qual estiver com problemas.\n4) No menu Depurar, selecione Inativo em “Registro de Depuração”.\n5) No menu Depurar, selecione “Mostrar Registro no Finder”. Essa ação mostra o arquivo de registro no Finder para que você possa enviá‑lo. Anexe o arquivo ao e‑mail em vez de copiar e colar as informações.\n\nO arquivo de registro não contém dados pessoais e você pode abri‑lo e inspecioná‑lo, já que o mesmo é um simples arquivo de texto. Caso considere algum dado como confidencial ou pessoal, você pode substituí‑lo por um texto padrão (como XXXXXXXX) e indicar tal modificação no arquivo de registro ao enviá‑lo.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "O registro de depuração é um arquivo de texto que contém alguns detalhes técnicos sobre as tarefas em segundo plano do %@. Ele é útil para corrigir erros do aplicativo rápidamente, pois permite que o desenvolvedor analise o que está ocorrendo. Para obter o registro de depuração, siga estes passos:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Caso este não seja o primeiro registro de depuração que estiver enviando, por favor, selecione “Limpar Registro de Depuração” no menu Depurar.\n2) No menu Depurar, verifique se “Registro de Depuração” está ativado.\n3) Realize o procedimento com o qual estiver com problemas.\n4) No menu Depurar, selecione Inativo em “Registro de Depuração”.\n5) No menu Depurar, selecione “Mostrar Registro no Finder”. Essa ação mostra o arquivo de registro no Finder para que você possa enviá‑lo. Anexe o arquivo ao e‑mail em vez de copiar e colar as informações.\n\nO arquivo de registro não contém dados pessoais e você pode abri‑lo e inspecioná‑lo, já que o mesmo é um simples arquivo de texto. Caso considere algum dado como confidencial ou pessoal, você pode substituí‑lo por um texto padrão (como XXXXXXXX) e indicar tal modificação no arquivo de registro ao enviá‑lo.";
 
 /// 8/23/2016+
-"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
-"Log Current Application State" = "Log Current Application State";
+"The document could not be downloaded at this moment." = "O documento não pode ser transferido neste momento.";
+"Log Current Application State" = "Registrar o Estado Atual da Aplicação";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
-"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+"This beta build will expire in less than an hour." = "Este beta irá expirar em menos de uma hora.";
+"Please update your copy of this beta build." = "Por favor, atualize a sua cópia deste beta.";
 
 // Preferences.
-"All Preferences" = "All Preferences";
-"Show All" = "Show All";
-"Preferences" = "Preferences";
+"All Preferences" = "Todas Preferências";
+"Show All" = "Mostrar Tudo";
+"Preferences" = "Preferências";

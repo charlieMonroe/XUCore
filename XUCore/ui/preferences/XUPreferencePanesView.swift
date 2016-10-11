@@ -282,7 +282,7 @@ private class XUPreferencePaneButton: NSButton {
 		let textSize = lineParts.joined(separator: "\n").size(withAttributes: attributes)
 		var result = textSize
 		result.width += 2.0
-		result.height += 38.0
+		result.height += 40.0
 		return result
 	}
 
