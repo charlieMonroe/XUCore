@@ -8,13 +8,13 @@
 
 import Foundation
 
-@objc public protocol XUMouseTrackingObserver: NSObjectProtocol {
+public protocol XUMouseTrackingObserver: AnyObject {
 
 	/// Called when the mouse clicked at point.
-	func mouseClickedAtPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags)
+	func mouseClicked(at point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags)
 
 	/// Called when the mouse moved to point.
-	func mouseMovedToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags)
+	func mouseMoved(to point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags)
 
 }
 
@@ -54,7 +54,7 @@ public final class XUMouseTracker: NSObject {
 	fileprivate func _notifyObserversAboutClickAtPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
 		_lock.perform {
 			for observer in self._observers {
-				observer.mouseClickedAtPoint(point, atDisplay: displayID, withEventFlags: flags)
+				observer.mouseClicked(at: point, atDisplay: displayID, withEventFlags: flags)
 			}
 		}
 	}
@@ -62,7 +62,7 @@ public final class XUMouseTracker: NSObject {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 			self._lock.perform {
 				for observer in self._observers {
-					observer.mouseMovedToPoint(point, atDisplay: displayID, withEventFlags: flags)
+					observer.mouseMoved(to: point, atDisplay: displayID, withEventFlags: flags)
 				}
 			}
 		}

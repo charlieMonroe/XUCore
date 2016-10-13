@@ -43,7 +43,10 @@ open class XUBorderlessWindow: NSWindow {
 			frame.size.height = 200.0
 		}
 		
-		super.init(contentRect: frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.buffered, defer: flag)
+		var style = aStyle
+		style.insert(.borderless)
+		
+		super.init(contentRect: frame, styleMask: style, backing: NSBackingStoreType.buffered, defer: flag)
 		
 		self._innerInit()
 	}

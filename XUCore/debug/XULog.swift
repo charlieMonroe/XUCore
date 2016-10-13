@@ -133,7 +133,7 @@ public final class XUDebugLog {
 	
 	/// Installs the debug menu in the menu bar.
 	public class func installDebugMenu() {
-		let menuItem = NSMenuItem(title: XULocalizedString("Debug", inBundle: XUCore.bundle), action: nil, keyEquivalent: "")
+		let menuItem = NSMenuItem(title: XULocalizedString("Debug", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
 		menuItem.submenu = self.debugMenu
 		
 		guard let mainMenu = NSApp?.mainMenu else {
@@ -275,9 +275,9 @@ public final class XUDebugLog {
 		@objc fileprivate func _showAboutDialog() {
 			let alert = NSAlert()
 			let appName = ProcessInfo().processName
-			alert.messageText = XULocalizedFormattedString("Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:", appName, inBundle: XUCore.bundle)
-			alert.informativeText = XULocalizedFormattedString("1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file.", appName, inBundle: XUCore.bundle)
-			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCore.bundle))
+			alert.messageText = XULocalizedFormattedString("Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:", appName, inBundle: XUCoreFramework.bundle)
+			alert.informativeText = XULocalizedFormattedString("1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file.", appName, inBundle: XUCoreFramework.bundle)
+			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 			alert.runModal()
 		}
 		
@@ -304,13 +304,13 @@ public final class XUDebugLog {
 	public extension XUDebugLog {
 		
 		fileprivate class func _createDebugMenu() -> NSMenu {
-			let menu = NSMenu(title: XULocalizedString("Debug", inBundle: XUCore.bundle))
-			menu.addItem(withTitle: XULocalizedString("About Debug Log...", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._showAboutDialog), keyEquivalent: "").target = _actionHandler
+			let menu = NSMenu(title: XULocalizedString("Debug", inBundle: XUCoreFramework.bundle))
+			menu.addItem(withTitle: XULocalizedString("About Debug Log...", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._showAboutDialog), keyEquivalent: "").target = _actionHandler
 			menu.addItem(NSMenuItem.separator())
 			
-			let loggingMenu = NSMenu(title: XULocalizedString("Debug Logging", inBundle: XUCore.bundle))
-			XUDebugLog._debugLoggingOn = loggingMenu.addItem(withTitle: XULocalizedString("On", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOn), keyEquivalent: "")
-			XUDebugLog._debugLoggingOff = loggingMenu.addItem(withTitle: XULocalizedString("Off", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOff), keyEquivalent: "")
+			let loggingMenu = NSMenu(title: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle))
+			XUDebugLog._debugLoggingOn = loggingMenu.addItem(withTitle: XULocalizedString("On", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOn), keyEquivalent: "")
+			XUDebugLog._debugLoggingOff = loggingMenu.addItem(withTitle: XULocalizedString("Off", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOff), keyEquivalent: "")
 			
 			XUDebugLog._debugLoggingOn.target = _actionHandler
 			XUDebugLog._debugLoggingOff.target = _actionHandler
@@ -318,19 +318,19 @@ public final class XUDebugLog {
 			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? NSOnState : NSOffState
 			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? NSOffState : NSOnState
 			
-			let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: XUCore.bundle), action: nil, keyEquivalent: "")
+			let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
 			loggingItem.submenu = loggingMenu
 			
 			menu.addItem(NSMenuItem.separator())
 			
 			if XUAppSetup.applicationStateProvider != nil {
-				menu.addItem(withTitle: XULocalizedString("Log Current Application State", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._logAppState), keyEquivalent: "").target = _actionHandler
+				menu.addItem(withTitle: XULocalizedString("Log Current Application State", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._logAppState), keyEquivalent: "").target = _actionHandler
 			}
-			menu.addItem(withTitle: XULocalizedString("Clear Debug Log", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "").target = _actionHandler
+			menu.addItem(withTitle: XULocalizedString("Clear Debug Log", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "").target = _actionHandler
 
 			menu.addItem(NSMenuItem.separator())
 			
-			menu.addItem(withTitle: XULocalizedString("Show Log in Finder", inBundle: XUCore.bundle), action: #selector(_XUDebugLogActionHandler._showLog), keyEquivalent: "").target = _actionHandler
+			menu.addItem(withTitle: XULocalizedString("Show Log in Finder", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._showLog), keyEquivalent: "").target = _actionHandler
 			
 			return menu
 		}

@@ -41,12 +41,12 @@ public extension NSAlert {
 	
 	/// Adds a button with title "Cancel".
 	public func addCancelButton() {
-		self.addButton(withTitle: XULocalizedString("Cancel", inBundle: XUCore.bundle))
+		self.addButton(withTitle: XULocalizedString("Cancel", inBundle: XUCoreFramework.bundle))
 	}
 	
 	/// Adds a button with title "OK".
 	public func addOKButton() {
-		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCore.bundle))
+		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 	}
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,

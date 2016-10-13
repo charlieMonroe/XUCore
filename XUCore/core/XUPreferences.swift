@@ -85,8 +85,18 @@ public final class XUPreferences {
 		return _shared!
 	}
 	
-	/// Inits self and if is reflectable, dumps contents into the log.
-	public init() {
+	
+	/// Key modifier. For example, if you need to store per-document preferences,
+	/// you may init them with a `keyModifier` that adds document UUID to the key.
+	/// XUPreferences' accessors (boolean(for:), etc.) then invoke this modifier
+	/// to get the modified key.
+	public let keyModifier: (String) -> String
+	
+	/// Inits self and if is reflectable, dumps contents into the log. See the
+	/// `keyModifier`
+	public init(keyModifier: @escaping (String) -> String = { $0 }) {
+		self.keyModifier = keyModifier
+		
 		if let reflectable = self as? XUReflectablePreferences {
 			reflectable.log()
 		}
@@ -108,8 +118,8 @@ public final class XUPreferences {
 public extension XUPreferences {
 	
 	/// Fetches boolean for key.
-	public func bool(for key: Key, defaultValue: Bool = false) -> Bool {
-		guard let value = UserDefaults.standard.object(forKey: key.rawValue) as? NSNumber else {
+	public func boolean(for key: Key, defaultValue: Bool = false) -> Bool {
+		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
 			return defaultValue
 		}
 		return value.boolValue
@@ -117,12 +127,12 @@ public extension XUPreferences {
 	
 	/// Sets boolean for key.
 	public func set(boolean value: Bool, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: key.rawValue)
+		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 	}
 	
 	/// Fetches integer for key.
 	public func integer(for key: Key, defaultValue: Int = 0) -> Int {
-		guard let value = UserDefaults.standard.object(forKey: key.rawValue) as? NSNumber else {
+		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
 			return defaultValue
 		}
 		return value.intValue
@@ -130,17 +140,17 @@ public extension XUPreferences {
 	
 	/// Sets integer for key.
 	public func set(integer value: Int, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: key.rawValue)
+		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 	}
 	
 	/// Fetches a value for key.
 	public func value<T>(for key: Key) -> T? {
-		return UserDefaults.standard.object(forKey: key.rawValue) as? T
+		return UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T
 	}
 	
 	/// Fetches a value with default value for key.
 	public func value<T>(for key: Key, defaultValue: T) -> T {
-		guard let obj = UserDefaults.standard.object(forKey: key.rawValue) as? T else  {
+		guard let obj = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T else  {
 			return defaultValue
 		}
 		return obj
@@ -150,10 +160,15 @@ public extension XUPreferences {
 	/// so the value needs to be ObjC compatible.
 	public func set(value: Any?, forKey key: Key) {
 		if value == nil {
-			UserDefaults.standard.removeObject(forKey: key.rawValue)
+			UserDefaults.standard.removeObject(forKey: self.keyModifier(key.rawValue))
 		}else{
-			UserDefaults.standard.set(value, forKey: key.rawValue)
+			UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 		}
 	}
 	
+	
+	@available(*, deprecated, renamed: "boolean(for:defaultValue:)")
+	public func bool(for key: Key, defaultValue: Bool = false) -> Bool {
+		return self.boolean(for: key, defaultValue: defaultValue)
+	}
 }

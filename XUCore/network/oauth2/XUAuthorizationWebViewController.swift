@@ -57,7 +57,7 @@ internal final class XUAuthorizationWebViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.title = XULocalizedString("Authentication", inBundle: XUCore.bundle)
+		self.title = XULocalizedString("Authentication", inBundle: XUCoreFramework.bundle)
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
 		
 		_webView.load(URLRequest(url: self.url))

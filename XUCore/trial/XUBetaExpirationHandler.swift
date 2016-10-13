@@ -38,8 +38,8 @@ public final class XUBetaExpirationHandler {
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", ProcessInfo().processName, inBundle: XUCore.bundle)
-		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCore.bundle)
+		alert.messageText = XULocalizedFormattedString("Welcome to beta testing of %@.", ProcessInfo().processName, inBundle: XUCoreFramework.bundle)
+		alert.informativeText = XULocalizedFormattedString("This is the first time you run a beta build %@.", XUAppSetup.applicationBuildNumber, inBundle: XUCoreFramework.bundle)
 		alert.addButton(withTitle: "OK")
 		alert.runModal()
 	}
@@ -52,8 +52,8 @@ public final class XUBetaExpirationHandler {
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedString("This beta build will expire in less than an hour.", inBundle: XUCore.bundle)
-		alert.informativeText = XULocalizedString("Please update your copy of this beta build.", inBundle: XUCore.bundle)
+		alert.messageText = XULocalizedString("This beta build will expire in less than an hour.", inBundle: XUCoreFramework.bundle)
+		alert.informativeText = XULocalizedString("Please update your copy of this beta build.", inBundle: XUCoreFramework.bundle)
 		alert.addButton(withTitle: "OK")
 		alert.runModal()
 		
@@ -70,8 +70,8 @@ public final class XUBetaExpirationHandler {
 		}
 		
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", ProcessInfo().processName, inBundle: XUCore.bundle)
-		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCore.bundle)
+		alert.messageText = XULocalizedFormattedString("This beta build of %@ has expired.", ProcessInfo().processName, inBundle: XUCoreFramework.bundle)
+		alert.informativeText = XULocalizedFormattedString("Please download a new build.", inBundle: XUCoreFramework.bundle)
 		alert.addButton(withTitle: "OK")
 		alert.runModal()
 		

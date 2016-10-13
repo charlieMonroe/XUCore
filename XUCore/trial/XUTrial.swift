@@ -81,9 +81,9 @@ open class XUTrial: NSObject {
 	/// circumstances, the app exits in an hour.
 	@objc fileprivate func _warnAboutNoInternetConnection() {
 		let alert = NSAlert()
-		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", ProcessInfo.processInfo.processName, inBundle: XUCore.bundle)
-		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", ProcessInfo.processInfo.processName, inBundle: XUCore.bundle)
-		alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCore.bundle))
+		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
+		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
+		alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 		alert.runModal()
 		
 		self.startShortTrial()
@@ -161,9 +161,9 @@ open class XUTrial: NSObject {
 	open func showTrialAlert(withMessage message: String) {
 		let alert = NSAlert()
 		alert.messageText = message
-		alert.informativeText = XULocalizedFormattedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@", self.supportURL.absoluteString, inBundle: XUCore.bundle)
-		alert.addButton(withTitle: XULocalizedString("Continue", inBundle: XUCore.bundle))
-		alert.addButton(withTitle: XULocalizedString("Purchase...", inBundle: XUCore.bundle))
+		alert.informativeText = XULocalizedFormattedString("Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@", self.supportURL.absoluteString, inBundle: XUCoreFramework.bundle)
+		alert.addButton(withTitle: XULocalizedString("Continue", inBundle: XUCoreFramework.bundle))
+		alert.addButton(withTitle: XULocalizedString("Purchase...", inBundle: XUCoreFramework.bundle))
 		
 		let alertResult = alert.runModal()
 		if alertResult == NSAlertFirstButtonReturn {
@@ -204,9 +204,9 @@ open class XUTrial: NSObject {
 		let appName = ProcessInfo.processInfo.processName
 		let alert = NSAlert()
 		alert.messageText = self.trialExpirationMessage
-		alert.informativeText = XULocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "", inBundle: XUCore.bundle)
-		alert.addButton(withTitle: XULocalizedString("Purchase...", inBundle: XUCore.bundle))
-		alert.addButton(withTitle: XULocalizedString("I'm Still Not Sure", inBundle: XUCore.bundle))
+		alert.informativeText = XULocalizedFormattedString("You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@", appName, trialID != nil ? " (Trial ID: \(trialID!))" : "", inBundle: XUCoreFramework.bundle)
+		alert.addButton(withTitle: XULocalizedString("Purchase...", inBundle: XUCoreFramework.bundle))
+		alert.addButton(withTitle: XULocalizedString("I'm Still Not Sure", inBundle: XUCoreFramework.bundle))
 		
 		let result = alert.runModal()
 		if result == NSAlertFirstButtonReturn {
@@ -331,7 +331,7 @@ open class XUTimeBasedTrial: XUTrial {
 	
 	open override func showFirstRunAlert() {
 		let appName = ProcessInfo.processInfo.processName
-		self.showTrialAlert(withMessage: XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCore.bundle))
+		self.showTrialAlert(withMessage: XULocalizedFormattedString("Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCoreFramework.bundle))
 	}
 	
 	open override func startShortTrial() {
@@ -342,7 +342,7 @@ open class XUTimeBasedTrial: XUTrial {
 	
 	open override var trialExpirationMessage: String {
 		let appName = ProcessInfo.processInfo.processName
-		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCore.bundle)
+		return XULocalizedFormattedString("Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.", appName, XUAppSetup.timeBasedTrialDays, appName, inBundle: XUCoreFramework.bundle)
 	}
 	
 }
@@ -474,7 +474,7 @@ open class XUItemBasedTrial: XUTrial {
 		let numberOfItems = XUAppSetup.itemBasedTrialNumberOfItems
 		let itemsName = XUAppSetup.itemBasedTrialItemName
 		
-		self.showTrialAlert(withMessage: XULocalizedFormattedString("Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, numberOfItems, itemsName, appName, inBundle: XUCore.bundle))
+		self.showTrialAlert(withMessage: XULocalizedFormattedString("Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreFramework.bundle))
 	}
 	
 	open override func startShortTrial() {
@@ -488,7 +488,7 @@ open class XUItemBasedTrial: XUTrial {
 		let numberOfItems = XUAppSetup.itemBasedTrialNumberOfItems
 		let itemsName = XUAppSetup.itemBasedTrialItemName
 		
-		return XULocalizedFormattedString("Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.", appName, numberOfItems, itemsName, appName, inBundle: XUCore.bundle)
+		return XULocalizedFormattedString("Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.", appName, numberOfItems, itemsName, appName, inBundle: XUCoreFramework.bundle)
 	}
 	
 }

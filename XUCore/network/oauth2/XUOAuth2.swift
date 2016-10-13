@@ -141,13 +141,13 @@ public enum XUOAuth2ClientError: Int {
 		
 		switch self {
 		case .invalidTokenType:
-			errorString = XULocalizedString("Server responded with unknown token type.", inBundle: XUCore.bundle)
+			errorString = XULocalizedString("Server responded with unknown token type.", inBundle: XUCoreFramework.bundle)
 		case .invalidAuthorizationResponse:
-			errorString = XULocalizedString("Server provided invalid authorization response.", inBundle: XUCore.bundle)
+			errorString = XULocalizedString("Server provided invalid authorization response.", inBundle: XUCoreFramework.bundle)
 		case .invalidRedirectionURL:
-			errorString = XULocalizedString("Server has redirected with invalid URL.", inBundle: XUCore.bundle)
+			errorString = XULocalizedString("Server has redirected with invalid URL.", inBundle: XUCoreFramework.bundle)
 		case .userCancelled:
-			errorString = XULocalizedString("User cancelled the authorization.", inBundle: XUCore.bundle)
+			errorString = XULocalizedString("User cancelled the authorization.", inBundle: XUCoreFramework.bundle)
 		}
 		
 		return NSError(domain: XUOAuth2ClientErrorDomain, code: self.rawValue, userInfo: [

@@ -136,7 +136,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// This will cause the controller to display the icon view of all the panes.
 	open func showAllPanes() {
 		self._setMainWindowContentView(self.allPanesView)
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCore.bundle)
+		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreFramework.bundle)
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = nil
@@ -154,7 +154,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
     open override func windowDidLoad() {
         super.windowDidLoad()
 
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCore.bundle)
+		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreFramework.bundle)
 		
 		self.window!.delegate = self
 		self.window!.titleVisibility = .hidden
@@ -227,7 +227,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCore.bundle)!
+		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCoreFramework.bundle)!
 		
 		self.fullScreenMinHeight = 48.0
 		if #available(OSX 10.11, *) {
@@ -278,7 +278,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCore.bundle)!
+		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCoreFramework.bundle)!
 		
 		if #available(OSX 10.11, *) {
 			self.layoutAttribute = .left

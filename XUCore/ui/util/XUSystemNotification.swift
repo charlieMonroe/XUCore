@@ -22,7 +22,7 @@ open class XUSystemNotification: NSObject {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public convenience init(confirmationMessage: String) {
-		self.init(icon: XUCore.bundle.image(forResource: "Checkmark")!, andMessage: confirmationMessage)
+		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, andMessage: confirmationMessage)
 	}
 	
 }
@@ -78,13 +78,13 @@ open class XUSystemNotificationCenter: NSObject {
 private class XUSystemNotificationWindowController: NSWindowController {
 	
 	fileprivate override func loadWindow() {
-		NSNib(nibNamed: "SystemNotification", bundle: XUCore.bundle)!.instantiate(withOwner: self, topLevelObjects: nil)
+		NSNib(nibNamed: "SystemNotification", bundle: XUCoreFramework.bundle)!.instantiate(withOwner: self, topLevelObjects: nil)
 	}
 	override var owner: AnyObject {
 		return self
 	}
 	override var windowNibPath: String? {
-		return XUCore.bundle.path(forResource: "SystemNotification", ofType: "nib")
+		return XUCoreFramework.bundle.path(forResource: "SystemNotification", ofType: "nib")
 	}
 	
 	
