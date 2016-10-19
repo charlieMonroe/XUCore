@@ -131,6 +131,8 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		windowFrame.origin.y = fieldFrame.minY - windowFrame.height
 		
 		self.searchResultsPanel.setFrame(windowFrame, display: true)
+		
+		self.searchResultsTableView.tableColumns[0].width = windowFrame.width - 3.0
 	}
 	
 	/// Invoked from the _delayedSearchTimer since.

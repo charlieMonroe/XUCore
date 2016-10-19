@@ -204,7 +204,11 @@ public extension String {
 	
 	/// Returns all relative URLs to URL created by "/" path and http scheme.
 	public func allRelativeURLs(withHost host: String) -> [URL] {
-		guard let baseURL = NSURL(scheme: "http", host: host, path: "/") as? URL else {
+		var components = URLComponents()
+		components.scheme = "http"
+		components.host = host
+		components.path = "/"
+		guard let baseURL = components.url else {
 			return [ ]
 		}
 		return self.allRelativeURLs(to: baseURL)

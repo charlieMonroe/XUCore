@@ -10,38 +10,41 @@ import Foundation
 
 public extension URL {
 
-	fileprivate func _booleanResourceValue(forKey key: String, defaultValue: Bool = false) -> Bool {
-		var value: AnyObject?
-		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
-
-		guard let number = value as? NSNumber else {
-			return defaultValue // Fallback to defaultValue
+	fileprivate func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {
+		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
+			return defaultValue
 		}
-
-		return number.boolValue
+		
+		guard let value = values.allValues[key] as? Bool else {
+			return defaultValue
+		}
+		
+		return value
 	}
 
-	fileprivate func _resourceValue<T>(forKey key: String) -> T? {
-		var value: AnyObject?
-		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey(rawValue: key))
-		return value as? T
+	fileprivate func _resourceValue<T>(forKey key: URLResourceKey) -> T? {
+		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
+			return nil
+		}
+		
+		return values.allValues[key] as? T
 	}
 	
-	fileprivate func _setBooleanResourceValue(_ value: Bool, forKey key: String) {
-		_ = try? (self as NSURL).setResourceValue(value, forKey: URLResourceKey(rawValue: key))
-	}
-	
-	fileprivate func _setResourceValue(_ value: AnyObject?, forKey key: String) {
-		_ = try? (self as NSURL).setResourceValue(value, forKey: URLResourceKey(rawValue: key))
+	fileprivate mutating func _setResourceValue(with block: (inout URLResourceValues) -> Void) {
+		var values = URLResourceValues()
+		block(&values)
+		try? self.setResourceValues(values)
 	}
 	
 	/// Date the URL was created at.
 	public var creationDate: Date? {
 		get {
-			return self._resourceValue(forKey: URLResourceKey.creationDateKey.rawValue)
+			return self._resourceValue(forKey: .creationDateKey)
 		}
 		set {
-			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.creationDateKey.rawValue)
+			self._setResourceValue {
+				$0.creationDate = newValue
+			}
 		}
 	}
 
@@ -59,36 +62,40 @@ public extension URL {
 
 	/// Returns true if the current URL is a directory.
 	public var isDirectory: Bool {
-		return self._booleanResourceValue(forKey: URLResourceKey.isDirectoryKey.rawValue)
+		return self._booleanResourceValue(forKey: .isDirectoryKey)
 	}
 
 	/// Returns true if the current URL is a directory.
 	public var isExcludedFromBackup: Bool {
 		get {
-			return self._booleanResourceValue(forKey: URLResourceKey.isExcludedFromBackupKey.rawValue)
+			return self._booleanResourceValue(forKey: .isExcludedFromBackupKey)
 		}
 		set {
-			self._setBooleanResourceValue(newValue, forKey: URLResourceKey.isExcludedFromBackupKey.rawValue)
+			self._setResourceValue {
+				$0.isExcludedFromBackup = newValue
+			}
 		}
 	}
 
 	/// Returns true if the URL is writable.
 	public var isReadable: Bool {
-		return _booleanResourceValue(forKey: URLResourceKey.isReadableKey.rawValue)
+		return _booleanResourceValue(forKey: .isReadableKey)
 	}
 	
 	/// Returns true if the URL is writable.
 	public var isWritable: Bool {
-		return _booleanResourceValue(forKey: URLResourceKey.isWritableKey.rawValue)
+		return _booleanResourceValue(forKey: .isWritableKey)
 	}
 
 	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
 	public var modificationDate: Date? {
 		get {
-			return self._resourceValue(forKey: URLResourceKey.contentModificationDateKey.rawValue)
+			return self._resourceValue(forKey: .contentModificationDateKey)
 		}
 		set {
-			self._setResourceValue(newValue as AnyObject?, forKey: URLResourceKey.contentModificationDateKey.rawValue)
+			self._setResourceValue {
+				$0.contentModificationDate = newValue
+			}
 		}
 	}
 
@@ -115,7 +122,7 @@ public extension URL {
 	#if os(OSX)
 		/// Thumbnail image for supported files.
 		public var thumbnailImage: XUImage? {
-			return self._resourceValue(forKey: URLResourceKey.thumbnailKey.rawValue)
+			return self._resourceValue(forKey: .thumbnailKey)
 		}
 	#endif
 

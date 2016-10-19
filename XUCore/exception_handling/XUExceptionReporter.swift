@@ -160,9 +160,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		request.httpMethod = "POST"
 		request.setJSONBody(reportDictionary)
 		
-		var genericResponse: URLResponse?
-		let _ = try? NSURLConnection.sendSynchronousRequest(request, returning: &genericResponse)
-		guard let response = genericResponse as? HTTPURLResponse else {
+		let loader = XUSynchronousDataLoader(request: request)
+		let result = try? loader.loadData()
+		guard let response = result?.1 as? HTTPURLResponse else {
 			self._reportFailedReportSend()
 			return
 		}

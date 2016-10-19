@@ -12,6 +12,7 @@ import Foundation
 	import Cocoa
 #endif
 
+@available(*, deprecated, message: "Use XUDebugLog.StatusDidChangeNotification")
 public let XULoggingStatusChangedNotification = "XULoggingStatusChangedNotification"
 
 /// We are not exposing this defaults key. Please, use XULoggingEnabled() function
@@ -60,6 +61,9 @@ public func XULogStacktrace(_ comment: @autoclosure () -> String) {
 /// logging.
 public final class XUDebugLog {
 	
+	/// Posted when the debug log status changes.
+	public static let StatusDidChangeNotification = Notification.Name(rawValue: "XULoggingStatusChangedNotification")
+	
 	fileprivate static var _cachedPreferences = false
 	fileprivate static var _didCachePreferences = false
 	fileprivate static var _didRedirectToLogFile = false
@@ -104,10 +108,10 @@ public final class XUDebugLog {
 			let didChange = newValue != _cachedPreferences;
 			
 			_cachedPreferences = newValue
-			_didCachePreferences = true //Already cached hence
+			_didCachePreferences = true // Already cached hence
 			
-			if (didChange) {
-				NotificationCenter.default.post(name: Notification.Name(rawValue: XULoggingStatusChangedNotification), object: nil)
+			if didChange {
+				NotificationCenter.default.post(name: XUDebugLog.StatusDidChangeNotification, object: nil)
 			}
 			
 			UserDefaults.standard.set(newValue, forKey: XULoggingEnabledDefaultsKey)
@@ -286,17 +290,17 @@ public final class XUDebugLog {
 		}
 		
 		@objc fileprivate func _turnLoggingOn() {
-			XUDebugLog.isLoggingEnabled = true
-			
 			XUDebugLog._debugLoggingOn.state = NSOnState
 			XUDebugLog._debugLoggingOff.state = NSOffState
+			
+			XUDebugLog.isLoggingEnabled = true
 		}
 		
 		@objc fileprivate func _turnLoggingOff() {
-			XUDebugLog.isLoggingEnabled = false
-			
 			XUDebugLog._debugLoggingOn.state = NSOffState
 			XUDebugLog._debugLoggingOff.state = NSOnState
+			
+			XUDebugLog.isLoggingEnabled = false
 		}
 		
 	}

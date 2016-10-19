@@ -27,4 +27,18 @@ public extension InputStream {
 		}
 	}
 	
+	/// Reads a string of length. By default, uses ASCII encoding.
+	public func readString(ofLength length: Int, encoding: String.Encoding = .ascii) -> String? {
+		let buffer = calloc(1, length + 1).assumingMemoryBound(to: UInt8.self)
+		defer {
+			free(buffer)
+		}
+		
+		self.read(buffer, maxLength: length)
+		buffer[length] = 0
+		
+		let ccharBuffer = UnsafeRawPointer(buffer).assumingMemoryBound(to: Int8.self)
+		return String(cString: ccharBuffer, encoding: encoding)
+	}
+	
 }

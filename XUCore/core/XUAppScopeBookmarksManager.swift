@@ -79,7 +79,7 @@ public final class XUAppScopeBookmarksManager: NSObject {
 			guard let absoluteURLString = NSUserDefaults.standardUserDefaults().stringForKey(defaultsKey) else {
 				return nil
 			}
-			result = NSURL(string: absoluteURLString)
+			result = URL(string: absoluteURLString)
 		#else
 			guard let bookmarkData = UserDefaults.standard.data(forKey: defaultsKey) else {
 				return nil

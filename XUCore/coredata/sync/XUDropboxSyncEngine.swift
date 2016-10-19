@@ -53,7 +53,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	
 	fileprivate func _createFolderAtURL(_ folderURL: URL) {
 		let path = self._relativePathToURL(folderURL)
-		_ = self.client.files.createFolder(path: path).response({ _, error in
+		_ = self.client.files.createFolder(path: path).response(completionHandler: { _, error in
 			// Ignore. This is likely just the folder already existing.
 		})
 	}
@@ -65,7 +65,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 		_ = self.client.files.download(path: filePath, destination: { _ -> URL in
 			_ = try? FileManager.default.removeItem(at: targetURL)
 			return targetURL
-		}).response({ (response, error) in
+		}).response(completionHandler: { (response, error) in
 			defer {
 				self._syncCounter -= 1
 			}
@@ -94,7 +94,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 		
 		if result.hasMore {
 			_syncCounter += 1
-			_ = self.client.files.listFolderContinue(cursor: result.cursor).response({ self._handleListingResultAtPath(path, result: $0, error: $1) })
+			_ = self.client.files.listFolderContinue(cursor: result.cursor).response(completionHandler: { self._handleListingResultAtPath(path, result: $0, error: $1) })
 		}
 		
 		for fileEntry in result.entries {

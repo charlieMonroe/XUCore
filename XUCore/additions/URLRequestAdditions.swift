@@ -8,17 +8,6 @@
 
 import Foundation
 
-/// Value for the accept/content header field.
-@available(*, deprecated, renamed: "NSURLRequest.ContentType.JSON")
-public let XUMutableURLRequestJSONHeaderFieldValue = "application/json;charset=UTF-8"
-
-/// Value for the accept/content header field.
-@available(*, deprecated, renamed: "NSURLRequest.ContentType.XML")
-public let XUMutableURLRequestXMLHeaderFieldValue = "application/xml;charset=UTF-8"
-
-/// Value for the accept/content header field.
-@available(*, deprecated, renamed: "NSURLRequest.ContentType.WWWForm")
-public let XUMutableURLRequestWWWFormHeaderFieldValue = "application/x-www-form-urlencoded;charset=UTF-8"
 
 public extension URLRequest {
 	

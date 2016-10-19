@@ -77,7 +77,7 @@ open class XUDocumentSyncManager {
 				])
 				return
 			}
-		
+			
 			guard let documentName = accountDict[XUDocumentNameKey] as? String else {
 				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: XUCoreFramework.bundle)
