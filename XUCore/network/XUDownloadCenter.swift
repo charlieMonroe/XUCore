@@ -398,13 +398,19 @@ open class XUDownloadCenter {
 	/// Imports cookies from response to NSHTTPCookieStorage.
 	fileprivate func _importCookies(from response: HTTPURLResponse) {
 		guard let
-			URL = response.url,
+			url = response.url,
 			let fields = response.allHeaderFields as? [String:String] else {
+				
+				XULog("Not importing cookies, because response.url is nil, or can't get any header fields: \(response)")
 				return
 		}
-		let cookies = HTTPCookie.cookies(withResponseHeaderFields: fields, for: URL)
+		
+		let cookies = HTTPCookie.cookies(withResponseHeaderFields: fields, for: url)
+		
+		XULog("Importing cookies for \(url): \(cookies)")
+		
 		let storage = HTTPCookieStorage.shared
-		storage.setCookies(cookies, for: URL, mainDocumentURL: nil)
+		storage.setCookies(cookies, for: url, mainDocumentURL: nil)
 	}
 	
 	/// Sets the Cookie HTTP header field on request.
@@ -412,6 +418,8 @@ open class XUDownloadCenter {
 		guard let url = request.url, url.scheme != nil else {
 			return
 		}
+		
+		let host = url.host ?? "nil"
 		
 		let baseURL: URL!
 		if originalBaseURL != nil {
@@ -423,12 +431,14 @@ open class XUDownloadCenter {
 			components.path = "/"
 			baseURL = components.url
 			if baseURL == nil {
+				XULog("Not setting cookies, because can't determine baseURL: \(host)")
 				return
 			}
 		}
 		
 		let storage = HTTPCookieStorage.shared
 		guard let cookies = storage.cookies(for: baseURL) else {
+			XULog("Not setting cookies, because there are no cookies for: \(host)")
 			return
 		}
 		
@@ -437,16 +447,15 @@ open class XUDownloadCenter {
 		}).joined(separator: ";")
 		
 		if cookieString.isEmpty {
+			XULog("Not setting cookies, because there are no cookies for: \(host)")
 			return // There's not point of setting the cookie field is there are no cookies
 		}
 		
 		if let originalCookie = request.value(forHTTPHeaderField: "Cookie") {
-			if cookieString.characters.count == 0 {
-				cookieString = originalCookie
-			} else {
-				cookieString = cookieString + ";\(originalCookie)"
-			}
+			cookieString = cookieString + ";\(originalCookie)"
 		}
+		
+		XULog("Setting cookies for: \(host) - \(cookieString)")
 		
 		request.setValue(cookieString, forHTTPHeaderField: "Cookie")
 	}
