@@ -257,6 +257,9 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 			return item
 		}))
 		_button.menu = menu
+		
+		_button.setAccessibilityTitle(XULocalizedString("Show All"))
+		_button.setAccessibilityLabel(XULocalizedString("Show All"))
 	}
 	
 	required init?(coder: NSCoder) {
