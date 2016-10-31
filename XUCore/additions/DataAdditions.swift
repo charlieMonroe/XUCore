@@ -90,6 +90,14 @@ public extension Data {
 		return NSData.md5Digest(ofBytes: (self as NSData).bytes, ofLength: self.count)
 	}
 	
+	/// SHA-1 digest.
+	public var sha1Digest: String {
+		let data = (self as NSData).sha1Digest()
+		let bytes = data.map { String(format: "%02x", $0) }
+		return bytes.joined()
+	}
+	
+	/// SHA-512 digest.
 	public var sha512Digest: String {
 		let data = (self as NSData).sha512Digest()
 		let bytes = data.map { String(format: "%02x", $0) }

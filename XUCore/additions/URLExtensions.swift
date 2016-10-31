@@ -86,6 +86,11 @@ public extension URL {
 	public var isWritable: Bool {
 		return _booleanResourceValue(forKey: .isWritableKey)
 	}
+	
+	/// Returns localized name of the file resource.
+	public var localizedName: String? {
+		return self._resourceValue(forKey: .localizedNameKey)
+	}
 
 	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
 	public var modificationDate: Date? {

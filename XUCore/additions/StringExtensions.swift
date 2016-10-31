@@ -292,6 +292,14 @@ public extension String {
 		return data.md5Digest
 	}
 	
+	public var sha1Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha1Digest
+	}
+	
 	public var sha512Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")

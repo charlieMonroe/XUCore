@@ -10,17 +10,26 @@ import Foundation
 
 public extension NSView {
 	
-	public var enclosingTableView: NSTableView? {
-		var view: NSView? = self.superview
+	private func _enclosingView<T: NSView>() -> T? {
+		var view: NSView? = self
 		while view != nil {
-			if let tableView = view as? NSTableView {
-				return tableView
+			if let targetView = view as? T {
+				return targetView
 			}
 			
-			view = view?.superview
+			view = view!.superview
 		}
-		
 		return nil
+	}
+	
+	/// Returns enclosing table row view or nil.
+	public var enclosingTableRowView: NSTableRowView? {
+		return self._enclosingView()
+	}
+	
+	/// Returns enclosing table view or nil.
+	public var enclosingTableView: NSTableView? {
+		return self._enclosingView()
 	}
 	
 	/// Sets enabled on subviews.

@@ -23,4 +23,7 @@
 /// Digest.
 -(nonnull NSData *)SHA512Digest;
 
+/// Digest.
+-(nonnull NSData *)SHA1Digest;
+
 @end

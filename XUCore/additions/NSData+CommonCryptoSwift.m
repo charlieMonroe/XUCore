@@ -38,4 +38,8 @@
 	return [self SHA512Hash];
 }
 
+-(NSData *)SHA1Digest {
+	return [self SHA1Hash];
+}
+
 @end

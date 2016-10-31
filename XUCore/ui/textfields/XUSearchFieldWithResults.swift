@@ -59,7 +59,32 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	public weak var resultsDelegate: XUSearchFieldWithResultsDelegate?
 	
 	/// Current search results.
-	public private(set) var results: [Any] = []
+	///
+	/// Note: When you set them manually, it will automatically open the search 
+	/// window.
+	public var results: [Any] = [] {
+		didSet {
+			assert(Thread.isMainThread)
+			
+			self.searchResultsTableView.reloadData()
+			self.searchResultsTableView.scrollRowToVisible(0)
+			
+			if let mainWindow = self.window {
+				let resultText = self.results.isEmpty ? XULocalizedString("No search results") : XULocalizedFormattedString("%li search results", self.results.count)
+				NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [
+					NSAccessibilityAnnouncementKey: resultText
+					])
+			}
+			
+			if self.results.isEmpty {
+				self.hideSearchWindow()
+				return
+			}
+			
+			self.searchResultsTableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
+			self.showSearchWindow()
+		}
+	}
 	
 	/// Width of the search results. The height is automatically determined based
 	/// on the number of results.
@@ -209,25 +234,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	private func _setSearchResult(_ items: [Any]) {
 		assert(Thread.isMainThread)
 		
-		results = items
-		
-		self.searchResultsTableView.reloadData()
-		self.searchResultsTableView.scrollRowToVisible(0)
-		
-		if let mainWindow = self.window {
-			let resultText = items.count == 0 ? XULocalizedString("No search results") : XULocalizedFormattedString("%li search results", items.count)
-			NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [
-				NSAccessibilityAnnouncementKey: resultText
-			])
-		}
-		
-		if items.isEmpty {
-			self.hideSearchWindow()
-			return
-		}
-		
-		self.searchResultsTableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
-		self.showSearchWindow()
+		self.results = items
 	}
 	
 	public override func awakeFromNib() {
