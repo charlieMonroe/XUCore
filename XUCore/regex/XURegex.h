@@ -22,6 +22,11 @@ typedef NS_OPTIONS(NSUInteger, XURegexOptions) {
 -(nonnull NSArray<NSString *> *)allOccurrencesInString:(nonnull NSString *)string;
 -(nonnull NSArray<NSString *> *)allOccurrencesOfVariableNamed:(nonnull NSString *)varName inString:(nonnull NSString *)string;
 -(nonnull NSDictionary<NSString *, NSString *> *)allVariablePairsInString:(nonnull NSString *)string;
+
+/// Returns a dictionary containing all named variables in string. If string
+/// doesn't match the receiver (regex), nil is returned.
+-(nullable NSDictionary<NSString *, NSString *> *)allVariablesInString:(nonnull NSString *)string;
+
 -(nullable NSString *)firstMatchInString:(nonnull NSString *)string;
 -(nullable NSString *)getVariableNamed:(nonnull NSString *)varName inString:(nonnull NSString *)string;
 

@@ -77,6 +77,40 @@ static NSLock *_evaluationLock;
 	
 	return dict;
 }
+-(nullable NSDictionary<NSString *, NSString *> *)allVariablesInString:(NSString *)string {
+	[_evaluationLock lock];
+	
+	/// To avoid heap allocation, we assume there won't be more than 256 captures
+	/// within a single regex.
+	if (_regex->NumberOfCapturingGroups() >= 256){
+		[_evaluationLock unlock];
+		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"This regex has more than 256 captures." userInfo:nil];
+	}
+	
+	re2::StringPiece matches[256];
+	std::string input([string UTF8String]);
+	bool matched = _regex->Match(input, 0, (int)input.length(), RE2::UNANCHORED, matches, _regex->NumberOfCapturingGroups() + 1);
+	if (!matched){
+		[_evaluationLock unlock];
+		return nil;
+	}
+	
+	NSMutableDictionary<NSString *, NSString *> *dict = [NSMutableDictionary dictionary];
+	
+	typedef std::map<std::string, int>::iterator it_type;
+	std::map<std::string, int> groups = _regex->NamedCapturingGroups();
+	for (it_type iterator = groups.begin(); iterator != groups.end(); ++iterator) {
+		std::string key = iterator->first;
+		int index = iterator->second;
+		
+		NSString *result = [NSString stringWithUTF8String:matches[index].as_string().c_str()];
+		dict[[NSString stringWithUTF8String:key.c_str()]] = result;
+	}
+
+	[_evaluationLock unlock];
+	return dict;
+}
+
 -(void)dealloc{
 	if (_regex != NULL){
 		delete _regex;
