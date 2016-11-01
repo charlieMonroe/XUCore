@@ -96,7 +96,9 @@ public extension NSImage {
 				return nil
 			}
 			
-			let bitmapContext = NSGraphicsContext(bitmapImageRep: bitmapImageRep)
+			guard let bitmapContext = NSGraphicsContext(bitmapImageRep: bitmapImageRep) else {
+				return nil
+			}
 			
 			NSGraphicsContext.saveGraphicsState()
 			NSGraphicsContext.setCurrent(bitmapContext)
