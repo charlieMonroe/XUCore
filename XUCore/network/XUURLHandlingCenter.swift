@@ -11,7 +11,7 @@ import Cocoa
 @objc public protocol XUURLHandler: AnyObject {
 	
 	/// Called when the application opens a URL via Apple Events.
-	func handlerShouldProcessURL(_ URL: URL)
+	func handlerShouldProcessURL(_ url: URL)
 	
 }
 
@@ -21,7 +21,13 @@ import Cocoa
 /// and AppleEvent handler.
 public final class XUURLHandlingCenter: NSObject {
 
-	public static let defaultCenter = XUURLHandlingCenter()
+	/// Returns shared center.
+	public static let shared: XUURLHandlingCenter = XUURLHandlingCenter()
+	
+	@available(*, deprecated, renamed: "shared")
+	public static var defaultCenter: XUURLHandlingCenter {
+		return self.shared
+	}
 	
 	
 	fileprivate var _handlers: [String : [XUURLHandler]] = [ : ]

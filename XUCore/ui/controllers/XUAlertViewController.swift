@@ -81,7 +81,7 @@ private final class _XUAlertView: UIControl {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	private override func layoutSubviews() {
+	fileprivate override func layoutSubviews() {
 		super.layoutSubviews()
 
 		let view = alert.viewController.view
@@ -123,11 +123,11 @@ private final class _XUAlertViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private override var preferredStatusBarStyle: UIStatusBarStyle {
+	fileprivate override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}
 	
-	private override func viewDidDisappear(_ animated: Bool) {
+	fileprivate override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
 		self.alert.completionHandler?()

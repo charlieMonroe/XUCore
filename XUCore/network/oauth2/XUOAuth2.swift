@@ -394,7 +394,7 @@ public final class XUOAuth2Client {
 			self.registeredClients.remove(at: index)
 			
 			#if os(OSX)
-				XUURLHandlingCenter.defaultCenter.remove(handler: client)
+				XUURLHandlingCenter.shared.remove(handler: client)
 			#endif
 		}
 	}
@@ -546,11 +546,11 @@ public final class XUOAuth2Client {
 	
 	#if os(OSX)
 		public func startAccountAuthorization(withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
-			XUURLHandlingCenter.defaultCenter.add(handler: self, forURLScheme: configuration.redirectionScheme)
+			XUURLHandlingCenter.shared.add(handler: self, forURLScheme: configuration.redirectionScheme)
 			
 			_authorizationController = XUAuthorizationWebViewWindowController(URL: self.configuration.authorizationURL)
 			_authorizationController!.runModal(withCompletionHandler: { result in
-				XUURLHandlingCenter.defaultCenter.remove(handler: self, forURLScheme: self.configuration.redirectionScheme)
+				XUURLHandlingCenter.shared.remove(handler: self, forURLScheme: self.configuration.redirectionScheme)
 				completionHandler?(result)
 				
 				XUOAuth2Client.save()
