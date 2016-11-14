@@ -54,6 +54,9 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	/// the search results and clears self.
 	@IBInspectable public var clearsOnSelection: Bool = true
 	
+	/// Maximum number of results to display. 6 by default.
+	public var maximumNumberOfResults: Int = 6
+	
 	/// Delegate that handles the search. See the protocol documentation for more
 	/// information.
 	public weak var resultsDelegate: XUSearchFieldWithResultsDelegate?
@@ -120,7 +123,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	private lazy var searchResultsPanel: NSPanel = {
 		let panel = NSPanel(contentRect: CGRect(x: 0.0, y: 0.0, width: self.searchResultsWidth, height: 200.0), styleMask: [.borderless], backing: .buffered, defer: true)
-		panel.contentView = self.searchResultsTableView
+		panel.contentView = self.searchResultsScrollView
 		panel.hasShadow = true
 		panel.hidesOnDeactivate = false
 		return panel
@@ -132,23 +135,30 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		tableView.delegate = self
 		tableView.target = self
 		tableView.doubleAction = #selector(_selectSearchResult(_:))
+		tableView.headerView = nil
 		tableView.usesAlternatingRowBackgroundColors = true
 		tableView.addTableColumn(NSTableColumn(identifier: "com.charliemonroe.XUSearchFieldWithResults"))
 		tableView.columnAutoresizingStyle = .firstColumnOnlyAutoresizingStyle
 		return tableView
 	}()
 	
+	fileprivate lazy var searchResultsScrollView: NSScrollView = {
+		let scrollView = NSScrollView()
+		scrollView.contentView.documentView = self.searchResultsTableView
+		return scrollView
+	}()
+	
 	@objc private func _repositionSearchWindow() {
 		let fieldFrame = self.screenCoordinates
 		var windowFrame = self.searchResultsPanel.frame
 		var rows = self.results.count
-		if rows > 6 {
-			rows = 6
+		if rows > self.maximumNumberOfResults {
+			rows = self.maximumNumberOfResults
 		} else if rows == 0 {
 			rows = 1
 		}
 		
-		windowFrame.size.height = CGFloat(rows) * self.searchResultsTableView.intercellSpacing.height + self.results.sum({
+		windowFrame.size.height = CGFloat(rows) * self.searchResultsTableView.intercellSpacing.height + (0 ..< rows).sum({
 			self.resultsDelegate?.searchField(self, heightOfRowFor: $0) ?? 0.0
 		}) - 1.0
 		windowFrame.size.width = self.searchResultsWidth
@@ -191,19 +201,19 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			self.progressIndicator.startAnimation(nil)
 			
 			self.resultsDelegate?.searchField(self, didChangeQuery: _searchString, completionHandler: { (results) in
-				assert(Thread.isMainThread, "The completion handler must be called on the main thread.")
-				
-				self.progressIndicator.stopAnimation(nil)
-				
-				if self._searchString != actualSearchString {
-					/// The user has already started a different query.
-					return
+				XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+					self.progressIndicator.stopAnimation(nil)
+					
+					if self._searchString != actualSearchString {
+						/// The user has already started a different query.
+						return
+					}
+					
+					self._lock.perform(locked: {
+						self._isSearchInProgress = false
+						self._setSearchResult(results)
+					})
 				}
-				
-				self._lock.perform(locked: {
-					self._isSearchInProgress = false
-					self._setSearchResult(results)
-				})
 			})
 		}
 	}
@@ -343,7 +353,7 @@ extension XUSearchFieldWithResults: NSTableViewDataSource, NSTableViewDelegate {
 			return
 		}
 		if let mainWindow = self.window {
-			NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [ NSAccessibilityAnnouncementKey: resultName ])
+			NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [NSAccessibilityAnnouncementKey: resultName])
 		}
 	}
 }

@@ -24,6 +24,10 @@
 		];
 }
 
+-(NSData *)decryptedAES256DataWithEncryptionKey:(NSString *)key andInitialVector:(NSString *)vector {
+	return [self decryptedDataUsingAlgorithm:kCCAlgorithmAES key:key initializationVector:vector options:0 error:NULL];
+}
+
 -(NSData *)decryptedRC4DataWithEncryptionKey:(NSString *)key {
 	CCCryptorStatus status;
 	NSData *decryptedData = [self decryptedDataUsingAlgorithm:kCCAlgorithmRC4 key:key error:&status];

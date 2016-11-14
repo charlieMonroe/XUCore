@@ -17,6 +17,9 @@
 /// Decrypts data with RC4 using an encryption key
 -(nullable NSData *)decryptedRC4DataWithEncryptionKey:(nonnull NSString *)key;
 
+/// Decrypts data with AES-256 using an encryption key and IV.
+-(nullable NSData *)decryptedAES256DataWithEncryptionKey:(nonnull NSString *)key andInitialVector:(nonnull NSString *)vector;
+
 /// Creates a HMAC-SH1 with custom key.
 -(nullable NSData *)HMACSHA1WithKey:(nonnull NSString *)key;
 

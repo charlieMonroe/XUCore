@@ -36,6 +36,15 @@ public enum XUEmailValidationFormat {
 	
 }
 
+public extension String.Encoding {
+	
+	/// Init with CFStringEncodings.
+	public init(encoding: CFStringEncodings) {
+		self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(encoding.rawValue)))
+	}
+	
+}
+
 
 public extension String {
 
@@ -454,6 +463,11 @@ public extension String {
 			str = padString + str
 		}
 		return str
+	}
+	
+	/// Returns the prefix of length. Doesn't do any range checking.
+	public func prefix(ofLength length: Int) -> String {
+		return self.substring(to: self.characters.index(self.startIndex, offsetBy: length))
 	}
 	
 	/// Returns the suffix of length. Doesn't do any range checking.

@@ -112,4 +112,26 @@ public extension Data {
 		}
 	}
 	
+	/// Removes trailing bytes that have value 0.
+	public var trimmingTrailingZeros: Data {
+		let index = self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Data.Index in
+			var index = self.endIndex - 1
+			while index >= 0 && ptr[index] == 0 {
+				index -= 1
+			}
+			
+			return index
+		}
+		
+		if index == self.endIndex {
+			return self
+		}
+		
+		if index == self.startIndex {
+			return Data()
+		}
+		
+		return self.subdata(in: 0 ..< index)
+	}
+	
 }
