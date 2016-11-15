@@ -521,6 +521,7 @@
 		075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess_iOS.swift; sourceTree = "<group>"; };
 		075F70B01D1D509F00540B42 /* XUAuthorizationWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewController.swift; path = oauth2/XUAuthorizationWebViewController.swift; sourceTree = "<group>"; };
 		0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDownloadCenter.swift; sourceTree = "<group>"; };
+		0765CC951DDB3C43001D8603 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		077093811CC1296C0093830B /* DataAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAdditions.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* DateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAdditions.swift; sourceTree = "<group>"; };
@@ -1349,6 +1350,7 @@
 				he,
 				de,
 				it,
+				nb,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1703,6 +1705,7 @@
 				07EBEA321CD8B3A600681651 /* he */,
 				07241D2D1D17B16700206E27 /* de */,
 				07EAAE781DA12852006C98A5 /* it */,
+				0765CC951DDB3C43001D8603 /* nb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

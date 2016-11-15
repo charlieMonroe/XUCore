@@ -1,0 +1,126 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 time";
+"1 minute" = "1 minutt";
+"1 second" = "1 sekund";
+"Unknown error." = "Ukjent feil.";
+
+"OK" = "OK";
+"Cancel" = "Avbryt";
+
+"Failed to parse CSV file." = "Feilet i å  analysere CSV file.";
+
+"Send Report" = "Send rapport";
+"Privacy Information..." = "Personverninformasjon...";
+"%AppName% has encountered a problem." = "%AppName% har oppdaget et problem.";
+"%AppName% will terminate after sending the report." = "%AppName% vil avslutte etter å ha sendt rapporten.";
+"Report to be sent:" = "Rapport til å sendes:";
+"Your Email:" = "Din Epost:";
+"Description:" = "Beskrivelse:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "Vennligst beskriv situasjonender dette unntaget finner sted og hvilke handlinger som skal til for å gjenskape problemet, dersom dette er mulig. Legg inn Epostadressen din nedenfor - vi vil underrette deg om når feilen blir rettet, eller be deg om flere detaljer angående dette unntaket. Epostadressen din vil ikke bli lagret i noen database og du vil ikke motta uønsket eposter. Ved å sende denne rapporten vil du hjelpe oss å forbedre programvaren. Tusen takk!";
+
+"Report Problem" = "Rapporter Problem";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Vi verdsetter din tilbakemelding og vil ikke samle uønsket informasjon. Din Epostadresse vil ikke bli lagret noe sted og vil bare bli brukt til å informere deg når dette problemet er ordnet eller når vi ønsker mer informasjon for å kunne løse dette problemet.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Kun følgende informasjon vil bli overført:\n• Beskrivelsen du bidro med.\n• Unntaksinformasjonen du la inn nedenfor.\n• Versjonen av denne programvaren.\n• Versjonen av ditt operativsystem (OS).\n• Modellen på din datamaskin (ingen MAC addresse eller tilsvarende informasjon som vil kunne identifisere din datamaskin).";
+
+"Could not post your report." = "Kunne ikke poste din rapport.";
+"Check your Internet connection and try again." = "Kontroller din Internett-tilkobling og prøv igjen.";
+"Heh, nice try. Please, enter a valid email address." = "Heh, godt forsøk. Vennligst legg inn en gyldig Epostadresse.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Det kan hende at vi ønsker å kontakte deg for å reparere dette. Vi biter ikke, Vi selger ikke Epostadressen til noen, og bruker den heller ikke til noe annet. Vi lover.";
+"You need to enter a valid email address." = "Du må legge inn en gyldig Epostadresse.";
+"We may need to get in touch with you in order to fix this." = "Det kan hende at vi ønsker å kontakte deg for å reparere dette.";
+"Please, provide some details as to when this exception happened." = "Vennligst gi oss noen detaljer om hvordan dette unntaket skjedde.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inkluder informasjonom om pågående oppgaver i applikasjonen, dersom applikasjonen var i forgrunnen eller bakgrunnen.";
+"Thank you for the report!" = "Takk for rapporten!";
+"We'll fix it as soon as possible!" = "Vi vil reparere dette så fort som mulig!";
+
+"Welcome to beta testing of %@." = "Velkommen til betatesting av %@.";
+"This is the first time you run a beta build %@." = "Dette er første gang du kjører en beta build %@.";
+"This beta build of %@ has expired." = "Denne beta builder av %@ er utgått.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Hygg deg med vår programvare! Dersom du får problemer eller oppdager feil, vennligst ta kontakt med oss på vår side for brukerstøtte %@";
+
+"Continue" = "Fortsett";
+"Purchase..." = "kjøp…";
+"I'm Still Not Sure" = "Jeg er fortsatt ikke sikker";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke koble til Internett. Applikasjonen vil avslutte om en time.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ trenger tilkobling til Internett for å fortsette.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil bli sendt til en side der du kan kjøpe et eksemplar. Dersom du fremdeles ikke er sikker om %@ er riktig for deg, eller har spørsmål, ta kontakt med oss.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving
+ %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %li dager. For å fortsette å bruke %@ må du kjøpe en lisens.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving %@! Du kan nå bruke det i %i %@ uten begrensninger. Etter at prøveperioden er utløpt, må du kjøpe en lisens for %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %i %@. For å fortsette å bruke %@ må du kjøpe en lisens.";
+"Working..." = "Jobber…";
+
+"Progress" = "Fremdrift";
+"Posted successfully" = "Sendingen er vellykket";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ vil fortsette å fungere i de neste 24 timene. Etter dette vil funksjonaliteten bli sperret. Vennligst oppdater %@ for at det skal fortsette å fungere.";
+"Please download a new build." = "Vennligst last ned ny build.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kan sende rapporten likevel, men dersom meldingen ikke er på Engelsk kan jeg ikke gi deg full brukersstøtte.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Meldingen din inneholder spesielle tegn som vanligvis indikerer at den ikke er skrevet på engelsk. Vennligst merk deg at selv om %@ er oversatt til mange språk, er brukerstøtten kun tilgjengelig på engelsk. Takk for din forståelse.";
+"%li hours" = "%li timer";
+"%li minutes" = "%li minutter";
+"%li seconds" = "%li sekunder";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Kan ikke finne et slikt dokument. Sjekk innom igjen senere, det kan hende at det ikke har synkronisert gjennom.";
+"Cannot open document metadata file." = "Kan ikke åpne metadata-fil.";
+"Metadata file doesn't contain required information." = "Metadata-fil inneholder ikke etterspurt informasjon.";
+"Synchronization is already in progress." = "Synkronisering er allerede startet.";
+"An upload operation is already in progress." = "En opplastingsoperasjon er startet.";
+"Could not save upload metadata." = "Kunne ikke lagre opplastet metadata.";
+"Cannot find entity named %@" = "Kan ikke finne enhet ved navn %@";
+"Cannot find class named %@" = "Kan ikke finne klasse ved navn %@";
+"Cannot find entity with ID %@" = "Kan ikke finne enhet med ID %@";
+"Can't find synchronization folder for document %@." = "Kan ikke finne synkroniseringsmappe for dokument %@.";
+"Can't find synchronization folder for computer %@." = "Kan ikke finne synkroniseringsmappe for datamaskin %@.";
+"Can't find sync folder for document %@." = "Kan ikke finne synkroniseringsmappe for dokument %@.";
+"%@ couldn't finish synchronization in the background." = "%@ kunne ikke fullføre synkronisering i bakgrunnen.";
+"Please switch back to %@ so that the synchronization can finish." = "Vennligst gå tilbake til %@ slik at synkroniseringen kan fullføres.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Kunne ikke lese synkroniserings-endringsdata.";
+"Could not copy synchronization change data to the cloud." = "Kunne ikke kopiere synkroniserings-endringsdata til skyen.";
+"Failing to apply change sets." = "Feilet i å tilføre endrings sett.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Synkroniseringsendring fra datamaskin %@ er ikke nedlastet ennå.";
+
+/// XUOAuth2
+"Authentication" = "Autentisering";
+"Server responded with unknown token type." = "Serveren svarte med ukjent token type.";
+"Server provided invalid authorization response." = "Serveren leverte feil autoritasjonssvar.";
+"Server has redirected with invalid URL." = "Serveren har omdirigert med feil URL.";
+"User cancelled the authorization." = "Brukeren kansellerte autoritasjonen.";
+
+/// Debug Log Menu
+"Debug" = "Feilsøking";
+"About Debug Log..." = "Om feilsøkingslogg…";
+"Debug Logging" = "Feilsøkingsloggføring";
+"On" = "På";
+"Off" = "Av";
+"Clear Debug Log" = "Slett feilsøkingslogg";
+"Show Log in Finder" = "Vis logg i Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Feilsøkingsloggen er en tekstfil som inneholder noe teknisk e detaljer om hva %@ gjør i bakgrunnen. Den er veldig nyttig for meg for å reparere ting raskt siden den lar meg se hva som skjer. For å få tak i feilsøkingsloggen følger du disse enkle skrittene:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Dersom dette ikke er den første feilsøkingsloggen du sender, sletter du først feilsøkingslogg fra feilsøkingsmenyen.\n2) I feilsøkingsmenyen, se til at feilsøkingsloggføring er skrudd på.\n3) Gjør den oppgaven som du har problem med.\n4) I feilsøkingsmenyen skrur du så feilsøkingsloggføring av.\n5) I feilsøkingsmenyen velger du vis loggføring i Finder. Dette velger loggføringen i Finder og du kan da enkelt sende den til meg. Vennligst legg informasjonen som et vedlegg i en e-post isteden for å kopiere og lime det inn som tekst.\n\nLoggfilen inneholder ingen personlig informasjon som kan brukes ved å åpne loggfilen (den er en enkel tekstfil). Dersom du mener at informasjonen er konfidensiell eller personlig, vennligst erstatt den med noe som enkelt kan gjenkjennes som fylltekst (f.eks. XXXXXXXX) og la meg få vite at du har modifisert filen.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "Dokumentet kunne ikke lastes ned akkurat nå.";
+"Log Current Application State" = "Loggfør gjeldende applikasjonstilstand";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Denne beta builder vil gå ut om mindre enn en time.";
+"Please update your copy of this beta build." = "Vennligst oppdater din kopi av denne beta builder.";
+
+// Preferences.
+"All Preferences" = "Alle preferanser";
+"Show All" = "Vis alt";
+"Preferences" = "Preferanser";
