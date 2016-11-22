@@ -528,7 +528,7 @@ open class XUManagedObject: NSManagedObject {
 	/// @note - you must NOT create new entities within -awakeFromInsert! It would
 	///			lead to a deadlock. Use -awakeFromNonSyncInsert instead.
 	@available(*, deprecated, message: "Use awakeFromNonSyncInsert instead.")
- 	open override func awakeFromInsert() {
+ 	public final override func awakeFromInsert() {
 		super.awakeFromInsert()
 		
 		if !self.isBeingCreatedBySyncEngine {

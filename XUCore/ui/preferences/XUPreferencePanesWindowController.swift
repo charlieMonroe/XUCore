@@ -34,8 +34,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
-	open class func controller(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
-		let controller = XUPreferencePanesWindowController(windowNibName: "XUPreferencePanesWindowController")
+	open class func controller(withSections sections: [XUPreferencePanesSection]) -> Self {
+		let controller = self.init(windowNibName: "XUPreferencePanesWindowController")
 		controller.sections = sections
 		return controller
 	}
@@ -47,7 +47,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	open class func createSharedController(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
 		assert(_sharedController == nil, "Can't be creating the shared controller for the second time.")
 		
-		_sharedController = XUPreferencePanesWindowController.controller(withSections: sections)
+		_sharedController = self.controller(withSections: sections)
 		return self.sharedController
 	}
 	
@@ -105,6 +105,11 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		}
 	}
 	
+	/// Called when the preference panes window controller did select a pane.
+	open func didSelectPane(_ paneController: XUPreferencePaneViewController) {
+		
+	}
+	
 	func preferencePaneView(didSelectPane paneController: XUPreferencePaneViewController) {
 		self.selectPane(paneController)
 	}
@@ -122,15 +127,20 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	}
 	
 	/// Selects a pane. This method assets that this pane is contained in 
-	/// self.sections.
+	/// self.sections. If you need to modify the `paneController` before being
+	/// loaded or displayed, override willSelectPane and didSelectPane.
 	public func selectPane(_ paneController: XUPreferencePaneViewController) {
 		assert(self.sections.map({ $0.paneControllers }).joined().contains(where: { $0 === paneController }))
+		
+		self.willSelectPane(paneController)
 		
 		self._setMainWindowContentView(paneController.view)
 		_titleViewController._titleLabel.stringValue = paneController.paneName
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = paneController
+		
+		self.didSelectPane(paneController)
 	}
 	
 	/// This will cause the controller to display the icon view of all the panes.
@@ -151,6 +161,11 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		super.showWindow(sender)
 	}
 	
+	/// Called when the preference panes window controller will select a pane.
+	open func willSelectPane(_ paneController: XUPreferencePaneViewController) {
+		
+	}
+	
     open override func windowDidLoad() {
         super.windowDidLoad()
 
@@ -169,7 +184,14 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		_currentView = self.allPanesView
     }
 	
-	public func windowWillClose(_ notification: Notification) {
+	public final override var windowNibPath: String? {
+		return XUCoreFramework.bundle.path(forResource: "XUPreferencePanesWindowController", ofType: "nib")
+	}
+	
+	/// Delegate method of the window. If you decide to override this method, it
+	/// is crucial to call super, since the default implementation saves the 
+	/// preferences.
+	open func windowWillClose(_ notification: Notification) {
 		self.currentPaneController?.savePreferences()
 	}
     
@@ -181,10 +203,16 @@ internal class XULongPressButton: NSButton {
 	fileprivate var _mouseDownDate: TimeInterval = 0.0
 	
 	@objc fileprivate func _showMenu() {
+		self.menu!.autoenablesItems = false
 		self.menu!.popUp(positioning: nil, at: CGPoint(x: 0.0, y: self.bounds.height), in: self)
 	}
 	
 	override func mouseDown(with theEvent: NSEvent) {
+		if theEvent.modifierFlags.contains(.control) {
+			self._showMenu()
+			return
+		}
+		
 		_mouseDownDate = Date.timeIntervalSinceReferenceDate
 		
 		self.isHighlighted = true
@@ -256,6 +284,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 			item.representedObject = $0
 			return item
 		}))
+		
 		_button.menu = menu
 		
 		_button.setAccessibilityTitle(XULocalizedString("Show All"))
@@ -268,6 +297,10 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	
 	@IBAction @objc func showAll(_ sender: AnyObject) {
 		_prefController.showAllPanes()
+	}
+	
+	@objc var worksWhenModal: Bool {
+		return true
 	}
 	
 }
