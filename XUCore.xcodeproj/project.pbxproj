@@ -251,6 +251,7 @@
 		075F70B21D1D50A200540B42 /* XUAuthorizationWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075F70B01D1D509F00540B42 /* XUAuthorizationWebViewController.swift */; };
 		0763C15E1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
 		0763C15F1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
+		076657821DE4ACC8007D0BE7 /* XUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076657811DE4ACC8007D0BE7 /* XUView.swift */; };
 		077093821CC1296C0093830B /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
@@ -314,6 +315,7 @@
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
+		07AAF7201DE58AF6001962DB /* XUCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */; };
 		07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		07AEC1111D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */; };
 		07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */; };
@@ -522,6 +524,7 @@
 		075F70B01D1D509F00540B42 /* XUAuthorizationWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewController.swift; path = oauth2/XUAuthorizationWebViewController.swift; sourceTree = "<group>"; };
 		0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDownloadCenter.swift; sourceTree = "<group>"; };
 		0765CC951DDB3C43001D8603 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		076657811DE4ACC8007D0BE7 /* XUView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUView.swift; sourceTree = "<group>"; };
 		077093811CC1296C0093830B /* DataAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAdditions.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* DateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAdditions.swift; sourceTree = "<group>"; };
@@ -570,6 +573,7 @@
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
+		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
 		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
 		07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerAdditions.swift; sourceTree = "<group>"; };
 		07B211001D4903DC005203F0 /* XUWeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUWeakArray.swift; sourceTree = "<group>"; };
@@ -827,9 +831,11 @@
 		073E6B551BE203E800706283 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */,
 				0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */,
-				07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */,
 				07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */,
+				07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */,
+				076657811DE4ACC8007D0BE7 /* XUView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1409,6 +1415,7 @@
 				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
 				074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */,
 				0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */,
+				07AAF7201DE58AF6001962DB /* XUCertificateView.swift in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
@@ -1418,6 +1425,7 @@
 				075A92A11C43D775006DD45B /* XUUIBridge.swift in Sources */,
 				073E6ADF1BE1F86D00706283 /* regexp.cc in Sources */,
 				07FD4BDA1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */,
+				076657821DE4ACC8007D0BE7 /* XUView.swift in Sources */,
 				075DC7831CF1DCD50043EBD0 /* XUSyncChangeSet.swift in Sources */,
 				078E2D6C1CEB58AB00715CB8 /* NSBezierPathAdditions.swift in Sources */,
 				07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */,

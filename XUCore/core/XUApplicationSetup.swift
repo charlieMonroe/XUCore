@@ -71,6 +71,30 @@ open class XUApplicationSetup {
 	}()
 	
 	
+	/// This is a struct that represents a build type, used for XUAppSetup.buildType.
+	/// There are several reserved values that are used by XUCore:
+	///
+	/// - Trial - implies isAppStoreBuild == false
+	/// - AppStore - implies isAppStoreBuild == true
+	public struct BuildType: RawRepresentable {
+		
+		/// AppStore build type.
+		public static let appStore: BuildType = BuildType(rawValue: "AppStore")
+		
+		/// Trial build type.
+		public static let trial: BuildType = BuildType(rawValue: "Trial")
+		
+		
+		public var rawValue: String
+		
+		public init(rawValue: String) {
+			self.rawValue = rawValue
+		}
+		
+	}
+	
+	
+	
 	/// Returns the application build number - found under CFBundleVersion 
 	/// in Info.plist. "0" by default.
 	public let applicationBuildNumber: String
@@ -95,6 +119,12 @@ open class XUApplicationSetup {
 	/// @discussion - Only available on OS X.
 	public let betaExpirationTimeInterval: TimeInterval
 	
+	/// Build type. See BuildType. When you use the buildType, you should ignore
+	/// isAppStoreBuild on XUApplicationSetup.
+	///
+	/// The value in Info.plist should be a string under the key XUBuildType.
+	public let buildType: BuildType
+	
 	/// Returns a URL object that contains a URL where exception report is sent
 	/// by XUExceptionReporter. To turn on the XUExceptionCatcher, fill the URL
 	/// under the key XUExceptionReporterURL in Info.plist. See XUExceptionReporter
@@ -104,6 +134,8 @@ open class XUApplicationSetup {
 	/// Returns true, if the current build is made for AppStore submission. To
 	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
 	/// True by default.
+	///
+	/// @see also buildType.
 	///
 	/// @discussion - Probably one of the alternatives would be to make an enum
 	///				  of build types. Unfortunately, we can think of all of the
@@ -185,10 +217,24 @@ open class XUApplicationSetup {
 	
 	/// The initializer gets the main bundle's infoDictionary.
 	public required init(infoDictionary: XUJSONDictionary) {
-		if let appStoreBuild = infoDictionary["XUAppStoreBuild"] as? NSNumber {
+		
+		if let buildType = infoDictionary["XUBuildType"] as? String {
+			if buildType == BuildType.appStore.rawValue {
+				self.buildType = BuildType.appStore
+				self.isAppStoreBuild = true
+			} else if buildType == BuildType.trial.rawValue {
+				self.buildType = BuildType.trial
+				self.isAppStoreBuild = false
+			} else {
+				self.buildType = BuildType(rawValue: buildType)
+				self.isAppStoreBuild = infoDictionary.boolean(forKey: "XUAppStoreBuild")
+			}
+		} else if let appStoreBuild = infoDictionary["XUAppStoreBuild"] as? NSNumber {
 			self.isAppStoreBuild = appStoreBuild.boolValue
-		}else{
+			self.buildType = self.isAppStoreBuild ? BuildType.appStore : BuildType.trial
+		} else {
 			self.isAppStoreBuild = true
+			self.buildType = BuildType.appStore
 		}
 		
 		if let betaBuild = infoDictionary["XUBetaBuild"] as? NSNumber {

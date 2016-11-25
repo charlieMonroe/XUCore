@@ -97,6 +97,13 @@ public extension Data {
 		return bytes.joined()
 	}
 	
+	/// SHA-256 digest.
+	public var sha256Digest: String {
+		let data = (self as NSData).sha256Digest()
+		let bytes = data.map { String(format: "%02x", $0) }
+		return bytes.joined()
+	}
+	
 	/// SHA-512 digest.
 	public var sha512Digest: String {
 		let data = (self as NSData).sha512Digest()

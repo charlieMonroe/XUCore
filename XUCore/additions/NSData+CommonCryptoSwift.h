@@ -24,6 +24,9 @@
 -(nullable NSData *)HMACSHA1WithKey:(nonnull NSString *)key;
 
 /// Digest.
+-(nonnull NSData *)SHA256Digest;
+
+/// Digest.
 -(nonnull NSData *)SHA512Digest;
 
 /// Digest.
