@@ -203,7 +203,7 @@ public extension Dictionary {
 	public var urlQueryString: String {
 		var keyValuePairs: [String] = [ ]
 		for (key,value) in self {
-			let charSet = CharacterSet.alphanumerics
+			let charSet = CharacterSet.urlQueryAllowed
 			let stringKey = (key as? String) ?? "INVALID KEY"
 			let encodedKey = stringKey.addingPercentEncoding(withAllowedCharacters: charSet) ?? ""
 			let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE"

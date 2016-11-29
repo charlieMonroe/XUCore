@@ -69,11 +69,27 @@ public extension XMLNode {
 
 public extension XMLElement {
 	
+	@discardableResult
+	public func addAttribute(named name: String, withStringValue value: String) -> XMLNode {
+		let node = XMLNode(kind: XMLNode.Kind.attribute)
+		node.name = name
+		node.stringValue = value
+		self.addAttribute(node)
+		return node
+	}
+	
 	public override func integerValue(ofAttributeNamed attributeName: String) -> Int {
 		return self.attribute(forName: attributeName)?.integerValue ?? 0
 	}
 	public override func stringValue(ofAttributeNamed attributeName: String) -> String? {
 		return self.attribute(forName: attributeName)?.stringValue
+	}
+	
+	/// Initializes self with `name` and sets attributes on self.
+	public convenience init(name: String, attributes: [String : String]) {
+		self.init(name: name)
+		
+		self.setAttributesWith(attributes)
 	}
 	
 }
