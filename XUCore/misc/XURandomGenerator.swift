@@ -13,7 +13,7 @@ import Foundation
 public final class XURandomGenerator {
 
 	/// Returns a shared generator.
-	public static let sharedGenerator = XURandomGenerator()
+	public static let shared = XURandomGenerator()
 	
 	public init() {
 		var tv: timeval = timeval(tv_sec: 0, tv_usec: 0)
