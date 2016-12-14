@@ -53,6 +53,8 @@ public extension XURegex {
 		public static let h1: RegexString = RegexString(regexString: "<h1[^>]*>\\s*(?P<TITLE>.*?)\\s*</h1>")
 		public static let h2: RegexString = RegexString(regexString: "<h2[^>]*>\\s*(?P<TITLE>.*?)\\s*</h2>")
 		public static let h3: RegexString = RegexString(regexString: "<h3[^>]*>\\s*(?P<TITLE>.*?)\\s*</h3>")
+		public static let h4: RegexString = RegexString(regexString: "<h4[^>]*>\\s*(?P<TITLE>.*?)\\s*</h4>")
+		public static let h5: RegexString = RegexString(regexString: "<h5[^>]*>\\s*(?P<TITLE>.*?)\\s*</h5>")
 		public static let metaTitle: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*title\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
 		public static let metaDescription: RegexString = RegexString(regexString: "<meta\\s+(name|property)=\"[a-z:]*description\"\\s+content=\"\\s*(?P<TITLE>.*?)\\s*\"")
 		public static let metaOGTitle: RegexString = RegexString(regexString: "<meta[^>]+(property|name)=\"og:title\"[^>]+content=\"\\s*(?P<TITLE>.*?)\\s*\"")

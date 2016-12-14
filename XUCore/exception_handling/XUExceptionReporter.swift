@@ -41,7 +41,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Shows a new reporter window with the exception.
 	class func showReporterForException(_ exception: NSException, andStackTrace stackTrace: String) {
-		if [ NSExceptionName.accessibilityException, NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException ].contains(where: { exception.name == $0 }) {
+		if [ NSExceptionName.accessibilityException, NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException ].contains(exception.name) {
 			// Exceptions that commonly arise in Apple's code
 			return
 		}
@@ -54,6 +54,14 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			reporter._reporterWindow.makeKeyAndOrderFront(nil)
 			
 			NSApp.runModal(for: reporter._reporterWindow)
+			
+			if XUPreferences.isApplicationUsingPreferences {
+				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+					prefs.lastLaunchDidCrash = true
+					prefs.numberOfConsecutiveCrashes += 1
+				})
+			}
+			
 			exit(1)
 		}
 	}

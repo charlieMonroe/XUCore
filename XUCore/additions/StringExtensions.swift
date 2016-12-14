@@ -351,8 +351,14 @@ public extension String {
 		return result
 	}
 	
-	public mutating func prepend(_ string: String) {
+	/// Prepends self with `string`.
+	public mutating func prepend(with string: String) {
 		self.insert(contentsOf: string.characters, at: self.startIndex)
+	}
+	
+	@available(*, deprecated, renamed: "prepend(with:)")
+	public mutating func prepend(_ string: String) {
+		self.prepend(with: string)
 	}
 	
 	/// Returns a reverse string.

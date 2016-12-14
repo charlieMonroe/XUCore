@@ -765,7 +765,7 @@ open class XUDownloadCenter {
 			
 			self.lastHTTPURLResponse = httpResponse
 			return httpResponse
-		}catch let error {
+		} catch let error {
 			if self.logTraffic {
 				XULog("-[\(self)[\(self.owner.name)] \(#function)] - Failed to send HEAD to URL \(url!) - \(error)")
 			}
