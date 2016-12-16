@@ -91,6 +91,16 @@ open class XUApplicationSetup {
 			self.rawValue = rawValue
 		}
 		
+		/// Returns whether self == .appStore
+		public var isAppStore: Bool {
+			return self == .appStore
+		}
+		
+		/// Returns whether self == .trial
+		public var isTrial: Bool {
+			return self == .trial
+		}
+		
 	}
 	
 	
