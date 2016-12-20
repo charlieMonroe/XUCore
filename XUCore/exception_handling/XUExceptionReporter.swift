@@ -40,14 +40,14 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	}
 	
 	/// Shows a new reporter window with the exception.
-	class func showReporterForException(_ exception: NSException, andStackTrace stackTrace: String) {
+	class func showReporterForException(_ exception: NSException, thread: Thread, queue: OperationQueue?, andStackTrace stackTrace: String) {
 		if [ NSExceptionName.accessibilityException, NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException ].contains(exception.name) {
 			// Exceptions that commonly arise in Apple's code
 			return
 		}
 		
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
-			let reporter = XUExceptionReporter(exception: exception, stackTrace: stackTrace)
+			let reporter = XUExceptionReporter(exception: exception, thread: thread, queue: queue, stackTrace: stackTrace)
 			_reporters.append(reporter)
 			
 			reporter._reporterWindow.center()
@@ -68,6 +68,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	
 	fileprivate let _exception: NSException
+	fileprivate let _queue: OperationQueue?
+	fileprivate let _thread: Thread
+	
 	fileprivate let _nib: NSNib
 	fileprivate var _topLevelObjects: NSArray = []
 	
@@ -85,8 +88,11 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		alert.beginSheetModal(for: _reporterWindow, completionHandler: nil)
 	}
 	
-	fileprivate init(exception: NSException, stackTrace: String) {
+	fileprivate init(exception: NSException, thread: Thread, queue: OperationQueue?, stackTrace: String) {
 		_exception = exception
+		_thread = thread
+		_queue = queue
+		
 		_nib = NSNib(nibNamed: "ExceptionReporter", bundle: XUCoreFramework.bundle)!
 		
 		super.init()
@@ -148,7 +154,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		let reportDictionary = [
 			"description": _userInputTextView.string ?? "",
-			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])",
+			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])\nThread: \(_thread)\nQueue: \(_queue.descriptionWithDefaultValue())",
 			"stacktrace": _stackTraceTextView.string ?? "",
 			"version": XUAppSetup.applicationVersionNumber,
 			"build": XUAppSetup.applicationBuildNumber,
