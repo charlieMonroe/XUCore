@@ -139,7 +139,7 @@ public final class XUExceptionHandler: NSObject {
 		
 		stackTraceString += XUStacktraceString()
 		
-		XUExceptionReporter.showReporterForException(exception, andStackTrace: stackTraceString)
+		XUExceptionReporter.showReporterForException(exception, thread: Thread.current, queue: OperationQueue.current, andStackTrace: stackTraceString)
 		return true
 	}
 	
