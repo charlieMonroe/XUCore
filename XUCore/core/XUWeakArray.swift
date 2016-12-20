@@ -58,6 +58,15 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		return self[self.count - 1]
 	}
 	
+	/// Removes all nil values from the array.
+	public mutating func performCleanup() {
+		for i in (0 ..< self.count).reversed() {
+			if _innerArray[i].objectValue == nil {
+				_innerArray.remove(at: i)
+			}
+		}
+	}
+	
 	public mutating func remove(atIndex index: Int) {
 		_innerArray.remove(at: index)
 	}
