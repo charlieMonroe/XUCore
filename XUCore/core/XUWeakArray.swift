@@ -31,6 +31,11 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		_innerArray.append(XUWeakReference(objectValue: value))
 	}
 	
+	/// Gathers all non-nil values into an array.
+	public var allValues: [T] {
+		return _innerArray.flatMap({ $0.objectValue })
+	}
+	
 	public var count: Int {
 		return _innerArray.count
 	}
@@ -41,6 +46,10 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		return self[0]
 	}
 	
+	public func index(of obj: T) -> Int? {
+		return _innerArray.index(where: { $0.objectValue === obj })
+	}
+	
 	public func makeIterator() -> XUWeakArrayGenerator<T> {
 		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).slice(with: 0 ..< _innerArray.count))
 	}
@@ -49,17 +58,30 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		return self[self.count - 1]
 	}
 	
+	/// Removes all nil values from the array.
+	public mutating func performCleanup() {
+		for i in (0 ..< self.count).reversed() {
+			if _innerArray[i].objectValue == nil {
+				_innerArray.remove(at: i)
+			}
+		}
+	}
+	
 	public mutating func remove(atIndex index: Int) {
 		_innerArray.remove(at: index)
 	}
 	
-	subscript(index: Int) -> T? {
+	public subscript(index: Int) -> T? {
 		get {
 			return _innerArray[index].objectValue
 		}
 		set {
 			_innerArray[index] = XUWeakReference(objectValue: newValue)
 		}
+	}
+	
+	public init() {
+		// No-op
 	}
 	
 }
