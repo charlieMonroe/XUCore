@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc public protocol XUURLHandler: AnyObject {
+public protocol XUURLHandler: AnyObject {
 	
 	/// Called when the application opens a URL via Apple Events.
 	func handlerShouldProcessURL(_ url: URL)
