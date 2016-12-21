@@ -252,7 +252,12 @@ public final class XUDebugLog {
 		let version = XUAppSetup.applicationVersionNumber
 		let buildNumber = XUAppSetup.applicationBuildNumber
 		
-		XULog("\n\n\n============== Starting a new session ==============")
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		formatter.timeStyle = .short
+		formatter.locale = Locale(identifier: "en-US")
+		
+		XULog("\n\n\n============== Starting a new session [\(formatter.string(from: Date()))] ==============")
 		XULog("Application: \(processInfo.processName)")
 		XULog("Version: \(version)[\(buildNumber)]")
 		XULog("")
