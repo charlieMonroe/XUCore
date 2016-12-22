@@ -36,6 +36,12 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		return _innerArray.flatMap({ $0.objectValue })
 	}
 	
+	/// Returns whether the array contains the object. The comparison is pointer
+	/// based.
+	public func contains(_ obj: T) -> Bool {
+		return _innerArray.contains(where: { $0.objectValue === obj })
+	}
+	
 	public var count: Int {
 		return _innerArray.count
 	}
