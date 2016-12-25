@@ -41,7 +41,7 @@ public let XUCoreBundle = Bundle(for: XUCoreFramework.self)
 		_ = XUApplicationSetup.sharedSetup
 		
 		// Launch the message center.
-		_ = XUMessageCenter.sharedMessageCenter
+		_ = XUMessageCenter.shared
 		
 		
 		#if !os(iOS)
