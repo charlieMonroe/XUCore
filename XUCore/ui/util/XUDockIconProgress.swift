@@ -9,17 +9,17 @@
 import AppKit
 
 /// This class represents the Dock icon's progress bar.
-open class XUDockIconProgress: NSObject {
+open class XUDockIconProgress {
 
 	fileprivate let kXUDockProgressBarHeight: CGFloat = 20.0
 	fileprivate let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
 
 	fileprivate var _lastUpdated: Double = 0.0
 
-	open static let sharedProgress: XUDockIconProgress = XUDockIconProgress()
+	open static let shared: XUDockIconProgress = XUDockIconProgress()
 	
 	fileprivate func _createProgressImage() -> NSImage {
-		let im: NSImage = NSImage(named: "NSApplicationIcon")?.copy() as! NSImage
+		let im: NSImage = NSImage(named: NSImageNameApplicationIcon)!.copy() as! NSImage
 		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: kXUDockProgressBarHeight)
 
 		var progress = self.progressValue
@@ -78,7 +78,7 @@ open class XUDockIconProgress: NSObject {
 		}
 	}
 
-	public override init() {
-		super.init()
+	public init() {
+		
 	}
 }

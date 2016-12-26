@@ -8,84 +8,87 @@
 
 import Foundation
 
-
-public final class XUAppScopeBookmarksManager: NSObject {
+public final class XUAppScopeBookmarksManager {
 	
-	public static var sharedManager = XUAppScopeBookmarksManager()
+	public static var shared = XUAppScopeBookmarksManager()
 
-	fileprivate var _cache: [String : URL] = [ : ]
-	
-	fileprivate override init() {
-		super.init()
-	}
+	fileprivate var _cache: [XUPreferences.Key : URL] = [ : ]
 	
 	/// Sets a URL for key. Returns if the save was successful.
 	@discardableResult
-	public func setURL(_ url: URL?, forKey defaultsKey: String) -> Bool {
+	public func setURL(_ url: URL?, forKey defaultsKey: XUPreferences.Key) -> Bool {
 		var newURL = url
 		if newURL == nil {
 			_cache.removeValue(forKey: defaultsKey)
 			
-			UserDefaults.standard.removeObject(forKey: defaultsKey)
+			XUPreferences.shared.perform(andSynchronize: { (prefs) in
+				prefs.set(value: nil, forKey: defaultsKey)
+			})
 		}else{
 			// Make sure the path is different from the current one -> otherwise 
 			// we probably haven't opened the open dialog -> will fail
 			let savedURL = self.url(forKey: defaultsKey)
 			if savedURL == nil || (savedURL! != newURL!) {
 				#if os(iOS)
-					NSUserDefaults.standardUserDefaults().setObject(URL!.absoluteString, forKey: defaultsKey)
+					XUPreferences.shared.perform(andSynchronize: { (prefs) in
+						prefs.set(value: url!.absoluteString, forKey: defaultsKey)
+					})
 				#else
 					_ = newURL!.startAccessingSecurityScopedResource()
 					
-					guard let bookmarkData = try? (newURL! as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [ ], relativeTo: nil) else {
+					guard let bookmarkData = try? (newURL! as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
 						XULog("Failed to create bookmark data for URL \(newURL!)")
 						return false
 					}
 					
 					XULog("trying to save bookmark data for path \(newURL!.path) - bookmark data length = \(bookmarkData.count)")
 					
-					UserDefaults.standard.set(bookmarkData, forKey: defaultsKey)
+					XUPreferences.shared.perform(andSynchronize: { (prefs) in
+						prefs.set(value: bookmarkData, forKey: defaultsKey)
+					})
 					
 					newURL!.stopAccessingSecurityScopedResource()
 					
-					let reloadedURL = try? (NSURL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: nil) as URL)
-					if reloadedURL != nil {
-						newURL = reloadedURL
-					}
+					var isStale: Bool = false
+					do {
+						let reloadedURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+						if reloadedURL != nil {
+							newURL = reloadedURL
+						}
+					} catch _ { }
 				#endif
 				
 				_cache[defaultsKey] = newURL
-				
-				UserDefaults.standard.synchronize()
 			}
 		}
 		
 		return true
 	}
 	
-	@available(*, deprecated, renamed: "url(forKey:)")
-	public func URLForKey(_ defaultsKey: String) -> URL? {
-		return self.url(forKey: defaultsKey)
-	}
-	
 	/// Returns URL for key.
-	public func url(forKey defaultsKey: String) -> URL? {
+	public func url(forKey defaultsKey: XUPreferences.Key) -> URL? {
 		if let result = _cache[defaultsKey] {
 			return result
 		}
 		
 		let result: URL?
 		#if os(iOS)
-			guard let absoluteURLString = NSUserDefaults.standardUserDefaults().stringForKey(defaultsKey) else {
+			guard let absoluteURLString: String = XUPreferences.shared.value(for: defaultsKey) else {
 				return nil
 			}
 			result = URL(string: absoluteURLString)
 		#else
-			guard let bookmarkData = UserDefaults.standard.data(forKey: defaultsKey) else {
+			guard let bookmarkData: Data = XUPreferences.shared.value(for: defaultsKey) else {
 				return nil
 			}
 		
-			result = try? (NSURL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: nil) as URL)
+			do {
+				var isStale: Bool = false
+				result = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+			} catch _ {
+				result = nil
+			}
+			
 			XULog("resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
 		#endif
 		

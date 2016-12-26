@@ -14,19 +14,19 @@ private let XULanguageDefaultsKey = "XULanguage"
 /// Returns the identifier of current localization.
 @inline(__always)
 public func XUCurrentLocalizationIdentifierForBundle(_ bundle: Bundle) -> String {
-	return XULocalizationCenter.sharedCenter.localizationIdentifierForBundle(bundle)
+	return XULocalizationCenter.shared.localizationIdentifierForBundle(bundle)
 }
 
 /// Sets the language identifier as the default langauge.
 @inline(__always)
 public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
-	XULocalizationCenter.sharedCenter.setCurrentLocalizationIdentifier(identifier)
+	XULocalizationCenter.shared.setCurrentLocalizationIdentifier(identifier)
 }
 
 /// Returns a localized string.
 @inline(__always)
 public func XULocalizedString(_ key: String, inBundle bundle: Bundle = XUMainBundle, withLocale language: String? = nil) -> String {
-	return XULocalizationCenter.sharedCenter.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifierForBundle(bundle), inBundle: bundle)
+	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifierForBundle(bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
@@ -49,17 +49,17 @@ public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg...
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
 public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
-	return XULocalizationCenter.sharedCenter.localizedStringWithFormatValues(key, andValues: values)
+	return XULocalizationCenter.shared.localizedStringWithFormatValues(key, andValues: values)
 }
 
 
 /// This class contains all the necessary methods for localization. You should,
 /// however, use the global functions instead, this class is mostly for encapsulation
 /// as well as allowing access from Objective-C.
-public final class XULocalizationCenter: NSObject {
+public final class XULocalizationCenter {
 	
 	/// Shared instance.
-	public static var sharedCenter = XULocalizationCenter()
+	public static var shared = XULocalizationCenter()
 
 	/// Cached identifiers
 	fileprivate var _cachedLanguageIdentifiers: [Bundle : String] = [:]
@@ -293,5 +293,5 @@ public final class XULocalizationCenter: NSObject {
 /// Returns the identifier of current localization.
 @available(*, deprecated, message: "Use XUCurrentLocalizationIdentifierForBundle instead.")
 public func XUCurrentLocalizationLanguageIdentifier() -> String {
-	return XULocalizationCenter.sharedCenter.currentLocalizationLanguageIdentifier
+	return XULocalizationCenter.shared.currentLocalizationLanguageIdentifier
 }

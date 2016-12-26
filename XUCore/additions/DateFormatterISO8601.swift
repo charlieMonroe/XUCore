@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// Option as to how the date is formatted
-@objc public enum XUISO8601Option: Int {
+/// Option as to how the date is formatted.
+public enum XUISO8601Option: Int {
 	
 	/// The format includes time.
 	case withTime

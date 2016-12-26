@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public protocol XUArrowKeyEventsObserver: AnyObject {
+public protocol XUArrowKeyEventsObserver: AnyObject {
 	
 	/// Esc was pressed
 	func cancelationKeyWasPressed(_ event: NSEvent)

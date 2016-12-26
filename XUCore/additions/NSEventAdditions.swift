@@ -10,7 +10,7 @@ import Foundation
 import Carbon
 
 /// This enum holds key-code values of some less common keys
-@objc public enum XUKeyCode: UInt16 {
+public enum XUKeyCode: UInt16 {
 	case `return` = 36
 	case enter = 76
 	case escape = 53

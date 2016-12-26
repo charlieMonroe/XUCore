@@ -10,10 +10,10 @@ import Cocoa
 
 /// This class represents a notification similar to the window that OS X uses
 /// for volume/brightness changes, or Xcode uses them as well.
-open class XUSystemNotification: NSObject {
+public struct XUSystemNotification {
 	
-	open let icon: NSImage
-	open let message: String
+	public let icon: NSImage
+	public let message: String
 	
 	public init(icon: NSImage, andMessage message: String) {
 		self.icon = icon
@@ -21,7 +21,7 @@ open class XUSystemNotification: NSObject {
 	}
 	
 	/// Uses a checkmark image that is bundled with XUCore.
-	public convenience init(confirmationMessage: String) {
+	public init(confirmationMessage: String) {
 		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, andMessage: confirmationMessage)
 	}
 	
@@ -29,9 +29,9 @@ open class XUSystemNotification: NSObject {
 
 /// This class is used for dispatching the XUSystemNotification objects. Note:
 /// all methods must be called from the main thread.
-open class XUSystemNotificationCenter: NSObject {
+public final class XUSystemNotificationCenter {
 	
-	open static var sharedNotificationCenter: XUSystemNotificationCenter = XUSystemNotificationCenter()
+	public static let shared: XUSystemNotificationCenter = XUSystemNotificationCenter()
 	
 	fileprivate var _currentController: NSWindowController!
 	fileprivate var _currentNotification: XUSystemNotification!
@@ -65,7 +65,7 @@ open class XUSystemNotificationCenter: NSObject {
 	
 	/// Displays the notification. If another notification is already being 
 	/// displayed, this notification gets queued.
-	open func showNotification(_ notification: XUSystemNotification) {
+	public func showNotification(_ notification: XUSystemNotification) {
 		_queue.append(notification)
 		
 		if _queue.count == 1 {

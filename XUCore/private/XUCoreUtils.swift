@@ -53,7 +53,7 @@ public let XUCoreBundle = Bundle(for: XUCoreFramework.self)
 				_ = XUBetaExpirationHandler.sharedExpirationHandler
 			} else {
 				// Start the trial.
-				_ = XUTrial.sharedTrial
+				_ = XUTrial.shared
 			}
 		#endif
 	}

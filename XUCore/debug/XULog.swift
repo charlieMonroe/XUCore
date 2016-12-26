@@ -269,7 +269,7 @@ public final class XUDebugLog {
 	
 	private let _actionHandler = _XUDebugLogActionHandler()
 	
-	private final class _XUDebugLogActionHandler: NSObject {
+	private final class _XUDebugLogActionHandler {
 		
 		@objc fileprivate func _clearLog() {
 			XUDebugLog.clearLog()

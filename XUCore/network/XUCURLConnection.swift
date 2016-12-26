@@ -8,14 +8,12 @@
 
 import Cocoa
 
-public let XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey = "XUCURLConnectionIgnoreInvalidCertificates"
-
 /// This class is somewhat similar to NSURLConnection, except supports only HTTP
 /// and internally uses the CURL command.
-public final class XUCURLConnection: NSObject {
+public final class XUCURLConnection {
 	
 	/// Returns if the response is within 200-299 range.
-	public class func connectionResponseWithin200Range(_ data: Data) -> Bool {
+	public class func isConnectionResponseWithin200Range(_ data: Data) -> Bool {
 		guard let response = String(data: data) else {
 			return false
 		}
@@ -25,13 +23,10 @@ public final class XUCURLConnection: NSObject {
 		return responseCode >= 200 && responseCode < 300
 	}
 	
-	fileprivate var _headerFields: [String] = [ ]
+	fileprivate var _headerFields: [String] = []
 	
 	/// If set to true, the connection follows redirects.
 	public var allowsRedirects: Bool = false
-	
-	/// Allows custom URL. By default, contains the same value as URL
-	public var forcedURLString: String
 	
 	/// HTTP body.
 	public var httpBody: String?
@@ -53,7 +48,7 @@ public final class XUCURLConnection: NSObject {
 	public var responseCodeOnly: Bool = false
 	
 	/// If initialized with NSURL, this property contains the URL
-	public let url: URL?
+	public let url: URL
 	
 	/// If set to a non-null value, Basic AUTH is used.
 	fileprivate(set) public var username: String?
@@ -91,19 +86,17 @@ public final class XUCURLConnection: NSObject {
 	}
 	
 	/// Inits with URLString.
-	public init(URLString: String) {
-		self.forcedURLString = URLString
-		self.url = nil
+	public convenience init?(urlString: String) {
+		guard let url = URL(string: urlString) else {
+			return nil
+		}
 		
-		super.init()
+		self.init(url: url)
 	}
 	
-	/// Inits with URL
-	public init(URL: URL) {
-		self.url = URL
-		self.forcedURLString = URL.absoluteString
-		
-		super.init()
+	/// Inits with URL.
+	public init(url: URL) {
+		self.url = url
 	}
 	
 	/// Sends a synchronous request and returns data. Always nonnull.
@@ -141,12 +134,12 @@ public final class XUCURLConnection: NSObject {
 			args.append("\(self.username!):\(self.password!)")
 			
 		}
-		if UserDefaults.standard.bool(forKey: XUCURLConnectionIgnoreInvalidCertificatesDefaultsKey) || self.ignoresInvalidCertificates {
+		if self.ignoresInvalidCertificates {
 			args.append("-k")
 			
 		}
 		
-		args.append(self.forcedURLString)
+		args.append(self.url.absoluteString)
 		
 		if self.responseCodeOnly {
 			args.append("-o")
@@ -225,7 +218,7 @@ public final class XUCURLConnection: NSObject {
 	}
 	
 	/// Sets a value for header field. The value may be anything.
-	public func setValue(_ value: AnyObject, forHTTPHeaderField field: String) {
+	public func setValue(_ value: Any, forHTTPHeaderField field: String) {
 		_headerFields.append("\(field): \(value)")
 	}
 	

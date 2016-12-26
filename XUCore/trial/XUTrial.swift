@@ -17,11 +17,11 @@ import Foundation
 /// - trialSessionsURL - see subclasses about what the URL must be capabled
 ///						of handling.
 ///
-open class XUTrial: NSObject {
+open class XUTrial {
 	
 	/// Returns the shared trial. Will be nil when trial is not enabled, or
 	/// AppStoreBuild is active.
-	open static let sharedTrial: XUTrial? = {
+	public static let shared: XUTrial? = {
 		let setup = XUAppSetup
 		if setup.isAppStoreBuild {
 			return nil
@@ -105,8 +105,6 @@ open class XUTrial: NSObject {
 		self.purchaseURL = purchaseURL
 		self.supportURL = supportURL
 		self.trialSessionsURL = trialSessionsURL
-		
-		super.init()
 		
 		// Do not allow FCTrial in apps using XUCore.
 		if NSClassFromString("FCTrial") != nil {
@@ -241,8 +239,8 @@ open class XUTimeBasedTrial: XUTrial {
 	
 	/// Returns the shared trial casted to time-based trial. Note that this is
 	/// implicitely unwrapped - use it only if you indeed use the trial!
-	open static var sharedTimeBasedTrial: XUTimeBasedTrial! {
-		return self.sharedTrial as? XUTimeBasedTrial
+	public static var sharedTimeBasedTrial: XUTimeBasedTrial! {
+		return self.shared as? XUTimeBasedTrial
 	}
 	
 	fileprivate var _secondsLeft: TimeInterval = 0
@@ -347,29 +345,27 @@ open class XUTimeBasedTrial: XUTrial {
 	
 }
 
-/// Posted whenever items left in the trial is changed.
-public let XUItemBasedTrialNumberOfItemsLeftDidChangeNotification = "XUItemBasedTrialNumberOfItemsLeftDidChangeNotification"
+public extension Notification.Name {
+	
+	/// Posted whenever items left in the trial is changed.
+	public static let ItemBasedTrialNumberOfItemsLeftDidChange = Notification.Name(rawValue: "XUItemBasedTrialNumberOfItemsLeftDidChangeNotification")
+	
+}
 
 /// Trial that is item-based. E.g. you allow creating just 5 documents.
 open class XUItemBasedTrial: XUTrial {
 	
 	/// Returns the shared trial casted to item-based trial. Note that this is
 	/// implicitely unwrapped - use it only if you indeed use the trial!
-	open static var sharedItemBasedTrial: XUItemBasedTrial! {
-		return self.sharedTrial as? XUItemBasedTrial
-	}
-	
-	/// This is a convenience method that returns the notification name. Use it
-	/// from ObjC only.
-	open static var itemBasedTrialNumberOfItemsLeftDidChangeNotification: String {
-		return XUItemBasedTrialNumberOfItemsLeftDidChangeNotification
+	public static var sharedItemBasedTrial: XUItemBasedTrial! {
+		return self.shared as? XUItemBasedTrial
 	}
 	
 	fileprivate var _itemsLeft: Int = 0
 	
 	/// Posts a XUItemBasedTrialNumberOfItemsLeftDidChangeNotification notification.
 	fileprivate func _notifyAboutItemsLeftChanged() {
-		NotificationCenter.default.post(name: Notification.Name(rawValue: XUItemBasedTrialNumberOfItemsLeftDidChangeNotification), object: self)
+		NotificationCenter.default.post(name: .ItemBasedTrialNumberOfItemsLeftDidChange, object: self)
 	}
 	
 	/// The original FCItemBasedTrial included the bundle version in the session

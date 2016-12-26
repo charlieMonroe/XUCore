@@ -19,7 +19,7 @@ public protocol XUURLHandler: AnyObject {
 /// This object handles opening of URLs on OS X. On OS X, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
-public final class XUURLHandlingCenter: NSObject {
+public final class XUURLHandlingCenter {
 
 	/// Returns shared center.
 	public static let shared: XUURLHandlingCenter = XUURLHandlingCenter()
@@ -86,9 +86,7 @@ public final class XUURLHandlingCenter: NSObject {
 	
 	
 	/// Making init private
-	fileprivate override init() {
-		super.init()
-		
+	fileprivate init() {
 		NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(XUURLHandlingCenter.handleURLEvent(_:withReplyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
 	}
 	

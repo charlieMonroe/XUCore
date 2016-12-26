@@ -38,7 +38,7 @@ private let XUInAppPurchasesDefaultsKey = "XUInAppPurchases"
 
 
 /// You need to create a delegate and implement all methods and properties.
-@objc public protocol XUInAppPurchaseManagerDelegate: AnyObject {
+public protocol XUInAppPurchaseManagerDelegate: AnyObject {
 	
 	/// Return a list of available identifiers. This is then checked against
 	/// what AppStore returns. Allows the app not to list products that are

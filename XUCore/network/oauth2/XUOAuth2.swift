@@ -584,7 +584,7 @@ extension XUOAuth2Client: XUDownloadCenterOwner {
 #if os(OSX)
 	extension XUOAuth2Client: XUURLHandler {
 		
-		@objc public func handlerShouldProcessURL(_ URL: URL) {
+		public func handlerShouldProcessURL(_ URL: URL) {
 			self.handleRedirectURL(URL)
 		}
 

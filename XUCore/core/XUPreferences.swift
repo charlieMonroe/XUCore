@@ -57,7 +57,11 @@ public extension XUReflectablePreferences {
 public final class XUPreferences {
 	
 	/// This is a struct that identifies a key for the preferences.
-	public struct Key: RawRepresentable {
+	public struct Key: RawRepresentable, Hashable {
+		
+		public var hashValue: Int {
+			return self.rawValue.hashValue
+		}
 		
 		/// Raw value of the key.
 		public var rawValue: String

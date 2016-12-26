@@ -15,6 +15,7 @@ public extension NSArrayController {
 	/// that isn't explicitly @objc fails with fatalError. A fix to this is to
 	/// have an intermediate cast to [AnyObject] (given that it's an ObjC API,
 	/// it's definitely an array of objects).
+	@available(*, deprecated, message: "This should be fixed in Xcode 8.2.")
 	public var arrangedObjects_fix: [AnyObject] {
 		return (self.arrangedObjects as? [AnyObject]) ?? []
 	}
