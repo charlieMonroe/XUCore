@@ -165,14 +165,9 @@ public extension XUPreferences {
 	public func set(value: Any?, forKey key: Key) {
 		if value == nil {
 			UserDefaults.standard.removeObject(forKey: self.keyModifier(key.rawValue))
-		}else{
+		} else {
 			UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 		}
 	}
 	
-	
-	@available(*, deprecated, renamed: "boolean(for:defaultValue:)")
-	public func bool(for key: Key, defaultValue: Bool = false) -> Bool {
-		return self.boolean(for: key, defaultValue: defaultValue)
-	}
 }

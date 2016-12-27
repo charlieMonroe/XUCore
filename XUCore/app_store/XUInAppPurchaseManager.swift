@@ -28,13 +28,22 @@ public extension Sequence where Iterator.Element: SKProduct {
 	
 }
 
-@available(*, unavailable, renamed: "Notification.Name.availableProductsDidLoadNotification")
-public let XUInAppPurchaseManagerAvailableProductsDidLoadNotification = Notification.Name.availableProductsDidLoadNotification
+fileprivate extension XUPreferences.Key {
+	static let InAppPurchaseIdentifiers = XUPreferences.Key(rawValue: "XUInAppPurchases")
+}
 
-@available(*, unavailable, renamed: "Notification.Name.purchasesDidChangeNotification")
-public let XUInAppPurchaseManagerPurchasesDidChangeNotification = Notification.Name.purchasesDidChangeNotification
-
-private let XUInAppPurchasesDefaultsKey = "XUInAppPurchases"
+fileprivate extension XUPreferences {
+	
+	var inAppPurchaseIndentifiers: [String]? {
+		get {
+			return self.value(for: .InAppPurchaseIdentifiers)
+		}
+		set {
+			self.set(value: newValue, forKey: .InAppPurchaseIdentifiers)
+		}
+	}
+	
+}
 
 
 /// You need to create a delegate and implement all methods and properties.
@@ -132,7 +141,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		
 		if XUAppSetup.isDebuggingInAppPurchases {
 			self.purchasedProductIdentifiers = self.delegate.availableProductIdentifiers
-		} else if let savedPurchases = UserDefaults.standard.array(forKey: XUInAppPurchasesDefaultsKey) as? [String] {
+		} else if let savedPurchases = XUPreferences.shared.inAppPurchaseIndentifiers {
 			let allowedIdentifiers = self.delegate.availableProductIdentifiers
 			for hashedIdentifier in savedPurchases {
 				for inAppPurchaseID in allowedIdentifiers {
@@ -301,8 +310,9 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			return identifier + ProcessInfo.processInfo.processName.md5Digest.md5Digest
 		}
 		
-		UserDefaults.standard.set(hashedIdentifiers, forKey: XUInAppPurchasesDefaultsKey)
-		UserDefaults.standard.synchronize()
+		XUPreferences.shared.perform { (prefs) in
+			prefs.inAppPurchaseIndentifiers = hashedIdentifiers
+		}
 		
 		XULog("In app purchases saved successfully")
 	}

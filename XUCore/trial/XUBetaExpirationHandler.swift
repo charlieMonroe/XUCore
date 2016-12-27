@@ -8,9 +8,42 @@
 
 import Foundation
 
-private let XUBetaDidShowExpirationWarningDefaultsKey = "XUBetaDidShowExpirationWarning"
-private let XULastBetaBuildNumberDefaultsKey = "XULastBetaBuildNumber"
-private let XULastBetaTimestampDefaultsKey = "XULastBetaTimestamp"
+fileprivate extension XUPreferences.Key {
+	static let BetaDidShowExpirationWarning = XUPreferences.Key(rawValue: "XUBetaDidShowExpirationWarning")
+	static let LastBetaBuildNumber = XUPreferences.Key(rawValue: "XULastBetaBuildNumber")
+	static let LastBetaTimestamp = XUPreferences.Key(rawValue: "XULastBetaTimestamp")
+}
+
+fileprivate extension XUPreferences {
+	
+	var betaDidShowExpirationWarning: Bool {
+		get {
+			return self.boolean(for: .BetaDidShowExpirationWarning)
+		}
+		set {
+			self.set(boolean: newValue, forKey: .BetaDidShowExpirationWarning)
+		}
+	}
+	
+	var lastBetaBuildNumber: Int {
+		get {
+			return self.integer(for: .LastBetaBuildNumber)
+		}
+		set {
+			self.set(integer: newValue, forKey: .LastBetaBuildNumber)
+		}
+	}
+	
+	var lastBetaTimestamp: Date? {
+		get {
+			return self.value(for: .LastBetaTimestamp)
+		}
+		set {
+			self.set(value: newValue, forKey: .LastBetaTimestamp)
+		}
+	}
+	
+}
 
 public final class XUBetaExpirationHandler {
 	
@@ -18,8 +51,7 @@ public final class XUBetaExpirationHandler {
 	
 	/// Returns number of seconds left in the beta mode.
 	public var expiresInSeconds: TimeInterval {
-		let defaults = UserDefaults.standard
-		guard let date = defaults.object(forKey: XULastBetaTimestampDefaultsKey) as? Date else {
+		guard let date = XUPreferences.shared.lastBetaTimestamp else {
 			// We're missing date -> someone has tempered with the defaults.
 			self._handleExpiration()
 			return -1.0
@@ -83,17 +115,17 @@ public final class XUBetaExpirationHandler {
 			return
 		}
 		
-		let defaults = UserDefaults.standard
 		let currentBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
+		let lastBuildNumber = XUPreferences.shared.lastBetaBuildNumber
 		
-		if let number = defaults.object(forKey: XULastBetaBuildNumberDefaultsKey) as? NSNumber , number.intValue == currentBuildNumber {
+		if lastBuildNumber == currentBuildNumber {
 			/// We're continuing to use the same beta build.
 			
 			/// The user may have not used the beta in a week and we don't simply
 			/// want to cut him out of the app since he may simply want to update
 			/// it (e.g. via Sparkle), but the expiration dialog would have prevented
 			/// him to do so.
-			let didShowWarning = defaults.bool(forKey: XUBetaDidShowExpirationWarningDefaultsKey)
+			let didShowWarning = XUPreferences.shared.betaDidShowExpirationWarning
 			
 			let timeInterval = self.expiresInSeconds
 			
@@ -115,10 +147,11 @@ public final class XUBetaExpirationHandler {
 		}
 		
 		// First use with this build number.
-		defaults.set(false, forKey: XUBetaDidShowExpirationWarningDefaultsKey)
-		defaults.set(NSNumber(value: currentBuildNumber as Int), forKey: XULastBetaBuildNumberDefaultsKey)
-		defaults.set(Date(), forKey: XULastBetaTimestampDefaultsKey)
-		defaults.synchronize()
+		XUPreferences.shared.perform { (prefs) in
+			prefs.betaDidShowExpirationWarning = false
+			prefs.lastBetaBuildNumber = currentBuildNumber
+			prefs.lastBetaTimestamp = Date()
+		}
 		
 		// Show a dialog.
 		self._showFirstBetaLaunchDialog()

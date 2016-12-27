@@ -9,23 +9,22 @@
 import Foundation
 
 /// Converts the value (must be NSNumber) as +1 and reverse -1.
-open class XUZeroBasedIndexTransformer: ValueTransformer {
+public final class XUZeroBasedIndexTransformer: ValueTransformer {
 	
-	open override func reverseTransformedValue(_ value: Any?) -> Any? {
+	public override func reverseTransformedValue(_ value: Any?) -> Any? {
 		guard let number = value as? NSNumber else {
-			NSException(name: NSExceptionName.internalInconsistencyException, reason: "XUZeroBasedIndexTransformer: wrong value type (reverse)", userInfo: nil).raise()
-			return nil
+			fatalError("XUZeroBasedIndexTransformer: wrong value type (reverse).")
 		}
 		
-		return NSNumber(value: number.intValue - 1 as Int)
+		return NSNumber(value: number.intValue - 1)
 	}
-	open override func transformedValue(_ value: Any?) -> Any? {
+	
+	public override func transformedValue(_ value: Any?) -> Any? {
 		guard let number = value as? NSNumber else {
-			NSException(name: NSExceptionName.internalInconsistencyException, reason: "XUZeroBasedIndexTransformer: wrong value type (reverse)", userInfo: nil).raise()
-			return nil
+			fatalError("XUZeroBasedIndexTransformer: wrong value type.")
 		}
 		
-		return NSNumber(value: number.intValue + 1 as Int)
+		return NSNumber(value: number.intValue + 1)
 	}
 
 }

@@ -19,7 +19,7 @@ private var _cachedProperties: [ObjectIdentifier : [String : XUObjCProperty]] = 
 private var _cacheLock: NSLock = NSLock(name: "com.charliemonroe.XUJSONDeserialization.XUObjCPropertyCache")
 
 
-/// Reserved read-only properties used by Foundation/CoreData.
+/// Reserved read-only properties used by Foundation/NSObject/CoreData.
 private let reservedProperties = [
 	"accessibilityActivationPoint", "accessibilityCustomActions", "accessibilityElements",
 	"accessibilityElementsHidden", "accessibilityFrame", "accessibilityHint",
@@ -75,7 +75,7 @@ private enum XUJSONDeserializationPropertyResult {
 }
 
 /// All classes that want to be deserialized by the deserializer must conform to
-/// this protocol.
+/// this protocol. @objc is required for CoreData.
 @objc public protocol XUJSONDeserializable: AnyObject {
 	
 	/// This is implemented by NSObject. If you are not basing your class on 

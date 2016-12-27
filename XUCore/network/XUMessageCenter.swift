@@ -14,14 +14,14 @@ import Foundation
 
 fileprivate extension XUPreferences.Key {
 
-	/// Key for NSUserDefaults which contains a date when the block occurred.
+	/// Key for XUPreferences which contains a date when the block occurred.
 	static let AppBlockedDate = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedDate")
 	
-	/// Key for NSUserDefaults which contains a boolean denoting whether the app is
+	/// Key for XUPreferences which contains a boolean denoting whether the app is
 	/// blocked.
 	static let AppBlocked = XUPreferences.Key(rawValue: "XUMessageCenterAppBlocked")
 	
-	/// Key for NSUserDefaults which contains an integer with the build number which
+	/// Key for XUPreferences which contains an integer with the build number which
 	/// is the maximum blocked app version.
 	static let AppBlockedMaxVersion = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedMaxVersion")
 	

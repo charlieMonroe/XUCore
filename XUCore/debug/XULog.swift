@@ -12,12 +12,26 @@ import Foundation
 	import Cocoa
 #endif
 
-@available(*, deprecated, message: "Use XUDebugLog.StatusDidChangeNotification")
-public let XULoggingStatusChangedNotification = "XULoggingStatusChangedNotification"
+fileprivate extension XUPreferences.Key {
 
-/// We are not exposing this defaults key. Please, use XULoggingEnabled() function
-/// and XUSetLoggingEnabled().
-private let XULoggingEnabledDefaultsKey: String = "XULoggingEnabled"
+	/// We are not exposing this defaults key. Please, use XULoggingEnabled() function
+	/// and XUSetLoggingEnabled().
+	static let LoggingEnabled = XUPreferences.Key(rawValue: "XULoggingEnabled")
+	
+}
+
+extension XUPreferences {
+	
+	var isLoggingEnabled: Bool {
+		get {
+			return self.boolean(for: .LoggingEnabled)
+		}
+		set {
+			self.set(boolean: newValue, forKey: .LoggingEnabled)
+		}
+	}
+	
+}
 
 
 /// Forces logging a string by temporarily enabling debug logging.
@@ -114,8 +128,9 @@ public final class XUDebugLog {
 				NotificationCenter.default.post(name: XUDebugLog.StatusDidChangeNotification, object: nil)
 			}
 			
-			UserDefaults.standard.set(newValue, forKey: XULoggingEnabledDefaultsKey)
-			UserDefaults.standard.synchronize()
+			XUPreferences.shared.perform { (prefs) in
+				prefs.isLoggingEnabled = newValue
+			}
 		}
 	}
 	
@@ -182,7 +197,7 @@ public final class XUDebugLog {
 	fileprivate class func _cachePreferences() {
 		if !_didCachePreferences {
 			_didCachePreferences = true
-			_cachedPreferences = UserDefaults.standard.bool(forKey: XULoggingEnabledDefaultsKey)
+			_cachedPreferences = XUPreferences.shared.isLoggingEnabled
 		}
 	}
 	
@@ -348,63 +363,9 @@ public final class XUDebugLog {
 #endif
 
 
-
-/// Deprecated methods.
-
-@available(*, deprecated, renamed: "XUDebugLog.isLoggingEnabled")
-public func XULoggingSetEnabled(_ enabled: Bool) {
-	XUDebugLog.isLoggingEnabled = enabled
-}
-
-@available(*, deprecated, renamed: "XUDebugLog.isLoggingEnabled")
-public func XULoggingEnabled() -> Bool {
-	return XUDebugLog.isLoggingEnabled
-}
-
 /// Returns file path to the debug log.
 @available(*, deprecated, message: "If you need to clear the log, use XUClearLog, if you need to show it in Finder (OS X), use XUSelectDebugLogFileInFileViewer")
+/// Currently required for iOS, but is going away.
 public func XULogFilePath() -> String {
 	return XUDebugLog.logFilePath
 }
-
-@available(*, deprecated, renamed: "XUDebugLog.clearLog")
-public func XUClearLog() {
-	XULogClear()
-}
-
-@available(*, deprecated, renamed: "XUDebugLog.clearLog")
-public func XULogClear() {
-	XUDebugLog.clearLog()
-}
-
-/// Use this function to toggle debugging while the app is running.
-@available(*, deprecated, message: "Use XULoggingSetEnabled instead.")
-public func XUForceSetDebugging(_ debug: Bool) {
-	XULoggingSetEnabled(debug)
-}
-
-/// Returns true when the debug logging is currently turned on.
-@available(*, deprecated, renamed: "XULoggingEnabled")
-public func XUShouldLog() -> Bool {
-	return XULoggingEnabled()
-}
-
-@available(*, deprecated, message: "Use XULoggingSetEnabled instead.")
-public func XUSetLoggingEnabled(_ enabled: Bool) {
-	XULoggingSetEnabled(enabled)
-}
-
-#if os(OSX)
-	@available(*, deprecated, renamed: "XUDebugLog.selectDebugLogInFileViewer")
-	public func XUSelectDebugLogFileInFileViewer() {
-		XUDebugLog.selectDebugLogInFileViewer()
-	}
-	
-	@available(*, deprecated, renamed: "XUDebugLog.openDebugLogInConsole")
-	public func XUOpenDebugLogInConsole() {
-		XUDebugLog.openDebugLogInConsole()
-	}
-
-#endif
-
-

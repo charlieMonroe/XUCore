@@ -47,8 +47,22 @@ private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUAppli
 	_XULogFileAtURL(rootURL!, fileURL: rootURL!, level: 0);
 }
 
+fileprivate extension XUPreferences.Key {
+	static let ApplicationSyncManagerDownloadedDocumentIDs = "XUApplicationSyncManagerDownloadedDocumentIDs"
+}
 
-private let XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey = "XUApplicationSyncManagerDownloadedDocumentIDs"
+fileprivate extension XUPreferences {
+	
+	var downloadedDocumentIDs: [String]? {
+		get {
+			return self.value(for: .ApplicationSyncManagerDownloadedDocumentIDs)
+		}
+		set {
+			self.set(value: newValue, forKey: .ApplicationSyncManagerDownloadedDocumentIDs)
+		}
+	}
+	
+}
 
 private let XUApplicationSyncManagerErrorDomain = "XUApplicationSyncManagerErrorDomain"
 
@@ -126,21 +140,11 @@ open class XUApplicationSyncManager {
 			}
 		}
 	}
-
-	@available(*, unavailable, renamed: "createDirectory(at:)")
-	open func createDirectoryAtURL(_ url: URL) throws {
-		try self.createDirectory(at: url)
-	}
 	
 	/// Should create a folder at URL. By default, this only invokes NSFileManager,
 	/// but subclasses may do additional work, such as contacting the server.
 	open func createDirectory(at url: URL) throws {
 		try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-	}
-	
-	@available(*, unavailable, renamed: "didUpdateFile(at:)")
-	open func didUpdateFileAtURL(_ fileURL: URL) {
-		self.didUpdateFile(at: fileURL)
 	}
 	
 	/// The document manager will notify the app sync manager that it has written
@@ -150,13 +154,6 @@ open class XUApplicationSyncManager {
 	open func didUpdateFile(at fileURL: URL) {
 		/// No-op.
 	}
-	
-	@available(*, deprecated, renamed: "downloadDocument(withID:toURL:withCompletionHandler:)")
-	open func downloadDocumentWithID(_ documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
-		self.downloadDocument(withID: documentID, toURL: fileURL, withCompletionHandler: completionHandler)
-	}
-	
-		
 	
 	/// Downloads or copies document with ID to URL and calls completion handler
 	/// upon completion. The handler is always called on the main thread.
@@ -192,7 +189,7 @@ open class XUApplicationSyncManager {
 		self.delegate = delegate
 		self.syncRootFolderURL = rootFolder
 		
-		if let downloadedDocumentUUIDs = UserDefaults.standard.array(forKey: XUApplicationSyncManagerDownloadedDocumentIDsDefaultsKey) as? [String] {
+		if let downloadedDocumentUUIDs = XUPreferences.shared.downloadedDocumentIDs {
 			_downloadedDocumentUUIDs += downloadedDocumentUUIDs
 			self.availableDocumentUUIDs += downloadedDocumentUUIDs
 		}
@@ -217,11 +214,6 @@ open class XUApplicationSyncManager {
 	/// Starts scanning for new documents.
 	@objc open func scanForNewDocuments() {
 		self._checkForNewDocuments()
-	}
-	
-	@available(*, unavailable, renamed: "startDownloading(itemAt:)")
-	open func startDownloadingItemAtURL(_ url: URL) throws {
-		try self.startDownloading(itemAt: url)
 	}
 	
 	/// Start downloading item at URL. The metadata query should automatically 

@@ -8,7 +8,22 @@
 
 import Foundation
 
-private let XULanguageDefaultsKey = "XULanguage"
+fileprivate extension XUPreferences.Key {
+	static let Language = XUPreferences.Key(rawValue: "XULanguage")
+}
+
+fileprivate extension XUPreferences {
+	
+	var languageIdentifier: String? {
+		get {
+			return self.value(for: .Language)
+		}
+		set {
+			self.set(value: newValue, forKey: .Language)
+		}
+	}
+	
+}
 
 
 /// Returns the identifier of current localization.
@@ -121,7 +136,7 @@ public final class XULocalizationCenter {
 			return identifier
 		}
 		
-		if let identifier = UserDefaults.standard.string(forKey: XULanguageDefaultsKey) {
+		if let identifier = XUPreferences.shared.languageIdentifier {
 			_lock.perform {
 				self._cachedLanguageIdentifiers[bundle] = identifier
 			}
@@ -165,9 +180,11 @@ public final class XULocalizationCenter {
 		}
 		languages.insert(identifier, at: 0)
 		
-		defs.set(identifier, forKey: XULanguageDefaultsKey)
 		defs.set(languages, forKey: "AppleLanguages")
-		defs.synchronize()
+		
+		XUPreferences.shared.perform { (prefs) in
+			prefs.languageIdentifier = identifier
+		}
 		
 		_lock.perform {
 			self._cachedLanguageIdentifiers = [:]
@@ -273,25 +290,5 @@ public final class XULocalizationCenter {
 		return localizedString
 	}
 
-	/// Returns the identifier of current localization.
-	@available(*, deprecated, message: "Use the variations with bundle specifications.")
-	public var currentLocalizationLanguageIdentifier: String {
-		get {
-			return self.localizationIdentifierForBundle(XUMainBundle)
-		}
-		set(identifier) {
-			self.setCurrentLocalizationIdentifier(identifier)
-		}
-	}
-	
 }
 
-
-
-
-
-/// Returns the identifier of current localization.
-@available(*, deprecated, message: "Use XUCurrentLocalizationIdentifierForBundle instead.")
-public func XUCurrentLocalizationLanguageIdentifier() -> String {
-	return XULocalizationCenter.shared.currentLocalizationLanguageIdentifier
-}
