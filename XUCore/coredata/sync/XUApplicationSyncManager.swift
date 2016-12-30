@@ -48,7 +48,7 @@ private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUAppli
 }
 
 fileprivate extension XUPreferences.Key {
-	static let ApplicationSyncManagerDownloadedDocumentIDs = "XUApplicationSyncManagerDownloadedDocumentIDs"
+	static let ApplicationSyncManagerDownloadedDocumentIDs = XUPreferences.Key(rawValue: "XUApplicationSyncManagerDownloadedDocumentIDs")
 }
 
 fileprivate extension XUPreferences {

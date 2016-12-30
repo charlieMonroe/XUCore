@@ -57,30 +57,42 @@ open class XUApplication: NSApplication {
 	fileprivate weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
 		
 	
-	/// Returns the current key events observer
-	open var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {
+	/// Returns the current key events observer.
+	public var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {
 		return _arrowKeyEventObserver
 	}
 	
 	/// Returns whether the current application is in foreground.
-	open var isForegroundApplication: Bool {
+	public var isForegroundApplication: Bool {
 		return NSRunningApplication.current().isActive
 	}
 	
 	/// Returns true when running in modal mode
-	open var isRunningInModalMode: Bool {
+	public var isRunningInModalMode: Bool {
 		return _isModal
 	}
 	
 	/// Registers a new key events observer.
-	open func registerArrowKeyEventsObserver(_ observer: XUArrowKeyEventsObserver) {
-		XULog("registering \(observer) as arrow key event observer")
+	public func registerArrowKeyEventsObserver(_ observer: XUArrowKeyEventsObserver) {
+		XULog("Registering a new arrow key events observer.")
+		if let observer = _arrowKeyEventObserver {
+			XULog("\t\tOld observer: \(type(of: observer)) <\(Unmanaged<AnyObject>.passUnretained(observer).toOpaque())>.")
+		} else {
+			XULog("\t\tOld observer: None.")
+		}
+		
+		XULog("\t\tNew observer: \(type(of: observer)) <\(Unmanaged<AnyObject>.passUnretained(observer).toOpaque())>.")
 		_arrowKeyEventObserver = observer
 	}
 	
 	/// Unregisters current key events observer.
-	open func unregisterArrowKeyEventsObserver() {
-		XULog("unregistering \(_arrowKeyEventObserver.descriptionWithDefaultValue()) as arrow key event observer")
+	public func unregisterArrowKeyEventsObserver() {
+		if let observer = _arrowKeyEventObserver {
+			XULog("Unregistering instance of \(type(of: observer)) <\(Unmanaged<AnyObject>.passUnretained(observer).toOpaque())> as arrow key event observer.")
+		} else {
+			XULogStacktrace("Unregistering arrow key events observer when there is none.")
+		}
+		
 		_arrowKeyEventObserver = nil
 	}
 	
@@ -139,10 +151,10 @@ open class XUApplication: NSApplication {
 				if keyCode == XUKeyCode.keyDown.rawValue && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.keyDownWasPressed(theEvent)
 					return
-				}else if keyCode == XUKeyCode.keyUp.rawValue && _arrowKeyEventObserver != nil {
+				} else if keyCode == XUKeyCode.keyUp.rawValue && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.keyUpWasPressed(theEvent)
 					return
-				}else if (keyCode == XUKeyCode.return.rawValue || keyCode == XUKeyCode.enter.rawValue) && _arrowKeyEventObserver != nil {
+				} else if (keyCode == XUKeyCode.return.rawValue || keyCode == XUKeyCode.enter.rawValue) && _arrowKeyEventObserver != nil {
 					_arrowKeyEventObserver!.confirmationKeyWasPressed(theEvent)
 					return
 				}

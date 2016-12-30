@@ -84,6 +84,13 @@ public final class XUPreferences {
 	public class var shared: XUPreferences {
 		if _shared == nil {
 			_shared = XUPreferences()
+			
+			// Calling the reflectable preferences here instead of in the init()
+			// method avoids infinite recursion if the reflectable preferences
+			// need to use XUPreferences.shared.
+			if let reflectable = _shared as? XUReflectablePreferences {
+				reflectable.log()
+			}
 		}
 		
 		return _shared!
@@ -100,10 +107,6 @@ public final class XUPreferences {
 	/// `keyModifier`
 	public init(keyModifier: @escaping (String) -> String = { $0 }) {
 		self.keyModifier = keyModifier
-		
-		if let reflectable = self as? XUReflectablePreferences {
-			reflectable.log()
-		}
 	}
 	
 	/// Executes the block and calls synchronize on UserDefaults. This is the
