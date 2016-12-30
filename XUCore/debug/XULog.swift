@@ -284,7 +284,9 @@ public final class XUDebugLog {
 	
 	private let _actionHandler = _XUDebugLogActionHandler()
 	
-	private final class _XUDebugLogActionHandler {
+	/// Needs to be NSObject subclass due to OS X 10.11 - calling setTarget: on
+	/// NSMenuItem calls methodForSelector: which is implemented by NSObject.
+	private final class _XUDebugLogActionHandler: NSObject {
 		
 		@objc fileprivate func _clearLog() {
 			XUDebugLog.clearLog()
