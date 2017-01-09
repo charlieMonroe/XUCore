@@ -39,7 +39,7 @@ public extension Sequence {
 	}
 	
 	/// Counts elements that match the filter
-	public func count(where filter: XUFilter) -> Int {
+	public func count(where filter: Filter) -> Int {
 		let count =  self.sum({ (obj) -> Int in
 			return filter(obj) ? 1 : 0
 		})
@@ -189,24 +189,6 @@ public extension Sequence {
 		return result
 	}
 	
-	@available(*, deprecated, renamed: "Filter")
-	public typealias XUFilter = Filter
-	
-	@available(*, deprecated, renamed: "all(matching:)")
-	public func all(_ filter: XUFilter) -> Bool {
-		return self.all(matching: filter)
-	}
-	
-	@available(*, deprecated, renamed: "removing(matching:)")
-	public func arrayByRemovingObjectsMatching(_ filter: XUFilter) -> [Self.Iterator.Element] {
-		return self.removing(matching: filter)
-	}
-	
-	@available(*, deprecated, renamed: "count(where:)")
-	public func count( _ filter: XUFilter) -> Int {
-		return self.count(where: filter)
-	}
-	
 }
 
 public extension Sequence where Iterator.Element : Equatable {
@@ -227,11 +209,6 @@ public extension Sequence where Iterator.Element : Equatable {
 			}
 		}
 		return unique
-	}
-	
-	@available(*, deprecated, renamed: "containsAll(from:)")
-	public func containsAllObjectsFromArray(_ otherArray: [Self.Iterator.Element]) -> Bool {
-		return containsAll(from: otherArray)
 	}
 	
 }
@@ -309,15 +286,6 @@ public extension Array {
 		return self[range.lowerBound ..< range.upperBound]
 	}
 	
-	@available(*, deprecated, renamed: "move(at:to:)")
-	public mutating func moveObjectAtIndex(_ fromIndex: Int, toIndex: Int) {
-		self.move(at: fromIndex, to: toIndex)
-	}
-	
-	@available(*, deprecated, renamed: "slice(with:)")
-	public func sliceWithRange(_ range: Range<Int>) -> ArraySlice<Iterator.Element> {
-		return self.slice(with: range)
-	}
 }
 
 public extension Collection where Self.IndexDistance : Comparable {
@@ -353,11 +321,6 @@ public extension Array where Element : Equatable {
 		while let index = self.index(of: element) {
 			self[index] = newElement
 		}
-	}
-	
-	@available(*, deprecated, renamed: "replaceAllOccurrences(of:with:)")
-	public mutating func replaceAllOccurrences(_ element: Iterator.Element, withElement newElement: Iterator.Element) {
-		self.replaceAllOccurrences(of: element, with: newElement)
 	}
 	
 }

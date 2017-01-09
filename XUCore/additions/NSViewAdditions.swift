@@ -42,12 +42,7 @@ public extension NSView {
 			}
 		}
 	}
-	
-	@available(*, deprecated, renamed: "screenCoordinates")
-	public var screenCoordinatesOfSelf: CGRect {
-		return self.screenCoordinates
-	}
-	
+		
 	public var screenCoordinates: CGRect {
 		return self.screenCoordinates(ofRect: self.bounds)
 	}

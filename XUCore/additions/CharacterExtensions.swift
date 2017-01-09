@@ -84,15 +84,6 @@ extension Character {
 	public var unicodeScalarValue: UInt16 {
 		return String(self).utf16.first!
 	}
-
-	@available(*, deprecated, renamed: "randomCharacter(in:)")
-	public static func randomCharacterInRange(_ range: Range<Int>) -> Character {
-		return self.randomCharacter(in: range)
-	}
 	
-	@available(*, deprecated, renamed: "isMember(of:)")
-	public func isMemberOfCharacterSet(_ characterSet: CharacterSet) -> Bool {
-		return self.isMember(of: characterSet)
-	}
 }
 

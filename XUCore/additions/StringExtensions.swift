@@ -66,16 +66,6 @@ public extension String {
 		return String(data: data)
 	}
 
-	/// Returns true if the other string is not empty and is contained in self
-	/// case-insensitive.
-	@available(*, deprecated, renamed: "hasCaseInsensitive(substring:)")
-	public func containsCaseInsensitiveString(_ otherString: String) -> Bool {
-		if otherString.isEmpty {
-			return false
-		}
-		return self.range(of: otherString, options: .caseInsensitive) != nil
-	}
-
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
 	public func draw(centeredIn rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
@@ -355,12 +345,7 @@ public extension String {
 	public mutating func prepend(with string: String) {
 		self.insert(contentsOf: string.characters, at: self.startIndex)
 	}
-	
-	@available(*, deprecated, renamed: "prepend(with:)")
-	public mutating func prepend(_ string: String) {
-		self.prepend(with: string)
-	}
-	
+		
 	/// Returns a reverse string.
 	public func reversed() -> String {
 		return String(self.characters.reversed())
@@ -547,121 +532,6 @@ public extension String {
 	}
 	
 }
-
-
-public extension String {
-	
-	@available(*, deprecated, renamed: "draw(centeredIn:withAttributes:)")
-	public func drawCenteredInRect(_ rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
-		return self.draw(centeredIn: rect, withAttributes: atts)
-	}
-	
-	@available(*, deprecated, renamed: "draw(rightAlignedTo:withAttributes:)")
-	public func drawRightAlignedToPoint(_ point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
-		return self.draw(rightAlignedTo: point, withAttributes: atts)
-	}
-	
-	@available(*, deprecated, renamed: "hasCaseInsensitive(prefix:)")
-	public func hasCaseInsensitivePrefix(_ prefix: String) -> Bool {
-		return self.hasCaseInsensitive(prefix: prefix)
-	}
-	
-	@available(*, deprecated, renamed: "hasCaseInsensitive(substring:)")
-	public func hasCaseInsensitiveSubstring(_ substring: String) -> Bool {
-		return self.hasCaseInsensitive(substring: substring)
-	}
-	
-	@available(*, deprecated, renamed: "hasCaseInsensitive(suffix:)")
-	public func hasCaseInsensitiveSuffix(_ suffix: String) -> Bool {
-		return self.hasCaseInsensitive(suffix: suffix)
-	}
-	
-	@available(*, deprecated, renamed: "isCaseInsensitivelyEqual(to:)")
-	public func isCaseInsensitivelyEqualToString(_ string: String) -> Bool {
-		return self.isCaseInsensitivelyEqual(to: string)
-	}
-	
-	@available(*, deprecated, renamed: "md5Digest")
-	public var MD5Digest: String {
-		return self.md5Digest
-	}
-	
-	@available(*, deprecated, renamed: "truncatingMiddle(toFitWidth:withAttributes:)")
-	public func middleTruncatedStringToFitWidth(_ width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
-		return self.truncatingMiddle(toFitWidth: width, withAttributes: atts)
-	}
-	
-	@available(*, deprecated, renamed: "reversed()")
-	public var reverseString: String {
-		return self.reversed()
-	}
-	
-	@available(*, deprecated, renamed: "size(withAttributes:maximumWidth:)")
-	public func sizeWithAttributes(_ attrs: [String : AnyObject], maxWidth width: CGFloat) -> CGSize {
-		return self.size(withAttributes: attrs, maximumWidth: width)
-	}
-	
-	@available(*, deprecated, renamed: "capitalizingFirstLetter")
-	public var stringByCapitalizingFirstLetter: String {
-		return self.capitalizingFirstLetter
-	}
-	
-	@available(*, deprecated, renamed: "deletingLastCharacter")
-	public var stringByDeletingLastCharacter: String {
-		return self.deletingLastCharacter
-	}
-	
-	@available(*, deprecated, renamed: "deleting(prefix:)")
-	public func stringByDeletingPrefix(_ prefix: String) -> String {
-		return self.deleting(prefix: prefix)
-	}
-	
-	@available(*, deprecated, renamed: "deleting(suffix:)")
-	public func stringByDeletingSuffix(_ suffix: String) -> String {
-		return self.deleting(suffix: suffix)
-	}
-	
-	@available(*, deprecated, renamed: "encodingIllegalURLCharacters")
-	public var stringByEncodingIllegalURLCharacters: String {
-		return self.encodingIllegalURLCharacters
-	}
-	
-	@available(*, deprecated, renamed: "lowercasingFirstLetter")
-	public var stringByLowercasingFirstLetter: String {
-		return self.lowercasingFirstLetter
-	}
-
-	@available(*, deprecated, renamed: "truncatingMiddle(toMaximumLengthOf:)")
-	public func stringByMiddleTrimmingToMaximumLengthOf(_ maxLen: Int) -> String {
-		return self.truncatingMiddle(toMaximumLengthOf: maxLen)
-	}
-	
-	@available(*, deprecated, renamed: "paddingFront(toLength:withString:)")
-	public func stringByPaddingFrontToLength(_ length: Int, withString padString: String) -> String {
-		return self.paddingFront(toLength: length, withString: padString)
-	}
-	
-	@available(*, deprecated, renamed: "trimmingLeftCharacters(in:)")
-	public func stringByTrimmingLeftCharactersInSet(_ set: CharacterSet) -> String {
-		return self.trimmingLeftCharacters(in: set)
-	}
-	
-	@available(*, deprecated, renamed: "trimmingRightCharacters(in:)")
-	public func stringByTrimmingRightCharactersInSet(_ set: CharacterSet) -> String {
-		return self.trimmingRightCharacters(in: set)
-	}
-	
-	@available(*, deprecated, renamed: "trimmingWhitespace")
-	public var stringByTrimmingWhitespace: String {
-		return self.trimmingWhitespace
-	}
-	
-	@available(*, deprecated, renamed: "suffix(ofLength:)")
-	public func suffixOfLength(_ length: Int) -> String {
-		return self.suffix(ofLength: length)
-	}
-}
-
 
 /// Numeric methods
 public extension String {

@@ -44,11 +44,6 @@ private let XUDocumentLastProcessedChangeSetKey = "XUDocumentLastProcessedChange
 
 open class XUDocumentSyncManager {
 	
-	@available(*, deprecated, renamed: "downloadDocument(withID:forApplicationSyncManager:toURL:)")
-	open class func downloadDocumentWithID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager, toURL fileURL: URL) throws -> URL {
-		return try self.downloadDocument(withID: documentID, forApplicationSyncManager: appSyncManager, toURL: fileURL)
-	}
-	
 	/// Synchronously downloads document with document ID to URL and returns error,
 	/// if the download wasn't successful.
 	///
@@ -128,11 +123,6 @@ open class XUDocumentSyncManager {
 		}
 		
 		return docURL
-	}
-	
-	@available(*, deprecated, renamed: "urlOfNewestEntireDocument(withUUID:forApplicationSyncManager:)")
-	open class func URLOfNewestEntireDocumentWithUUID(_ documentID: String, forApplicationSyncManager appSyncManager: XUApplicationSyncManager) -> (accountURL: URL, computerID: String)? {
-		return self.urlOfNewestEntireDocument(withUUID: documentID, forApplicationSyncManager: appSyncManager)
 	}
 	
 	/// This method goes through all the whole store uploads and looks for the
@@ -668,11 +658,6 @@ open class XUDocumentSyncManager {
 		NotificationCenter.default.addObserver(self, selector: #selector(_createSyncChanges(_:)), name: NSNotification.Name.NSManagedObjectContextWillSave, object: managedObjectContext)
 		NotificationCenter.default.addObserver(self, selector: #selector(_startSync(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: managedObjectContext)
 	}
-
-	@available(*, deprecated, renamed: "startSynchronizing(withCompletionHandler:)")
-	open func startSynchronizingWithCompletionHandler(_ completionHandler: @escaping (Bool, NSError?) -> Void) {
-		self.startSynchronizing(withCompletionHandler: completionHandler)
-	}
 	
 	/// Starts synchronization with other devices.
 	open func startSynchronizing(withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
@@ -728,11 +713,6 @@ open class XUDocumentSyncManager {
 				completionHandler(error == nil, error)
 			})
 		}
-	}
-	
-	@available(*, deprecated, renamed: "uploadEntireDocument(fromURL:withCompletionHandler:)")
-	open func uploadEntireDocumentFromURL(_ fileURL: URL, withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
-		self.uploadEntireDocument(fromURL: fileURL, withCompletionHandler: completionHandler)
 	}
 	
 	/// Uploads the entire document to the cloud.

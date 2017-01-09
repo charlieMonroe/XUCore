@@ -121,12 +121,3 @@ public extension NSAlert {
 	}
 	
 }
-
-public extension NSAlert {
-	
-	@available(*, deprecated, renamed: "runModal(withTextField:secure:)")
-	public func runModalWithTextFieldOnMainThread(_ initialValue: String, secure: Bool = false) -> String? {
-		return self.runModal(withTextField: initialValue, secure: secure)
-	}
-}
-

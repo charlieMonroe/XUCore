@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension UIButton {
 	public override func localizeView(bundle: Bundle = XUMainBundle) {

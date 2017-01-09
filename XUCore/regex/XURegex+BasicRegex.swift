@@ -109,16 +109,6 @@ public extension String {
 		    "<input[^>]+value=\"(?P<VALUE>[^\"]+)\"[^>]+(name|id)=\"\(fieldName)\""
 		)
 	}
-
-	@available(*, deprecated, renamed: "value(ofMetaFieldNamed:)")
-	public func valueOfMetaFieldNamed(_ fieldName: String) -> String? {
-		return self.value(ofMetaFieldNamed: fieldName)
-	}
-	
-	@available(*, deprecated, renamed: "value(ofInputFieldNamed:)")
-	public func valueOfInputField(named fieldName: String) -> String? {
-		return self.value(ofInputFieldNamed: fieldName)
-	}
 	
 }
 

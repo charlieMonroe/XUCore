@@ -13,10 +13,6 @@ public final class XUKeychainAccess {
 	
 	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
 	
-	@available(*, deprecated, renamed: "password(forUsername:inAccount:)")
-	public func passwordForUsername(_ username: String, inAccount account: String) -> String? {
-		return self.password(forUsername: username, inAccount: account)
-	}
 	
 	/// Fetches a password for username in account from Keychain.
 	public func password(forUsername username: String, inAccount account: String) -> String? {
@@ -50,12 +46,6 @@ public final class XUKeychainAccess {
 		} else {
 			return "" // if we have noErr but also no length, password is empty
 		}
-	}
-	
-	@available(*, deprecated, renamed: "save(password:forUsername:inAccount:)")
-	@discardableResult
-	public func savePassword(_ password: String, forUsername username: String, inAccount account: String) -> Bool {
-		return self.save(password: password, forUsername: username, inAccount: account)
 	}
 	
 	/// Saves password for username in account to Keychain. Returns true if the

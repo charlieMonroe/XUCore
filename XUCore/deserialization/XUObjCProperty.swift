@@ -16,12 +16,7 @@ public func ==(property1: XUObjCProperty, property2: XUObjCProperty) -> Bool {
 /// This class represents a property on an ObjC class (or a dynamic/@objc property
 /// on a Swift class).
 public final class XUObjCProperty: CustomStringConvertible, Hashable {
-	
-	@available(*, deprecated, renamed: "properties(on:includingSuperclasses:)")
-	public class func propertiesOnClass(_ aClass: AnyClass, includingSuperclasses includeSuperclasses: Bool = false) -> [XUObjCProperty] {
-		return self.properties(on: aClass, includingSuperclasses: includeSuperclasses)
-	}
-	
+		
 	/// Returns a list of properties declared on a class, optionally including
 	/// properties declared on superclasses.
 	public class func properties(on aClass: AnyClass, includingSuperclasses includeSuperclasses: Bool = false) -> [XUObjCProperty] {

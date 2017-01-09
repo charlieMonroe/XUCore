@@ -339,20 +339,12 @@ open class XUDownloadCenter {
 		
 	}
 	
-	/// TODO: These should be @noescape. Depends on SR-2266.
-	
 	/// A closure typealias that takes fields as a parameter - this dictionary
 	/// should be modified and supplied with fields to be sent in a POST request.
 	public typealias POSTFieldsModifier = (_ fields: inout [String : String]) -> Void
 	
 	/// A closure typealias for modifying a URLRequest.
 	public typealias URLRequestModifier = (_ request: inout URLRequest) -> Void
-	
-	@available(*, deprecated, renamed: "POSTFieldsModifier")
-	public typealias XUPOSTFieldsModifier = POSTFieldsModifier
-	
-	@available(*, deprecated, renamed: "URLRequestModifier")
-	public typealias XUURLRequestModifier = URLRequestModifier
 	
 	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
@@ -773,145 +765,4 @@ open class XUDownloadCenter {
 		}
 	}
 	
-}
-
-/// Deprecated.
-public extension XUDownloadCenter {
-	
-	@available(*, deprecated, renamed: "clearCookies(for:)")
-	public func clearCookiesForURL(_ url: URL) {
-		self.clearCookies(for: url)
-	}
-	
-	@available(*, deprecated, renamed: "downloadData(at:withRequestModifier:)")
-	public func downloadDataAtURL(_ url: URL!, withModifier modifier: @escaping URLRequestModifier) -> Any? {
-		return self.downloadData(at: url, withRequestModifier: modifier)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set referer and agent.")
-	public func downloadDataAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, referingFunction: String = #function, withModifier modifier: URLRequestModifier? = nil) -> Data? {
-		return self.downloadData(at: url, withRequestModifier: {
-			$0.referer = referer
-			$0.userAgent = agent
-			modifier?(&$0)
-		})
-	}
-	
-	@available(*, deprecated, renamed: "downloadJSONDictionary(at:withRequestModifier:)")
-	public func downloadJSONDictionaryAtURL(_ url: URL!, withModifier modifier: @escaping URLRequestModifier) -> Any? {
-		return self.downloadJSONDictionary(at: url, withRequestModifier: modifier)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set referer and agent.")
-	public func downloadJSONDictionaryAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
-		return self.downloadJSONDictionary(at: url, withRequestModifier: {
-			$0.referer = referer
-			$0.userAgent = agent
-			modifier?(&$0)
-		})
-	}
-	
-	@available(*, deprecated, renamed: "downloadJSON(at:)")
-	public func downloadJSONAtURL(_ url: URL!) -> Any? {
-		return self.downloadJSON(at: url)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set referer and agent.")
-	public func downloadJSONAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> Any? {
-		return self.downloadJSON(at: url, withRequestModifier: {
-			$0.referer = referer
-			$0.userAgent = agent
-			modifier?(&$0)
-		})
-	}
-	
-	@available(*, deprecated, renamed: "downloadWebPage(at:)")
-	public func downloadWebSiteSourceAtURL(_ url: URL!) -> String? {
-		return self.downloadWebPage(at: url)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set referer and agent.")
-	public func downloadWebSiteSourceAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> String? {
-		return self.downloadWebPage(at: url, withRequestModifier: {
-			$0.referer = referer
-			$0.userAgent = agent
-			modifier?(&$0)
-		})
-	}
-	
-	@available(*, deprecated, renamed: "downloadWebPage(postingFormIn:toURL:withAdditionalValues:)")
-	public func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL url: URL!, forceSettingFields fields: [String : String]) -> String? {
-		return self.downloadWebPage(postingFormIn: source, toURL: url, withAdditionalValues: fields)
-	}
-	
-	@available(*, deprecated, renamed: "downloadWebPage(postingFormIn:toURL:withFieldsModifier:)")
-	public func downloadWebSiteSourceByPostingFormOnPage(_ source: String, toURL url: URL!, withModifier modifier: POSTFieldsModifier? = nil) -> String? {
-		return self.downloadWebPage(postingFormIn: source, toURL: url, withFieldsModifier: modifier)
-	}
-	
-	@available(*, deprecated, renamed: "downloadWebPage(postingFormWithValues:toURL:)")
-	public func downloadWebSiteSourceByPostingFormWithValues(_ values: [String : String], toURL url: URL!) -> String? {
-		return self.downloadWebPage(postingFormWithValues: values, toURL: url)
-	}
-	
-	#if os(OSX)
-	
-	@available(*, deprecated, renamed: "downloadXMLDocument(at:)")
-	public func downloadXMLDocumentAtURL(_ url: URL!) -> XMLDocument? {
-		return self.downloadXMLDocument(at: url)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set referer and agent.")
-	public func downloadXMLDocumentAtURL(_ url: URL!, withReferer referer: String? = nil, asAgent agent: String? = nil, withModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
-		return self.downloadXMLDocument(at: url, withRequestModifier: {
-			$0.referer = referer
-			$0.userAgent = agent
-			modifier?(&$0)
-		})
-	}
-	
-	#endif
-	
-	@available(*, deprecated, renamed: "jsonDictionary(from:)")
-	public func JSONDictionaryFromString(_ jsonString: String!) -> XUJSONDictionary? {
-		return self.jsonDictionary(from: jsonString)
-	}
-	
-	@available(*, deprecated, renamed: "jsonObject(from:)")
-	public func JSONObjectFromData(_ data: Data) -> Any? {
-		return self.jsonObject(from: data)
-	}
-	
-	@available(*, deprecated, renamed: "jsonObject(from:)")
-	public func JSONObjectFromString(_ jsonString: String!) -> Any? {
-		return self.jsonObject(from: jsonString)
-	}
-	
-	@available(*, deprecated, renamed: "jsonObject(fromCallback:)")
-	public func JSONObjectFromCallbackString(_ jsonString: String!) -> Any? {
-		return self.jsonObject(fromCallback: jsonString)
-	}
-	
-	@available(*, deprecated, renamed: "setupCookieField(forRequest:withBaseURL:)")
-	public func setupCookieFieldForURLRequest(_ request: inout URLRequest, andBaseURL baseURL: URL? = nil) {
-		self.setupCookieField(forRequest: &request, withBaseURL: baseURL)
-	}
-	
-	@available(*, deprecated, renamed: "statusCode(for:)")
-	public func statusCodeForURL(_ url: URL!) -> Int {
-		return self.statusCode(for: url)
-	}
-	
-	@available(*, deprecated, message: "Use the modifier to set the referer.")
-	public func sendHeadRequestToURL(_ url: URL!, withReferer referer: String? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
-		return self.sendHeadRequest(to: url, withRequestModifier: {
-			$0.referer = referer
-			modifier?(&$0)
-		})
-	}
-	
-	@available(*, deprecated, renamed: "sendHeadRequest(to:)")
-	public func sendHeadRequestToURL(_ url: URL!) -> HTTPURLResponse? {
-		return self.sendHeadRequest(to: url)
-	}
 }

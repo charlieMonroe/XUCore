@@ -68,11 +68,6 @@ public extension Date {
 		return date as? Date
 	}
 	
-	@available(*, deprecated, renamed: "date(withISO8601:andReturnError:)")
-	public static func dateWithISO8601String(_ string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Date? {
-		return self.date(withISO8601: string, andReturnError: error)
-	}
-	
 	/// Returns a formatted string with options.
 	public func iso8601FormattedString(withOptions options: XUISO8601Option) -> String {
 		switch options {

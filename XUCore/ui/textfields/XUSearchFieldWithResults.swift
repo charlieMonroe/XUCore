@@ -275,7 +275,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			self.progressIndicator.frame = self.rectForCancelButton(whenCentered: false)
 		} else {
 			var frame = self.progressIndicator.frame
-			frame = self.frame.centerRect(frame)
+			frame = self.frame.centerRect(in: frame)
 			frame.origin.x = self.bounds.width - frame.width - 5.0
 			self.progressIndicator.frame = frame
 		}

@@ -11,19 +11,8 @@ import Foundation
 /// Convenience methods that ignore some of the arguments of longer methods.
 public extension FileManager {
 	
-	@available(*, deprecated, renamed: "contentsOfDirectory(at:)")
-	public func contentsOfDirectoryAtURL(_ url: URL) -> [URL] {
-		return self.contentsOfDirectory(at: url)
-	}
-	
 	public func contentsOfDirectory(at url: URL) -> [URL] {
 		return (try? self.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())) ?? []
-	}
-	
-	@available(*, deprecated, renamed: "createDirectory(at:withIntermediateDirectories:)")
-	@discardableResult
-	public func createDirectoryAtURL(_ url: URL, withIntermediateDirectories intermediate: Bool = true) -> Bool {
-		return self.createDirectory(at: url, withIntermediateDirectories: intermediate)
 	}
 	
 	@discardableResult

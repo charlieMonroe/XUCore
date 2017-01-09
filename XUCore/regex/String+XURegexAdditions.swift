@@ -106,67 +106,6 @@ public extension String {
 		return urls
 	}
 	
-	@available(*, deprecated, renamed: "allOccurrences(ofRegex:)")
-	public func allOccurrencesOfRegex(_ regex: XURegex) -> [String] {
-		return self.allOccurrences(ofRegex: regex)
-	}
-	
-	@available(*, deprecated, renamed: "allOccurrences(ofRegexString:)")
-	public func allOccurrencesOfRegexString(_ regexString: String) -> [String] {
-		return self.allOccurrences(ofRegexString: regexString)
-	}
-	
-	@available(*, deprecated, renamed: "allRelativeURLs(to:)")
-	public func allRelativeURLsToURL(_ baseURL: URL) -> [URL] {
-		return self.allRelativeURLs(to: baseURL)
-	}
-	
-	@available(*, deprecated, renamed: "allRelativeURLs(withHost:)")
-	public func allRelativeURLsWithHost(_ host: String) -> [URL] {
-		return self.allRelativeURLs(withHost: host)
-	}
-	
-	@available(*, deprecated, renamed: "allValues(ofVariableNamed:forRegex:)")
-	public func allValuesOfVariableNamed(_ varName: String, forRegex regex: XURegex) -> [String] {
-		return self.allValues(ofVariableNamed: varName, forRegex: regex)
-	}
-	
-	@available(*, deprecated, renamed: "allValues(ofVariableNamed:forRegexString:)")
-	public func allValuesOfVariableNamed(_ varName: String, forRegexString regexString: String) -> [String] {
-		return self.allValues(ofVariableNamed: varName, forRegexString: regexString)
-	}
-	
-	@available(*, deprecated, renamed: "allVariablePairs(forRegex:)")
-	public func allVariablePairsForRegex(_ regex: XURegex) -> [String : String] {
-		return self.allVariablePairs(forRegex: regex)
-	}
-	
-	@available(*, deprecated, renamed: "allVariablePairs(forRegexString:)")
-	public func allVariablePairsForRegexString(_ string: String) -> [String : String] {
-		return self.allVariablePairs(forRegexString: string)
-	}
-	
-	@available(*, deprecated, renamed: "firstOccurrence(ofRegex:)")
-	public func firstOccurrenceOfRegex(_ regex: XURegex) -> String? {
-		return self.firstOccurrence(ofRegex: regex)
-	}
-	
-	@available(*, deprecated, renamed: "firstOccurrence(ofRegexString:)")
-	public func firstOccurrenceOfRegexString(_ string: String) -> String? {
-		return self.firstOccurrence(ofRegexString: string)
-	}
-	
-	@available(*, deprecated, renamed: "firstOccurrence(ofRegexStrings:)")
-	public func firstOccurrenceOfRegexStrings(_ regexStrings: [String]) -> String? {
-		return self.firstOccurrence(ofRegexStrings: regexStrings)
-	}
-	
-	@available(*, deprecated, renamed: "firstOccurrence(ofRegexStrings:)")
-	public func firstOccurrenceOfRegexStrings(_ regexStrings: String...) -> String? {
-		return self.firstOccurrence(ofRegexStrings: regexStrings)
-	}
-	
-	
 	/// All Occurrences of regex in self.
 	public func allOccurrences(ofRegex regex: XURegex) -> [String] {
 		return regex.allOccurrences(in: self)
@@ -336,42 +275,6 @@ public extension String {
 	/// as caseless by default.
 	public func firstOccurrence(ofRegexStrings regexStrings: String...) -> String? {
 		return self.firstOccurrence(ofRegexStrings: regexStrings)
-	}
-	
-	
-	
-	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegex:)")
-	public func getRegexVariableNamed(_ name: String, forRegex regex: XURegex) -> String? {
-		return self.value(ofVariableNamed: name, inRegex: regex)
-	}
-	
-	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexString:)")
-	public func getRegexVariableNamed(_ name: String, forRegexString regex: String) -> String? {
-		return self.value(ofVariableNamed: name, inRegexString: regex)
-	}
-	
-	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexStrings:)")
-	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: String...) -> String? {
-		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
-	}
-	
-	@available(*, deprecated, renamed: "value(ofVariableNamed:inRegexStrings:)")
-	public func getRegexVariableNamed(_ name: String, forRegexStrings regexStrings: [String]) -> String? {
-		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
-	}
-	
-	@available(*, deprecated, renamed: "matches(anyOfRegexStrings:)")
-	public func matchesAnyOfRegexStrings(_ regexStrings: [String]) -> Bool {
-		return self.matches(anyOfRegexStrings: regexStrings)
-	}
-	
-	@available(*, deprecated, renamed: "matches(regex:)")
-	public func matchesRegex(_ regex: XURegex) -> Bool {
-		return self.matches(regex: regex)
-	}
-	@available(*, deprecated, renamed: "matches(regexString:)")
-	public func matchesRegexString(_ regexString: String) -> Bool {
-		return self.matches(regexString: regexString)
 	}
 	
 	

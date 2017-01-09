@@ -8,18 +8,22 @@
 
 import Foundation
 
-public extension NSLock {
+public protocol NamedLock {
+	
+	var name: String? { get set }
+	
+	init()
+	func lock()
+	func unlock()
+}
+
+extension NamedLock {
 	
 	/// Creates a lock and sets the name.
-	public convenience init(name: String) {
+	public init(name: String) {
 		self.init()
 		
 		self.name = name
-	}
-	
-	@available(*, deprecated, renamed: "perform(locked:)")
-	public func performLockedBlock(_ block: (Void) -> Void) {
-		self.perform(locked: block)
 	}
 	
 	/// Performs a block while locking itself. It also installs an XUExceptionCatcher
@@ -42,3 +46,7 @@ public extension NSLock {
 	}
 	
 }
+
+
+extension NSLock: NamedLock { }
+extension NSRecursiveLock: NamedLock { }

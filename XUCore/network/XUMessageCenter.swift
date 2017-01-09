@@ -300,7 +300,7 @@ public class XUMessageCenter {
 			#if os(iOS)
 				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .alert)
 				alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreFramework.bundle), style: .default, handler: { (_) -> Void in
-					self._processActionsFromMessageDict(message, withMessageID: messageID)
+					self._processActions(from: message, withMessageID: messageID)
 				}))
 				if allowsIgnoringMessage {
 					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .cancel, handler: { (_) -> Void in

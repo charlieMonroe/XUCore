@@ -24,11 +24,6 @@ public final class XUURLHandlingCenter {
 	/// Returns shared center.
 	public static let shared: XUURLHandlingCenter = XUURLHandlingCenter()
 	
-	@available(*, deprecated, renamed: "shared")
-	public static var defaultCenter: XUURLHandlingCenter {
-		return self.shared
-	}
-	
 	
 	fileprivate var _handlers: [String : [XUURLHandler]] = [ : ]
 	

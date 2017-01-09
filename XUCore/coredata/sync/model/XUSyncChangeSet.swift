@@ -14,11 +14,6 @@ import CoreData
 /// potentially hundreds or even thousands of actual changes.
 @objc(XUSyncChangeSet)
 public final class XUSyncChangeSet: NSManagedObject {
-
-	@available(*, deprecated, renamed: "allChangeSets(inContext:withTimestampNewerThan:)")
-	public class func allChangeSetsInManagedObjectContext(_ ctx: NSManagedObjectContext, withTimestampNewerThan timestamp: TimeInterval) -> [XUSyncChangeSet] {
-		return self.allChangeSets(inContext: ctx, withTimestampNewerThan: timestamp)
-	}
 	
 	/// Fetches all change sets in the supplied MOC.
 	public class func allChangeSets(inContext ctx: NSManagedObjectContext, withTimestampNewerThan timestamp: TimeInterval) -> [XUSyncChangeSet] {
@@ -26,11 +21,6 @@ public final class XUSyncChangeSet: NSManagedObject {
 		let allValues = (try? ctx.fetch(request)) ?? []
 		let allChangeSets = allValues
 		return allChangeSets.filter({ $0.timestamp > timestamp })
-	}
-	
-	@available(*, deprecated, renamed: "newestChangeSet(inContext:)")
-	public class func newestChangeSetInManagedObjectContext(_ ctx: NSManagedObjectContext) -> XUSyncChangeSet? {
-		return self.newestChangeSet(inContext: ctx)
 	}
 	
 	/// Returns the newest change set in MOC, if one exists.

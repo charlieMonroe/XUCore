@@ -133,12 +133,6 @@ public extension NSDecimalNumber {
 		return NSDecimalNumber.zero
 	}
 	
-	
-	@available(*, deprecated, renamed: "absoluteValue")
-	public var absoluteValueDecimalNumber: NSDecimalNumber {
-		return self.absoluteValue
-	}
-	
 	/// Returns an absolute value of the decimal number.
 	public var absoluteValue: NSDecimalNumber {
 		if self.doubleValue < 0.0 {
@@ -146,11 +140,6 @@ public extension NSDecimalNumber {
 		}
 		
 		return self
-	}
-	
-	@available(*, deprecated, renamed: "ceiled")
-	public var ceiledDecimalNumber: NSDecimalNumber {
-		return self.ceiled
 	}
 	
 	/// Returns a ceiled decimal number.
@@ -166,11 +155,6 @@ public extension NSDecimalNumber {
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
 	public var decimalPart: NSDecimalNumber {
 		return self - self.integral
-	}
-	
-	@available(*, deprecated, renamed: "integral")
-	public var integralDecimalNumber: NSDecimalNumber {
-		return self.integral
 	}
 	
 	/// Returns number without the decimal part.

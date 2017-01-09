@@ -262,12 +262,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			self.isLoadingProducts = false
 		})
 	}
-	
-	@available(*, deprecated, renamed: "purchase(product:)")
-	public func purchaseProduct(_ product: SKProduct) {
-		self.purchase(product: product)
-	}
-	
+		
 	/// Starts a purchase. This is asynchronous and the delegate is notified about
 	/// the outcome.
 	public func purchase(product: SKProduct) {

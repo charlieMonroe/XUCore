@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Draws a line at the top of the view.
 @IBDesignable public class XULineView: UIView {

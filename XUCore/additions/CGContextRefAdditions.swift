@@ -12,14 +12,9 @@
 	import AppKit
 #endif
 
-/// Adds a rounded rect to the CGContextRef.
-@available(*, deprecated, renamed: "CGContext.addRoundedRect(_:withCornerRadius:)")
-public func CGContextAddRoundedRect(_ c: CGContext, rect: CGRect, cornerRadius: CGFloat) {
-	c.addRoundedRect(rect, withCornerRadius: cornerRadius)
-}
-
 public extension CGContext {
 	
+	/// Adds a rounded rect to the CGContextRef.
 	public func addRoundedRect(_ rect: CGRect, withCornerRadius cornerRadius: CGFloat) {
 		let x_left = rect.minX
 		let x_left_center = rect.minX + cornerRadius

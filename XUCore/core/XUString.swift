@@ -20,7 +20,7 @@ public func +=(lhs: inout XUString, rhs: String) {
 	lhs = lhs.appending(XUString(string: rhs))
 }
 
-public func +=(lhs: XUString, rhs: XUString.XUChar) {
+public func +=(lhs: XUString, rhs: XUString.Character) {
 	lhs.append(rhs)
 }
 
@@ -45,64 +45,6 @@ public extension Sequence where Iterator.Element == XUString {
 	
 }
 
-public extension XUString {
-	
-	@available(*, deprecated, renamed: "append")
-	public func appendCharacter(_ char: Character) {
-		self.append(char)
-	}
-	
-	@available(*, deprecated, renamed: "character(at:)")
-	public func characterAtIndex(_ index: Int) -> Character {
-		return self.character(at: index)
-	}
-	
-	@available(*, deprecated, renamed: "index(of:)")
-	public func indexOfCharacter(_ char: XUChar) -> Int? {
-		return self.index(of: char)
-	}
-	
-	@available(*, deprecated, renamed: "remove(at:)")
-	public func removeCharacterAtIndex(_ index: Int) {
-		self.remove(at: index)
-	}
-	
-	@available(*, deprecated, renamed: "removeSubrange(_:)")
-	public func removeCharactersInRange(_ range: Range<Int>) {
-		self.removeSubrage(range)
-	}
-	
-	@available(*, deprecated, renamed: "remove(passingTest:)")
-	public func removeCharactersPassingTest(_ test: (_ character: XUChar, _ index: Int) -> Bool) {
-		self.remove(passingTest: test)
-	}
-	
-	@available(*, deprecated, renamed: "appending(_:)")
-	public func stringByAppendingString(_ string: XUString) -> XUString {
-		return self.appending(string)
-	}
-	
-	@available(*, deprecated, renamed: "substring(from:)")
-	public func substringFromIndex(_ index: Int) -> XUString {
-		return self.substring(from: index)
-	}
-	
-	@available(*, deprecated, renamed: "substring(to:)")
-	public func substringToIndex(_ index: Int) -> XUString {
-		return self.substring(to: index)
-	}
-	
-	@available(*, deprecated, renamed: "substring(with:)")
-	public func substringWithRange(_ range: Range<Int>) -> XUString {
-		return self.substring(with: range)
-	}
-	
-	@available(*, deprecated, renamed: "swap(characterAt:withCharacterAt:)")
-	public func swapCharacterAtIndex(_ index1: Int, withCharacterAtIndex index2: Int) {
-		self.swap(characterAt: index1, withCharacterAt: index2)
-	}
-	
-}
 
 /// This is a class that helps dealing with various string computations by
 /// allowing direct modification of characters in the string. The string is just
@@ -111,9 +53,6 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// A typealias for the char. We're using UInt8.
 	public typealias Character = UInt8
-	
-	@available(*, deprecated, renamed: "Character")
-	public typealias XUChar = UInt8
 	
 	fileprivate var _buffer: [Character]
 	
@@ -342,7 +281,7 @@ extension XUString: Sequence {
 /// Generator for XUString.
 public class XUStringGenerator: IteratorProtocol {
 	
-	public typealias Element = XUString.XUChar
+	public typealias Element = XUString.Character
 	
 	/// Current index we're at.
 	public var currentIndex: Int
@@ -351,7 +290,7 @@ public class XUStringGenerator: IteratorProtocol {
 	public let string: XUString
 	
 	/// Returns next element.
-	public func next() -> XUString.XUChar? {
+	public func next() -> XUString.Character? {
 		if currentIndex + 1 >= self.string.length {
 			return nil
 		}
