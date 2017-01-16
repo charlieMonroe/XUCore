@@ -12,7 +12,6 @@ import Foundation
 public func XUThrowAbstractException(_ additionalInformation: String = "", file: String = #file.components(separatedBy: "/").last!, line: Int = #line, method: String = #function) -> Never  {
 	
 	let reason = "XUAbstractException: [\(file):\(line) \(method)] \(additionalInformation)"
-	NSException(name: NSExceptionName(rawValue: "XUAbstractExceptionName"), reason: reason, userInfo: nil).raise()
-	abort()
+	fatalError(reason)
 }
 
