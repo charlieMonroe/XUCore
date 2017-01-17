@@ -635,20 +635,30 @@ public final class XUJSONDeserializer {
 			}
 		}
 		
-		let setValues = {
+		// Now, set the values on the object. This deferred set has a major
+		// advantage of only performing one locked block on managed objects.
+		if let managedObject = object as? NSManagedObject, let moc = managedObject.managedObjectContext {
+			moc.performAndWait {
+				for (property, value) in values {
+					// We're trying to prevent creating relationships between
+					// different contexts.
+					if let object = value as? NSManagedObject, object.managedObjectContext != moc {
+						continue
+					} else if let set = value as? NSSet, let objectsInSet = set.allObjects as? [NSManagedObject] {
+						let objectsInSameMOC = objectsInSet.filter({ $0.managedObjectContext == moc })
+						object.setValue(NSSet(array: objectsInSameMOC), forKey: property.name)
+					} else if let set = value as? NSOrderedSet, let objectsInSet = set.array as? [NSManagedObject] {
+						let objectsInSameMOC = objectsInSet.filter({ $0.managedObjectContext == moc })
+						object.setValue(NSOrderedSet(array: objectsInSameMOC), forKey: property.name)
+					} else {
+						object.setValue(value, forKey: property.name)
+					}
+				}
+			}
+		} else {
 			for (property, value) in values {
 				object.setValue(value, forKey: property.name)
 			}
-		}
-		
-		// Now, set the values on the object. This deferred set has a major 
-		// advantage of only performing one locked block on managed objects.
-		if let managedObject = object as? NSManagedObject {
-			managedObject.managedObjectContext?.performAndWait {
-				setValues()
-			}
-		} else {
-			setValues()
 		}
 		
 		object.objectWasDeserializedFromDictionary?(dictionary)
