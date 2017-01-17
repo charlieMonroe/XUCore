@@ -90,6 +90,11 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		// No-op
 	}
 	
+	/// Initialize with values.
+	public init(values: [T]) {
+		_innerArray = values.map({ XUWeakReference(objectValue: $0) })
+	}
+	
 }
 
 public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {

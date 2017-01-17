@@ -108,7 +108,11 @@ public extension URL {
 	/// an empty dictionary.
 	public var queryDictionary: [String: String] {
 		var dict: [String: String] = [:]
-		for part in(self.query ?? "").components(separatedBy: "&") {
+		for part in (self.query ?? "").components(separatedBy: "&") {
+			if part.isEmpty {
+				continue
+			}
+			
 			let nameValParts = part.components(separatedBy: "=")
 			let name = nameValParts[0].removingPercentEncoding ?? ""
 			let value: String
