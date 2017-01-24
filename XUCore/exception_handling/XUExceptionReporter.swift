@@ -88,6 +88,24 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		alert.beginSheetModal(for: _reporterWindow, completionHandler: nil)
 	}
 	
+	private func _validateDescriptionText() -> Bool {
+		guard var text = _userInputTextView.string else {
+			return false
+		}
+		
+		text = text.trimmingWhitespace
+		
+		guard !text.isEmpty else {
+			return false
+		}
+		
+		guard text.characters.count > 10 else {
+			return false
+		}
+		
+		return true
+	}
+	
 	fileprivate init(exception: NSException, thread: Thread, queue: OperationQueue?, stackTrace: String) {
 		_exception = exception
 		_thread = thread
@@ -117,7 +135,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 			alert.beginSheetModal(for: _reporterWindow, completionHandler: nil)
 			return
-		}else if valid == .wrong {
+		} else if valid == .wrong {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedString("You need to enter a valid email address.", inBundle: XUCoreFramework.bundle)
 			alert.informativeText = XULocalizedString("We may need to get in touch with you in order to fix this.", inBundle: XUCoreFramework.bundle)
@@ -126,7 +144,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		if _userInputTextView.string == nil || _userInputTextView.string!.isEmpty {
+		if !self._validateDescriptionText() {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedString("Please, provide some details as to when this exception happened.", inBundle: XUCoreFramework.bundle)
 			alert.informativeText = XULocalizedString("Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.", inBundle: XUCoreFramework.bundle)

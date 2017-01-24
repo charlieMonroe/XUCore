@@ -66,7 +66,7 @@ public extension XURegex {
 	public static let alphaNumericUppercase: RegexString = RegexString(regexString: "[A-Z0-9]+")
 	
 	public static let anything: RegexString = RegexString(regexString: ".*")
-	public static let something: RegexString = RegexString(regexString: ".*")
+	public static let something: RegexString = RegexString(regexString: ".+")
 	
 	public static let hexNumber: RegexString = RegexString(regexString: "[a-f0-9]+")
 	public static let numbers: RegexString = RegexString(regexString: "[0-9]+")

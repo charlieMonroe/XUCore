@@ -112,9 +112,7 @@ public struct XUMonth : OptionSet {
 public extension Date {
 	
 	/// Returns date with day/month/year/hour/minute/second values, if valid.
-	///
-	/// @note - cannot currently be an initializer since there is no initializer
-	///			that takes NSDateComponents as an arguments
+	@available(*, deprecated, message: "Use the initializer.")
 	public static func date(withDay day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, andSecond second: Int = 0) -> Date? {
 		var components = DateComponents()
 		components.day = day
@@ -127,7 +125,7 @@ public extension Date {
 	}
 	
 	/// Returns today at 00:00:00.
-	public static func today() -> Date {
+	public static var today: Date {
 		if __today == nil || __validUntil <= Date.timeIntervalSinceReferenceDate {
 			let date = Date()
 			let calendar = Calendar.current
@@ -155,6 +153,22 @@ public extension Date {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.hour, from: self)
 		return components.hour!
+	}
+	
+	/// Returns date with day/month/year/hour/minute/second values, if valid.
+	public init?(day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, second: Int = 0) {
+		var components = DateComponents()
+		components.day = day
+		components.month = month
+		components.year = year
+		components.hour = hour
+		components.minute = minute
+		components.second = second
+		guard let date = Calendar.current.date(from: components) else {
+			return nil
+		}
+		
+		self = date
 	}
 	
 	/// Returns a new date object that is rounded down to seconds.
@@ -241,7 +255,7 @@ public extension Date {
 	/// Returns a date that is within the same day as self, but has 0 hours,
 	/// 0 minutes and 0 seconds.
 	public var startOfDay: Date {
-		return Date.date(withDay: self.day, month: self.month, year: self.year) ?? self
+		return Date(day: self.day, month: self.month, year: self.year) ?? self
 	}
 	
 	public var year: Int {

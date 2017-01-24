@@ -49,15 +49,16 @@ public extension Data {
 	
 	/// Returns `self.bytes` as `Int8` with `filter` applied. If nil is passed as
 	/// `filter` (default value of `filter`), all bytes are included.
-	public func filteredByteArray(_ filter: ((_ index: Int, _ byte: Int8) -> Bool)! = nil) -> [Int8] {
+	public func filteredByteArray(_ filter: ((_ index: Int, _ byte: Int8) -> Bool) = { _ in return true }) -> [Int8] {
 		var result: [Int8] = []
-		let bytes = (self as NSData).bytes.bindMemory(to: Int8.self, capacity: self.count)
-		for i in 0 ..< self.count {
-			let c = bytes[i]
-			if filter != nil && !filter(i, c) {
-				continue
+		self.withUnsafeBytes { (ptr: UnsafePointer<Int8>) in
+			for i in 0 ..< self.count {
+				let c = ptr[i]
+				if !filter(i, c) {
+					continue
+				}
+				result.append(c)
 			}
-			result.append(c)
 		}
 		
 		return result
@@ -81,7 +82,7 @@ public extension Data {
 	/// Returns first occurrence of bytes within `self`. If it doesn't contain
 	/// the data, nil is returned since this method is based on
 	/// self.rangeOfData(_:options:range:).
-	public func indexOfFirstOccurrenceOfBytes(_ bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
+	public func indexOfFirstOccurrence(of bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
 		let byteData = Data(bytesNoCopy: bytes, count: length, deallocator: .none)
 		return self.range(of: byteData)?.lowerBound
 	}

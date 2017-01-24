@@ -26,7 +26,7 @@ public extension CGRect {
 	}
 
 	/// Centers the rect so that self.center is the same as the returned value's.
-	public func centerRect(in rect: CGRect) -> CGRect {
+	public func centeredRect(in rect: CGRect) -> CGRect {
 		let origin = CGPoint(x: self.minX + (self.width - rect.width) / 2.0, y: self.minY + (self.height - rect.height) / 2.0)
 		return CGRect(origin: origin, size: rect.size)
 	}

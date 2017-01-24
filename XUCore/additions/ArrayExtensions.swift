@@ -9,23 +9,23 @@
 import Foundation
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l < r
+	case (nil, _?):
+		return true
+	default:
+		return false
+	}
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l > r
+	default:
+		return rhs < lhs
+	}
 }
 
 
@@ -226,12 +226,12 @@ public extension Array {
 		}
 		
 		if interlacedArrays.count == 1 {
-			self.append(contentsOf: interlacedArrays[0])
+			self = interlacedArrays[0]
 			return
 		}
 		
-		let maxIndex = interlacedArrays.findMax({ $0.count })!.count
-		for i in 0..<maxIndex {
+		let maxIndex = interlacedArrays.findMaxValue({ $0.count })!
+		for i in 0 ..< maxIndex {
 			for arr in interlacedArrays {
 				if i < arr.count {
 					self.append(arr[i])
@@ -242,7 +242,7 @@ public extension Array {
 	
 	/// Similar to flatMap, but provides an index.
 	public func flatMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
-		var result: [U] = [ ]
+		var result: [U] = []
 		for i in 0 ..< self.count {
 			if let obj = mapper(i, self[i]) {
 				result.append(obj)
@@ -254,7 +254,7 @@ public extension Array {
 	/// Similar to map(), but provides the index of the element.
 	public func mapIndexed<U>(_ mapper: (Iterator.Element, Int) -> U) -> [U] {
 		var result: [U] = [ ]
-		for i in 0..<Int(self.count) {
+		for i in 0 ..< self.count {
 			result.append(mapper(self[i], i))
 		}
 		return result
