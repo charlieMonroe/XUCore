@@ -569,7 +569,6 @@ public final class XUJSONDeserializer {
 		}
 		
 		// Arrays get handled differently
-		let valueType: AnyClass? = type(of: value) as? AnyClass
 		if propertyClass != NSArray.self && self._canAssign(value, toPropertyOfType: propertyClass) {
 			return (value: value, error: .none)
 		}

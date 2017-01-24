@@ -62,8 +62,8 @@ public extension MKPolygon {
 		}
 		
 		/** Find minX, minY, maxX, maxY */
-		var minX = DBL_MAX
-		var minY = DBL_MAX
+		var minX = Double.greatestFiniteMagnitude
+		var minY = Double.greatestFiniteMagnitude
 		var maxX = 0.0
 		var maxY = 0.0
 		

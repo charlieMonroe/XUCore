@@ -43,7 +43,7 @@ public extension DateFormatter {
 		let formatter = DateFormatter()
 		formatter.timeStyle = .none
 		formatter.dateStyle = .short
-		let formattedDate = formatter.string(from: Date.date(withDay: 4, month: 5, year: 1999)!)
+		let formattedDate = formatter.string(from: Date(day: 4, month: 5, year: 1999)!)
 		return formattedDate.range(of: "5")!.lowerBound < formattedDate.range(of: "4")!.lowerBound
 	}()
 	

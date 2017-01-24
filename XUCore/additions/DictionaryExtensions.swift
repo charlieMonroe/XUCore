@@ -33,10 +33,11 @@ public extension Dictionary {
 	
 	/// A convenience method for retrieving an array of dictionaries
 	public func arrayOfDictionaries(forKeyPath keyPath: String) -> [XUJSONDictionary]? {
-		return self.arrayOfDictionaries(forKeyPaths: keyPath)
+		return self.firstNonNilValue(forKeyPaths: keyPath)
 	}
 	
 	/// A convenience method for retrieving an array of dictionaries
+	@available(*, deprecated, message: "Use .firstNonNilValue(forKeyPaths:) instead.")
 	public func arrayOfDictionaries(forKeyPaths keyPaths: String...) -> [XUJSONDictionary]? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
@@ -58,11 +59,15 @@ public extension Dictionary {
 	
 	/// See booleanForKey. Except here the argument is keyPath.
 	public func boolean(forKeyPath keyPath: String) -> Bool {
-		if let boolValue = self.value(forKeyPath: keyPath) as? Bool {
+		guard let value = self.value(forKeyPath: keyPath) else {
+			return false
+		}
+		
+		if let boolValue = value as? Bool {
 			return boolValue
 		}
 		
-		if let numberObj = self.value(forKeyPath: keyPath) as? NSNumber {
+		if let numberObj = value as? NSNumber {
 			return numberObj.boolValue
 		}
 		
@@ -75,6 +80,7 @@ public extension Dictionary {
 	}
 	
 	/// A convenience method for retrieving dictionaries.
+	@available(*, deprecated, message: "Use .firstNonNilValue(forKeyPaths:) instead.")
 	public func dictionary(forKeyPaths keyPaths: String...) -> XUJSONDictionary? {
 		for keyPath in keyPaths {
 			if let d = self.dictionary(forKeyPath: keyPath) {
@@ -89,6 +95,10 @@ public extension Dictionary {
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
 	/// 0 is fine when the value cannot be determined.
 	public func double(forKey key: Key) -> Double {
+		if let double = self[key] as? Double {
+			return double
+		}
+		
 		if let numberObj = self[key] as? NSNumber {
 			return numberObj.doubleValue
 		}
@@ -101,25 +111,16 @@ public extension Dictionary {
 	}
 	
 	
-	// MARK: first[*] family of methods
-	
-	/// See objectForKeyPath - this method attempts to find the first non-nil
-	/// object of class. Works as something between objectForKeyPath and
-	/// firstNonNilObjectForKeys.
+	/// See value(forKeyPath:) - this method attempts to find the first
+	/// non-nil value of T.
 	public func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
 	
-	/// See objectForKeyPath - this method attempts to find the first non-nil
-	/// object of class. Works as something between objectForKeyPath and
-	/// firstNonNilObjectForKeys.
+	/// See value(forKeyPath:) - this method attempts to find the first
+	/// non-nil value of T.
 	public func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
-		for path in keyPaths {
-			if let v = self.value(forKeyPath: path) as? T {
-				return v
-			}
-		}
-		return nil
+		return keyPaths.findMapped({ self.value(forKeyPath: $0) as? T })
 	}
 	
 	/// A convenience method for firstNonNilValue(forKeyPaths:) defaulting to Any.
@@ -129,12 +130,7 @@ public extension Dictionary {
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
 	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
-		for k in keys {
-			if let v = self[k] as? T {
-				return v
-			}
-		}
-		return nil
+		return keys.findMapped({ self[$0] as? T })
 	}
 
 	/// Returns first non-nil string value for key paths.
@@ -162,6 +158,10 @@ public extension Dictionary {
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
 	/// 0 is fine when the value cannot be determined.
 	public func integer(forKey key: Key) -> Int {
+		if let int = self[key] as? Int {
+			return int
+		}
+		
 		if let numberObj = self[key] as? NSNumber {
 			return numberObj.intValue
 		}
@@ -179,6 +179,10 @@ public extension Dictionary {
 			return 0
 		}
 		
+		if let int = obj as? Int {
+			return int
+		}
+		
 		if let numberObj = obj as? NSNumber {
 			return numberObj.intValue
 		}
@@ -190,7 +194,7 @@ public extension Dictionary {
 		return 0
 	}
 	
-	/// Most of the time, you need to use objectForKeyPath for getting end nodes
+	/// Most of the time, you need to use value(forKeyPath:) for getting end nodes
 	/// in JSON dictionaries, which are strings. This method allows is
 	/// a convenience method that allows you to get the string without casting.
 	public func string(forKeyPath keyPath: String) -> String? {
@@ -198,11 +202,11 @@ public extension Dictionary {
 	}
 	
 	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
-	/// percent encoding the value. If the value is not of NSString class - description
+	/// percent encoding the value. If the value is not a String - description
 	/// is called on that object.
 	public var urlQueryString: String {
-		var keyValuePairs: [String] = [ ]
-		for (key,value) in self {
+		var keyValuePairs: [String] = []
+		for (key, value) in self {
 			let charSet = CharacterSet.urlQueryAllowed
 			let stringKey = (key as? String) ?? "INVALID KEY"
 			let encodedKey = stringKey.addingPercentEncoding(withAllowedCharacters: charSet) ?? ""
@@ -216,11 +220,11 @@ public extension Dictionary {
 	}
 	
 	/// This method returns an object at keyPath, safely, by casting and doing
-	/// bounds checking. This works pretty much the same as info extraction
-	/// in XUDownloader.
+	/// bounds checking.
 	///
 	/// The keyPath isn't like in the rest of Cocoa dot-separated, but has the
-	/// following format: [key1][0][key2][key3]
+	/// following format: [key1][0][key2][key3]. XUCore will parse this and will
+	/// apply the keys on arrays and dictionaries seemlessly.
 	public func value(forKeyPath keyPath: String) -> Any? {
 		let components = keyPath.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: "][")
 		
@@ -228,7 +232,7 @@ public extension Dictionary {
 		for key in components {
 			if let dict = obj as? XUJSONDictionary {
 				obj = dict[key]
-			} else if let arr = obj as? [AnyObject] {
+			} else if let arr = obj as? [Any] {
 				guard let index = Int(key) else {
 					XULog("Dictionary.objectForKeyPath(): Index \(key) cannot be applied on an array!")
 					return nil

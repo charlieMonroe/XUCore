@@ -481,6 +481,7 @@ open class XUDownloadCenter {
 	/// is for logging purposes, use it with the default value instead.
 	public func downloadData(at url: URL!, referingFunction: String = #function, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
 		if url == nil {
+			XULogStacktrace("Trying to download from nil URL, returning nil.")
 			return nil
 		}
 		
@@ -544,7 +545,7 @@ open class XUDownloadCenter {
 		}
 		
 		guard let obj = self.jsonObject(from: data!) else {
-			return nil // Error already set by JSONObjectFromString(_:)
+			return nil // Error already set by jsonObject(from:)
 		}
 		
 		return obj

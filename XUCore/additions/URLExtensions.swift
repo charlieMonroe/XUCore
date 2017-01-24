@@ -129,6 +129,11 @@ public extension URL {
 	}
 
 	#if os(OSX)
+		/// Icon image for the file.
+		public var iconImage: NSImage? {
+			return self._resourceValue(forKey: .effectiveIconKey)
+		}
+	
 		/// Thumbnail image for supported files.
 		public var thumbnailImage: XUImage? {
 			return self._resourceValue(forKey: .thumbnailKey)

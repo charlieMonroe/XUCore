@@ -50,9 +50,7 @@ public extension String {
 
 	/// Creates a new UUID string.
 	public static var uuidString: String {
-		let UIDRef = CFUUIDCreate(nil)
-		let UID = CFUUIDCreateString(nil, UIDRef)
-		return UID as! String
+		return NSUUID().uuidString
 	}
 	
 	

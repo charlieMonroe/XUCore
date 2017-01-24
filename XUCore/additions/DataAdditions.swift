@@ -71,11 +71,14 @@ public extension Data {
 			return ""
 		}
 		
-		let bytes = (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count)
 		var hexString = ""
-		for i in 0 ..< dataLength {
-			hexString += String(format: "%02x", bytes[i])
+		
+		self.withUnsafeBytes { (bytes: UnsafePointer<UInt8>) in
+			for i in 0 ..< dataLength {
+				hexString += String(format: "%02x", bytes[i])
+			}
 		}
+		
 		return hexString
 	}
 	
@@ -88,7 +91,9 @@ public extension Data {
 	}
 	
 	public var md5Digest: String {
-		return NSData.md5Digest(ofBytes: (self as NSData).bytes, ofLength: self.count)
+		return self.withUnsafeBytes({
+			return NSData.md5Digest(ofBytes: $0, ofLength: self.count)
+		})
 	}
 	
 	/// SHA-1 digest.
