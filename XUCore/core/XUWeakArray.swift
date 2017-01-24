@@ -45,11 +45,17 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	public var count: Int {
 		return _innerArray.count
 	}
+	
+	/// This variable is not O(1), but O(n) at worst. It goes through the array
+	/// of weak references and actually checks them for nil. As soon as it hits
+	/// a nonnil value, however, it will return false. The worst O(n) scenario
+	/// happens when the array is full of nil values and performCleanup() was not
+	/// called.
 	public var isEmpty: Bool {
-		return _innerArray.isEmpty
+		return !_innerArray.contains(where: { $0.objectValue != nil })
 	}
 	public var first: T? {
-		return self[0]
+		return _innerArray.first?.objectValue
 	}
 	
 	public func index(of obj: T) -> Int? {
@@ -61,7 +67,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	}
 	
 	public var last: T? {
-		return self[self.count - 1]
+		return _innerArray.last?.objectValue
 	}
 	
 	/// Removes all nil values from the array.

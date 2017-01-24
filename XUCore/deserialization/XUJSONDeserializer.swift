@@ -206,6 +206,31 @@ public final class XUJSONDeserializer {
 		XULog(entry.debugDescription)
 	}
 	
+	private func _canAssign(_ value: Any, toPropertyOfType propertyClass: AnyClass) -> Bool {
+		if let valueClass = type(of: value) as? AnyClass, propertyClass.isSubclass(of: valueClass) {
+			return true
+		}
+		
+		// Value doesn't necessarily need to be an object in Swift.
+		if (value is Int || value is Double) && propertyClass.isSubclass(of: NSNumber.self) {
+			return true
+		}
+		
+		if (value is String) && propertyClass.isSubclass(of: NSString.self) {
+			return true
+		}
+		
+		if (value is Date) && propertyClass.isSubclass(of: NSDate.self) {
+			return true
+		}
+		
+		if let obj = value as? NSObject {
+			return propertyClass.isSubclass(of: type(of: obj))
+		}
+		
+		return false
+	}
+	
 	fileprivate func _property(forObject object: XUJSONDeserializable, andKey key: String) -> XUObjCProperty? {
 		let classIdentifier = ObjectIdentifier(type(of: object))
 
@@ -544,8 +569,8 @@ public final class XUJSONDeserializer {
 		}
 		
 		// Arrays get handled differently
-		let valueType: AnyClass = type(of: value as AnyObject)
-		if propertyClass != NSArray.self && valueType.isSubclass(of: propertyClass) {
+		let valueType: AnyClass? = type(of: value) as? AnyClass
+		if propertyClass != NSArray.self && self._canAssign(value, toPropertyOfType: propertyClass) {
 			return (value: value, error: .none)
 		}
 		
