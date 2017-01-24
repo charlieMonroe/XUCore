@@ -534,7 +534,7 @@ open class XUDownloadCenter {
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSON(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> Any? {
 		let data = self.downloadData(at: url) { (request) -> Void in
-			request.acceptType = URLRequest.ContentType.JSON
+			request.acceptType = URLRequest.ContentType.json
 			
 			modifier?(&request)
 		}

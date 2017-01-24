@@ -133,7 +133,7 @@ public extension Data {
 				index -= 1
 			}
 			
-			return index
+			return index + 1
 		}
 		
 		if index == self.endIndex {

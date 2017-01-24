@@ -13,14 +13,23 @@ public extension URLRequest {
 	
 	public struct ContentType {
 		
+		@available(*, deprecated, renamed: "json")
+		public static let JSON = ContentType.json
+		
+		@available(*, deprecated, renamed: "xml")
+		public static let XML = ContentType.xml
+		
+		@available(*, deprecated, renamed: "wwwForm")
+		public static let WWWForm = ContentType.wwwForm
+		
 		/// Content-Type: application/json
-		public static let JSON = "application/json;charset=UTF-8"
+		public static let json = "application/json;charset=UTF-8"
 		
 		/// Content-Type: application/xml
-		public static let XML = "application/xml;charset=UTF-8"
+		public static let xml = "application/xml;charset=UTF-8"
 		
 		/// Content-Type: application/x-www-form-urlencoded
-		public static let WWWForm = "application/x-www-form-urlencoded;charset=UTF-8"
+		public static let wwwForm = "application/x-www-form-urlencoded;charset=UTF-8"
 		
 	}
 	
@@ -36,22 +45,22 @@ public extension URLRequest {
 		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
 	}
 	public mutating func addJSONAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.JSON)
+		self.addAccept(URLRequest.ContentType.json)
 	}
 	public mutating func addJSONContentToHeader() {
-		self.addContentType(URLRequest.ContentType.JSON)
+		self.addContentType(URLRequest.ContentType.json)
 	}
 	public mutating func addMultipartFormDataContentToHeader() {
 		self.addContentType("multipart/form-data")
 	}
 	public mutating func addWWWFormContentToHeader() {
-		self.addContentType(URLRequest.ContentType.WWWForm)
+		self.addContentType(URLRequest.ContentType.wwwForm)
 	}
 	public mutating func addXMLAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.XML)
+		self.addAccept(URLRequest.ContentType.xml)
 	}
 	public mutating func addXMLContentToHeader() {
-		self.addContentType(URLRequest.ContentType.XML)
+		self.addContentType(URLRequest.ContentType.xml)
 	}
 	
 	public var acceptType: String? {
@@ -98,7 +107,7 @@ public extension URLRequest {
 		self.httpBody = try? JSONSerialization.data(withJSONObject: obj)
 	}
 	public mutating func setUsername(_ name: String, andPassword password: String) {
-		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString(options: NSData.Base64EncodingOptions()) else {
+		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString() else {
 			XULog("Failed to set name and password - cannot create a base64-encoded string!")
 			return
 		}

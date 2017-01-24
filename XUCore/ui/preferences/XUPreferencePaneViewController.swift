@@ -39,7 +39,7 @@ open class XUPreferencePaneViewController: NSViewController {
 	/// This doesn't necessarily need to be implemented, the default implementation
 	/// resizes self.paneIcon to 16x16.
 	open var paneSmallIcon: NSImage {
-		return self.paneIcon.imageWithSingleImageRepOfSize(CGSize(width: 16.0, height: 16.0))!
+		return self.paneIcon.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))!
 	}
 	
 	/// Localized name of the pane. This must be overridden by subclasses since

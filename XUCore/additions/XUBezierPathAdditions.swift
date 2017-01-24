@@ -69,7 +69,7 @@ public enum XUDirection: Int {
 
 public extension __XUBezierPath {
 	
-	fileprivate func _addLineToPoint(_ point: CGPoint) {
+	fileprivate func _addLine(to point: CGPoint) {
 		#if os(OSX)
 			self.line(to: point)
 		#else
@@ -94,20 +94,20 @@ public extension __XUBezierPath {
 		switch correctDirection {
 		case .bottomToTop:
 			self.move(to: CGPoint(x: rect.minX, y: rect.minY))
-			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
-			self._addLineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.maxY))
+			self._addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+			self._addLine(to: CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.maxY))
 		case .topToBottom:
 			self.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.maxY))
-			self._addLineToPoint(CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.minY))
+			self._addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+			self._addLine(to: CGPoint(x: rect.minX + (rect.maxX - rect.minX) / 2.0, y: rect.minY))
 		case .rightToLeft:
 			self.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-			self._addLineToPoint(CGPoint(x: rect.minX, y: rect.minY))
-			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
+			self._addLine(to: CGPoint(x: rect.minX, y: rect.minY))
+			self._addLine(to: CGPoint(x: rect.maxX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
 		case .leftToRight:
 			self.move(to: CGPoint(x: rect.maxX, y: rect.maxY))
-			self._addLineToPoint(CGPoint(x: rect.maxX, y: rect.minY))
-			self._addLineToPoint(CGPoint(x: rect.minX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
+			self._addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+			self._addLine(to: CGPoint(x: rect.minX, y: rect.minY + (rect.maxY - rect.minY) / 2.0))
 		}
 		
 		self.close()

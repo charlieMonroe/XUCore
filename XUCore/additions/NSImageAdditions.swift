@@ -80,15 +80,14 @@ public extension NSImage {
 	}
 
 	/// Inits with GCImageRef.
-	@available(OSX 10.10, *)
-	public convenience init?(CGImage: CGImage, asBitmapImageRep: Bool) {
-		let width = CGImage.width;
-		let height = CGImage.height;
+	public convenience init?(cgImage: CGImage, asBitmapImageRep: Bool) {
+		let width = cgImage.width;
+		let height = cgImage.height;
 		
 		self.init(size: CGSize(width: CGFloat(width), height: CGFloat(height)))
 		
 		if asBitmapImageRep {
-			let hasAlpha = CGImage.alphaInfo == .none ? false : true
+			let hasAlpha = cgImage.alphaInfo == .none ? false : true
 			let bps = 8; // hardwiring to 8 bits per sample is fine for general purposes
 			let spp = hasAlpha ? 4 : 3;
 			
@@ -103,20 +102,20 @@ public extension NSImage {
 			NSGraphicsContext.saveGraphicsState()
 			NSGraphicsContext.setCurrent(bitmapContext)
 			
-			NSGraphicsContext.current()!.cgContext.draw(CGImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
+			NSGraphicsContext.current()!.cgContext.draw(cgImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
 			
 			NSGraphicsContext.restoreGraphicsState()
 			
 			self.addRepresentation(bitmapImageRep)
 		}else{
 			self.lockFocus()
-			NSGraphicsContext.current()!.cgContext.draw(CGImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
+			NSGraphicsContext.current()!.cgContext.draw(cgImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
 			self.unlockFocus()
 		}
 	}
 	
-	@available(OSX 10.10, *)
-	public convenience init?(thumbnailOfFileAtURL fileURL: URL, withSize size: CGSize) {
+	@available(*, deprecated, message: "Use .thumbnailImage on the URL.")
+	public convenience init?(thumbnailOfFileAt fileURL: URL, withSize size: CGSize) {
 		let dict: [AnyHashable: Any] = [
 			kCGImageSourceCreateThumbnailFromImageIfAbsent as AnyHashable: kCFBooleanTrue,
 			kCGImageSourceThumbnailMaxPixelSize as AnyHashable: size.height
@@ -130,13 +129,13 @@ public extension NSImage {
 			return nil
 		}
 		
-		self.init(CGImage: image, asBitmapImageRep: true)
+		self.init(cgImage: image, asBitmapImageRep: true)
 	}
 	
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
-	public func imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
+	public func imageWithSingleImageRepresentation(ofSize size: CGSize) -> XUImage? {
 		var result: XUImage? = nil
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
 			result = self._imageWithSingleImageRepOfSize(size)
@@ -145,13 +144,13 @@ public extension NSImage {
 	}
 	
 	/// Returns NSData with a bitmap image file type representation.
-	public func representation(forFileType fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [ : ]) -> Data? {
+	public func representation(forFileType fileType: NSBitmapImageFileType, properties: [String : AnyObject] = [:]) -> Data? {
 		guard let temp = self.tiffRepresentation else {
 			return nil
 		}
 		
 		let bitmap = NSBitmapImageRep(data: temp)
-		let imgData = bitmap?.representation(using: fileType, properties: [ : ])
+		let imgData = bitmap?.representation(using: fileType, properties: [:])
 		return imgData
 	}
 	
@@ -167,7 +166,7 @@ public extension NSImage {
 	
 	/// Returns a GIF image representation
 	public func gifRepresentation(withDitheredTransparency dither: Bool) -> Data? {
-		return self.representation(forFileType: .GIF, properties: [ NSImageDitherTransparency: dither as AnyObject ])
+		return self.representation(forFileType: .GIF, properties: [NSImageDitherTransparency: dither as AnyObject])
 	}
 	
 	/// Returns a basic JPEG image representation.
@@ -196,12 +195,12 @@ public extension NSImage {
 	
 	/// Returns a PNG image representation with interlace as defined.
 	public func pngRepresentation(interlaced interlace: Bool) -> Data? {
-		return self.representation(forFileType: .PNG, properties: [ NSImageInterlaced : interlace as AnyObject ])
+		return self.representation(forFileType: .PNG, properties: [NSImageInterlaced : interlace as AnyObject])
 	}
 	
 	/// Returns a TIFF image representation with defined compression.
 	public func tiffRepresentation(usingCompression compression: NSTIFFCompression) -> Data? {
-		return self.representation(forFileType: .TIFF, properties: [ NSImageCompressionMethod: compression.rawValue as AnyObject ])
+		return self.representation(forFileType: .TIFF, properties: [NSImageCompressionMethod: compression.rawValue as AnyObject])
 	}
 	
 	/// Draws the image as tile in specified rect.

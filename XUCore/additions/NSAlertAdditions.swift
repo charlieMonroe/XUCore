@@ -10,6 +10,55 @@ import Foundation
 
 public extension NSAlert {
 	
+	/// This enum contains the payload used by beginSheetModal(withTextField:...).
+	public enum StringModalResponse {
+		
+		/// The alert was cancelled - or to be precise a button was pressed that
+		/// is not the first button.
+		case cancelled(NSModalResponse)
+		
+		/// The alert was confirmed using the first button and String was entered.
+		case confirmed(String, NSModalResponse)
+		
+		
+		/// Returns true if the value of the enum is cancelled(_).
+		public var isCancelled: Bool {
+			switch self {
+			case .cancelled(_):
+				return true
+			case .confirmed(_, _):
+				return false
+			}
+		}
+		
+		/// Returns true if the value of the enum is confirmed(_).
+		public var isConfirmed: Bool {
+			return !self.isCancelled
+		}
+		
+		/// Returns the modal response payload.
+		public var modalResponse: NSModalResponse {
+			switch self {
+			case .cancelled(let response):
+				return response
+			case .confirmed(_, let response):
+				return response
+			}
+		}
+		
+		/// Returns the payload of .confirmed(_). Will call fatalError if called
+		/// on .cancelled(_) value.
+		public var stringValue: String {
+			switch self {
+			case .cancelled(_):
+				fatalError("Calling stringValue on StringModalResponse.cancelled(_).")
+			case .confirmed(let value, _):
+				return value
+			}
+		}
+	}
+	
+	
 	fileprivate func _isDefaultButton(_ response: NSModalResponse) -> Bool {
 		if self.buttons.count == 0 {
 			return true // The alert only has one default OK button
@@ -19,11 +68,10 @@ public extension NSAlert {
 			return response == NSAlertFirstButtonReturn
 		}
 		
-		NSException(name: NSExceptionName.internalInconsistencyException, reason: "Running a deprecated NSAlert instance!", userInfo: nil).raise()
-		abort()
+		fatalError("Running a deprecated NSAlert instance!")
 	}
 	
-	fileprivate func _prepareAccessoryTextFieldWithInitialValue(_ initialValue: String, secure: Bool) {
+	fileprivate func _prepareAccessoryTextField(withInitialValue initialValue: String, secure: Bool) {
 		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {
@@ -51,14 +99,31 @@ public extension NSAlert {
 	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue. If secure is true, the text field is secure.
+	@available(*, deprecated, message: "Use the variant with StringModalResponse instead.")
 	public func beginSheetModal(withTextField initialValue: String, secure: Bool = false, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
-
-		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
+		self.beginSheetModal(withTextField: initialValue, isSecure: secure, forWindow: window, completionHandler: { (response) in
+			if response.isCancelled {
+				handler(response.modalResponse, nil)
+			} else {
+				handler(response.modalResponse, response.stringValue)
+			}
+		})
+		
+	}
+	
+	/// Begins the alert as sheet from window with a text field as accessory view,
+	/// containing initialValue. If isSecure is true, the text field is secure.
+	/// 
+	/// The completion handler will be called with one of the values of the 
+	/// StringModalResponse enum. The alert is considered as confirmed if the
+	/// NSAlertFirstButtonReturn button is pressed.
+	public func beginSheetModal(withTextField initialValue: String, isSecure: Bool = false, forWindow window: NSWindow, completionHandler: @escaping (StringModalResponse) -> Void) {
+		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: isSecure)
 		self.beginSheetModal(for: window, completionHandler: { (response) in
 			if response == NSAlertFirstButtonReturn {
-				handler(response, (self.accessoryView as! NSTextField).stringValue)
+				completionHandler(.confirmed((self.accessoryView as! NSTextField).stringValue, response))
 			} else {
-				handler(response, nil)
+				completionHandler(.cancelled(response))
 			}
 		})
 		
@@ -69,7 +134,8 @@ public extension NSAlert {
 	}
 	
 	/// Create a pop up button as its own accessory view in the alert and populates
-	/// it with menuItems.
+	/// it with menuItems. It returnes the pop up button it created for further
+	/// customization.
 	@discardableResult
 	public func createAccessoryPopUpButton(withMenuItems menuItems: [NSMenuItem]) -> NSPopUpButton {
 		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
@@ -111,7 +177,7 @@ public extension NSAlert {
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. If secure is ture, the text field is secure.
 	public func runModal(withTextField initialValue: String, secure: Bool = false) -> String? {
-		self._prepareAccessoryTextFieldWithInitialValue(initialValue, secure: secure)
+		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: secure)
 		
 		if !self._isDefaultButton(self.runModalOnMainThread()) {
 			return nil // Cancelled

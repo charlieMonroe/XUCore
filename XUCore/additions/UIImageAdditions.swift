@@ -47,7 +47,7 @@ public extension UIImage {
 			}
 			newSize.width = width
 			newSize.height = height
-		}else{
+		} else {
 			var width = size.width * (targetSize.height / size.height)
 			var height = targetSize.height
 			if width > targetSize.width {

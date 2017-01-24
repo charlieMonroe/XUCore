@@ -10,6 +10,7 @@ import Foundation
 
 public extension NSOpenPanel {
 	
+	@available(*, deprecated, message: "Do not create UI elements on secondary threads.")
 	public func runModalOnMainThread() -> Int {
 		var response = NSFileHandlingPanelCancelButton
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in

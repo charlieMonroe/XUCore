@@ -106,26 +106,8 @@ public extension URL {
 
 	/// If the URL has a query part, returns a dictionary of the query. Otherwise
 	/// an empty dictionary.
-	public var queryDictionary: [String: String] {
-		var dict: [String: String] = [:]
-		for part in (self.query ?? "").components(separatedBy: "&") {
-			if part.isEmpty {
-				continue
-			}
-			
-			let nameValParts = part.components(separatedBy: "=")
-			let name = nameValParts[0].removingPercentEncoding ?? ""
-			let value: String
-			if nameValParts.count < 2 {
-				value = ""
-			} else {
-				value = nameValParts[1].removingPercentEncoding ?? ""
-			}
-
-			dict[name] = value
-		}
-
-		return dict
+	public var queryDictionary: [String : String] {
+		return (self.query ?? "").urlQueryDictionary
 	}
 
 	#if os(OSX)
@@ -151,7 +133,6 @@ public extension URL {
 		}
 
 		urlComponents.fragment = nil
-
 		return urlComponents.url ?? self
 	}
 	
@@ -166,7 +147,6 @@ public extension URL {
 		}
 		
 		urlComponents.query = nil
-		
 		return urlComponents.url ?? self
 	}
 	

@@ -619,7 +619,7 @@ open class XUDocumentSyncManager {
 		_syncModel = NSManagedObjectModel.mergedModel(from: [ XUCoreFramework.bundle ])!
 		_syncStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: _syncModel)
 		
-		_currentComputerTempSyncURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.uuidString + ".sql")
+		_currentComputerTempSyncURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString + ".sql")
 		
 		self.managedObjectContext = managedObjectContext
 		self.managedObjectContext.documentSyncManager = self
@@ -745,7 +745,7 @@ open class XUDocumentSyncManager {
 	
 		// Copy the document somewhere else, since the upload may take some time 
 		// and changes may be made.
-		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(String.uuidString)
+		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString)
 		
 		FileManager.default.createDirectory(at: tempFolderURL)
 	

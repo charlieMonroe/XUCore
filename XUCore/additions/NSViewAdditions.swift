@@ -42,11 +42,15 @@ public extension NSView {
 			}
 		}
 	}
-		
+	
+	/// Returns screen coordinates of the view. Note that it will return an empty
+	/// rect if the view is not attached to a window.
 	public var screenCoordinates: CGRect {
 		return self.screenCoordinates(ofRect: self.bounds)
 	}
 	
+	/// Returns screen coordinates of the rect inside this view. Note that it will
+	/// return an empty rect if the view is not attached to a window.
 	public func screenCoordinates(ofRect frame: CGRect) -> CGRect {
 		if self.window == nil {
 			return CGRect()
@@ -59,6 +63,8 @@ public extension NSView {
 		return rect
 	}
 	
+	/// Returns screen coordinates of the point inside this view. Note that it will
+	/// return an empty point if the view is not attached to a window.
 	public func screenCoordinates(ofPoint point: CGPoint) -> CGPoint {
 		if self.window == nil {
 			return CGPoint()

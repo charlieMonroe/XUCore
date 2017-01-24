@@ -8,33 +8,23 @@
 
 import Foundation
 
-/*
-public extension NSXMLNode {
-	
-	/// Error: Ambiguous use of nodesForXPath
-	@objc public func nodesForXPath(xpath: String) -> [NSXMLNode] {
-		let fun = NSXMLNode.nodesForXPath(self)
-		guard let nodes = try? fun(xpath) else {
-			return  [ ]
-		}
-		return nodes
-	}
-	
-}
-*/
 
 public extension XMLNode {
 	
+	/// Returns integer value of the node. This is equivalent to calling integerValue
+	/// on stringValue of the node.
 	public var integerValue: Int {
 		return self.stringValue?.integerValue ?? 0
 	}
 	
 	
+	/// Returns first node on XPath.
 	public func firstNode(onXPath xpath: String) -> XMLNode? {
 		return self.nodes(forXPath: xpath).first
 	}
+	
 	public func integerValue(ofFirstNodeOnXPath xpath: String) -> Int {
-		return self.integerValue(ofFirstNodeOnXPaths: [ xpath ])
+		return self.integerValue(ofFirstNodeOnXPaths: [xpath])
 	}
 	public func integerValue(ofFirstNodeOnXPaths xpaths: [String]) -> Int {
 		return self.stringValue(ofFirstNodeOnXPaths: xpaths)?.integerValue ?? 0
@@ -104,6 +94,10 @@ public extension XMLDocument {
 
 public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 	
+	/// Converts a dictionary into an XMLElement. It uses the key as the element
+	/// name. Supports all values that property list does, the only other limitation
+	/// is that arrays need to contain dictionaries only. Will call fatalError
+	/// if a value that doesn't meet these requirements is included.
 	public func xmlElement(withName elementName: String) -> XMLElement {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
@@ -113,19 +107,19 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 			let key = String(describing: k)
 			if let val =  value as? String {
 				element.addChild(XMLElement(name: key, stringValue: val))
-			}else if let val = value as? NSDecimalNumber {
+			} else if let val = value as? NSDecimalNumber {
 				element.addChild(XMLElement(name: key, stringValue: String(format: "%0.4f", val)))
-			}else if let val = value as? NSNumber {
+			} else if let val = value as? NSNumber {
 				element.addChild(XMLElement(name: key, stringValue: "\(val.stringValue)"))
-			}else if let val = value as? Date {
+			} else if let val = value as? Date {
 				element.addChild(XMLElement(name: key, stringValue: formatter.string(from: val)))
-			}else if let val = value as? NSDictionary {
-				if val.count == 0 {
+			} else if let val = value as? XUJSONDictionary {
+				if val.isEmpty {
 					continue
 				}
 				element.addChild(val.xmlElement(withName: key))
-			}else if let val = value as? [Dictionary] {
-				if val.count == 0 {
+			} else if let val = value as? [Dictionary] {
+				if val.isEmpty {
 					continue
 				}
 				
@@ -133,8 +127,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 				for obj in val {
 					element.addChild(obj.xmlElement(withName: key))
 				}
-				
-			}else{
+			} else {
 				fatalError("Dictionary contains a value of unsupported type.")
 			}
 		}

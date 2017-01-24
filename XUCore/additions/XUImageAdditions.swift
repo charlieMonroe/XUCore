@@ -47,7 +47,7 @@ public extension XUImage {
 	}
 	
 	/// Proportionally scales the image to maximum size.
-	public func proportinallyScaledSizeForMaxSize(_ size: CGSize) -> CGSize {
+	public func proportinallyScaledSize(forMaxSize size: CGSize) -> CGSize {
 		let image = self
 		let mySize = image.size
 		if mySize.width < size.width && mySize.height < size.height {

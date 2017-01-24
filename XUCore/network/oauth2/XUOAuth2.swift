@@ -233,7 +233,7 @@ public final class XUOAuth2Client {
 		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String?, andExpirationDate expirationDate: Date) {
 			self.client = client
 			self.accessToken = accessToken
-			self.identifier = String.uuidString
+			self.identifier = NSUUID().uuidString
 			self.refreshToken = refreshToken
 			self.tokenExpirationDate = expirationDate
 
@@ -290,7 +290,7 @@ public final class XUOAuth2Client {
 			
 			guard let obj = self.client.downloadCenter.downloadJSONDictionary(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 				request.setUsername(self.client.configuration.clientID, andPassword: self.client.configuration.secret)
-				request.acceptType = URLRequest.ContentType.JSON
+				request.acceptType = URLRequest.ContentType.json
 				request.addWWWFormContentToHeader()
 				request["Cookie"] = nil
 				request.httpMethod = "POST"
@@ -433,7 +433,7 @@ public final class XUOAuth2Client {
 		
 		guard let obj = self.downloadCenter.downloadJSONDictionary(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 			request.setUsername(self.configuration.clientID, andPassword: self.configuration.secret)
-			request.acceptType = URLRequest.ContentType.JSON
+			request.acceptType = URLRequest.ContentType.json
 			request.addWWWFormContentToHeader()
 			request["Cookie"] = nil
 			request.httpMethod = "POST"

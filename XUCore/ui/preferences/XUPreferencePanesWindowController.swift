@@ -272,7 +272,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		let menuItem = { () -> NSMenuItem in
 			let item = NSMenuItem(title: XULocalizedString("Show All"), action: #selector(showAll(_:)), keyEquivalent: "")
 			item.target = self
-			item.image = NSImage(named: NSImageNamePreferencesGeneral)!.imageWithSingleImageRepOfSize(CGSize(width: 16.0, height: 16.0))
+			item.image = NSImage(named: NSImageNamePreferencesGeneral)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
 			return item
 		}()
 		menu.addItems([menuItem, NSMenuItem.separator()])

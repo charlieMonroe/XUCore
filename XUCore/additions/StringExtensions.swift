@@ -23,7 +23,10 @@ public func + (lhs: inout String, rhs: Character) {
 }
 
 
-public enum XUEmailValidationFormat {
+@available(*, deprecated, renamed: "XUEmailFormatValidity")
+public typealias XUEmailValidationFormat = XUEmailFormatValidity
+
+public enum XUEmailFormatValidity {
 	
 	/// Correct format.
 	case correct
@@ -33,6 +36,25 @@ public enum XUEmailValidationFormat {
 	
 	/// Phony. E.g. a@a.com.
 	case phony
+	
+	public init(email: String) {
+		// First see if it fits the general description
+		let regex = XURegex(pattern: "^[\\w\\.-]{2,}@[\\w\\.-]{2,}\\.\\w{2,}$", andOptions: .caseless)
+		if !regex.matchesString(email) {
+			self = .wrong
+			return
+		}
+		
+		// It's about right, see for some obviously phony emails
+		if email.hasCaseInsensitive(substring: "fuck") || email.hasCaseInsensitive(substring: "shit")
+			|| email.hasCaseInsensitive(substring: "qwert") || email.hasCaseInsensitive(substring: "asdf")
+			|| email.hasCaseInsensitive(substring: "mail@mail.com") || email.hasCaseInsensitive(substring: "1234") {
+			self = .phony
+			return
+		}
+		
+		self = .correct
+	}
 	
 }
 
@@ -49,6 +71,7 @@ public extension String.Encoding {
 public extension String {
 
 	/// Creates a new UUID string.
+	@available(*, deprecated, message: "This was useful in ObjC and when there was no NSUUID. Use NSUUID().uuidString instead.")
 	public static var uuidString: String {
 		return NSUUID().uuidString
 	}
@@ -102,10 +125,11 @@ public extension String {
 	public var fourCharCodeValue: Int {
 		var result: Int = 0
 		if let data = self.data(using: String.Encoding.macOSRoman) {
-			let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
-			for i in 0 ..< data.count {
-				result = result << 8 + Int(bytes[i])
-			}
+			data.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) in
+				for i in 0 ..< data.count {
+					result = result << 8 + Int(bytes[i])
+				}
+			})
 		}
 		return result
 	}
@@ -160,8 +184,15 @@ public extension String {
 		return result
 	}
 
-	/// Replaces & -> &amp; etc.
+	@available(*, deprecated, renamed: "htmlEscapedString")
 	public var HTMLEscapedString: String {
+		return self.htmlEscapedString
+	}
+	
+	/// Replaces & -> &amp; etc. Unlike htmlUnescapedString, this is not fully
+	/// implemented and will pretty much just substitute several major entities:
+	/// &, ", ', <, >.
+	public var htmlEscapedString: String {
 		var string = self
 		string = string.replacingOccurrences(of: "&", with: "&amp;", options: .literal)
 		string = string.replacingOccurrences(of: "\"", with: "&quot;", options: .literal)
@@ -172,8 +203,15 @@ public extension String {
 		return string
 	}
 
-	/// Replaces &amp; -> & etc.
+	@available(*, deprecated, renamed: "htmlEscapedString")
 	public var HTMLUnescapedString: String {
+		return self.htmlUnescapedString
+	}
+	
+	/// Replaces &amp; -> & etc. Unlike htmlEscapedString, this is implemented to
+	/// greated extent. It will replace some known entities (&nbsp;, &quot;, ...)
+	/// but it will also find occurrences of entities such as &#32;, etc.
+	public var htmlUnescapedString: String {
 		var string = self
 		string = string.replacingOccurrences(of: "&nbsp;", with: " ", options: .literal)
 		string = string.replacingOccurrences(of: "&amp;", with: "&", options: .literal)
@@ -243,8 +281,14 @@ public extension String {
 		return nil
 	}
 
-	/// Replaces \r, \n, \t, \u3245, etc.
+	@available(*, deprecated, renamed: "jsonDecodedString")
 	public var JSDecodedString: String {
+		return self.jsonDecodedString
+	}
+	
+	/// This method takes the string and replaces \r, \n, \t, \u3245, etc. with
+	/// proper characters. This encoding is mostly in JSON and JavaScript.
+	public var jsonDecodedString: String {
 		var result = self
 		result = result.replacingOccurrences(of: "\\r", with: String(Character(UnicodeScalar(13))))
 		result = result.replacingOccurrences(of: "\\n", with: String(Character(UnicodeScalar(10))))
@@ -275,12 +319,13 @@ public extension String {
 		return self.characters.last ?? Character(UInt8(0))
 	}
 	
-	/// Splits `self` using NSCharacterSet.newlineCharacterSet().
+	/// Splits `self` using CharacterSet.newlines.
 	public var lines: [String] {
 		return self.components(separatedBy: CharacterSet.newlines)
 	}
 
-	/// Computes MD5 digest of self
+	/// Computes MD5 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
 	public var md5Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
@@ -289,6 +334,8 @@ public extension String {
 		return data.md5Digest
 	}
 	
+	/// Computes SHA1 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
 	public var sha1Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
@@ -297,6 +344,18 @@ public extension String {
 		return data.sha1Digest
 	}
 	
+	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
+	public var sha256Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha256Digest
+	}
+	
+	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
 	public var sha512Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
@@ -351,6 +410,7 @@ public extension String {
 	
 	/// Returns second character, or \0 is the string has only one character (or
 	/// is empty).
+	@available(*, deprecated, message: "Use the characters view.")
 	public var secondCharacter: Character {
 		if self.characters.count < 2 {
 			return Character(UInt8(0))
@@ -378,10 +438,10 @@ public extension String {
 
 	/// Capitalizes the first letter of the string.
 	public var capitalizingFirstLetter: String {
-		if self.characters.count == 0 {
+		if self.isEmpty {
 			return self
 		}
-
+		
 		let index = self.characters.index(self.startIndex, offsetBy: 1)
 		let firstLetter = self.substring(to: index)
 		let restOfString = self.substring(from: index)
@@ -419,12 +479,15 @@ public extension String {
 	/// stringByAddingPercentEncodingWithAllowedCharacters(...), this never
 	/// returns nil, but instead falls back to self.
 	public var encodingIllegalURLCharacters: String {
-		return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? self
+		var characterSet = CharacterSet.urlPathAllowed
+		characterSet.formUnion(CharacterSet.urlQueryAllowed)
+		
+		return self.addingPercentEncoding(withAllowedCharacters: characterSet) ?? self
 	}
 
 	/// Lowercases the first letter of the string.
 	public var lowercasingFirstLetter: String {
-		if self.characters.count == 0 {
+		if self.isEmpty {
 			return self
 		}
 
@@ -494,8 +557,8 @@ public extension String {
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
-	public var urlQueryDictionary: [String: String] {
-		let variablePairs = self.allVariablePairs(forRegexString: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)")
+	public var urlQueryDictionary: [String : String] {
+		let variablePairs = self.allVariablePairs(forRegexString: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+|)(&|$)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
 			guard let
@@ -510,23 +573,22 @@ public extension String {
 		return dict
 	}
 	
+	/// Returns Data containing UTF8 representation of this string. Unlike
+	/// the failable .data(using:), this will always return nonnil value since
+	/// it's using self.utf8CString which is not nullable. You are hence encouraged
+	/// to use this property instead of .data(using: .utf8).
+	public var utf8Data: Data {
+		return self.utf8CString.withUnsafeBufferPointer { (ptr) -> Data in
+			/// It includes the terminating 0 - we need to remove it.
+			return Data(buffer: ptr).trimmingTrailingZeros
+		}
+	}
+	
 	/// Tries several heuristics to see if the email address is valid, or even 
 	/// phony.
+	@available(*, deprecated, message: "Use the initializer on XUEmailFormatValidity")
 	public func validateEmailAddress() -> XUEmailValidationFormat {
-		// First see if it fits the general description
-		let regex = XURegex(pattern: "^[\\w\\.-]{2,}@[\\w\\.-]{2,}\\.\\w{2,}$", andOptions: .caseless)
-		if !regex.matchesString(self) {
-			return .wrong
-		}
-		
-		// It's about right, see for some obviously phony emails
-		if self.hasCaseInsensitive(substring: "fuck") || self.hasCaseInsensitive(substring: "shit")
-			|| self.hasCaseInsensitive(substring: "qwert") || self.hasCaseInsensitive(substring: "asdf")
-			|| self.hasCaseInsensitive(substring: "mail@mail.com") || self.hasCaseInsensitive(substring: "1234") {
-			return .phony
-		}
-		
-		return .correct
+		return XUEmailValidationFormat(email: self)
 	}
 	
 }

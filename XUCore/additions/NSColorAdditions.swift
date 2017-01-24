@@ -44,7 +44,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 	
 	/// Creates a new dragging session with the color. The view is used as the
 	/// source of the drag.
-	public func drag(withEvent event: NSEvent, sourceView view: NSView) {
+	public func drag(withEvent event: NSEvent, from view: NSView) {
 		let image = NSImage(size: CGSize(width: 12.0, height: 12.0))
 		image.lockFocus()
 		
@@ -85,6 +85,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		XULog("\(_draggingSession!)")
 	}
 	
+	@available(*, deprecated)
 	public func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
 		switch type {
 		case NSPasteboardTypeTIFF:

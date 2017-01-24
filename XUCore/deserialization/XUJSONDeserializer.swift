@@ -533,7 +533,7 @@ public final class XUJSONDeserializer {
 	
 	fileprivate func _transformValueToDecimalNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: XUJSONDeserializationError) {
 		if let number = value as? NSNumber {
-			return (NSDecimalNumber.decimalNumber(withNumber: number), .none)
+			return (NSDecimalNumber(number: number), .none)
 		}
 		
 		if let str = value as? String {

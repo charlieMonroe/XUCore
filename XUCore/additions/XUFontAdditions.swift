@@ -114,7 +114,7 @@ public extension XUFont {
 	/// Returns system font of size with a particular weight. Since the system font
 	/// should include all weights, the returned value is IUO, instead of a pure
 	/// optional.
-	public class func systemFontOfSize(_ pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
+	public class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
 		if #available(OSX 10.11, *) {
 			return self.systemFont(ofSize: pointSize, weight: weight.value)
 		} else {

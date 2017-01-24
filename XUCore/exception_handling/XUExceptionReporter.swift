@@ -126,7 +126,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	
 	@IBAction func sendReport(_ sender: AnyObject?) {
-		let valid = _emailTextField.stringValue.validateEmailAddress()
+		let valid = XUEmailFormatValidity(email: _emailTextField.stringValue)
 		
 		if valid == .phony {
 			let alert = NSAlert()

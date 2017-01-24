@@ -10,7 +10,7 @@ import Cocoa
 
 public extension NSBezierPath {
 
-	public func fillWithInnerShadow(_ shadow: NSShadow) {
+	public func fill(withInnerShadow shadow: NSShadow) {
 		NSGraphicsContext.saveGraphicsState()
 
 		var offset = shadow.shadowOffset

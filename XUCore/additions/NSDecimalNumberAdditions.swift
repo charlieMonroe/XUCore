@@ -94,10 +94,12 @@ public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
 
 public extension NSDecimalNumber {
 	
+	@available(*, deprecated, message: "Use the initializer.")
 	public class func decimalNumber(withDouble value: Double) -> NSDecimalNumber {
-		return self.decimalNumber(withNumber: value as NSNumber?)
+		return self.decimalNumber(withNumber: value as NSNumber)
 	}
 	
+	@available(*, deprecated, message: "Use the initializer.")
 	public class func decimalNumber(withNumber number: NSNumber?) -> NSDecimalNumber {
 		if number == nil {
 			return NSDecimalNumber.zero
@@ -112,25 +114,41 @@ public extension NSDecimalNumber {
 	
 	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
 	/// NSDecimalNumber, (NS)String and NSNumber.
+	@available(*, deprecated, message: "Use the initializer.")
 	public class func decimalNumber(withValue value: Any?) -> NSDecimalNumber {
+		return NSDecimalNumber(value: value)
+	}
+	
+	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
+	/// NSDecimalNumber, (NS)String and NSNumber.
+	convenience init(value: Any?) {
 		if value == nil {
-			return NSDecimalNumber.zero
+			self.init(value: Int(0))
+			return
 		}
 		
 		if let number = value as? NSDecimalNumber {
-			return number
+			self.init(decimal: number.decimalValue)
+			return
 		}
 		
 		if let str = value as? String {
-			return NSDecimalNumber(string: str)
+			self.init(string: str)
+			return
 		}
 		
 		if let number = value as? NSNumber {
-			return NSDecimalNumber.decimalNumber(withNumber: number)
+			self.init(decimal: number.decimalValue)
+			return
 		}
 		
 		XULogStacktrace("Trying to create NSDecimalNumber from unsupported kind of value \(value!)")
-		return NSDecimalNumber.zero
+		self.init(value: Int(0))
+	}
+	
+	/// Initializes self with a NSNumber instance.
+	convenience init(number: NSNumber) {
+		self.init(decimal: number.decimalValue)
 	}
 	
 	/// Returns an absolute value of the decimal number.
@@ -144,31 +162,22 @@ public extension NSDecimalNumber {
 	
 	/// Returns a ceiled decimal number.
 	public var ceiled: NSDecimalNumber {
-		if self.decimalPart.doubleValue < 0.01 {
-			/* Consider self already ceiled. */
-			return self
-		}
-		
-		return NSDecimalNumber(value: ceil(self.doubleValue) as Double)
+		return NSDecimalNumber(value: ceil(self.doubleValue))
 	}
 	
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
 	public var decimalPart: NSDecimalNumber {
-		return self - self.integral
+		return self - self.integralValue
 	}
 	
 	/// Returns number without the decimal part.
-	public var integral: NSDecimalNumber {
-		return NSDecimalNumber(value: Double(Int(self.doubleValue)) as Double)
+	public var integralValue: NSDecimalNumber {
+		return NSDecimalNumber(value: floor(self.doubleValue))
 	}
 	
 	/// Rounds the decimal number.
 	public var roundedDecimalNumber: NSDecimalNumber {
-		if self.decimalPart.doubleValue < 0.01 {
-			/* Consider self already rounded. */
-			return self
-		}
-		return NSDecimalNumber(value: round(self.doubleValue) as Double)
+		return NSDecimalNumber(value: round(self.doubleValue))
 	}
 	
 	/// Returns whether this number is an integer, i.e. is the decimalPart is 0.0
@@ -189,6 +198,11 @@ public extension NSDecimalNumber {
 	/// Returns true is the current double value is 0.0
 	public var isZero: Bool {
 		return self.doubleValue == 0.0
+	}
+	
+	@available(*, deprecated, renamed: "integralValue")
+	public var integral: NSDecimalNumber {
+		return self.integralValue
 	}
 	
 }
