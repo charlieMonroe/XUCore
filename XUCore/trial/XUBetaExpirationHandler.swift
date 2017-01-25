@@ -47,7 +47,7 @@ fileprivate extension XUPreferences {
 
 public final class XUBetaExpirationHandler {
 	
-	public static let sharedExpirationHandler: XUBetaExpirationHandler = XUBetaExpirationHandler()
+	public static let shared: XUBetaExpirationHandler = XUBetaExpirationHandler()
 	
 	/// Returns number of seconds left in the beta mode.
 	public var expiresInSeconds: TimeInterval {

@@ -14,10 +14,10 @@ public final class XUArrayNotEmptyTransformer: ValueTransformer {
 	
 	public override func transformedValue(_ value: Any?) -> Any? {
 		guard let arr = value as? [Any] else {
-			return NSNumber(value: false as Bool)
+			return NSNumber(value: false)
 		}
 		
-		return NSNumber(value: (arr.count > 0) as Bool)
+		return NSNumber(value: (arr.count > 0))
 	}
 
 }

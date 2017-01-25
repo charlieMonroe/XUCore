@@ -15,7 +15,7 @@ public struct XUSystemNotification {
 	public let icon: NSImage
 	public let message: String
 	
-	public init(icon: NSImage, andMessage message: String) {
+	public init(icon: NSImage, message: String) {
 		self.icon = icon
 		self.message = message
 	}

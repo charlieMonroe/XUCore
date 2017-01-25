@@ -29,7 +29,7 @@ fileprivate extension XUPreferences {
 /// Returns the identifier of current localization.
 @inline(__always)
 public func XUCurrentLocalizationIdentifierForBundle(_ bundle: Bundle) -> String {
-	return XULocalizationCenter.shared.localizationIdentifierForBundle(bundle)
+	return XULocalizationCenter.shared.localizationIdentifier(for: bundle)
 }
 
 /// Sets the language identifier as the default langauge.
@@ -64,7 +64,7 @@ public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg...
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
 public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
-	return XULocalizationCenter.shared.localizedStringWithFormatValues(key, andValues: values)
+	return XULocalizationCenter.shared.localizedString(key, withValues: values)
 }
 
 
@@ -131,7 +131,7 @@ public final class XULocalizationCenter {
 	/// Returns a localization identifier for a particular bundle. The identifier
 	/// may be different for each bundle. E.g. one bundle may contain en-US, while
 	/// the other just en.
-	public func localizationIdentifierForBundle(_ bundle: Bundle) -> String {
+	public func localizationIdentifier(for bundle: Bundle) -> String {
 		if let identifier = _cachedLanguageIdentifiers[bundle] {
 			return identifier
 		}
@@ -193,7 +193,7 @@ public final class XULocalizationCenter {
 	
 	/// Returns a localized string.
 	public func localizedString(_ key: String, withLocale _language: String? = nil, inBundle bundle: Bundle = XUMainBundle) -> String {
-		let language = _language ?? self.localizationIdentifierForBundle(bundle)
+		let language = _language ?? self.localizationIdentifier(for: bundle)
 		
 		if key.isEmpty {
 			return key
@@ -277,7 +277,7 @@ public final class XULocalizationCenter {
 	///
 	/// @note `values` can have values other than NSString - -description is called
 	///            on the values.
-	public func localizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
+	public func localizedString(_ key: String, withValues values: [String : Any]) -> String {
 		var localizedString = self.localizedString(key)
 		for (key, value) in values {
 			let needle = "{\(key)}"

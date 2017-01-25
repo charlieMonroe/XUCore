@@ -16,7 +16,7 @@ public protocol XUURLHandler: AnyObject {
 }
 
 
-/// This object handles opening of URLs on OS X. On OS X, NSApplicationDelegate
+/// This object handles opening of URLs on macOS. On macOS, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
 public final class XUURLHandlingCenter {
@@ -25,7 +25,7 @@ public final class XUURLHandlingCenter {
 	public static let shared: XUURLHandlingCenter = XUURLHandlingCenter()
 	
 	
-	fileprivate var _handlers: [String : [XUURLHandler]] = [ : ]
+	fileprivate var _handlers: [String : [XUURLHandler]] = [:]
 	
 	
 	/// Adds a handler for scheme. Multiple handlers per scheme are allowed).

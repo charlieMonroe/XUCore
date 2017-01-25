@@ -11,11 +11,11 @@
 
 import Foundation
 
-/// Private class which is needed for XUCoreBundle.
-public final class XUCoreFramework {
+/// Struct containing some minor stuff around the framework itself.
+public struct XUCoreFramework {
 	
 	/// Contains NSBundle of XUCore(Mobile) framework.
-	public static let bundle = Bundle(for: XUCoreFramework.self)
+	public static let bundle = Bundle(for: _XUSwiftCoreLoader.self)
 	
 }
 
@@ -47,7 +47,7 @@ public final class XUCoreFramework {
 			
 			// Launch the beta expiration handler if supported.
 			if XUAppSetup.isBetaBuild {
-				_ = XUBetaExpirationHandler.sharedExpirationHandler
+				_ = XUBetaExpirationHandler.shared
 			} else {
 				// Start the trial.
 				_ = XUTrial.shared

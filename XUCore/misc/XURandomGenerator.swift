@@ -8,9 +8,9 @@
 
 import Foundation
 
-/// Random number generator based on random() - where the seed is set in init
+/// Random number generator based on srandom() - where the seed is set in init
 /// to something random
-public final class XURandomGenerator {
+public struct XURandomGenerator {
 
 	/// Returns a shared generator.
 	public static let shared = XURandomGenerator()

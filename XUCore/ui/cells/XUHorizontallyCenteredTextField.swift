@@ -10,6 +10,7 @@ import Foundation
 
 /// Unlike regular text field cell, this cell centers the content horizontally
 /// as well.
+@available(*, deprecated, message: "You should be using view-based table views.")
 open class XUHorizontallyCenteredTextFieldCell: NSTextFieldCell {
 	
 	open override func draw(withFrame cellFrame: CGRect, in controlView: NSView) {

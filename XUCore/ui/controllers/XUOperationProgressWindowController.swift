@@ -67,7 +67,7 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	
-	public class func operationProgressWindowControllerWithOperation(_ operation: XUProgressableOperation) -> XUOperationProgressWindowController {
+	public class func operationProgressWindowController(with operation: XUProgressableOperation) -> XUOperationProgressWindowController {
 		let controller = XUOperationProgressWindowController(windowNibName: "XUOperationProgressWindowController")
 		controller.operation = operation
 		operation.delegate = controller

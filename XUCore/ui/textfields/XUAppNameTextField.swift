@@ -10,9 +10,9 @@ import Cocoa
 
 /// Text field that replaces %AppName% with the app's name. Used in XIB files
 /// that are used in multiple apps.
-open class XUAppNameTextField: NSTextField {
+public final class XUAppNameTextField: NSTextField {
 
-	open override func awakeFromNib() {
+	public override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		self.localizeView()

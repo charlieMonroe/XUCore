@@ -10,21 +10,10 @@ import Foundation
 
 public final class XUCSVDocument {
 	
-	/// Column separator. "," by default.
-	fileprivate var _columnSeparator: Character = Character(",")
-	
-	/// Array of key -> value dictionaries. Key is either header name, or a
-	/// stringified number for headerless documents.
-	fileprivate var _content: [[String : Any]] = []
-	
-	/// Array of header/column names.
-	fileprivate var _headerNames: [String] = []
-	
-	
 	fileprivate func _parseString(_ csv: String) -> Bool {
 		let len = csv.characters.endIndex
 		var ptr = csv.characters.startIndex
-		let importantChars = CharacterSet(charactersIn: "\(_columnSeparator)\"\n")
+		let importantChars = CharacterSet(charactersIn: "\(self.columnSeparator)\"\n")
 		var column = 0
 		var firstLine = true
 		var insideQuotes = false
@@ -41,7 +30,7 @@ public final class XUCSVDocument {
 			}
 			
 			// It's either comma, newline or a quote
-			if c == _columnSeparator {
+			if c == self.columnSeparator {
 				if insideQuotes {
 					// Comma inside a quoted string -> all right
 					ptr = csv.characters.index(after: ptr)
@@ -66,13 +55,13 @@ public final class XUCSVDocument {
 				}
 				
 				if firstLine {
-					// It's the first line -> add the field into the _headerNames array
-					_headerNames.append(field)
+					// It's the first line -> add the field into the self.headerNames array
+					self.headerNames.append(field)
 				} else {
 					// Otherwise add it to current dictionary
-					if column >= 0 && column < _headerNames.count {
+					if column >= 0 && column < self.headerNames.count {
 						// There is a header name for this column
-						dict[_headerNames[column]] = field
+						dict[self.headerNames[column]] = field
 					} else {
 						// Wrong number of columns
 						return false
@@ -116,9 +105,9 @@ public final class XUCSVDocument {
 								field = field.replacingOccurrences(of: "\"\"", with: "\"")
 							}
 							
-							dict[_headerNames[column]] = field
+							dict[self.headerNames[column]] = field
 							
-							_content.append(dict as [String : Any])
+							self.content.append(dict as [String : Any])
 							
 							dict = [ : ] // A stopper
 						}
@@ -154,13 +143,13 @@ public final class XUCSVDocument {
 				}
 				
 				if firstLine {
-					// It's the first line -> add the field into the _headerNames array
-					_headerNames.append(field)
+					// It's the first line -> add the field into the self.headerNames array
+					self.headerNames.append(field)
 				} else {
 					// Otherwise add it to current dictionary
-					if column >= 0 && column < _headerNames.count {
+					if column >= 0 && column < self.headerNames.count {
 						// There is a header name for this column
-						dict[_headerNames[column]] = field
+						dict[self.headerNames[column]] = field
 					} else {
 						// Wrong number of columns
 						return false
@@ -168,7 +157,7 @@ public final class XUCSVDocument {
 				}
 				
 				if !firstLine {
-					_content.append(dict as [String : Any])
+					self.content.append(dict as [String : Any])
 					dict = [ : ]
 				}
 				
@@ -181,65 +170,46 @@ public final class XUCSVDocument {
 		
 		if !dict.isEmpty {
 			// We need to add it
-			_content.append(dict as [String : Any])
+			self.content.append(dict as [String : Any])
 		}
 		return true
 	}
 	
 	public func addContentItem(_ item: [String : Any]) {
-		_content.append(item)
+		self.content.append(item)
 	}
 	
 	/// Char that separates columns. ',' by default, but some files use ';' 
 	/// instead.
-	public var columnSeparator: Character {
-		get {
-			return _columnSeparator
-		}
-		set {
-			_columnSeparator = newValue
-		}
-	}
+	public var columnSeparator: Character = Character(",")
 	
-	public var content: [[String : Any]] {
-		get {
-			return _content
-		}
-		set {
-			_content = newValue
-		}
-	}
+	/// Array of key -> value dictionaries. Key is either header name, or a
+	/// stringified number for headerless documents.
+	public var content: [[String : Any]] = []
 	
-	public var headerNames: [String] {
-		get {
-			return _headerNames
-		}
-		set {
-			_headerNames = newValue
-		}
-	}
+	/// Array of header/column names.
+	public var headerNames: [String] = []
 	
 	public init(dictionaries: [[String : Any]]) {
-		_content = dictionaries
+		self.content = dictionaries
 
 		for dict in dictionaries {
 			for key in dict.keys {
-				if !_headerNames.contains(key) {
-					_headerNames.append(key)
+				if !self.headerNames.contains(key) {
+					self.headerNames.append(key)
 				}
 			}
 		}
 	}
 	
-	public convenience init(fileURL: URL, headerless: Bool = false, andColumnSeparator columnSeparator: Character = Character(",")) throws {
-		
-		var csv = (try NSString(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)) as String
+	public convenience init(fileURL: URL, headerless: Bool = false, columnSeparator: Character = Character(",")) throws {
+		var csv = try String(contentsOf: fileURL, encoding: .utf8)
 
 		if headerless {
 			let firstLine = csv.firstLine
 			let components = firstLine.components(separatedBy: "\(columnSeparator)")
 			var headerNames: [String] = [ ]
-			for i in 0..<components.count {
+			for i in 0 ..< components.count {
 				headerNames.append("\(i + 1)")
 			}
 			
@@ -251,11 +221,11 @@ public final class XUCSVDocument {
 			csv = csv.replacingOccurrences(of: "&amp;", with: "&")
 		}
 		
-		try self.init(string: csv, andColumnSeparator: columnSeparator)
+		try self.init(string: csv, columnSeparator: columnSeparator)
 	}
 	
-	public init(string: String, andColumnSeparator columnSeparator: Character = Character(",")) throws {
-		_columnSeparator = columnSeparator
+	public init(string: String, columnSeparator: Character = Character(",")) throws {
+		self.columnSeparator = columnSeparator
 		
 		if !self._parseString(string) {
 			// Could not parse string
@@ -269,15 +239,15 @@ public final class XUCSVDocument {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
-		var string = _headerNames.joined(separator: String(_columnSeparator))
+		var string = self.headerNames.joined(separator: String(self.columnSeparator))
 
 		// New line
 		string += "\n"
 		
 		// Add all items in content
-		string += _content.map({ (item) -> String in
+		string += self.content.map({ (item) -> String in
 			
-			return _headerNames.map({ (headerName) -> String in
+			return self.headerNames.map({ (headerName) -> String in
 				// Adding a quoted string with replaced quotes as double-quotes
 				guard let obj = item[headerName] else {
 					return ""
@@ -320,7 +290,7 @@ public final class XUCSVDocument {
 				
 				// Unknown value kind.
 				XUFatalError()
-			}).joined(separator: String(_columnSeparator))
+			}).joined(separator: String(self.columnSeparator))
 		}).joined(separator: "\n")
 		
 		return string

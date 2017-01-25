@@ -9,15 +9,15 @@
 import Foundation
 
 /// This class is for labels used in controls, where they need to be click-through.
-open class XUClickThroughTextField: NSTextField {
+public final class XUClickThroughTextField: NSTextField {
 	
-	open override var description: String {
+	public override var description: String {
 		return "\(super.description) hidden: \(self.isHidden)"
 	}
-	open override var mouseDownCanMoveWindow: Bool {
+	public override var mouseDownCanMoveWindow: Bool {
 		return false
 	}
-	open override func hitTest(_ aPoint: CGPoint) -> NSView? {
+	public override func hitTest(_ aPoint: CGPoint) -> NSView? {
 		return nil
 	}
 	

@@ -21,10 +21,10 @@ public enum XUTimeRoundingDirection: Int {
 }
 
 /// A class that contains various time-related methods.
-public final class XUTime {
+public struct XUTime {
 	
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
-	public class func localizedTimeString(_ seconds: TimeInterval) -> String {
+	public static func localizedTimeString(_ seconds: TimeInterval) -> String {
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return XULocalizedString("1 second", inBundle: XUCoreFramework.bundle)
 		}
@@ -74,7 +74,7 @@ public final class XUTime {
 
 	/// Rounds time to certain second count. E.g. by setting seconds to 30, it
 	/// will round the time to 5 minutes.
-	public class func round(time: TimeInterval, inDirection direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> TimeInterval {
+	public static func round(time: TimeInterval, inDirection direction: XUTimeRoundingDirection, roundingBase seconds: Int) -> TimeInterval {
 		if seconds < 0 || !time.isFinite || TimeInterval(Int64.max) < time {
 			return 0.0
 		}
@@ -101,7 +101,7 @@ public final class XUTime {
 	/// - Parameter seconds - The time in seconds.
 	/// - Parameter skipHours - If the time is < 1 hour, only includes minutes 
 	///							and seconds. True by default.
- 	public class func timeString(from seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
+ 	public static func timeString(from seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return "00:00"
 		}

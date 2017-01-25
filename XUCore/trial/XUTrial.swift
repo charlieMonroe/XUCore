@@ -40,11 +40,6 @@ open class XUTrial {
 			return nil
 		}
 		
-		if NSClassFromString("FCTrial") != nil {
-			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Do not use FCTrial in combination with XUCore.", userInfo: nil).raise()
-			return nil
-		}
-		
 		return trialClass.init(purchaseURL: purchaseURL as URL, supportURL: supportURL as URL, andTrialSessionsURL: trialSessionsURL as URL)
 	}()
 	
@@ -105,11 +100,6 @@ open class XUTrial {
 		self.purchaseURL = purchaseURL
 		self.supportURL = supportURL
 		self.trialSessionsURL = trialSessionsURL
-		
-		// Do not allow FCTrial in apps using XUCore.
-		if NSClassFromString("FCTrial") != nil {
-			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Do not use FCTrial.", userInfo: nil).raise()
-		}
 		
 		self.innerInit()
 		

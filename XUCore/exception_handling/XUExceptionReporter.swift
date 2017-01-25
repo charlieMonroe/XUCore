@@ -40,7 +40,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	}
 	
 	/// Shows a new reporter window with the exception.
-	class func showReporterForException(_ exception: NSException, thread: Thread, queue: OperationQueue?, andStackTrace stackTrace: String) {
+	class func showReporter(for exception: NSException, thread: Thread, queue: OperationQueue?, andStackTrace stackTrace: String) {
 		if [ NSExceptionName.accessibilityException, NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException ].contains(exception.name) {
 			// Exceptions that commonly arise in Apple's code
 			return
@@ -167,8 +167,8 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		}
 		
 		
-		let OSVersion = ProcessInfo.processInfo.operatingSystemVersion
-		let OSVersionString = "\(OSVersion.majorVersion).\(OSVersion.minorVersion).\(OSVersion.patchVersion)"
+		let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+		let osVersionString = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 		
 		let reportDictionary = [
 			"description": _userInputTextView.string ?? "",
@@ -177,7 +177,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			"version": XUAppSetup.applicationVersionNumber,
 			"build": XUAppSetup.applicationBuildNumber,
 			"name": ProcessInfo.processInfo.processName,
-			"os_version": OSVersionString,
+			"os_version": osVersionString,
 			"email": _emailTextField.stringValue
 		]
 		

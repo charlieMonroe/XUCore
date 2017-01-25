@@ -16,9 +16,10 @@ open class XUDockIconProgress {
 
 	fileprivate var _lastUpdated: Double = 0.0
 
-	open static let shared: XUDockIconProgress = XUDockIconProgress()
+	public static let shared: XUDockIconProgress = XUDockIconProgress()
 	
-	fileprivate func _createProgressImage() -> NSImage {
+	/// Create an image for the Dock icon. It should include the application icon.
+	open func createProgressImage() -> NSImage {
 		let im: NSImage = NSImage(named: NSImageNameApplicationIcon)!.copy() as! NSImage
 		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: kXUDockProgressBarHeight)
 
@@ -49,14 +50,26 @@ open class XUDockIconProgress {
 		return im
 	}
 
-	fileprivate func _updateDockIcon() -> Void {
+	public var progressValue: Double = 0.0 {
+		didSet {
+			let needsVisualUpdate = abs(Double(_lastUpdated - progressValue)) > 0.01 || _lastUpdated == 0.0
+			if needsVisualUpdate {
+				_lastUpdated = progressValue
+				self._updateDockIcon()
+			}
+		}
+	}
+	
+	
+	/// Updates the Dock icon. You should not override this method.
+	public func updateDockIcon() {
 		if !Thread.isMainThread {
 			DispatchQueue.main.async(execute: {
 				self._updateDockIcon()
 			})
 			return
 		}
-
+		
 		let progress = self.progressValue
 		
 		
@@ -65,16 +78,6 @@ open class XUDockIconProgress {
 			NSApplication.shared().applicationIconImage = image
 		} else {
 			NSApplication.shared().applicationIconImage = nil
-		}
-	}
-
-	open var progressValue: Double = 0.0 {
-		didSet {
-			let needsVisualUpdate = abs(Double(_lastUpdated - progressValue)) > 0.01 || _lastUpdated == 0.0
-			if needsVisualUpdate {
-				_lastUpdated = progressValue
-				self._updateDockIcon()
-			}
 		}
 	}
 

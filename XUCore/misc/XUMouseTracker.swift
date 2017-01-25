@@ -46,7 +46,7 @@ private func XUMouseMovementEventCallback(_ proxy: CGEventTapProxy, type: CGEven
 /// This class allows mouse tracking.
 public final class XUMouseTracker {
 
-	fileprivate let _lock = NSLock()
+	fileprivate let _lock = NSLock(name: "XUCore.XUMouseTracker")
 	fileprivate var _observers: [XUMouseTrackingObserver] = []
 
 	public static let shared = XUMouseTracker()

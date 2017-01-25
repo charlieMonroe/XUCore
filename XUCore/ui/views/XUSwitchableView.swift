@@ -10,15 +10,7 @@ import Cocoa
 
 /// This is a view that manages switching between screens. An example usage is
 /// in a tutorial, where you slide one screen after another.
-open class XUSwitchableView: NSView {
-
-	//Only for debug purposes
-	/*
-	-(void)drawRect:(CGRect)dirtyRect{
-		[[NSColor blueColor] set];
-		CGRectFill(dirtyRect);
-	}
-	*/
+public class XUSwitchableView: NSView {
 	
 	fileprivate var _isAnimating: Bool = false
 	fileprivate var _otherView: NSView?
@@ -47,7 +39,7 @@ open class XUSwitchableView: NSView {
 	}
 	
 	/// Current view displayed.
-	open var currentView: NSView? {
+	public var currentView: NSView? {
 		didSet (oldView) {
 			if oldView == nil && self.currentView != nil {
 				self.currentView?.frame = self.bounds
@@ -71,21 +63,16 @@ open class XUSwitchableView: NSView {
 		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
 	}
 	
-	open override var isFlipped: Bool {
+	public override var isFlipped: Bool {
 		return true
 	}
-	open override var mouseDownCanMoveWindow: Bool {
+	public override var mouseDownCanMoveWindow: Bool {
 		return true
-	}
-	
-	/// Switches to a new view in direction specified. Doesn't adjust window size.
-	open func switchToView(_ view: NSView, inDirection direction: XUDirection) {
-		self.switchToView(view, inDirection: direction, adjustWindow: false)
 	}
 	
 	/// Switches to a new view in direction specified and if adjustWindow is true,
 	/// the window size is adjusted as well.
-	open func switchToView(_ view: NSView, inDirection direction: XUDirection, adjustWindow: Bool) {
+	public func switchToView(_ view: NSView, inDirection direction: XUDirection, adjustWindow: Bool = false) {
 		_isAnimating = true
 		
 		// Make sure the view isn't hidden

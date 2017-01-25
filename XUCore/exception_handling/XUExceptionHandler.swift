@@ -67,7 +67,7 @@ public final class XUExceptionHandler: NSObject {
 	
 	/// Contains the shared handler. You should not call this, unless the exception
 	/// reporting is enabled.
-	public static let sharedExceptionHandler = XUExceptionHandler()
+	public static let shared = XUExceptionHandler()
 	
 	/// This is called automatically by _XUCoreLauncher and starts exception
 	/// handling. If, however, no exception handler reporting URL is found in
@@ -79,7 +79,7 @@ public final class XUExceptionHandler: NSObject {
 		}
 		
 		// Force initialization.
-		_ = XUExceptionHandler.sharedExceptionHandler
+		_ = XUExceptionHandler.shared
 	}
 	
 	@objc private func _applicationDidFinishLaunching() {
@@ -139,17 +139,12 @@ public final class XUExceptionHandler: NSObject {
 		
 		stackTraceString += XUStacktraceString()
 		
-		XUExceptionReporter.showReporterForException(exception, thread: Thread.current, queue: OperationQueue.current, andStackTrace: stackTraceString)
+		XUExceptionReporter.showReporter(for: exception, thread: Thread.current, queue: OperationQueue.current, andStackTrace: stackTraceString)
 		return true
 	}
 	
 	fileprivate override init() {
 		super.init()
-		
-		// Do not allow FCExceptionCatcher in apps using XUCore.
-		if NSClassFromString("FCExceptionCatcher") != nil {
-			NSException(name: NSExceptionName.internalInconsistencyException, reason: "Do not use FCExceptionCatcher.", userInfo: nil).raise()
-		}
 		
 		// Since NSApplication installs its own handler, we need to make sure that
 		// this is called *after* the app is finished launching. We can detect this

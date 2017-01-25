@@ -10,6 +10,7 @@ import Cocoa
 
 /// This class is somewhat similar to NSURLConnection, except supports only HTTP
 /// and internally uses the CURL command.
+@available(*, deprecated)
 public final class XUCURLConnection {
 	
 	/// Returns if the response is within 200-299 range.
