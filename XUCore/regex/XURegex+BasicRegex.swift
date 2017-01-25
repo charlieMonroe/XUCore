@@ -1,6 +1,6 @@
 //
-//  NSString+BasicRegex.swift
-//  DownieCore
+//  String+BasicRegex.swift
+//  XUCore
 //
 //  Created by Charlie Monroe on 10/27/15.
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
@@ -8,13 +8,14 @@
 
 import Foundation
 
+/// This struct gathers some basic regex strings for convenience.
 public extension XURegex {
 	
 	public struct RegexString {
 		
-		/// Returns a regex from self.regexString.
+		/// Returns a regex from self.regexString. Always caseless.
 		public var regex: XURegex {
-			return XURegex(self.regexString)
+			return XURegex(pattern: self.regexString, andOptions: .caseless)
 		}
 		
 		/// The regex string.
@@ -71,10 +72,6 @@ public extension XURegex {
 	public static let hexNumber: RegexString = RegexString(regexString: "[a-f0-9]+")
 	public static let numbers: RegexString = RegexString(regexString: "[0-9]+")
 	
-	convenience init(_ pattern: String) {
-		self.init(pattern: pattern, andOptions: XURegexOptions())
-	}
-	
 }
 
 public extension String {
@@ -84,7 +81,7 @@ public extension String {
 	/// each time. Note that this method does not work property when the value
 	/// contains quotes.
 	public func value(ofDataFieldNamed fieldName: String) -> String? {
-		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
+		return self.value(of: "VALUE", inRegexes:
 			"data-\(fieldName)=\"(?P<VALUE>[^\"]+)\"",
 			"data-\(fieldName)='(?P<VALUE>[^']+)'"
 		)
@@ -94,7 +91,7 @@ public extension String {
 	/// a single regex, since the name can be either before or after content,
 	/// and there is no way to ensure that at least one of the conditions is met.
 	public func value(ofMetaFieldNamed fieldName: String) -> String? {
-		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
+		return self.value(of: "VALUE", inRegexes:
 			"<meta[^>]+(itemprop|name|property)=\"\(fieldName)\"[^>]+content=\"(?P<VALUE>[^\"]+)\"",
 			"<meta[^>]+content=\"(?P<VALUE>[^\"]+)\"[^>]+(itemprop|name|property)=\"\(fieldName)\""
 		)
@@ -104,7 +101,7 @@ public extension String {
 	/// a single regex, since the name can be either before or after content,
 	/// and there is no way to ensure that at least one of the conditions is met.
 	public func value(ofInputFieldNamed fieldName: String) -> String? {
-		return self.value(ofVariableNamed: "VALUE", inRegexStrings:
+		return self.value(of: "VALUE", inRegexes:
 			"<input[^>]+(name|id)=\"\(fieldName)\"[^>]+value=\"(?P<VALUE>[^\"]+)\"",
 		    "<input[^>]+value=\"(?P<VALUE>[^\"]+)\"[^>]+(name|id)=\"\(fieldName)\""
 		)

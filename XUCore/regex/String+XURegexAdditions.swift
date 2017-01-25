@@ -1,6 +1,6 @@
 //
-//  NSString+XURegexAdditions.swift
-//  DownieCore
+//  String+XURegexAdditions.swift
+//  XUCore
 //
 //  Created by Charlie Monroe on 10/27/15.
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
 	
-	fileprivate func _standardizedURL(fromURLString originalURLString: String) -> [URL]? {
+	fileprivate func _standardizedURL(from originalURLString: String) -> [URL]? {
 		var urlString = originalURLString
 		if urlString.hasPrefix("//") {
 			urlString = "http:" + urlString
@@ -76,11 +76,11 @@ public extension String {
 		return [url!]
 	}
 	
-	fileprivate func _URLStringOccurrencesToURLs(_ occurrences: [String]) -> [URL] {
+	fileprivate func _urls(from occurrences: [String]) -> [URL] {
 		var urls: [URL] = [ ]
 		
 		urls += occurrences.flatMap({ (originalURLString) -> [URL]? in
-			return self._standardizedURL(fromURLString: originalURLString)
+			return self._standardizedURL(from: originalURLString)
 		}).joined()
 		
 		urls = urls.flatMap({ (url) -> URL? in
@@ -116,7 +116,7 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allOccurrences(ofRegexString regexString: String) -> [String] {
+	public func allOccurrences(ofRegex regexString: String) -> [String] {
 		return self.allOccurrences(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
@@ -125,10 +125,10 @@ public extension String {
 		let regex = XURegex(pattern: "(?i)/[^\\s'\"<>]+", andOptions: XURegexOptions())
 		
 		var occurrences = regex.allOccurrences(in: self)
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.sourceSource.regexString)
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.videoSource.regexString)
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.iframeSource.regexString)
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
+		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.sourceSource.regexString)
+		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.videoSource.regexString)
+		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.iframeSource.regexString)
+		occurrences += self.allValues(of: "URL", forRegex: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
 		
 		occurrences = occurrences.flatMap({ (URLString) -> String? in
 			if URLString.hasPrefix("http") || URLString.hasPrefix("//") {
@@ -138,7 +138,7 @@ public extension String {
 			return URL(string: URLString, relativeTo: baseURL)?.absoluteString
 		})
 		
-		return self._URLStringOccurrencesToURLs(occurrences)
+		return self._urls(from: occurrences)
 	}
 	
 	/// Returns all relative URLs to URL created by "/" path and http scheme.
@@ -160,17 +160,17 @@ public extension String {
 		var occurrences = regex.allOccurrences(in: self.replacingOccurrences(of: "\r", with: "\n"))
 		
 		/** Unfortunely some sites idiotically include spaces in the URLs. This is an easy workaround... */
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
-		occurrences += self.allValues(ofVariableNamed: "URL", forRegexString: XURegex.URL.iframeSource.regexString)
-		if let ogVideo = self.value(ofVariableNamed: "URL", inRegex: XURegex.URL.metaOGVideo.regex) {
+		occurrences += self.allValues(of: "URL", forRegex: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
+		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.iframeSource.regexString)
+		if let ogVideo = self.value(of: "URL", inRegex: XURegex.URL.metaOGVideo.regex) {
 			occurrences.append(ogVideo)
 		}
 		
-		return self._URLStringOccurrencesToURLs(occurrences)
+		return self._urls(from: occurrences)
 	}
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
-	public func allValues(ofVariableNamed varName: String, forRegex regex: XURegex) -> [String] {
+	public func allValues(of varName: String, forRegex regex: XURegex) -> [String] {
 		return regex.allOccurrences(ofVariableNamed: varName, in: self)
 	}
 	
@@ -179,8 +179,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allValues(ofVariableNamed varName: String, forRegexString regexString: String) -> [String] {
-		return self.allValues(ofVariableNamed: varName, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func allValues(of varName: String, forRegex regexString: String) -> [String] {
+		return self.allValues(of: varName, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Returns a dictionary of keys and values. This dictionary is created by
@@ -207,7 +207,7 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allVariablePairs(forRegexString regexString: String) -> [String : String] {
+	public func allVariablePairs(forRegex regexString: String) -> [String : String] {
 		return self.allVariablePairs(forRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
@@ -236,7 +236,7 @@ public extension String {
 	
 	/// @see components(separatedByRegex:) - this is a convenience method that 
 	/// takes in a regex string.
-	public func components(separatedByRegexString regexString: String) -> [String] {
+	public func components(separatedByRegex regexString: String) -> [String] {
 		return self.components(separatedByRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 
@@ -250,7 +250,7 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrence(ofRegexString regexString: String) -> String? {
+	public func firstOccurrence(ofRegex regexString: String) -> String? {
 		return self.firstOccurrence(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
@@ -259,9 +259,9 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrence(ofRegexStrings regexStrings: [String]) -> String? {
+	public func firstOccurrence(ofAnyRegex regexStrings: [String]) -> String? {
 		for str in regexStrings {
-			if let match = self.firstOccurrence(ofRegexString: str) {
+			if let match = self.firstOccurrence(ofRegex: str) {
 				return match
 			}
 		}
@@ -273,14 +273,14 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrence(ofRegexStrings regexStrings: String...) -> String? {
-		return self.firstOccurrence(ofRegexStrings: regexStrings)
+	public func firstOccurrence(ofAnyRegex regexStrings: String...) -> String? {
+		return self.firstOccurrence(ofAnyRegex: regexStrings)
 	}
 	
 	
 	/// Returns true if any of the regex strings matches self.
-	public func matches(anyOfRegexStrings regexStrings: [String]) -> Bool {
-		return regexStrings.contains(where: { self.matches(regexString: $0) })
+	public func matches(anyOfRegexes regexStrings: [String]) -> Bool {
+		return regexStrings.contains(where: { self.matches(regex: $0) })
 	}
 	
 	/// Returns true if the regex matches self.
@@ -293,8 +293,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func matches(regexString: String) -> Bool {
-		return self.matches(regex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func matches(regex: String) -> Bool {
+		return self.matches(regex: XURegex(pattern: regex, andOptions: .caseless))
 	}
 	
 	/// Replaces occurrences of `regex` with `replacement`. Note that `replacement`
@@ -333,7 +333,7 @@ public extension String {
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func value(ofVariableNamed name: String, inRegex regex: XURegex) -> String? {
+	public func value(of name: String, inRegex regex: XURegex) -> String? {
 		return regex.getVariableNamed(name, in: self)
 	}
 	
@@ -343,21 +343,21 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func value(ofVariableNamed name: String, inRegexString regexString: String) -> String? {
-		return self.value(ofVariableNamed: name, inRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func value(of name: String, inRegex regexString: String) -> String? {
+		return self.value(of: name, inRegex: XURegex(pattern: regexString, andOptions: .caseless))
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func value(ofVariableNamed name: String, inRegexStrings regexStrings: String...) -> String? {
-		return self.value(ofVariableNamed: name, inRegexStrings: regexStrings)
+	public func value(of name: String, inRegexes regexStrings: String...) -> String? {
+		return self.value(of: name, inRegexes: regexStrings)
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func value(ofVariableNamed name: String, inRegexStrings regexStrings: [String]) -> String? {
+	public func value(of name: String, inRegexes regexStrings: [String]) -> String? {
 		for regexString in regexStrings {
-			if let match = self.value(ofVariableNamed: name, inRegexString: regexString) {
+			if let match = self.value(of: name, inRegex: regexString) {
 				return match
 			}
 		}

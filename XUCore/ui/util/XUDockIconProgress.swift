@@ -55,7 +55,7 @@ open class XUDockIconProgress {
 			let needsVisualUpdate = abs(Double(_lastUpdated - progressValue)) > 0.01 || _lastUpdated == 0.0
 			if needsVisualUpdate {
 				_lastUpdated = progressValue
-				self._updateDockIcon()
+				self.updateDockIcon()
 			}
 		}
 	}
@@ -65,7 +65,7 @@ open class XUDockIconProgress {
 	public func updateDockIcon() {
 		if !Thread.isMainThread {
 			DispatchQueue.main.async(execute: {
-				self._updateDockIcon()
+				self.updateDockIcon()
 			})
 			return
 		}
@@ -74,7 +74,7 @@ open class XUDockIconProgress {
 		
 		
 		if progress > 0.0 && progress < 1.0 {
-			let image = self._createProgressImage()
+			let image = self.createProgressImage()
 			NSApplication.shared().applicationIconImage = image
 		} else {
 			NSApplication.shared().applicationIconImage = nil

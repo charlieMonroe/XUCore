@@ -22,7 +22,7 @@ public struct XUSystemNotification {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public init(confirmationMessage: String) {
-		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, andMessage: confirmationMessage)
+		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, message: confirmationMessage)
 	}
 	
 }

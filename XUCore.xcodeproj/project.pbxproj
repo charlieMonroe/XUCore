@@ -355,6 +355,8 @@
 		07DA88311D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */; };
 		07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
 		07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
+		07E2938F1E38F59900282602 /* String+XURegexDeprecation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2938E1E38F59800282602 /* String+XURegexDeprecation.swift */; };
+		07E293901E38F59900282602 /* String+XURegexDeprecation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2938E1E38F59800282602 /* String+XURegexDeprecation.swift */; };
 		07E35B951C02384C007D31BE /* XUTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B941C02384C007D31BE /* XUTrial.swift */; };
 		07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 		07E38A311C06132100AE6EAB /* UIAlertControllerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */; };
@@ -610,6 +612,7 @@
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
 		07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUAuthorizationWebViewWindowController.xib; path = oauth2/XUAuthorizationWebViewWindowController.xib; sourceTree = "<group>"; };
 		07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
+		07E2938E1E38F59800282602 /* String+XURegexDeprecation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+XURegexDeprecation.swift"; path = "regex/String+XURegexDeprecation.swift"; sourceTree = "<group>"; };
 		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -744,6 +747,7 @@
 			children = (
 				073E6A7D1BE1F86D00706283 /* re2 */,
 				073E6AB71BE1F86D00706283 /* String+XURegexAdditions.swift */,
+				07E2938E1E38F59800282602 /* String+XURegexDeprecation.swift */,
 				073E6AB81BE1F86D00706283 /* XURegex.h */,
 				073E6AB91BE1F86D00706283 /* XURegex.mm */,
 				073E6ABA1BE1F86D00706283 /* XURegex+BasicRegex.swift */,
@@ -1595,6 +1599,7 @@
 				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
 				075DC79F1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
+				07E2938F1E38F59900282602 /* String+XURegexDeprecation.swift in Sources */,
 				0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */,
 				07B908311BF3C4A9008D254A /* XURedView.swift in Sources */,
 				0749DCDE1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
@@ -1715,6 +1720,7 @@
 				07B821131C8639610079868F /* CGGraphicsAdditions.swift in Sources */,
 				073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */,
 				075DC79C1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift in Sources */,
+				07E293901E38F59900282602 /* String+XURegexDeprecation.swift in Sources */,
 				073E6B3B1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
 				0779E1811BF2317A00832858 /* HTTPURLResponseAdditions.swift in Sources */,
 				073E6AE81BE1F86D00706283 /* simplify.cc in Sources */,
@@ -2012,6 +2018,7 @@
 				076ACE7D1E37D4B8001BA622 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		077AFD891BBD0E5300872A48 /* Build configuration list for PBXProject "XUCore" */ = {
 			isa = XCConfigurationList;

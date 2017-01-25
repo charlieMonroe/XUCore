@@ -588,8 +588,8 @@ open class XUDownloadCenter {
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
 	public func downloadWebPage(postingFormIn source: String, toURL url: URL!, withFieldsModifier modifier: POSTFieldsModifier? = nil, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		var inputFields = source.allVariablePairs(forRegexString: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
-		inputFields += source.allVariablePairs(forRegexString: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
+		var inputFields = source.allVariablePairs(forRegex: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
+		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - no input fields in \(source)")
@@ -699,7 +699,7 @@ open class XUDownloadCenter {
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
 	public func jsonObject(fromCallback jsonString: String!) -> Any? {
-		guard let innerJSON = jsonString?.value(ofVariableNamed: "JSON", inRegexStrings: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
+		guard let innerJSON = jsonString?.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - no inner JSON in callback string \(jsonString ?? "")")
