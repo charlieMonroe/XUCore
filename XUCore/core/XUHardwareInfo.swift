@@ -9,9 +9,9 @@
 import Foundation
 import IOKit
 
-/// This class contains various methods and properties for obtaining information
+/// This struct contains various methods and properties for obtaining information
 /// about the underlying hardware.
-public final class XUHardwareInfo {
+public struct XUHardwareInfo {
 	
 	/// Shared hardware info object.
 	public static let shared: XUHardwareInfo = XUHardwareInfo()

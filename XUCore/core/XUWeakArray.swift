@@ -42,6 +42,9 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		return _innerArray.contains(where: { $0.objectValue === obj })
 	}
 	
+	/// Number of items. Unlike .isEmpty, this does not count number of items.
+	/// It currently breaks the axiom self.isEmpty <=> self.count == 0. Use 
+	/// self.numberOfNonnilValues instead.
 	public var count: Int {
 		return _innerArray.count
 	}
@@ -54,20 +57,30 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	public var isEmpty: Bool {
 		return !_innerArray.contains(where: { $0.objectValue != nil })
 	}
+	
+	/// Returns the first item in the list, not checking for nil.
 	public var first: T? {
 		return _innerArray.first?.objectValue
 	}
 	
+	/// Returns index of an object. The equality is always considered pointer-wise.
 	public func index(of obj: T) -> Int? {
 		return _innerArray.index(where: { $0.objectValue === obj })
+	}
+	
+	/// Returns the last item in the list, not checking for nil.
+	public var last: T? {
+		return _innerArray.last?.objectValue
 	}
 	
 	public func makeIterator() -> XUWeakArrayGenerator<T> {
 		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).slice(with: 0 ..< _innerArray.count))
 	}
 	
-	public var last: T? {
-		return _innerArray.last?.objectValue
+	/// Returns number of nonnil values by going through the inner array. Always
+	/// O(n).
+	public var numberOfNonNilValues: Int {
+		return _innerArray.count(where: { $0.objectValue != nil })
 	}
 	
 	/// Removes all nil values from the array.
@@ -79,6 +92,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		}
 	}
 	
+	/// Removes an item at index.
 	public mutating func remove(atIndex index: Int) {
 		_innerArray.remove(at: index)
 	}

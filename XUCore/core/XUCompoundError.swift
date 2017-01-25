@@ -9,10 +9,10 @@
 import Foundation
 
 /// An error subclass that may contain multiple errors.
-open class XUCompoundError: NSError {
+public final class XUCompoundError: NSError {
 	
 	/// Errors of the compound error.
-	open let errors: [NSError]
+	public let errors: [NSError]
 	
 	/// Inits with errors. Will return nil if the erros array is empty.
 	public init?(domain: String, code: Int = 0, localizedFailureReason: String, andErrors errors: [NSError]) {
@@ -33,7 +33,7 @@ open class XUCompoundError: NSError {
 	
 	/// This class automatically provides a localized description by putting
 	/// together failure reasons of self.errors.
-	open override var localizedDescription: String {
+	public override var localizedDescription: String {
 		let failureReasons = self.errors.map({ $0.localizedFailureReason }).flatMap({ $0 })
 		return failureReasons.joined(separator: "\n• ")
 	}

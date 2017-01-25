@@ -9,18 +9,21 @@
 import Foundation
 import ObjectiveC
 
+/// This contains a cached mapping of class name -> class. This improves the speed
+/// of listing properties and their classes.
+private var _classCache: [String : AnyClass] = [:]
+
 public func ==(property1: XUObjCProperty, property2: XUObjCProperty) -> Bool {
 	return property1.propertyClass == property2.propertyClass && property1.name == property2.name
 }
 
 /// This class represents a property on an ObjC class (or a dynamic/@objc property
 /// on a Swift class).
-public final class XUObjCProperty: CustomStringConvertible, Hashable {
+public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		
 	/// Returns a list of properties declared on a class, optionally including
 	/// properties declared on superclasses.
-	public class func properties(on aClass: AnyClass, includingSuperclasses includeSuperclasses: Bool = false) -> [XUObjCProperty] {
-		
+	public static func properties(on aClass: AnyClass, includingSuperclasses includeSuperclasses: Bool = false) -> [XUObjCProperty] {
 		var properties: [XUObjCProperty] = []
 		
 		var cl: AnyClass! = aClass
@@ -64,6 +67,10 @@ public final class XUObjCProperty: CustomStringConvertible, Hashable {
 	
 	/// Name of the property.
 	public let name: String
+	
+	/// Class of the property, or Nil if the property is of a scalar value,
+	/// or no particular class is defined (e.g. id, or id<MNAPIDataSource>).
+	public let propertyClass: AnyClass?
 
 	
 	public var description: String {
@@ -76,10 +83,10 @@ public final class XUObjCProperty: CustomStringConvertible, Hashable {
 	
 	/// Returns a property object for this particular property.
 	public init(runtimeProperty: objc_property_t, definedOnClass aClass: AnyClass) {
-		self.name = (NSString(utf8String: property_getName(runtimeProperty)) as String?) ?? "<<unknown>>"
+		self.name = String(utf8String: property_getName(runtimeProperty)) ?? "<<unknown>>"
 		self.definedOnClass = aClass
 		
-		let allPropertiesString = NSString(utf8String: property_getAttributes(runtimeProperty)) as String? ?? ""
+		let allPropertiesString = String(utf8String: property_getAttributes(runtimeProperty)) ?? ""
 		let allProperties = allPropertiesString.components(separatedBy: ",")
 		
 		self.isReadOnly = allProperties.contains("R")
@@ -92,18 +99,19 @@ public final class XUObjCProperty: CustomStringConvertible, Hashable {
 		if !self.isScalar && typeProperty.characters.count > 3 {
 			let typeString = typeProperty.deleting(prefix: "@\"").deleting(suffix: "\"")
 			self.className = typeString
+			
+			if let aClass = _classCache[typeString] {
+				self.propertyClass = aClass
+			} else if let aClass = NSClassFromString(typeString) {
+				self.propertyClass = aClass
+				_classCache[typeString] = aClass
+			} else {
+				self.propertyClass = nil
+			}
 		} else {
 			self.className = nil
+			self.propertyClass = nil
 		}
-	}
-	
-	/// Class of the property, or Nil if the property is of a scalar value,
-	/// or no particular class is defined (e.g. id, or id<MNAPIDataSource>).
-	public var propertyClass: AnyClass? {
-		if _class == nil && self.className != nil {
-			_class = NSClassFromString(self.className!)
-		}
-		return _class
 	}
 	
 }

@@ -12,11 +12,11 @@ import Cocoa
 /// boundaries.
 public final class XURedView: NSView {
 	
-	open override func draw(_ dirtyRect: CGRect) {
+	public override func draw(_ dirtyRect: CGRect) {
 		NSColor.red.set()
 		NSRectFill(dirtyRect)
 	}
-	open override var isFlipped: Bool {
+	public override var isFlipped: Bool {
 		return true
 	}
 	

@@ -35,20 +35,20 @@ public final class XUPowerAssertion: Equatable {
 	
 	/// Calls the designated initializer with 0 timeout.
 	public convenience init?(name: String) {
-		self.init(name: name, andTimeOut: 0.0)
+		self.init(name: name, timeout: 0.0)
 	}
 	
 	/// Creates a new power assertion with timeout. See timeout property for
 	/// more information.
 	///
 	/// May return nil if the power assertion fails to be created.
-	public init?(name: String, andTimeOut timeout: TimeInterval) {
+	public init?(name: String, timeout: TimeInterval) {
 		
 		self.name = name
 		self.timeout = timeout
 		
 		var assertionID: IOPMAssertionID = IOPMAssertionID(0)
-		let result = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleSystemSleep as CFString!, IOPMAssertionLevel(kIOPMAssertionLevelOn), name as CFString!, &assertionID)
+		let result = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleSystemSleep as CFString, IOPMAssertionLevel(kIOPMAssertionLevelOn), name as CFString, &assertionID)
 		
 		__assertionID = assertionID
 		
@@ -58,8 +58,8 @@ public final class XUPowerAssertion: Equatable {
 		}
 		
 		if timeout != 0.0 {
-			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutKey as CFString!, timeout as CFTypeRef!)
-			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutActionKey as CFString!, kIOPMAssertionTimeoutActionRelease as CFTypeRef!)
+			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutKey as CFString, timeout as CFTypeRef)
+			IOPMAssertionSetProperty(assertionID, kIOPMAssertionTimeoutActionKey as CFString, kIOPMAssertionTimeoutActionRelease as CFTypeRef)
 		}
 	}
 	

@@ -9,7 +9,7 @@
 import Foundation
 import Security
 
-public final class XUKeychainAccess {
+public struct XUKeychainAccess {
 	
 	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
 	
@@ -107,8 +107,6 @@ public final class XUKeychainAccess {
 	}
 	
 	
-	private init() {
-		
-	}
+	private init() {}
 	
 }

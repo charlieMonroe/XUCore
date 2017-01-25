@@ -125,7 +125,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 		self.init(chars: [ ])
 	}
 	
-	/// Interprets NSData as a const char *
+	/// Interprets Data as a const char *
 	public convenience init(dataBytes data: Data) {
 		let count = data.count
 		
