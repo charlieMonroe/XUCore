@@ -125,7 +125,7 @@ open class XUTrial {
 	/// self.noInternetConnectionDetected() to let the trial notify the user
 	/// that no internet connection is available.
 	open func innerInit() {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// Returns true if current run is the first one.
@@ -151,7 +151,7 @@ open class XUTrial {
 	
 	/// Shows an alert when isFirstRun is true. Must be overridden by subclasses.
 	@objc open func showFirstRunAlert() {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// Displays an alert with custom message about the trial. The alert includes
@@ -184,7 +184,7 @@ open class XUTrial {
 	/// information why the trial is over - e.g. You've been using MyApp for 15
 	/// days now.
 	open var trialExpirationMessage: String {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// You can optionally store the trial ID here.

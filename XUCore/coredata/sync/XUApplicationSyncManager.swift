@@ -220,7 +220,7 @@ open class XUApplicationSyncManager {
 	/// notice when the download is done. You can call scanForNewDocuments()
 	/// to make sure, though.
 	open func startDownloading(itemAt url: URL) throws {
-		XUThrowAbstractException("\(self)")
+		XUFatalError("\(self)")
 	}
 	
 	

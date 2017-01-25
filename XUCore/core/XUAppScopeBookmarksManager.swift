@@ -14,55 +14,58 @@ public final class XUAppScopeBookmarksManager {
 
 	fileprivate var _cache: [XUPreferences.Key : URL] = [ : ]
 	
-	/// Sets a URL for key. Returns if the save was successful.
+	/// Sets a URL for key. Returns if the save was successful. Note that previously
+	/// you could set nil and thus remove the URL for a particular key. This is
+	/// no longer possible. Use removeURL(forKey:) instead.
 	@discardableResult
-	public func setURL(_ url: URL?, forKey defaultsKey: XUPreferences.Key) -> Bool {
+	public func setURL(_ url: URL, forKey defaultsKey: XUPreferences.Key) -> Bool {
 		var newURL = url
-		if newURL == nil {
-			_cache.removeValue(forKey: defaultsKey)
-			
-			XUPreferences.shared.perform(andSynchronize: { (prefs) in
-				prefs.set(value: nil, forKey: defaultsKey)
-			})
-		}else{
-			// Make sure the path is different from the current one -> otherwise 
-			// we probably haven't opened the open dialog -> will fail
-			let savedURL = self.url(forKey: defaultsKey)
-			if savedURL == nil || (savedURL! != newURL!) {
-				#if os(iOS)
-					XUPreferences.shared.perform(andSynchronize: { (prefs) in
-						prefs.set(value: url!.absoluteString, forKey: defaultsKey)
-					})
-				#else
-					_ = newURL!.startAccessingSecurityScopedResource()
-					
-					guard let bookmarkData = try? (newURL! as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
-						XULog("Failed to create bookmark data for URL \(newURL!)")
-						return false
-					}
-					
-					XULog("trying to save bookmark data for path \(newURL!.path) - bookmark data length = \(bookmarkData.count)")
-					
-					XUPreferences.shared.perform(andSynchronize: { (prefs) in
-						prefs.set(value: bookmarkData, forKey: defaultsKey)
-					})
-					
-					newURL!.stopAccessingSecurityScopedResource()
-					
-					var isStale: Bool = false
-					do {
-						let reloadedURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-						if reloadedURL != nil {
-							newURL = reloadedURL
-						}
-					} catch _ { }
-				#endif
+
+		// Make sure the path is different from the current one -> otherwise
+		// we probably haven't opened the open dialog -> will fail
+		let savedURL = self.url(forKey: defaultsKey)
+		if savedURL == nil || (savedURL! != newURL) {
+			#if os(iOS)
+				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+					prefs.set(value: url.absoluteString, forKey: defaultsKey)
+				})
+			#else
+				_ = newURL.startAccessingSecurityScopedResource()
 				
-				_cache[defaultsKey] = newURL
-			}
+				guard let bookmarkData = try? (newURL as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
+					XULog("Failed to create bookmark data for URL \(newURL)")
+					return false
+				}
+				
+				XULog("Saving bookmark data for path \(newURL.path) - bookmark data length = \(bookmarkData.count)")
+				
+				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+					prefs.set(value: bookmarkData, forKey: defaultsKey)
+				})
+				
+				newURL.stopAccessingSecurityScopedResource()
+				
+				var isStale: Bool = false
+				do {
+					if let reloadedURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale) {
+						newURL = reloadedURL
+					}
+				} catch _ { }
+			#endif
+			
+			_cache[defaultsKey] = newURL
 		}
 		
 		return true
+	}
+	
+	/// Removes a URL for key.
+	public func removeURL(forKey defaultsKey: XUPreferences.Key) {
+		_cache.removeValue(forKey: defaultsKey)
+		
+		XUPreferences.shared.perform(andSynchronize: { (prefs) in
+			prefs.set(value: nil, forKey: defaultsKey)
+		})
 	}
 	
 	/// Returns URL for key.

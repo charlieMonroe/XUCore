@@ -47,10 +47,24 @@ private extension NSView {
 	
 }
 
+
+public extension NSApplication {
+	
+	/// Returns whether the current application is in foreground.
+	public var isForegroundApplication: Bool {
+		return NSRunningApplication.current().isActive
+	}
+	
+}
+
+
 /// If you are using XUApplication, you can use XUApp as an alternative to NSApp
 /// shortcut.
 public let XUApp: XUApplication! = NSApp as? XUApplication
 
+/// XUApplication is a sublcass of NSApplication that adds some functionality. 
+/// In particular, you can add XUArrowKeyEventsObserver that can observe keyDown
+/// events that are not observable inside NSTextField subclasses.
 open class XUApplication: NSApplication {
 	
 	fileprivate var _isModal: Bool = false
@@ -60,11 +74,6 @@ open class XUApplication: NSApplication {
 	/// Returns the current key events observer.
 	public var currentArrowKeyEventsObserver: XUArrowKeyEventsObserver? {
 		return _arrowKeyEventObserver
-	}
-	
-	/// Returns whether the current application is in foreground.
-	public var isForegroundApplication: Bool {
-		return NSRunningApplication.current().isActive
 	}
 	
 	/// Returns true when running in modal mode
@@ -128,10 +137,10 @@ open class XUApplication: NSApplication {
 					if NSPasteboard.general().string(forType: NSPasteboardTypeString) != nil {
 						textView.paste(nil)
 					}
-				}else{
+				} else {
 					super.sendEvent(theEvent)
 				}
-			}else{
+			} else {
 				super.sendEvent(theEvent)
 			}
 			

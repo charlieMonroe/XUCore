@@ -64,13 +64,13 @@ open class XUManagedObjectContextManager {
 	
 	/// File name of the CoreData model.
 	open var modelFileName: String {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// Name of the persistent store file name. The file is stored in 
 	/// self.persistentStoreLocationURL
 	open var persistentStoreFileName: String {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// This points to the folder where the manager saves the persistent store.

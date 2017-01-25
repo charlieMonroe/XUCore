@@ -25,7 +25,7 @@ private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [St
 
 /// Shorthand for XUAppSetup
 public var XUAppSetup: XUApplicationSetup {
-	return XUApplicationSetup.sharedSetup
+	return XUApplicationSetup.shared
 }
 
 
@@ -50,7 +50,7 @@ public var XUAppSetup: XUApplicationSetup {
 open class XUApplicationSetup {
 	
 	/// Returns the shared setup.
-	public static let sharedSetup: XUApplicationSetup = {
+	public static let shared: XUApplicationSetup = {
 		let infoDictionary = XUMainBundle.infoDictionary ?? [ : ]
 		let setupClass: XUApplicationSetup.Type
 		if let className = infoDictionary["XUApplicationSetupClass"] as? String {

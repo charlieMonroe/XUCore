@@ -254,6 +254,7 @@
 		076ACE791E37D4B8001BA622 /* XUCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077AFD8F1BBD0E5300872A48 /* XUCore.framework */; };
 		076ACE801E37D6D9001BA622 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ACE7F1E37D6D9001BA622 /* StringTests.swift */; };
 		076ACE821E37D707001BA622 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ACE811E37D707001BA622 /* DataTests.swift */; };
+		076ACE831E37DB6E001BA622 /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		077093821CC1296C0093830B /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
@@ -1703,6 +1704,7 @@
 				07E38A411C07105100AE6EAB /* XUString.swift in Sources */,
 				073E6ABC1BE1F86D00706283 /* bitstate.cc in Sources */,
 				0779E1981BF23B6000832858 /* URLRequestAdditions.swift in Sources */,
+				076ACE831E37DB6E001BA622 /* XUInAppPurchaseManager.swift in Sources */,
 				073E6B181BE1F86D00706283 /* strutil.cc in Sources */,
 				0784480C1D12A4C000E8467B /* OptionalAdditions.swift in Sources */,
 				077AFF8D1BBD101400872A48 /* XUAbstract.swift in Sources */,

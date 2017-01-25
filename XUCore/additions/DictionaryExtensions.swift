@@ -129,6 +129,11 @@ public extension Dictionary {
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
+	public func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
+		return self.firstNonNilValue(forKeys: keys)
+	}
+	
+	/// Returns first non-nil value of a certain class under one of the keys.
 	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
 		return keys.findMapped({ self[$0] as? T })
 	}

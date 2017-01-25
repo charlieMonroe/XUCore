@@ -69,7 +69,7 @@ open class XUPositionedWindowView: NSView {
 
 	/// Override this to specify position of the view in window
 	open func frameForWindowBounds(_ bounds: CGRect, andRealFrame realFrame: CGRect) -> CGRect {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// Updates frame position. Shouldn't be invoked manually.

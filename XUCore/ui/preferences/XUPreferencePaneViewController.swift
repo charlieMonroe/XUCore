@@ -22,7 +22,7 @@ open class XUPreferencePaneViewController: NSViewController {
 	/// Icon of the pane. Should be 32x32px. This must be overridden by subclasses
 	/// since the default implementation ends in fatalError.
 	open var paneIcon: NSImage {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 	
 	/// Returns a unique identifier for the view controller. This is used to
@@ -45,7 +45,7 @@ open class XUPreferencePaneViewController: NSViewController {
 	/// Localized name of the pane. This must be overridden by subclasses since
 	/// the default implementation ends in fatalError.
 	open var paneName: String {
-		XUThrowAbstractException()
+		XUFatalError()
 	}
 
 	

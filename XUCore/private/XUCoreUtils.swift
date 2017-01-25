@@ -35,7 +35,7 @@ public final class XUCoreFramework {
 		_didLoad = true
 		
 		// First, load the application setup.
-		_ = XUApplicationSetup.sharedSetup
+		_ = XUApplicationSetup.shared
 		
 		// Launch the message center.
 		_ = XUMessageCenter.shared

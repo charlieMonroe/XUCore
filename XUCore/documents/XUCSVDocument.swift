@@ -319,7 +319,7 @@ public final class XUCSVDocument {
 				}
 				
 				// Unknown value kind.
-				XUThrowAbstractException()
+				XUFatalError()
 			}).joined(separator: String(_columnSeparator))
 		}).joined(separator: "\n")
 		
