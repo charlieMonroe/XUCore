@@ -481,6 +481,7 @@ public extension String {
 	public var encodingIllegalURLCharacters: String {
 		var characterSet = CharacterSet.urlPathAllowed
 		characterSet.formUnion(CharacterSet.urlQueryAllowed)
+		characterSet.remove(charactersIn: "/") // We need / to become %2F
 		
 		return self.addingPercentEncoding(withAllowedCharacters: characterSet) ?? self
 	}
@@ -561,11 +562,12 @@ public extension String {
 		let variablePairs = self.allVariablePairs(forRegex: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+|)(&|$)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
-			guard let
-			decodedKey = key.removingPercentEncoding,
-				let decodedValue = value.removingPercentEncoding else {
-					dict[key] = value
-					continue
+			guard
+				let decodedKey = key.removingPercentEncoding,
+				let decodedValue = value.removingPercentEncoding
+			else {
+				dict[key] = value
+				continue
 			}
 
 			dict[decodedKey] = decodedValue

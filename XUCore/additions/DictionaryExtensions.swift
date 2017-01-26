@@ -212,11 +212,10 @@ public extension Dictionary {
 	public var urlQueryString: String {
 		var keyValuePairs: [String] = []
 		for (key, value) in self {
-			let charSet = CharacterSet.urlQueryAllowed
-			let stringKey = (key as? String) ?? "INVALID KEY"
-			let encodedKey = stringKey.addingPercentEncoding(withAllowedCharacters: charSet) ?? ""
-			let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE"
-			let encodedValue = valueObject.description.addingPercentEncoding(withAllowedCharacters: charSet) ?? ""
+			let stringKey = (key as? String) ?? "INVALID KEY-\(key)"
+			let encodedKey = stringKey.encodingIllegalURLCharacters
+			let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE-\(value)"
+			let encodedValue = valueObject.description.encodingIllegalURLCharacters
 			
 			keyValuePairs.append("\(encodedKey)=\(encodedValue)")
 		}

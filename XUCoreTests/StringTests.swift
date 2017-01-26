@@ -24,6 +24,11 @@ class StringTests: XCTestCase {
 		XCTAssert(queryDict3["a"] == "b" && queryDict3["c"] == "")
 	}
 	
+	func testEncodingIllegalURLCharacters() {
+		let token = "gKkI/pXui2dhd+bJUmfC4He0TruYdyBM1qyiDkQAAAABAAAAAFiJ1yZyYXcAAAAA"
+		XCTAssert(token.encodingIllegalURLCharacters == "gKkI%2FpXui2dhd+bJUmfC4He0TruYdyBM1qyiDkQAAAABAAAAAFiJ1yZyYXcAAAAA", token.encodingIllegalURLCharacters)
+	}
+	
 	func testUTF8StringToData() {
 		let utf8String = "ěščřžýáíé"
 		XCTAssert(utf8String.data(using: .utf8) == utf8String.utf8Data)
