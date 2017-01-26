@@ -157,20 +157,19 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			XULog("No saved in-app purchases data")
 		}
 		
-		if NSApp == nil {
-			#if os(iOS)
-				let notificationName = UIApplicationDidFinishLaunchingNotification
-			#else
-				let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
-			#endif
-
-			NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager._innerInit), name: notificationName, object: nil)
-		} else {
+		#if os(iOS)
 			self._innerInit()
-		}
+		#else
+			if NSApp == nil {
+				let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
+				NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager._innerInit), name: notificationName, object: nil)
+			} else {
+				self._innerInit()
+			}
+		#endif
 		
 		#if os(iOS)
-			let notificationName = UIApplicationWillTerminateNotification
+			let notificationName = NSNotification.Name.UIApplicationWillTerminate
 		#else
 			let notificationName = NSNotification.Name.NSApplicationWillTerminate
 		#endif

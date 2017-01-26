@@ -321,6 +321,8 @@
 		07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */; };
 		07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
 		07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
+		07B32BF01E3A173B0003BC9E /* __XUInAppPurchaseManagerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B32BF11E3A17440003BC9E /* __XUInAppPurchaseManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */; };
 		07B4D0F11DAFA9AF00DE65E7 /* XUSearchFieldWithResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B4D0F01DAFA9AF00DE65E7 /* XUSearchFieldWithResults.swift */; };
 		07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
 		07B821131C8639610079868F /* CGGraphicsAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B821111C86395B0079868F /* CGGraphicsAdditions.swift */; };
@@ -1281,6 +1283,7 @@
 				073E6ADA1BE1F86D00706283 /* prog.h in Headers */,
 				077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
+				07B32BF01E3A173B0003BC9E /* __XUInAppPurchaseManagerHelper.h in Headers */,
 				073E6B1A1BE1F86D00706283 /* test.h in Headers */,
 				073E6B221BE1F86D00706283 /* util.h in Headers */,
 				073E6B021BE1F86D00706283 /* logging.h in Headers */,
@@ -1751,6 +1754,7 @@
 				07E38A311C06132100AE6EAB /* UIAlertControllerAdditions.swift in Sources */,
 				073391AF1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */,
 				073E6AEC1BE1F86D00706283 /* tostring.cc in Sources */,
+				07B32BF11E3A17440003BC9E /* __XUInAppPurchaseManagerHelper.m in Sources */,
 				07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

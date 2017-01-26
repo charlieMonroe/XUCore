@@ -27,7 +27,7 @@ public extension UIColor {
 		
 		self.set()
 		
-		ctx.addRoundedRect(dstRect, withCornerRadius: radius)
+		ctx.addRoundedRect(in: dstRect, withCornerRadius: radius)
 		ctx.fillPath()
 		
 		UIColor.white.set()
