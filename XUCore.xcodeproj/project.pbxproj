@@ -183,6 +183,8 @@
 		073E6B501BE1FE0A00706283 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */; };
 		073E6B521BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
 		073E6B531BE2026600706283 /* XULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6B511BE2026600706283 /* XULog.swift */; };
+		074228771E3CE296003A485A /* XUPointerEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074228761E3CE296003A485A /* XUPointerEquality.swift */; };
+		074228781E3CE296003A485A /* XUPointerEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074228761E3CE296003A485A /* XUPointerEquality.swift */; };
 		0742EFFE1D807D7800A3CE16 /* XUMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */; };
 		074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */; };
 		074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446AD1C529AB60026F5DD /* XUSystemNotification.swift */; };
@@ -487,6 +489,7 @@
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
 		074147A01CD72649007482D5 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		074228761E3CE296003A485A /* XUPointerEquality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPointerEquality.swift; sourceTree = "<group>"; };
 		0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUMenuItem.swift; path = util/XUMenuItem.swift; sourceTree = "<group>"; };
 		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
 		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1093,6 +1096,7 @@
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
 				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
+				074228761E3CE296003A485A /* XUPointerEquality.swift */,
 				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
 				07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
@@ -1582,6 +1586,7 @@
 				075DC7781CF069470043EBD0 /* XUManagedDataContext.swift in Sources */,
 				075DC77D1CF069CF0043EBD0 /* XUSyncChange.swift in Sources */,
 				0784480B1D12A4C000E8467B /* OptionalAdditions.swift in Sources */,
+				074228771E3CE296003A485A /* XUPointerEquality.swift in Sources */,
 				07758A2F1BEFC640004B29A8 /* NSToolbarAdditions.swift in Sources */,
 				0779E1701BF07E3B00832858 /* XUApplication.swift in Sources */,
 				0779E1551BEE5E2800832858 /* NSViewLocalizationSupport.swift in Sources */,
@@ -1692,6 +1697,7 @@
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
 				07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */,
 				070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */,
+				074228781E3CE296003A485A /* XUPointerEquality.swift in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
 				0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */,

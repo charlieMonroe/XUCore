@@ -661,13 +661,13 @@ open class XUDownloadCenter {
 	
 	/// Attempts to parse `data` as JSON.
 	public func jsonObject(from data: Data) -> Any? {
-		let obj = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-		if obj == nil {
+		guard let obj = try? JSONSerialization.jsonObject(with: data, options: []) else {
 			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
 			}
+			return nil
 		}
 		
 		return obj
