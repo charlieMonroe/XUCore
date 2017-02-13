@@ -351,6 +351,7 @@
 		07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */; };
 		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 		07C4B8F21C2AE6240058EE6A /* XULineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4B8F11C2AE6240058EE6A /* XULineView.swift */; };
+		07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D263781E4AFDB5009BAFAA /* URLTests.swift */; };
 		07D3330E1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
 		07D3330F1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
 		07DA882C1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
@@ -488,6 +489,7 @@
 		073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		073E6B511BE2026600706283 /* XULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULog.swift; sourceTree = "<group>"; };
+		073F582A1E44D427005E4543 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		074147A01CD72649007482D5 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		074228761E3CE296003A485A /* XUPointerEquality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPointerEquality.swift; sourceTree = "<group>"; };
 		0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUMenuItem.swift; path = util/XUMenuItem.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUArrayNotEmptyTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
 		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07D263781E4AFDB5009BAFAA /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOAuth2.swift; path = oauth2/XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
@@ -942,6 +945,7 @@
 				076ACE761E37D4B8001BA622 /* XUCoreTests.swift */,
 				076ACE811E37D707001BA622 /* DataTests.swift */,
 				076ACE7F1E37D6D9001BA622 /* StringTests.swift */,
+				07D263781E4AFDB5009BAFAA /* URLTests.swift */,
 				076ACE781E37D4B8001BA622 /* Info.plist */,
 			);
 			path = XUCoreTests;
@@ -1410,6 +1414,7 @@
 				de,
 				it,
 				nb,
+				da,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1465,6 +1470,7 @@
 				076ACE801E37D6D9001BA622 /* StringTests.swift in Sources */,
 				076ACE821E37D707001BA622 /* DataTests.swift in Sources */,
 				076ACE771E37D4B8001BA622 /* XUCoreTests.swift in Sources */,
+				07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,6 +1794,7 @@
 				07241D2D1D17B16700206E27 /* de */,
 				07EAAE781DA12852006C98A5 /* it */,
 				0765CC951DDB3C43001D8603 /* nb */,
+				073F582A1E44D427005E4543 /* da */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
