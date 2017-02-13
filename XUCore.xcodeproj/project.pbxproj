@@ -318,6 +318,8 @@
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07AAF7201DE58AF6001962DB /* XUCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */; };
+		07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
+		07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
 		07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		07AEC1111D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */; };
 		07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */; };
@@ -354,6 +356,8 @@
 		07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D263781E4AFDB5009BAFAA /* URLTests.swift */; };
 		07D3330E1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
 		07D3330F1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
+		07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
+		07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07DA882C1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
 		07DA882D1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
 		07DA88301D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */; };
@@ -591,6 +595,7 @@
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
 		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
+		07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializable.swift; path = deserialization/XUJSONDeserializable.swift; sourceTree = "<group>"; };
 		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
 		07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerAdditions.swift; sourceTree = "<group>"; };
 		07B211001D4903DC005203F0 /* XUWeakArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUWeakArray.swift; sourceTree = "<group>"; };
@@ -616,6 +621,7 @@
 		07C4B8F11C2AE6240058EE6A /* XULineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XULineView.swift; path = src/ui/views/XULineView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07D263781E4AFDB5009BAFAA /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
+		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializationLog.swift; path = deserialization/XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOAuth2.swift; path = oauth2/XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
 		07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUAuthorizationWebViewWindowController.xib; path = oauth2/XUAuthorizationWebViewWindowController.xib; sourceTree = "<group>"; };
@@ -1219,8 +1225,10 @@
 		07FD4BD21C7CDF6700559CF0 /* deserialization */ = {
 			isa = PBXGroup;
 			children = (
-				07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */,
+				07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */,
+				07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */,
 				07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */,
+				07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */,
 			);
 			name = deserialization;
 			sourceTree = "<group>";
@@ -1485,6 +1493,7 @@
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
+				07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
 				077DE4901D61BDA600FD6639 /* NSMenu+Additions.swift in Sources */,
 				079E24AA1C048BA9002E159A /* XUHorizontallyCenteredTextField.swift in Sources */,
 				075DC78F1CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,
@@ -1638,6 +1647,7 @@
 				073B7ECA1C49371900020B3A /* XUClickThroughTextField.swift in Sources */,
 				0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */,
 				07E35B951C02384C007D31BE /* XUTrial.swift in Sources */,
+				07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */,
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
@@ -1701,6 +1711,7 @@
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
+				07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
 				07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */,
 				070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */,
 				074228781E3CE296003A485A /* XUPointerEquality.swift in Sources */,
@@ -1715,6 +1726,7 @@
 				073E6A6F1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				07FD4BE11C7DC2E900559CF0 /* DateFormatterISO8601.swift in Sources */,
 				073E6B3E1BE1FA2700706283 /* URLExtensions.swift in Sources */,
+				07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */,
 				073E6AE41BE1F86D00706283 /* set.cc in Sources */,
 				073E6B241BE1F86D00706283 /* valgrind.cc in Sources */,
 				073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
