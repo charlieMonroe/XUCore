@@ -110,20 +110,7 @@ public struct XUMonth : OptionSet {
 
 
 public extension Date {
-	
-	/// Returns date with day/month/year/hour/minute/second values, if valid.
-	@available(*, deprecated, message: "Use the initializer.")
-	public static func date(withDay day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, andSecond second: Int = 0) -> Date? {
-		var components = DateComponents()
-		components.day = day
-		components.month = month
-		components.year = year
-		components.hour = hour
-		components.minute = minute
-		components.second = second
-		return Calendar.current.date(from: components)
-	}
-	
+		
 	/// Returns today at 00:00:00.
 	public static var today: Date {
 		if __today == nil || __validUntil <= Date.timeIntervalSinceReferenceDate {

@@ -23,9 +23,6 @@ public func + (lhs: inout String, rhs: Character) {
 }
 
 
-@available(*, deprecated, renamed: "XUEmailFormatValidity")
-public typealias XUEmailValidationFormat = XUEmailFormatValidity
-
 public enum XUEmailFormatValidity {
 	
 	/// Correct format.
@@ -69,12 +66,6 @@ public extension String.Encoding {
 
 
 public extension String {
-
-	/// Creates a new UUID string.
-	@available(*, deprecated, message: "This was useful in ObjC and when there was no NSUUID. Use NSUUID().uuidString instead.")
-	public static var uuidString: String {
-		return NSUUID().uuidString
-	}
 	
 	
 	/// Decodes `self` as base64-encoded `NSData` and tries to create a string
@@ -184,11 +175,6 @@ public extension String {
 		return result
 	}
 
-	@available(*, deprecated, renamed: "htmlEscapedString")
-	public var HTMLEscapedString: String {
-		return self.htmlEscapedString
-	}
-	
 	/// Replaces & -> &amp; etc. Unlike htmlUnescapedString, this is not fully
 	/// implemented and will pretty much just substitute several major entities:
 	/// &, ", ', <, >.
@@ -203,11 +189,6 @@ public extension String {
 		return string
 	}
 
-	@available(*, deprecated, renamed: "htmlEscapedString")
-	public var HTMLUnescapedString: String {
-		return self.htmlUnescapedString
-	}
-	
 	/// Replaces &amp; -> & etc. Unlike htmlEscapedString, this is implemented to
 	/// greated extent. It will replace some known entities (&nbsp;, &quot;, ...)
 	/// but it will also find occurrences of entities such as &#32;, etc.
@@ -281,11 +262,6 @@ public extension String {
 		return nil
 	}
 
-	@available(*, deprecated, renamed: "jsonDecodedString")
-	public var JSDecodedString: String {
-		return self.jsonDecodedString
-	}
-	
 	/// This method takes the string and replaces \r, \n, \t, \u3245, etc. with
 	/// proper characters. This encoding is mostly in JSON and JavaScript.
 	public var jsonDecodedString: String {
@@ -406,17 +382,6 @@ public extension String {
 	/// Returns a reverse string.
 	public func reversed() -> String {
 		return String(self.characters.reversed())
-	}
-	
-	/// Returns second character, or \0 is the string has only one character (or
-	/// is empty).
-	@available(*, deprecated, message: "Use the characters view.")
-	public var secondCharacter: Character {
-		if self.characters.count < 2 {
-			return Character(UInt8(0))
-		}
-		
-		return self.characters[self.characters.index(self.startIndex, offsetBy: 1)]
 	}
 	
 	#if os(iOS)
@@ -585,14 +550,7 @@ public extension String {
 			return Data(buffer: ptr).trimmingTrailingZeros
 		}
 	}
-	
-	/// Tries several heuristics to see if the email address is valid, or even 
-	/// phony.
-	@available(*, deprecated, message: "Use the initializer on XUEmailFormatValidity")
-	public func validateEmailAddress() -> XUEmailValidationFormat {
-		return XUEmailValidationFormat(email: self)
-	}
-	
+		
 }
 
 /// Numeric methods

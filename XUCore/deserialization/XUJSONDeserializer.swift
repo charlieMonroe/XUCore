@@ -108,9 +108,6 @@ public final class XUJSONDeserializer {
 	/// performance greatly as well as keeps references to the deserialized objects.
 	public static var deserializationLoggingEnabled: Bool = XUAppSetup.isRunningInDebugMode
 
-	/// Exception catcher.
-	fileprivate let _exceptionHandler = XUExceptionCatcher()
-
 	/// Deserialization log. This will contain all the warnings and errors. Only
 	/// populated if deserializationLoggingEnabled is true. Remember that the
 	/// deserializer is provided on per-thread basis, so each time the thread dies,
@@ -233,7 +230,7 @@ public final class XUJSONDeserializer {
 		}
 		
 		var response: DeserializationPropertyResult = .deserializedValue(property: property, value: nil, error: .error)
-		_exceptionHandler.perform({
+		XUExceptionCatcher.perform({
 			var dontSet: Bool = false
 			let localResponse = self._transformedValue(dictionary[key]!, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSet)
 			if dontSet {

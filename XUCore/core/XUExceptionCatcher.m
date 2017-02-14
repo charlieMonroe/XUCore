@@ -13,30 +13,21 @@
 -(instancetype)init {
 	return [super init];
 }
--(instancetype)initWithCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock{
-	if ((self = [super init]) != nil){
-		_catchHandler = catchHandler;
-		_finallyHandler = finallyBlock;
-	}
-	return self;
-}
--(void)performBlock:(void (^)(void))block{
+
++(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock {
 	@try {
 		block();
-	}@catch (NSException *exception) {
-		_catchHandler(exception);
-	}@finally {
-		_finallyHandler();
-	}
-}
--(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock {
-	@try {
-		block();
-	}@catch (NSException *exception) {
+	} @catch (NSException *exception) {
 		catchHandler(exception);
-	}@finally {
+	} @finally {
 		finallyBlock();
 	}
+}
+
++(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler {
+	[self performBlock:block withCatchHandler:catchHandler andFinallyBlock:^{
+		// No-op
+	}];
 }
 
 @end

@@ -96,21 +96,7 @@ public extension NSAlert {
 	public func addOKButton() {
 		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 	}
-	
-	/// Begins the alert as sheet from window with a text field as accessory view,
-	/// containing initialValue. If secure is true, the text field is secure.
-	@available(*, deprecated, message: "Use the variant with StringModalResponse instead.")
-	public func beginSheetModal(withTextField initialValue: String, secure: Bool = false, forWindow window: NSWindow, completionHandler handler: @escaping (NSModalResponse, String?) -> Void) {
-		self.beginSheetModal(withTextField: initialValue, isSecure: secure, forWindow: window, completionHandler: { (response) in
-			if response.isCancelled {
-				handler(response.modalResponse, nil)
-			} else {
-				handler(response.modalResponse, response.stringValue)
-			}
-		})
 		
-	}
-	
 	/// Begins the alert as sheet from window with a text field as accessory view,
 	/// containing initialValue. If isSecure is true, the text field is secure.
 	/// 

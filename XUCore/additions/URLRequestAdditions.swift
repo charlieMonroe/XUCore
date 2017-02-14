@@ -12,16 +12,7 @@ import Foundation
 public extension URLRequest {
 	
 	public struct ContentType {
-		
-		@available(*, deprecated, renamed: "json")
-		public static let JSON = ContentType.json
-		
-		@available(*, deprecated, renamed: "xml")
-		public static let XML = ContentType.xml
-		
-		@available(*, deprecated, renamed: "wwwForm")
-		public static let WWWForm = ContentType.wwwForm
-		
+				
 		/// Content-Type: application/json
 		public static let json = "application/json;charset=UTF-8"
 		

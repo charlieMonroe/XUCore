@@ -36,12 +36,6 @@ public extension Dictionary {
 		return self.firstNonNilValue(forKeyPaths: keyPath)
 	}
 	
-	/// A convenience method for retrieving an array of dictionaries
-	@available(*, deprecated, message: "Use .firstNonNilValue(forKeyPaths:) instead.")
-	public func arrayOfDictionaries(forKeyPaths keyPaths: String...) -> [XUJSONDictionary]? {
-		return self.firstNonNilValue(forKeyPaths: keyPaths)
-	}
-	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
 	/// If the value is NSNumber, boolean value of it is returned. False is
 	/// returned otherwise.
@@ -78,18 +72,7 @@ public extension Dictionary {
 	public func dictionary(forKeyPath keyPath: String) -> XUJSONDictionary? {
 		return self.value(forKeyPath: keyPath) as? XUJSONDictionary
 	}
-	
-	/// A convenience method for retrieving dictionaries.
-	@available(*, deprecated, message: "Use .firstNonNilValue(forKeyPaths:) instead.")
-	public func dictionary(forKeyPaths keyPaths: String...) -> XUJSONDictionary? {
-		for keyPath in keyPaths {
-			if let d = self.dictionary(forKeyPath: keyPath) {
-				return d
-			}
-		}
-		return nil
-	}
-	
+		
 	/// In a lot of cases, currently we need to get an int from whatever is under
 	/// the key in the dictionary. Unfortunately, getting an optional Double? sucks
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply

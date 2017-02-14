@@ -85,7 +85,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		XULog("\(_draggingSession!)")
 	}
 	
-	@available(*, deprecated)
+	// This is required for NSPasteboardItemDataProvider.
 	public func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
 		switch type {
 		case NSPasteboardTypeTIFF:
@@ -93,14 +93,12 @@ extension NSColor: NSPasteboardItemDataProvider {
 			break
 		case NSPasteboardTypePNG:
 			pasteboard?.setData(self._imagePreview.pngRepresentation as Data?, forType: type)
-			break
 		case NSPasteboardTypeColor: fallthrough
 		case NSColorPboardType:
 			let data = NSKeyedArchiver.archivedData(withRootObject: self)
 			pasteboard?.setData(data, forType: NSColorPboardType)
 			pasteboard?.setData(data, forType: NSPasteboardTypeColor)
 			pasteboard?.writeObjects([self])
-			break
 		default:
 			break
 		}

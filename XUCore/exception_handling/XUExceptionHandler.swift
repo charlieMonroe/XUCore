@@ -116,12 +116,11 @@ public final class XUExceptionHandler: NSObject {
 		var stackTraceString = ""
 		
 		if let provider = XUAppSetup.applicationStateProvider {
-			let exceptionCatcher = XUExceptionCatcher()
-			exceptionCatcher.perform({ 
+			XUExceptionCatcher.perform({
 				stackTraceString += provider.provideApplicationState() + "\n\n"
 			}, withCatchHandler: { (exception) in
 				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
-			}, andFinallyBlock: {})
+			})
 		}
 		
 		stackTraceString += exception.description + "\n\n"

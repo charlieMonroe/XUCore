@@ -32,17 +32,15 @@ extension NamedLock {
 	public func perform(locked block: (Void) -> Void) {
 		self.lock()
 		
-		let handler = XUExceptionCatcher(catchHandler: { (exception) -> Void in
+		XUExceptionCatcher.perform({ 
+			block()
+			self.unlock()
+		}, withCatchHandler: { (exception) -> Void in
 			// We only unlock self if an exception was raised. If no exception
 			// occurrs, the lock is unlocked within performing the block.
 			self.unlock()
 			exception.raise() // Rethrow the exception
-		}) { /* No-op finally. */ }
-		
-		handler.perform { () -> Void in
-			block()
-			self.unlock()
-		}
+		})
 	}
 	
 }

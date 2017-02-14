@@ -94,31 +94,6 @@ public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
 
 public extension NSDecimalNumber {
 	
-	@available(*, deprecated, message: "Use the initializer.")
-	public class func decimalNumber(withDouble value: Double) -> NSDecimalNumber {
-		return self.decimalNumber(withNumber: value as NSNumber)
-	}
-	
-	@available(*, deprecated, message: "Use the initializer.")
-	public class func decimalNumber(withNumber number: NSNumber?) -> NSDecimalNumber {
-		if number == nil {
-			return NSDecimalNumber.zero
-		}
-		
-		if let decimal = number as? NSDecimalNumber {
-			return decimal
-		}
-		
-		return NSDecimalNumber(decimal: number!.decimalValue)
-	}
-	
-	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
-	/// NSDecimalNumber, (NS)String and NSNumber.
-	@available(*, deprecated, message: "Use the initializer.")
-	public class func decimalNumber(withValue value: Any?) -> NSDecimalNumber {
-		return NSDecimalNumber(value: value)
-	}
-	
 	/// Creates NSDecimalNumber from value. Accepted values are nil (returns 0),
 	/// NSDecimalNumber, (NS)String and NSNumber.
 	convenience init(value: Any?) {
@@ -199,11 +174,6 @@ public extension NSDecimalNumber {
 	public var isZero: Bool {
 		return self.doubleValue == 0.0
 	}
-	
-	@available(*, deprecated, renamed: "integralValue")
-	public var integral: NSDecimalNumber {
-		return self.integralValue
-	}
-	
+		
 }
 

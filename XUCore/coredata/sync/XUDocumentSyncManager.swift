@@ -273,13 +273,11 @@ open class XUDocumentSyncManager {
 	
 			obj = cl.init(entity: entityDescription, insertInto: self.managedObjectContext, asResultOfSyncAction: true)
 			
-			let exceptionHandler = XUExceptionCatcher()
-			
 			let attributes = change.attributes
 			for (key, value) in attributes {
 				obj.isApplyingSyncChange = true
 				
-				exceptionHandler.perform({ 
+				XUExceptionCatcher.perform({ 
 					obj.setValue(value, forKey: key)
 				}, withCatchHandler: { (exception) in
 					XULog("Failed setting \(value) for key \(key) on \(change.insertedEntityName) - \(exception).")

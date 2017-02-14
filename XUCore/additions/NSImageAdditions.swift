@@ -113,25 +113,7 @@ public extension NSImage {
 			self.unlockFocus()
 		}
 	}
-	
-	@available(*, deprecated, message: "Use .thumbnailImage on the URL.")
-	public convenience init?(thumbnailOfFileAt fileURL: URL, withSize size: CGSize) {
-		let dict: [AnyHashable: Any] = [
-			kCGImageSourceCreateThumbnailFromImageIfAbsent as AnyHashable: kCFBooleanTrue,
-			kCGImageSourceThumbnailMaxPixelSize as AnyHashable: size.height
-		]
 		
-		guard let source = CGImageSourceCreateWithURL(fileURL as CFURL, dict as CFDictionary?) else {
-			return nil
-		}
-		
-		guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, dict as CFDictionary?) else {
-			return nil
-		}
-		
-		self.init(cgImage: image, asBitmapImageRep: true)
-	}
-	
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
