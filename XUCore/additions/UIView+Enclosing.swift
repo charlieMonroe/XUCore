@@ -32,6 +32,7 @@ public extension UIView {
 	public var enclosingTableViewCell: UITableViewCell? {
 		return self._enclosingView()
 	}
+
 	
 	/// Returns the first responder, if there is one in the subview hierarchy.
 	public var firstResponder: UIView? {
@@ -46,6 +47,20 @@ public extension UIView {
 		}
 		
 		return nil
+	}
+	
+	/// Determines whether the view is within the subview hierarchy of `view`.
+	public func isChild(of view: UIView) -> Bool {
+		var superview = self.superview
+		while superview != nil {
+			if superview === view {
+				return true
+			}
+			
+			superview = superview?.superview
+		}
+		
+		return false
 	}
 	
 }
