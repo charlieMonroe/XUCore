@@ -156,7 +156,7 @@ public final class XUJSONDeserializer {
 		return false
 	}
 	
-	fileprivate func _property(forObject object: XUJSONDeserializable, andKey key: String) -> XUObjCProperty? {
+	private func _property(forObject object: XUJSONDeserializable, andKey key: String) -> XUObjCProperty? {
 		let classIdentifier = ObjectIdentifier(type(of: object))
 
 		_cacheLock.lock()
@@ -190,7 +190,7 @@ public final class XUJSONDeserializer {
 		return nil
 	}
 
-	fileprivate func _deserialize(_ object: XUJSONDeserializable, from dictionary: XUJSONDictionary, underKey key: String) -> DeserializationPropertyResult {
+	private func _deserialize(_ object: XUJSONDeserializable, from dictionary: XUJSONDictionary, underKey key: String) -> DeserializationPropertyResult {
 		if object.ignoreKey?(key) ?? false {
 			return .ignored
 		}
@@ -251,7 +251,7 @@ public final class XUJSONDeserializer {
 		return response
 	}
 	
-	fileprivate func _fetchOrCreateObject(from value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty) -> (value: Any?, error: DeserializationError) {
+	private func _fetchOrCreateObject(from value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty) -> (value: Any?, error: DeserializationError) {
 		
 		/// Fetching the object.
 		
@@ -276,7 +276,7 @@ public final class XUJSONDeserializer {
 		return (obj, .none)
 	}
 	
-	fileprivate func _transformedArray(_ value: [Any], forKey key: String, onObject object: XUJSONDeserializable, toArrayLikeProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
+	private func _transformedArray(_ value: [Any], forKey key: String, onObject object: XUJSONDeserializable, toArrayLikeProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
 		let transformedArrayResult = self._transformedArray(value, forKey: key, onObject: object, toProperty: property, dontSetValue: &dontSetValue)
 		if dontSetValue { // A custom deserialization took place
 			return (nil, .none)
@@ -302,7 +302,7 @@ public final class XUJSONDeserializer {
 		return (result, transformedArrayResult.error) // Pass the warning
 	}
 	
-	fileprivate func _transformedArray(_ value: [Any], forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: [Any]?, error: DeserializationError) {
+	private func _transformedArray(_ value: [Any], forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: [Any]?, error: DeserializationError) {
 		if value.count == 0 {
 			return ([], .none)
 		}
@@ -352,7 +352,7 @@ public final class XUJSONDeserializer {
 		return (nil, .error)
 	}
 	
-	fileprivate func _transformedDictionary(_ value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
+	private func _transformedDictionary(_ value: XUJSONDictionary, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
 		if property.propertyClass!.isSubclass(of: NSDictionary.self) {
 			// Keep it the dictionary
 			return (value, .none)
@@ -365,7 +365,7 @@ public final class XUJSONDeserializer {
 		return response
 	}
 	
-	fileprivate func _transformedScalarValue(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
+	private func _transformedScalarValue(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
 		// We need a NSNumber
 		if value is NSNull {
 			return (value: nil, error: .none)
@@ -409,7 +409,7 @@ public final class XUJSONDeserializer {
 		return (value: doubleValue, error: .none)
 	}
 	
-	fileprivate func _transformValueToDate(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
+	private func _transformValueToDate(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
 		if value is Date {
 			// Already a date
 			return (value, .none)
@@ -439,7 +439,7 @@ public final class XUJSONDeserializer {
 		return (date, .none)
 	}
 	
-	fileprivate func _transformValueToNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
+	private func _transformValueToNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
 		/// Value isn't NSNumber, since that would have already been handled in 
 		/// _transformedValue(...).
 		guard let str = value as? String else {
@@ -456,7 +456,7 @@ public final class XUJSONDeserializer {
 		return (value: doubleValue, error: .none)
 	}
 	
-	fileprivate func _transformValueToDecimalNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
+	private func _transformValueToDecimalNumber(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
 		if let number = value as? NSNumber {
 			return (NSDecimalNumber(number: number), .none)
 		}
@@ -469,7 +469,7 @@ public final class XUJSONDeserializer {
 		return (value: nil, error: .error)
 	}
 	
-	fileprivate func _transformedValue(_ value: Any, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
+	private func _transformedValue(_ value: Any, forKey key: String, onObject object: XUJSONDeserializable, toProperty property: XUObjCProperty, dontSetValue: inout Bool) -> (value: Any?, error: DeserializationError) {
 		if let dictionary = value as? XUJSONDictionary {
 			if object.performCustomDeserialization?(ofObject: dictionary, forKey: key) ?? false {
 				dontSetValue = true
