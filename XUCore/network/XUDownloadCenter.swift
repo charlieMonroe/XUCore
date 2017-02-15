@@ -8,7 +8,10 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "URLRequest.UserAgent.default")
 public let XUDownloadCenterDefaultUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50"
+
+@available(*, deprecated, renamed: "URLRequest.UserAgent.defaultMobile")
 public let XUDownloadCenterMobileUserAgent = "Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B410 Safari/600.1.4"
 
 public enum XUDownloadCenterError {
@@ -47,7 +50,7 @@ public protocol XUDownloadCenterOwner: AnyObject {
 	func downloadCenter(_ downloadCenter: XUDownloadCenter, didEncounterError error: XUDownloadCenterError)
 	
 	/// User agent used for downloading websites, XML documents, JSONs.
-	var infoPageUserAgent: String { get }
+	var infoPageUserAgent: URLRequest.UserAgent { get }
 	
 	///  Name of the owner. Used for logging, etc.
 	var name: String { get }
@@ -72,8 +75,8 @@ public extension XUDownloadCenterOwner {
 	}
 	
 	/// User agent used for downloading websites, XML documents, JSONs.
-	public var infoPageUserAgent: String {
-		return XUDownloadCenterDefaultUserAgent
+	public var infoPageUserAgent: URLRequest.UserAgent {
+		return .default
 	}
 	
 	/// Referer URL.

@@ -24,6 +24,37 @@ public extension URLRequest {
 		
 	}
 	
+	/// Structure representing a User Agent.
+	public struct UserAgent: RawRepresentable {
+		
+		/// Default user agent.
+		public static let `default`: UserAgent = macOS.Safari10
+		
+		/// Default user agent for mobile.
+		public static let defaultMobile: UserAgent = iOS.Safari8
+		
+		/// Contains macOS user agents.
+		public struct macOS {
+			/// Safari on macOS 10.12 (10.0)
+			public static let Safari10: UserAgent = UserAgent(rawValue: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50")
+		}
+		
+		/// Contains iOS user agents.
+		public struct iOS {
+			/// Safari on iOS 8.1
+			public static let Safari8: UserAgent = UserAgent(rawValue: "Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B410 Safari/600.1.4")
+		}
+		
+		
+		/// Raw value of the user agent.
+		public var rawValue: String
+		
+		/// Initializes with a raw value.
+		public init(rawValue: String) {
+			self.rawValue = rawValue
+		}
+	}
+	
 }
 
 
@@ -56,19 +87,19 @@ public extension URLRequest {
 	
 	public var acceptType: String? {
 		get {
-			return self.value(forHTTPHeaderField: "Accept")
+			return self["Accept"]
 		}
 		set {
-			self.setValue(newValue, forHTTPHeaderField: "Accept")
+			self["Accept"] = newValue
 		}
 	}
 	
 	public var contentType: String? {
 		get {
-			return self.value(forHTTPHeaderField: "Content-Type")
+			return self["Content-Type"]
 		}
 		set {
-			self.setValue(newValue, forHTTPHeaderField: "Content-Type")
+			self["Content-Type"] = newValue
 		}
 	}
 	
@@ -83,10 +114,10 @@ public extension URLRequest {
 	
 	public var referer: String? {
 		get {
-			return self.value(forHTTPHeaderField: "Referer")
+			return self["Referer"]
 		}
 		set {
-			self.setValue(newValue, forHTTPHeaderField: "Referer")
+			self["Referer"] = newValue
 		}
 	}
 	
@@ -115,12 +146,18 @@ public extension URLRequest {
 		}
 	}
 	
-	public var userAgent: String? {
+
+	/// User agent.
+	public var userAgent: URLRequest.UserAgent? {
 		get {
-			return self.value(forHTTPHeaderField: "User-Agent")
+			guard let userAgent = self.value(forHTTPHeaderField: "User-Agent") else {
+				return nil
+			}
+			
+			return URLRequest.UserAgent(rawValue: userAgent)
 		}
 		set {
-			self.setValue(newValue, forHTTPHeaderField: "User-Agent")
+			self["User-Agent"] = newValue?.rawValue
 		}
 	}
 }

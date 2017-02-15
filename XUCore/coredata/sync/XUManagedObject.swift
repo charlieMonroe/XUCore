@@ -617,5 +617,5 @@ open class XUManagedObject: NSManagedObject {
 
 /// This is just a compatibility class.
 @available(*, deprecated)
-open class TICDSSynchronizedManagedObject: XUManagedObject { }
+public final class TICDSSynchronizedManagedObject: XUManagedObject { }
 
