@@ -341,8 +341,8 @@ open class XUDocumentSyncManager {
 		}
 	
 		// Create a change set.
-		_ = XUSyncChangeSet(managedObjectContext: self.syncManagedObjectContext, andChanges: changes)
-		XULog("\(self) - created change set with \(changes.count) changes")
+		let set = XUSyncChangeSet(managedObjectContext: self.syncManagedObjectContext, andChanges: changes)
+		XULog("\(self) - created change set \(set.timestamp) with \(changes.count) changes")
 	
 		self._performSyncCleanup()
 	
@@ -526,8 +526,6 @@ open class XUDocumentSyncManager {
 			])
 		}
 	
-		
-		
 		_ = try? self.applicationSyncManager.startDownloading(itemAt: fileURL)
 	
 		let options = [

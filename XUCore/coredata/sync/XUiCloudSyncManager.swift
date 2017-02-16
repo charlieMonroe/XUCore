@@ -24,8 +24,8 @@ private func _rootURLForManager(named name: String) -> URL? {
 		return nil
 	}
 	
-	_cachedUbiquityURL = ubiquityURL
-	return ubiquityURL.appendingPathComponent(name)
+	_cachedUbiquityURL = ubiquityURL.appendingPathComponent(name)
+	return _cachedUbiquityURL
 }
 
 /// Manager for syncing via iCloud.
@@ -36,19 +36,20 @@ public final class XUiCloudSyncManager: XUApplicationSyncManager {
 		return _rootURLForManager(named: self.name)
 	}
 	
-	fileprivate func _startDownloadingUbiquitousItem(at URL: URL) {
-		if URL.isDirectory {
-			let contents = FileManager.default.contentsOfDirectory(at: URL)
+	fileprivate func _startDownloadingUbiquitousItem(at url: URL) {
+		if url.isDirectory {
+			let contents = FileManager.default.contentsOfDirectory(at: url)
 			for fileURL in contents {
 				self._startDownloadingUbiquitousItem(at: fileURL)
 			}
 		} else {
-			_ = try? FileManager.default.startDownloadingUbiquitousItem(at: URL)
+			_ = try? FileManager.default.startDownloadingUbiquitousItem(at: url)
 		}
 	}
 	
 	@objc fileprivate func _updateUbiquityFolderURL() {
-		if let ubiquityFolderURL = _rootURLForManager(named: self.name) {
+		if let ubiquityFolderURL = self._rootURL {
+			XULog("Updating sync root folder to \(ubiquityFolderURL)")
 			self.syncRootFolderURL = ubiquityFolderURL
 			self._startDownloadingUbiquitousItem(at: ubiquityFolderURL)
 		}
@@ -56,8 +57,9 @@ public final class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	public init(name: String, andDelegate delegate: XUApplicationSyncManagerDelegate) {
 		/// The first time the iCloud gets set up
-		
 		super.init(name: name, rootFolder: _rootURLForManager(named: name), andDelegate: delegate)
+		
+		XULog("Initialized iCloud sync manager \(self) with name \(name) rooted in \(self.syncRootFolderURL.descriptionWithDefaultValue()).")
 		
 		self._updateUbiquityFolderURL()
 		
