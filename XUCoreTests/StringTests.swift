@@ -29,6 +29,8 @@ class StringTests: XCTestCase {
 		XCTAssert(token.encodingIllegalURLCharacters == "gKkI%2FpXui2dhd+bJUmfC4He0TruYdyBM1qyiDkQAAAABAAAAAFiJ1yZyYXcAAAAA", token.encodingIllegalURLCharacters)
 		
 		XCTAssert("http://www.dilidili.wang/watch3/54476/".encodingIllegalURLCharacters == "http%3A%2F%2Fwww.dilidili.wang%2Fwatch3%2F54476%2F")
+		
+		XCTAssert("serepeticka.&".encodingIllegalURLCharacters == "serepeticka.%26")
 	}
 	
 	func testUTF8StringToData() {

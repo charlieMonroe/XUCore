@@ -446,7 +446,7 @@ public extension String {
 	public var encodingIllegalURLCharacters: String {
 		var characterSet = CharacterSet.urlPathAllowed
 		characterSet.formUnion(CharacterSet.urlQueryAllowed)
-		characterSet.remove(charactersIn: "/:") // We need / to become %2F
+		characterSet.remove(charactersIn: "/:&") // We need / to become %2F
 		
 		return self.addingPercentEncoding(withAllowedCharacters: characterSet) ?? self
 	}
