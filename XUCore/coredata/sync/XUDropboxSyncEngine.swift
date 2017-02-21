@@ -113,7 +113,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 			}
 			
 			let filePath = path + "/" + file.name
-			print("Handling file at " + path + "/" + file.name)
+			XULog("Handling file at " + path + "/" + file.name)
 			
 			if let date = _modificationDates[filePath], file.serverModified.isBefore(date) {
 				/// The dates match
@@ -141,6 +141,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 			XUDropboxSetupFailedUploadsKey: self._failedFileUploads.map({ $0.path }),
 			XUDropboxSetupModificationDatesKey: self._modificationDates
 		] as [String : Any]
+		
 		(dict as NSDictionary).write(to: self._setupURL, atomically: true)
 	}
 	
@@ -149,18 +150,27 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 			return // Already syncing.
 		}
 		
-		self._syncFiles(at: "")
-		
-		/// Try to re-upload failed file uploads
-		for fileURL in _failedFileUploads {
-			self._uploadFile(at: fileURL)
+		/// As we now tend to sleep between requests, we should perform this
+		/// async.
+		XU_PERFORM_BLOCK_ASYNC {
+			self._syncFiles(at: "")
+			
+			/// Try to re-upload failed file uploads
+			for fileURL in self._failedFileUploads {
+				/// Sleep for a bit so that we don't get a too_many_requests error.
+				usleep(500000)
+				
+				self._uploadFile(at: fileURL)
+			}
 		}
 	}
 	
 	fileprivate func _syncFiles(at path: String) {
 		_syncCounter += 1
 		_ = self.client.files.listFolder(path: path).response { (result, error) in
-			self._handleListingResult(at: path, result: result, error: error)
+			XU_PERFORM_BLOCK_ASYNC {
+				self._handleListingResult(at: path, result: result, error: error)
+			}
 		}
 	}
 	

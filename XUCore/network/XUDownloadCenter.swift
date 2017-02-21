@@ -512,6 +512,11 @@ open class XUDownloadCenter {
 		do {
 			let (data, response) = try XUSynchronousDataLoader(request: request as URLRequest, andSession: self.session).loadData()
 			self.lastHTTPURLResponse = response as? HTTPURLResponse
+			
+			if self.logTraffic {
+				XULog("[\(self.owner.name)] - downloaded web site source from \(url!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
+			}
+			
 			return data
 		} catch let error as NSError {
 			self.lastHTTPURLResponse = nil
@@ -565,11 +570,6 @@ open class XUDownloadCenter {
 				XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(url!) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
 			}
 			return nil
-		}
-		
-		
-		if self.logTraffic {
-			XULog("[\(self.owner.name)] - downloaded web site source from \(url!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
 		}
 		
 		if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
