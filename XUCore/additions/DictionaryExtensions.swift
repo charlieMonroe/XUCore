@@ -93,6 +93,30 @@ public extension Dictionary {
 		return 0
 	}
 	
+	/// In a lot of cases, currently we need to get an int from whatever is under
+	/// the key in the dictionary. Unfortunately, getting an optional Double? sucks
+	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
+	/// 0 is fine when the value cannot be determined.
+	public func double(forKeyPath keyPath: String) -> Double {
+		guard let value = self.value(forKeyPath: keyPath) else {
+			return 0.0
+		}
+		
+		if let double = value as? Double {
+			return double
+		}
+		
+		if let numberObj = value as? NSNumber {
+			return numberObj.doubleValue
+		}
+		
+		if let stringObj = value as? String {
+			return stringObj.doubleValue
+		}
+		
+		return 0.0
+	}
+	
 	
 	/// See value(forKeyPath:) - this method attempts to find the first
 	/// non-nil value of T.

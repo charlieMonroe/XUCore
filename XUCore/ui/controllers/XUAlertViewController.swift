@@ -49,7 +49,7 @@ public final class XUAlert {
 
 	/// Presents the alert from controller. Presentation of the alert requires
 	/// a parent controller.
-	public func presentFromController(controller: UIViewController) {
+	public func present(from controller: UIViewController) {
 		_internalController.alert = self
 		controller.present(_internalController, animated: true, completion: nil)
 	}
@@ -83,12 +83,19 @@ private final class _XUAlertView: UIControl {
 
 	fileprivate override func layoutSubviews() {
 		super.layoutSubviews()
-
-		let view = alert.viewController.view
-		view?.bounds.size = alert.viewController.preferredContentSize
-		view?.center = self.bounds.center
-
-		view?.layer.cornerRadius = 3.0
+		
+		let view = alert.viewController.view!
+		view.bounds.size = alert.viewController.preferredContentSize
+		view.center = self.bounds.center
+		
+		let layer = view.layer
+		layer.cornerRadius = 3.0
+		
+		layer.shadowOpacity = 0.5
+		layer.shadowColor = UIColor.black.cgColor
+		layer.shadowRadius = 10.0
+		layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+		layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: 3.0).cgPath
 	}
 
 }

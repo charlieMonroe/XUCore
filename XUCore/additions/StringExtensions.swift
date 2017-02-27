@@ -161,13 +161,13 @@ public extension String {
 		for c in self.characters {
 			if c >= Character("0") && c <= Character("9") {
 				result *= 16
-				result += Int(c.UTF8Value - Character("0").UTF8Value)
+				result += Int(c.asciiValue - Character("0").asciiValue)
 			} else if c >= Character("a") && c <= Character("f") {
 				result *= 16
-				result += Int(c.UTF8Value - Character("a").UTF8Value) + 10
+				result += Int(c.asciiValue - Character("a").asciiValue) + 10
 			} else if c >= Character("A") && c <= Character("F") {
 				result *= 16
-				result += Int(c.UTF8Value - Character("A").UTF8Value) + 10
+				result += Int(c.asciiValue - Character("A").asciiValue) + 10
 			} else {
 				break
 			}

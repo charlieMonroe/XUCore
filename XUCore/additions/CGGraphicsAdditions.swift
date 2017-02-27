@@ -26,7 +26,7 @@ public extension CGRect {
 	}
 
 	/// Centers the rect so that self.center is the same as the returned value's.
-	public func centeredRect(in rect: CGRect) -> CGRect {
+	public func centeringRectInSelf(_ rect: CGRect) -> CGRect {
 		let origin = CGPoint(x: self.minX + (self.width - rect.width) / 2.0, y: self.minY + (self.height - rect.height) / 2.0)
 		return CGRect(origin: origin, size: rect.size)
 	}
@@ -61,5 +61,18 @@ public extension CGSize {
 	public var isEmpty: Bool {
 		return self.height.isZero && self.width.isZero
 	}
+	
+	/// Takes self and proportinally changes it to fit `otherSize`.
+	public func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
+		if self.width / self.height > otherSize.width / otherSize.height {
+			// Wider
+			return CGSize(width: otherSize.width, height: self.height * (otherSize.width / self.width))
+		} else {
+			// Taller
+			return CGSize(width: self.width * (otherSize.height / otherSize.height), height: otherSize.height)
+		}
+		
+	}
+
 	
 }

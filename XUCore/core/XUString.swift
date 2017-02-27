@@ -232,16 +232,16 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns a string containing everything after index.
 	public func substring(from index: Int) -> XUString {
-		return self.substring(with: index ..< self.length)
+		return self.substring(in: index ..< self.length)
 	}
 	
 	/// Returns a string containing `length` first characters.
 	public func substring(to index: Int) -> XUString {
-		return self.substring(with: 0 ..< index)
+		return self.substring(in: 0 ..< index)
 	}
 	
 	/// Returns a substring in range.
-	public func substring(with range: Range<Int>) -> XUString {
+	public func substring(in range: Range<Int>) -> XUString {
 		let slice = _buffer[range]
 		return XUString(chars: Array<Character>(slice))
 	}

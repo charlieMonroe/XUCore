@@ -12,10 +12,8 @@ public extension UIColor {
 		
 	/// Initializes self from a hexString color.
 	public convenience init?(hexString originalHexString: String) {
-		var hexString = originalHexString
-		if hexString.characters.count == 6 || hexString.characters.count == 7 {
-			hexString = hexString.deleting(prefix: "#")
-		} else {
+		var hexString = originalHexString.deleting(prefix: "#")
+		guard hexString.characters.count == 6 || hexString.characters.count == 8 else {
 			return nil // Wrong fromat
 		}
 		
@@ -24,7 +22,15 @@ public extension UIColor {
 		let greenByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 2) ..< hexString.index(startIndex, offsetBy: 4)).hexValue
 		let blueByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 4) ..< hexString.index(startIndex, offsetBy: 6)).hexValue
 		
-		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: 1.0)
+		let alpha: CGFloat
+		if hexString.characters.count == 8 {
+			let alphaByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 6) ..< hexString.index(startIndex, offsetBy: 8)).hexValue
+			alpha = CGFloat(alphaByte) / 255.0
+		} else {
+			alpha = 1.0
+		}
+		
+		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: alpha)
 	}
 	
 }

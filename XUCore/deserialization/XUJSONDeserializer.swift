@@ -332,7 +332,8 @@ public final class XUJSONDeserializer {
 				}
 				
 				if let deserializableObject = obj as? XUJSONDeserializable {
-					if self.deserialize(deserializableObject, from: dict) != .none {
+					// We should survive a warning.
+					if self.deserialize(deserializableObject, from: dict) == .error {
 						return nil
 					}
 				}
@@ -365,7 +366,9 @@ public final class XUJSONDeserializer {
 	private func _transformedScalarValue(_ value: Any, forObject object: XUJSONDeserializable, andKey key: String) -> (value: Any?, error: DeserializationError) {
 		// We need a NSNumber
 		if value is NSNull {
-			return (value: nil, error: .none)
+			// If it's scalar, use 0 instead. Passing in nil may actually break
+			// stuff.
+			return (value: 0, error: .none)
 		}
 		
 		if value is NSNumber {

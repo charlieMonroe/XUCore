@@ -10,15 +10,15 @@ import Foundation
 
 private func _hexValueOfChar(_ c: Character) -> UInt8 {
 	if c >= Character("0") && c <= Character("9") {
-		return c.UTF8Value - Character("0").UTF8Value
+		return c.asciiValue - Character("0").asciiValue
 	}
 
 	if c >= Character("a") && c <= Character("f") {
-		return (c.UTF8Value - Character("a").UTF8Value) + 10
+		return (c.asciiValue - Character("a").asciiValue) + 10
 	}
 
 	if c >= Character("A") && c <= Character("F") {
-		return (c.UTF8Value - Character("A").UTF8Value) + 10
+		return (c.asciiValue - Character("A").asciiValue) + 10
 	}
 
 	return 0

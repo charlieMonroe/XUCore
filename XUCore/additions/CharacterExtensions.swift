@@ -75,8 +75,8 @@ extension Character {
 		self.init(UnicodeScalar(UInt32(byte))!)
 	}
 	
-	/// Returns the value of the character as viewed in UTF8
-	public var UTF8Value: UInt8 {
+	/// Returns the value of the first character when viewed in UTF8.
+	public var asciiValue: UInt8 {
 		return String(self).utf8.first!
 	}
 
