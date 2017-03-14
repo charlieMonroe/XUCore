@@ -15,6 +15,7 @@
 		070A00EE1CE1BA68001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
 		070A00EF1CE1BC59001A90EB /* _XUBacktrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070A00F01CE1BC62001A90EB /* _XUBacktrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */; };
+		070AAD841E75400500224644 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AAD831E75400500224644 /* CharacterTests.swift */; };
 		070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
@@ -399,6 +400,7 @@
 		070647EB1C8852C0007A89BB /* XUDeviceUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDeviceUtilities.swift; path = util/XUDeviceUtilities.swift; sourceTree = "<group>"; };
 		070A00EB1CE1BA68001A90EB /* _XUBacktrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUBacktrace.h; path = private/_XUBacktrace.h; sourceTree = "<group>"; };
 		070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUBacktrace.m; path = private/_XUBacktrace.m; sourceTree = "<group>"; };
+		070AAD831E75400500224644 /* CharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -945,6 +947,7 @@
 			isa = PBXGroup;
 			children = (
 				076ACE761E37D4B8001BA622 /* XUCoreTests.swift */,
+				070AAD831E75400500224644 /* CharacterTests.swift */,
 				076ACE811E37D707001BA622 /* DataTests.swift */,
 				076ACE7F1E37D6D9001BA622 /* StringTests.swift */,
 				07D263781E4AFDB5009BAFAA /* URLTests.swift */,
@@ -1467,6 +1470,7 @@
 				076ACE801E37D6D9001BA622 /* StringTests.swift in Sources */,
 				076ACE821E37D707001BA622 /* DataTests.swift in Sources */,
 				076ACE771E37D4B8001BA622 /* XUCoreTests.swift in Sources */,
+				070AAD841E75400500224644 /* CharacterTests.swift in Sources */,
 				07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

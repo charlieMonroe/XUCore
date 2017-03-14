@@ -156,18 +156,16 @@ public extension String {
 		let components = self.components(separatedBy: "x")
 		var suffix = components.count < 2 ? self : components[1]
 		suffix = suffix.trimmingLeftCharacters(in: CharacterSet(charactersIn: "0"))
+		suffix = suffix.lowercased()
 
 		var result = 0
-		for c in self.characters {
+		for c in suffix.characters {
 			if c >= Character("0") && c <= Character("9") {
 				result *= 16
 				result += Int(c.asciiValue - Character("0").asciiValue)
 			} else if c >= Character("a") && c <= Character("f") {
 				result *= 16
 				result += Int(c.asciiValue - Character("a").asciiValue) + 10
-			} else if c >= Character("A") && c <= Character("F") {
-				result *= 16
-				result += Int(c.asciiValue - Character("A").asciiValue) + 10
 			} else {
 				break
 			}
@@ -308,6 +306,21 @@ public extension String {
 		}
 		
 		return data.md5Digest
+	}
+	
+	/// Returns self as octal value - i.e. interpret the number as in octal
+	/// representation.
+	public var octalValue: Int {
+		var result = 0
+		for c in self.characters {
+			if c >= Character("0") && c <= Character("8") {
+				result *= 8
+				result += Int(c.asciiValue - Character("0").asciiValue)
+			} else {
+				break
+			}
+		}
+		return result
 	}
 	
 	/// Computes SHA1 digest of self. Will call fatalError if the string can't be

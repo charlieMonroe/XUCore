@@ -10,6 +10,18 @@ import XCTest
 
 class StringTests: XCTestCase {
 	
+	func testHexConversion() {
+		XCTAssert("0x0a".hexValue == 10)
+		XCTAssert("0a".hexValue == 10)
+		XCTAssert("0A".hexValue == 10)
+	}
+	
+	func testOctalConversion() {
+		XCTAssert("00".octalValue == 0)
+		XCTAssert("11".octalValue == 9)
+		XCTAssert("18".octalValue == 16)
+	}
+	
 	func testQueryDictFromString() {
 		let queryString1 = "a=b&c=d"
 		let queryDict1 = queryString1.urlQueryDictionary

@@ -36,9 +36,10 @@ extension Character {
 		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
-	/// Returns true if `self` is < 128.
+	/// Returns true if `self` is < 128 and can be represented by a single UTF8
+	/// character.
 	public var isASCII: Bool {
-		return self.unicodeScalarValue < 128
+		return String(self).utf8.count == 1 && self.unicodeScalarValue < 128
 	}
 	
 	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
@@ -53,11 +54,17 @@ extension Character {
 	
 	/// Returns true iff `self` is 0-9.
 	public var isASCIINumber: Bool {
+		if !self.isASCII {
+			return false
+		}
 		return self.unicodeScalarValue >= Character("0").unicodeScalarValue && self.unicodeScalarValue <= Character("9").unicodeScalarValue
 	}
 	
 	/// Returns true iff `self` is a-z.
 	public var isLowercaseASCIILetter: Bool {
+		if !self.isASCII {
+			return false
+		}
 		return self.unicodeScalarValue >= Character("a").unicodeScalarValue && self.unicodeScalarValue <= Character("z").unicodeScalarValue
 	}
 	
@@ -68,6 +75,9 @@ extension Character {
 	
 	/// Returns true iff `self` is A-Z.
 	public var isUppercaseASCIILetter: Bool {
+		if !self.isASCII {
+			return false
+		}
 		return self.unicodeScalarValue >= Character("A").unicodeScalarValue && self.unicodeScalarValue <= Character("Z").unicodeScalarValue
 	}
 	
@@ -75,12 +85,16 @@ extension Character {
 		self.init(UnicodeScalar(UInt32(byte))!)
 	}
 	
-	/// Returns the value of the first character when viewed in UTF8.
+	/// Returns the value of the first character when viewed in UTF8. Note that 
+	/// if the character requires multiple bytes for representation in UTF8, then
+	/// only the first byte is returned.
 	public var asciiValue: UInt8 {
 		return String(self).utf8.first!
 	}
 
-	/// Returns the value of the character as viewed in UTF16
+	/// Returns the value of the character as viewed in UTF16. Note that
+	/// if the character requires multiple UInt16 for representation in UTF16, then
+	/// only the first UInt16 is returned.
 	public var unicodeScalarValue: UInt16 {
 		return String(self).utf16.first!
 	}

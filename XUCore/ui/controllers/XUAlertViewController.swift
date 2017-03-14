@@ -63,7 +63,9 @@ private final class _XUAlertView: UIControl {
 	weak var alert: XUAlert!
 
 	@objc private func _dismiss() {
-		self.alert.dismiss()
+		if self.alert.canBeDismissedByTouchingOutsideOfContentView {
+			self.alert.dismiss()
+		}
 	}
 	
 	init(alert: XUAlert) {

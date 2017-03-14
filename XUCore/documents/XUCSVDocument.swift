@@ -13,7 +13,8 @@ public final class XUCSVDocument {
 	fileprivate func _parseString(_ csv: String) -> Bool {
 		let len = csv.characters.endIndex
 		var ptr = csv.characters.startIndex
-		let importantChars = CharacterSet(charactersIn: "\(self.columnSeparator)\"\n")
+		let newlineChars = CharacterSet.newlines
+		let importantChars = CharacterSet(charactersIn: "\(self.columnSeparator)\"").union(newlineChars)
 		var column = 0
 		var firstLine = true
 		var insideQuotes = false
@@ -118,7 +119,7 @@ public final class XUCSVDocument {
 					startIndex = ptr
 					ptr = csv.characters.index(after: ptr)
 				}
-			} else if c == Character("\n") {
+			} else if c.isMember(of: newlineChars) {
 				// New line
 				if insideQuotes {
 					// Can be a new line inside quoted string

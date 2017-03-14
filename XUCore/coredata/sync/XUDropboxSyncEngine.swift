@@ -131,7 +131,10 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	fileprivate func _relativePath(to fileURL: URL) -> String {
 		let path = fileURL.path
 		let rootPath = _rootFolder.path
-		assert(path.hasPrefix(rootPath), "Trying to upload a file that is out of the Dropbox sync sandbox.")
+		
+		/// Sometimes, on iOS, the rootPath is without /private and as /var is 
+		/// just a symlink for /private/var, we can do this.
+		assert(path.deleting(prefix: "/private").hasPrefix(rootPath), "Trying to upload a file that is out of the Dropbox sync sandbox.")
 		
 		return path.deleting(prefix: rootPath)
 	}

@@ -123,3 +123,12 @@
 "All Preferences" = "Tutte le Preferenze";
 "Show All" = "Mostra Tutto";
 "Preferences" = "Preferenze";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Nessun risultato di ricerca";
+"%li search results" = "%li risultati di ricerca";
+
+// Certificate view.
+"Select..." = "Seleziona...";

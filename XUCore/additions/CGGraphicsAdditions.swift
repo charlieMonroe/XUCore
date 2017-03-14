@@ -69,7 +69,7 @@ public extension CGSize {
 			return CGSize(width: otherSize.width, height: self.height * (otherSize.width / self.width))
 		} else {
 			// Taller
-			return CGSize(width: self.width * (otherSize.height / otherSize.height), height: otherSize.height)
+			return CGSize(width: self.width * (otherSize.height / self.height), height: otherSize.height)
 		}
 		
 	}
