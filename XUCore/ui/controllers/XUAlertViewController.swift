@@ -31,6 +31,11 @@ public final class XUAlert {
 	/// Optional completion handler. Called when the controller is being dismissed.
 	public var completionHandler: (() -> Void)?
 	
+	/// You can move the controller up and down using this offset so that it's
+	/// not always centered. This can be useful in case there is a keyboard displayed
+	/// as well.
+	public var contentOffset: CGPoint = CGPoint()
+	
 	/// View controller this instance was initialized with.
 	public let viewController: UIViewController
 
@@ -88,7 +93,11 @@ private final class _XUAlertView: UIControl {
 		
 		let view = alert.viewController.view!
 		view.bounds.size = alert.viewController.preferredContentSize
-		view.center = self.bounds.center
+		
+		var center = self.bounds.center
+		center.x += self.alert.contentOffset.x
+		center.y += self.alert.contentOffset.y
+		view.center = center
 		
 		let layer = view.layer
 		layer.cornerRadius = 3.0
