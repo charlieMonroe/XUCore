@@ -206,20 +206,20 @@ open class XUDocumentSyncManager {
 
 
 	/// URL to the CoreData file that contains sync changes.
-	fileprivate var _currentComputerSyncURL: URL!
+	private var _currentComputerSyncURL: URL!
 	
 	/// URL to the CoreData file that we're actually writing changes (in temp
 	/// dir).
-	fileprivate let _currentComputerTempSyncURL: URL
+	private let _currentComputerTempSyncURL: URL
 	
 	/// Lock used for ensuring that only one synchronization is done at once.
-	fileprivate let _synchronizationLock = NSLock(name: "")
+	private let _synchronizationLock = NSLock(name: "")
 	
 	/// Model used in -syncManagedObjectContext.
-	fileprivate let _syncModel: NSManagedObjectModel
+	private let _syncModel: NSManagedObjectModel
 	
 	/// Persistent store coordinator used in -syncManagedObjectContext.
-	fileprivate let _syncStoreCoordinator: NSPersistentStoreCoordinator
+	private let _syncStoreCoordinator: NSPersistentStoreCoordinator
 	
 	#if os(iOS)
 		/// Background task while syncing.
@@ -227,15 +227,15 @@ open class XUDocumentSyncManager {
 	#endif
 	
 	
-	fileprivate var _isSyncing: Bool = false
-	fileprivate var _isUploadingEntireDocument: Bool = false
+	private var _isSyncing: Bool = false
+	private var _isUploadingEntireDocument: Bool = false
 	
 	
 	/// Applies changes from changeSet and returns error.
 	///
 	/// objCache is a mutable dictionary with UUID -> obj mapping that is kept 
 	/// during the sync, so that we don't have to perform fetches unless necessary.
-	fileprivate func _apply(changeSet: XUSyncChangeSet, withObjectCache objCache: inout [String : XUManagedObject]) -> [NSError] {
+	private func _apply(changeSet: XUSyncChangeSet, withObjectCache objCache: inout [String : XUManagedObject]) -> [NSError] {
 		let changes = changeSet.changes
 	
 		var errors: [NSError] = []
@@ -317,7 +317,7 @@ open class XUDocumentSyncManager {
 	}
 
 	/// This method is an observer for NSManagedObjectContextWillSaveNotification.
-	@objc fileprivate func _createSyncChanges(_ aNotif: Notification) {
+	@objc private func _createSyncChanges(_ aNotif: Notification) {
 		if !Thread.isMainThread {
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD { self._createSyncChanges(aNotif) }
 			return
@@ -377,7 +377,7 @@ open class XUDocumentSyncManager {
 		}
 	}
 	
-	fileprivate func _createSyncChanges(forObjects objects: Set<NSManagedObject>) -> [XUSyncChange] {
+	private func _createSyncChanges(forObjects objects: Set<NSManagedObject>) -> [XUSyncChange] {
 		var changes: [XUSyncChange] = []
 		for obj in objects {
 			guard let managedObj = obj as? XUManagedObject else {
@@ -398,7 +398,7 @@ open class XUDocumentSyncManager {
 	///
 	/// If no timestamp is found, we simply have no clients so far and can delete
 	/// all changesets.
- 	fileprivate func _performSyncCleanup() {
+ 	private func _performSyncCleanup() {
 		guard let timestampsFolderURL = XUSyncManagerPathUtilities.timestampsDirectoryURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID) else {
 			return
 		}
@@ -456,7 +456,7 @@ open class XUDocumentSyncManager {
 	
 	/// This method is an observer for NSManagedObjectContextWillSaveNotification.
 	/// We start a sync after each save.
-	@objc fileprivate func _startSync(_ aNotif: Notification) {
+	@objc private func _startSync(_ aNotif: Notification) {
 		self.startSynchronizing { (success, error) in
 			if success {
 				XULog("\(self) - successfully completed synchronization.")
@@ -473,7 +473,7 @@ open class XUDocumentSyncManager {
 	/// read-only for performance reasons.
 	///
 	/// All changes are then processed on main thread. (THIS IS IMPORTANT.)
- 	fileprivate func _synchronizeAndReturnError() throws {
+ 	private func _synchronizeAndReturnError() throws {
 	
 		/// This is an objectCache that allows quick object lookup by ID. We're 
 		/// keeping one per entire sync since it's likely that recently used items 
@@ -514,7 +514,7 @@ open class XUDocumentSyncManager {
 	/// on fatal errors, e.g. when we fail to initialize a new managed object, etc.
 	///
 	/// The minor errors are reported to the delegate.
-	fileprivate func _synchronizeWithComputerWithID(_ computerID: String, objectCache objCache: inout [String : XUManagedObject]) throws {
+	private func _synchronizeWithComputerWithID(_ computerID: String, objectCache objCache: inout [String : XUManagedObject]) throws {
 		XULog("\(self.UUID) Starting synchronization with computer \(computerID).")
 		
 		let ctx = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

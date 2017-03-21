@@ -39,7 +39,7 @@ public extension DateFormatter {
 		return dateFormatter
 	}()
 	
-	fileprivate static var _isMonthBeforeDayInDateFormat: Bool = {
+	private static var _isMonthBeforeDayInDateFormat: Bool = {
 		let formatter = DateFormatter()
 		formatter.timeStyle = .none
 		formatter.dateStyle = .short

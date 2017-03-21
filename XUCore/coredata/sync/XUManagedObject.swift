@@ -73,7 +73,7 @@ open class XUManagedObject: NSManagedObject {
 	}
 	
 	
-	fileprivate func _applyAttributeSyncChange(_ syncChange: XUAttributeSyncChange) {
+	private func _applyAttributeSyncChange(_ syncChange: XUAttributeSyncChange) {
 		var value = syncChange.attributeValue
 		if value is NSNull {
 			value = nil
@@ -95,7 +95,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	fileprivate func _applyDeletionSyncChange(_ syncChange: XUDeletionSyncChange) {
+	private func _applyDeletionSyncChange(_ syncChange: XUDeletionSyncChange) {
 		// Delete
 		let UUID = self.syncUUID
 		self.managedObjectContext!.delete(self)
@@ -105,7 +105,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	fileprivate func _applyToManyRelationshipAdditionSyncChange(_ syncChange: XUToManyRelationshipAdditionSyncChange) {
+	private func _applyToManyRelationshipAdditionSyncChange(_ syncChange: XUToManyRelationshipAdditionSyncChange) {
 		let targetUUID = syncChange.valueSyncID!
 		let entityName = syncChange.valueEntityName!
 		
@@ -140,7 +140,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	fileprivate func _applyToManyRelationshipDeletionSyncChange(_ syncChange: XUToManyRelationshipDeletionSyncChange) {
+	private func _applyToManyRelationshipDeletionSyncChange(_ syncChange: XUToManyRelationshipDeletionSyncChange) {
 		let targetUUID = syncChange.valueSyncID!
 		
 		guard var valueSet = self.value(forKey: syncChange.relationshipName) as? Set<XUManagedObject> else {
@@ -169,7 +169,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	fileprivate func _applyToOneRelationshipSyncChange(_ syncChange: XUToOneRelationshipSyncChange) {
+	private func _applyToOneRelationshipSyncChange(_ syncChange: XUToOneRelationshipSyncChange) {
 		guard let targetUUID = syncChange.valueSyncID else {
 			// Removing relationship - don't really care if the _relationshipValueChanges
 			// actually contains a value
@@ -221,7 +221,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 		
-	fileprivate func _createDeletionChanges() -> [XUSyncChange] {
+	private func _createDeletionChanges() -> [XUSyncChange] {
 		_changesLock.lock()
 		
 		if _deletionChanges.contains(self.syncUUID) {
@@ -238,7 +238,7 @@ open class XUManagedObject: NSManagedObject {
 		return [ deletionSyncChange ]
 	}
 	
-	fileprivate func _createInsertionChanges() -> [XUSyncChange] {
+	private func _createInsertionChanges() -> [XUSyncChange] {
 		_changesLock.lock()
 		
 		if _insertionChanges.contains(self.syncUUID) {
@@ -255,7 +255,7 @@ open class XUManagedObject: NSManagedObject {
 		return self._createRelationshipChanges() + [syncChange]
 	}
 	
-	fileprivate func _createRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	private func _createRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let inverseRelationship = relationship.inverseRelationship
 		if relationship.isToMany && inverseRelationship != nil && !inverseRelationship!.isToMany {
 			// With relationships that have inverse relationships, prefer the -to-one
@@ -284,7 +284,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 	}
 	
-	fileprivate func _createRelationshipChanges() -> [XUSyncChange] {
+	private func _createRelationshipChanges() -> [XUSyncChange] {
 		let objectRelationshipsByName = self.entity.relationshipsByName
 		var changes: [XUSyncChange] = []
 		for (_, relationship) in objectRelationshipsByName {
@@ -293,7 +293,7 @@ open class XUManagedObject: NSManagedObject {
 		return changes
 	}
 	
-	fileprivate func _createToManyRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	private func _createToManyRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let relationshipName = relationship.name
 		guard let objects = self.value(forKey: relationshipName) as? Set<XUManagedObject> else {
 			fatalError("\(type(of: self)).\(relationshipName) returned a non-Set value.")
@@ -389,7 +389,7 @@ open class XUManagedObject: NSManagedObject {
 		return changes
 	}
 	
-	fileprivate func _createToOneRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
+	private func _createToOneRelationshipChangesForRelationship(_ relationship: NSRelationshipDescription) -> [XUSyncChange] {
 		let relationshipName = relationship.name
 		
 		let genericValue = self.value(forKey: relationshipName)
@@ -433,7 +433,7 @@ open class XUManagedObject: NSManagedObject {
 		return [syncChange]
 	}
 
-	fileprivate func _createUpdateChanges() -> [XUSyncChange] {
+	private func _createUpdateChanges() -> [XUSyncChange] {
 		var changes: [XUSyncChange] = []
 		
 		for (propertyName, changedValue) in self.changedValues() {

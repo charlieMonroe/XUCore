@@ -98,7 +98,7 @@ public final class XUExceptionHandler: NSObject {
 	}
 	
 	/// Registers the exception handler.
-	@objc fileprivate func _registerExceptionHandler() {
+	@objc private func _registerExceptionHandler() {
 		let handler = NSExceptionHandler.default()
 		handler?.setDelegate(self)
 		
@@ -142,7 +142,7 @@ public final class XUExceptionHandler: NSObject {
 		return true
 	}
 	
-	fileprivate override init() {
+	private override init() {
 		super.init()
 		
 		// Since NSApplication installs its own handler, we need to make sure that

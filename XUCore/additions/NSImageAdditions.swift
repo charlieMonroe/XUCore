@@ -11,7 +11,7 @@ import Foundation
 public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
-	fileprivate func _imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
+	private func _imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
 		if size == CGSize() {
 			return nil
 		}

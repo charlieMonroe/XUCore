@@ -11,7 +11,7 @@ import MapKit
 
 public extension MKPolygon {
 	
-	fileprivate class func _parseCoordinates(fromString string: String) -> [CLLocation] {
+	private class func _parseCoordinates(fromString string: String) -> [CLLocation] {
 		let polygonStrings = string.components(separatedBy: "),(")
 		let exteriorRingString = polygonStrings.first!
 		
@@ -22,7 +22,7 @@ public extension MKPolygon {
 		})
 	}
 	
-	fileprivate class func _parseCoordinate(fromString coordinateString: String) -> CLLocation {
+	private class func _parseCoordinate(fromString coordinateString: String) -> CLLocation {
 		let points = coordinateString.components(separatedBy: " ")
 		let lon = points.first!
 		let lat = points.last!

@@ -25,7 +25,7 @@ public final class XUURLHandlingCenter {
 	public static let shared: XUURLHandlingCenter = XUURLHandlingCenter()
 	
 	
-	fileprivate var _handlers: [String : [XUURLHandler]] = [:]
+	private var _handlers: [String : [XUURLHandler]] = [:]
 	
 	
 	/// Adds a handler for scheme. Multiple handlers per scheme are allowed).
@@ -37,7 +37,7 @@ public final class XUURLHandlingCenter {
 	}
 	
 	/// Private function that handler the AppleEvent calls.
-	@objc fileprivate func handleURLEvent(_ event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
+	@objc private func handleURLEvent(_ event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
 		guard let receivedURLString = event.paramDescriptor(forKeyword: UInt32(keyDirectObject))?.stringValue else {
 			XULog("Cannot handle apple event - \(event)")
 			return
@@ -81,7 +81,7 @@ public final class XUURLHandlingCenter {
 	
 	
 	/// Making init private
-	fileprivate init() {
+	private init() {
 		NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(XUURLHandlingCenter.handleURLEvent(_:withReplyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
 	}
 	

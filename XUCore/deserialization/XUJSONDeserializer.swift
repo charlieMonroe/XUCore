@@ -87,7 +87,7 @@ public final class XUJSONDeserializer {
 	}
 	
 
-	fileprivate static let XUJSONDeserializerThreadKey = "XUJSONDeserializerThreadKey"
+	private static let XUJSONDeserializerThreadKey = "XUJSONDeserializerThreadKey"
 
 	/// Returns the default deserializer. Each thread has its own instance that
 	/// is lazily created.
@@ -112,13 +112,13 @@ public final class XUJSONDeserializer {
 	/// populated if deserializationLoggingEnabled is true. Remember that the
 	/// deserializer is provided on per-thread basis, so each time the thread dies,
 	/// the log dies with it.
-	public fileprivate(set) var deserializationLog: [LogEntry] = []
+	public private(set) var deserializationLog: [LogEntry] = []
 
 	/// You can set logging enabled per deserializer. By default contains the
 	/// global option.
 	public var isLoggingEnabled: Bool = XUJSONDeserializer.deserializationLoggingEnabled
 
-	fileprivate func _addLogEntry(_ severity: DeserializationError, objectClass: AnyClass, key: String, additionalInformation: String = "") {
+	private func _addLogEntry(_ severity: DeserializationError, objectClass: AnyClass, key: String, additionalInformation: String = "") {
 		if !self.isLoggingEnabled {
 			return
 		}

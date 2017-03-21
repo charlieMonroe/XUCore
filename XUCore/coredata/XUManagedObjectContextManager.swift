@@ -21,9 +21,9 @@ import CoreData
 ///
 open class XUManagedObjectContextManager {
 	
-	fileprivate var _managedObjectContext: NSManagedObjectContext!
-	fileprivate var _managedObjectModel: NSManagedObjectModel!
-	fileprivate var _persistentStoreCoordinator: NSPersistentStoreCoordinator!
+	private var _managedObjectContext: NSManagedObjectContext!
+	private var _managedObjectModel: NSManagedObjectModel!
+	private var _persistentStoreCoordinator: NSPersistentStoreCoordinator!
 	
 	public final var managedObjectContext: NSManagedObjectContext {
 		return _managedObjectContext

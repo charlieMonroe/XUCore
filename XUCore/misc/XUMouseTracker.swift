@@ -19,46 +19,22 @@ public protocol XUMouseTrackingObserver: AnyObject {
 }
 
 
-private func XUMouseMovementEventCallback(_ proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
-	let point = event.location
-	var displayID: CGDirectDisplayID = 0
-	var numOfDisplays: UInt32 = 0
-	CGGetDisplaysWithPoint(point, 1, &displayID, &numOfDisplays)
-	if numOfDisplays == 0 {
-		XULog("No displays at { \(point.x), \(point.y) }")
-		return Unmanaged.passRetained(event)
-	}
-
-	let flags = event.flags
-	let mouseTracker = unsafeBitCast(refcon, to: XUMouseTracker.self)
-
-	if type == .mouseMoved {
-		mouseTracker._notifyObserversAboutMovementToPoint(point, atDisplay: displayID, withEventFlags: flags)
-	} else if type == .leftMouseDown {
-		mouseTracker._notifyObserversAboutClickAtPoint(point, atDisplay: displayID, withEventFlags: flags)
-	}
-
-	event.type = .mouseMoved
-
-	return Unmanaged.passRetained(event)
-}
-
 /// This class allows mouse tracking.
 public final class XUMouseTracker {
 
-	fileprivate let _lock = NSLock(name: "XUCore.XUMouseTracker")
-	fileprivate var _observers: [XUMouseTrackingObserver] = []
+	private let _lock = NSLock(name: "XUCore.XUMouseTracker")
+	private var _observers: [XUMouseTrackingObserver] = []
 
 	public static let shared = XUMouseTracker()
 
-	fileprivate func _notifyObserversAboutClickAtPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
+	private func _notifyObserversAboutClickAtPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
 		_lock.perform {
 			for observer in self._observers {
 				observer.mouseClicked(at: point, atDisplay: displayID, withEventFlags: flags)
 			}
 		}
 	}
-	fileprivate func _notifyObserversAboutMovementToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
+	private func _notifyObserversAboutMovementToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 			self._lock.perform {
 				for observer in self._observers {
@@ -67,10 +43,32 @@ public final class XUMouseTracker {
 			}
 		}
 	}
-	@objc fileprivate func _trackingThread() {
+	@objc private func _trackingThread() {
 		let eventMask = CGEventMask(1 << CGEventType.mouseMoved.rawValue) | CGEventMask(1 << CGEventType.leftMouseDown.rawValue) | CGEventMask(1 << CGEventType.leftMouseDragged.rawValue)
 		let ptrToSelf = Unmanaged.passUnretained(self).toOpaque()
-		guard let machPort = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap, options: .listenOnly, eventsOfInterest: eventMask, callback: XUMouseMovementEventCallback, userInfo: ptrToSelf) else {
+		guard let machPort = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap, options: .listenOnly, eventsOfInterest: eventMask, callback: { (proxy, type, event, refcon) in
+			let point = event.location
+			var displayID: CGDirectDisplayID = 0
+			var numOfDisplays: UInt32 = 0
+			CGGetDisplaysWithPoint(point, 1, &displayID, &numOfDisplays)
+			if numOfDisplays == 0 {
+				XULog("No displays at { \(point.x), \(point.y) }")
+				return Unmanaged.passRetained(event)
+			}
+			
+			let flags = event.flags
+			let mouseTracker = unsafeBitCast(refcon, to: XUMouseTracker.self)
+			
+			if type == .mouseMoved {
+				mouseTracker._notifyObserversAboutMovementToPoint(point, atDisplay: displayID, withEventFlags: flags)
+			} else if type == .leftMouseDown {
+				mouseTracker._notifyObserversAboutClickAtPoint(point, atDisplay: displayID, withEventFlags: flags)
+			}
+			
+			event.type = .mouseMoved
+			
+			return Unmanaged.passRetained(event)
+		}, userInfo: ptrToSelf) else {
 			XULog("NULL event port")
 			return
 		}

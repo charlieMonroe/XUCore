@@ -10,7 +10,7 @@ import Foundation
 
 public extension URL {
 
-	fileprivate func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {
+	private func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {
 		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
 			return defaultValue
 		}
@@ -22,7 +22,7 @@ public extension URL {
 		return value
 	}
 
-	fileprivate func _resourceValue<T>(forKey key: URLResourceKey) -> T? {
+	private func _resourceValue<T>(forKey key: URLResourceKey) -> T? {
 		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
 			return nil
 		}
@@ -30,7 +30,7 @@ public extension URL {
 		return values.allValues[key] as? T
 	}
 	
-	fileprivate mutating func _setResourceValue(with block: (inout URLResourceValues) -> Void) {
+	private mutating func _setResourceValue(with block: (inout URLResourceValues) -> Void) {
 		var values = URLResourceValues()
 		block(&values)
 		try? self.setResourceValues(values)

@@ -142,7 +142,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		return tableView
 	}()
 	
-	fileprivate lazy var searchResultsScrollView: NSScrollView = {
+	private lazy var searchResultsScrollView: NSScrollView = {
 		let scrollView = NSScrollView()
 		scrollView.contentView.documentView = self.searchResultsTableView
 		return scrollView

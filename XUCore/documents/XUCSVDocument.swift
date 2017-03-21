@@ -10,7 +10,7 @@ import Foundation
 
 public final class XUCSVDocument {
 	
-	fileprivate func _parseString(_ csv: String) -> Bool {
+	private func _parseString(_ csv: String) -> Bool {
 		let len = csv.characters.endIndex
 		var ptr = csv.characters.startIndex
 		let newlineChars = CharacterSet.newlines

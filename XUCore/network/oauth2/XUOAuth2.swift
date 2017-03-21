@@ -10,7 +10,7 @@ import Foundation
 
 public final class XUOAuth2Configuration {
 	
-	fileprivate struct ConfigurationKeys {
+	private struct ConfigurationKeys {
 		static let authorizationBaseURLStringKey = "authorizationBaseURLString"
 		static let clientIDKey = "clientID"
 		static let nameKey = "name"
@@ -180,21 +180,21 @@ public final class XUOAuth2Client {
 	/// A particular account.
 	public final class Account: XUDownloadCenterOwner {
 		
-		fileprivate struct AccountKeys {
+		private struct AccountKeys {
 			static let identifierKey: String = "identifier"
 			static let tokenExpirationDateKey: String = "tokenExpirationDate"
 		}
 		
 		
 		/// Authentication token.
-		public fileprivate(set) var accessToken: String {
+		public private(set) var accessToken: String {
 			didSet {
 				self.save()
 			}
 		}
 		
 		/// Client this account belongs to.
-		public fileprivate(set) weak var client: XUOAuth2Client!
+		public private(set) weak var client: XUOAuth2Client!
 		
 		/// Download center for this particular account. The account automatically
 		/// sets the authorization token and automatically renews the token when
@@ -216,7 +216,7 @@ public final class XUOAuth2Client {
 		public let refreshToken: String?
 		
 		/// Expiration date of the token.
-		public fileprivate(set) var tokenExpirationDate: Date
+		public private(set) var tokenExpirationDate: Date
 		
 		
 		public var dictionaryRepresentation: XUJSONDictionary {
@@ -313,7 +313,7 @@ public final class XUOAuth2Client {
 		}
 		
 		/// Force-saves the token and refresh token. Currently a private method.
-		fileprivate func save() {
+		private func save() {
 			XUKeychainAccess.sharedAccess.save(password: self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
 			
 			if let refreshToken = self.refreshToken {
@@ -343,7 +343,7 @@ public final class XUOAuth2Client {
 		
 	}
 	
-	fileprivate struct ClientKeys {
+	private struct ClientKeys {
 		static let accountsKey: String = "accounts"
 		static let configurationKey: String = "configuration"
 	}
@@ -355,7 +355,7 @@ public final class XUOAuth2Client {
 	
 	/// Reads clients from defaults. This is currently a private method, just 
 	/// as save is.
-	fileprivate class func readClientsFromDefaults() -> [XUOAuth2Client] {
+	private class func readClientsFromDefaults() -> [XUOAuth2Client] {
 		guard let dicts: [XUJSONDictionary] = XUPreferences.shared.oAuth2ClientDictionaries else {
 			return []
 		}
@@ -377,14 +377,14 @@ public final class XUOAuth2Client {
 	}
 	
 	/// All registered clients.
-	public fileprivate(set) static var registeredClients: [XUOAuth2Client] = XUOAuth2Client.readClientsFromDefaults() {
+	public private(set) static var registeredClients: [XUOAuth2Client] = XUOAuth2Client.readClientsFromDefaults() {
 		didSet {
 			XUOAuth2Client.save()
 		}
 	}
 	
 	/// Saves the accounts to user defaults. Currently, it's a private method.
-	fileprivate class func save() {
+	private class func save() {
 		XUPreferences.shared.oAuth2ClientDictionaries = self.registeredClients.map({ $0.dictionaryRepresentation })
 	}
 	
@@ -402,7 +402,7 @@ public final class XUOAuth2Client {
 	
 	#if os(OSX)
 		/// Only non-nil during authentication.
-		fileprivate var _authorizationController: XUAuthorizationWebViewWindowController?
+		private var _authorizationController: XUAuthorizationWebViewWindowController?
 	#else
 		private var _authorizationController: XUAuthorizationWebViewController?
 	#endif
@@ -418,11 +418,11 @@ public final class XUOAuth2Client {
 	public let configuration: XUOAuth2Configuration
 	
 	/// Download center.
-	fileprivate lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(owner: self)
+	private lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(owner: self)
 	
 	
 	/// Takes the code from redirection URL, requests authorization.
-	fileprivate func _finishAuthorization(withCode code: String) {
+	private func _finishAuthorization(withCode code: String) {
 		let postDict: [String : String] = [
 			"clientID": self.configuration.clientID,
 			"client_secret": self.configuration.secret,
@@ -524,11 +524,11 @@ public final class XUOAuth2Client {
 	}
 	
 	/// Private initializer.
-	fileprivate init(configuration: XUOAuth2Configuration) {
+	private init(configuration: XUOAuth2Configuration) {
 		self.configuration = configuration
 	}
 
-	fileprivate convenience init?(dictionary: XUJSONDictionary) {
+	private convenience init?(dictionary: XUJSONDictionary) {
 		guard let
 			configurationDict = dictionary[ClientKeys.configurationKey] as? XUJSONDictionary,
 			let accountDicts = dictionary[ClientKeys.accountsKey] as? [XUJSONDictionary] else {

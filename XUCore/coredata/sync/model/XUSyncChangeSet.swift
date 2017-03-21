@@ -35,10 +35,10 @@ public final class XUSyncChangeSet: NSManagedObject {
 
 	
 	/// A set of changes within this change set.
-	@NSManaged public fileprivate(set) var changes: Set<XUSyncChange>
+	@NSManaged public private(set) var changes: Set<XUSyncChange>
 	
 	/// Timestamp of the sync change set.
-	@NSManaged public fileprivate(set) var timestamp: TimeInterval
+	@NSManaged public private(set) var timestamp: TimeInterval
 
 
 	/// Desginated initializer.

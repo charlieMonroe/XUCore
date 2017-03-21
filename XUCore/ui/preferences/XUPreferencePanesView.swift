@@ -18,34 +18,34 @@ internal protocol XUPreferencePanesViewDelegate: AnyObject {
 internal class XUPreferencePanesView: NSView {
 
 	/// Width between the buttons.
-	fileprivate static let buttonPadding: CGFloat = 16.0
+	internal static let buttonPadding: CGFloat = 16.0
 
 	/// Width of the buttons.
-	fileprivate static let buttonWidth: CGFloat = 78.0
+	internal static let buttonWidth: CGFloat = 78.0
 
 	/// Size of the icon.
-	fileprivate static let iconSize: CGFloat = 32.0
+	internal static let iconSize: CGFloat = 32.0
 
 	/// Height of each section.
-	fileprivate static let sectionHeight: CGFloat = 92.0
+	internal static let sectionHeight: CGFloat = 92.0
 
 	/// Attributes of the title.
-	fileprivate static let titleAttributes: [String: AnyObject] = [
+	internal static let titleAttributes: [String: AnyObject] = [
 		NSForegroundColorAttributeName: NSColor.textColor,
 		NSFontAttributeName: XUPreferencePanesView.titleFont
 	]
 
 	/// Font used for button titles.
-	fileprivate static let titleFont: NSFont = NSFont.systemFont(ofSize: 12.0)
+	internal static let titleFont: NSFont = NSFont.systemFont(ofSize: 12.0)
 
 	/// Width of the window. This is always the same.
 	internal static let viewWidth: CGFloat = 660.0
 
 	/// Buttons.
-	fileprivate let _buttons: [[XUPreferencePaneButton]]
+	private let _buttons: [[XUPreferencePaneButton]]
 
 	/// Cached heights of the sections.
-	fileprivate let _sectionHeights: [CGFloat]
+	private let _sectionHeights: [CGFloat]
 
 	/// Delegate.
 	weak var delegate: XUPreferencePanesViewDelegate!
@@ -53,7 +53,7 @@ internal class XUPreferencePanesView: NSView {
 	/// Sections.
 	let sections: [XUPreferencePanesSection]
 
-	@objc fileprivate func _didSelectPane(_ paneButton: XUPreferencePaneButton) {
+	@objc private func _didSelectPane(_ paneButton: XUPreferencePaneButton) {
 		self.delegate.preferencePaneView(didSelectPane: paneButton.paneController)
 	}
 

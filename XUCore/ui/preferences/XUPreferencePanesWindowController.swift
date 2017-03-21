@@ -30,7 +30,7 @@ public struct XUPreferencePanesSection {
 
 open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelegate, XUPreferencePanesViewDelegate {
 
-	fileprivate static var _sharedController: XUPreferencePanesWindowController? = nil
+	private static var _sharedController: XUPreferencePanesWindowController? = nil
 	
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
@@ -59,28 +59,28 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	
 	/// Controller that shows the button for accessing all panes.
-	fileprivate lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
+	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
 	
 	/// Current view being displayed.
-	fileprivate var _currentView: NSView!
+	private var _currentView: NSView!
 	
 	/// Controller that shows the title.
-	fileprivate lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
+	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
 	
 	/// View that displays all the panes. It's currently private, but it may be
 	/// exposed in the future to allow customizations.
-	fileprivate lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
+	private lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
 	
 	/// Current pane.
-	public final fileprivate(set) var currentPaneController: XUPreferencePaneViewController?
+	public final private(set) var currentPaneController: XUPreferencePaneViewController?
 	
 	/// Sections.
-	public final fileprivate(set) var sections: [XUPreferencePanesSection]!
+	public final private(set) var sections: [XUPreferencePanesSection]!
 	
 	
 	/// Sets the current view to view and changes the window size. We're forcing
 	/// the 660px width here, though.
-	fileprivate func _setMainWindowContentView(_ view: NSView) {
+	private func _setMainWindowContentView(_ view: NSView) {
 		let preferencesWindow = self.window!
 		if _currentView != view {
 			var winFrame = preferencesWindow.frame
@@ -200,9 +200,9 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 /// Button that after a long press shows a menu instead of sending the action.
 internal class XULongPressButton: NSButton {
 	
-	fileprivate var _mouseDownDate: TimeInterval = 0.0
+	private var _mouseDownDate: TimeInterval = 0.0
 	
-	@objc fileprivate func _showMenu() {
+	@objc private func _showMenu() {
 		self.menu!.autoenablesItems = false
 		self.menu!.popUp(positioning: nil, at: CGPoint(x: 0.0, y: self.bounds.height), in: self)
 	}
@@ -243,11 +243,11 @@ internal class XULongPressButton: NSButton {
 
 private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController {
 	
-	@IBOutlet fileprivate weak var _button: NSButton!
+	@IBOutlet private weak var _button: NSButton!
 	
-	fileprivate weak var _prefController: XUPreferencePanesWindowController!
+	private weak var _prefController: XUPreferencePanesWindowController!
 	
-	@objc fileprivate func _showPane(_ menuItem: NSMenuItem) {
+	@objc private func _showPane(_ menuItem: NSMenuItem) {
 		let pane = menuItem.representedObject as! XUPreferencePaneViewController
 		_prefController.preferencePaneView(didSelectPane: pane)
 	}
@@ -309,7 +309,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	
 	@IBOutlet weak var _titleLabel: NSTextField!
 	@IBOutlet weak var _iconImageView: NSImageView! // Currently unused.
-	fileprivate weak var _prefController: XUPreferencePanesWindowController!
+	private weak var _prefController: XUPreferencePanesWindowController!
 	
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController

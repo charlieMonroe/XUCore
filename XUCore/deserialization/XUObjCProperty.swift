@@ -49,7 +49,7 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 	
 	
 	/// Cached class for -propertyClass.
-	fileprivate var _class: AnyClass?
+	private var _class: AnyClass?
 	
 	/// Returns a class name if !isScalar, otherwise nil. Note that nil is also
 	/// returned for 'id'. For 'id<Protocol>', @"<Protocol>" is returned.

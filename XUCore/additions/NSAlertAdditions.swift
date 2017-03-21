@@ -59,7 +59,7 @@ public extension NSAlert {
 	}
 	
 	
-	fileprivate func _isDefaultButton(_ response: NSModalResponse) -> Bool {
+	private func _isDefaultButton(_ response: NSModalResponse) -> Bool {
 		if self.buttons.count == 0 {
 			return true // The alert only has one default OK button
 		}
@@ -71,7 +71,7 @@ public extension NSAlert {
 		fatalError("Running a deprecated NSAlert instance!")
 	}
 	
-	fileprivate func _prepareAccessoryTextField(withInitialValue initialValue: String, secure: Bool) {
+	private func _prepareAccessoryTextField(withInitialValue initialValue: String, secure: Bool) {
 		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {

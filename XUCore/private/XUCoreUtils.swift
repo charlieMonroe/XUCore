@@ -25,7 +25,7 @@ public struct XUCoreFramework {
 /// anymore.
 @objc public class _XUSwiftCoreLoader: NSObject {
 	
-	fileprivate static var _didLoad: Bool = false
+	private static var _didLoad: Bool = false
 	
 	public final class func loadSingletons() {
 		guard !_didLoad else {

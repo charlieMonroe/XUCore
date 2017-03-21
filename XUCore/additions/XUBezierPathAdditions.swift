@@ -69,7 +69,7 @@ public enum XUDirection: Int {
 
 public extension __XUBezierPath {
 	
-	fileprivate func _addLine(to point: CGPoint) {
+	private func _addLine(to point: CGPoint) {
 		#if os(OSX)
 			self.line(to: point)
 		#else

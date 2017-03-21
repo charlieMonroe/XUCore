@@ -12,7 +12,7 @@ import Cocoa
 /// - positioned correctly.
 open class XUMenuButton: NSButton {
 
-	@objc fileprivate func _displayMenu() {
+	@objc private func _displayMenu() {
 		guard let menu = self.menu else {
 			return
 		}

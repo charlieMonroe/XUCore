@@ -13,15 +13,15 @@ import WebKit
 /// the client receives a redirection.
 internal final class XUAuthorizationWebViewWindowController: NSWindowController, WebFrameLoadDelegate {
 	
-	@IBOutlet fileprivate weak var _currentURLTextField: NSTextField!
-	@IBOutlet fileprivate weak var _progressIndicator: NSProgressIndicator!
-	@IBOutlet fileprivate weak var _webView: WebView!
+	@IBOutlet private weak var _currentURLTextField: NSTextField!
+	@IBOutlet private weak var _progressIndicator: NSProgressIndicator!
+	@IBOutlet private weak var _webView: WebView!
 	
 	/// Completion handler
-	fileprivate(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
+	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
 	
 	/// URL this controller was initialized with.
-	fileprivate(set) var url: URL!
+	private(set) var url: URL!
 	
 	
 	/// Closes the window and passes the result to self.completionHandler.
@@ -39,7 +39,7 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 		self.url = URL
 	}
 	
-	@IBAction @objc fileprivate func cancel(_ sender: AnyObject?) {
+	@IBAction @objc private func cancel(_ sender: AnyObject?) {
 		self.close(withResult: .error(.userCancelled))
 	}
 	

@@ -25,7 +25,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	
 	typealias GeneratorType = XUWeakArrayGenerator<T>
 
-	fileprivate var _innerArray: [XUWeakReference<T>] = []
+	private var _innerArray: [XUWeakReference<T>] = []
 	
 	public mutating func append(_ value: T?) {
 		_innerArray.append(XUWeakReference(objectValue: value))
@@ -121,7 +121,7 @@ public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
 	
 	public typealias Element = T
 	
-	fileprivate var _items: ArraySlice<T?>
+	private var _items: ArraySlice<T?>
 	
 	mutating public func next() -> T? {
 		while !_items.isEmpty {

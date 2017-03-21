@@ -14,7 +14,7 @@ public final class XUAppScopeBookmarksManager {
 	
 	public static var shared = XUAppScopeBookmarksManager()
 
-	fileprivate var _cache: [XUPreferences.Key : URL] = [ : ]
+	private var _cache: [XUPreferences.Key : URL] = [ : ]
 	
 	/// Sets a URL for key. Returns if the save was successful. Note that previously
 	/// you could set nil and thus remove the URL for a particular key. This is

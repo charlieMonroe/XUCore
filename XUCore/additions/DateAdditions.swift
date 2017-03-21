@@ -22,7 +22,7 @@ public struct XUTimeInterval {
 	public static let minute: TimeInterval = 60.0
 	public static let week: TimeInterval = 7.0 * 24.0 * 3600.0
 	
-	fileprivate init() {}
+	private init() {}
 }
 
 

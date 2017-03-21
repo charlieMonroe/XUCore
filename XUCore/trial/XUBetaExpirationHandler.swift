@@ -8,13 +8,13 @@
 
 import Foundation
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 	static let BetaDidShowExpirationWarning = XUPreferences.Key(rawValue: "XUBetaDidShowExpirationWarning")
 	static let LastBetaBuildNumber = XUPreferences.Key(rawValue: "XULastBetaBuildNumber")
 	static let LastBetaTimestamp = XUPreferences.Key(rawValue: "XULastBetaTimestamp")
 }
 
-fileprivate extension XUPreferences {
+private extension XUPreferences {
 	
 	var betaDidShowExpirationWarning: Bool {
 		get {
@@ -61,7 +61,7 @@ public final class XUBetaExpirationHandler {
 		return XUAppSetup.betaExpirationTimeInterval - timeInterval
 	}
 	
-	fileprivate func _showFirstBetaLaunchDialog() {
+	private func _showFirstBetaLaunchDialog() {
 		if NSApp == nil {
 			NotificationCenter.default.addObserver(forName: .NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
 				self._showFirstBetaLaunchDialog()
@@ -77,7 +77,7 @@ public final class XUBetaExpirationHandler {
 	}
 	
 	@objc
-	fileprivate func _showWarningAndScheduleOneHourExpiration() {
+	private func _showWarningAndScheduleOneHourExpiration() {
 		if NSApp == nil {
 			NotificationCenter.default.addObserver(self, selector: #selector(_showWarningAndScheduleOneHourExpiration), name: .NSApplicationDidFinishLaunching, object: nil)
 			return
@@ -93,7 +93,7 @@ public final class XUBetaExpirationHandler {
 	}
 	
 	@objc
-	fileprivate func _handleExpiration() {
+	private func _handleExpiration() {
 		if NSApp == nil {
 			NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
 				self._handleExpiration()
@@ -110,7 +110,7 @@ public final class XUBetaExpirationHandler {
 		exit(0)
 	}
 	
-	fileprivate init() {
+	private init() {
 		if !XUAppSetup.isBetaBuild {
 			return
 		}

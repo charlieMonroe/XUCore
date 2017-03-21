@@ -8,11 +8,11 @@
 
 import Foundation
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 	static let Language = XUPreferences.Key(rawValue: "XULanguage")
 }
 
-fileprivate extension XUPreferences {
+private extension XUPreferences {
 	
 	var languageIdentifier: String? {
 		get {
@@ -77,17 +77,17 @@ public final class XULocalizationCenter {
 	public static var shared = XULocalizationCenter()
 
 	/// Cached identifiers
-	fileprivate var _cachedLanguageIdentifiers: [Bundle : String] = [:]
+	private var _cachedLanguageIdentifiers: [Bundle : String] = [:]
 	
 	/// Cached language dictionaries.
-	fileprivate var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [ : ]
+	private var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [ : ]
 	
 	/// Lock for modifying _cachedLanguageDicts
-	fileprivate let _lock: NSLock = NSLock(name: "com.charliemonroe.XULocalization")
+	private let _lock: NSLock = NSLock(name: "com.charliemonroe.XULocalization")
 	
 	/// The language is often e.g. en-US - we need to find the language identifier
 	/// that is in that particular bundle.
-	fileprivate func _identifierFromComposedIdentifier(_ language: String, inBundle bundle: Bundle) -> String? {
+	private func _identifierFromComposedIdentifier(_ language: String, inBundle bundle: Bundle) -> String? {
 		// Starting macOS 10.12, there are even more specific identifiers
 		// such as zn-Hans-CN. We'll remove one specifier at a time.
 		var components: ArraySlice<String> = ArraySlice(language.components(separatedBy: "-"))
@@ -106,7 +106,7 @@ public final class XULocalizationCenter {
 	
 	/// Returns the .lproj bundle for a language. If the language isn't available,
 	/// this function falls back to en or Base.
-	fileprivate func _languageBundleForLanguage(_ language: String, inBundle bundle: Bundle, fallbackToEnglish: Bool = true) -> Bundle? {
+	private func _languageBundleForLanguage(_ language: String, inBundle bundle: Bundle, fallbackToEnglish: Bool = true) -> Bundle? {
 		if let url = bundle.url(forResource: language, withExtension: "lproj") {
 			return Bundle(url: url)
 		}

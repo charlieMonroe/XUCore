@@ -12,11 +12,11 @@ import Cocoa
 /// in a tutorial, where you slide one screen after another.
 public class XUSwitchableView: NSView {
 	
-	fileprivate var _isAnimating: Bool = false
-	fileprivate var _otherView: NSView?
+	private var _isAnimating: Bool = false
+	private var _otherView: NSView?
 	
 	
-	@objc fileprivate func _frameChanged(_ sender: AnyObject?) {
+	@objc private func _frameChanged(_ sender: AnyObject?) {
 		//! NSEqualRects([self bounds], [[self superview] bounds])
 		if _isAnimating {
 			return
@@ -28,7 +28,7 @@ public class XUSwitchableView: NSView {
 		}
 	}
 	
-	@objc fileprivate func _unsetAnimation(_ sender: AnyObject?) {
+	@objc private func _unsetAnimation(_ sender: AnyObject?) {
 		_isAnimating = false
 		
 		//Remove the previous cached view

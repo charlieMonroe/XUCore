@@ -67,8 +67,8 @@ public let XUApp: XUApplication! = NSApp as? XUApplication
 /// events that are not observable inside NSTextField subclasses.
 open class XUApplication: NSApplication {
 	
-	fileprivate var _isModal: Bool = false
-	fileprivate weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
+	private var _isModal: Bool = false
+	private weak var _arrowKeyEventObserver: XUArrowKeyEventsObserver? = nil
 		
 	
 	/// Returns the current key events observer.

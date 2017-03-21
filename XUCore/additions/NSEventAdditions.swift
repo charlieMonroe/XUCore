@@ -26,7 +26,7 @@ public enum XUKeyCode: UInt16 {
 
 public extension NSEvent {
 	
-	fileprivate class func _isKeyDown(_ key: UInt32) -> Bool {
+	private class func _isKeyDown(_ key: UInt32) -> Bool {
 		let currentKeyModifiers = GetCurrentKeyModifiers()
 		let result = currentKeyModifiers & key
 		return result != 0

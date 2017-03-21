@@ -12,7 +12,7 @@ import Foundation
 	import Cocoa
 #endif
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 
 	/// We are not exposing this defaults key. Please, use XULoggingEnabled() function
 	/// and XUSetLoggingEnabled().
@@ -327,7 +327,7 @@ public final class XUDebugLog {
 		
 	}
 	
-	public extension XUDebugLog {
+	extension XUDebugLog {
 		
 		fileprivate class func _createDebugMenu() -> NSMenu {
 			let menu = NSMenu(title: XULocalizedString("Debug", inBundle: XUCoreFramework.bundle))

@@ -12,7 +12,7 @@ import Foundation
 	import UIKit
 #endif
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 
 	/// Key for XUPreferences which contains a date when the block occurred.
 	static let AppBlockedDate = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedDate")
@@ -30,7 +30,7 @@ fileprivate extension XUPreferences.Key {
 	
 }
 
-fileprivate extension XUPreferences {
+private extension XUPreferences {
 	
 	var appBlockedDate: Date? {
 		get {
@@ -131,16 +131,16 @@ public class XUMessageCenter {
 	
 
 	/// When set to true, the app was remotely blocked.
-	public fileprivate(set) var isAppBlocked: Bool = false
+	public private(set) var isAppBlocked: Bool = false
 	
-	fileprivate func _markMessageWithIDAsRead(_ messageID: Int) {
+	private func _markMessageWithIDAsRead(_ messageID: Int) {
 		// Save the message ID
 		XUPreferences.shared.perform(andSynchronize: { (prefs) in
 			prefs.lastMessageID = messageID
 		})
 	}
 	
-	fileprivate func _processActions(from message: XUJSONDictionary, withMessageID messageID: Int) {
+	private func _processActions(from message: XUJSONDictionary, withMessageID messageID: Int) {
 		guard let actions = message["XUActions"] as? [String : String] else {
 			XULog("Invalid message \(message)")
 			return
@@ -193,7 +193,7 @@ public class XUMessageCenter {
 		self._markMessageWithIDAsRead(messageID)
 	}
 	
-	@objc fileprivate func _launchMessageCenter() {
+	@objc private func _launchMessageCenter() {
 		if XUAppSetup.messageCenterFeedURL == nil {
 			return // Ignore, if the feed URL is nil
 		}
@@ -223,7 +223,7 @@ public class XUMessageCenter {
 	}
 	
 	/// Checks for messages with the server. Must not be called from main thread.
-	fileprivate func checkForMessages() {
+	private func checkForMessages() {
 		guard let feedURL = XUAppSetup.messageCenterFeedURL else {
 			return
 		}
@@ -333,7 +333,7 @@ public class XUMessageCenter {
 		
 	}
 		
-	fileprivate init() {
+	private init() {
 		#if os(iOS)
 			let notificationName = NSNotification.Name.UIApplicationDidFinishLaunching
 		#else

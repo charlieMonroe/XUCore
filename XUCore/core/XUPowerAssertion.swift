@@ -9,10 +9,6 @@
 import Foundation
 import IOKit.pwr_mgt
 
-public func ==(lhs: XUPowerAssertion, rhs: XUPowerAssertion) -> Bool {
-	return lhs.__assertionID == rhs.__assertionID && lhs.context === rhs.context && lhs.name == rhs.name
-}
-
 /// Represents a power assertion which allows you to prevent the computer from
 /// going to sleep, etc.
 ///
@@ -20,7 +16,11 @@ public func ==(lhs: XUPowerAssertion, rhs: XUPowerAssertion) -> Bool {
 /// from going to sleep by default.
 public final class XUPowerAssertion: Equatable {
 	
-	fileprivate let __assertionID: IOPMAssertionID
+	public static func ==(lhs: XUPowerAssertion, rhs: XUPowerAssertion) -> Bool {
+		return lhs.__assertionID == rhs.__assertionID && lhs.context === rhs.context && lhs.name == rhs.name
+	}
+	
+	private let __assertionID: IOPMAssertionID
 	
 	/// You can optionally store some context reference here.
 	public weak var context: AnyObject?

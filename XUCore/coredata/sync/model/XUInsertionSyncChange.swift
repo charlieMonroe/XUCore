@@ -20,10 +20,10 @@ public final class XUInsertionSyncChange: XUSyncChange {
 	/// The dictionary is marked as Transformable, hence it's not all that efficient
 	/// when it comes to deserialization - if possible, query this property as little
 	/// as possible.
-	@NSManaged public fileprivate(set) var attributes: [String : AnyObject]
+	@NSManaged public private(set) var attributes: [String : AnyObject]
 	
 	/// Name of the entity being inserted. Created by -initWithObject:.
-	@NSManaged public fileprivate(set) var insertedEntityName: String
+	@NSManaged public private(set) var insertedEntityName: String
 	
 	public override init(object: XUManagedObject) {
 		super.init(object: object)

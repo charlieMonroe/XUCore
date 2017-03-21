@@ -153,7 +153,7 @@ open class XUDownloadCenter {
 	public struct ProxyConfiguration {
 		
 		/// Keys for dictionaryRepresentation and init(dictionary:)
-		fileprivate struct DictionaryKeys {
+		private struct DictionaryKeys {
 			static let Host = "host"
 			static let ProxyType = "proxyType"
 			static let Username = "username"
@@ -180,7 +180,7 @@ open class XUDownloadCenter {
 		public struct Host {
 			
 			/// Keys for dictionaryRepresentation and init(dictionary:)
-			fileprivate struct DictionaryKeys {
+			private struct DictionaryKeys {
 				static let Address = "address"
 				static let Port = "port"
 			}
@@ -351,17 +351,17 @@ open class XUDownloadCenter {
 	
 	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
-	open fileprivate(set) var lastError: NSError?
+	open private(set) var lastError: NSError?
 	
 	/// Returns the last URL response. Nil, if this download center didn't download
 	/// anything yet.
-	open fileprivate(set) var lastHTTPURLResponse: HTTPURLResponse?
+	open private(set) var lastHTTPURLResponse: HTTPURLResponse?
 	
 	/// If true, logs all traffic via XULog.
 	open var logTraffic: Bool = true
 	
 	/// Owner of the download center. Used for delegation. Must be non-nil.
-	open fileprivate(set) weak var owner: XUDownloadCenterOwner!
+	open private(set) weak var owner: XUDownloadCenterOwner!
 	
 	/// Proxy configuration. By default nil, set to nonnil value for proxy support.
 	/// Note that this changes self.session since NSURLSessionConfiguration won't
@@ -375,7 +375,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Session this download center was initialized with.
-	open fileprivate(set) var session: URLSession
+	open private(set) var session: URLSession
 	
 	/// Initializer. The owner must keep itself alive as long as the download
 	/// center is alive. If the owner is to be dealloc'ed, dealloc the download
@@ -391,7 +391,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Imports cookies from response to NSHTTPCookieStorage.
-	fileprivate func _importCookies(from response: HTTPURLResponse) {
+	private func _importCookies(from response: HTTPURLResponse) {
 		guard let
 			url = response.url,
 			let fields = response.allHeaderFields as? [String:String] else {
@@ -409,7 +409,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Sets the Cookie HTTP header field on request.
-	fileprivate func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
+	private func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
 		guard let url = request.url, url.scheme != nil else {
 			return
 		}

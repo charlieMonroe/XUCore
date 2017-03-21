@@ -22,11 +22,11 @@ private class __XUZoomWindow: NSPanel {
 
 public extension NSWindow {
 	
-	fileprivate static var __zoomWindow: NSWindow?
+	private static var __zoomWindow: NSWindow?
 	
 	/// Creates a new zoom window in screen rect. Nil is returned when there is
 	/// no contentView, or the view fails to create the bitmap image representation.
-	fileprivate func _createZoomWindowWithRect(_ rect: CGRect) -> NSPanel? {
+	private func _createZoomWindowWithRect(_ rect: CGRect) -> NSPanel? {
 		let frame = self.frame
 		let isOneShot = self.isOneShot
 		if isOneShot {

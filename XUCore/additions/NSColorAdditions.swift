@@ -27,7 +27,7 @@ private var _draggingSession: NSDraggingSession?
 
 extension NSColor: NSPasteboardItemDataProvider {
 	
-	fileprivate var _imagePreview: NSImage {
+	private var _imagePreview: NSImage {
 		let image = NSImage(size: CGSize(width: kXUColorSampleItemWidth, height: kXUColorSampleItemHeight))
 		image.backgroundColor = NSColor.clear
 		image.lockFocus()

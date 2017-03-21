@@ -45,17 +45,17 @@ open class XUTrial {
 	
 	fileprivate var _wasFirstRun: Bool = false
 	
-	fileprivate let purchaseURL: URL
-	fileprivate let supportURL: URL
-	fileprivate let trialSessionsURL: URL
+	internal let purchaseURL: URL
+	internal let supportURL: URL
+	internal let trialSessionsURL: URL
 	
 	/// Opens a purchase URL.
-	fileprivate func _openPurchaseURL() {
+	private func _openPurchaseURL() {
 		NSWorkspace.shared().open(self.purchaseURL)
 	}
 	
 	/// Opens a support URL.
-	fileprivate func _openSupportURL() {
+	private func _openSupportURL() {
 		NSWorkspace.shared().open(self.supportURL)
 	}
 	
@@ -74,7 +74,7 @@ open class XUTrial {
 	
 	/// Warns the user that there is not internet connection. Under such
 	/// circumstances, the app exits in an hour.
-	@objc fileprivate func _warnAboutNoInternetConnection() {
+	@objc private func _warnAboutNoInternetConnection() {
 		let alert = NSAlert()
 		alert.messageText = XULocalizedFormattedString("%@ couldn't connect to the Internet. The application will exit in one hour.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
 		alert.informativeText = XULocalizedFormattedString("%@ requires connection to the Internet to continue the trial properly.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
@@ -233,10 +233,10 @@ open class XUTimeBasedTrial: XUTrial {
 		return self.shared as? XUTimeBasedTrial
 	}
 	
-	fileprivate var _secondsLeft: TimeInterval = 0
+	private var _secondsLeft: TimeInterval = 0
 	
 	/// Registers the app with the trial server.
-	fileprivate func _registerWithTrialServer() -> Bool {
+	private func _registerWithTrialServer() -> Bool {
 		let identifier = XUAppSetup.applicationIdentifier.encodingIllegalURLCharacters
 		let url = URL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
 		let request = NSMutableURLRequest(url: url)
@@ -351,10 +351,10 @@ open class XUItemBasedTrial: XUTrial {
 		return self.shared as? XUItemBasedTrial
 	}
 	
-	fileprivate var _itemsLeft: Int = 0
+	private var _itemsLeft: Int = 0
 	
 	/// Posts a XUItemBasedTrialNumberOfItemsLeftDidChangeNotification notification.
-	fileprivate func _notifyAboutItemsLeftChanged() {
+	private func _notifyAboutItemsLeftChanged() {
 		NotificationCenter.default.post(name: .ItemBasedTrialNumberOfItemsLeftDidChange, object: self)
 	}
 	

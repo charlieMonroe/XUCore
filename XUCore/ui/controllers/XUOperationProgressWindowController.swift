@@ -48,12 +48,12 @@ public protocol XUProgressableOperation: AnyObject {
 /// button. It can be easily re-used.
 public final class XUOperationProgressWindowController: NSWindowController, XUProgressableOperationDelegate {
 	
-	@IBOutlet public fileprivate(set) weak var currentActionNameLabel: NSTextField!
-	@IBOutlet public fileprivate(set) weak var currentProgressLabel: NSTextField!
-	@IBOutlet public fileprivate(set) weak var progressIndicator: NSProgressIndicator!
+	@IBOutlet public private(set) weak var currentActionNameLabel: NSTextField!
+	@IBOutlet public private(set) weak var currentProgressLabel: NSTextField!
+	@IBOutlet public private(set) weak var progressIndicator: NSProgressIndicator!
 	
 	/// The operation.
-	public fileprivate(set) var operation: XUProgressableOperation!
+	public private(set) var operation: XUProgressableOperation!
 	
 	/// By default true. If true, shows the textual progress such as 12/100.
 	public var showsTextualProgress: Bool = true {
@@ -75,7 +75,7 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	
-	fileprivate func _update() {
+	private func _update() {
 		self.currentActionNameLabel.stringValue = self.operation.currentActionName
 		self.progressIndicator.minValue = 0.0
 		self.progressIndicator.maxValue = Double(self.operation.numberOfSteps)

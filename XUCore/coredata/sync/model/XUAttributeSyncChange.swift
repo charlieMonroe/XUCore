@@ -14,10 +14,10 @@ import CoreData
 public final class XUAttributeSyncChange: XUSyncChange {
 	
 	/// Name of the attribute.
-	@NSManaged public fileprivate(set) var attributeName: String
+	@NSManaged public private(set) var attributeName: String
 	
 	/// Value of the attribute.
-	@NSManaged public fileprivate(set) var attributeValue: AnyObject?
+	@NSManaged public private(set) var attributeValue: AnyObject?
 
 	
 	public init(object: XUManagedObject, attributeName name: String, andValue value: AnyObject?) {

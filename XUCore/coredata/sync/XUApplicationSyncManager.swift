@@ -47,11 +47,11 @@ private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUAppli
 	_XULogFileAtURL(rootURL!, fileURL: rootURL!, level: 0);
 }
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 	static let ApplicationSyncManagerDownloadedDocumentIDs = XUPreferences.Key(rawValue: "XUApplicationSyncManagerDownloadedDocumentIDs")
 }
 
-fileprivate extension XUPreferences {
+private extension XUPreferences {
 	
 	var downloadedDocumentIDs: [String]? {
 		get {
@@ -71,16 +71,16 @@ private let XUApplicationSyncManagerErrorDomain = "XUApplicationSyncManagerError
 open class XUApplicationSyncManager {
 	
 	/// Timer that checks for new documents every 30 seconds.
-	fileprivate var _documentCheckerTimer: Timer!
+	private var _documentCheckerTimer: Timer!
 	
 	/// UUIDs of documents that have been downloaded.
-	fileprivate var _downloadedDocumentUUIDs: [String] = []
+	private var _downloadedDocumentUUIDs: [String] = []
 	
 	/// Use query to detect new files on iCloud and download them.
-	fileprivate let _metadataQuery: NSMetadataQuery = NSMetadataQuery()
+	private let _metadataQuery: NSMetadataQuery = NSMetadataQuery()
 
 	/// UUIDs of documents that have been downloaded or up for download.
-	public fileprivate(set) var availableDocumentUUIDs: [String] = []
+	public private(set) var availableDocumentUUIDs: [String] = []
 	
 	/// Delegate of the app sync manager.
 	public weak var delegate: XUApplicationSyncManagerDelegate?
@@ -99,7 +99,7 @@ open class XUApplicationSyncManager {
 
 	
 	
-	fileprivate func _checkForNewDocuments() {
+	private func _checkForNewDocuments() {
 		if self.syncRootFolderURL == nil {
 			return
 		}
@@ -123,7 +123,7 @@ open class XUApplicationSyncManager {
 		}
 	}
 	
-	@objc fileprivate func _metadataQueryGotUpdated(_ aNotif: Notification) {
+	@objc private func _metadataQueryGotUpdated(_ aNotif: Notification) {
 		for obj in _metadataQuery.results {
 			guard let item = obj as? NSMetadataItem else {
 				continue

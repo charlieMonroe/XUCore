@@ -33,11 +33,11 @@ public final class XUSystemNotificationCenter {
 	
 	public static let shared: XUSystemNotificationCenter = XUSystemNotificationCenter()
 	
-	fileprivate var _currentController: NSWindowController!
-	fileprivate var _currentNotification: XUSystemNotification!
-	fileprivate var _queue: [XUSystemNotification] = []
+	private var _currentController: NSWindowController!
+	private var _currentNotification: XUSystemNotification!
+	private var _queue: [XUSystemNotification] = []
 	
-	@objc fileprivate func _hideNotification() {
+	@objc private func _hideNotification() {
 		_currentController.window?.close()
 		_currentController = nil
 		_currentNotification = nil
@@ -49,7 +49,7 @@ public final class XUSystemNotificationCenter {
 		}
 	}
 	
-	fileprivate func _show() {
+	private func _show() {
 		_currentNotification = _queue.first!
 		
 		_currentController = XUSystemNotificationWindowController(window: nil)

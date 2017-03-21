@@ -8,10 +8,6 @@
 
 import Foundation
 
-public func ==(lhs: XUString, rhs: XUString) -> Bool {
-	return lhs._buffer == rhs._buffer
-}
-
 public func +=(lhs: inout XUString, rhs: XUString) {
 	lhs = lhs.appending(rhs)
 }
@@ -51,10 +47,14 @@ public extension Sequence where Iterator.Element == XUString {
 /// a byte array, hence can be used even for data.
 public final class XUString: Equatable, CustomDebugStringConvertible, CustomStringConvertible {
 	
+	public static func ==(lhs: XUString, rhs: XUString) -> Bool {
+		return lhs._buffer == rhs._buffer
+	}
+	
 	/// A typealias for the char. We're using UInt8.
 	public typealias Character = UInt8
 	
-	fileprivate var _buffer: [Character]
+	private var _buffer: [Character]
 	
 	
 	/// Appends a character at the end of the buffer.

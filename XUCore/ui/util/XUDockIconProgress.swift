@@ -11,10 +11,10 @@ import AppKit
 /// This class represents the Dock icon's progress bar.
 open class XUDockIconProgress {
 
-	fileprivate let kXUDockProgressBarHeight: CGFloat = 20.0
-	fileprivate let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
+	private let kXUDockProgressBarHeight: CGFloat = 20.0
+	private let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
 
-	fileprivate var _lastUpdated: Double = 0.0
+	private var _lastUpdated: Double = 0.0
 
 	public static let shared: XUDockIconProgress = XUDockIconProgress()
 	

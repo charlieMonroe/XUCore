@@ -23,7 +23,7 @@ public extension Timer {
 	
 	public typealias TimerBlock = (Timer) -> Void
 	
-	@objc fileprivate class func __executionMethod(_ timer: Timer) {
+	@objc private class func __executionMethod(_ timer: Timer) {
 		let holder = timer.userInfo as! __XUTimerBlockHolder
 		holder.timerBlock(timer)
 	}

@@ -20,19 +20,19 @@ public class XUSyncChange: NSManagedObject {
 	
 	/// Change set this change belongs to. Nil during initialization, hence nullable,
 	/// but otherwise should be nonnull.
-	@NSManaged public fileprivate(set) var changeSet: XUSyncChangeSet!
+	@NSManaged public private(set) var changeSet: XUSyncChangeSet!
 	
 	/// Name of the entity.
-	@NSManaged public fileprivate(set) var objectEntityName: String
+	@NSManaged public private(set) var objectEntityName: String
 	
 	/// This is generally all we need to identify the object.
-	@NSManaged public fileprivate(set) var objectSyncID: String
+	@NSManaged public private(set) var objectSyncID: String
 	
 	/// Object that is being sync'ed. Only stored locally.
-	public fileprivate(set) weak var syncObject: XUManagedObject!
+	public private(set) weak var syncObject: XUManagedObject!
 	
 	/// Timestamp of the change.
-	@NSManaged public fileprivate(set) var timestamp: TimeInterval
+	@NSManaged public private(set) var timestamp: TimeInterval
 	
 	/// Creates a new sync change.
 	public init(object: XUManagedObject) {

@@ -12,7 +12,7 @@ import Foundation
 // / -drawRect:.
 open class XUBorderlessWindow: NSWindow {
 	
-	fileprivate func _innerInit() {
+	private func _innerInit() {
 		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSNotification.Name.NSWindowDidResize, object: self)
 		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSNotification.Name.NSWindowDidMove, object: self)
 		

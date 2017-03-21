@@ -32,11 +32,11 @@ private func _rootURLForManager(named name: String) -> URL? {
 public final class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	
-	fileprivate var _rootURL: URL? {
+	private var _rootURL: URL? {
 		return _rootURLForManager(named: self.name)
 	}
 	
-	fileprivate func _startDownloadingUbiquitousItem(at url: URL) {
+	private func _startDownloadingUbiquitousItem(at url: URL) {
 		if url.isDirectory {
 			let contents = FileManager.default.contentsOfDirectory(at: url)
 			for fileURL in contents {
@@ -47,7 +47,7 @@ public final class XUiCloudSyncManager: XUApplicationSyncManager {
 		}
 	}
 	
-	@objc fileprivate func _updateUbiquityFolderURL() {
+	@objc private func _updateUbiquityFolderURL() {
 		if let ubiquityFolderURL = self._rootURL {
 			XULog("Updating sync root folder to \(ubiquityFolderURL)")
 			self.syncRootFolderURL = ubiquityFolderURL

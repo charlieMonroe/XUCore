@@ -13,14 +13,14 @@ import Foundation
 /// its previous value if not.
 open class XUAutocollapsingView: __XUBridgedView {
 	
-	fileprivate var _originalHeight: CGFloat = 0.0
+	private var _originalHeight: CGFloat = 0.0
 	
 	/// Marked as YES on -initWithCoder: and NO at the end. Needed because layout
 	 /// constraints aren't loaded yet.
-	fileprivate var _inCoderInit: Bool = true
+	private var _inCoderInit: Bool = true
 	
 	/// Called from -setHidden: to perform hide or unhide.
-	fileprivate func _performHide(_ hidden: Bool) {
+	private func _performHide(_ hidden: Bool) {
 		guard let constraint = self.collapsibleContstraint else {
 			return
 		}

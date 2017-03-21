@@ -28,7 +28,7 @@ import Cocoa
 class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Contains a list of reporters being currently displayed.
-	fileprivate static var _reporters: [XUExceptionReporter] = [ ]
+	private static var _reporters: [XUExceptionReporter] = [ ]
 	
 	/// Shows an alert with privacy information.
 	class func showPrivacyInformation() {
@@ -67,20 +67,20 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	}
 	
 	
-	fileprivate let _exception: NSException
-	fileprivate let _queue: OperationQueue?
-	fileprivate let _thread: Thread
+	private let _exception: NSException
+	private let _queue: OperationQueue?
+	private let _thread: Thread
 	
-	fileprivate let _nib: NSNib
-	fileprivate var _topLevelObjects: NSArray = []
+	private let _nib: NSNib
+	private var _topLevelObjects: NSArray = []
 	
-	@IBOutlet fileprivate var _reporterWindow: NSWindow!
+	@IBOutlet private var _reporterWindow: NSWindow!
 	
-	@IBOutlet fileprivate weak var _emailTextField: NSTextField!
-	@IBOutlet fileprivate var _stackTraceTextView: NSTextView!
-	@IBOutlet fileprivate var _userInputTextView: NSTextView!
+	@IBOutlet private weak var _emailTextField: NSTextField!
+	@IBOutlet private var _stackTraceTextView: NSTextView!
+	@IBOutlet private var _userInputTextView: NSTextView!
 	
-	fileprivate func _reportFailedReportSend() {
+	private func _reportFailedReportSend() {
 		let alert = NSAlert()
 		alert.messageText = XULocalizedString("Could not post your report.", inBundle: XUCoreFramework.bundle)
 		alert.informativeText = XULocalizedString("Check your Internet connection and try again.", inBundle: XUCoreFramework.bundle)
@@ -106,7 +106,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		return true
 	}
 	
-	fileprivate init(exception: NSException, thread: Thread, queue: OperationQueue?, stackTrace: String) {
+	private init(exception: NSException, thread: Thread, queue: OperationQueue?, stackTrace: String) {
 		_exception = exception
 		_thread = thread
 		_queue = queue

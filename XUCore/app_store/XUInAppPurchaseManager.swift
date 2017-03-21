@@ -28,11 +28,11 @@ public extension Sequence where Iterator.Element: SKProduct {
 	
 }
 
-fileprivate extension XUPreferences.Key {
+private extension XUPreferences.Key {
 	static let InAppPurchaseIdentifiers = XUPreferences.Key(rawValue: "XUInAppPurchases")
 }
 
-fileprivate extension XUPreferences {
+private extension XUPreferences {
 	
 	var inAppPurchaseIndentifiers: [String]? {
 		get {
@@ -90,7 +90,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	
 	/// This is the shared instance of the manager. Make sure that you call
 	/// createSharedManagerWithDelegate() before using this!
-	public fileprivate(set) static var shared: XUInAppPurchaseManager!
+	public private(set) static var shared: XUInAppPurchaseManager!
 	
 	
 	/// The delegate. Unlike the convention, the manager keeps a strong reference
@@ -102,22 +102,22 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	public let delegate: XUInAppPurchaseManagerDelegate
 	
 	/// Returns true if the manager is currently loading products.
-	public fileprivate(set) var isLoadingProducts: Bool = false
+	public private(set) var isLoadingProducts: Bool = false
 	
 	/// Products available for purchse.
-	public fileprivate(set) var productsAvailableForPurchase: [SKProduct] = [ ]
+	public private(set) var productsAvailableForPurchase: [SKProduct] = [ ]
 	
 	/// A list of identifiers of purchased products.
-	public fileprivate(set) var purchasedProductIdentifiers: [String] = [ ]
+	public private(set) var purchasedProductIdentifiers: [String] = [ ]
 	
 	
 	/// Called from a notification, so that we remove self from observers when the
 	/// app is about to terminate.
-	@objc fileprivate func _removeAsObserver(_ sender: AnyObject?) {
+	@objc private func _removeAsObserver(_ sender: AnyObject?) {
 		SKPaymentQueue.default().remove(self)
 	}
 	
-	@objc fileprivate func _innerInit() {
+	@objc private func _innerInit() {
 		self.reloadProductsAvailableForPurchase()
 		
 		let transactions = SKPaymentQueue.default().transactions
@@ -132,7 +132,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	fileprivate init(delegate: XUInAppPurchaseManagerDelegate) {
+	private init(delegate: XUInAppPurchaseManagerDelegate) {
 		self.delegate = delegate
 		
 		super.init()

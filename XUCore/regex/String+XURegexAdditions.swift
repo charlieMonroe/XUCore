@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
 	
-	fileprivate func _standardizedURL(from originalURLString: String) -> [URL]? {
+	private func _standardizedURL(from originalURLString: String) -> [URL]? {
 		var urlString = originalURLString
 		if urlString.hasPrefix("//") {
 			urlString = "http:" + urlString
@@ -76,7 +76,7 @@ public extension String {
 		return [url!]
 	}
 	
-	fileprivate func _urls(from occurrences: [String]) -> [URL] {
+	private func _urls(from occurrences: [String]) -> [URL] {
 		var urls: [URL] = [ ]
 		
 		urls += occurrences.flatMap({ (originalURLString) -> [URL]? in
