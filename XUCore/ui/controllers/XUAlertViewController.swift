@@ -88,7 +88,7 @@ private final class _XUAlertView: UIControl {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	private override func layoutSubviews() {
+	fileprivate override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		let view = alert.viewController.view!
@@ -141,11 +141,11 @@ private final class _XUAlertViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private override var preferredStatusBarStyle: UIStatusBarStyle {
+	fileprivate override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}
 	
-	private override func viewDidDisappear(_ animated: Bool) {
+	fileprivate override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
 		self.alert.completionHandler?()
@@ -199,7 +199,7 @@ private final class _XUAlertModalTransitionAnimator: NSObject, UIViewControllerA
 		})
 	}
 
-	@objc private func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+	@objc fileprivate func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		guard let destination = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
 			fatalError("No destination controller!")
 		}
@@ -211,7 +211,7 @@ private final class _XUAlertModalTransitionAnimator: NSObject, UIViewControllerA
 		}
 	}
 
-	@objc private func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+	@objc fileprivate func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
 		return 5.0
 	}
 
