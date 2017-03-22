@@ -350,7 +350,7 @@ public final class XUOAuth2Client {
 	
 	/// Returns a clint with `name`, if it is registered.
 	public class func client(named name: String) -> XUOAuth2Client? {
-		return self.registeredClients.find(where: { $0.configuration.name == name })
+		return self.registeredClients.first(where: { $0.configuration.name == name })
 	}
 	
 	/// Reads clients from defaults. This is currently a private method, just 

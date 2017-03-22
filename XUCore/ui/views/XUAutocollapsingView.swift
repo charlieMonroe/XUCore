@@ -50,7 +50,7 @@ open class XUAutocollapsingView: __XUBridgedView {
 	/// Returns the constraint that is collapsible. It will return nil before
 	/// the view is loaded from XIB.
 	open var collapsibleContstraint: NSLayoutConstraint! {
-		let constraint = self.constraints.find(where: { $0.firstAttribute == .height })
+		let constraint = self.constraints.first(where: { $0.firstAttribute == .height })
 		if constraint == nil && !_inCoderInit {
 			fatalError("XUAutocollapsingView needs to have a collapsible constraint!")
 		}

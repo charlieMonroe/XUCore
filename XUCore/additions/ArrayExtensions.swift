@@ -31,29 +31,26 @@ private func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 public extension Sequence {
 	
-	public typealias Filter = (Self.Iterator.Element) -> Bool
+	public typealias Filter = (Self.Iterator.Element) throws -> Bool
 	
 	/// Returns true if all of the elements in self match the filter
-	public func all(matching filter: Filter) -> Bool {
-		return self.find(where: { !filter($0) }) == nil
+	public func all(matching filter: Filter) rethrows -> Bool {
+		return try self.first(where: { try !filter($0) }) == nil
 	}
 	
 	/// Counts elements that match the filter
-	public func count(where filter: Filter) -> Int {
-		let count =  self.sum({ (obj) -> Int in
-			return filter(obj) ? 1 : 0
+	public func count(where filter: Filter) rethrows -> Int {
+		let count = try self.sum({ (obj) -> Int in
+			return try filter(obj) ? 1 : 0
 		})
 		return count
 	}
 	
-	/// Returns the first element in self that matches the filter
-	public func find(where filter: Filter) -> Self.Iterator.Element? {
-		for obj in self {
-			if filter(obj) {
-				return obj
-			}
-		}
-		return nil
+	/// Returns the first element in self that matches the filter. As this was
+	/// eventually added to the stdlib, it's now deprecated.
+	@available(*, deprecated, renamed: "first(where:)")
+	public func find(where filter: Filter) rethrows -> Self.Iterator.Element? {
+		return try self.first(where: filter)
 	}
 	
 	/// Finds a mapped value. When `filter` returns a non-nil value, that value
@@ -134,10 +131,10 @@ public extension Sequence {
 	}
 	
 	/// Returns a new array by removing objects that match the filter
-	public func removing(matching filter: Filter) -> [Self.Iterator.Element] {
+	public func removing(matching filter: Filter) rethrows -> [Self.Iterator.Element] {
 		var arr: [Self.Iterator.Element] = [ ]
 		for obj in self {
-			if !filter(obj) {
+			if try !filter(obj) {
 				arr.append(obj)
 			}
 		}
@@ -145,10 +142,10 @@ public extension Sequence {
 	}
 	
 	/// Sums up values of elements in self.
-	public func sum<T: SignedInteger>(_ numerator: (Self.Iterator.Element) -> T) -> T {
+	public func sum<T: SignedInteger>(_ numerator: (Self.Iterator.Element) throws -> T) rethrows -> T {
 		var result: T = 0
 		for obj in self {
-			result += numerator(obj)
+			result += try numerator(obj)
 		}
 		return result
 	}

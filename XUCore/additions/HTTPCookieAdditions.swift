@@ -16,7 +16,7 @@ public extension HTTPCookieStorage {
 			return nil
 		}
 		
-		return cookies.find { $0.name == name }
+		return cookies.first { $0.name == name }
 	}
 	
 }

@@ -149,7 +149,7 @@ open class XUManagedObject: NSManagedObject {
 		}
 		
 		// Need to find the object
-		guard let objectToDelete = valueSet.find(where: { $0.syncUUID == targetUUID }) else {
+		guard let objectToDelete = valueSet.first(where: { $0.syncUUID == targetUUID }) else {
 			XULog("Cannot remove object with syncID \(targetUUID) - should be removed for relationship \(syncChange.relationshipName)")
 			return
 		}

@@ -24,13 +24,13 @@ public final class XUSyncChangeSet: NSManagedObject {
 	}
 	
 	/// Returns the newest change set in MOC, if one exists.
-	public class func newestChangeSet(inContext ctx: NSManagedObjectContext) -> XUSyncChangeSet? {
+	public class func newestChangeSet(inContext ctx: NSManagedObjectContext) throws -> XUSyncChangeSet? {
 		let request = NSFetchRequest<XUSyncChangeSet>(entityName: NSStringFromClass(self))
-		request.sortDescriptors = [ NSSortDescriptor(key: "timestamp", ascending: false) ]
+		request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
 		request.fetchLimit = 1
 		
-		let allValues = (try? ctx.fetch(request))
-		return allValues?.first
+		let allValues = try ctx.fetch(request)
+		return allValues.first
 	}
 
 	

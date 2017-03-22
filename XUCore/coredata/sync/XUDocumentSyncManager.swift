@@ -202,7 +202,7 @@ open class XUDocumentSyncManager {
 	public final let syncManagedObjectContext: NSManagedObjectContext
 	
 	/// UUID of the document.
-	public final let UUID: String
+	public final let uuid: String
 
 
 	/// URL to the CoreData file that contains sync changes.
@@ -399,7 +399,7 @@ open class XUDocumentSyncManager {
 	/// If no timestamp is found, we simply have no clients so far and can delete
 	/// all changesets.
  	private func _performSyncCleanup() {
-		guard let timestampsFolderURL = XUSyncManagerPathUtilities.timestampsDirectoryURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID) else {
+		guard let timestampsFolderURL = XUSyncManagerPathUtilities.timestampsDirectoryURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.uuid) else {
 			return
 		}
 		
@@ -480,9 +480,9 @@ open class XUDocumentSyncManager {
 		/// will be reused.
 		var objectCache: [String : XUManagedObject] = [:]
 	
-		guard let documentFolder = XUSyncManagerPathUtilities.documentFolderURLForSyncManager(self.applicationSyncManager, andDocumentUUID: self.UUID) else {
+		guard let documentFolder = XUSyncManagerPathUtilities.documentFolderURLForSyncManager(self.applicationSyncManager, andDocumentUUID: self.uuid) else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for document %@.", self.UUID)
+				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for document %@.", self.uuid)
 			])
 		}
 		
@@ -515,12 +515,12 @@ open class XUDocumentSyncManager {
 	///
 	/// The minor errors are reported to the delegate.
 	private func _synchronizeWithComputerWithID(_ computerID: String, objectCache objCache: inout [String : XUManagedObject]) throws {
-		XULog("\(self.UUID) Starting synchronization with computer \(computerID).")
+		XULog("\(self.uuid) Starting synchronization with computer \(computerID).")
 		
 		let ctx = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		let coordinator = NSPersistentStoreCoordinator(managedObjectModel: _syncModel)
-		guard let fileURL = XUSyncManagerPathUtilities.persistentSyncStorageURLForSyncManager(self.applicationSyncManager, computerID: computerID, andDocumentUUID: self.UUID) else {
-			XULog("\(self.UUID) Can't get persistent sync storage URL for \(computerID).")
+		guard let fileURL = XUSyncManagerPathUtilities.persistentSyncStorageURLForSyncManager(self.applicationSyncManager, computerID: computerID, andDocumentUUID: self.uuid) else {
+			XULog("\(self.uuid) Can't get persistent sync storage URL for \(computerID).")
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for computer %@.", computerID)
 			])
@@ -534,7 +534,7 @@ open class XUDocumentSyncManager {
 		]
 		
 		if !(fileURL as NSURL).checkResourceIsReachableAndReturnError(nil) {
-			XULog("\(self.UUID) Changes from \(computerID) are not synced yet.")
+			XULog("\(self.uuid) Changes from \(computerID) are not synced yet.")
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Synchronization changes from computer %@ haven't been downloaded yet.", computerID)
 			])
@@ -544,7 +544,7 @@ open class XUDocumentSyncManager {
 		ctx.persistentStoreCoordinator = coordinator
 	
 		// We need to find out which change was last seen by this computer
-		guard let infoDictURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID) else {
+		guard let infoDictURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.uuid) else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for computer %@.", computerID)
 			])
@@ -573,12 +573,12 @@ open class XUDocumentSyncManager {
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 			let errors: [NSError] = []
 			for changeSet in changeSets {
-				XULog("\(self.UUID) Processing change set \(changeSet.timestamp) for \(computerID).")
+				XULog("\(self.uuid) Processing change set \(changeSet.timestamp) for \(computerID).")
 				
 				let changeSetErros = self._apply(changeSet: changeSet, withObjectCache: &objCache)
 				
 				if errors.count > 0 {
-					XULog("\(self.UUID) Applying change set \(changeSet.timestamp) from \(computerID) failed due to errors \(changeSetErros).")
+					XULog("\(self.uuid) Applying change set \(changeSet.timestamp) from \(computerID) failed due to errors \(changeSetErros).")
 				}
 			}
 			
@@ -608,7 +608,7 @@ open class XUDocumentSyncManager {
 	/// Returns nil, if iCloud is off.
 	public init(managedObjectContext: NSManagedObjectContext, applicationSyncManager appSyncManager: XUApplicationSyncManager, andUUID UUID: String) throws {
 		self.applicationSyncManager = appSyncManager
-		self.UUID = UUID
+		self.uuid = UUID
 
 		/// We're running all syncing on the main thread.
 		self.syncManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -658,11 +658,20 @@ open class XUDocumentSyncManager {
 	/// Starts synchronization with other devices.
 	open func startSynchronizing(withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
 		_synchronizationLock.lock()
-		if _isSyncing {
+		guard !_isSyncing else {
 			// Already syncing
 			_synchronizationLock.unlock()
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization is already in progress.", inBundle: XUCoreFramework.bundle)
+			]))
+			return
+		}
+		
+		guard !self.applicationSyncManager.isDownloadingData else {
+			// App manager is downloading data.
+			_synchronizationLock.unlock()
+			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization data is being downloaded.", inBundle: XUCoreFramework.bundle)
 			]))
 			return
 		}
@@ -733,7 +742,14 @@ open class XUDocumentSyncManager {
 		//
 		// Since we perform all syncing on main thread, it is guaranteed that the
 		// lastChangeSet will indeed be last.
-		let lastChangeSet = XUSyncChangeSet.newestChangeSet(inContext: self.syncManagedObjectContext)
+		let lastChangeSet: XUSyncChangeSet?
+		do {
+			lastChangeSet = try XUSyncChangeSet.newestChangeSet(inContext: self.syncManagedObjectContext)
+		} catch let error as NSError {
+			completionHandler(false, error)
+			_isUploadingEntireDocument = false
+			return
+		}
 	
 		// We don't care if lastChangeSet == nil, since that will simply make
 		// lastChangeSetTimestamp == 0.0 which works just fine
@@ -753,9 +769,9 @@ open class XUDocumentSyncManager {
 			return
 		}
 		
-		guard let entireDocumentFolderURL = XUSyncManagerPathUtilities.entireDocumentFolderURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.UUID) else {
+		guard let entireDocumentFolderURL = XUSyncManagerPathUtilities.entireDocumentFolderURLForSyncManager(self.applicationSyncManager, computerID: XU_SYNC_DEVICE_ID(), andDocumentUUID: self.uuid) else {
 			let error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for document %@.", self.UUID)
+				NSLocalizedFailureReasonErrorKey: XULocalizedFormattedString("Can't find synchronization folder for document %@.", self.uuid)
 			])
 			completionHandler(false, error)
 			_isUploadingEntireDocument = false

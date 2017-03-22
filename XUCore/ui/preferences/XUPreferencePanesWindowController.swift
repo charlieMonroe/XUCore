@@ -119,7 +119,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	///
 	/// This method asserts that a pane with this identifier exists.
 	public func selectPane(withIdentifier identifier: String) {
-		guard let pane = self.sections.map({ $0.paneControllers }).joined().find(where: { $0.paneIdentifier == identifier }) else {
+		guard let pane = self.sections.map({ $0.paneControllers }).joined().first(where: { $0.paneIdentifier == identifier }) else {
 			fatalError("There is no preference pane with identifier \(identifier)!")
 		}
 		

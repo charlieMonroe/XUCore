@@ -206,6 +206,12 @@ open class XUApplicationSyncManager {
 		_metadataQuery.start()
 	}
 	
+	/// Return true if the manager is currently downloading data. If yes, the 
+	/// document manager will postpone the sync.
+	open var isDownloadingData: Bool {
+		return false
+	}
+	
 	/// Debugging method that logs all contents on the folder at syncRootFolderURL.
 	open func logRootSyncFolderContents() {
 		_XULogFolderContentsStartingAtURL(self.syncRootFolderURL?.deletingLastPathComponent(), manager: self)

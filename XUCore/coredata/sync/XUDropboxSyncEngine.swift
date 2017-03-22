@@ -264,7 +264,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	}
 	
 	/// Returns true if we're downloading data from Dropbox.
-	public var isDownloadingData: Bool {
+	public override var isDownloadingData: Bool {
 		return _syncCounter != 0
 	}
 	

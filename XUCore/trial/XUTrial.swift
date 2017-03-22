@@ -274,7 +274,7 @@ open class XUTimeBasedTrial: XUTrial {
 		}
 		
 		let identifier = XUAppSetup.applicationIdentifier
-		guard let appDict = apps.find(where: { $0["app_identifier"] == identifier }) else {
+		guard let appDict = apps.first(where: { $0["app_identifier"] == identifier }) else {
 			if self._registerWithTrialServer() {
 				_secondsLeft = TimeInterval(XUAppSetup.timeBasedTrialDays) * XUTimeInterval.day
 				_wasFirstRun = true

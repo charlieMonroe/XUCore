@@ -26,10 +26,10 @@ open class XUPositionedWindowView: NSView {
 				connectedToWindow.addTitlebarAccessoryViewController(controller)
 			}
 
-			superview = superview?.subviews.find(where: { (view) -> Bool in
+			superview = superview?.subviews.first(where: { (view) -> Bool in
 				return view.isKind(of: NSClassFromString("NSTitlebarContainerView")!)
 			})
-			superview = superview?.subviews.find(where: { (view) -> Bool in
+			superview = superview?.subviews.first(where: { (view) -> Bool in
 				return view.isKind(of: NSClassFromString("NSTitlebarView")!)
 			})
 

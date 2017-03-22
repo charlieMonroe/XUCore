@@ -12,7 +12,7 @@ public extension NSToolbar {
 	
 	/// Returns item with identifier.
 	public func item(withIdentifier identifier: String) -> NSToolbarItem? {
-		return self.items.find(where: { $0.itemIdentifier == identifier })
+		return self.items.first(where: { $0.itemIdentifier == identifier })
 	}
 	
 }
