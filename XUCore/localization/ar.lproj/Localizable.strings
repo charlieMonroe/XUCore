@@ -1,0 +1,135 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 ساعة";
+"1 minute" = "1 دقيقة";
+"1 second" = "1 ثانية";
+"Unknown error." = "خطأ غير معروف.";
+
+"OK" = "موافق";
+"Cancel" = "إلغاء";
+
+"Failed to parse CSV file." = "تعذر تحليل ملف الـ CSV.";
+
+"Send Report" = "إرسال تقرير";
+"Privacy Information..." = "معلومات الخصوصية...";
+"%AppName% has encountered a problem." = "لقد واجه %AppName% مشكلة.";
+"%AppName% will terminate after sending the report." = "سيتم إغلاق %AppName% بعد إرسال التقرير.";
+"Report to be sent:" = "التقرير الذي سيتم إرساله:";
+"Your Email:" = "عنوان البريد الإلكتروني:";
+"Description:" = "الوصف:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "رجاءاً قم بوصف الحالة عند حصول هذه المشكلة و قم بإدراج الخطوات التي عن طريقها يتم حدوث المشكلة مرة اخرى. فيما يلي، قم بإدخال عنوان البريد الإلكتروني الخاص بك - سيتم إعلامك حالما يتم معالجة تلك المشكلة او ربما سنحتاج منك بتزويدنا بالمزيد من التفاصيل المتعلقة بتلك المشكلة. سوف لن يتم حفظ بريدك الالكتروني في قاعدة البيانات ولن يتم استخدامه لإرسال الرسائل الغير مرغوب بها. بإرسالك لهذا التقرير، ستساعدنا على تحسين هذا البرنامج. شكراً لك!";
+
+"Report Problem" = "إبلاغ عن مشكلة";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "نحن نقدر آرائكم و نعلمكم أننا لن نحاول على جمع اي معلومات غير ضرورية، لم يتم خزن بريدك الإلكتروني في أي مكان و ستم استخدامه فقط لإعلامك عندما تحل المشكلة او عندما نحتاج للمزيد عن المعلومات التي قد تساعدنا على حل المشكلة.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "سيتم إرسال المعلومات التالية فقط:\n• الوصف الذي قمت بكتابته.\n• المعلومات الاستثنائية التالية.\n• إصدار هذا التطبيق.\n• إصدار نظام التشغيل الخاص بك (OS).\n• موديل جهاز حاسوبك (ليس عنوان الـ ماك او أي معلومات التي من خلالها يمكن تحديد جهازك الحاسوب).";
+
+"Could not post your report." = "تعذر نشر تقريرك.";
+"Check your Internet connection and try again." = "تأكد من اتصالك بالأنترنت و حاول مجددا.";
+"Heh, nice try. Please, enter a valid email address." = "اها، محاولة جيدة. رجاءاً قم بإدخال عنوان بريدي صالح.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "ربما نحتاج إلى التواصل معك من أجل حل هذه المشكلة. نحن لا نلدغ، لن نقوم ببيع عنوانك البريدي لأي شخص و لن نقوم بإستخدامه بأي طريقة اخرى. نحن نعدك بذلك.";
+"You need to enter a valid email address." = "تحتاج لإدخال عنوان بريدي صالح.";
+"We may need to get in touch with you in order to fix this." = "ربما نحتاج التواصل معك من أجل إصلاح ذلك.";
+"Please, provide some details as to when this exception happened." = "رجاءاً، قم بإضافة بعض التفاصيل المتعلقة بوقت حدوث هذه المشكلة";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "أدرج المعلومات عن المهام التي تعمل في التطبيق، هل كان التطبيق يعمل في الخلفية او في المقدمة، او قمت بالنقر على أي شيء، الخ. قد تكون محاولة إيجاد سبب المشكلة من التقرير فقط و بدون معلومات اضافية صعبة او مستحيلة. ";
+"Thank you for the report!" = "شكرا على إبلاغك!";
+"We'll fix it as soon as possible!" = "سنقوم بحل المشكلة في أقرب وقت ممكن!";
+
+"Welcome to beta testing of %@." = "مرحبا بك في النسخة التجريبية من %@.";
+"This is the first time you run a beta build %@." = "هذه هي المرة الاولى التي تقوم بتشغيل هذه النسخة التجريبية %@.";
+"This beta build of %@ has expired." = "لقد انتهت صلاحية النسخة التجريبية من %@.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "استمتع ببرنامجنا! اذا كان لديك اي سؤال او مررت بأي مشكلة، لا تتردد من التواصل معنا عبر صفحة الدعم الخاصة بنا %@.";
+
+"Continue" = "إستمرار";
+"Purchase..." = "شراء...";
+"I'm Still Not Sure" = "لست متأكدا بعد";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "لم يستطع %@ الإتصال بالإنترنت. سيتم إغلاق التطبيق خلال ساعة.";
+"%@ requires connection to the Internet to continue the trial properly." = "يتطلب اتصال بالانترنت لكي يستمر عمل النسخة التجريبية بصورة صحيحة. %@";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "سيتم تحويلك الى صفحة شراء التطبيق. إذا كنت لا تزال غير من متأكد من أن @% مناسب لك و لديك بعض الأسئلة، إتصل بنا. %@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "شكراً على استخدامك تطبيق @%! يمكنك استخدام هذا التطبيق كاملاً لمدة %li يوم الآن. بعد انتهاء صلاحية النسخة التجريبية، ستحتاج لشراء نسخة من %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "شكراً على تجربتك تطبيق @%! لقد قمت بإستخدام هذا التطبيق لـ %li يوم. للإستمرار بإستخدام @% عليك شراء النسخة.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "شكرا على تجربتك تطبيق @%! يمكنك الان استخدامه لـ i% @% بدون اي قيود. بعد إنتهاء صلاحية النسخة التجريبية عليك شراء نسخة من تطبيق @%.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "شكرا على استخدامك تطبيق @%! لقد قمت بإستخدام التطبيق لـ @%. للإستمرار باستخدام @% عليك بشراء النسخة.";
+"Working..." = "جار العمل...";
+
+"Progress" = "الحالة";
+"Posted successfully" = "تم النشر بنجاح";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "@% سيعمل خلال الـ24 ساعة القادة، بعدها سيتم إيقاف عمله. رجاءا، قم بتحديث @% من أجل استمراره بالعمل.";
+"Please download a new build." = "رجاءا، قم بتحميل النسخة الجديدة.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "يمكنك إرسال التقرير على اي حال، لكن إن كانت الرسالة ليست باللغة الانكليزية، لن يكون بإمكاني تزويدك بالدعم الكامل.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "قد تحتوي رسالتك على بعض الرموز الخاصة التي قد تشير على ان الرسالة ليست باللغة الانكليزية. الرجاء ملاحظة أنه على الرغم من التطبيق @% نتوفر بعدة لغات، إلا أن الدعم متوفر باللغة الانكليزية حصراً. شكرا على تفهمكم.";
+"%li hours" = "%li ساعات";
+"%li minutes" = "%li دقائق";
+"%li seconds" = "%li ثوان";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "تعذر إيجاد الملف. الرجاء المحاولة لاحقا، ربما حصلت مشكلة في تزامن البيانات.";
+"Cannot open document metadata file." = "تعذر فتح ملف البيانات الوصفية.";
+"Metadata file doesn't contain required information." = "ملف البيانات الوصفية لا يحتوي على المعلومات اللازمة.";
+"Synchronization is already in progress." = "التزامن قيد العمل.";
+"An upload operation is already in progress." = "عملية رفع البيانات قيد العمل";
+"Could not save upload metadata." = "تعذر حفظ البيانات الوصفية للتحميل";
+"Cannot find entity named %@" = "تعذر العثور على الكيان @%";
+"Cannot find class named %@" = "تعذر العثور على الصنف @%";
+"Cannot find entity with ID %@" = "لا يمكن العثور على رمز الكيان %@";
+"Can't find synchronization folder for document %@." = "تعذر ايجاد مجلد المزامنة للملف @%";
+"Can't find synchronization folder for computer %@." = "تعذر ايجاد مجلد المزامنة للحاسوب %@.";
+"Can't find sync folder for document %@." = "لا يمكن ايجاد مجلد المزامنة للملف @%.";
+"%@ couldn't finish synchronization in the background." = "%@ لم يستطع إنهاء المزامنة في الخلفية.";
+"Please switch back to %@ so that the synchronization can finish." = "الرجاء الرجوع الى @% من اجل إنهاء عملية المزامنة.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "تعذر قراءة بيانات المزامنة.";
+"Could not copy synchronization change data to the cloud." = "تعذر نسخ بيانات المزامنة الى السحابة.";
+"Failing to apply change sets." = "فشل في تطبيق التغييرات.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "لم يتم تحميل تغييرات المزامنة الحاصلة من الحاسوب @% بعد.";
+
+/// XUOAuth2
+"Authentication" = "التحقق";
+"Server responded with unknown token type." = "السيرفر يستجيب برمز غير معرف.";
+"Server provided invalid authorization response." = "قام السيرفر بتزويد استجابة تفويض غير صالحة.";
+"Server has redirected with invalid URL." = "تم إعادة توجية السيرفر برابط غير صالح.";
+"User cancelled the authorization." = "تم إلغاء عملية التحقيق من قبل المستخدم.";
+
+/// Debug Log Menu
+"Debug" = "Debug";
+"About Debug Log..." = "حول سجل الـDebug";
+"Debug Logging" = "Debug تسجيل";
+"On" = "تشغيل";
+"Off" = "تعطيل";
+"Clear Debug Log" = "Clear Debug Log";
+"Show Log in Finder" = "عرض السجل في المجلد";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "debug log هو ملف نصي يحتوي على بعض التفاصيل التقنية حول ما يقوم @% بإجراءه في الخلفية. هذا الملف يساعدني على اجراء التصليحات للبرنامج بسرعة لانه يساعدني على الاطلاع على ما يجري. للحصول على الـ debug log، قم باتباع الخطوات التالية:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "(1 اذا لم تكن هذه هي المرة الاولى التي تقوم بها بإرسال الـ debug log، رجاءاً، قم بتحديد Clear Debug Log من قائمة Debug.\n2) في قائمة الـ Debug، تأكد من تفعيل خيار الـ Debug Logging.\n3) قم بإجراء اي مهمة التي تسبب حدوث المشكة.\n4) في قائمة الـ Debug، قم بإيقاف الـ Debug Logging.\n5) في قائمة الـ Debug، قم بإختيار “عرض السجل في الـ Finder” او “Shlow Log in Finder”. سيؤدي ذلك الاختيار الى تحديد السجل في الـ Finder و بالتالي يمكنك أرساله لي بسهولة. رجاءا قم بإرفاق الملف في البريد الالكتروني بدلا من نسخ و لصق البيانات.\n\nملف السجل لا يحتوي على اي معلومات شخصية ويمكنك التأكد من ذلك من خلال فتح ملف السجل (ملف نصي اعتيادي). أذا و جدت شيئاً تعتقد انه خصوصي او سري، رجاءا قم بإبدال تلك المعلومة بشيء يمكن تمييزه بسهولة (على سبيل المثال: XXXXXXXX) و أعلمني بأنك قمت بإجراء تعديل على ملف السجل (log file).";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "تعذر تحميل الملف الان.";
+"Log Current Application State" = "سجل حالة التطبيق الحالي.";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "ستنتهي صلاحية النسخة التجريبية في أقل من ساعة.";
+"Please update your copy of this beta build." = "الرجاء تحديث نسختك التجريبية.";
+
+// Preferences.
+"All Preferences" = "جميع الخيارات";
+"Show All" = "عرض الكل";
+"Preferences" = "الخيارات";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "لا توجد نتائج للبحث";
+"%li search results" = "%li نتيجة بحث";
+
+// Certificate view.
+"Select..." = "تحديد...";
+

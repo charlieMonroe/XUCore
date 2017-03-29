@@ -105,7 +105,7 @@ open class XUTrial {
 		
 		if NSApp == nil {
 			NotificationCenter.default.addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
-		}else{
+		} else {
 			self.applicationDidFinishLaunching(Notification(name: NSNotification.Name.NSApplicationDidFinishLaunching, object: NSApp))
 		}
 	}

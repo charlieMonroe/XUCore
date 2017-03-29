@@ -589,6 +589,7 @@
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
@@ -1415,6 +1416,7 @@
 				it,
 				nb,
 				da,
+				ar,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1799,6 +1801,7 @@
 				07EAAE781DA12852006C98A5 /* it */,
 				0765CC951DDB3C43001D8603 /* nb */,
 				073F582A1E44D427005E4543 /* da */,
+				07A166291E87FAE400EAFCA1 /* ar */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
