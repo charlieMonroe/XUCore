@@ -24,8 +24,8 @@ public extension MKPolygon {
 	
 	private class func _parseCoordinate(fromString coordinateString: String) -> CLLocation {
 		let points = coordinateString.components(separatedBy: " ")
-		let lon = points.first!
-		let lat = points.last!
+		let lat = points.first!
+		let lon = points.last!
 		return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)
 	}
 	
