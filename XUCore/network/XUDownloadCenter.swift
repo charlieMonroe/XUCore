@@ -194,8 +194,8 @@ open class XUDownloadCenter {
 			/// Serializes the host into a dictionary.
 			public var dictionaryRepresentation: XUJSONDictionary {
 				return [
-					DictionaryKeys.Address: self.address as AnyObject,
-					DictionaryKeys.Port: self.port as AnyObject
+					DictionaryKeys.Address: self.address,
+					DictionaryKeys.Port: self.port
 				]
 			}
 			
@@ -252,11 +252,11 @@ open class XUDownloadCenter {
 		/// saveCredentials() which will store the password in Keychain.
 		public var dictionaryRepresentation: XUJSONDictionary {
 			var dict: XUJSONDictionary = [
-				DictionaryKeys.Host: self.host.dictionaryRepresentation as AnyObject,
-				DictionaryKeys.ProxyType: self.proxyType.rawValue as AnyObject
+				DictionaryKeys.Host: self.host.dictionaryRepresentation,
+				DictionaryKeys.ProxyType: self.proxyType.rawValue
 			]
 			
-			dict[DictionaryKeys.Username] = self.credentials?.username as AnyObject?
+			dict[DictionaryKeys.Username] = self.credentials?.username
 			return dict
 		}
 		

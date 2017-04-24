@@ -47,7 +47,7 @@ public enum XUEmailFormatValidity {
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
 			"noname@nothing.com"
 		]
-		if matches.contains(where: email.hasCaseInsensitive(substring:)) {
+		if matches.contains(where: email.contains(caseInsensitive:)) {
 			self = .phony
 			return
 		}
@@ -80,6 +80,12 @@ public extension String {
 		return String(data: data)
 	}
 
+	/// Returns true if the receiver has `substring` in case-insensitive
+	/// comparison.
+	public func contains(caseInsensitive substring: String) -> Bool {
+		return self.range(of: substring, options: .caseInsensitive) != nil
+	}
+	
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
 	public func draw(centeredIn rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
@@ -139,6 +145,7 @@ public extension String {
 
 	/// Returns true if the receiver has `substring` in case-insensitive
 	/// comparison.
+	@available(*, deprecated, renamed: "contains(caseInsensitive:)")
 	public func hasCaseInsensitive(substring: String) -> Bool {
 		return self.range(of: substring, options: .caseInsensitive) != nil
 	}

@@ -20,6 +20,9 @@
 /// Decrypts data with AES-256 using an encryption key and IV.
 -(nullable NSData *)decryptedAES256DataWithEncryptionKey:(nonnull NSString *)key andInitialVector:(nonnull NSString *)vector;
 
+/// Decrypts data with AES-256 using an encryption key and IV.
+-(nullable NSData *)decryptedAES256DataWithEncryptionDataKey:(nonnull NSData *)key andInitialDataVector:(nonnull NSData *)vector;
+
 /// Creates a HMAC-SH1 with custom key.
 -(nullable NSData *)HMACSHA1WithKey:(nonnull NSString *)key;
 
