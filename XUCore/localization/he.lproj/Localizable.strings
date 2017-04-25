@@ -22,7 +22,7 @@
 "Your Email:" = "האימייל שלך:";
 "Description:" = "תיאור:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "אנא תאר את המצב שבו הבעיה קרתה וספק הסבר מפורט כדי לשחזר את הבעיה אם ניתן. הזן את כתובת האימייל למטה - אנו נעדכן אותה כאשר התקלה תתוקן או נבקש ממך פרטים נוספים אודות הבעיה. כתובת האימייל שלך לא תישמר בבסיס נתונים ואתה לא תקבל אימיילים לא רצויים. שליחת הדיווח תאפשר לנו לשפר את התוכנה. תודה!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "אנא תאר את המצב שבו הבעיה קרתה וספק הסבר מפורט כדי לשחזר את הבעיה אם ניתן. הזן את כתובת האימייל למטה - אנו נעדכן אותה כאשר התקלה תתוקן או נבקש ממך פרטים נוספים אודות הבעיה. כתובת האימייל שלך לא תישמר בבסיס נתונים ואתה לא תקבל אימיילים לא רצויים. שליחת הדיווח תאפשר לנו לשפר את התוכנה. תודה!";
 
 "Report Problem" = "דווח על בעיה";
 

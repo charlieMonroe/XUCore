@@ -22,7 +22,7 @@
 "Your Email:" = "您的邮箱:";
 "Description:" = "问题描述:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails. By submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况. 如果可能, 请提供能够重现该问题的操作步骤. 请在下方输入您的电子邮件地址 - 我们会在问题修复时发送邮件通知您, 或是通过邮件询问您有关该异常的更多细节. 我们保证, 不会收集您的电子邮件地址, 也不会发送任何不相关的骚扰邮件. 提交该问题报告能够帮助我们改善这款软件. 感谢您的支持!";;
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况. 如果可能, 请提供能够重现该问题的操作步骤. 请在下方输入您的电子邮件地址 - 我们会在问题修复时发送邮件通知您, 或是通过邮件询问您有关该异常的更多细节. 我们保证, 不会收集您的电子邮件地址, 也不会发送任何不相关的骚扰邮件. 提交该问题报告能够帮助我们改善这款软件. 感谢您的支持!";;
 
 "Report Problem" = "报告问题";
 
