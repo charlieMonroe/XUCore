@@ -18,14 +18,14 @@ public extension MKPolygon {
 		let coordinatesRegex = XURegex(pattern: "([-\\d\\.]+\\s[-\\d\\.]+)", andOptions: .caseless)
 		let matches = exteriorRingString.allOccurrences(ofRegex: coordinatesRegex)
 		return matches.map({ (match) -> CLLocation in
-			return self._parseCoordinate(fromString: match)
+			return self._parseCoordinate(from: match)
 		})
 	}
 	
-	private class func _parseCoordinate(fromString coordinateString: String) -> CLLocation {
+	private class func _parseCoordinate(from coordinateString: String) -> CLLocation {
 		let points = coordinateString.components(separatedBy: " ")
-		let lat = points.first!
-		let lon = points.last!
+		let lat = points.last!
+		let lon = points.first!
 		return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)
 	}
 	
