@@ -572,6 +572,17 @@ public extension String {
 			return Data(buffer: ptr).trimmingTrailingZeros
 		}
 	}
+	
+	/// Wraps the string so that each line has maximum length of `length`. For 
+	/// example "hello" wrapped to max length of 2 is "he\nll\no".
+	public func wrapped(to lineWidth: Int) -> String {
+		let lineCharacters = self.lines.map({
+			Array($0.characters).splitIntoChunks(ofSize: lineWidth)
+		}).joined()
+		
+		let lines = lineCharacters.map({ String($0) })
+		return lines.joined(separator: "\n")
+	}
 		
 }
 

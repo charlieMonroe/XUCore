@@ -50,5 +50,11 @@ class StringTests: XCTestCase {
 		XCTAssert(utf8String.data(using: .utf8) == utf8String.utf8Data)
 	}
 	
+	func testWrap() {
+		XCTAssert("hello".wrapped(to: 2) == "he\nll\no")
+		XCTAssert("hello\nhello".wrapped(to: 2) == "he\nll\no\nhe\nll\no")
+		XCTAssert("hello\nhello\n".wrapped(to: 2) == "he\nll\no\nhe\nll\no\n")
+	}
+	
 }
 

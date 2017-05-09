@@ -249,13 +249,13 @@ open class XUApplicationSetup {
 		
 		if let betaBuild = infoDictionary["XUBetaBuild"] as? NSNumber {
 			self.isBetaBuild = betaBuild.boolValue
-		}else{
+		} else {
 			self.isBetaBuild = false
 		}
 		
 		if let betaExpirationTimeInterval = infoDictionary["XUBetaExpiration"] as? NSNumber, betaExpirationTimeInterval.doubleValue > 0.0 {
 			self.betaExpirationTimeInterval = betaExpirationTimeInterval.doubleValue
-		}else{
+		} else {
 			self.betaExpirationTimeInterval = 7.0 * XUTimeInterval.day
 		}
 		

@@ -43,13 +43,28 @@ public func XUForceLog(_ string: @autoclosure () -> String, method: String = #fu
 }
 
 /// Logs a message to the console.
-public func XULog(_ string: @autoclosure () -> String, method: String = #function, file: String = #file, line: Int = #line) {
+///
+/// It automatically gathers the method, file and line. You can optionally wrap
+/// the logged string to a certain width and apply indentation level. Spaces
+/// are used for indentation (4 spaces per level).
+public func XULog(_ string: @autoclosure () -> String, method: String = #function, file: String = #file, line: Int = #line, wrappedToWidth: Int? = nil, indentationLevel: Int = 0) {
 	if !XUDebugLog._didCachePreferences {
 		XUDebugLog._initialize()
 	}
 	
 	if XUDebugLog._cachedPreferences {
-		print("\(file.components(separatedBy: "/").last.descriptionWithDefaultValue()):\(line).\(method): \(string())")
+		var logString = string()
+		
+		if let width = wrappedToWidth {
+			logString = logString.wrapped(to: width)
+		}
+		
+		if indentationLevel != 0 {
+			let prefix = String(Array<Character>(repeating: Character(" "), count: indentationLevel * 4))
+			logString = logString.lines.map({ prefix + $0 }).joined(separator: "\n")
+		}
+		
+		print("\(file.components(separatedBy: "/").last.descriptionWithDefaultValue()):\(line).\(method): \(logString)")
 		
 		XUDebugLog._lastLogTimeInterval = Date.timeIntervalSinceReferenceDate
 	}
@@ -292,6 +307,15 @@ public final class XUDebugLog {
 			XUDebugLog.clearLog()
 		}
 		
+		@objc fileprivate func _copyAppState() {
+			if let provider = XUAppSetup.applicationStateProvider {
+				let state = provider.provideApplicationState()
+				let pboard = NSPasteboard.general()
+				pboard.declareTypes([NSStringPboardType], owner: self)
+				pboard.setString(state, forType: NSStringPboardType)
+			}
+		}
+		
 		@objc fileprivate func _logAppState() {
 			if let provider = XUAppSetup.applicationStateProvider {
 				XULog(provider.provideApplicationState())
@@ -350,6 +374,7 @@ public final class XUDebugLog {
 			menu.addItem(NSMenuItem.separator())
 			
 			if XUAppSetup.applicationStateProvider != nil {
+				menu.addItem(withTitle: XULocalizedString("Copy Current Application State", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._copyAppState), keyEquivalent: "").target = _actionHandler
 				menu.addItem(withTitle: XULocalizedString("Log Current Application State", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._logAppState), keyEquivalent: "").target = _actionHandler
 			}
 			menu.addItem(withTitle: XULocalizedString("Clear Debug Log", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "").target = _actionHandler

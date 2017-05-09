@@ -283,6 +283,19 @@ public extension Array {
 		return self[range.lowerBound ..< range.upperBound]
 	}
 	
+	/// Splits array into chunks of maximum size. The last chunk may be shorter.
+	public func splitIntoChunks(ofSize chunkSize: Int) -> [[Iterator.Element]] {
+		if self.isEmpty {
+			return [[]]
+		}
+		
+		let strideRun = stride(from: 0, to: self.count, by: chunkSize)
+		return strideRun.map({
+			let endIndex = Swift.min(self.count, $0.advanced(by: chunkSize))
+			return Array(self[$0 ..< endIndex])
+		})
+	}
+	
 }
 
 public extension Collection where Self.IndexDistance : Comparable {

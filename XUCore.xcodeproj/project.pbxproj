@@ -265,6 +265,7 @@
 		07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */; };
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
 		07758A2F1BEFC640004B29A8 /* NSToolbarAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */; };
+		0775F38B1EC0D768005DA86F /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0775F38A1EC0D768005DA86F /* ArrayTests.swift */; };
 		0779E1531BEE5D7300832858 /* NSWindowLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */; };
 		0779E1551BEE5E2800832858 /* NSViewLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */; };
 		0779E1571BEE5FE700832858 /* NSMenuLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */; };
@@ -554,6 +555,7 @@
 		07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTabViewAdditions.swift; sourceTree = "<group>"; };
 		07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSToolbarAdditions.swift; sourceTree = "<group>"; };
 		07758A301BEFC6B6004B29A8 /* NSViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSViewAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0775F38A1EC0D768005DA86F /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSWindowLocalizationSupport.swift; sourceTree = "<group>"; };
 		0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewLocalizationSupport.swift; sourceTree = "<group>"; };
 		0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuLocalizationSupport.swift; sourceTree = "<group>"; };
@@ -947,12 +949,13 @@
 		076ACE751E37D4B8001BA622 /* XUCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				076ACE761E37D4B8001BA622 /* XUCoreTests.swift */,
+				0775F38A1EC0D768005DA86F /* ArrayTests.swift */,
 				070AAD831E75400500224644 /* CharacterTests.swift */,
 				076ACE811E37D707001BA622 /* DataTests.swift */,
+				076ACE781E37D4B8001BA622 /* Info.plist */,
 				076ACE7F1E37D6D9001BA622 /* StringTests.swift */,
 				07D263781E4AFDB5009BAFAA /* URLTests.swift */,
-				076ACE781E37D4B8001BA622 /* Info.plist */,
+				076ACE761E37D4B8001BA622 /* XUCoreTests.swift */,
 			);
 			path = XUCoreTests;
 			sourceTree = "<group>";
@@ -1472,6 +1475,7 @@
 				076ACE801E37D6D9001BA622 /* StringTests.swift in Sources */,
 				076ACE821E37D707001BA622 /* DataTests.swift in Sources */,
 				076ACE771E37D4B8001BA622 /* XUCoreTests.swift in Sources */,
+				0775F38B1EC0D768005DA86F /* ArrayTests.swift in Sources */,
 				070AAD841E75400500224644 /* CharacterTests.swift in Sources */,
 				07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */,
 			);
