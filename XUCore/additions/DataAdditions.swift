@@ -26,6 +26,30 @@ private func _hexValueOfChar(_ c: Character) -> UInt8 {
 
 public extension Data {
 	
+	/// Returns a byte at index. Does no bounds checking.
+	///
+	/// - Parameter index: Index of the byte.
+	/// - Returns: Byte at index.
+	func byte(at index: Index) -> UInt8 {
+		return self.withUnsafeBytes({ $0[index] })
+	}
+	
+	/// Returns true if self has a prefix that is defined by the bytes in `prefix`.
+	///
+	/// - Parameter prefix: Prefix bytes this data is tested against.
+	/// - Returns: True if `self` has this prefix.
+	func hasPrefix(_ prefix: [UInt8]) -> Bool {
+		if self.count < prefix.count {
+			return false
+		}
+		
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Bool in
+			return prefix.enumerated().all(matching: { (index, byte) -> Bool in
+				return ptr[index] == byte
+			})
+		}
+	}
+	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
 	public init(hexEncodedString hexString: String) {
 		if hexString.characters.count % 2 != 0 {
@@ -122,6 +146,17 @@ public extension Data {
 		return self.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> T in
 			let bytes = bytes.advanced(by: index)
 			return bytes.withMemoryRebound(to: T.self, capacity: 1, { $0.pointee })
+		}
+	}
+	
+	/// Splits the data into chunks of maximum size and returns them as array.
+	func splitIntoParts(ofMaximumSize maxSize: Int) -> [Data] {
+		if self.count <= maxSize {
+			return [self]
+		}
+		
+		return stride(from: 0, to: self.count, by: maxSize).map { index in
+			return self.subdata(in: index ..< Swift.min(self.count, index + maxSize))
 		}
 	}
 	

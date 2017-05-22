@@ -13,7 +13,7 @@ import Foundation
 public func XU_PERFORM_BLOCK_ON_MAIN_THREAD(_ block: () -> Void) {
 	if Thread.isMainThread {
 		block()
-	}else{
+	} else {
 		DispatchQueue.main.sync(execute: block)
 	}
 }

@@ -219,6 +219,8 @@
 		0749DD051C0203430075CC9B /* ExceptionReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0749DD041C0203430075CC9B /* ExceptionReporter.xib */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		074A12FA1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
+		074A12FB1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
 		074B43CE1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		074B43CF1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */; };
 		07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
@@ -522,6 +524,7 @@
 		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
+		074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __XUInAppPurchaseManagerHelper.h; sourceTree = "<group>"; };
 		074B43CD1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __XUInAppPurchaseManagerHelper.m; sourceTree = "<group>"; };
 		074E08501C6CB65A00A0FD48 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -588,6 +591,7 @@
 		077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Additions.swift"; sourceTree = "<group>"; };
 		077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationState.swift; sourceTree = "<group>"; };
 		0784480A1D12A4C000E8467B /* OptionalAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAdditions.swift; sourceTree = "<group>"; };
+		0788DE901ED2EB0F00D2A81B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1027,6 +1031,7 @@
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
 				07B821111C86395B0079868F /* CGGraphicsAdditions.swift */,
 				073E6B391BE1F9D500706283 /* CharacterExtensions.swift */,
+				074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */,
 				077093811CC1296C0093830B /* DataAdditions.swift */,
 				07758A241BEFBB2B004B29A8 /* DateAdditions.swift */,
 				07FD4BDF1C7DC2E900559CF0 /* DateFormatterISO8601.swift */,
@@ -1420,6 +1425,7 @@
 				nb,
 				da,
 				ar,
+				sv,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1514,6 +1520,7 @@
 				07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
 				0749DCEA1C00C6DF0075CC9B /* XUAppStoreHidingView.swift in Sources */,
+				074A12FA1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */,
 				0779E1531BEE5D7300832858 /* NSWindowLocalizationSupport.swift in Sources */,
 				073E6AE31BE1F86D00706283 /* set.cc in Sources */,
 				073E6B051BE1F86D00706283 /* pcre.cc in Sources */,
@@ -1716,6 +1723,7 @@
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
 				0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */,
+				074A12FB1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */,
 				073E6ACC1BE1F86D00706283 /* parse.cc in Sources */,
 				07311DD71C0C77E3001B95AC /* UIImageAdditions.swift in Sources */,
 				07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */,
@@ -1806,6 +1814,7 @@
 				0765CC951DDB3C43001D8603 /* nb */,
 				073F582A1E44D427005E4543 /* da */,
 				07A166291E87FAE400EAFCA1 /* ar */,
+				0788DE901ED2EB0F00D2A81B /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
