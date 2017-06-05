@@ -319,6 +319,7 @@
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
 		07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
+		07A9E9BD1EE0286B006B200C /* XURoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A9E9BB1EE0286B006B200C /* XURoundedView.swift */; };
 		07AAF7201DE58AF6001962DB /* XUCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */; };
 		07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
 		07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
@@ -361,6 +362,8 @@
 		07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D263781E4AFDB5009BAFAA /* URLTests.swift */; };
 		07D3330E1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
 		07D3330F1D378DBB0040B1D1 /* XUBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */; };
+		07D57DFD1EE1A88300B5101F /* XUView+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */; };
+		07D57DFE1EE1A88300B5101F /* XUView+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */; };
 		07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07DA882C1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
@@ -600,6 +603,7 @@
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
+		07A9E9BB1EE0286B006B200C /* XURoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedView.swift; path = ../XUCore/ui/views/XURoundedView.swift; sourceTree = "<group>"; };
 		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
 		07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializable.swift; path = deserialization/XUJSONDeserializable.swift; sourceTree = "<group>"; };
 		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
@@ -629,6 +633,7 @@
 		07CD35A11E5DBEF000DF8AED /* UILabelAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelAdditions.swift; sourceTree = "<group>"; };
 		07D263781E4AFDB5009BAFAA /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
+		07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XUView+LayoutConstraints.swift"; sourceTree = "<group>"; };
 		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializationLog.swift; path = deserialization/XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOAuth2.swift; path = oauth2/XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
@@ -1082,6 +1087,7 @@
 				07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */,
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
 				0771E0781C26BF1C004305F4 /* XUSearchable.swift */,
+				07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */,
 			);
 			path = additions;
 			sourceTree = "<group>";
@@ -1199,6 +1205,7 @@
 			isa = PBXGroup;
 			children = (
 				07C4B8F11C2AE6240058EE6A /* XULineView.swift */,
+				07A9E9BB1EE0286B006B200C /* XURoundedView.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -1501,6 +1508,7 @@
 				07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
 				077DE4901D61BDA600FD6639 /* NSMenu+Additions.swift in Sources */,
 				075DC78F1CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,
+				07D57DFD1EE1A88300B5101F /* XUView+LayoutConstraints.swift in Sources */,
 				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
 				074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */,
 				0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */,
@@ -1714,6 +1722,7 @@
 				0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */,
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
+				07D57DFE1EE1A88300B5101F /* XUView+LayoutConstraints.swift in Sources */,
 				07CD35A21E5DBEF000DF8AED /* UILabelAdditions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
 				07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
@@ -1759,6 +1768,7 @@
 				073E6AC81BE1F86D00706283 /* nfa.cc in Sources */,
 				073E6B2C1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
 				0749DCDF1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
+				07A9E9BD1EE0286B006B200C /* XURoundedView.swift in Sources */,
 				073E6B531BE2026600706283 /* XULog.swift in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,

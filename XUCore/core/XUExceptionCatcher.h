@@ -25,7 +25,7 @@ typedef void(^XUExceptionFinallyHandler)(void);
 +(void)performBlock:(nonnull __attribute__((__noescape__)) void(^)(void))block withCatchHandler:(nonnull __attribute__((__noescape__)) XUExceptionCatchHandler)catchHandler andFinallyBlock:(nonnull __attribute__((__noescape__)) XUExceptionFinallyHandler)finallyBlock;
 
 
-/// Initializer. You must supply the blocks when calling performBlock then.
+/// Will call abort().
 -(nonnull instancetype)init NS_UNAVAILABLE;
 
 @end

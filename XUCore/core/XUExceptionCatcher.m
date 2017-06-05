@@ -11,7 +11,7 @@
 @implementation XUExceptionCatcher
 
 -(instancetype)init {
-	return [super init];
+	abort();
 }
 
 +(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock {
