@@ -148,7 +148,12 @@ open class XUApplication: NSApplication {
 		}
 		
 		// Not modal
-		var windowIsEditingAField = self.mainWindow?.firstResponder.isKind(of: NSTextView.self) ?? false
+		#if swift(>=3.2)
+			var windowIsEditingAField = self.mainWindow?.firstResponder?.isKind(of: NSTextView.self) ?? false
+		#else
+			var windowIsEditingAField = self.mainWindow?.firstResponder.isKind(of: NSTextView.self) ?? false
+		#endif
+		
 		if _arrowKeyEventObserver != nil && _arrowKeyEventObserver!.observeEvenWhenEditing {
 			windowIsEditingAField = false
 		}

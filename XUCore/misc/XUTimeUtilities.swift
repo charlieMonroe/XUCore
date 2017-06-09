@@ -25,6 +25,7 @@ public struct XUTime {
 	
 	/// Returns seconds as human-readable string. E.g. 1 hour 10 minutes 1 second.
 	public static func localizedTimeString(_ seconds: TimeInterval) -> String {
+		
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return XULocalizedString("1 second", inBundle: XUCoreFramework.bundle)
 		}
@@ -33,7 +34,7 @@ public struct XUTime {
 		var minuteString = ""
 		var secondsString = ""
 		
-		var eta = Int(seconds)
+		var eta = Int64(seconds)
 		if eta > 3599 {
 			// i.e. at least one hour
 			let hours = eta / 3600

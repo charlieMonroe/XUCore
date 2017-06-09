@@ -92,26 +92,20 @@ public final class XUSystemNotificationCenter {
 private class XUSystemNotificationWindowController: NSWindowController {
 	
 	/// Notification this was initialized with.
-	let notification: XUSystemNotificationCenter.Notification
+	var notification: XUSystemNotificationCenter.Notification!
 	
-	init(notification: XUSystemNotificationCenter.Notification) {
-		self.notification = notification
+	convenience init(notification: XUSystemNotificationCenter.Notification) {
+		self.init(windowNibName: "SystemNotification")
 		
-		super.init(window: nil)
-	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		self.notification = notification
 	}
 	
 	fileprivate override func loadWindow() {
-		NSNib(nibNamed: "SystemNotification", bundle: XUCoreFramework.bundle)!.instantiate(withOwner: self, topLevelObjects: nil)
+		super.loadWindow()
 		
 		self.windowDidLoad()
 	}
-	override var owner: AnyObject {
-		return self
-	}
+	
 	override var windowNibPath: String? {
 		return XUCoreFramework.bundle.path(forResource: "SystemNotification", ofType: "nib")
 	}
@@ -120,7 +114,7 @@ private class XUSystemNotificationWindowController: NSWindowController {
 		super.windowDidLoad()
 		
 		let window = self.window as! XUSystemNotificationWindow
-		switch self.notification {
+		switch self.notification! {
 		case .system(let notification):
 			window.messageField.stringValue = notification.message
 			window.iconView.image = notification.icon

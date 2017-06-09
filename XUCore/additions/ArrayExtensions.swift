@@ -130,6 +130,13 @@ public extension Sequence {
 		return minValue
 	}
 	
+	/// Randomizes the array (by shuffling it).
+	public func randomized() -> [Self.Iterator.Element] {
+		return self.sorted(by: { _ -> Bool in
+			return XURandomGenerator.shared.randomBool
+		})
+	}
+	
 	/// Returns a new array by removing objects that match the filter
 	public func removing(matching filter: Filter) rethrows -> [Self.Iterator.Element] {
 		var arr: [Self.Iterator.Element] = [ ]
@@ -298,12 +305,12 @@ public extension Array {
 	
 }
 
-public extension Collection where Self.IndexDistance : Comparable {
+public extension Collection {
 	
 	/// This is the same as distinct(), but takes in a custom comparator for arrays
 	/// that do not contain equatable elements.
 	public func distinct(_ customComparator: (_ obj1: Self.Iterator.Element, _ obj2: Self.Iterator.Element) -> Bool) -> [Self.Iterator.Element] {
-		var unique: [Self.Iterator.Element] = [ ]
+		var unique: [Self.Iterator.Element] = []
 		for val1 in self {
 			var found = false
 			for val2 in unique {

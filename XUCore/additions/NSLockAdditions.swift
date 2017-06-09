@@ -29,7 +29,7 @@ extension NamedLock {
 	/// Performs a block while locking itself. It also installs an XUExceptionCatcher
 	/// that catches potential ObjC exceptions, which it raises again, but unlocks
 	/// self, thus potentially avoiding a deadlock.
-	public func perform(locked block: (Void) -> Void) {
+	public func perform(locked block: () -> Void) {
 		self.lock()
 		
 		XUExceptionCatcher.perform({ 

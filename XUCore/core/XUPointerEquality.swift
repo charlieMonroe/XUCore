@@ -11,7 +11,7 @@ import Foundation
 /// Implementing this protocol gets you equatability and hashability for free -
 /// the pointer is used. It pretty much works like the default -isEqual: implementation
 /// on NSObject.
-public protocol XUPointerEquatable: AnyObject, Equatable, Hashable {
+public protocol XUPointerEquatable: AnyObject, Hashable {
 	
 }
 

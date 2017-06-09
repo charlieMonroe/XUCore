@@ -116,14 +116,14 @@ public final class XUSynchronousDataLoader {
 		
 		var data: Data?
 		var response: URLResponse?
-		var error: NSError?
+		var error: Error?
 		
 		let lock = NSConditionLock(condition: 0)
 		
 		self.session.dataTask(with: request, completionHandler: {
 			data = $0.0
 			response = $0.1
-			error = $0.2 as NSError?
+			error = $0.2
 			
 			lock.lock(whenCondition: 0)
 			lock.unlock(withCondition: 1)
@@ -351,7 +351,7 @@ open class XUDownloadCenter {
 	
 	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
-	open private(set) var lastError: NSError?
+	open private(set) var lastError: Error?
 	
 	/// Returns the last URL response. Nil, if this download center didn't download
 	/// anything yet.
@@ -518,7 +518,7 @@ open class XUDownloadCenter {
 			}
 			
 			return data
-		} catch let error as NSError {
+		} catch let error {
 			self.lastHTTPURLResponse = nil
 			self.lastError = error
 			return nil
