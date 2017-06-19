@@ -14,7 +14,7 @@ public final class XURedView: NSView {
 	
 	public override func draw(_ dirtyRect: CGRect) {
 		NSColor.red.set()
-		NSRectFill(dirtyRect)
+		dirtyRect.fill()
 	}
 	public override var isFlipped: Bool {
 		return true

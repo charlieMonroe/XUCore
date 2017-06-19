@@ -27,7 +27,7 @@ public struct XUCoreFramework {
 	
 	private static var _didLoad: Bool = false
 	
-	public final class func loadSingletons() {
+	@objc public final class func loadSingletons() {
 		guard !_didLoad else {
 			fatalError("Calling _XUSwiftCoreLoader for the second time.")
 		}

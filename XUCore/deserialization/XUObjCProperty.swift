@@ -29,9 +29,12 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		var cl: AnyClass! = aClass
 		while cl != nil {
 			var count: UInt32 = 0
-			let props = class_copyPropertyList(cl, &count)
+			guard let props = class_copyPropertyList(cl, &count) else {
+				continue
+			}
+			
 			for i in 0 ..< Int(count) {
-				properties.append(XUObjCProperty(runtimeProperty: (props?[i]!)!, definedOnClass: cl))
+				properties.append(XUObjCProperty(runtimeProperty: props[i], definedOnClass: cl))
 			}
 			
 			free(props)
@@ -86,7 +89,13 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		self.name = String(utf8String: property_getName(runtimeProperty)) ?? "<<unknown>>"
 		self.definedOnClass = aClass
 		
-		let allPropertiesString = String(utf8String: property_getAttributes(runtimeProperty)) ?? ""
+		let allPropertiesString: String
+		if let rawString = property_getAttributes(runtimeProperty) {
+			allPropertiesString = String(utf8String: rawString) ?? ""
+		} else {
+			allPropertiesString = ""
+		}
+		
 		let allProperties = allPropertiesString.components(separatedBy: ",")
 		
 		self.isReadOnly = allProperties.contains("R")

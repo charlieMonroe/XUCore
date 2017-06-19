@@ -35,7 +35,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
 	open class func controller(withSections sections: [XUPreferencePanesSection]) -> Self {
-		let controller = self.init(windowNibName: "XUPreferencePanesWindowController")
+		let controller = self.init(windowNibName: NSNib.Name(rawValue: "XUPreferencePanesWindowController"))
 		controller.sections = sections
 		return controller
 	}
@@ -217,8 +217,8 @@ internal class XULongPressButton: NSButton {
 		
 		self.isHighlighted = true
 		
-		let eventMask: NSEventMask = [.leftMouseDown, .leftMouseDragged, .leftMouseUp]
-		while let nextEvent = NSApp.nextEvent(matching: NSEventMask(rawValue: UInt64(Int(eventMask.rawValue))), until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) , nextEvent.type != .leftMouseUp {
+		let eventMask: NSEvent.EventTypeMask = [.leftMouseDown, .leftMouseDragged, .leftMouseUp]
+		while let nextEvent = NSApp.nextEvent(matching: eventMask, until: Date.distantFuture, inMode: RunLoopMode.eventTrackingRunLoopMode, dequeue: true) , nextEvent.type != .leftMouseUp {
 			// No-op
 		}
 		
@@ -255,7 +255,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCoreFramework.bundle)!
+		super.init(nibName: NSNib.Name(rawValue: "_XUAllPanesButtonViewController"), bundle: XUCoreFramework.bundle)
 		
 		self.fullScreenMinHeight = 48.0
 		if #available(OSX 10.11, *) {
@@ -272,7 +272,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		let menuItem = { () -> NSMenuItem in
 			let item = NSMenuItem(title: XULocalizedString("Show All"), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
 			item.target = self
-			item.image = NSImage(named: NSImageNamePreferencesGeneral)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
+			item.image = NSImage(named: NSImage.Name.preferencesGeneral)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
 			return item
 		}()
 		menu.addItems([menuItem, NSMenuItem.separator()])
@@ -314,7 +314,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCoreFramework.bundle)!
+		super.init(nibName: NSNib.Name(rawValue: "_XUPreferencePanesWindowTitleViewController"), bundle: XUCoreFramework.bundle)
 		
 		if #available(OSX 10.11, *) {
 			self.layoutAttribute = .left

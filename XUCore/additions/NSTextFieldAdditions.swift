@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 private let kBorderWidth: CGFloat = 10.0
 
@@ -16,7 +16,7 @@ public extension NSTextField {
 	/// origin.
 	public func sizeToFit(keepingWidth resizeDownwards: Bool) -> CGRect {
 		let textFrame = self.bounds.insetBy(dx: kBorderWidth, dy: kBorderWidth)
-		let textHeight = self.stringValue.size(withAttributes: [NSFontAttributeName: self.font!], maximumWidth: textFrame.width).height
+		let textHeight = self.stringValue.size(withAttributes: [.font: self.font!], maximumWidth: textFrame.width).height
 		let deltaHeight = textFrame.height - textHeight
 		
 		var myFrame = self.frame

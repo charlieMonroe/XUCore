@@ -42,45 +42,45 @@ public enum XUFontWeight: Int {
 		#if os(iOS)
 			switch self {
 			case .ultraLight:
-				return UIFontWeightUltraLight
+				return UIFont.Weight.ultraLight.rawValue
 			case .thin:
-				return UIFontWeightThin
+				return UIFont.Weight.thin.rawValue
 			case .light:
-				return UIFontWeightLight
+				return UIFont.Weight.light.rawValue
 			case .regular:
-				return UIFontWeightRegular
+				return UIFont.Weight.regular.rawValue
 			case .medium:
-				return UIFontWeightMedium
+				return UIFont.Weight.medium.rawValue
 			case .semibold:
-				return UIFontWeightSemibold
+				return UIFont.Weight.semibold.rawValue
 			case .bold:
-				return UIFontWeightBold
+				return UIFont.Weight.bold.rawValue
 			case .heavy:
-				return UIFontWeightHeavy
+				return UIFont.Weight.heavy.rawValue
 			case .black:
-				return UIFontWeightBlack
+				return UIFont.Weight.black.rawValue
 			}
 		#elseif os(OSX)
 			if #available(OSX 10.11, *) {
 				switch self {
 				case .ultraLight:
-					return NSFontWeightUltraLight
+					return NSFont.Weight.ultraLight.rawValue
 				case .thin:
-					return NSFontWeightThin
+					return NSFont.Weight.thin.rawValue
 				case .light:
-					return NSFontWeightLight
+					return NSFont.Weight.light.rawValue
 				case .regular:
-					return NSFontWeightRegular
+					return NSFont.Weight.regular.rawValue
 				case .medium:
-					return NSFontWeightMedium
+					return NSFont.Weight.medium.rawValue
 				case .semibold:
-					return NSFontWeightSemibold
+					return NSFont.Weight.semibold.rawValue
 				case .bold:
-					return NSFontWeightBold
+					return NSFont.Weight.bold.rawValue
 				case .heavy:
-					return NSFontWeightHeavy
+					return NSFont.Weight.heavy.rawValue
 				case .black:
-					return NSFontWeightBlack
+					return NSFont.Weight.black.rawValue
 				}
 			} else {
 				switch self {
@@ -116,7 +116,7 @@ public extension XUFont {
 	/// optional.
 	public class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
 		if #available(OSX 10.11, *) {
-			return self.systemFont(ofSize: pointSize, weight: weight.value)
+			return self.systemFont(ofSize: pointSize, weight: NSFont.Weight(rawValue: weight.value))
 		} else {
 			if weight.rawValue <= XUFontWeight.regular.rawValue {
 				return self.systemFont(ofSize: pointSize)
@@ -132,7 +132,7 @@ public extension XUFont {
 			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitBold)
 			return XUFont(descriptor: descriptor!, size: self.pointSize)
 		#else
-			let manager = NSFontManager.shared()
+			let manager = NSFontManager.shared
 			return manager.convert(self, toHaveTrait: .boldFontMask)
 		#endif
 	}
@@ -157,7 +157,7 @@ public extension XUFont {
 			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitItalic)
 			return XUFont(descriptor: descriptor!, size: self.pointSize)
 		#else
-			let manager = NSFontManager.shared()
+			let manager = NSFontManager.shared
 			return manager.convert(self, toHaveTrait: .italicFontMask)
 		#endif
 	}

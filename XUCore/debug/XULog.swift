@@ -189,7 +189,7 @@ public final class XUDebugLog {
 		}
 		
 		let url = URL(fileURLWithPath: XUDebugLog.logFilePath)
-		NSWorkspace.shared().open([url], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+		NSWorkspace.shared.open([url], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
 	}
 	
 	/// Activates Finder and selects the debug log file.
@@ -199,7 +199,7 @@ public final class XUDebugLog {
 			fflush(_logFile!)
 		}
 		
-		NSWorkspace.shared().selectFile(XUDebugLog.logFilePath, inFileViewerRootedAtPath: "")
+		NSWorkspace.shared.selectFile(XUDebugLog.logFilePath, inFileViewerRootedAtPath: "")
 	}
 
 	
@@ -310,9 +310,9 @@ public final class XUDebugLog {
 		@objc fileprivate func _copyAppState() {
 			if let provider = XUAppSetup.applicationStateProvider {
 				let state = provider.provideApplicationState()
-				let pboard = NSPasteboard.general()
-				pboard.declareTypes([NSStringPboardType], owner: self)
-				pboard.setString(state, forType: NSStringPboardType)
+				let pboard = NSPasteboard.general
+				pboard.declareTypes([.string], owner: self)
+				pboard.setString(state, forType: .string)
 			}
 		}
 		
@@ -336,15 +336,15 @@ public final class XUDebugLog {
 		}
 		
 		@objc fileprivate func _turnLoggingOn() {
-			XUDebugLog._debugLoggingOn.state = NSOnState
-			XUDebugLog._debugLoggingOff.state = NSOffState
+			XUDebugLog._debugLoggingOn.state = NSControl.StateValue.onState
+			XUDebugLog._debugLoggingOff.state = NSControl.StateValue.offState
 			
 			XUDebugLog.isLoggingEnabled = true
 		}
 		
 		@objc fileprivate func _turnLoggingOff() {
-			XUDebugLog._debugLoggingOn.state = NSOffState
-			XUDebugLog._debugLoggingOff.state = NSOnState
+			XUDebugLog._debugLoggingOn.state = NSControl.StateValue.offState
+			XUDebugLog._debugLoggingOff.state = NSControl.StateValue.onState
 			
 			XUDebugLog.isLoggingEnabled = false
 		}
@@ -365,8 +365,8 @@ public final class XUDebugLog {
 			XUDebugLog._debugLoggingOn.target = _actionHandler
 			XUDebugLog._debugLoggingOff.target = _actionHandler
 			
-			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? NSOnState : NSOffState
-			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? NSOffState : NSOnState
+			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? NSControl.StateValue.onState : NSControl.StateValue.offState
+			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? NSControl.StateValue.offState : NSControl.StateValue.onState
 			
 			let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
 			loggingItem.submenu = loggingMenu

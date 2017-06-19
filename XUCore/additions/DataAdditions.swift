@@ -44,9 +44,10 @@ public extension Data {
 		}
 		
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Bool in
-			return prefix.enumerated().all(matching: { (index, byte) -> Bool in
-				return ptr[index] == byte
+			return prefix.enumerated().all(matching: { (arg0) -> Bool in
+				return ptr[arg0.offset] == arg0.element
 			})
+			
 		}
 	}
 	
@@ -73,7 +74,7 @@ public extension Data {
 	
 	/// Returns `self.bytes` as `Int8` with `filter` applied. If nil is passed as
 	/// `filter` (default value of `filter`), all bytes are included.
-	public func filteredByteArray(_ filter: ((_ index: Int, _ byte: Int8) -> Bool) = { _ in return true }) -> [Int8] {
+	public func filteredByteArray(using filter: (_ index: Int, _ byte: Int8) -> Bool) -> [Int8] {
 		var result: [Int8] = []
 		self.withUnsafeBytes { (ptr: UnsafePointer<Int8>) in
 			for i in 0 ..< self.count {
@@ -142,7 +143,7 @@ public extension Data {
 	}
 	
 	/// Reads Int-typed value from stream.
-	public func readInteger<T: Integer>(startingAtByte index: Int) -> T {
+	public func readInteger<T: FixedWidthInteger>(startingAtByte index: Int) -> T {
 		return self.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> T in
 			let bytes = bytes.advanced(by: index)
 			return bytes.withMemoryRebound(to: T.self, capacity: 1, { $0.pointee })

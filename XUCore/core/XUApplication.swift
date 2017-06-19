@@ -52,7 +52,7 @@ public extension NSApplication {
 	
 	/// Returns whether the current application is in foreground.
 	public var isForegroundApplication: Bool {
-		return NSRunningApplication.current().isActive
+		return NSRunningApplication.current.isActive
 	}
 	
 }
@@ -105,7 +105,7 @@ open class XUApplication: NSApplication {
 		_arrowKeyEventObserver = nil
 	}
 	
-	open override func runModal(for theWindow: NSWindow) -> Int {
+	open override func runModal(for theWindow: NSWindow) -> NSApplication.ModalResponse {
 		self.activate(ignoringOtherApps: true)
 		
 		_isModal = true
@@ -134,7 +134,7 @@ open class XUApplication: NSApplication {
 			}else if keyCode == 9 && theEvent.modifierFlags.contains(.command) {
 				// Command-V
 				if let textView = w.firstResponder as? NSTextView {
-					if NSPasteboard.general().string(forType: NSPasteboardTypeString) != nil {
+					if NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string) != nil {
 						textView.paste(nil)
 					}
 				} else {
@@ -191,7 +191,7 @@ open class XUApplication: NSApplication {
 		super.stopModal()
 	}
 	
-	open override func stopModal(withCode returnCode: Int) {
+	open override func stopModal(withCode returnCode: NSApplication.ModalResponse) {
 		_isModal = false
 		
 		super.stopModal(withCode: returnCode)

@@ -29,7 +29,7 @@ public enum XUDirection: Int {
 	/// If the context is flipped, the opposite direction is returned for bottom/
 	/// top.
 	public var directionInCurrentGraphicsContext: XUDirection {
-		guard let graphicsContext = NSGraphicsContext.current() , graphicsContext.isFlipped else {
+		guard let graphicsContext = NSGraphicsContext.current , graphicsContext.isFlipped else {
 			return self
 		}
 		

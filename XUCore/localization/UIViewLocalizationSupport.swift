@@ -37,7 +37,7 @@ public extension UITextField {
 	}
 }
 public extension UIView {
-	public func localizeView(bundle: Bundle = XUMainBundle) {
+	@objc public func localizeView(bundle: Bundle = XUMainBundle) {
 		for view in self.subviews {
 			view.localizeView(bundle: bundle)
 		}

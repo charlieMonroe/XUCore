@@ -15,10 +15,10 @@ public extension NSAlert {
 		
 		/// The alert was cancelled - or to be precise a button was pressed that
 		/// is not the first button.
-		case cancelled(NSModalResponse)
+		case cancelled(NSApplication.ModalResponse)
 		
 		/// The alert was confirmed using the first button and String was entered.
-		case confirmed(String, NSModalResponse)
+		case confirmed(String, NSApplication.ModalResponse)
 		
 		
 		/// Returns true if the value of the enum is cancelled(_).
@@ -37,7 +37,7 @@ public extension NSAlert {
 		}
 		
 		/// Returns the modal response payload.
-		public var modalResponse: NSModalResponse {
+		public var modalResponse: NSApplication.ModalResponse {
 			switch self {
 			case .cancelled(let response):
 				return response
@@ -59,13 +59,13 @@ public extension NSAlert {
 	}
 	
 	
-	private func _isDefaultButton(_ response: NSModalResponse) -> Bool {
+	private func _isDefaultButton(_ response: NSApplication.ModalResponse) -> Bool {
 		if self.buttons.count == 0 {
 			return true // The alert only has one default OK button
 		}
 		
-		if self.buttons.first!.tag == NSAlertFirstButtonReturn {
-			return response == NSAlertFirstButtonReturn
+		if self.buttons.first!.tag == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
+			return response == NSApplication.ModalResponse.alertFirstButtonReturn
 		}
 		
 		fatalError("Running a deprecated NSAlert instance!")
@@ -106,7 +106,7 @@ public extension NSAlert {
 	public func beginSheetModal(withTextField initialValue: String, isSecure: Bool = false, forWindow window: NSWindow, completionHandler: @escaping (StringModalResponse) -> Void) {
 		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: isSecure)
 		self.beginSheetModal(for: window, completionHandler: { (response) in
-			if response == NSAlertFirstButtonReturn {
+			if response == NSApplication.ModalResponse.alertFirstButtonReturn {
 				completionHandler(.confirmed((self.accessoryView as! NSTextField).stringValue, response))
 			} else {
 				completionHandler(.cancelled(response))
@@ -150,8 +150,8 @@ public extension NSAlert {
 	/// Ensures that the alert is run on main thread. If current thread isn't main,
 	/// the thread is blocked until the alert is dismissed.
 	@discardableResult
-	public func runModalOnMainThread() -> NSModalResponse {
-		var result: NSModalResponse = NSAlertFirstButtonReturn
+	public func runModalOnMainThread() -> NSApplication.ModalResponse {
+		var result: NSApplication.ModalResponse = NSApplication.ModalResponse.alertFirstButtonReturn
 		XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
 			result = self.runModal()
 		})

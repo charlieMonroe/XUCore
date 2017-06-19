@@ -6,7 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 private extension XUPreferences.Key {
 	static let BetaDidShowExpirationWarning = XUPreferences.Key(rawValue: "XUBetaDidShowExpirationWarning")
@@ -63,7 +63,7 @@ public final class XUBetaExpirationHandler {
 	
 	private func _showFirstBetaLaunchDialog() {
 		if NSApp == nil {
-			NotificationCenter.default.addObserver(forName: .NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
+			NotificationCenter.default.addObserver(forName: NSApplication.didFinishLaunchingNotification, object: nil, queue: nil, using: { (_) -> Void in
 				self._showFirstBetaLaunchDialog()
 			})
 			return
@@ -79,7 +79,7 @@ public final class XUBetaExpirationHandler {
 	@objc
 	private func _showWarningAndScheduleOneHourExpiration() {
 		if NSApp == nil {
-			NotificationCenter.default.addObserver(self, selector: #selector(_showWarningAndScheduleOneHourExpiration), name: .NSApplicationDidFinishLaunching, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(_showWarningAndScheduleOneHourExpiration), name: NSApplication.didFinishLaunchingNotification, object: nil)
 			return
 		}
 		
@@ -95,7 +95,7 @@ public final class XUBetaExpirationHandler {
 	@objc
 	private func _handleExpiration() {
 		if NSApp == nil {
-			NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil, using: { (_) -> Void in
+			NotificationCenter.default.addObserver(forName: NSApplication.didFinishLaunchingNotification, object: nil, queue: nil, using: { (_) -> Void in
 				self._handleExpiration()
 			})
 			return

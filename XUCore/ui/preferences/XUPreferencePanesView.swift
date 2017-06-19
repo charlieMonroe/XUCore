@@ -30,9 +30,9 @@ internal class XUPreferencePanesView: NSView {
 	internal static let sectionHeight: CGFloat = 92.0
 
 	/// Attributes of the title.
-	internal static let titleAttributes: [String: AnyObject] = [
-		NSForegroundColorAttributeName: NSColor.textColor,
-		NSFontAttributeName: XUPreferencePanesView.titleFont
+	internal static let titleAttributes: [NSAttributedStringKey : Any] = [
+		.foregroundColor: NSColor.textColor,
+		.font: XUPreferencePanesView.titleFont
 	]
 
 	/// Font used for button titles.
@@ -157,7 +157,7 @@ internal class XUPreferencePanesView: NSView {
 private class XUPreferencePaneButtonCell: NSButtonCell {
 	
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
-		var attributes: [String : AnyObject] = [NSFontAttributeName: XUPreferencePanesView.titleFont]
+		var attributes: [NSAttributedStringKey : Any] = [.font: XUPreferencePanesView.titleFont]
 		let parts: [String] = title.string.components(separatedBy: " ")
 		var lineParts: [String] = []
 		
@@ -192,13 +192,13 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 		
 		let attributedString = NSAttributedString(string: lineParts.joined(separator: "\n"))
 		
-		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
 		paragraphStyle.alignment = .center
 		if lineParts.count > 2 {
 			paragraphStyle.maximumLineHeight = 12.0
 		}
 
-		attributes[NSParagraphStyleAttributeName] = paragraphStyle
+		attributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
 
 		let textSize = attributedString.string.size(withAttributes: attributes)
 		let textBounds = CGRect(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
@@ -213,8 +213,11 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 
 private class XUPreferencePaneButton: NSButton {
 
-	override class func cellClass() -> AnyClass? {
-		return XUPreferencePaneButtonCell.self
+	override class var cellClass: AnyClass? {
+		get {
+			return XUPreferencePaneButtonCell.self
+		}
+		set {}
 	}
 	
 	let paneController: XUPreferencePaneViewController
@@ -238,7 +241,7 @@ private class XUPreferencePaneButton: NSButton {
 	}
 	
 	fileprivate override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var attributes: [String : AnyObject] = [NSFontAttributeName: XUPreferencePanesView.titleFont]
+		var attributes: [NSAttributedStringKey : Any] = [.font: XUPreferencePanesView.titleFont]
 		let parts: [String] = self.title.components(separatedBy: " ")
 		var lineParts: [String] = []
 		
@@ -271,13 +274,13 @@ private class XUPreferencePaneButton: NSButton {
 			}
 		}
 		
-		let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
 		paragraphStyle.alignment = .center
 		if parts.count > 2 {
 			paragraphStyle.maximumLineHeight = 12.0
 		}
 		
-		attributes[NSParagraphStyleAttributeName] = paragraphStyle
+		attributes[.paragraphStyle] = paragraphStyle
 		
 		let textSize = lineParts.joined(separator: "\n").size(withAttributes: attributes)
 		var result = textSize

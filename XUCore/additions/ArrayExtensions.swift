@@ -132,7 +132,7 @@ public extension Sequence {
 	
 	/// Randomizes the array (by shuffling it).
 	public func randomized() -> [Self.Iterator.Element] {
-		return self.sorted(by: { _ -> Bool in
+		return self.sorted(by: { (_, _) -> Bool in
 			return XURandomGenerator.shared.randomBool
 		})
 	}

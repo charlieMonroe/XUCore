@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 /// The base class for trials. You need to modify Info.plist to include the
 /// following URLs:
@@ -51,12 +51,12 @@ open class XUTrial {
 	
 	/// Opens a purchase URL.
 	private func _openPurchaseURL() {
-		NSWorkspace.shared().open(self.purchaseURL)
+		NSWorkspace.shared.open(self.purchaseURL)
 	}
 	
 	/// Opens a support URL.
 	private func _openSupportURL() {
-		NSWorkspace.shared().open(self.supportURL)
+		NSWorkspace.shared.open(self.supportURL)
 	}
 	
 	/// Returns a unique identifier of this computer and user.
@@ -104,9 +104,9 @@ open class XUTrial {
 		self.innerInit()
 		
 		if NSApp == nil {
-			NotificationCenter.default.addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSApplication.didFinishLaunchingNotification, object: nil)
 		} else {
-			self.applicationDidFinishLaunching(Notification(name: NSNotification.Name.NSApplicationDidFinishLaunching, object: NSApp))
+			self.applicationDidFinishLaunching(Notification(name: NSApplication.didFinishLaunchingNotification, object: NSApp))
 		}
 	}
 	
@@ -128,7 +128,7 @@ open class XUTrial {
 	open func noInternetConnectionDetected() {
 		if NSApp == nil {
 			/// Schedule it for later
-			NotificationCenter.default.addObserver(self, selector: #selector(XUTrial._warnAboutNoInternetConnection), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(XUTrial._warnAboutNoInternetConnection), name: NSApplication.didFinishLaunchingNotification, object: nil)
 		}else{
 			self._warnAboutNoInternetConnection()
 		}
@@ -154,10 +154,10 @@ open class XUTrial {
 		alert.addButton(withTitle: XULocalizedString("Purchase...", inBundle: XUCoreFramework.bundle))
 		
 		let alertResult = alert.runModal()
-		if alertResult == NSAlertFirstButtonReturn {
+		if alertResult == NSApplication.ModalResponse.alertFirstButtonReturn {
 			// Continue
 			return
-		}else if alertResult == NSAlertSecondButtonReturn {
+		}else if alertResult == NSApplication.ModalResponse.alertSecondButtonReturn {
 			// Purchase
 			self._openPurchaseURL()
 		}
@@ -197,9 +197,9 @@ open class XUTrial {
 		alert.addButton(withTitle: XULocalizedString("I'm Still Not Sure", inBundle: XUCoreFramework.bundle))
 		
 		let result = alert.runModal()
-		if result == NSAlertFirstButtonReturn {
+		if result == NSApplication.ModalResponse.alertFirstButtonReturn {
 			self._openPurchaseURL()
-		}else if result == NSAlertSecondButtonReturn {
+		}else if result == NSApplication.ModalResponse.alertSecondButtonReturn {
 			self._openSupportURL()
 		}
 		

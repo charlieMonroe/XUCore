@@ -11,7 +11,7 @@ import Foundation
 public extension InputStream {
 	
 	/// Reads Int-typed value from stream.
-	public func read<T : Integer>() -> T? {
+	public func read<T : FixedWidthInteger>() -> T? {
 		var buffer: T = 0
 		let n = withUnsafeMutablePointer(to: &buffer) { (p) in
 			p.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size, { (ptr) -> Int in

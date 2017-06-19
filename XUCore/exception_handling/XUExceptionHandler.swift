@@ -150,18 +150,18 @@ public final class XUExceptionHandler: NSObject {
 		// by checking NSApp for nil.
 		if NSApp == nil {
 			// App not yet fully launched, defer the handler registration.
-			NotificationCenter.default.addObserver(self, selector: #selector(XUExceptionHandler._registerExceptionHandler), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(XUExceptionHandler._registerExceptionHandler), name: NSApplication.didFinishLaunchingNotification, object: nil)
 		} else {
 			// The app is fully launched.
 			self._registerExceptionHandler()
 		}
 		
 		/// We observe regular application termination for resetting XUPreferences.lastLaunchDidCrash.
-		NotificationCenter.default.addObserver(self, selector: #selector(_applicationWillTerminate), name: .NSApplicationWillTerminate, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_applicationWillTerminate), name: NSApplication.willTerminateNotification, object: nil)
 		
 		/// And we observe that the application did finish launching to detect
 		/// crashes between the process being launched.
-		NotificationCenter.default.addObserver(self, selector: #selector(_applicationDidFinishLaunching), name: .NSApplicationDidFinishLaunching, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_applicationDidFinishLaunching), name: NSApplication.didFinishLaunchingNotification, object: nil)
 		
 		if NSApp == nil {
 			XUPreferences.shared.perform(andSynchronize: { (prefs) in

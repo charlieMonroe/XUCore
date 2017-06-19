@@ -61,14 +61,14 @@ public extension NSWindow {
 		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: mask, backing: .buffered, defer: false)
 		zoomWindow.backgroundColor = NSColor(deviceWhite: 0.0, alpha: 0.0)
 		zoomWindow.hasShadow = self.hasShadow
-		zoomWindow.level = Int(CGWindowLevelForKey(.modalPanelWindow))
+		zoomWindow.level = .modalPanelWindowLevel
 		zoomWindow.isOpaque = false
 		
 		let imageView = NSImageView(frame: zoomWindow.contentRect(forFrameRect: frame))
 		imageView.image = image
 		imageView.imageFrameStyle = .none
 		imageView.imageScaling = .scaleAxesIndependently
-		imageView.autoresizingMask = [ .viewWidthSizable, .viewHeightSizable ]
+		imageView.autoresizingMask = [.width, .height]
 		zoomWindow.contentView = imageView
 		
 		// Reset one shot flag

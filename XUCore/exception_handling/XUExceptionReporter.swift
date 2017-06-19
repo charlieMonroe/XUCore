@@ -94,17 +94,12 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	}
 	
 	private func _validateDescriptionText() -> Bool {
-		guard var text = _userInputTextView.string else {
-			return false
-		}
-		
-		text = text.trimmingWhitespace
-		
+		let text = _userInputTextView.string.trimmingWhitespace
 		guard !text.isEmpty else {
 			return false
 		}
 		
-		guard text.characters.count > 10 else {
+		guard text.count > 10 else {
 			return false
 		}
 		
@@ -116,7 +111,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		_thread = thread
 		_queue = queue
 		
-		_nib = NSNib(nibNamed: "ExceptionReporter", bundle: XUCoreFramework.bundle)!
+		_nib = NSNib(nibNamed: NSNib.Name(rawValue: "ExceptionReporter"), bundle: XUCoreFramework.bundle)!
 		
 		super.init()
 		
@@ -160,13 +155,13 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		if _userInputTextView.string!.characters.contains(where: { !$0.isASCIIOrPunctuation }) {
+		if _userInputTextView.string.characters.contains(where: { !$0.isASCIIOrPunctuation }) {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
 			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.", inBundle: XUCoreFramework.bundle)
 			alert.addButton(withTitle: "Cancel")
 			alert.addButton(withTitle: "Send Anyway")
-			if alert.runModal() == NSAlertFirstButtonReturn {
+			if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
 				return
 			}
 		}
@@ -176,9 +171,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		let osVersionString = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 		
 		let reportDictionary = [
-			"description": _userInputTextView.string ?? "",
+			"description": _userInputTextView.string,
 			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])\nThread: \(_thread)\nQueue: \(_queue.descriptionWithDefaultValue())",
-			"stacktrace": _stackTraceTextView.string ?? "",
+			"stacktrace": _stackTraceTextView.string,
 			"version": XUAppSetup.applicationVersionNumber,
 			"build": XUAppSetup.applicationBuildNumber,
 			"name": ProcessInfo.processInfo.processName,

@@ -33,7 +33,7 @@ public extension NSView {
 	}
 	
 	/// Sets enabled on subviews.
-	public func setDeepEnabled(_ flag: Bool) {
+	@objc public func setDeepEnabled(_ flag: Bool) {
 		for view in self.subviews {
 			if let control = view as? NSControl {
 				control.isEnabled = flag

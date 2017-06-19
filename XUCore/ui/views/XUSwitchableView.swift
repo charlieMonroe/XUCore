@@ -54,13 +54,13 @@ public class XUSwitchableView: NSView {
 		super.init(frame: frame)
 		
 		self.postsFrameChangedNotifications = true
-		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSView.frameDidChangeNotification, object: self)
 	}
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
 		self.postsFrameChangedNotifications = true
-		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUSwitchableView._frameChanged(_:)), name: NSView.frameDidChangeNotification, object: self)
 	}
 	
 	public override var isFlipped: Bool {
@@ -163,7 +163,7 @@ public class XUSwitchableView: NSView {
 		_otherView = self.currentView
 		self.currentView = view
 		
-		Timer.scheduledTimer(timeInterval: NSAnimationContext.current().duration, target: self, selector: #selector(XUSwitchableView._unsetAnimation(_:)), userInfo: nil, repeats: false)
+		Timer.scheduledTimer(timeInterval: NSAnimationContext.current.duration, target: self, selector: #selector(XUSwitchableView._unsetAnimation(_:)), userInfo: nil, repeats: false)
 	}
     
 }

@@ -161,7 +161,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			self._innerInit()
 		#else
 			if NSApp == nil {
-				let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
+				let notificationName = NSApplication.didFinishLaunchingNotification
 				NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager._innerInit), name: notificationName, object: nil)
 			} else {
 				self._innerInit()
@@ -171,7 +171,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		#if os(iOS)
 			let notificationName = NSNotification.Name.UIApplicationWillTerminate
 		#else
-			let notificationName = NSNotification.Name.NSApplicationWillTerminate
+			let notificationName = NSApplication.willTerminateNotification
 		#endif
 		NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager.save), name: notificationName, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(XUInAppPurchaseManager._removeAsObserver(_:)), name: notificationName, object: nil)
@@ -297,7 +297,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	}
 	
 	/// Saves the in-app purchases. Seldomly needed to be called manually.
-	public func save() {
+	@objc public func save() {
 		XULog("Saving in app purchases \(self.purchasedProductIdentifiers)")
 		
 		let hashedIdentifiers = self.purchasedProductIdentifiers.map { (identifier) -> String in

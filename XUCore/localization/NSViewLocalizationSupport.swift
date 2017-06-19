@@ -59,7 +59,7 @@ public extension NSSegmentedControl {
 }
 public extension NSView {
 	
-	public func localizeView(_ bundle: Bundle = XUMainBundle) {
+	@objc public func localizeView(_ bundle: Bundle = XUMainBundle) {
 		for view in self.subviews {
 			view.localizeView(bundle)
 		}

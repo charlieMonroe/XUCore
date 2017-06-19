@@ -10,6 +10,8 @@ import Foundation
 
 #if os(iOS)
 	import UIKit
+#else
+	import AppKit
 #endif
 
 private extension XUPreferences.Key {
@@ -156,7 +158,7 @@ public class XUMessageCenter {
 				#if os(iOS)
 					UIApplication.shared.openURL(url)
 				#else
-					NSWorkspace.shared().open(url)
+					NSWorkspace.shared.open(url)
 				#endif
 			} else if key == "XUBlockApp" {
 				self.isAppBlocked = false
@@ -320,7 +322,7 @@ public class XUMessageCenter {
 					alert.addButton(withTitle: ignoreButtonTitle)
 				}
 				
-				if alert.runModalOnMainThread() == NSAlertFirstButtonReturn {
+				if alert.runModalOnMainThread() == NSApplication.ModalResponse.alertFirstButtonReturn {
 					self._processActions(from: message, withMessageID: messageID)
 				}else{
 					self._markMessageWithIDAsRead(messageID)
@@ -337,7 +339,7 @@ public class XUMessageCenter {
 		#if os(iOS)
 			let notificationName = NSNotification.Name.UIApplicationDidFinishLaunching
 		#else
-			let notificationName = NSNotification.Name.NSApplicationDidFinishLaunching
+			let notificationName = NSApplication.didFinishLaunchingNotification
 		#endif
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)

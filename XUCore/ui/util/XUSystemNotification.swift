@@ -22,7 +22,7 @@ public struct XUSystemNotification {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public init(confirmationMessage: String) {
-		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, message: confirmationMessage)
+		self.init(icon: XUCoreFramework.bundle.image(forResource: NSImage.Name(rawValue: "Checkmark"))!, message: confirmationMessage)
 	}
 	
 }
@@ -95,7 +95,7 @@ private class XUSystemNotificationWindowController: NSWindowController {
 	var notification: XUSystemNotificationCenter.Notification!
 	
 	convenience init(notification: XUSystemNotificationCenter.Notification) {
-		self.init(windowNibName: "SystemNotification")
+		self.init(windowNibName: NSNib.Name(rawValue: "SystemNotification"))
 		
 		self.notification = notification
 	}
@@ -153,7 +153,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 	
 	fileprivate func _updateWindowFrame() {
 		var windowFrame = self.frame
-		let screenFrame = NSScreen.main()!.frame
+		let screenFrame = NSScreen.main!.frame
 		
 		windowFrame.origin.x = (screenFrame.width / 2.0) - (windowFrame.width / 2.0)
 		windowFrame.origin.y = screenFrame.height / 4.0
@@ -184,7 +184,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 			self.messageField.textColor = NSColor.black
 		}
 		
-		self.level = Int(CGWindowLevelForKey(CGWindowLevelKey.screenSaverWindow))
+		self.level = NSWindow.Level.screenSaverWindowLevel
 		
 		self.backgroundColor = NSColor.clear
 		

@@ -62,11 +62,11 @@ extension NSColor: NSPasteboardItemDataProvider {
 		p.y -= 6.0
 		
 		let pbItem = NSPasteboardItem()
-		pbItem.setDataProvider(self, forTypes: [ NSColorPboardType, NSPasteboardTypeColor, NSPasteboardTypeTIFF, NSPasteboardTypePNG ])
+		pbItem.setDataProvider(self, forTypes: [.color, .tiff, .png])
 		
 		let item = NSDraggingItem(pasteboardWriter: pbItem)
 		item.imageComponentsProvider = {
-			let component = NSDraggingImageComponent(key: "Color")
+			let component = NSDraggingImageComponent(key: NSDraggingItem.ImageComponentKey(rawValue: "Color"))
 			component.contents = image
 			return [ component ]
 		}
@@ -78,26 +78,23 @@ extension NSColor: NSPasteboardItemDataProvider {
 		
 		let pasteboard = _draggingSession!.draggingPasteboard
 		let data = NSKeyedArchiver.archivedData(withRootObject: self)
-		pasteboard.setData(data, forType: NSColorPboardType)
-		pasteboard.setData(data, forType: NSPasteboardTypeColor)
+		pasteboard.setData(data, forType: .color)
 		pasteboard.writeObjects([self])
 		
 		XULog("\(_draggingSession!)")
 	}
 	
 	// This is required for NSPasteboardItemDataProvider.
-	public func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: String) {
+	public func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
 		switch type {
-		case NSPasteboardTypeTIFF:
+		case .tiff:
 			pasteboard?.setData(self._imagePreview.tiffRepresentation, forType: type)
 			break
-		case NSPasteboardTypePNG:
+		case .png:
 			pasteboard?.setData(self._imagePreview.pngRepresentation as Data?, forType: type)
-		case NSPasteboardTypeColor: fallthrough
-		case NSColorPboardType:
+		case .color:
 			let data = NSKeyedArchiver.archivedData(withRootObject: self)
-			pasteboard?.setData(data, forType: NSColorPboardType)
-			pasteboard?.setData(data, forType: NSPasteboardTypeColor)
+			pasteboard?.setData(data, forType: .color)
 			pasteboard?.writeObjects([self])
 		default:
 			break

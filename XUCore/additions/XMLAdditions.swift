@@ -48,10 +48,10 @@ public extension XMLNode {
 	public func stringValue(ofLastNodeOnXPath xpath: String) -> String? {
 		return self.lastNode(onXPath: xpath)?.stringValue
 	}
-	public func integerValue(ofAttributeNamed attributeName: String) -> Int {
+	@objc public func integerValue(ofAttributeNamed attributeName: String) -> Int {
 		return 0
 	}
-	public func stringValue(ofAttributeNamed attributeName: String) -> String? {
+	@objc public func stringValue(ofAttributeNamed attributeName: String) -> String? {
 		return nil
 	}
 	
@@ -86,7 +86,7 @@ public extension XMLElement {
 
 public extension XMLDocument {
 	
-	public convenience init?(string: String, andOptions mask: Int) {
+	public convenience init?(string: String, andOptions mask: XMLNode.Options) {
 		try? self.init(xmlString: string, options: mask)
 	}
 	

@@ -34,7 +34,7 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 	
 	/// Only initialize the controller with this initializer.
 	convenience init(URL: URL) {
-		self.init(windowNibName: "XUAuthorizationWebViewWindowController")
+		self.init(windowNibName: NSNib.Name(rawValue: "XUAuthorizationWebViewWindowController"))
 		
 		self.url = URL
 	}

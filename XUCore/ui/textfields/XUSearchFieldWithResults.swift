@@ -74,9 +74,9 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			
 			if let mainWindow = self.window {
 				let resultText = self.results.isEmpty ? XULocalizedString("No search results", inBundle: XUCoreFramework.bundle) : XULocalizedFormattedString("%li search results", self.results.count, inBundle: XUCoreFramework.bundle)
-				NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [
-					NSAccessibilityAnnouncementKey: resultText
-					])
+				NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityNotificationName.announcementRequested, [
+					NSAccessibilityNotificationUserInfoKey.announcement: resultText
+				])
 			}
 			
 			if self.results.isEmpty {
@@ -113,7 +113,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	private lazy var progressIndicator: NSProgressIndicator = {
 		let indicator = NSProgressIndicator()
-		indicator.style = .spinningStyle
+		indicator.style = .spinning
 		indicator.controlSize = .mini
 		indicator.isDisplayedWhenStopped = false
 		indicator.sizeToFit()
@@ -137,7 +137,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		tableView.doubleAction = #selector(_selectSearchResult(_:))
 		tableView.headerView = nil
 		tableView.usesAlternatingRowBackgroundColors = true
-		tableView.addTableColumn(NSTableColumn(identifier: "com.charliemonroe.XUSearchFieldWithResults"))
+		tableView.addTableColumn(NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "com.charliemonroe.XUSearchFieldWithResults")))
 		tableView.columnAutoresizingStyle = .firstColumnOnlyAutoresizingStyle
 		return tableView
 	}()
@@ -318,7 +318,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	public override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(_repositionSearchWindow), name: .NSWindowDidResize, object: self.window)
+		NotificationCenter.default.addObserver(self, selector: #selector(_repositionSearchWindow), name: NSWindow.didResizeNotification, object: self.window)
 	}
 	
 }
@@ -353,7 +353,7 @@ extension XUSearchFieldWithResults: NSTableViewDataSource, NSTableViewDelegate {
 			return
 		}
 		if let mainWindow = self.window {
-			NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityAnnouncementRequestedNotification, [NSAccessibilityAnnouncementKey: resultName])
+			NSAccessibilityPostNotificationWithUserInfo(mainWindow, NSAccessibilityNotificationName.announcementRequested, [NSAccessibilityNotificationUserInfoKey.announcement: resultName])
 		}
 	}
 }

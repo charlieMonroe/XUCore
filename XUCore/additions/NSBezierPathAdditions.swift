@@ -23,7 +23,7 @@ public extension NSBezierPath {
 		shadow.shadowOffset = offset
 
 		var transform = AffineTransform.identity
-		if NSGraphicsContext.current()!.isFlipped {
+		if NSGraphicsContext.current!.isFlipped {
 			transform.translate(x: 0, y: bounds.height)
 		} else {
 			transform.translate(x: 0, y: -bounds.height)
@@ -56,7 +56,7 @@ public extension NSBezierPath {
 
 		let path = self.copy() as! NSBezierPath
 		var transform = AffineTransform.identity
-		if NSGraphicsContext.current()!.isFlipped {
+		if NSGraphicsContext.current!.isFlipped {
 			transform.translate(x: 0, y: bounds.height)
 		} else {
 			transform.translate(x: 0, y: -bounds.height)
@@ -68,7 +68,7 @@ public extension NSBezierPath {
 		shadow.set()
 
 		NSColor.black.set()
-		NSRectClip(bounds)
+		bounds.clip()
 
 		path.fill()
 
@@ -127,7 +127,7 @@ public extension NSBezierPath {
 	}
 
 	public func strokeInside(within clipRect: CGRect) {
-		let thisContext = NSGraphicsContext.current()
+		let thisContext = NSGraphicsContext.current
 
 		let lineWidth = self.lineWidth
 

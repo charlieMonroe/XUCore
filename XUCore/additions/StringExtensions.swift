@@ -88,24 +88,16 @@ public extension String {
 	
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
-	public func draw(centeredIn rect: CGRect, withAttributes atts: [String: AnyObject]? = nil) -> CGRect {
-		#if os(OSX)
-			let stringSize = self.size(withAttributes: atts)
-		#else
-			let stringSize = (self as NSString).size(attributes: atts)
-		#endif
+	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGRect {
+		let stringSize = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0), withAttributes: atts)
 		return CGRect(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0, width: stringSize.width, height: stringSize.height)
 	}
 
-	/// Draws `self` aligned right to point.
+	/// Draws `self` aligned right to point. Returns size of the drawn string.
 	@discardableResult
-	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [String: AnyObject]? = nil) -> CGSize {
-		#if os(OSX)
-			let s = self.size(withAttributes: atts)
-		#else
-			let s = (self as NSString).size(attributes: atts)
-		#endif
+	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGSize {
+		let s = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
 	}
@@ -364,7 +356,7 @@ public extension String {
 	
 	/// Truncates the string in the middle with '...' in order to fit the width, 
 	/// similarily as NSTextField does.
-	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [String: AnyObject]) -> String {
+	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [NSAttributedStringKey : Any]) -> String {
 		var front = ""
 		var tail = ""
 		
@@ -372,12 +364,7 @@ public extension String {
 		var tailIndex = frontIndex
 		
 		var result = self
-		
-		#if os(OSX)
-			var size = self.size(withAttributes: atts)
-		#else
-			var size = (self as NSString).size(attributes: atts)
-		#endif
+		var size = self.size(withAttributes: atts)
 		
 		while size.width > width {
 			frontIndex = self.characters.index(before: frontIndex)
@@ -387,11 +374,7 @@ public extension String {
 			tail = self.substring(from: tailIndex)
 			result = "\(front)...\(tail)"
 			
-			#if os(OSX)
-				size = result.size(withAttributes: atts)
-			#else
-				size = (result as NSString).size(attributes: atts)
-			#endif
+			size = result.size(withAttributes: atts)
 		}
 		return result
 	}
@@ -406,15 +389,8 @@ public extension String {
 		return String(self.characters.reversed())
 	}
 	
-	#if os(iOS)
-	/// Apparantly, this is missing in Swift 3 on iOS.
-	public func size(withAttributes attrs: [String : AnyObject]?) -> CGSize {
-		return (self as NSString).size(attributes: attrs)
-	}
-	#endif
-	
 	/// Returns size with attributes, limited to width.
-	public func size(withAttributes attrs: [String : AnyObject], maximumWidth width: CGFloat) -> CGSize {
+	public func size(withAttributes attrs: [NSAttributedStringKey : AnyObject], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		#if os(iOS)
 			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs, context: nil).size

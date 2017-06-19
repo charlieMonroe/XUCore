@@ -242,7 +242,7 @@ open class XUDocumentSyncManager {
 		
 		// We need to apply insertion changes first since other changes may include
 		// relationship changes, which include these entities
-		let insertionChanges = changes.filter({ $0 is XUInsertionSyncChange }) as! [XUInsertionSyncChange]
+		let insertionChanges = changes.flatMap({ $0 as? XUInsertionSyncChange })
 		for change in insertionChanges {
 			XULog("Applying insertion change [\(change.insertedEntityName)]")
 			

@@ -21,7 +21,7 @@ public extension NSAttributedString {
 			repeat {
 				var theEffectiveRange: NSRange = NSMakeRange(0, 0)
 				let theAttributes = self.attributes(at: N, longestEffectiveRange: &theEffectiveRange, in: stringRange)
-				if let attachment = theAttributes[NSAttachmentAttributeName] as? NSTextAttachment {
+				if let attachment = theAttributes[NSAttributedStringKey.attachment] as? NSTextAttachment {
 					attachments.append(attachment)
 				}
 				

@@ -51,17 +51,13 @@ public func XUAllSubclasses<T: AnyObject>(of aClass: T.Type) -> [T.Type] {
 		}
 		
 		let classesPtr = memory.assumingMemoryBound(to: Optional<AnyClass>.self)
-		let classes = AutoreleasingUnsafeMutablePointer<AnyClass?>(classesPtr)
+		let classes = AutoreleasingUnsafeMutablePointer<AnyClass>(classesPtr)
 		numClasses = objc_getClassList(classes, numClasses)
 
 		for i in 0 ..< Int(numClasses) {
 			// Go through the classes, find out if the class is kind of aClass
 			// and then add it to the list
-
-			guard let cl = classes[i] else {
-				continue
-			}
-
+			let cl: AnyClass = classes[i]
 			if XUClass(cl, isKindOf: aClass) && cl != aClass {
 				result.append(cl as! T.Type)
 			}

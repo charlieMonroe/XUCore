@@ -121,9 +121,9 @@ public final class XUSynchronousDataLoader {
 		let lock = NSConditionLock(condition: 0)
 		
 		self.session.dataTask(with: request, completionHandler: {
-			data = $0.0
-			response = $0.1
-			error = $0.2
+			data = $0
+			response = $1
+			error = $2
 			
 			lock.lock(whenCondition: 0)
 			lock.unlock(withCondition: 1)
@@ -634,7 +634,7 @@ open class XUDownloadCenter {
 			return nil // Error already set.
 		}
 	
-		let doc = try? XMLDocument(xmlString: source, options: Int(XMLNode.Options.documentTidyXML.rawValue))
+		let doc = try? XMLDocument(xmlString: source, options: .documentTidyXML)
 		if doc == nil {
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - failed to parse XML document \(source)")

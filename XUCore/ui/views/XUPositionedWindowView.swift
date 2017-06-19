@@ -36,7 +36,7 @@ open class XUPositionedWindowView: NSView {
 			superview?.addSubview(self)
 		}
 
-		NotificationCenter.default.addObserver(self, selector: #selector(XUPositionedWindowView.updateFramePosition), name: NSNotification.Name.NSWindowDidResize, object: connectedToWindow)
+		NotificationCenter.default.addObserver(self, selector: #selector(XUPositionedWindowView.updateFramePosition), name: NSWindow.didResizeNotification, object: connectedToWindow)
 
 		self.postsFrameChangedNotifications = false
 
@@ -76,7 +76,7 @@ open class XUPositionedWindowView: NSView {
 	@objc open func updateFramePosition() {
 		let rect = self.frame
 		self.frame = rect
-		self.autoresizingMask = .viewMinXMargin
+		self.autoresizingMask = .minXMargin
 	}
 }
 

@@ -213,7 +213,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Removes all characters with value > 127
 	public func removeNonASCIICharacters() {
-		self.remove(passingTest: { $0.0 > 127 })
+		self.remove(passingTest: { (char, _) -> Bool in char > 127 })
 	}
 	
 	/// Sets a character at index. Will throw if the index is out of bounds.

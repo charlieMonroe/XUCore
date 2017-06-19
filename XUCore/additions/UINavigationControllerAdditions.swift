@@ -13,7 +13,7 @@ public extension UINavigationController {
 	/// This method allows you to observe when the navigation controller has 
 	/// completed the animation. The completionHandler argument is required -
 	/// if you don't need it, use the basic popViewControllerAnimated(_:) method.
-	public func popViewController(animated: Bool, completionHandler: @escaping (Void) -> Void) {
+	public func popViewController(animated: Bool, completionHandler: @escaping () -> Void) {
 		CATransaction.begin()
 		CATransaction.setCompletionBlock(completionHandler)
 		
@@ -25,7 +25,7 @@ public extension UINavigationController {
 	/// This method allows you to observe when the navigation controller has
 	/// completed the animation. The completionHandler argument is required -
 	/// if you don't need it, use the basic popViewControllerAnimated(_:) method.
-	public func popToRootViewControllerAnimated(animated: Bool, completionHandler: @escaping (Void) -> Void) {
+	public func popToRootViewControllerAnimated(animated: Bool, completionHandler: @escaping () -> Void) {
 		CATransaction.begin()
 		CATransaction.setCompletionBlock(completionHandler)
 		
