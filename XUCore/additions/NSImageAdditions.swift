@@ -12,23 +12,15 @@ public extension NSImage {
 	
 	/// Returns an image with just a single image representation of size.
 	private func _imageWithSingleImageRepOfSize(_ size: CGSize) -> XUImage? {
-		if size == CGSize() {
+		if size.isEmpty {
 			return nil
 		}
 		
-		var newSize = size
+		let newSize = size
 		let s = self.size
 		if s.width <= newSize.width && s.height <= newSize.height {
 			return self
 		}
-		
-		var scale = NSScreen.main()?.backingScaleFactor ?? 0.0
-		if scale == 0.0 {
-			scale = 1.0
-		}
-		
-		newSize.width /= scale
-		newSize.height /= scale
 		
 		let icon = NSImage(size: newSize)
 		icon.lockFocus()
