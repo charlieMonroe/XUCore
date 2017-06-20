@@ -41,7 +41,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Shows a new reporter window with the exception.
 	class func showReporter(for exception: NSException, thread: Thread, queue: OperationQueue?, andStackTrace stackTrace: String) {
-		if [ NSExceptionName.accessibilityException, NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException ].contains(exception.name) {
+		if [NSExceptionName.portTimeoutException, NSExceptionName.objectInaccessibleException].contains(exception.name) {
 			// Exceptions that commonly arise in Apple's code
 			return
 		}

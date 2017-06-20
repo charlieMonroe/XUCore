@@ -45,6 +45,20 @@ public extension NSImage {
 		return icon
 	}
 	
+	/// Applies color tint to the image.
+	public func applying(tint color: NSColor) -> NSImage {
+		let result = self.copy() as! NSImage
+		result.lockFocus()
+		
+		color.set()
+			
+		let imageRect = CGRect(origin: CGPoint(), size: self.size)
+		imageRect.fill(using: .sourceAtop)
+			
+		result.unlockFocus()
+		return result
+	}
+	
 	/// Returns a black & white copy of the image. May return nil, if the image
 	/// contains no bitmap image representations, or if the conversion fails.
 	public var blackAndWhiteImage: XUImage? {
