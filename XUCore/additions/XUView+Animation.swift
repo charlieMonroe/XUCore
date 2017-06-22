@@ -59,7 +59,132 @@ public extension Array where Element : __XUBridgedView {
 	
 }
 
+private typealias _XUPulsationProgress = (progress: Double, direction: Bool)
+private var _pulsatingViews: [__XUBridgedView : (timer: Timer, progress: _XUPulsationProgress)] = [:]
+private let _pulsatingViewsFPS: TimeInterval = 1.0 / 30.0
+
 public extension XUViewAnimation {
+	
+	#if os(macOS)
+	private func _animateAlphaUsingTimer(from sourceAlpha: CGFloat, to targetAlpha: CGFloat, completion: (() -> Void)? = nil) {
+		let animationDuration: TimeInterval = 0.5
+		let targetFPS = 30.0
+		let step = animationDuration / targetFPS
+		let numberOfSteps = Int(animationDuration * targetFPS)
+		
+		self.views.forEach({ $0.alphaValue = sourceAlpha })
+		let alphaStep = (targetAlpha - sourceAlpha) /  CGFloat(numberOfSteps)
+		
+		var stepCounter = 0
+		Timer.scheduledTimer(timeInterval: step, repeats: true) { (timer) in
+			stepCounter += 1
+			
+			self.views.forEach({ $0.alphaValue += alphaStep })
+			
+			if stepCounter == numberOfSteps {
+				self.views.forEach({ $0.alphaValue = targetAlpha })
+				timer.invalidate()
+				
+				completion?()
+			}
+		}
+	}
+	#endif
+	
+	private func _updatePulsating(for view: __XUBridgedView) {
+		guard var viewSetup = _pulsatingViews[view] else {
+			return
+		}
+		
+		let delta: Double
+		if viewSetup.progress.direction {
+			delta = _pulsatingViewsFPS
+		} else {
+			delta = -_pulsatingViewsFPS
+		}
+		
+		let x = viewSetup.progress.progress + delta
+		if x < 0.0 || x > 1.0 {
+			viewSetup.progress.direction = !viewSetup.progress.direction
+			_pulsatingViews[view] = viewSetup
+			
+			self._updatePulsating(for: view)
+			return
+		}
+		
+		let easeInOutProgress = x < 0.5 ? 2.0 * x * x : -1.0 + (4.0 - 2.0 * x) * x
+		let alpha = 0.25 + (easeInOutProgress * 0.75)
+		
+		viewSetup.progress.progress = x
+		_pulsatingViews[view] = viewSetup
+		
+		view.alphaValue = CGFloat(alpha)
+	}
+	
+	/// Hides the views by fading them out and then setting isHidden to true.
+	public func hideWithFadeOut() {
+		#if os(macOS)
+			self._animateAlphaUsingTimer(from: 1.0, to: 0.0, completion: {
+				self.views.forEach({
+					guard $0.alphaValue == 0.0 else {
+						return // Something else is modifying it already.
+					}
+					
+					$0.isHidden = true
+				})
+			})
+		#else
+			fatalError("Unimplemented animation.")
+		#endif
+	}
+	
+	/// Shows the views by fading them in and then setting isHidden to false.
+	public func showWithFadeIn() {
+		#if os(macOS)
+			self.views.forEach({
+				$0.alphaValue = 0.0
+				$0.isHidden = false
+			})
+			
+			self._animateAlphaUsingTimer(from: 0.0, to: 1.0)
+		#else
+			fatalError("Unimplemented animation.")
+		#endif
+	}
+	
+	/// Starts pulsating, if it's not already. Pulsating view will decrease and
+	/// increase its opacity. Note that a strong reference is kept for the views.
+	public func startPulsating() {
+		for view in self.views {
+			guard _pulsatingViews[view] == nil else {
+				continue // Already pulsating.
+			}
+			
+			let timer = Timer.scheduledTimer(timeInterval: _pulsatingViewsFPS, repeats: true, usingBlock: { (_) in
+				self._updatePulsating(for: view)
+			})
+			
+			RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
+			RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
+			
+			_pulsatingViews[view] = (timer, _XUPulsationProgress(1.0, false))
+		}
+	}
+	
+	/// Stops pulsating.
+	public func stopPulsating() {
+		for view in self.views {
+			view.alphaValue = 1.0
+			
+			guard let viewSetup = _pulsatingViews[view] else {
+				return
+			}
+			
+			viewSetup.timer.invalidate()
+			_pulsatingViews[view] = nil
+		}
+	}
+	
 	
 	/// Animates a wobbling movement indicating that the value is invalid. Note
 	/// that since it's layer-based animation, the view must be layer-backed on
@@ -88,4 +213,35 @@ public extension XUViewAnimation {
 	}
 	
 }
+
+#if os(macOS)
+	public extension XUViewAnimation where T: NSTextField {
+		
+		/// Animates text change in a text field. Should only be used on text fields
+		/// that act as labels.
+		public func setStringValueAnimated(_ stringValue: String) {
+			for field in self.views {
+				guard stringValue != field.stringValue else {
+					continue
+				}
+				
+				NSAnimationContext.runAnimationGroup({ (context) in
+					context.duration = 0.5
+					context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+					field.animator().alphaValue = 0.0
+				}, completionHandler: {
+					field.stringValue = stringValue
+					
+					NSAnimationContext.runAnimationGroup({ (context) in
+						context.duration = 0.5
+						context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+						field.animator().alphaValue = 1.0
+					}, completionHandler: nil)
+				})
+			}
+		}
+		
+	}
+#endif
+
 

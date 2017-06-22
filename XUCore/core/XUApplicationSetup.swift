@@ -51,7 +51,7 @@ open class XUApplicationSetup {
 	
 	/// Returns the shared setup.
 	public static let shared: XUApplicationSetup = {
-		let infoDictionary = XUMainBundle.infoDictionary ?? [ : ]
+		let infoDictionary = XUMainBundle.infoDictionary ?? [:]
 		let setupClass: XUApplicationSetup.Type
 		if let className = infoDictionary["XUApplicationSetupClass"] as? String {
 			guard let genericClass = NSClassFromString(className) else {
