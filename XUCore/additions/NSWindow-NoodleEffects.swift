@@ -61,7 +61,7 @@ public extension NSWindow {
 		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: mask, backing: .buffered, defer: false)
 		zoomWindow.backgroundColor = NSColor(deviceWhite: 0.0, alpha: 0.0)
 		zoomWindow.hasShadow = self.hasShadow
-		zoomWindow.level = .modalPanelWindowLevel
+		zoomWindow.level = .modalPanel
 		zoomWindow.isOpaque = false
 		
 		let imageView = NSImageView(frame: zoomWindow.contentRect(forFrameRect: frame))

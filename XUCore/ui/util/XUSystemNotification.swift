@@ -184,7 +184,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 			self.messageField.textColor = NSColor.black
 		}
 		
-		self.level = NSWindow.Level.screenSaverWindowLevel
+		self.level = NSWindow.Level.screenSaver
 		
 		self.backgroundColor = NSColor.clear
 		
