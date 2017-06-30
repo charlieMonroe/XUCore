@@ -74,3 +74,68 @@
 "%li seconds" = "%li שניות";
 
 
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "לא ניתן למצוא מסמך כזה. בדוק שוב מאוחר יותר, ייתכן שהוא לא מסונכרן עדיין.";
+"Cannot open document metadata file." = "לא ניתן לפתוח את קובץ המטא של המסמך.";
+"Metadata file doesn't contain required information." = "קובץ המטא אינו מכיל מידע נדרש.";
+"Synchronization is already in progress." = "הסנכרון כבר פעיל.";
+"An upload operation is already in progress." = "פעולת העלאה כבר מתבצעת.";
+"Could not save upload metadata." = "לא ניתן לשמור קובץ מטא להעלאה.";
+"Cannot find entity named %@" = "לא ניתן למצוא את היישות בשם %@";
+"Cannot find class named %@" = "לא ניתן למצוא את המחלקה בשם %@";
+"Cannot find entity with ID %@" = "לא ניתן למצוא ישות עם מזהה %@";
+"Can't find synchronization folder for document %@." = "לא ניתן למצוא תיקיית סינכרון עבור המסמך %@.";
+"Can't find synchronization folder for computer %@." = "לא ניתן למצוא תיקיית סינכרון עבור המחשב %@.";
+"Can't find sync folder for document %@." = "לא ניתן למצוא תיקיית סינכרון עבור המסמך %@.";
+"%@ couldn't finish synchronization in the background." = "%@ לא הצליח לסיים את הסינכרון ברקע.";
+"Please switch back to %@ so that the synchronization can finish." = "חזור אל %@ בשביל שהסנכרון יהיה יכול להסתיים.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "לא ניתן לקרוא נתוני שינוי סינכרון.";
+"Could not copy synchronization change data to the cloud." = "לא ניתן להעתיק נתוני שינוי סינכרון לענן.";
+"Failing to apply change sets." = "אי החלת ערכות שינוי.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "סינכרון שינויים ממחשב %@ עדיין לא הורדו.";
+
+/// XUOAuth2
+"Authentication" = "אימות";
+"Server responded with unknown token type." = "השרת הגיב עם סוג טוקן לא ידוע.";
+"Server provided invalid authorization response." = "השרת סיפק תגובת הרשאה לא חוקית.";
+"Server has redirected with invalid URL." = "השרת הפנה מחדש לכתובת אתר לא חוקית.";
+"User cancelled the authorization." = "המשתמש ביטל את האימות.";
+
+/// Debug Log Menu
+"Debug" = "דיבאג";
+"About Debug Log..." = "אודות לוג דיבאג...";
+"Debug Logging" = "רישום דיבאג";
+"On" = "פעיל";
+"Off" = "מכובה";
+"Clear Debug Log" = "נקה לוג דיבאג";
+"Show Log in Finder" = "הצג לוג בFinder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "יומן דיבאג הוא קובץ טקסט המכיל כמה פרטים טכניים על מה %@ מבצע ברקע. זה די שימושי עבורי כדי לתקן דברים במהירות מכיוון שהוא מאפשר לי לראות מה קורה. כדי לקבל את יומן הבאגים, בצע את השלבים הפשוטים הבאים:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) אם זה אינו יומן יומן הבאגים הראשון שאתה שולח, אנא בחר באפשרות נקה יומן Debug מתפריט Debug. \ N2) בתפריט Debug, ודא כי רישום Debug פועל. \ N3) בצע את כל המשימות שלך נתקלת בבעיות. \ N4) בתפריט Debug, כבה את Debug Logging Off. \ N5) בתפריט Debug, בחר באפשרות Show Log in Finder. זה בוחר את קובץ היומן ב Finder ואתה יכול בקלות לשלוח לי את זה. בבקשה, צרף את הקובץ לדואל במקום להעתיק את המידע. \ N \ n קובץ היומן אינו מכיל נתונים אישיים שניתן לאמת על-ידי פתיחת קובץ היומן (זהו קובץ טקסט פשוט). אם אתה סבור שחלק מהנתונים חסויים או אישיים, החלף אותם במשהו שניתן לזהות בקלות כמציין מיקום (למשל XXXXXXXX) והודע לי ששינית את קובץ היומן.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "לא ניתן להוריד את המסמך ברגע זה.";
+"Log Current Application State" = "לוג היישום הנוכחי";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "גרסת הבטא הזו תפוג בעוד פחות משעה.";
+"Please update your copy of this beta build." = "עדכן את העותק של גרסת הבטא שלך.";
+
+// Preferences.
+"All Preferences" = "כל ההעדפות";
+"Show All" = "הצג הכל";
+"Preferences" = "העדפות";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "אין תוצאות חיפוש";
+"%li search results" = "%li תוצאות חיפוש";
+
+// Certificate view.
+"Select..." = "בחר...";
+
