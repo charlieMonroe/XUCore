@@ -36,7 +36,7 @@ public final class XUAppScopeBookmarksManager {
 		#else
 			_ = newURL.startAccessingSecurityScopedResource()
 			
-			guard let bookmarkData = try? (newURL as NSURL).bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
+			guard let bookmarkData = try? newURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
 				XULog("Failed to create bookmark data for URL \(newURL)")
 				return false
 			}
@@ -90,11 +90,12 @@ public final class XUAppScopeBookmarksManager {
 			do {
 				var isStale: Bool = false
 				result = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-			} catch _ {
+			} catch let error {
+				XULog("Failed to resolve bookmark data for \(defaultsKey) - error \(error).")
 				result = nil
 			}
 			
-			XULog("resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
+			XULog("Resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
 		#endif
 		
 		if result != nil {

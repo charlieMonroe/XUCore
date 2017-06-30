@@ -52,6 +52,25 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	/// running.
 	public let launchTime: Date = Date()
 	
+	private func _calculateBinaryMD5(for bundle: Bundle) -> String {
+		guard let executableURL = bundle.executableURL else {
+			return "nil"
+		}
+		
+		guard let data = try? Data(contentsOf: executableURL) else {
+			return "nil"
+		}
+		
+		return data.md5Digest
+	}
+	
+	private func _createBinaryMD5sApplicationStateItem() -> XUApplicationStateItem {
+		let frameworkURLs = FileManager.default.contentsOfDirectory(at: Bundle.main.bundleURL.appendingPathComponent("Contents").appendingPathComponent("Frameworks")).filter({ $0.pathExtension == "framework" })
+		let frameworkBundles = frameworkURLs.flatMap(Bundle.init(url:))
+		let otherBinaryMD5s = frameworkBundles.map({ "\t\($0.bundleURL.lastPathComponent): \(self._calculateBinaryMD5(for: $0))" }).joined(separator: "\n")
+		return XUApplicationStateItem(name: "Binary MD5s", andValue: "\n\tMain: \(self._calculateBinaryMD5(for: Bundle.main))\n\(otherBinaryMD5s)", requiresAdditionalTrailingNewLine: true)
+	}
+	
 	/// Returns state values. By default, this contains run-time, window list
 	/// including names and perhaps in the future additional values. Override
 	/// this var and append your values to what super returns.
@@ -60,12 +79,14 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			XUApplicationStateItem(name: "Locale", andValue: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "Build Type", andValue: XUAppSetup.buildType.rawValue),
-			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
+			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate))
 		]
 		
 		if XUPreferences.isApplicationUsingPreferences, let reflectablePreferences = XUPreferences.shared as? XUReflectablePreferences {
 			stateItems.append(reflectablePreferences.preferencesStateItem)
 		}
+		
+		stateItems.append(self._createBinaryMD5sApplicationStateItem())
 		
 		#if os(OSX)
 			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")
