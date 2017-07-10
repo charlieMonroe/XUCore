@@ -1,0 +1,134 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 ชั่วโมง";
+"1 minute" = "1 นาที";
+"1 second" = "1 วินาที";
+"Unknown error." = "พบข้อผิดพลาดบางอย่าง.";
+
+"OK" = "โอเค";
+"Cancel" = "ยกเลิก";
+
+"Failed to parse CSV file." = "การกระจายไฟล์ประเภท CSV ล้มเหลว.";
+
+"Send Report" = "ส่งรีพอร์ต";
+"Privacy Information..." = "ข้อมูลส่วนบุคคล…";
+"%AppName% has encountered a problem." = "%AppName% พบเจอข้อผิดพลาด.";
+"%AppName% will terminate after sending the report." = "%AppName% จะถูกปิดตัวลง หลังจากส่งรีพอร์ตเสร็จ.";
+"Report to be sent:" = "รีพอร์ตจะถูกส่งออก:";
+"Your Email:" = "อีเมล์ของคุณ:";
+"Description:" = "คำอธิบาย:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "หากท่านพบเจอข้อผิดพลาด,กรุณาอธิบายถึงเหตุการณ์ที่พบปัญหาโดยระบุเป็นลำดับขั้น ทั้งนี้ ให้ท่านแจ้ง อีเมล์ ของท่านด้านล่าง - ทางทีมงานจักแจ้งให้ทราบอีกครั้ง หากปัญหาได้ถูกแก้ไขเรียบร้อยแล้ว หรืออาจจะติดต่อกลับเพื่อสอบถามเพิ่มเติมอีกครั้ง และทางเราไม่มีนโยบายเก็บข้อมูลอีเมล์ของท่าน และทานจะไม่ได้รับอีเมล์ขยะต่างๆที่ไม่พึงประสงค์.\n\nขอขอบคุณที่ช่วยส่งรีพอร์ต เพื่อประโยชน์ในการพัฒนาโปรแกรมต่อไป! ";
+
+"Report Problem" = "ร้องเรียนปัญหา";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "ทางผู้พัฒนายินดี และให้ความสำคัญกับความคิดเห็นของคุณและไม่มีนโยบายเก็บ บันทึกข้อมูลสำคุญของคุณ. อีเมล์ของคุณจะไม่ได้รับการบันทึกทั้งสิ้น โดยจะใช้เพียงแค่นำส่งรีพอร์ตรายงานปัญหาเท่านั้น.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "เฉพาะข้อมูลต่อไปนี้เท่านั้นที่จะถูกส่งออกไป:\n• คำอธิบายที่คุณชี้แจง.\n• ข้อมูลที่ได้รับการยกเว้นตามด้านล่าง.\n• เวอร์ชั่นของโปรแกรมนี้.\n• เวอร์ชันของระบบปฎิบัติการ (OS).\n• รุ่นของอุปกรณืคอมพิวเตอร์ (ไม่มี MAC address หรือข้อมูลบ่งชี้ใดๆที่จะแจ้งอุปกรณ์ของคุณ).";
+
+"Could not post your report." = "ไม่สามารถนำส่งรีพอร์ตได้.";
+"Check your Internet connection and try again." = "กรุณาตรวจสอบการเชื่อมต่อ อินเตอร์เนตอีกครั้ง.";
+"Heh, nice try. Please, enter a valid email address." = "ขอโทษด้วย กรุณาตรวจสอบอีเมล์ของท่านอีกครั้ง.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "ทางเราอาจจะติดต่อคุณ เพื่อขอรายละเอียดเพิ่มเติม ในการแก้ไขปัญหาที่พบ รับรองได้ เรายินดีที่ช่วยเหลือคุณอย่างเต็มที่.";
+"You need to enter a valid email address." = "กรุณากรอก อีเมล์ที่ถูกต้อง.";
+"We may need to get in touch with you in order to fix this." = "ทางเราอาจติดต่อไปหาคุณ เพื่อแก้ไขปัญหานี้.";
+"Please, provide some details as to when this exception happened." = "รบกวนช่วยชี้แจงปัญหาที่ท่านพบ.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "รบกวนระบุข้อมูลเกี่ยวกับ แอพลิเคชั้นที่พบปัญหาอยู่, หากตัวแอพลิเคชั่นเปิดอยู่ หรือทำงานอยู่ภายใต้โปรแกรมอื่นๆ; หากคุณได้คลิ๊กที่ แอพลิเคชั่นดูแล้วและพยายามแก้ไขมัน, บางครั้งการระบุบั๊ค ปัญหาอาจเป็นไปได้ยาก หากขาดข้อมูลที่เพียงพอ .";
+"Thank you for the report!" = "ขอบคุณสำหรับการส่งรีพอร์ต!";
+"We'll fix it as soon as possible!" = "พวกเราสัญญาว่าจะรีบแก้ไขให้เร็วที่สุด!";
+
+"Welcome to beta testing of %@." = "ยินดีต้องรับ สู่การเข้าร่วมทดสอบ โปรแกรมฉบับเบต้า %@.";
+"This is the first time you run a beta build %@." = "นี่คือครั้งแรกที่คุณกำลังใช้ โปรแกรมฉบับเบต้า เวอร์ชั้น %@.";
+"This beta build of %@ has expired." = "โปรแกรมฉบับเบต้า เวอร์ชั่น %@ ได้หมดอายุลงแล้ว.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "ขอให้สนุกไปกับการใช้งานแอพลิเคชั่นของเรา! หากคุณพบปัญหาระหว่างการใช้งาน โปรดแจ้งให้เราทราบทางเพจ ช่วยเหลือของเรา  %@";
+
+"Continue" = "ต่อเนื่อง";
+"Purchase..." = "สั่งซื้อ...";
+"I'm Still Not Sure" = "ยังคงไม่มั่นใจ";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ ไม่สามารถเชื่อมต่ออินเตอร์เนตได้ โปรแกรมจะปิดตัวลงภายใน 1 ชั่วโมง.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ ต้องการเชื่อมต่ออินเตอร์เนตเพื่อการใช้งานรูปแบบ ทดลองต่อเนื่อง.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "กำลังนำคุณไปสู่หน้าเพจที่คุณสามารถซื้อโปรแกรมได้ หากคุณยังไม่มั่นใจว่า %@ โปรแกรมนี้ยังไม่ใช่และหากมีคำถามเพิ่มเติม สามารถติดต่อเราได้เลย.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "ขอบคุณสำหรับการใช้งาน %@! คุณสามารถใช้ได้อีก %li วันในรูปแบบโปรแกรมตัวเต็ม. เมื่อตัวโปรแกรมทดลองหมดอายุ, คุณอาจพิจารณาซื้อโปแกรม %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "ขอบคุณที่ร่วมทดสอบโปรแรกม %@! คุณได้ใช้ไปแล้ว %li วัน. เพื่อที่จะใช้งานต่อ %@ คุณต้องซื้อตัวโปแกรมฉบับเต็ม.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "ขอบคุณที่ร่วมทดสอบ %@! สามารถใช้ต่อได้อีก %i %@ โดยสามารถใช้งานได้ครบแบบรูปแบบเต็ม. หลังจากโปรแรกมหมดอายุ, คุณอาจพิจารณาสั่งซื้อตัวโปรแกรมฉบับจริง %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "ขอบคุณที่ร่วมทดสอบ %@! คุณใช้มาแล้ว %i %@ วัน. หากต้องการใช้งานต่อ %@ อาจต้องพิจารณาสั่งซื้อโปรแกรมฉบับเต็ม.";
+"Working..." = "กำลังทำงานอยู่…";
+
+"Progress" = "ความคืบหน้า";
+"Posted successfully" = "โพสเรียบร้อยแล้ว";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ จะทำงานต่อเนื่องอีก 24 ชั่วโมง, หลังจากนั้นฟังชั่นต่างๆจะถูกระงับชั่วคราว. กรุณาอัพเดท %@ เพื่อที่จะใช้งานต่อ.";
+"Please download a new build." = "รบกวน ดาวโหลด โปรแกรมตัวอัพเดทล่าสุด.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "คุณสามารถนำส่งรายงานปัญหาได้, แต่ข้อมูลของคุณไม่ได้เป็นภาษาอังกฤษ, ทางเราไม่เข้าใจ และไม่สามารถ ให้ความช่วยเหลือได้เต็มที่.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "ข้อความของคุณมิใช่ภาษาอังกฤษ. กรุณารับทราบว่า %@ ตัวโปรแกรมมีหลากหลายภาษา แต่การให้ความช่วยเหลือจะสามารถตอบได้เฉพาะภาษาอังกฤษเท่านั้น.";
+"%li hours" = "%li ชั่วโมง";
+"%li minutes" = "%li นาที";
+"%li seconds" = "%li วินาที";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "ไม่สามารถหาข้อมูลดังกล่าวได้. ลองกลับมาใหม่คราวหลัง, ข้อมูลอาจจะยังเชื่อมต่อไม่ครบทันที.";
+"Cannot open document metadata file." = "ไม่สามารถเปิดอ่านไฟล์ได้.";
+"Metadata file doesn't contain required information." = "ข้อมูลไม่สมบูรณ์.";
+"Synchronization is already in progress." = "การเชื่อมต่อข้อมูลอยู่ในระหว่างการดำเนินการอัพเดท.";
+"An upload operation is already in progress." = "ข้อมูลกำลังถูกอัพเดท.";
+"Could not save upload metadata." = "ไม่สามารถบันทึกข้อมูลได้.";
+"Cannot find entity named %@" = "ไม่สามารถค้นหาชื่อนี้ได้ %@";
+"Cannot find class named %@" = "ไม่สารมารถระบุคลาส %@";
+"Cannot find entity with ID %@" = "ไม่สามารถหาชื่อ ไอดี %@";
+"Can't find synchronization folder for document %@." = "ตรวจสอบโฟลเดอร์ที่บันทึกไว้ไม่พบ  %@.";
+"Can't find synchronization folder for computer %@." = "ตรวจสอบข้อมูลคอมพิวเตอร์ไม่พบ %@.";
+"Can't find sync folder for document %@." = "ไม่สามารถหาโฟลเดอร์ที่บันทึกไว้ได้ %@.";
+"%@ couldn't finish synchronization in the background." = "%@ ไม่สามารถตรวจพบการซิงโครไนส์ข้อมูลภายหลังการใช้งานได้.";
+"Please switch back to %@ so that the synchronization can finish." = "โปรดกลับมาใช้ %@ จึงจะเชื่อมต่ออีกครั้ง.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "ไม่สามารถอ่านค่าได้.";
+"Could not copy synchronization change data to the cloud." = "ไม่สามารถอ่านค่าที่บันทึกในคลาวน์ได้.";
+"Failing to apply change sets." = "พบข้อผิดพลาดในการบันทึก.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "การเชื่อมต่อสมบูรณ์บนคอมพิวเตอร์ %@ ยังไม่ได้ถูกบันทึก.";
+
+/// XUOAuth2
+"Authentication" = "การตรวจสอบ";
+"Server responded with unknown token type." = "เซอเวอร์ไม่สามารถตรวจสอบได้.";
+"Server provided invalid authorization response." = "เซอเวอร์แจ้งว่าการตรวจสอบผิดพลาด.";
+"Server has redirected with invalid URL." = "เซอเวอร์แจ้งไป URL ผิด.";
+"User cancelled the authorization." = "ผู้ใช้งานยกเลิกเอง.";
+
+/// Debug Log Menu
+"Debug" = "เอาบัคออก";
+"About Debug Log..." = "การบันทึกบัค...";
+"Debug Logging" = "การบันทึกรายงานบัค";
+"On" = "เปิด";
+"Off" = "ปิด";
+"Clear Debug Log" = "ลบการบันทึกบัค";
+"Show Log in Finder" = "แสดงรายการบัคใน finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "รายงานบัคเป็นไฟล์รายงานชนิดนึง ที่ชี้แจ้งถึงสาเหตุของปัญหาในทางเทคนิค %@ ทำงานภายใต้ระบบปฎิบัติการ. มันทำให้ผู้พัฒนาสามารถแก้ไขปัญหาได้รวจเร็วและครบถ้วน. เพื่อที่จะหาข้อมูลรายงานบัค, โปรดปฎิบัติตามนี้:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) ถ้าไม่ใช่ครั้งแรกที่คุณกดส่ง, ได้โปรดล้างข้อมูลเก่าก่อน.\n2) ในเมนูบันทึกบัค, ให้มั่นใจว่าเปิดอยู่.\n3) ลองทดสอบปัญหาที่คุณพบอีกครั้ง.\n4) ในเมนูรายงานบัค, ปิดมันซ่ะ.\n5) ในเมนูรายงานบัค, กด ให้แสดงผล บันทึกใน finder. คุณจะพบว่ามีหลายไฟล์ในนี้ และโปรดส่งมาให้ฉัน. รบกวนส่งมันมาทางอีเมล์ อย่าแค่ก๊อปีีข้อมูลมาบอกฉัน.\n\nบันทึกเหล่านั้นไม่มีข้อมูลใดๆที่สำคัญ. ถ้าคุณกังวลเกี่ยวกับข้อมูลบุคคล กรุณาระบุ (อย่างเช่น XXXXXXXX) ในชื่อไฟล์และบอกฉันด้วย.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "เอกสารไม่สามารถดาวโหลดได้ในขณะนี้.";
+"Log Current Application State" = "บันทึกรายละเอียดการทำงานในปัจุบัน";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "โปรแกรมเบต้าตัวนี้จะหมดอายุภายใน ชั่วโมง.";
+"Please update your copy of this beta build." = "กรุณาอัพเดทโปรแกรมล่าสุด.";
+
+// Preferences.
+"All Preferences" = "การตั้งค่าทั้งหมด";
+"Show All" = "แสดงทั้งหมด";
+"Preferences" = "การตั้งค่า";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "ไม่พบข้อมูลที่ค้นหา";
+"%li search results" = "%li พบข้อมูลที่ค้นหา";
+
+// Certificate view.
+"Select..." = "เลือก…";

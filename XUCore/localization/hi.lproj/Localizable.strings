@@ -1,0 +1,135 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 घंटा";
+"1 minute" = "1 मिनट";
+"1 second" = "1 सेकेंड";
+"Unknown error." = "अज्ञात एरर।";
+
+"OK" = "ठीक";
+"Cancel" = "रद्द";
+
+"Failed to parse CSV file." = "सीएसवी फ़ाइल को पढ़ने में विफल।";
+
+"Send Report" = "रिपोर्ट भेजे";
+"Privacy Information..." = "गोपनीयता सूचना...";
+"%AppName% has encountered a problem." = "%AppName% को एक समस्या का सामना करना पड़ा है।";
+"%AppName% will terminate after sending the report." = "%AppName% रिपोर्ट भेजने के बाद समाप्त हो जाएगा ।";
+"Report to be sent:" = "रिपोर्ट जो भेजा जाएगा:";
+"Your Email:" = "आपका ईमेल:";
+"Description:" = "विवरण:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "कृपया, इस अपवाद होने पर स्थिति का वर्णन करें और यदि संभव हो तो समस्या पुन: उत्पन्न करने के लिए कदम प्रदान करें। नीचे अपना ईमेल पता दर्ज करें - हम बताएंगे कि यह समस्या कब तय हो जाएगी या हम आपको इस अपवाद के बारे में कुछ विवरण पूछ सकते हैं। आपका ईमेल पता किसी भी डेटाबेस में एकत्र नहीं किया जाएगा और आपको कोई अवांछित ईमेल नहीं मिलेगा।\n\nइस रिपोर्ट को सबमिट करके आप इस सॉफ्टवेयर को सुधारने में हमारी सहायता करेंगे। धन्यवाद!";
+
+"Report Problem" = "समस्या की सूचना दें";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "हम आपकी प्रतिक्रिया की सराहना करते हैं और किसी भी अवांछित जानकारी एकत्र करने की हिम्मत नहीं करेंगे। आपका ईमेल पता कहीं भी संग्रहित नहीं होगा और इसका इस्तेमाल केवल आपको सूचित करने के लिए किया जाएगा जब यह समस्या ठीक हो जाए या जब हमें इस समस्या को ठीक करने के लिए अधिक जानकारी चाहिए।";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "केवल निम्नलिखित जानकारी भेजी जाएगी:\n• आपके द्वारा प्रदान किए गए विवरण।\n• नीचे उल्लेखित अपवाद जानकारी।\n• इस एप्लिकेशन का संस्करण।\n• आपके सिस्टम का संस्करण (ओएस)।\n• आपके कंप्यूटर का मॉडल (कोई मैक पता या इसी तरह की जानकारी जो आपके कंप्यूटर की पहचान कर सके वह नहीं भेजी जाएगी)।";
+
+"Could not post your report." = "आपकी रिपोर्ट भेजने में असमर्थ।";
+"Check your Internet connection and try again." = "अपना इंटरनेट कनेक्शन जांचें और फिर से प्रयास करें।";
+"Heh, nice try. Please, enter a valid email address." = "अच्छा प्रयास, कृपया एक जायज़ ईमेल एड्रेस डालें।";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "इसे ठीक करने के लिए हमें आपके साथ संपर्क में रहने की आवश्यकता हो सकती है। हम किसी को ईमेल पता नहीं बेचेंगे और न ही किसी अन्य तरीके से इसका इस्तेमाल करेंगे। हम वादा करते हैं।";
+"You need to enter a valid email address." = "आपको एक जायज़ ईमेल पता डालना होगा।";
+"We may need to get in touch with you in order to fix this." = "इसे ठीक करने के लिए हमें आपके साथ संपर्क में रहने की आवश्यकता हो सकती है।";
+"Please, provide some details as to when this exception happened." = "कृपया, इस अपवाद होने पर स्थिति का वर्णन करें।";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "अनुप्रयोग में चल रहे कार्यों के बारे में जानकारी शामिल करें, यदि अनुप्रयोग अग्रभूमि में था, या पृष्ठभूमि; अगर आपने कुछ भी क्लिक किया है, इत्यादि। रिपोर्ट से समस्या का पता लगाने की कोशिश करना कठिन हो सकता है और अतिरिक्त जानकारी के बिना असंभव भी।";
+"Thank you for the report!" = "रिपोर्ट के लिए धन्यवाद!";
+"We'll fix it as soon as possible!" = "हम जितनी जल्दी हो सके इसे ठीक कर देंगे!";
+
+"Welcome to beta testing of %@." = "%@ के बीटा परीक्षण में आपका स्वागत है।";
+"This is the first time you run a beta build %@." = "यह पहली बार आप बीटा बिल्ड %@ चला रहे हैं।";
+"This beta build of %@ has expired." = "यह बीटा बिल्ड %@ की अवधि समाप्त हो गई है।";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "हमारे सॉफ्टवेयर का आनंद लें! यदि आपके पास कोई प्रश्न है या किसी भी समस्या का सामना करते हैं, तो हमारे समर्थन पृष्ठ %@ पर हमें बेझिझक पूछें।";
+
+"Continue" = "जारी रखें";
+"Purchase..." = "ख़रीदे...";
+"I'm Still Not Sure" = "मुझे अभी भी निश्चय नही है";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ इंटरनेट से कनेक्ट होने में असमर्थ। ऐप एक घंटे में बंद हो जाएगा।";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ के परीक्षण को ठीक से जारी रखने के लिए इंटरनेट कनेक्शन की आवश्यकता है।";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "आपको एक ऐसे पृष्ठ पर ले जाया जाएगा जहां आप एक कॉपी खरीद सकेंगे। यदि आप अभी भी सुनिश्चित नहीं हैं कि %@ आपके लिए सही है और कुछ प्रश्न हैं, तो हमसे संपर्क करें। %@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@ को आज़माने के लिए धन्यवाद! आप इसे %li दिनों के लिए बिना किसी सीमा के उपयोग कर सकते हैं। परीक्षण अवधि समाप्त होने के बाद, आपको %@ खरीदने की आवश्यकता होगी।";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "%@ को आज़माने के लिए धन्यवाद! आप इसे %li दिनों से प्रयोग कर रहे हैं! %@ का उपयोग जारी रखने के लिए आपको इसे खरीदना होगा।";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@ को आज़माने के लिए धन्यवाद! आप इसे %i %@ दिनों के लिए बिना किसी सीमा के उपयोग कर सकते हैं। परीक्षण अवधि समाप्त होने के बाद, आपको %@ खरीदने की आवश्यकता होगी।";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "%@ को आज़माने के लिए धन्यवाद! आप इसे %i %@ दिनों से प्रयोग कर रहे हैं! %@ का उपयोग जारी रखने के लिए आपको इसे खरीदना होगा।";
+"Working..." = "काम चल रहा हैं...";
+
+"Progress" = "प्रगति";
+"Posted successfully" = "पोस्ट करने में सफल";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ अगले 24 घंटों के लिए काम करेगा, जिसके बाद इसकी कार्यक्षमता अवरुद्ध हो जाएगी। इस से काम करने के लिए कृपया %@ को अपडेट करें।";
+"Please download a new build." = "कृपया एक नया बिल्ड डाउनलोड करें।";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "आप रिपोर्ट भेज सकते हैं, लेकिन यदि संदेश अंग्रेजी में नहीं होगा, तो मैं आपको पूर्ण समर्थन प्रदान नहीं कर पाउँगा।";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "आपके संदेश में विशेष वर्ण हैं जो आम तौर पर इंगित करते हैं कि संदेश अंग्रेजी में नहीं लिखा है। कृपया ध्यान दें हाला की %@ को विभिन्न भाषाओं में अनुवादित किया गया है, समर्थन केवल अंग्रेजी में प्रदान किया जाता हैं। समझने के लिए धन्यवाद।";
+"%li hours" = "%li घंटे";
+"%li minutes" = "%li मिनट";
+"%li seconds" = "%li सेकंड";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "ऐसा दस्तावेज़ ढूंढने में असमर्थ। बाद में वापस जांचें, इसे इसके माध्यम से सिंक नहीं किया जा सका।";
+"Cannot open document metadata file." = "दस्तावेज़ मेटाडेटा फ़ाइल खोलने में असमर्थ।";
+"Metadata file doesn't contain required information." = "मेटाडेटा फ़ाइल में आवश्यक जानकारी नहीं है।";
+"Synchronization is already in progress." = "सिंक्रनाइज़ेशन पहले से ही प्रगति पर है।";
+"An upload operation is already in progress." = "एक अपलोड कार्रवाई पहले से ही प्रगति पर है।";
+"Could not save upload metadata." = "अपलोड मेटाडेटा सेव करने में असमर्थ।";
+"Cannot find entity named %@" = "%@ नामित संस्था का पता लगाने में असमर्थ";
+"Cannot find class named %@" = "%@ नामित कक्षा का पता लगाने में असमर्थ";
+"Cannot find entity with ID %@" = "आईडी %@ के संस्था को खोजने में असमर्थ";
+"Can't find synchronization folder for document %@." = "दस्तावेज़ %@ के लिए सिंक्रनाइज़ेशन फ़ोल्डर नहीं मिल सका।";
+"Can't find synchronization folder for computer %@." = "कंप्यूटर %@ के लिए सिंक्रनाइज़ेशन फ़ोल्डर नहीं मिल सका।";
+"Can't find sync folder for document %@." = "दस्तावेज़ %@ के लिए सिंक फ़ोल्डर नहीं मिल सका।";
+"%@ couldn't finish synchronization in the background." = "%@ पृष्ठभूमि में सिंक्रनाइज़ेशन को समाप्त नहीं कर सका।";
+"Please switch back to %@ so that the synchronization can finish." = "कृपया %@ पर वापस स्विच करें ताकि सिंक्रनाइज़ेशन समाप्त हो सके।";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "सिंक्रनाइज़ेशन परिवर्तन डेटा नहीं पढ़ा जा सका।";
+"Could not copy synchronization change data to the cloud." = "सिंक्रनाइज़ेशन परिवर्तन डेटा को क्लाउड में कॉपी नहीं किया जा सका।";
+"Failing to apply change sets." = "परिवर्तन सेट लागू करने में विफल।";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "कंप्यूटर %@ से सिंक्रनाइज़ेशन बदलाव अभी तक डाउनलोड नहीं किए गए हैं।";
+
+/// XUOAuth2
+"Authentication" = "प्रमाणीकरण";
+"Server responded with unknown token type." = "सर्वर ने अज्ञात टोकन प्रकार के साथ प्रतिक्रिया दी।";
+"Server provided invalid authorization response." = "सर्वर ने अमान्य प्राधिकरण प्रतिक्रिया प्रदान की।";
+"Server has redirected with invalid URL." = "सर्वर ने अमान्य यूआरएल के साथ रीडायरेक्ट किया है।";
+"User cancelled the authorization." = "उपयोगकर्ता ने प्राधिकरण को रद्द कर दिया।";
+
+/// Debug Log Menu
+"Debug" = "डिबग";
+"About Debug Log..." = "डिबग लॉग के बारे में...";
+"Debug Logging" = "डिबग लॉगिंग";
+"On" = "चालू";
+"Off" = "बंद";
+"Clear Debug Log" = "डिबग लॉग को साफ़ करें";
+"Show Log in Finder" = "लॉग को फाइंडर में देखे";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "डीबग लॉग एक पाठ फ़ाइल है जिसमें पृष्ठभूमि में %@ के प्रदर्शन के कुछ तकनीकी विवरण शामिल हैं। चीजें जल्दी ठीक करने के लिए मेरे लिए यह काफी उपयोगी है क्योंकि इससे मुझे यह देखने की अनुमति मिलती है कि क्या हो रहा है। डीबग लॉग प्राप्त करने के लिए, इन सरल चरणों का पालन करें:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) यदि यह आपका पहला डीबग लॉग नहीं है, तो कृपया डीबग मेनू से डिबग लॉग साफ़ करने का चयन चुनें।\n2) डीबग मेनू में सुनिश्चित करें कि डीबग लॉगिंग चालू है।\n3) आपको जिस किसी काम से समस्याएं हो रही हैं उसे करे।\n4) डीबग मेनू में डीबग लॉगिंग बंद करें।\n5) डीबग मेनू में, लॉग को फाइंडर में देखे चयन चुनें। यह फाइंडर में लॉग फ़ाइल का चयन करता है और आप इसे आसानी से मुझे भेज सकते हैं। कृपया, फ़ाइल को कॉपी-चिपकाने के बजाय ईमेल में संलग्न करें।\n\nलॉग फ़ाइल में कोई भी व्यक्तिगत डेटा नहीं है जो लॉग फ़ाइल को खोलकर सत्यापित किया जा सकता है (यह एक सरल पाठ फ़ाइल है)। अगर आप कुछ डेटा व्यक्तिगत रूप से देखते हैं, तो कृपया उन जगहों की जगह प्लेसहोल्डर रखे जिसे आसानी से पहचाना जा सकता है (जैसे की XXXXXXXX) और मुझे बताएं कि आपने लॉग फ़ाइल को बदला है।";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "दस्तावेज़ को इस समय डाउनलोड नहीं किया जा सका।";
+"Log Current Application State" = "एप्लिकेशन की वर्तमान स्थिति को लॉग करें";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "यह बीटा बिल्ड एक घंटे से भी कम समय में समाप्त हो जाएगा।";
+"Please update your copy of this beta build." = "कृपया इस बीटा बिल्ड को अपडेट करें।";
+
+// Preferences.
+"All Preferences" = "सभी वरीयताएं";
+"Show All" = "सब दिखाए";
+"Preferences" = "वरीयताएं";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "खोजने पर कोई परिणाम नहीं मिला";
+"%li search results" = "%li खोज परिणाम";
+
+// Certificate view.
+"Select..." = "चुने...";
+
