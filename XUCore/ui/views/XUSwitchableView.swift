@@ -94,10 +94,8 @@ public class XUSwitchableView: NSView {
 			return
 		}
 		
-		// NSAnimationContext.currentContext().duration = 3.0
+		// NSAnimationContext.current.duration = 3.0
 		NSAnimationContext.beginGrouping()
-		
-		// [[NSAnimationContext currentContext] setDuration:3.0];
 		
 		let newViewSize = view.bounds.size
 		let oldViewSize = self.currentView!.bounds.size
