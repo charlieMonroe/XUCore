@@ -21,12 +21,20 @@ import Cocoa
 	/// Border width.
 	@IBInspectable var borderWidth: Double = 1.0
 	
+	/// Corner radius.
+	@IBInspectable var cornerRadius: Double = 0.0
+	
 	
 	open override func draw(_ dirtyRect: CGRect) {
 		self.backgroundColor.setFill()
 		self.borderColor.setStroke()
 		
-		let bPath = NSBezierPath(rect: self.bounds)
+		let bPath: NSBezierPath
+		if self.cornerRadius == 0.0 {
+			bPath = NSBezierPath(rect: self.bounds)
+		} else {
+			bPath = NSBezierPath(roundedRect: self.bounds, xRadius: CGFloat(self.cornerRadius), yRadius: CGFloat(self.cornerRadius))
+		}
 		bPath.lineWidth = CGFloat(self.borderWidth)
 		bPath.fill()
 		bPath.stroke()
