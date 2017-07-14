@@ -59,6 +59,31 @@ public extension NSImage {
 		return result
 	}
 	
+	
+	/// Average color in the image. If the image is empty (zero size), clear color
+	/// is returned.
+	///
+	/// - Returns: Average color.
+	public func averageColor() -> NSColor {
+		if self.size.isEmpty {
+			return .clear
+		}
+		
+		guard let image = self.imageWithSingleImageRepresentation(ofSize: CGSize(width: 1.0, height: 1.0)) else {
+			return .clear
+		}
+		
+		guard let tiffRep = image.tiffRepresentation, let rep = NSBitmapImageRep(data: tiffRep) else {
+			return .clear
+		}
+
+		guard let color = rep.colorAt(x: 0, y: 0) else {
+			return .clear
+		}
+		
+		return color
+	}
+	
 	/// Returns a black & white copy of the image. May return nil, if the image
 	/// contains no bitmap image representations, or if the conversion fails.
 	public var blackAndWhiteImage: XUImage? {
