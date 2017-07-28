@@ -74,7 +74,7 @@ public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [
 public final class XULocalizationCenter {
 	
 	/// Shared instance.
-	public static var shared = XULocalizationCenter()
+	public static let shared = XULocalizationCenter()
 
 	/// Cached identifiers
 	private var _cachedLanguageIdentifiers: [Bundle : String] = [:]
@@ -116,7 +116,7 @@ public final class XULocalizationCenter {
 		if language == "en" {
 			if let bundle = self._languageBundleForLanguage("English", inBundle: bundle, fallbackToEnglish: fallbackToEnglish) {
 				return bundle
-			}else if let bundle = self._languageBundleForLanguage("Base", inBundle: bundle, fallbackToEnglish: fallbackToEnglish) {
+		 } else if let bundle = self._languageBundleForLanguage("Base", inBundle: bundle, fallbackToEnglish: fallbackToEnglish) {
 				return bundle
 			}
 		}

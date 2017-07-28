@@ -255,6 +255,8 @@
 		0763C15E1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
 		0763C15F1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */; };
 		076657821DE4ACC8007D0BE7 /* XUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076657811DE4ACC8007D0BE7 /* XUView.swift */; };
+		076A5DF41F29CA0B006E93D1 /* XULockPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A5DF31F29CA0B006E93D1 /* XULockPool.swift */; };
+		076A5DF51F29CA0B006E93D1 /* XULockPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A5DF31F29CA0B006E93D1 /* XULockPool.swift */; };
 		076ACE771E37D4B8001BA622 /* XUCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ACE761E37D4B8001BA622 /* XUCoreTests.swift */; };
 		076ACE791E37D4B8001BA622 /* XUCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077AFD8F1BBD0E5300872A48 /* XUCore.framework */; };
 		076ACE801E37D6D9001BA622 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ACE7F1E37D6D9001BA622 /* StringTests.swift */; };
@@ -553,6 +555,7 @@
 		0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDownloadCenter.swift; sourceTree = "<group>"; };
 		0765CC951DDB3C43001D8603 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		076657811DE4ACC8007D0BE7 /* XUView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUView.swift; sourceTree = "<group>"; };
+		076A5DF31F29CA0B006E93D1 /* XULockPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XULockPool.swift; sourceTree = "<group>"; };
 		076ACE741E37D4B7001BA622 /* XUCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XUCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		076ACE761E37D4B8001BA622 /* XUCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUCoreTests.swift; sourceTree = "<group>"; };
 		076ACE781E37D4B8001BA622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1133,6 +1136,7 @@
 				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
 				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
+				076A5DF31F29CA0B006E93D1 /* XULockPool.swift */,
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
 				074228761E3CE296003A485A /* XUPointerEquality.swift */,
 				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
@@ -1682,6 +1686,7 @@
 				0703A8FE1C26F23F00C6FD3D /* XUFlippedView.swift in Sources */,
 				07E35B951C02384C007D31BE /* XUTrial.swift in Sources */,
 				07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */,
+				076A5DF41F29CA0B006E93D1 /* XULockPool.swift in Sources */,
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
@@ -1738,6 +1743,7 @@
 				073E6AD81BE1F86D00706283 /* prog.cc in Sources */,
 				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
+				076A5DF51F29CA0B006E93D1 /* XULockPool.swift in Sources */,
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
 				075DC7871CF1E0080043EBD0 /* XUAttributeSyncChange.swift in Sources */,
 				075DC7901CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,
