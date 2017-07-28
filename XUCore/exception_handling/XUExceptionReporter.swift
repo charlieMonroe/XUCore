@@ -72,7 +72,12 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	private let _thread: Thread
 	
 	private let _nib: NSNib
-	private var _topLevelObjects: NSArray = []
+	
+	#if swift(>=3.2)
+		private var _topLevelObjects: NSArray? = []
+	#else
+		private var _topLevelObjects: NSArray = []
+	#endif
 	
 	@IBOutlet private var _reporterWindow: NSWindow!
 	
