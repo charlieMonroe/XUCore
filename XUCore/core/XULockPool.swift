@@ -22,7 +22,7 @@ public final class XULockPool {
 	
 	
 	/// A lock for modifying the _locks array.
-	private lazy var _lockCreatingLock: NSLock
+	private lazy var _lockCreatingLock: NSLock = NSLock(name: self.name + "_lock_creation")
 	
 	/// Locks - lazily created.
 	private var _locks: [NSLock?]
@@ -40,7 +40,6 @@ public final class XULockPool {
 	/// - Parameter poolSize: Size of the pool.
 	/// - Parameter name: Name of the pool.
 	public init(poolSize: Int, name: String) {
-		_lockCreatingLock = NSLock(name: name + "_lock_creation")
 		_locks = Array<NSLock?>(repeating: nil, count: poolSize)
 		self.poolSize = poolSize
 		self.name = name
