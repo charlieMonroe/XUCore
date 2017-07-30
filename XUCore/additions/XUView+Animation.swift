@@ -48,6 +48,26 @@ public extension __XUBridgedView {
 	
 }
 
+#if os(macOS)
+public extension NSAnimatablePropertyContainer {
+	
+	/// Returns either self.animator() or self depending on the `animate`
+	/// parameter. This is useful if you need to layout some UI and sometimes
+	/// it is with animation and sometimes it isn't.
+	///
+	/// - Parameter animate: Whether to animate.
+	/// - Returns: Self or a animator proxy.
+	public func conditionalAnimator(_ animate: Bool) -> Self {
+		if animate {
+			return self.animator()
+		} else {
+			return self
+		}
+	}
+	
+}
+#endif
+
 public extension Array where Element : __XUBridgedView {
 	
 	/// Returns an animation structure that gathers some animations.
