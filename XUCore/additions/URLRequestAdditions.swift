@@ -39,6 +39,9 @@ public extension URLRequest {
 			/// Chrome 56 on macOS 10.12.3.
 			public static let Chrome56: UserAgent = UserAgent(rawValue: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36")
 			
+			/// Firefox 54 on macOS 10.12.
+			public static let Firefox54: UserAgent = UserAgent(rawValue: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0) Gecko/20100101 Firefox/54.0")
+			
 			/// Safari on macOS 10.12 (10.0)
 			public static let Safari10: UserAgent = UserAgent(rawValue: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50")
 			

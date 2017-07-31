@@ -16,7 +16,7 @@ open class XUAutocollapsingView: __XUBridgedView {
 	private var _originalHeight: CGFloat = 0.0
 	
 	/// Marked as YES on -initWithCoder: and NO at the end. Needed because layout
-	 /// constraints aren't loaded yet.
+	/// constraints aren't loaded yet.
 	private var _inCoderInit: Bool = true
 	
 	/// Called from -setHidden: to perform hide or unhide.
