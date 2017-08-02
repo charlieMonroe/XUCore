@@ -385,6 +385,7 @@
 		07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */; };
 		07E38A401C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07E38A411C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
+		07E8ED8C1F31E299006B62BB /* NSControl+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8ED8B1F31E299006B62BB /* NSControl+Additions.swift */; };
 		07EA8E8D1C58B69F00B6F77C /* XUKeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */; };
 		07EAAEE91DA3C417006C98A5 /* NSArrayControllerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EAAEE81DA3C417006C98A5 /* NSArrayControllerAdditions.swift */; };
 		07FD4BD41C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */; };
@@ -655,6 +656,7 @@
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XULocalizationSupport.swift; sourceTree = "<group>"; };
 		07E38A3F1C07105100AE6EAB /* XUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUString.swift; sourceTree = "<group>"; };
+		07E8ED8B1F31E299006B62BB /* NSControl+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSControl+Additions.swift"; sourceTree = "<group>"; };
 		07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess.swift; sourceTree = "<group>"; };
 		07EAAE781DA12852006C98A5 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07EAAEE81DA3C417006C98A5 /* NSArrayControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArrayControllerAdditions.swift; sourceTree = "<group>"; };
@@ -1066,6 +1068,7 @@
 				0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */,
 				078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */,
 				0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */,
+				07E8ED8B1F31E299006B62BB /* NSControl+Additions.swift */,
 				073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */,
 				073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */,
 				073E6B431BE1FD7E00706283 /* NSData+CommonCryptoSwift.h */,
@@ -1589,6 +1592,7 @@
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
 				0779E19F1BF243E000832858 /* NSTextFieldAdditions.swift in Sources */,
 				0742EFFE1D807D7800A3CE16 /* XUMenuItem.swift in Sources */,
+				07E8ED8C1F31E299006B62BB /* NSControl+Additions.swift in Sources */,
 				073E6ADB1BE1F86D00706283 /* re2.cc in Sources */,
 				07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */,
 				0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */,
