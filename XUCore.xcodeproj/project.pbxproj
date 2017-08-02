@@ -18,6 +18,8 @@
 		070AAD841E75400500224644 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AAD831E75400500224644 /* CharacterTests.swift */; };
 		070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */; };
 		070FEF7E1C106BD300C1B62E /* XURoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */; };
+		0710EDCE1F32155A00A697FA /* Process+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0710EDCD1F32155A00A697FA /* Process+Additions.swift */; };
+		0710EDCF1F32155A00A697FA /* Process+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0710EDCD1F32155A00A697FA /* Process+Additions.swift */; };
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		07156FEE1C396F82006D3616 /* XUBorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */; };
@@ -415,6 +417,7 @@
 		070A00EC1CE1BA68001A90EB /* _XUBacktrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUBacktrace.m; path = private/_XUBacktrace.m; sourceTree = "<group>"; };
 		070AAD831E75400500224644 /* CharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedTextField.swift; path = src/ui/textfields/XURoundedTextField.swift; sourceTree = "<group>"; };
+		0710EDCD1F32155A00A697FA /* Process+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Additions.swift"; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUBorderlessWindow.swift; path = windows/XUBorderlessWindow.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0716A1141D7D6668003423B1 /* XUPreferencePanesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUPreferencePanesWindowController.swift; path = preferences/XUPreferencePanesWindowController.swift; sourceTree = "<group>"; };
@@ -1088,6 +1091,7 @@
 				077AFDF61BBD101400872A48 /* NSXMLAdditions.h */,
 				077AFDF71BBD101400872A48 /* NSXMLAdditions.m */,
 				0784480A1D12A4C000E8467B /* OptionalAdditions.swift */,
+				0710EDCD1F32155A00A697FA /* Process+Additions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
 				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
 				07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */,
@@ -1533,6 +1537,7 @@
 				073A6A301C46220E00A23AAF /* NSRunningApplicationAdditions.swift in Sources */,
 				0749DCF31C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */,
+				0710EDCE1F32155A00A697FA /* Process+Additions.swift in Sources */,
 				073E6ACF1BE1F86D00706283 /* prefilter.cc in Sources */,
 				077AFEB81BBD101400872A48 /* ArrayExtensions.swift in Sources */,
 				07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
@@ -1781,6 +1786,7 @@
 				073E6B241BE1F86D00706283 /* valgrind.cc in Sources */,
 				073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
 				073E6B0E1BE1F86D00706283 /* rune.cc in Sources */,
+				0710EDCF1F32155A00A697FA /* Process+Additions.swift in Sources */,
 				0749DCFB1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
 				0779E1841BF2321B00832858 /* XURandomGenerator.swift in Sources */,
 				07E38A411C07105100AE6EAB /* XUString.swift in Sources */,
