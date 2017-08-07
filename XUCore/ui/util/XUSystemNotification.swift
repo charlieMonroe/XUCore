@@ -14,15 +14,17 @@ public struct XUSystemNotification {
 	
 	public let icon: NSImage
 	public let message: String
+	public let subtitle: String?
 	
-	public init(icon: NSImage, message: String) {
+	public init(icon: NSImage, message: String, subtitle: String? = nil) {
 		self.icon = icon
 		self.message = message
+		self.subtitle = subtitle
 	}
 	
 	/// Uses a checkmark image that is bundled with XUCore.
-	public init(confirmationMessage: String) {
-		self.init(icon: XUCoreFramework.bundle.image(forResource: NSImage.Name(rawValue: "Checkmark"))!, message: confirmationMessage)
+	public init(confirmationMessage: String, subtitle: String? = nil) {
+		self.init(icon: XUCoreFramework.bundle.image(forResource: NSImage.Name(rawValue: "Checkmark"))!, message: confirmationMessage, subtitle: subtitle)
 	}
 	
 }
@@ -118,6 +120,11 @@ private class XUSystemNotificationWindowController: NSWindowController {
 		case .system(let notification):
 			window.messageField.stringValue = notification.message
 			window.iconView.image = notification.icon
+			window.subtitleField.stringValue = notification.subtitle ?? ""
+			
+			if notification.subtitle == nil {
+				window.bottomLayoutConstraint.constant = 0.0
+			}
 		case .custom(let view):
 			let contentSize = view.frame.insetBy(dx: -15.0, dy: -15.0).size
 			window.setContentSize(contentSize)
@@ -136,8 +143,10 @@ private class XUSystemNotificationWindowController: NSWindowController {
 // be slightly randomized, causing issues with Interface Builder.
 internal class XUSystemNotificationWindow: NSWindow {
 	
+	@IBOutlet fileprivate weak var bottomLayoutConstraint: NSLayoutConstraint!
 	@IBOutlet fileprivate weak var iconView: NSImageView!
 	@IBOutlet fileprivate weak var messageField: NSTextField!
+	@IBOutlet fileprivate weak var subtitleField: NSTextField!
 	@IBOutlet fileprivate weak var visualEffectView: NSVisualEffectView!
 	
 	fileprivate func _updateVisualEffectViewMask() {
@@ -174,7 +183,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 			self.visualEffectView.material = .dark
 			
 			self.messageField.textColor = NSColor.white
-		}else{
+		} else {
 			if #available(OSX 10.11, *) {
 			    self.visualEffectView.material = .mediumLight
 			} else {
