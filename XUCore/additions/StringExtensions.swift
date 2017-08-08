@@ -406,8 +406,8 @@ public extension String {
 		}
 		
 		let index = self.characters.index(self.startIndex, offsetBy: 1)
-		let firstLetter = self.substring(to: index)
-		let restOfString = self.substring(from: index)
+		let firstLetter = self[..<index]
+		let restOfString = self[index...]
 		return firstLetter.uppercased() + restOfString
 	}
 

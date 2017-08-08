@@ -10,6 +10,13 @@ import XCTest
 
 class StringTests: XCTestCase {
 	
+	func testCapitalizingFirstLetter() {
+		XCTAssertEqual("".capitalizingFirstLetter, "")
+		XCTAssertEqual("H".capitalizingFirstLetter, "H")
+		XCTAssertEqual("h".capitalizingFirstLetter, "H")
+		XCTAssertEqual("hello".capitalizingFirstLetter, "Hello")
+	}
+	
 	func testHexConversion() {
 		XCTAssert("0x0a".hexValue == 10)
 		XCTAssert("0a".hexValue == 10)
