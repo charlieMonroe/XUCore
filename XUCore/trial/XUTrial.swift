@@ -129,7 +129,7 @@ open class XUTrial {
 		if NSApp == nil {
 			/// Schedule it for later
 			NotificationCenter.default.addObserver(self, selector: #selector(XUTrial._warnAboutNoInternetConnection), name: NSApplication.didFinishLaunchingNotification, object: nil)
-		}else{
+		} else {
 			self._warnAboutNoInternetConnection()
 		}
 	}
@@ -157,7 +157,7 @@ open class XUTrial {
 		if alertResult == NSApplication.ModalResponse.alertFirstButtonReturn {
 			// Continue
 			return
-		}else if alertResult == NSApplication.ModalResponse.alertSecondButtonReturn {
+		} else if alertResult == NSApplication.ModalResponse.alertSecondButtonReturn {
 			// Purchase
 			self._openPurchaseURL()
 		}
@@ -199,7 +199,7 @@ open class XUTrial {
 		let result = alert.runModal()
 		if result == NSApplication.ModalResponse.alertFirstButtonReturn {
 			self._openPurchaseURL()
-		}else if result == NSApplication.ModalResponse.alertSecondButtonReturn {
+		} else if result == NSApplication.ModalResponse.alertSecondButtonReturn {
 			self._openSupportURL()
 		}
 		
@@ -239,13 +239,11 @@ open class XUTimeBasedTrial: XUTrial {
 	private func _registerWithTrialServer() -> Bool {
 		let identifier = XUAppSetup.applicationIdentifier.encodingIllegalURLCharacters
 		let url = URL(string: self.trialSessionsURL.absoluteString + "?key=\(self._sessionIdentifier)&app=\(identifier)")!
-		let request = NSMutableURLRequest(url: url)
+		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
 		
-		var genericResponse: URLResponse?
-		_ = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: &genericResponse)
-		
-		guard let response = genericResponse as? HTTPURLResponse else {
+		let loader = XUSynchronousDataLoader(request: request)
+		guard let content = try? loader.loadData(), let response = content.response as? HTTPURLResponse else {
 			return false
 		}
 		
@@ -279,7 +277,7 @@ open class XUTimeBasedTrial: XUTrial {
 				_secondsLeft = TimeInterval(XUAppSetup.timeBasedTrialDays) * XUTimeInterval.day
 				_wasFirstRun = true
 				Timer.scheduledTimer(timeInterval: _secondsLeft, target: self, selector: #selector(XUTrial.showFirstRunAlert), userInfo: nil, repeats: false)
-			}else{
+			} else {
 				self.noInternetConnectionDetected()
 			}
 			return
@@ -306,7 +304,7 @@ open class XUTimeBasedTrial: XUTrial {
 		
 		if _secondsLeft > 0.0 {
 			Timer.scheduledTimer(timeInterval: _secondsLeft, target: self, selector: #selector(XUTrial._trialExpired), userInfo: nil, repeats: false)
-		}else{
+		} else {
 			XUForceLog("trial expired, session identifier \(self._sessionIdentifier), trial ID \(trialID)")
 			self.trialExpired(withTrialID: trialID)
 		}
@@ -406,14 +404,14 @@ open class XUItemBasedTrial: XUTrial {
 			self._wasFirstRun = true
 			_itemsLeft = XUAppSetup.itemBasedTrialNumberOfItems
 			self.saveTrialInformation()
-		}else{
+		} else {
 			let data = p.fileHandleForReading.availableData
 			let string = String(data: data) ?? ""
 			if string.isEmpty {
 				self._wasFirstRun = true
 				_itemsLeft = XUAppSetup.itemBasedTrialNumberOfItems
 				self.saveTrialInformation()
-			}else{
+			} else {
 				_itemsLeft = string.integerValue
 			}
 		}

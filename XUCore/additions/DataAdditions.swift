@@ -53,7 +53,7 @@ public extension Data {
 	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
 	public init(hexEncodedString hexString: String) {
-		if hexString.characters.count % 2 != 0 {
+		if hexString.count % 2 != 0 {
 			self.init()
 			return
 		}
@@ -62,13 +62,13 @@ public extension Data {
 		
 		var i = hexString.startIndex
 		while i < hexString.endIndex {
-			let byte1 = _hexValueOfChar(hexString.characters[i]) << 4
-			let byte2 = _hexValueOfChar(hexString.characters[hexString.characters.index(after: i)])
+			let byte1 = _hexValueOfChar(hexString[i]) << 4
+			let byte2 = _hexValueOfChar(hexString[hexString.index(after: i)])
 			
 			var byte = byte1 | byte2
 			self.append(&byte, count: 1)
 			
-			i = hexString.characters.index(i, offsetBy: 2)
+			i = hexString.index(i, offsetBy: 2)
 		}
 	}
 	

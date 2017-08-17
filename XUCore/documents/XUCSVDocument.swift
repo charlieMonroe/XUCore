@@ -11,22 +11,22 @@ import Foundation
 public final class XUCSVDocument {
 	
 	private func _parseString(_ csv: String) -> Bool {
-		let len = csv.characters.endIndex
-		var ptr = csv.characters.startIndex
+		let len = csv.endIndex
+		var ptr = csv.startIndex
 		let newlineChars = CharacterSet.newlines
 		let importantChars = CharacterSet(charactersIn: "\(self.columnSeparator)\"").union(newlineChars)
 		var column = 0
 		var firstLine = true
 		var insideQuotes = false
-		var startIndex = csv.characters.startIndex
+		var startIndex = csv.startIndex
 		var dict: [String : String] = [:]
 		
 		// Go through the CSV file
 		while ptr < len {
-			let c = csv.characters[ptr]
+			let c = csv[ptr]
 			if !c.isMember(of: importantChars) {
 				// Unimportant char -> skip
-				ptr = csv.characters.index(after: ptr)
+				ptr = csv.index(after: ptr)
 				continue
 			}
 			
@@ -34,12 +34,12 @@ public final class XUCSVDocument {
 			if c == self.columnSeparator {
 				if insideQuotes {
 					// Comma inside a quoted string -> all right
-					ptr = csv.characters.index(after: ptr)
+					ptr = csv.index(after: ptr)
 					continue
 				}
 				
 				// It's a comma and not inside quotes -> get the string
-				var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+				var field = csv[startIndex ..< ptr].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at the
 					// beginning and at the end and replace double-quotes with
@@ -70,26 +70,26 @@ public final class XUCSVDocument {
 				}
 				
 				column += 1
-				ptr = csv.characters.index(after: ptr)
+				ptr = csv.index(after: ptr)
 				startIndex = ptr
 			} else if c == Character("\"") {
 				// It's quotes - a few possibilities:
 				if insideQuotes {
 					// a) next char is also quotes -> quotes don't end yet
-					if ptr < csv.characters.index(before: len) && csv.characters[csv.characters.index(after: ptr)] == Character("\"") {
-						ptr = csv.characters.index(ptr, offsetBy: 2)
+					if ptr < csv.index(before: len) && csv[csv.index(after: ptr)] == Character("\"") {
+						ptr = csv.index(ptr, offsetBy: 2)
 						continue
 					} else {
 						// b) either end of document on the quotes end
-						if ptr < csv.characters.index(before: len) {
+						if ptr < csv.index(before: len) {
 							// End of quotes
 							insideQuotes = false
-							ptr = csv.characters.index(after: ptr)
+							ptr = csv.index(after: ptr)
 						} else {
 							// c) end of document
-							ptr = csv.characters.index(after: ptr)
+							ptr = csv.index(after: ptr)
 							
-							var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+							var field = csv[startIndex ..< ptr].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 							
 							if field.hasPrefix("\"") {
 								// The field begins with a quote -> remove quote at
@@ -117,17 +117,17 @@ public final class XUCSVDocument {
 					// d) Start of quotes
 					insideQuotes = true
 					startIndex = ptr
-					ptr = csv.characters.index(after: ptr)
+					ptr = csv.index(after: ptr)
 				}
 			} else if c.isMember(of: newlineChars) {
 				// New line
 				if insideQuotes {
 					// Can be a new line inside quoted string
-					ptr = csv.characters.index(after: ptr)
+					ptr = csv.index(after: ptr)
 					continue
 				}
 				
-				var field = csv.substring(with: startIndex..<ptr).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+				var field = csv[startIndex ..< ptr].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 				if field.hasPrefix("\"") {
 					// The field begins with a quote -> remove quote at
 					// the beginning and at the end and replace
@@ -164,7 +164,7 @@ public final class XUCSVDocument {
 				
 				firstLine = false
 				column = 0
-				ptr = csv.characters.index(after: ptr)
+				ptr = csv.index(after: ptr)
 				startIndex = ptr
 			}
 		}

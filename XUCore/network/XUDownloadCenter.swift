@@ -110,7 +110,7 @@ public final class XUSynchronousDataLoader {
 	/// IMPORTANT: This method asserts that the current queue != delegateQueue of
 	/// self.session, which usually is the main queue. It is important not to
 	/// invoke this method in such manner since it would lead to a deadlock.
-	public func loadData() throws -> (Data, URLResponse?) {
+	public func loadData() throws -> (data: Data, response: URLResponse?) {
 		assert(OperationQueue.current != self.session.delegateQueue,
 		       "Can't be loading data on the same queue as is the session's delegate queue!")
 		
@@ -120,7 +120,7 @@ public final class XUSynchronousDataLoader {
 		
 		let lock = NSConditionLock(condition: 0)
 		
-		self.session.dataTask(with: request, completionHandler: {
+		self.session.dataTask(with: self.request, completionHandler: {
 			data = $0
 			response = $1
 			error = $2

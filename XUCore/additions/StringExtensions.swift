@@ -104,7 +104,7 @@ public extension String {
 
 	/// Returns the first character or \0 if the string is empty.
 	public var firstCharacter: Character {
-		return self.characters.first ?? Character(UInt8(0))
+		return self.first ?? Character(UInt8(0))
 	}
 
 	/// Returns first line of string. Always non-nil
@@ -160,7 +160,7 @@ public extension String {
 		suffix = suffix.lowercased()
 
 		var result = 0
-		for c in suffix.characters {
+		for c in suffix {
 			if c >= Character("0") && c <= Character("9") {
 				result *= 16
 				result += Int(c.asciiValue - Character("0").asciiValue)
@@ -270,28 +270,28 @@ public extension String {
 		result = result.replacingOccurrences(of: "\\t", with: String(Character(UnicodeScalar(9))))
 
 		var i: String.Index = self.startIndex
-		while i < self.characters.endIndex {
-			let c = self.characters[i]
-			if c == Character("\\") && i < self.characters.index(self.endIndex, offsetBy: -1) {
-				let nextC = self.characters[self.characters.index(after: i)]
-				if nextC == Character("u") && i < self.characters.index(self.endIndex, offsetBy: -6) {
-					let unicodeCharCode = self.substring(with: self.characters.index(i, offsetBy: 2) ..< self.characters.index(i, offsetBy: 6))
-					let replacementChar = unicodeCharCode.hexValue
+		while i < self.endIndex {
+			let c = self[i]
+			if c == Character("\\") && i < self.index(self.endIndex, offsetBy: -1) {
+				let nextC = self[self.index(after: i)]
+				if nextC == Character("u") && i < self.index(self.endIndex, offsetBy: -6) {
+					let unicodeCharCode = self[self.index(i, offsetBy: 2) ..< self.index(i, offsetBy: 6)]
+					let replacementChar = String(unicodeCharCode).hexValue
 					
 					result = result.replacingOccurrences(of: "\\u\(unicodeCharCode)", with: String(Character(UnicodeScalar(replacementChar)!)))
-					i = self.characters.index(i, offsetBy: 6)
+					i = self.index(i, offsetBy: 6)
 					continue
 				}
 			}
 			
-			i = self.characters.index(after: i)
+			i = self.index(after: i)
 		}
 		return result
 	}
 
 	/// Returns the last character or \0 if the string is empty.
 	public var lastCharacter: Character {
-		return self.characters.last ?? Character(UInt8(0))
+		return self.last ?? Character(UInt8(0))
 	}
 	
 	/// Splits `self` using CharacterSet.newlines.
@@ -313,7 +313,7 @@ public extension String {
 	/// representation.
 	public var octalValue: Int {
 		var result = 0
-		for c in self.characters {
+		for c in self {
 			if c >= Character("0") && c <= Character("8") {
 				result *= 8
 				result += Int(c.asciiValue - Character("0").asciiValue)
@@ -357,21 +357,21 @@ public extension String {
 	/// Truncates the string in the middle with '...' in order to fit the width, 
 	/// similarily as NSTextField does.
 	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [NSAttributedStringKey : Any]) -> String {
-		var front = ""
-		var tail = ""
+		var front = Substring()
+		var tail = Substring()
 		
-		var frontIndex = self.characters.index(self.startIndex, offsetBy: self.characters.count / 2)
+		var frontIndex = self.index(self.startIndex, offsetBy: self.count / 2)
 		var tailIndex = frontIndex
 		
 		var result = self
 		var size = self.size(withAttributes: atts)
 		
 		while size.width > width {
-			frontIndex = self.characters.index(before: frontIndex)
-			tailIndex = self.characters.index(after: tailIndex)
+			frontIndex = self.index(before: frontIndex)
+			tailIndex = self.index(after: tailIndex)
 			
-			front = self.substring(to: frontIndex)
-			tail = self.substring(from: tailIndex)
+			front = self[..<frontIndex]
+			tail = self[tailIndex...]
 			result = "\(front)...\(tail)"
 			
 			size = result.size(withAttributes: atts)
@@ -381,12 +381,12 @@ public extension String {
 	
 	/// Prepends self with `string`.
 	public mutating func prepend(with string: String) {
-		self.insert(contentsOf: string.characters, at: self.startIndex)
+		self.insert(contentsOf: string, at: self.startIndex)
 	}
 		
 	/// Returns a reverse string.
 	public func reversed() -> String {
-		return String(self.characters.reversed())
+		return String(self.reversed())
 	}
 	
 	/// Returns size with attributes, limited to width.
@@ -405,7 +405,7 @@ public extension String {
 			return self
 		}
 		
-		let index = self.characters.index(self.startIndex, offsetBy: 1)
+		let index = self.index(self.startIndex, offsetBy: 1)
 		let firstLetter = self[..<index]
 		let restOfString = self[index...]
 		return firstLetter.uppercased() + restOfString
@@ -416,7 +416,7 @@ public extension String {
 			fatalError("Cannot delete last character from an empty string!")
 		}
 
-		return self.substring(to: self.characters.index(before: self.endIndex))
+		return String(self[..<self.index(before: self.endIndex)])
 	}
 
 	/// Removes the prefix from the string.
@@ -425,7 +425,7 @@ public extension String {
 			return self
 		}
 
-		return self.substring(from: self.characters.index(self.startIndex, offsetBy: prefix.characters.count))
+		return String(self[self.index(self.startIndex, offsetBy: prefix.count)...])
 	}
 
 	/// Removes the suffix from the string.
@@ -434,8 +434,8 @@ public extension String {
 			return self
 		}
 
-		let len = suffix.characters.count
-		return self.substring(to: self.characters.index(self.endIndex, offsetBy: -len))
+		let len = suffix.count
+		return String(self[..<self.index(self.endIndex, offsetBy: -len)])
 	}
 
 	/// Encodes string by adding percent escapes. Unlike
@@ -455,27 +455,27 @@ public extension String {
 			return self
 		}
 
-		let index = self.characters.index(self.startIndex, offsetBy: 1)
-		let firstLetter = self.substring(to: index)
-		let restOfString = self.substring(from: index)
+		let index = self.index(self.startIndex, offsetBy: 1)
+		let firstLetter = self[..<index]
+		let restOfString = self[index...]
 		return firstLetter.lowercased() + restOfString
 	}
 
 	/// Trims the string to maximum length of maxLen, trimming the middle.
 	public func truncatingMiddle(toMaximumLengthOf maxLen: Int) -> String {
-		if self.characters.count < maxLen {
+		if self.count < maxLen {
 			return self
 		}
 
-		let begin = self.substring(to: self.characters.index(self.startIndex, offsetBy: (maxLen - 1) / 2))
-		let end = self.substring(from: self.characters.index(self.endIndex, offsetBy: -1 * (maxLen - 1) / 2))
-		return begin + "…" + end
+		let begin = self[..<self.index(self.startIndex, offsetBy: (maxLen - 1) / 2)]
+		let end = self[self.index(self.endIndex, offsetBy: -1 * (maxLen - 1) / 2)...]
+		return String(begin + "…" + end)
 	}
 
 	/// Prepends prefix enough times so that it has the specific length.
 	public func paddingFront(toLength length: Int, withString padString: String) -> String {
 		var str = self
-		while str.characters.count + padString.characters.count <= length {
+		while str.count + padString.count <= length {
 			str = padString + str
 		}
 		return str
@@ -483,34 +483,34 @@ public extension String {
 	
 	/// Returns the prefix of length. Doesn't do any range checking.
 	public func prefix(ofLength length: Int) -> String {
-		return self.substring(to: self.characters.index(self.startIndex, offsetBy: length))
+		return String(self[..<self.index(self.startIndex, offsetBy: length)])
 	}
 	
 	/// Returns the suffix of length. Doesn't do any range checking.
 	public func suffix(ofLength length: Int) -> String {
-		return self.substring(from: self.characters.index(self.endIndex, offsetBy: -1 * length))
+		return String(self[self.index(self.endIndex, offsetBy: -1 * length)...])
 	}
 	
 	/// Removes characters from the set from the beginning of the string.
 	public func trimmingLeftCharacters(in set: CharacterSet) -> String {
 		var index = 0
-		while index < self.characters.count && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMember(of: set) {
+		while index < self.count && self[self.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index += 1
 		}
 		
-		return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
+		return String(self[self.index(self.startIndex, offsetBy: index)...])
 	}
 	
 	/// Removes characters from the set from the end of the string.
 	public func trimmingRightCharacters(in set: CharacterSet) -> String {
-		var index = self.characters.count - 1
-		while index >= 0 && self.characters[self.characters.index(self.startIndex, offsetBy: index)].isMember(of: set) {
+		var index = self.count - 1
+		while index >= 0 && self[self.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index -= 1
 		}
 		
 		index += 1
 		
-		return self.substring(to: self.characters.index(self.startIndex, offsetBy: index))
+		return String(self[..<self.index(self.startIndex, offsetBy: index)])
 	}
 
 	/// Trims whitespace whitespace and newlines.
@@ -553,7 +553,7 @@ public extension String {
 	/// example "hello" wrapped to max length of 2 is "he\nll\no".
 	public func wrapped(to lineWidth: Int) -> String {
 		let lineCharacters = self.lines.map({
-			Array($0.characters).splitIntoChunks(ofSize: lineWidth)
+			Array($0).splitIntoChunks(ofSize: lineWidth)
 		}).joined()
 		
 		let lines = lineCharacters.map({ String($0) })
@@ -576,7 +576,7 @@ public extension String {
 		let charSet = CharacterSet(charactersIn: "0123456789.")
 		var numberString = ""
 		var wasDot = false
-		for char in self.characters {
+		for char in self {
 			if char == "." {
 				if wasDot {
 					break // Second dot
@@ -604,7 +604,7 @@ public extension String {
 
 		let charSet = CharacterSet(charactersIn: "0123456789")
 		var numberString = ""
-		for char in self.characters {
+		for char in self {
 			if char.isMember(of: charSet) {
 				numberString.append(char)
 			} else {

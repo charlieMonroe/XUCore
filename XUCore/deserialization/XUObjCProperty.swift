@@ -105,7 +105,7 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		let typeProperty = allProperties.first(where: { $0.hasPrefix("T") })?.deleting(prefix: "T") ?? ""
 		self.isScalar = !typeProperty.hasPrefix("@")
 		
-		if !self.isScalar && typeProperty.characters.count > 3 {
+		if !self.isScalar && typeProperty.count > 3 {
 			let typeString = typeProperty.deleting(prefix: "@\"").deleting(suffix: "\"")
 			self.className = typeString
 			

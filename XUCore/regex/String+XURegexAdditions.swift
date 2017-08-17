@@ -108,7 +108,7 @@ public extension String {
 	
 	/// All Occurrences of regex in self.
 	public func allOccurrences(ofRegex regex: XURegex) -> [String] {
-		return regex.allOccurrences(in: self)
+		return regex.allOccurrences(in: String(self))
 	}
 	
 	/// All Occurrences of regex in self.
@@ -124,7 +124,7 @@ public extension String {
 	public func allRelativeURLs(to baseURL: URL) -> [URL] {
 		let regex = XURegex(pattern: "(?i)/[^\\s'\"<>]+", andOptions: XURegexOptions())
 		
-		var occurrences = regex.allOccurrences(in: self)
+		var occurrences = regex.allOccurrences(in: String(self))
 		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.sourceSource.regex)
 		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.videoSource.regex)
 		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.iframeSource.regex)
@@ -171,7 +171,7 @@ public extension String {
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
 	public func allValues(of varName: String, forRegex regex: XURegex) -> [String] {
-		return regex.allOccurrences(ofVariableNamed: varName, in: self)
+		return regex.allOccurrences(ofVariableNamed: varName, in: String(self))
 	}
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
@@ -192,7 +192,7 @@ public extension String {
 	///
 	/// (?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+)
 	public func allVariablePairs(forRegex regex: XURegex) -> [String : String] {
-		return regex.allVariablePairs(in: self)
+		return regex.allVariablePairs(in: String(self))
 	}
 	
 	/// Returns a dictionary of keys and values. This dictionary is created by 
@@ -223,12 +223,12 @@ public extension String {
 				fatalError("The supplied regex \(regex) for components(separatedByRegex:) is infinite.")
 			}
 			
-			result.append(searchString.substring(with: searchString.startIndex ..< range.lowerBound))
-			searchString = searchString.substring(from: range.upperBound)
+			result.append(String(searchString[searchString.startIndex ..< range.lowerBound]))
+			searchString = String(searchString[range.upperBound...])
 		}
 		
 		if result.isEmpty {
-			return [self]
+			return [String(self)]
 		}
 		
 		return result
@@ -242,7 +242,7 @@ public extension String {
 
 	/// The most basic usage - first regex match.
 	public func firstOccurrence(ofRegex regex: XURegex) -> String? {
-		return regex.firstMatch(in: self)
+		return regex.firstMatch(in: String(self))
 	}
 	
 	/// The most basic usage - first regex match.
@@ -322,7 +322,7 @@ public extension String {
 			result = result.replacingOccurrences(of: match, with: replacement)
 		}
 		
-		return result
+		return String(result)
 	}
 	
 	/// Convenience method that takes a regex string instead. See the XURegex
@@ -334,7 +334,7 @@ public extension String {
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
 	public func value(of name: String, inRegex regex: XURegex) -> String? {
-		return regex.getVariableNamed(name, in: self)
+		return regex.getVariableNamed(name, in: String(self))
 	}
 	
 	/// Returns the value of a variable with name in the regex. For example:

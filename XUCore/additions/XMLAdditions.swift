@@ -37,10 +37,8 @@ public extension XMLNode {
 	}
 	public func stringValue(ofFirstNodeOnXPaths xpaths: [String]) -> String? {
 		for path in xpaths {
-			if let result = self.stringValue(ofFirstNodeOnXPath: path) {
-				if result.characters.count > 0 {
-					return result
-				}
+			if let result = self.stringValue(ofFirstNodeOnXPath: path), !result.isEmpty {
+				return result
 			}
 		}
 		return nil
