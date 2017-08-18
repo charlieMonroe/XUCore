@@ -17,6 +17,13 @@
 /// Decrypts data with RC4 using an encryption key
 -(nullable NSData *)decryptedRC4DataWithEncryptionKey:(nonnull NSString *)key;
 
+/// Decrypts data with AES-128 using an encryption key and IV.
+-(nullable NSData *)decryptedAES128DataWithEncryptionKey:(nonnull NSString *)key andInitialVector:(nonnull NSString *)vector;
+
+/// Decrypts data with AES-128 using an encryption key and IV.
+-(nullable NSData *)decryptedAES128DataWithEncryptionDataKey:(nonnull NSData *)key andInitialDataVector:(nonnull NSData *)vector;
+
+
 /// Decrypts data with AES-256 using an encryption key and IV.
 -(nullable NSData *)decryptedAES256DataWithEncryptionKey:(nonnull NSString *)key andInitialVector:(nonnull NSString *)vector;
 

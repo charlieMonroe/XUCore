@@ -24,6 +24,14 @@
 		];
 }
 
+-(NSData *)decryptedAES128DataWithEncryptionKey:(NSString *)key andInitialVector:(NSString *)vector {
+	return [self decryptedDataUsingAlgorithm:kCCAlgorithmAES128 key:key initializationVector:vector options:0 error:NULL];
+}
+
+-(NSData *)decryptedAES128DataWithEncryptionDataKey:(NSData *)key andInitialDataVector:(NSData *)vector {
+	return [self decryptedDataUsingAlgorithm:kCCAlgorithmAES128 key:key initializationVector:vector options:0 error:NULL];
+}
+
 -(NSData *)decryptedAES256DataWithEncryptionKey:(NSString *)key andInitialVector:(NSString *)vector {
 	return [self decryptedDataUsingAlgorithm:kCCAlgorithmAES key:key initializationVector:vector options:0 error:NULL];
 }
