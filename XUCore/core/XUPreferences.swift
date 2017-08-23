@@ -57,7 +57,10 @@ public extension XUReflectablePreferences {
 public final class XUPreferences {
 	
 	/// This is a struct that identifies a key for the preferences.
-	/// TODO - make it generic, thus containing the value type. Will require Swift 3.1
+	/// TODO - make it generic - this would allow some great stuff with it, but
+	/// current versions of Swift do not support static stored properties on
+	/// generic types, which would make all the extensions of Key with static
+	/// let's incompatible.
 	public struct Key: RawRepresentable, Hashable {
 		
 		public var hashValue: Int {

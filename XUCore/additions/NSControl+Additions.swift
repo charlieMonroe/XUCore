@@ -12,7 +12,7 @@ public extension NSControl.StateValue {
 	
 	/// Returns true if self == .on.
 	public var isOn: Bool {
-		return self == .onState || self == .on
+		return self == .on
 	}
 	
 }

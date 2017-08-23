@@ -336,15 +336,15 @@ public final class XUDebugLog {
 		}
 		
 		@objc fileprivate func _turnLoggingOn() {
-			XUDebugLog._debugLoggingOn.state = NSControl.StateValue.onState
-			XUDebugLog._debugLoggingOff.state = NSControl.StateValue.offState
+			XUDebugLog._debugLoggingOn.state = .on
+			XUDebugLog._debugLoggingOff.state = .off
 			
 			XUDebugLog.isLoggingEnabled = true
 		}
 		
 		@objc fileprivate func _turnLoggingOff() {
-			XUDebugLog._debugLoggingOn.state = NSControl.StateValue.offState
-			XUDebugLog._debugLoggingOff.state = NSControl.StateValue.onState
+			XUDebugLog._debugLoggingOn.state = .off
+			XUDebugLog._debugLoggingOff.state = .on
 			
 			XUDebugLog.isLoggingEnabled = false
 		}
@@ -365,8 +365,8 @@ public final class XUDebugLog {
 			XUDebugLog._debugLoggingOn.target = _actionHandler
 			XUDebugLog._debugLoggingOff.target = _actionHandler
 			
-			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? NSControl.StateValue.onState : NSControl.StateValue.offState
-			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? NSControl.StateValue.offState : NSControl.StateValue.onState
+			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? .on : .off
+			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? .off : .on
 			
 			let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
 			loggingItem.submenu = loggingMenu

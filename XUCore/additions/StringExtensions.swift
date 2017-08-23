@@ -384,11 +384,6 @@ public extension String {
 		self.insert(contentsOf: string, at: self.startIndex)
 	}
 		
-	/// Returns a reverse string.
-	public func reversed() -> String {
-		return String(self.reversed())
-	}
-	
 	/// Returns size with attributes, limited to width.
 	public func size(withAttributes attrs: [NSAttributedStringKey : AnyObject], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)

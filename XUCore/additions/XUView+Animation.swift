@@ -235,22 +235,30 @@ public extension XUViewAnimation {
 }
 
 #if os(macOS)
+	
+	/// We need to keep track of the last set string value. The animation context
+	/// doesn't necessarily keep the order of invocations, so if there are several
+	/// animation requests within a single run loop, we may end up with a wrong
+	/// value in the field.
+	private var _textFieldValues: [NSTextField : String] = [:]
+	
 	public extension XUViewAnimation where T: NSTextField {
 		
 		/// Animates text change in a text field. Should only be used on text fields
 		/// that act as labels.
 		public func setStringValueAnimated(_ stringValue: String) {
 			for field in self.views {
-				guard stringValue != field.stringValue else {
-					continue
-				}
+				_textFieldValues[field] = stringValue
 				
 				NSAnimationContext.runAnimationGroup({ (context) in
 					context.duration = 0.5
 					context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 					field.animator().alphaValue = 0.0
 				}, completionHandler: {
-					field.stringValue = stringValue
+					if let string = _textFieldValues[field] {
+						field.stringValue = string
+						_textFieldValues[field] = nil
+					}
 					
 					NSAnimationContext.runAnimationGroup({ (context) in
 						context.duration = 0.5
