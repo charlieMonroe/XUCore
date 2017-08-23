@@ -182,6 +182,10 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	}
 	
 	fileprivate func _uploadFile(at fileURL: URL) {
+		if !FileManager.default.fileExists(atPath: fileURL.path) {
+			return
+		}
+		
 		let path = self._relativePath(to: fileURL)
 		_ = self.client.files.upload(path: path, mode: Files.WriteMode.overwrite, input: fileURL).response { (result, error) in
 			if error != nil {

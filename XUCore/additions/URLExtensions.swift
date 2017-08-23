@@ -107,7 +107,12 @@ public extension URL {
 	/// If the URL has a query part, returns a dictionary of the query. Otherwise
 	/// an empty dictionary.
 	public var queryDictionary: [String : String] {
-		return (self.query ?? "").urlQueryDictionary
+		get {
+			return (self.query ?? "").urlQueryDictionary
+		}
+		set {
+			self = self.updatingQuery(to: newValue)
+		}
 	}
 
 	#if os(OSX)
@@ -150,8 +155,13 @@ public extension URL {
 		return urlComponents.url ?? self
 	}
 	
-	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
+	@available(*, deprecated, renamed: "updatingQuery(to:)")
 	public func appendingQuery(_ query: XUJSONDictionary) -> URL {
+		return self.updatingQuery(to: query)
+	}
+	
+	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
+	public func updatingQuery(to query: XUJSONDictionary) -> URL {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
