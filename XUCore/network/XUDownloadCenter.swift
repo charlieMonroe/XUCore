@@ -703,6 +703,11 @@ open class XUDownloadCenter {
 	/// to find the JSON potential callback function.
 	public func jsonObject(fromCallback jsonString: String!) -> Any? {
 		guard let innerJSON = jsonString?.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
+			if jsonString.characters.first == Character("{") && jsonString.characters.last == Character("}") {
+				return self.jsonObject(from: jsonString)
+			}
+			
+			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
 				XULog("[\(self.owner.name)] - no inner JSON in callback string \(jsonString ?? "")")
