@@ -1,12 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "完成中...";
 "1 hour" = "1 小时";
 "1 minute" = "1 分";
 "1 second" = "1 秒";
-"%lu hours" = "%lu 小时";
-"%lu minutes" = "%lu 分";
-"%lu seconds" = "%lu 秒";
 "Unknown error." = "未知错误.";
 
 "OK" = "确认";
@@ -84,7 +80,6 @@
 "Cannot find entity with ID %@" = "找不实体 ID %@";
 "Can't find synchronization folder for document %@." = "找不到文档 %@ 的同步文件夹.";
 "Can't find synchronization folder for computer %@." = "找不到计算机 %@ 的同步文件夹.";
-"Can't open info dictionary computer %@." = "无法打开信息字典计算机 %@.";
 "Can't find sync folder for document %@." = "找不到文档 %@ 的同步文件夹.";
 "%@ couldn't finish synchronization in the background." = "%@ 无法在后台完成同步.";
 "Please switch back to %@ so that the synchronization can finish." = "请切换回 %@ 以完成同步.";

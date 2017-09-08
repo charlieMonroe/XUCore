@@ -49,8 +49,7 @@
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke koble til Internett. Applikasjonen vil avslutte om en time.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ trenger tilkobling til Internett for å fortsette.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil bli sendt til en side der du kan kjøpe et eksemplar. Dersom du fremdeles ikke er sikker om %@ er riktig for deg, eller har spørsmål, ta kontakt med oss.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving
- %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving\n %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %li dager. For å fortsette å bruke %@ må du kjøpe en lisens.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving %@! Du kan nå bruke det i %i %@ uten begrensninger. Etter at prøveperioden er utløpt, må du kjøpe en lisens for %@.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %i %@. For å fortsette å bruke %@ må du kjøpe en lisens.";
@@ -124,3 +123,12 @@
 "All Preferences" = "Alle preferanser";
 "Show All" = "Vis alt";
 "Preferences" = "Preferanser";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "No search results";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "Select...";

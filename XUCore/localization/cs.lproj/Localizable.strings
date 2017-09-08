@@ -1,13 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "Ukončuje se...";
 "1 hour" = "1 hodina";
 "1 minute" = "1 minuta";
 "1 second" = "1 vteřina";
-"%lu hours" = "%lu hodin";
-"%lu minutes" = "%lu minut";
-"%lu seconds" = "%lu vteřin";
-
 "Unknown error." = "Neznámá chyba.";
 
 "OK" = "Budiž";
@@ -58,7 +53,6 @@
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Děkujeme za vyzkoušení %@! Již jste tuto aplikaci užívali %li dní. Pokud chcete i nadále používat %@, musíte si jej zakoupit.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Děkujeme za stažení %@! Můžete jej užívat na %i %@ bez jakýchkoliv omezení. Po vypršení zkušební doby si musíte %@ zakoupit.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Děkujeme za vyzkoušení %@! Již jste aplikaci použil na %i %@. Pokud chcete i nadále používat %@, musíte si jej zakoupit.";
-
 "Working..." = "Pracuji...";
 
 "Progress" = "Postup";
@@ -86,7 +80,6 @@
 "Cannot find entity with ID %@" = "Nelze najít enitu s identifikátorem %@";
 "Can't find synchronization folder for document %@." = "Nelze najít synchornizační složku pro dokument %@.";
 "Can't find synchronization folder for computer %@." = "Nelze najít synchornizační složku pro počítač %@.";
-"Can't open info dictionary computer %@." = "Nelze otevřít informační soubor pro počítač %@.";
 "Can't find sync folder for document %@." = "Nelze najít synchronizační složku pro dokument %@.";
 "%@ couldn't finish synchronization in the background." = "%@ nemohl dokončit synchronizaci na pozadí.";
 "Please switch back to %@ so that the synchronization can finish." = "Prosím přepněte zpět do %@, aby se synchronizace mohla dokončit.";
@@ -120,3 +113,22 @@
 "The document could not be downloaded at this moment." = "Tento dokument nelze nyní stáhnout.";
 "Log Current Application State" = "Zalogovat současný stav aplikace";
 
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
+"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "Show All";
+"Preferences" = "Preferences";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "No search results";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "Select...";

@@ -1,12 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "Beende...";
 "1 hour" = "1 Stunde";
 "1 minute" = "1 Minute";
 "1 second" = "1 Sekunde";
-"%lu hours" = "%lu Stunden";
-"%lu minutes" = "%lu Minuten";
-"%lu seconds" = "%lu Sekunden";
 "Unknown error." = "Unbekannter Fehler.";
 
 "OK" = "OK";
@@ -84,7 +80,6 @@
 "Cannot find entity with ID %@" = "Kann Vorkommnis mit der ID %@ nicht finden";
 "Can't find synchronization folder for document %@." = "Kann den Synchronisierungs-Ordner für das Dokument %@ nicht finden.";
 "Can't find synchronization folder for computer %@." = "Kann den Synchronisierungs-Ordner für den Computer %@ nicht finden.";
-"Can't open info dictionary computer %@." = "Kann den die Info für Computer %@ nicht öffnen.";
 "Can't find sync folder for document %@." = "Kann den Synchronisierungs-Ordner für das Dokument %@ nicht finden.";
 "%@ couldn't finish synchronization in the background." = "%@ konnte im Hintergrund nicht synchronisiert werden.";
 "Please switch back to %@ so that the synchronization can finish." = "Bitte wechsle zurück auf %@ damit die Synchronisation beendet werden kann.";
