@@ -22,7 +22,7 @@
 "Your Email:" = "您的邮箱:";
 "Description:" = "问题描述:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况. 如果可能, 请提供能够重现该问题的操作步骤. 请在下方输入您的电子邮件地址 - 我们会在问题修复时发送邮件通知您, 或是通过邮件询问您有关该异常的更多细节. 我们保证, 不会收集您的电子邮件地址, 也不会发送任何不相关的骚扰邮件. 提交该问题报告能够帮助我们改善这款软件. 感谢您的支持!";;
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况. 如果可能, 请提供能够重现该问题的操作步骤. 请在下方输入您的电子邮件地址 - 我们会在问题修复时发送邮件通知您, 或是通过邮件询问您有关该异常的更多细节. 我们保证, 不会收集您的电子邮件地址, 也不会发送任何不相关的骚扰邮件. 提交该问题报告能够帮助我们改善这款软件. 感谢您的支持!";
 
 "Report Problem" = "报告问题";
 
@@ -101,3 +101,39 @@
 "Server provided invalid authorization response." = "服务器返回无效的身份验证答复.";
 "Server has redirected with invalid URL." = "服务器重定向至无效的链接.";
 "User cancelled the authorization." = "身份验证被用户取消.";
+
+/// Debug Log Menu
+"Debug" = "调试";
+"About Debug Log..." = "关于调试日志...";
+"Debug Logging" = "调试日志记录";
+"On" = "开启";
+"Off" = "关闭";
+"Clear Debug Log" = "清理调试日志";
+"Show Log in Finder" = "在 Finder 中显示日志";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "调试日志是包含一些 %@ 在后台执行时技术细节的文本文件。这些调试日志对我们能够快速解决问题来说非常有帮助。如果想要获取调试日志，请按照以下步骤进行操作:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "如果这不是您第一次发送调试日志，请点击“调试”菜单，选择“清除调试日志”。\n2)在“调试”菜单中，请确保“调试日志记录”处于开启转改。\n3)请重现遇到问题的操作。\n4)点击“调试”菜单中，关闭“调试日志记录”。\n5)点击“调试”菜单，选择“在 Finder 中显示日志”。在打开的 Finder 窗口中，选择日志文件通过电子邮件发送给我们。请注意要将日志文件作为附件发送，请不要直接复制其中的内容。\n\n日志文件中不包含任何个人数据，您可以通过直接打开日志文件来进行检验(日志文件实际上就是简单的文本文件)。如果您认为日志文件中的某些数据为机密或者个人信息，请将这些信息使用易识别的符号进行替换(比如XXXXXXXX)，让我们知道您对日志文件进行过修改。";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "该文档目前暂时无法下载.";
+"Log Current Application State" = "记录当前应用状态";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "此测试版将在一个小时之内到期.";
+"Please update your copy of this beta build." = "请更新您的测试版.";
+
+// Preferences.
+"All Preferences" = "全部偏好设置";
+"Show All" = "显示全部";
+"Preferences" = "偏好设置";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "没有搜索结果";
+"%li search results" = "%li 个搜索结果";
+
+// Certificate view.
+"Select..." = "选择...";

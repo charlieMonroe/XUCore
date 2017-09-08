@@ -11,6 +11,7 @@ import Foundation
 public final class XUOAuth2Configuration {
 	
 	private struct ConfigurationKeys {
+		static let additionalHTTPHeaders = "additionalHTTPHeaders"
 		static let authorizationBaseURLStringKey = "authorizationBaseURLString"
 		static let clientIDKey = "clientID"
 		static let nameKey = "name"
@@ -20,6 +21,8 @@ public final class XUOAuth2Configuration {
 		static let tokenNeverExpiresKey = "tokenNeverExpires"
 	}
 	
+	/// Additional HTTP headers to be passed to the token authorization.
+	public var additionalHTTPHeaders: [String : String] = [:]
 	
 	/// URL used for authorization. This must be the base URL with no query.
 	/// Passing a URL that includes a GET query in the URL will trigger an 
@@ -66,20 +69,20 @@ public final class XUOAuth2Configuration {
 	
 	public var dictionaryRepresentation: [String : Any] {
 		return [
-			ConfigurationKeys.authorizationBaseURLStringKey: self.authorizationBaseURL.absoluteString as AnyObject,
-			ConfigurationKeys.clientIDKey: self.clientID as AnyObject,
-			ConfigurationKeys.nameKey: self.name as AnyObject,
-			ConfigurationKeys.redirectionSchemeKey: self.redirectionScheme as AnyObject,
-			ConfigurationKeys.secretKey: self.secret as AnyObject,
-			ConfigurationKeys.tokenEndpointURLStringKey: self.tokenEndpointURL.absoluteString as AnyObject,
-			ConfigurationKeys.tokenNeverExpiresKey: self.tokenNeverExpires as AnyObject
+			ConfigurationKeys.additionalHTTPHeaders: self.additionalHTTPHeaders,
+			ConfigurationKeys.authorizationBaseURLStringKey: self.authorizationBaseURL.absoluteString,
+			ConfigurationKeys.clientIDKey: self.clientID,
+			ConfigurationKeys.nameKey: self.name,
+			ConfigurationKeys.redirectionSchemeKey: self.redirectionScheme,
+			ConfigurationKeys.secretKey: self.secret,
+			ConfigurationKeys.tokenEndpointURLStringKey: self.tokenEndpointURL.absoluteString,
+			ConfigurationKeys.tokenNeverExpiresKey: self.tokenNeverExpires
 		]
 	}
 	
 	/// Designated initializer.
 	public init(authorizationBaseURL: URL, clientID: String, name: String, redirectionScheme: String, secret: String, tokenEndpointURL: URL, tokenNeverExpires: Bool = false) {
 		assert(authorizationBaseURL.query == nil, "authorizationBaseURL with query is not supported.")
-		
 		self.authorizationBaseURL = authorizationBaseURL
 		self.clientID = clientID
 		self.name = name
@@ -96,7 +99,8 @@ public final class XUOAuth2Configuration {
 			let name = dict[ConfigurationKeys.nameKey] as? String,
 			let redirectionScheme = dict[ConfigurationKeys.redirectionSchemeKey] as? String,
 			let secret = dict[ConfigurationKeys.secretKey] as? String,
-			let tokenEndpointURLString = dict[ConfigurationKeys.tokenEndpointURLStringKey] as? String else {
+			let tokenEndpointURLString = dict[ConfigurationKeys.tokenEndpointURLStringKey] as? String
+		else {
 			return nil
 		}
 		
@@ -108,6 +112,10 @@ public final class XUOAuth2Configuration {
 		          name: name, redirectionScheme: redirectionScheme,
 		          secret: secret, tokenEndpointURL: tokenEndpointURL,
 		          tokenNeverExpires: dict.boolean(forKey: ConfigurationKeys.tokenNeverExpiresKey))
+		
+		if let additionalHeaders = dict[ConfigurationKeys.additionalHTTPHeaders] as? [String : String] {
+			self.additionalHTTPHeaders += additionalHeaders
+		}
 	}
 	
 }
@@ -295,6 +303,10 @@ public final class XUOAuth2Client {
 				request["Cookie"] = nil
 				request.httpMethod = "POST"
 				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+				
+				for (key, value) in self.client.configuration.additionalHTTPHeaders {
+					request[key] = value
+				}
 			}) else {
 				return false
 			}
@@ -328,6 +340,9 @@ public final class XUOAuth2Client {
 				_ = self.renewToken() // TODO: if we fail, notify the delegate
 			}
 			
+			for (key, value) in self.client.configuration.additionalHTTPHeaders {
+				request[key] = value
+			}
 			request["Authorization"] = "Bearer \(self.accessToken)"
 		}
 		
@@ -438,6 +453,10 @@ public final class XUOAuth2Client {
 			request["Cookie"] = nil
 			request.httpMethod = "POST"
 			request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+			
+			for (key, value) in self.configuration.additionalHTTPHeaders {
+				request[key] = value
+			}
 		}) else {
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))

@@ -295,6 +295,23 @@ public final class XUDebugLog {
 	
 }
 
+#if os(iOS)
+	public extension XUDebugLog {
+		
+		/// Displays a share dialog allowing you to share the log from a controller.
+		public class func shareLog(from controller: UIViewController) {
+			if _logFile != nil {
+				fflush(__stdoutp)
+				fflush(_logFile!)
+			}
+			
+			let activityController = UIActivityViewController(activityItems: [URL(fileURLWithPath: self.logFilePath)], applicationActivities: nil)
+			controller.present(activityController, animated: true, completion: nil)
+		}
+		
+	}
+#endif
+
 #if os(OSX)
 	
 	private let _actionHandler = _XUDebugLogActionHandler()
