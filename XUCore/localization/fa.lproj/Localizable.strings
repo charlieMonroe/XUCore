@@ -1,0 +1,135 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 ساعت";
+"1 minute" = "1 دقیقه";
+"1 second" = "1 ثانیه";
+"Unknown error." = "خطای ناشناخته.";
+
+"OK" = "OK";
+"Cancel" = "لغو";
+
+"Failed to parse CSV file." = "تجزیه فایل CSV ناموفق.";
+
+"Send Report" = "ارسال گزارش";
+"Privacy Information..." = "اطلاعات حریم خصوصی ...";
+"%AppName% has encountered a problem." = "%AppName% مشکلی را تجربه کرده است.";
+"%AppName% will terminate after sending the report." = "%AppName% بعد از ارسال گزارش خاتمه خواهد یافت.";
+"Report to be sent:" = "گزارش ارسال می شود:";
+"Your Email:" = "ایمیل شما:";
+"Description:" = "توضیحات:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "لطفا، زمانی که این استثنا رخ داده است را شرح دهید و مراحل چگونگی تولید مشکل را در صورت امکان ارائه دهید. آدرس ایمیل خود را در زیر وارد کنید - به شما اطلاع خواهیم داد که چه زمانی مشکل برطرف خواهد شد یا ممکن است درباره برخی جزئیات مربوط به این مشکل از شما سوال کند. آدرس ایمیل شما به هیچ پایگاه داده جمع آوری نخواهد شد و شما هیچ ایمیل ناخواسته دریافت نخواهید کرد.\n\n با ارسال این گزارش شما به ما کمک می کنید تا این نرم افزار را بهبود ببخشیم. متشکرم!";
+
+"Report Problem" = "مشکل را گزارش بدهید";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "ما بازخورد شما را ارزیابی می کنیم و نمی خواهیم اطلاعاتی ناخواسته را جمع آوری کنیم. آدرس ایمیل شما هرگز ذخیره نخواهد شد و فقط برای اطلاع شما هنگامی که این مسئله ممکن است برطرف شود یا زمانی که ما برای اطلاعات بیشتر به منظور حل این مشکل نیاز داریم.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "فقط اطلاعات زیر ارسال خواهد شد: \n• توضیحات ارائه شده. \n• اطلاعات استثنایی زیر. \n• نسخه این برنامه. \n• نسخه سیستم شما (سیستم عامل). \n• مدل رایانه شما (بدون آدرس مک یا اطلاعات مشابهی که می تواند رایانه شما را شناسایی کند).";
+
+"Could not post your report." = "گزارش شما نمیتواند ارسال شود.";
+"Check your Internet connection and try again." = "اتصال اینترنت خود را بررسی کنید و دوباره امتحان کنید.";
+"Heh, nice try. Please, enter a valid email address." = "عجب ! جالب بود ! خواهشا آدرس ایمیل صحیح و معتبر وارد کنید .";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "ممکن است لازم باشد با شما ارتباط برقرار کنیم تا این مشکل حل شود. ما نجوا نمی کنیم، ما آدرس ایمیل را به کسی نمی فروشیم و از هیچ راهی استفاده نمی کنیم. ما قول می دهیم.";
+"You need to enter a valid email address." = "شما باید یک آدرس ایمیل معتبر وارد کنید.";
+"We may need to get in touch with you in order to fix this." = "ممکن است لازم باشد با شما ارتباط برقرار کنیم تا این مشکل حل شود.";
+"Please, provide some details as to when this exception happened." = "لطفا جزئیات در مورد این استثنا را ارائه کنید.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "شامل اطلاعاتی در مورد وظایف در حال انجام در برنامه است، اگر برنامه در پیش زمینه یا پس زمینه باشد؛ اگر شما بر روی هر چیزی کلیک کرده اید، و غیره. تلاش برای پیدا کردن مشکل از طریق گزارش بدون داشتن اطلاعات اضافی سخت و غیرممکن خواهد بود.";
+"Thank you for the report!" = "ممنون برای گزارش!";
+"We'll fix it as soon as possible!" = "ما آن را در اسرع وقت برطرف خواهیم کرد!";
+
+"Welcome to beta testing of %@." = "به آزمایش بتا خوش آمدید %@.";
+"This is the first time you run a beta build %@." = "این اولین باری است که شما بتای %@. را اجرا می کنید ";
+"This beta build of %@ has expired." = "این ساخت بتا از %@ منقضی شده است.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "از نرم افزار ما لذت ببرید! اگر سوالی دارید یا با مشکلی مواجه هستید، براحتی از ما در صفحه پشتیبانی بپرسید %@";
+
+"Continue" = "ادامه";
+"Purchase..." = "خرید...";
+"I'm Still Not Sure" = "من هنوز مطمئن نیستم";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ نمیتوانست به اینترنت متصل شود برنامه در یک ساعت آینده بسته خواهد شد.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ نیاز به اتصال به اینترنت برای ادامه مدت آزمایشی";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "شما به یک صفحه که در آن قادر به خرید یک نسخه خواهید بود منتقل خواهید شد . اگر هنوز مطمئن نیستید که %@ برای شما مناسب است و سوالی دارید، با ما تماس بگیرید.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = " برای تست %@ متشکریم! شما می توانید از آن برای %li روز بدون محدودیت استفاده کنید. پس از اتمام دوره آزمایشی، شما باید یک نسخه از %@ را بخرید.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = " برای تست %@ متشکریم! شما از %li روز استفاده کرده اید. برای ادامه استفاده از %@ لازم است یک نسخه را خریداری کنید.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = " برای تست %@ متشکریم!  شما می توانید از آن برای %i %@ بدون محدودیت استفاده کنید. پس از اتمام دوره آزمایشی، شما باید یک نسخه از %@ را بخرید.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = " برای تست %@ متشکریم!  شما آن را برای %i %@ استفاده کرده اید. برای ادامه استفاده از %@ لازم است یک نسخه را خریداری کنید.";
+"Working..." = "کار کردن...";
+
+"Progress" = "پیش رفتن";
+"Posted successfully" = "با موفقیت ارسال شد";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ در 24 ساعت آینده کار می کند، بعد از آن عملکرد آن مسدود خواهد شد. لطفا جهت ادامه ی کار %@ به روزرسانی کنید.";
+"Please download a new build." = "لطفا ساخت جدید را دانلود کنید.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "شما می توانید گزارش را ارسال کنید، اما اگر این پیام در واقع به زبان انگلیسی نیست، من نمی توانم پشتیبانی کامل را به شما ارائه کنم.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "پیام شما حاوی کاراکترهای خاص است که نشان می دهد که پیام به زبان انگلیسی نوشته نشده است. لطفا توجه داشته باشید در حالی که %@ به زبان های مختلف ترجمه شده است، پشتیبانی فقط به زبان انگلیسی ارائه می شود. از این که درک می کنید متشکرم.";
+"%li hours" = "%li ساعت";
+"%li minutes" = "%li دقیقه";
+"%li seconds" = "%li ثانیه";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "این سند را نمی توان یافت، بعدا بررسی کنید، ممکن است همگام سازی نشده باشد.";
+"Cannot open document metadata file." = "فایل داده‌ها را نمی توان باز کرد.";
+"Metadata file doesn't contain required information." = "فایل متاداده حاوی اطلاعات لازم نیست.";
+"Synchronization is already in progress." = "همگام سازی هم اکنون در حال انجام است.";
+"An upload operation is already in progress." = "یک عملیات آپلود در حال انجام است.";
+"Could not save upload metadata." = "داده های آپلود ذخیره نشد.";
+"Cannot find entity named %@" = "نمی توانم نامی را به نام %@ پیدا کنم";
+"Cannot find class named %@" = "نمی توانم کلاسی را به نام %@ پیدا کنم";
+"Cannot find entity with ID %@" = "نمی توانم آیدی را به نام %@ پیدا کنم";
+"Can't find synchronization folder for document %@." = "پوشه همگام سازی برای سند %@ یافت نشد.";
+"Can't find synchronization folder for computer %@." = "پوشه همگام سازی برای رایانه %@ یافت نشد";
+"Can't find sync folder for document %@." = "پوشه همگام سازی برای سند %@ یافت نشد.";
+"%@ couldn't finish synchronization in the background." = "%@ نمی تواند هماهنگ سازی را در پس زمینه انجام دهد.";
+"Please switch back to %@ so that the synchronization can finish." = "لطفا به %@ برگردید تا هماهنگ سازی به پایان برسد.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "داده های همگام سازی را نمی توان خواند.";
+"Could not copy synchronization change data to the cloud." = "نمی توان داده های تغییر هماهنگ سازی را به فضای ابری بارگیری کرد.";
+"Failing to apply change sets." = "اعمال تغییرات ناموفق.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "همگام سازی از کامپیوتر %@ هنوز دانلود نشده است.";
+
+/// XUOAuth2
+"Authentication" = "احراز هویت";
+"Server responded with unknown token type." = "سرور با توکن ناشناخته پاسخ داد.";
+"Server provided invalid authorization response." = "سرور احراز هویت نامعتبر است را پاسخ داد.";
+"Server has redirected with invalid URL." = "سرور با آدرس نامعتبر هدایت شده است.";
+"User cancelled the authorization." = "کاربر مجوز را لغو کرد";
+
+/// Debug Log Menu
+"Debug" = "اشکال زدایی";
+"About Debug Log..." = "درباره لاگ اشکالزدایی...";
+"Debug Logging" = "رفع اشکال زدن";
+"On" = "روشن";
+"Off" = "خاموش";
+"Clear Debug Log" = "پاک کردن لاگ اشکال زدایی";
+"Show Log in Finder" = "نمایش لاگ در فایندر";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "لاگ اشکال زدایی یک فایل متنی است که حاوی جزئیات فنی در مورد آنچه %@ در پسزمینه انجام می دهد است. این برای من بسیار مفید است تا مشکلات را به سرعت حل کنم چون اجازه می دهد که ببینم که چه اتفاقی می افتد. برای دریافت گزارش خطا، این مراحل ساده را دنبال کنید:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) در صورتی که این نخستین ورودی خطایابی شما نیست، لطفا پاک کردن لاگ اشکال زدایی  را از منوی اشکال زدایی انتخاب کنید. \n2) در منوی اشکال زدایی، مطمئن شوید که رفع اشکال فعال است. \n3)کاری که با آن به مشکل میخورید را انجام دهید. \n4) در منوی اشکال زدایی، خاموش رفع اشکال را خاموش کنید. \n5) در منوی اشکال زدایی، نمایش لاگ در فایندر را انتخاب کنید. این فایل ورودی را در فایندر را انتخاب می کند و می توانید به راحتی آن را برای من ارسال کنید. لطفا فایل را به ایمیل الصاق کنید تا از کپی کردن اطلاعات استفاده کنید. \n\n فایل ورودی حاوی اطلاعات شخصی نیست که با باز کردن فایل ورودی تایید می شود (یک فایل متنی ساده). اگر برخی از داده ها را محرمانه یا شخصی در نظر بگیرید، لطفا آنها را با چیزی که می تواند به آسانی به عنوان نگهدارنده شناسایی شود (مثلا XXXXXXXX) جایگزین کنید و به من اطلاع دهید که فایل log را تغییر داده اید.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "این سند نمیتواند در این لحظه دانلود شود";
+"Log Current Application State" = "به برنامه وارد شوید";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "این ساخت بتا در کمتر از یک ساعت منقضی خواهد شد.";
+"Please update your copy of this beta build." = "لطفا کپی خود را از این بتا بسازید.";
+
+// Preferences.
+"All Preferences" = "همه تنظیمات";
+"Show All" = "نمایش همه";
+"Preferences" = "تنظیمات";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "هیچ نتیجه ای برای جستجو یافت نشد";
+"%li search results" = "%li نتایج جستجو";
+
+// Certificate view.
+"Select..." = "انتخاب...";
+

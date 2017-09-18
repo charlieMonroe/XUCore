@@ -39,18 +39,17 @@
 
 "Welcome to beta testing of %@." = "Velkommen til betatesting av %@.";
 "This is the first time you run a beta build %@." = "Dette er første gang du kjører en beta build %@.";
-"This beta build of %@ has expired." = "Denne beta builder av %@ er utgått.";
+"This beta build of %@ has expired." = "Denne beta build av %@ er utgått.";
 "Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Hygg deg med vår programvare! Dersom du får problemer eller oppdager feil, vennligst ta kontakt med oss på vår side for brukerstøtte %@";
 
 "Continue" = "Fortsett";
-"Purchase..." = "kjøp…";
+"Purchase..." = "Kjøp...";
 "I'm Still Not Sure" = "Jeg er fortsatt ikke sikker";
 
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke koble til Internett. Applikasjonen vil avslutte om en time.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ trenger tilkobling til Internett for å fortsette.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil bli sendt til en side der du kan kjøpe et eksemplar. Dersom du fremdeles ikke er sikker om %@ er riktig for deg, eller har spørsmål, ta kontakt med oss.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving
- %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving\n %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %li dager. For å fortsette å bruke %@ må du kjøpe en lisens.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving %@! Du kan nå bruke det i %i %@ uten begrensninger. Etter at prøveperioden er utløpt, må du kjøpe en lisens for %@.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %i %@. For å fortsette å bruke %@ må du kjøpe en lisens.";
@@ -108,7 +107,7 @@
 "Show Log in Finder" = "Vis logg i Finder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Feilsøkingsloggen er en tekstfil som inneholder noe teknisk e detaljer om hva %@ gjør i bakgrunnen. Den er veldig nyttig for meg for å reparere ting raskt siden den lar meg se hva som skjer. For å få tak i feilsøkingsloggen følger du disse enkle skrittene:";
-"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Dersom dette ikke er den første feilsøkingsloggen du sender, sletter du først feilsøkingslogg fra feilsøkingsmenyen.\n2) I feilsøkingsmenyen, se til at feilsøkingsloggføring er skrudd på.\n3) Gjør den oppgaven som du har problem med.\n4) I feilsøkingsmenyen skrur du så feilsøkingsloggføring av.\n5) I feilsøkingsmenyen velger du vis loggføring i Finder. Dette velger loggføringen i Finder og du kan da enkelt sende den til meg. Vennligst legg informasjonen som et vedlegg i en e-post isteden for å kopiere og lime det inn som tekst.\n\nLoggfilen inneholder ingen personlig informasjon som kan brukes ved å åpne loggfilen (den er en enkel tekstfil). Dersom du mener at informasjonen er konfidensiell eller personlig, vennligst erstatt den med noe som enkelt kan gjenkjennes som fylltekst (f.eks. XXXXXXXX) og la meg få vite at du har modifisert filen.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Dersom dette ikke er den første feilsøkingsloggen du sender, sletter du først feilsøkingslogg fra feilsøkingsmenyen.\n2) I feilsøkingsmenyen, se til at feilsøkingsloggføring er skrudd på.\n3) Gjør den oppgaven som du har problem med.\n4) I feilsøkingsmenyen skrur du så feilsøkingsloggføring av.\n5) I feilsøkingsmenyen velger du vis loggføring i Finder. Dette velger loggføringen i Finder og du kan da enkelt sende den til meg. Vennligst legg informasjonen som et vedlegg i en e-post isteden for å kopiere og lime det inn som tekst.\n\nLoggfilen inneholder ingen personlig informasjon som kan brukes ved å åpne loggfilen (den er en enkel tekstfil). Dersom du mener at informasjonen er konfidensiell eller personlig, vennligst erstatt den med noe som enkelt kan gjenkjennes som fylltekst (f.eks. XXXXXXXX) og la meg få vite at du har modifisert filen.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Dokumentet kunne ikke lastes ned akkurat nå.";
@@ -124,3 +123,13 @@
 "All Preferences" = "Alle preferanser";
 "Show All" = "Vis alt";
 "Preferences" = "Preferanser";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Ingen søkeresultater";
+"%li search results" = "%li søkeresultater";
+
+// Certificate view.
+"Select..." = "Velg...";
+

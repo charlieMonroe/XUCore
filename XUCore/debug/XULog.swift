@@ -52,22 +52,28 @@ public func XULog(_ string: @autoclosure () -> String, method: String = #functio
 		XUDebugLog._initialize()
 	}
 	
-	if XUDebugLog._cachedPreferences {
-		var logString = string()
-		
-		if let width = wrappedToWidth {
-			logString = logString.wrapped(to: width)
-		}
-		
-		if indentationLevel != 0 {
-			let prefix = String(Array<Character>(repeating: Character(" "), count: indentationLevel * 4))
-			logString = logString.lines.map({ prefix + $0 }).joined(separator: "\n")
-		}
-		
-		print("\(file.components(separatedBy: "/").last.descriptionWithDefaultValue()):\(line).\(method): \(logString)")
-		
-		XUDebugLog._lastLogTimeInterval = Date.timeIntervalSinceReferenceDate
+	guard XUDebugLog._cachedPreferences else {
+		return
 	}
+	
+	if Date.timeIntervalSinceReferenceDate - XUDebugLog._lastLogTimeInterval > XUTimeInterval.minute {
+		print("\(XUDebugLog._dateFormatter.string(from: Date())):\n")
+	}
+	
+	var logString = string()
+	
+	if let width = wrappedToWidth {
+		logString = logString.wrapped(to: width)
+	}
+	
+	if indentationLevel != 0 {
+		let prefix = String(Array<Character>(repeating: Character(" "), count: indentationLevel * 4))
+		logString = logString.lines.map({ prefix + $0 }).joined(separator: "\n")
+	}
+	
+	print("\(file.components(separatedBy: "/").last.descriptionWithDefaultValue()):\(line).\(method): \(logString)")
+	
+	XUDebugLog._lastLogTimeInterval = Date.timeIntervalSinceReferenceDate
 }
 
 /// Returns a string containing current stacktrace.
@@ -94,6 +100,11 @@ public final class XUDebugLog {
 	public static let StatusDidChangeNotification = Notification.Name(rawValue: "XULoggingStatusChangedNotification")
 	
 	fileprivate static var _cachedPreferences = false
+	fileprivate static let _dateFormatter: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		return formatter
+	}()
 	fileprivate static var _didCachePreferences = false
 	fileprivate static var _didRedirectToLogFile = false
 	fileprivate static var _lastLogTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate

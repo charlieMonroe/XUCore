@@ -147,7 +147,7 @@ public final class XULocalizationCenter {
 			for language in languages {
 				if let identifier = self._identifierFromComposedIdentifier(language, inBundle: bundle) {
 					_lock.perform {
-						self._cachedLanguageIdentifiers[bundle] = identifier
+//						self._cachedLanguageIdentifiers[bundle] = identifier
 					}
 					return identifier
 				}

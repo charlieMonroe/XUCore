@@ -132,6 +132,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	public func selectPane(_ paneController: XUPreferencePaneViewController) {
 		assert(self.sections.map({ $0.paneControllers }).joined().contains(where: { $0 === paneController }))
 		
+		self.window!.endEditing(for: nil)
+		
 		self.willSelectPane(paneController)
 		
 		self._setMainWindowContentView(paneController.view)
@@ -192,6 +194,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// is crucial to call super, since the default implementation saves the 
 	/// preferences.
 	open func windowWillClose(_ notification: Notification) {
+		self.window!.endEditing(for: nil)
+		
 		self.currentPaneController?.savePreferences()
 	}
     

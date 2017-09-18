@@ -270,6 +270,73 @@ public extension XUViewAnimation {
 		}
 		
 	}
+	
+	/// We need to keep track of the target length for each status item in case
+	/// it changes before the animation is complete.
+	private var _statusItemValues: [NSStatusItem : _XUStatusItemAnimationDelegate] = [:]
+	
+	/// The animation delegate.
+	private class _XUStatusItemAnimationDelegate: NSObject, NSAnimationDelegate {
+		
+		/// Animation.
+		let animation: NSAnimation = NSAnimation(duration: 0.25, animationCurve: .easeInOut)
+		
+		/// Original length of the item.
+		let originalLength: CGFloat
+		
+		/// Status item.
+		let statusItem: NSStatusItem
+		
+		/// Target length of the item.
+		var targetLength: CGFloat
+		
+		
+		func animationDidEnd(_ animation: NSAnimation) {
+			self.statusItem.length = self.targetLength
+			_statusItemValues[self.statusItem] = nil
+		}
+		
+		func animation(_ animation: NSAnimation, didReachProgressMark progress: NSAnimation.Progress) {
+			let delta = self.targetLength - self.originalLength
+			let currentDelta = delta * CGFloat(progress)
+			self.statusItem.length = self.originalLength + currentDelta
+		}
+				
+		init(statusItem: NSStatusItem, targetLength: CGFloat) {
+			self.originalLength = statusItem.length
+			self.statusItem = statusItem
+			self.targetLength = targetLength
+			
+			super.init()
+			
+			stride(from: Float(0.0), to: Float(1.0), by: 0.1).forEach({ self.animation.addProgressMark($0) })
+			
+			self.animation.animationBlockingMode = .nonblocking
+			self.animation.delegate = self
+		}
+		
+	}
+	
+	public extension NSStatusItem {
+		
+		/// Animates self to a certain length.
+		public func animate(to length: CGFloat) {
+			if let delegate = _statusItemValues[self] {
+				delegate.animation.stop()
+			}
+			
+			if self.length == length {
+				return
+			}
+			
+			let delegate = _XUStatusItemAnimationDelegate(statusItem: self, targetLength: length)
+			_statusItemValues[self] = delegate
+			
+			delegate.animation.start()
+		}
+		
+	}
+	
 #endif
 
 
