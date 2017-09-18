@@ -18,13 +18,13 @@
 "Your Email:" = "Din mail:";
 "Description:" = "Beksrivelse:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Beskriv venligst situationen, da denne fejl opstod og tilvejebring skridt til, hvordan man genskaber problem, hvis det er muligt. Indtast din mailadresse nedenfor – vi vil give dig besked, når dette problem bliver rettet, eller hvis vi får brug for at stille dig nærmere spørgsmål om fejlen. Din mailadresse bliver ikke gemt i nogen database, og du kommer ikke til a modtage nogen uønskede mails. Ved at sende denne rapport hjælper du os med at forbedre dette program. Tak!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Beskriv venligst situationen, da denne fejl opstod, og hvis muligt, giv trin-for-trin instrukser til, hvordan man genskaber problemet. Indtast din mailadresse nedenfor – vi giver dig besked, når dette problem bliver rette og evt. stiller dig nærmere spørgsmål om fejlen. Din mailadresse bliver ikke gemt i nogen database, og du kommer ikke til at modtage uønskede mails. Ved at sende denne rapport hjælper du os med at forbedre dette program. Tak!";
 
 "Report Problem" = "Rapporter problem";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Vi værdsætter din tilbagemelding og kunne aldrig drømme om at indsamle unødvendig information. Din mailadresse vil ikke blive opbevaret og vil kun blive anvendt til til at informere dig, når problemet er løst, eller hvis vi får brug for flere informationer for at løse problemet.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Vi sætter pris på din tilbagemelding og kunne aldrig drømme om at indsamle unødvendig information. Din mailadresse vil ikke blive opbevaret og vil kun blive anvendt til at informere dig, når problemet er løst, eller hvis vi får brug for flere informationer for at løse problemet.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Kun følgende information vil blive sendt:\n• Beskeden du giver os.\n• Undtagelserne nedenfor.\n• Programversionen.\n• .\n• Computermodellen (ingen MAC-adresse eller lignende, som ville kunne identificere din computer)..";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Kun følgende information vil blive sendt:\n• Beskeden, du giver os.\n• Undtagelserne nedenfor.\n• Programversion.\n•Systemversion .\n• Computermodel (ingen MAC-adresse eller lignende, som ville kunne identificere din computer)..";
 
 "Could not post your report." = "Kunne ikke sende din rapport.";
 "Check your Internet connection and try again." = "Kontroller din internetforbindelse og forsøg igen.";
@@ -33,14 +33,14 @@
 "You need to enter a valid email address." = "Du mangler at skrive en gyldig mailadresse.";
 "We may need to get in touch with you in order to fix this." = "Vi får muligvis brug for at kontakte dig for at få løst dette.";
 "Please, provide some details as to when this exception happened." = "Giv os venligst nogle detaljer om, hvornår denne fejl skete.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inkluder information om igangværende opgaver i programmet, om programmet kørte i forgrunden eller baggrunden, om du trykkede på noget, osv. At regne fejlen ud udelukkende fra en fejlrapport kan være svært og uden yderligere information umuligt.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inkluder information om igangværende opgaver i programmet, om programmet kørte i forgrunden eller baggrunden, om du trykkede på noget, osv. At regne fejlen ud udelukkende fra en fejlrapport kan være svært; endda umuligt uden yderligere information.";
 "Thank you for the report!" = "Tak for din rapport!";
 "We'll fix it as soon as possible!" = "Vi retter det så snart som muligt!";
 
 "Welcome to beta testing of %@." = "Velkommmen til beta-udgaven af %@.";
 "This is the first time you run a beta build %@." = "Dette er første gang du kører en betaversion %@.";
 "This beta build of %@ has expired." = "Betaversionen af %@ er udløbet.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Oplev vores software! Hvis du har nogen spørgsmål eller støder på fejl, så tøv ikke med at kontakte os på vores support-side  %@";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Nyd vores software! Hvis du har nogen spørgsmål eller støder på fejl, endelig kontakt os på vores support-side  %@";
 
 "Continue" = "Fortsæt";
 "Purchase..." = "Køb...";
@@ -48,54 +48,54 @@
 
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke oprette forbindelse til internettet. Programmet vil blive afsluttet om en time.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ kræver forbindelse til internettet for at kunne fortsætte med prøveversionen";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil blive ført til en side, hvor du kan købe programmet. Hvis du stadig ikke er sikker på, om %@ er det rette for dig, og du har nogen spørgsmål, så kontakt os.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak for at prøve %@! Du må anvende programmet i %li dage uden nogen begrænsninger. Når prøveperioden udløber er du nødt til at købe %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tak for at prøve %@! Du har nu brugt det i %li dage. For at fortsætte med at anvende %@ er du nødt til at købe programmet.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak for at prøve %@! Du må nu bruge programmet nu i %i %@ uden nogen begrænsninger. Når prøveperioden udløber er du nødt til at købe %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tak for at prøve %@! Du har nu anvendt programmet i %i %@. For at fortsætte med at avende %@ er du nødt til at købe programmet.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil blive ført til en side, hvor du kan købe programmet. Hvis du stadig ikke er sikker på, om %@ er det rette program for dig, eller hvis du har nogle spørgsmål, så kontakt os.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak fordi du prøvede %@! Du må anvende programmet i %li dage uden nogle begrænsninger. Når prøveperioden udløber, er du nødt til at købe %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tak fordi du prøvede %@! Du har nu brugt det i %li dage. For at fortsætte med at anvende %@ er du nødt til at købe programmet.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak fordi du prøvede %@! Du må nu bruge programmet nu i %i %@ uden nogle begrænsninger. Når prøveperioden udløber, er du nødt til at købe %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tak fordi du prøvede %@! Du har nu anvendt programmet i %i %@. For at fortsætte med at anvende %@ er du nødt til at købe programmet.";
 "Working..." = "Arbejder...";
 
 "Progress" = "Forløb";
 "Posted successfully" = "Sendt med succes";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ vil fortsætte med at virke det næste døgn, hvorefter dens funktionalitet vil blokeres. Opdater venligst %@ for at den skal fortsætte med at virke.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ vil fortsætte med at virke det næste døgn. Derefter blokeres al funktionalitet. Opdater venligst %@ for at den kan fortsætte med at virke.";
 "Please download a new build." = "Download venligst en ny version.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kan sende rapporten alligevel, men hvis beskeden vitterligt ikke er på engelsk, vil jeg ikke være i stand til at yde dig fuld support.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Din besked indeholder specialtegn, hvilket tyder på, at beskenden ikke er skrevet på engelsk. Bemærk venligst, at selvom %@ er oversat til adskillige sprog, ydes der kun support på engelsk. Tak for din forståelse.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kan godt sende rapporten, selv om du ikke skriver på engelsk, men jeg vil ikke være i stand til at yde dig fuld support.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Din besked indeholder specialtegn, hvilket tyder på, at den ikke er skrevet på engelsk. Bemærk venligst, at selvom %@ er oversat til adskillige sprog, ydes der kun support på engelsk. Tak for din forståelse.";
 "%li hours" = "%li timer";
 "%li minutes" = "%li minutter";
 "%li seconds" = "%li sekunder";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Kan ikke finde sådan et dokument. Kom tilbage senere, det kan være, den ikke har synkroniseret færdig.";
+"Cannot find such document. Check back later, it might not have synced through." = "Kan ikke finde sådan et dokument. Vend tilbage på et senere tidspunkt. Det kan være, den ikke har synkroniseret færdig.";
 "Cannot open document metadata file." = "Kan ikke åbne dokumentets metadatafil.";
 "Metadata file doesn't contain required information." = "Metadatafilen indeholder ikke den påkrævede information.";
 "Synchronization is already in progress." = "Synkronisering er allerede i gang.";
-"An upload operation is already in progress." = "Er allerede i gang med at lægge op.";
-"Could not save upload metadata." = "Kunne ikke lægge metadata op.";
+"An upload operation is already in progress." = "Er allerede i gang med at uploade.";
+"Could not save upload metadata." = "Kunne ikke uploade metadata.";
 "Cannot find entity named %@" = "Kan ikke finde genstanden %@";
 "Cannot find class named %@" = "Kan ikke finde klassen %@";
 "Cannot find entity with ID %@" = "Kan ikke finde genstanden med ID %@";
 "Can't find synchronization folder for document %@." = "Kan ikke finde synkroniseringsmappen for dokumentet %@.";
 "Can't find synchronization folder for computer %@." = "Kan ikke finde synkroniseringsmappen for computeren %@.";
-"Can't find sync folder for document %@." = "Kan ikke finde synk-mappen for dokumentet %@.";
+"Can't find sync folder for document %@." = "Kan ikke finde synkroniseringsmappen for dokumentet %@.";
 "%@ couldn't finish synchronization in the background." = "%@ kunne ikke fuldføre synkroniseringen i baggrunden.";
 "Please switch back to %@ so that the synchronization can finish." = "Skift venligst tilbage til %@ så synkroniseringen kan fuldføres.";
 
 /// XUSyncEngine - 6/20/2016 changes
 "Could not read synchronization change data." = "Kunne ikke læse synkroniseringens ændringsdata .";
 "Could not copy synchronization change data to the cloud." = "Kunne ikke kopiere synkroniseringens ændringsdata til skyen.";
-"Failing to apply change sets." = "Mislykkedes at anvende 'change sets'.";
+"Failing to apply change sets." = "Kunne ikke anvende 'change sets'.";
 "Synchronization changes from computer %@ haven't been downloaded yet." = "Synkroniseringsændringerne fra computer %@ er ikke blevet overført endnu.";
 
 /// XUOAuth2
-"Authentication" = "Autentifikation";
-"Server responded with unknown token type." = "Serveren reagerede med en ukendt token-type.";
+"Authentication" = "Godkendelse";
+"Server responded with unknown token type." = "Serveren svarede med en ukendt token-type.";
 "Server provided invalid authorization response." = "Serveren leverede ugyldig autorisationssvar,";
 "Server has redirected with invalid URL." = "Serveren har omdirigeret med ugyldig webadresse.";
-"User cancelled the authorization." = "Brugeren annullerede autorisationen.";
+"User cancelled the authorization." = "Brugeren annullerede godkendelsen.";
 
 /// Debug Log Menu
 "Debug" = "Debug";
@@ -106,8 +106,8 @@
 "Clear Debug Log" = "Ryd debug-loggen";
 "Show Log in Finder" = "Vis log i Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug-loggen er en tekstfil, der indeholder nogle tekniske detaljer om, hvad %@ udfører i baggrunden. Det er ret brugbart for mig for at kunne rette ting hurtigt, eftersom den tillader mig at se, hvad der sker. Følg disse enkle skridt for at få fat på debug-loggen, :";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Hvis dette ikke er din første debug-log, du sender, så vælg venligst Ryd Debug-log fra Debug-menuen.\n2) Vær sikker på, at Debug-logning er slået til i Debug-menuen.\n3) Udfør den opgave, du nu har problemer med. \n4) Slå Debug-logning fra i Debug-menuen.\n5) Vælg Vis log i Finder i Debug-menuen. Dette vælger logfilen i Finder, og du kan således let sende den til mig. Vedhæft venligst filen til mailen frem for at kopiere teksten ind i mailen.\n\nLogfilen indeholder ikke nogen personfølsomme oplysninger, hvilket du kan se, hvis du åbner logfilen (det er en simpel tekstfil). Hvis du mener, at noget af dataen er fortrolig eller personlig, så erstat det med noget, der nemt kan identificeres (f.eks. XXXXXXXX) og lad mig vide, at du har ændret logfilen.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug-loggen er en tekstfil, der indeholder nogle tekniske detaljer om, hvad %@ udfører i baggrunden. Det er ret brugbart for mig for at kunne rette ting hurtigt, da den tillader mig at se, hvad der sker. Følg disse enkle skridt for at få fat på debug-loggen, :";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Hvis dette ikke er din første debug-log, du sender, så vælg venligst Ryd Debug-log fra Debug-menuen.\n2) Vær sikker på, at Debug-logning er slået til i Debug-menuen.\n3) Udfør den opgave, du nu har problemer med. \n4) Slå Debug-logning fra i Debug-menuen.\n5) Vælg Vis log i Finder i Debug-menuen. Dette vælger logfilen i Finder, og du kan således let sende den til mig. Vedhæft venligst filen i mailen frem for at kopiere teksten ind.\n\nLogfilen indeholder ikke nogle personfølsomme oplysninger, hvilket du kan se, hvis du åbner logfilen (det er en simpel tekstfil). Hvis du mener, at noget af dataen er fortrolig eller personlig, så erstat det med noget, der nemt kan identificeres (f.eks. XXXXXXXX) og fortæl mig, at du har ændret logfilen.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Dokumentet kunne ikke overføres på nuværende tidspunkt.";
@@ -132,3 +132,4 @@
 
 // Certificate view.
 "Select..." = "Vælg...";
+

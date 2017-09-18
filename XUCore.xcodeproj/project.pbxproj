@@ -427,6 +427,7 @@
 		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
 		07241D2D1D17B16700206E27 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07241D3A1D17D57300206E27 /* XUCompoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCompoundError.swift; sourceTree = "<group>"; };
+		072998391F6EAB5500C8CD35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationControllerAdditions.swift; sourceTree = "<group>"; };
 		07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBundleUtilities.swift; path = util/XUBundleUtilities.swift; sourceTree = "<group>"; };
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
@@ -1459,6 +1460,7 @@
 				sv,
 				hi,
 				th,
+				"zh-Hant",
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1859,6 +1861,7 @@
 				0788DE901ED2EB0F00D2A81B /* sv */,
 				07FC1CDA1F0F4A2C00942FC4 /* hi */,
 				07C6F9661F10D3C7006A9378 /* th */,
+				072998391F6EAB5500C8CD35 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
