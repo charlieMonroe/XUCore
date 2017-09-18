@@ -1,13 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "Ukončuje se...";
 "1 hour" = "1 hodina";
 "1 minute" = "1 minuta";
 "1 second" = "1 vteřina";
-"%lu hours" = "%lu hodin";
-"%lu minutes" = "%lu minut";
-"%lu seconds" = "%lu vteřin";
-
 "Unknown error." = "Neznámá chyba.";
 
 "OK" = "Budiž";
@@ -58,7 +53,6 @@
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Děkujeme za vyzkoušení %@! Již jste tuto aplikaci užívali %li dní. Pokud chcete i nadále používat %@, musíte si jej zakoupit.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Děkujeme za stažení %@! Můžete jej užívat na %i %@ bez jakýchkoliv omezení. Po vypršení zkušební doby si musíte %@ zakoupit.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Děkujeme za vyzkoušení %@! Již jste aplikaci použil na %i %@. Pokud chcete i nadále používat %@, musíte si jej zakoupit.";
-
 "Working..." = "Pracuji...";
 
 "Progress" = "Postup";
@@ -86,7 +80,6 @@
 "Cannot find entity with ID %@" = "Nelze najít enitu s identifikátorem %@";
 "Can't find synchronization folder for document %@." = "Nelze najít synchornizační složku pro dokument %@.";
 "Can't find synchronization folder for computer %@." = "Nelze najít synchornizační složku pro počítač %@.";
-"Can't open info dictionary computer %@." = "Nelze otevřít informační soubor pro počítač %@.";
 "Can't find sync folder for document %@." = "Nelze najít synchronizační složku pro dokument %@.";
 "%@ couldn't finish synchronization in the background." = "%@ nemohl dokončit synchronizaci na pozadí.";
 "Please switch back to %@ so that the synchronization can finish." = "Prosím přepněte zpět do %@, aby se synchronizace mohla dokončit.";
@@ -114,9 +107,28 @@
 "Show Log in Finder" = "Zobrazit log ve Finderu";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log je textový soubor, který obsahuje některé technické detaily o operacích, které %@ provádí na pozadí. Toto je pro mě užitečné, neboť se díky tomu mohu podívat, co přesně se děje. Pro získání debug logu, prosím postupujte podle následujících kroků:";
-"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Pokud toto není první debug log, který zasíláte, nejdříve vyberte Smazat Debug Log z menu Debug.\n2) V menu Debug, ujistěte se, že Debug logování je zapnuté.\n3) Proveďte úkony, se kterými máte potíže.\n4) V menu Debug, vypněte Debug logování.\n5) V menu Debug, vyberte Zobrazit log ve Finderu. Tímto se vybere soubor logu ve Finderu a můžete mi jej jednoduše zaslat. Prosím, připojte soubor k emailu jako přílohu, nevkládajte text logu přímo do emailu.\n\nSoubor logu neobsahuje soukormé infomace. Toto lze ověřit otevřením souboru logu (je to obyčejný textový soubor). Pokud některé informace považujete za citlivá data, nahraďte je prosím něčím, co lze jednoduše identifikovat (např. XXXXXXXX) a dejte mi vědět, že jste log modifikovali.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Pokud toto není první debug log, který zasíláte, nejdříve vyberte Smazat Debug Log z menu Debug.\n2) V menu Debug, ujistěte se, že Debug logování je zapnuté.\n3) Proveďte úkony, se kterými máte potíže.\n4) V menu Debug, vypněte Debug logování.\n5) V menu Debug, vyberte Zobrazit log ve Finderu. Tímto se vybere soubor logu ve Finderu a můžete mi jej jednoduše zaslat. Prosím, připojte soubor k emailu jako přílohu, nevkládajte text logu přímo do emailu.\n\nSoubor logu neobsahuje soukormé infomace. Toto lze ověřit otevřením souboru logu (je to obyčejný textový soubor). Pokud některé informace považujete za citlivá data, nahraďte je prosím něčím, co lze jednoduše identifikovat (např. XXXXXXXX) a dejte mi vědět, že jste log modifikovali.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Tento dokument nelze nyní stáhnout.";
 "Log Current Application State" = "Zalogovat současný stav aplikace";
 
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
+"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "Show All";
+"Preferences" = "Preferences";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "No search results";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "Select...";

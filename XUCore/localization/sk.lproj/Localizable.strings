@@ -1,13 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "Ukončuje sa...";
 "1 hour" = "1 hodina";
 "1 minute" = "1 minúta";
 "1 second" = "1 sekunda";
-"%lu hours" = "%lu hodín";
-"%lu minutes" = "%lu minút";
-"%lu seconds" = "%lu sekúnd";
-
 "Unknown error." = "Neznamá chyba.";
 
 "OK" = "OK";
@@ -58,7 +53,6 @@
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Ďakujeme za vyskúšanie %@! Už ste túto aplikáciu využívali %li dní. Pokiaľ chcete aj naďalej používať %@, musíte si ho zakúpiť.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Ďakujeme za stiahnutie %@! Môžete ho využívať na %i %@ bez akýchkoľvek obmedzení. Po vypršaní skúšobnej doby si musíte %@ zakúpiť.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Ďakujeme za vyskúšanie %@! Už ste aplikáciu použil na %i %@. Pokiaľ chcete aj naďalej používať %@, musíte si ho zakúpiť.";
-
 "Working..." = "Pracujem...";
 
 "Progress" = "Postup";
@@ -73,3 +67,68 @@
 "%li hours" = "%li hodín";
 "%li minutes" = "%li minút";
 "%li seconds" = "%li sekúnd";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
+"Cannot open document metadata file." = "Cannot open document metadata file.";
+"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
+"Synchronization is already in progress." = "Synchronization is already in progress.";
+"An upload operation is already in progress." = "An upload operation is already in progress.";
+"Could not save upload metadata." = "Could not save upload metadata.";
+"Cannot find entity named %@" = "Cannot find entity named %@";
+"Cannot find class named %@" = "Cannot find class named %@";
+"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
+"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
+"Can't find synchronization folder for computer %@." = "Can't find synchronization folder for computer %@.";
+"Can't find sync folder for document %@." = "Can't find sync folder for document %@.";
+"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
+"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Could not read synchronization change data.";
+"Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
+"Failing to apply change sets." = "Failing to apply change sets.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
+
+/// XUOAuth2
+"Authentication" = "Authentication";
+"Server responded with unknown token type." = "Server responded with unknown token type.";
+"Server provided invalid authorization response." = "Server provided invalid authorization response.";
+"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
+"User cancelled the authorization." = "User cancelled the authorization.";
+
+/// Debug Log Menu
+"Debug" = "Debug";
+"About Debug Log..." = "About Debug Log...";
+"Debug Logging" = "Debug Logging";
+"On" = "On";
+"Off" = "Off";
+"Clear Debug Log" = "Clear Debug Log";
+"Show Log in Finder" = "Show Log in Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
+"Log Current Application State" = "Log Current Application State";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
+"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "Show All";
+"Preferences" = "Preferences";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "No search results";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "Select...";

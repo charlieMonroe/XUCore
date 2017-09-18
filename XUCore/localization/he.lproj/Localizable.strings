@@ -1,12 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"Finishing..." = "מסיים...";
 "1 hour" = "שעה אחת";
 "1 minute" = "דקה אחת";
 "1 second" = "שנייה אחת";
-"%lu hours" = "%lu שעות";
-"%lu minutes" = "%lu דקות";
-"%lu seconds" = "%lu שניות";
 "Unknown error." = "שגיאה לא ידועה.";
 
 "OK" = "אוקיי";
@@ -55,7 +51,6 @@
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "אתה תילקח לעמוד שבו תוכל לקנות עותק. אם אתה עדיין לא בטוח אם %@ היא התוכנה הנכונה עבורך או אם יש לך שאלות, צור איתנו קשר. %@";
 "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "תודה שניסית את %@! אתה יכול להשתמש בתוכנה למשך %li ימים החל מעכשיו ללא הגבלות. אחרי שתקופת הניסיון הסתיימה, תצטרך לרכוש עותק של %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "תודה שניסית את %@! השתמשת בתוכנה במשך %li נכון לעכשיו. כדי להמשיך להשתמש בתוכנה %@, עליך לרכוש רישיון.";
-
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "תודה שניסית את %@! אתה יכול להשתמש בה במשך %@ %i כעת ללא הגבלות. אחרי שתקופת הניסיון תסתיים, תצטרך לרכוש רישיון של %@.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "תודה שניסית את %@! השתמשת בתוכנה במשך %@ %i כעת. כדי להמשיך להשתמש בתוכנה %@, עליך לרכוש רישיון.";
 "Working..." = "עובד...";
@@ -72,7 +67,6 @@
 "%li hours" = "%li שעות";
 "%li minutes" = "%li דקות";
 "%li seconds" = "%li שניות";
-
 
 /// XUSyncEngine
 "Cannot find such document. Check back later, it might not have synced through." = "לא ניתן למצוא מסמך כזה. בדוק שוב מאוחר יותר, ייתכן שהוא לא מסונכרן עדיין.";
@@ -113,7 +107,7 @@
 "Show Log in Finder" = "הצג לוג בFinder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "יומן דיבאג הוא קובץ טקסט המכיל כמה פרטים טכניים על מה %@ מבצע ברקע. זה די שימושי עבורי כדי לתקן דברים במהירות מכיוון שהוא מאפשר לי לראות מה קורה. כדי לקבל את יומן הבאגים, בצע את השלבים הפשוטים הבאים:";
-"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) אם זה אינו יומן יומן הבאגים הראשון שאתה שולח, אנא בחר באפשרות נקה יומן Debug מתפריט Debug. \ N2) בתפריט Debug, ודא כי רישום Debug פועל. \ N3) בצע את כל המשימות שלך נתקלת בבעיות. \ N4) בתפריט Debug, כבה את Debug Logging Off. \ N5) בתפריט Debug, בחר באפשרות Show Log in Finder. זה בוחר את קובץ היומן ב Finder ואתה יכול בקלות לשלוח לי את זה. בבקשה, צרף את הקובץ לדואל במקום להעתיק את המידע. \ N \ n קובץ היומן אינו מכיל נתונים אישיים שניתן לאמת על-ידי פתיחת קובץ היומן (זהו קובץ טקסט פשוט). אם אתה סבור שחלק מהנתונים חסויים או אישיים, החלף אותם במשהו שניתן לזהות בקלות כמציין מיקום (למשל XXXXXXXX) והודע לי ששינית את קובץ היומן.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) אם זה אינו יומן יומן הבאגים הראשון שאתה שולח, אנא בחר באפשרות נקה יומן Debug מתפריט Debug.  N2) בתפריט Debug, ודא כי רישום Debug פועל.  N3) בצע את כל המשימות שלך נתקלת בבעיות.  N4) בתפריט Debug, כבה את Debug Logging Off.  N5) בתפריט Debug, בחר באפשרות Show Log in Finder. זה בוחר את קובץ היומן ב Finder ואתה יכול בקלות לשלוח לי את זה. בבקשה, צרף את הקובץ לדואל במקום להעתיק את המידע.  N  n קובץ היומן אינו מכיל נתונים אישיים שניתן לאמת על-ידי פתיחת קובץ היומן (זהו קובץ טקסט פשוט). אם אתה סבור שחלק מהנתונים חסויים או אישיים, החלף אותם במשהו שניתן לזהות בקלות כמציין מיקום (למשל XXXXXXXX) והודע לי ששינית את קובץ היומן.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "לא ניתן להוריד את המסמך ברגע זה.";
@@ -138,4 +132,3 @@
 
 // Certificate view.
 "Select..." = "בחר...";
-

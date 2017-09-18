@@ -306,6 +306,23 @@ public final class XUDebugLog {
 	
 }
 
+#if os(iOS)
+	public extension XUDebugLog {
+		
+		/// Displays a share dialog allowing you to share the log from a controller.
+		public class func shareLog(from controller: UIViewController) {
+			if _logFile != nil {
+				fflush(__stdoutp)
+				fflush(_logFile!)
+			}
+			
+			let activityController = UIActivityViewController(activityItems: [URL(fileURLWithPath: self.logFilePath)], applicationActivities: nil)
+			controller.present(activityController, animated: true, completion: nil)
+		}
+		
+	}
+#endif
+
 #if os(OSX)
 	
 	private let _actionHandler = _XUDebugLogActionHandler()
@@ -337,7 +354,7 @@ public final class XUDebugLog {
 			let alert = NSAlert()
 			let appName = ProcessInfo().processName
 			alert.messageText = XULocalizedFormattedString("Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:", appName, inBundle: XUCoreFramework.bundle)
-			alert.informativeText = XULocalizedFormattedString("1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file.", appName, inBundle: XUCoreFramework.bundle)
+			alert.informativeText = XULocalizedFormattedString("1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.", appName, inBundle: XUCoreFramework.bundle)
 			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 			alert.runModal()
 		}

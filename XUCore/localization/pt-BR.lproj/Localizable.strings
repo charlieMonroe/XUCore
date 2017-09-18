@@ -1,766 +1,130 @@
-/*
- Localizable.strings
- Downie
- 
- Created by Charlie Monroe on 9/21/13.
- Copyright (c) 2013 Charlie Monroe Software. All rights reserved.
- */
+/// XUCore localization file. This contains strings within the XUCore framework.
 
-/* Generic */
+"Finishing..." = "Finalizando...";
+"1 hour" = "1 hora";
+"1 minute" = "1 minuto";
+"1 second" = "1 segundo";
+"%lu hours" = "%lu horas";
+"%lu minutes" = "%lu minutos";
+"%lu seconds" = "%lu segundos";
+"Unknown error." = "Erro desconhecido.";
+
 "OK" = "OK";
 "Cancel" = "Cancelar";
-"Quit" = "Sair";
 
-"Privacy Information..." = "Informações de Privacidade...";
+"Failed to parse CSV file." = "Falha ao analisar arquivo CSV.";
 
-"You need to enter a valid email address." = "Você precisa digitar um endereço de e-mail válido.";
-"Heh, nice try. Please, enter a valid email address." = "Há!, Boa Tentativa. Por favor, digite um endereço de e-mail válido.";
+"Send Report" = "Enviar Relatório";
+"Privacy Information..." = "Informações de Privacidade…";
+"%AppName% has encountered a problem." = "O %AppName% encontrou um problema.";
+"%AppName% will terminate after sending the report." = "O %AppName% será encerrado depois que o relatório for enviado.";
+"Report to be sent:" = "Relatório a ser enviado:";
+"Your Email:" = "Seu E-mail:";
+"Description:" = "Descrição:";
 
-"Thank you for the report!" = "Obrigado pelo relatório!";
-"We'll look into it as soon as possible!" = "Nós iremos olhar isto assim que possível!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Descreva a situação ocorrida durante esta exceção e forneça os passos necessários para reproduzir o problema, se possível. Digite o seu endereço de e-mail abaixo para que possamos avisá-lo quando este problema for resolvido ou para pedirmos detalhes em relação ao ocorrido. Seu endereço de e-mail não será armazenado em nenhum banco de dados e você não receberá e-mails indesejados.\n\nO envio deste relatório nos ajuda a melhorar o software. Obrigado!";
+
+"Report Problem" = "Relatar Problema";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Valorizamos seus comentários e não nos atrevemos a coletar informações não relacionadas ao problema. Seu endereço de e-mail não será armazenado em lugar nenum e será usado apenas para informá-lo quando este problema for resolvido ou se precisarmos de mais informações para corrigi-lo.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Apenas as informações a seguir serão enviadas:\n• A descrição fornecida;\n• As informações da exceção abaixo;\n• A versão deste aplicativo;\n• A versão do sistema (OS);\n• O modelo do computador (exceto por informações como endereço MAC e similares, que poderiam identificar o computador).";
 
 "Could not post your report." = "Não foi possível publicar o relatório.";
 "Check your Internet connection and try again." = "Verifique sua conexão à Internet e tente novamente.";
+"Heh, nice try. Please, enter a valid email address." = "Há!, Boa Tentativa. Por favor, digite um endereço de e-mail válido.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Pode ser necessário contatá-lo para solucionar isto. Não mordemos. Não iremos vender seu endereço de e-mail para ninguém ou usá-lo para qualquer outro propósito. Nós prometemos.";
+"You need to enter a valid email address." = "Você precisa digitar um endereço de e-mail válido.";
+"We may need to get in touch with you in order to fix this." = "Pode ser necessário contatá-lo para solucionar isto.";
+"Please, provide some details as to when this exception happened." = "Por favor, forneça alguns detalhes sobre quando esta exceção ocorreu.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inclua informações sobre tarefas que estavam em andamento, se o aplicativo estava em 1º ou 2º plano, se você clicou em algo, etc. É muito difícil entender o erro somente com o relatório — e impossível sem informações adicionais.";
+"Thank you for the report!" = "Obrigado pelo relatório!";
+"We'll fix it as soon as possible!" = "Este erro será corrigido assim que possível!";
+
+"Welcome to beta testing of %@." = "Bem-vindo ao beta do %@.";
+"This is the first time you run a beta build %@." = "Esta é a primeira vez que você abre um beta do %@.";
+"This beta build of %@ has expired." = "Este beta do %@ expirou.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Curta o software! Caso tenha dúvidas ou encontre erros, fique à vontade para entrar em contato na página de suporte: %@";
+
+"Continue" = "Continuar";
+"Purchase..." = "Comprar...";
+"I'm Still Not Sure" = "Eu ainda não tenho certeza";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "O %@ não pôde conectar-se à Internet. O aplicativo será encerrado em uma hora.";
+"%@ requires connection to the Internet to continue the trial properly." = "É necessário uma conexão à Internet para que a avaliação do %@ continue.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Você será direcionado à página onde poderá comprar uma cópia. Caso não tenha certeza se o %@ é exatamente o que você quer e ainda tiver dúvidas, contate-nos.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %li dias sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %li dias. Para continuar usando o %@, é preciso comprar uma cópia.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Obrigado por avaliar o %@! Você pode usá-lo por %i %@ sem restrições. Depois do término do período de avaliação, será preciso comprar uma cópia do %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Obrigado por avaliar o %@! Você já o usou por %i %@. Para continuar usando o %@, é preciso comprar uma cópia.";
+"Working..." = "Processando...";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Valorizamos seus comentários e não nos atrevemos a coletar informações não relacionadas ao problema. Seu endereço de e-mail não será armazenado em lugar nenum e será usado apenas para informá-lo quando este problema for resolvido ou se precisarmos de mais informações para corrigi-lo.";
-"Only the following information will be sent:\n• The message you provide.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Apenas as informações a seguir serão enviadas:\n• A descrição fornecida;\n• A versão deste aplicativo;\n• A versão do sistema (OS);\n• O modelo do computador (exceto por informações como endereço MAC e similares, que poderiam identificar o computador).";
-
-/* General app messages. */
-"Thank you! This is your 10th completed download - we hope that you enjoy Downie! Would you be interested in supporting us by liking us on Facebook?" = "Obrigado! Esta é a sua 10a. transferência completa - Nós esperemos que você curta o Downie! Você estaria interessado em nos suportar curtindo nossa página no Facebook?";
-"We would really appreciate if you spent a few moments with rating Downie, or liking us on Facebook." = "Nós realmente agradeceríamos se você gastar um tempinho dando nota para o Downie, ou nos curtindo na página do Facebook.";
-"Open Facebook Page" = "Abrir a página no Facebook";
-
-"There are still some downloads in progress. Do you really want to quit?" = "Ainda há algumas transferências em andamento. Você realmente deseja sair?";
-"The downloads cannot be resumed and will hence be aborted." = "As trasferências não podem ser continuadas e por isso serão abortadas.";
-
-"Downie has found that you are running Little Snitch or HandsOff! - while running such tools is totally fine, make sure that you haven't denied Internet access to Downie as it will then appear as 'nonfunctional' since it requires Internet access - well, it's a downloader, right?" = "Downie descobriu que você está executando o Little Snitch or HandsOff! - Não há problemas nenhum em executar estas ferramentas, mas tenha certeza que você não negou acesso à Internet para o Downie, senão ele não irá funcionar, uma vez que precisa ter acesso a Internet - Bem, ele é um aplicativo para transferir arquivos da Internet, certo?";
-"This message will be shown only once." = "Esta mensagem irá aparecer apenas uma vez.";
-
-"Thank you for registering!" = "Obrigado por registrar!";
-
-"Loading %li / %li" = "Carregando %li / %li";
-
-"Some links were skipped because Downie doesn't recognize them." = "Alguns links foram pulados porque o Downie não os reconheceu.";
-"Request Support..." = "Solicitar Suporte...";
-
-"There is an update in progress. Do you really want to quit?" = "Há uma atualização em andamento. Você realmente deseja sair?";
-"Downie is either currently checking for available updates, or downloading an update. If you quit, the downloaded update will be discarded." = "Downie está procurando atualizações, ou transferindo uma atualização. Se você sair, a transferência da atualização será descartada.";
-
-"Download finished." = "Transferência concluída.";
-"Download failed." = "Transferência falhou.";
-
-"No URLs found!" = "URLs não encontradas!";
-
-"Estimating..." = "Estimando...";
-
-"The download '%@' may contain adult material which requires you to be 18 (21 in some countries) or older. By agreeing, you swear that you are of a legal age to see such content." = "A transferência '%@' pode conter material adulto que requer que você tenha 18 (21 em alguns países) ou mais. Concordando, voce está jurando que tem idade legal para ver tal conteúdo.";
-"You will be asked about this only once (this time) for all adult sites." = "Você será questionado sobre isto apenas uma vez (esta vez) para todos os sites adultos";
-"I Agree" = "Eu Concordo";
-"I Disagree" = "Eu Discordo";
-
-/* Downloader error strings - each error string *MUST* be unique! */
-"Cannot find download URL." = "Não é possível localizar a URL de transferência.";
-"Cannot find embed URL." = "Não é possível localizar a URL embarcada.";
-"Cannot find secure token." = "Não é possível localizar a chave segura.";
-"Invalid XML configuration." = "Configuração XML inválida.";
-"Invalid JSON configuration." = "Configuração JSON inválido.";
-"Invalid download URL." = "URL de transferência inválida.";
-"User cancelled." = "Usuário cancelou.";
-"User cancelled - login required." = "Usuário cancelou - Autenticação necessária.";
-"Login failed." = "Autenticação falhou.";
-"Failed to create embedded downloader." = "Falha ao criar transferência embarcada.";
-"Failed download due to network error." = "Falha na transferência por problemas de rede.";
-"This file isn't supported by Downie (unknown kind). Please, report it." = "Este arquivo não é suportado pelo Downie (tipo desconhecido). Por favor, nos reporte.";
-"Failed download due to server error." = "Falha na transferência por problemas no servidor.";
-"Cannot decrypt data." = "Não foi possível descriptografar os dados.";
-"Conversion failed (original downloaded file left intact)." = "Conversão falhou (a transferência original foi mantida intacta).";
-
-/* Downloader status strings. */
-"Error: %@" = "Erro: %@";
-"Waiting to start..." = "Aguardando iniciar...";
-"Finished." = "Finalizado.";
-"Finished (%@)." = "Finalizado (%@).";
-"Unknown size." = "Tamanho desconhecido.";
-"Missing variable '%@'" = "Variável faltando '%@'";
-
-/* Preferences */
-"Preferences" = "Preferências";
-
-"General" = "Geral";
-"Supported Sites" = "Sites Suportados";
-"Browser Extensions" = "Extensões de Navegadores";
-
-"Save Files to Folder:" = "Salvar Arquivos na Pasta:";
-"Downloads" = "Transferências";
-"Choose folder..." = "Escolher pasta...";
-"%li sites listed" = "%li sites listados";
-
-"When Done Downloading:" = "Quando a Transferência Finalizar:";
-"Post Notification" = "Notificação";
-"Play Sound" = "Reproduzir Som";
-"Add to iTunes" = "Adicionar ao iTunes";
-"Set Media Kind:" = "Definir Tipo de Mídia:";
-"Home Video" = "Vídeo Caseiro";
-"Movie" = "Filme";
-"Music Video" = "Clipes";
-"TV Show" = "Seriados";
-"Set Genre:" = "Definir Gênero:";
-
-"Postprocessing:" = "Pós-Processamento:";
-"None" = "Nenhum";
-"Extract Audio Only" = "Extrair Somente o Áudio";
-
-"When Download Is Added:" = "Quando a Transferência for Adicionada:";
-"Automatically Start Download" = "Iniciar a Transferência Automáticamente";
-
-"When Multiple Qualities Are Available:" = "Quando encontrar múltiplas qualidades:";
-"Automatically Select Best Quality" = "Selecionar a melhor qualidade possível";
-"Limit to 1080p" = "Limitar a 1080p";
-"Limit to 720p" = "Limitar a 720p";
-"Limit to 480p" = "Limitar a 480p";
-"Limit to 360p" = "Limitar a 360p";
-"Ask" = "Perguntar";
-"If you limit the downloads to e.g. 480p and only larger videos are available, then the smallest available video will be chosen." = "Se voce limitar as transferências para 480p, por exemplo, e somente vídeos maiores estiverem disponíveis, então, a menor qualidade disponível será escolhida";
-
-"Updates:" = "Atualizações:";
-"Check Automatically For Updates" = "Verificar Atualizações Automaticamente";
-"Automatically Download Updates" = "Transferir Atualizações Automaticamente";
-"Check Now" = "Verificar Agora";
-
-"All Sites" = "Todos os Sites";
-"Request Site Support" = "Solicitar Suporte para Site";
-
-"Installed" = "Instalado";
-
-/* Intro. */
-"Agree" = "Concordo";
-"Decline" = "Não Concordo";
-
-/* Main menu. */
-"About Downie" = "Sobre Downie";
-"Check for Updates..." = "Verificar Atualizações...";
-"Preferences…" = "Preferências…";
-"Services" = "Serviços";
-"Hide Downie" = "Ocultar Downie";
-"Hide Others" = "Ocultar Outros";
-"Show All" = "Mostrar Tudo";
-"Quit Downie" = "Encerrar Downie";
-
-"File" = "Arquivo";
-"Open URLs..." = "Abrir URLs...";
-"Close" = "Fechar";
-
-"Edit" = "Editar";
-"Undo" = "Desfazer";
-"Redo" = "Refazer";
-"Cut" = "Cortar";
-"Copy" = "Copiar";
-"Paste" = "Colar";
-"Select All" = "Selecionar Tudo";
-
-"Settings" = "Configurações";
-"Postprocessing" = "Pós-Processamento";
-"Convert to MP4" = "Converter para MP4";
-
-"Window" = "Janela";
-"Minimize" = "Minimizar";
-"Zoom" = "Zoom";
-"Bring All to Front" = "Trazer Tudo pra Frente";
-
-"Help" = "Ajuda";
-"Open Our Facebook Page" = "Abrir Nossa Página no Facebook";
-"Downie Help" = "Ajuda do Downie";
-
-/* Main window. */
-"Request Support For a New Site..." = "Solicitar Suporte Para um Novo Site...";
-"Report Non-Functional URL..." = "Reportar uma URL Não-Funcional...";
-"Other Support..." = "Outro Tipo de Suporte...";
-
-/* Support window. */
-"Your Email:" = "Seu E-mail:";
-"Message:" = "Mensagem:";
-"Send" = "Enviar";
-
-/* Open window. */
-"Enter URLs separated by a space or new lines." = "Entre com as URLs separadas por um espáco ou linha.";
-"URLs:" = "URLs:";
-"Open" = "Abrir";
-
-// 1.3+
-"Use original file name" = "Usar o nome do arquivo original";
-
-// 1.4.10+
-"Quit When All Downloads Are Completed" = "Sair Quando Todas as Transferências Forem Completadas";
-
-"Enter License Number..." = "Registrar Licença...";
-"Deactivate License..." = "Desativar Licença...";
-
-"Do you really want to deactivate your license?" = "Você realmente deseja desativar sua licença?";
-"By deactivating your license, Downie will enter trial mode. Changes will be noticeable on Downie's relaunch." = "Desativando sua licença, Downie estrará em modo de avaliação. Mudanças serão noticiadas quando reiniciar o Downie.";
-"Deactivate" = "Desativar";
-
-"Your license has been deactivated." = "Sua licença foi desativada.";
-"Relaunch Downie for changes to take effect." = "Reinicie o Downie para que as mudanças tenha efeito.";
-
-"Your daily limit was reached." = "Seu limite diário foi atingido.";
-
-"Some of the sites may contain adult material which requires you to be 18 (21 in some countries) or older. By agreeing, you swear that you are of a legal age to see such content." = "Alguns dos sites podem conter conteúdo adulto que requer que você tenha 18 (21 em alguns países) ou mais. Concordando, voce está jurando que tem idade legal para ver tal conteúdo.";
-
-// OS X 1.5.1+
-"Max Number of Concurrent Downloads:" = "Número Máximo de Transferências Simultâneas:";
-
-"Do you want to download the video or the entire playlist for '%@'?" = "Você deseja transferir o vídeo ou a lista de reprodução completa de '%@'?";
-"The link points to a video that is part of a playlist." = "O link aponta para um vídeo que faz parte de uma lista de reprodução.";
-"Video" = "Video";
-"Playlist" = "Lista de Reprodução";
-
-// OS X 1.5.4+
-"Rename..." = "Renomear...";
-
-"Enter new name:" = "Digite um novo nome:";
-"Rename" = "Renomear";
-
-
-"Add .part Extension To Incomplete Downloads" = "Adicionar a Extensão .part Para as Transferências Imcompletas";
-"Keep files of failed downloads" = "Manter os arquivos das Transferências que Falharam";
-
-"Start Downloads" = "Iniciar Transferências";
-"Clear Finished Downloads" = "Limpar Transferências Completas";
-
-"Show History" = "Mostrar Histórico";
-
-"History" = "Histórico";
-"Done" = "Feito";
-"Clear" = "Limpar";
-
-"Clear Inactive Downloads" = "Limpar Transferências Inativas";
-
-// 2.0+
-"Skip" = "Pular";
-"Next" = "Próximo";
-"Install browser extensions from the Preferences to allow one-click downloads." = "Instale as extensões de navegadores em Preferências para permitir transferências com apenas um clique.";
-"Search..." = "Procurar...";
-"Show Login Browser..." = "Mostrar Tela de Login...";
-"Show Quick Start" = "Mostrar Início Rápido";
-"Open URL in Browser" = "Abrir URL no Navegador";
-"Copy URL" = "Copiar URL";
-"Start" = "Iniciar";
-"Stop" = "Parar";
-"Keep original download files (before conversion)" = "Mantenha o arquivo original da transferência (antes da conversão)";
-"Disable adult video sites" = "Desabilitar Sites de Vídeos Adultos";
-"Disable top downloads button" = "Desabilitar o botão superior de transferência ";
-"Search Engines" = "Motores de Pesquisa";
-"Parental Controls" = "Controle Parental";
-"Do you want to reset the download queue?" = "Você deseja limpar a fila de transferência?";
-"Reset" = "Limpar";
-"You have been holding the Option key during Downie's launch, which is why you are getting this dialog. It is useful if your download queue includes a download that causes Downie to crash, which makes it impossible to launch Downie." = "Você manteve pressionado a tecla Option durante o início do Downie, e por isso você está vendo este diálogo. Isto é útil se sua fila de transferência tem uma transferência que causa o travamento do Downie, que faz com que seja impossível iniciar o Downie.";
-"Downie has selected the Chromium extension in Finder and has opened Chromium's extension page. Please, drag and drop the extension file onto Chromium's window." = "Downie selecionou a extensão Chromium no Finder e abriu a página de extensão do Chromium. Por favor, arraste e solte o arquivo de extensão para dentro da janela do Chromium.";
-"Paused." = "Pausado.";
-"You have removed all text from the message field." = "Você removeu todo o texto do campo de mensagem.";
-
-"Enter URL to load:" = "Digite a URL para carregar:";
-"Go" = "Ir";
-"This URL seems to be invalid." = "Esta URL parece ser inválida.";
-"Please, enter the full URL including the http:// prefix." = "Por favor, digite a URL completa incluindo o prefixo http://.";
-"Reveal in Finder" = "Mostrar no Finder";
-"Retry" = "Tentar Novamente";
-"Resume" = "Resumir";
-"You are several updates behind - please, update Downie first." = "Você está desatualizado - por favor, atualize o Downie primeiro.";
-"Update" = "Atualizar";
-"Please, keep Downie updated - each update brings support for many new websites and improves support for existing ones. In case you are using a cracked version, please, consider buying Downie - you're not hurting a big company - I'm running a really small business. I can offer a free license in exchange for a localization to your native language, or can offer other deals as well - just contact me using the Support button." = "Por favor, mantenha o Downie atualizado - cada update traz suporte para novos websites e melhora o suporte para os que já existem. Em caso de você estar usando uma versão hackeada, por favor, considere comprar o Downie - você não ferindo uma grande empresa - Você está realmente prejudicando uma pequena empresa. Eu posso oferecer uma licença grátis em troca por traduções em seu idioma nativo, ou posso oferecer outros negócios - apenas me contate usando o botão de Suporte.";
-"You will be asked to select the language next." = "Você será solicitado para selecionar o idioma.";
-"Download With Subtitles" = "Transferir com legendas";
-"Download Without Subtitles" = "Transferir sem legendas";
-"Do you really want to cancel the login?" = "Você deseja realmente cancelar a autenticação?";
-"You haven't logged in yet. Or at least it doesn't seem so. Some sites perform a login without reloading the page itself, which cannot be automatically detected. If this is the case, please click on any link which will cause the page to reload." = "Você não autenticou ainda. Ou pelo menos não parece. Alguns sites executam a autenticação sem recarregar a página, que faz com que não seja automaticamente detectado. Se este for o seu caso, por favor clique em qualquer link que isso causará a atualização da página.";
-"Don't Cancel" = "Não Cancelar";
-"You haven't entered any password." = "Você não digitou nenhuma senha.";
-"Login..." = "Autenticação...";
-"In the following dialog, log into the site and wait for the page to fully load. After that, press the Done button. Pressing the button before the title changes from Cancel to Done will cancel the operation." = "No seguinte diálogo, autentique no site e espere a página carregar completamente. Depois disso, pressione o botão Feito. Pressionando o botão antes do titulo mudar de Cancelar para Feito irá cancelar a operação.";
-
-
-"Search result %@ from %@" = "Procurando resultados %@ de %@";
-"Downloaded %i%%" = "Transferidos %i%%";
-"Downloaded %@ - unknown size - %@/s" = "Transferidos %@ - tamanho desconhecido - %@/s";
-"Downloading - %@/%@ - %@ remaining - %@/s" = "Transferindo - %@/%@ - %@ faltando - %@/s";
-"Video '%@' is available subtitled. Would you like to download the subtitled version?" = "Video '%@' está disponível com legenda. Você gostaria de transferir a versão com legenda?";
-"%@ needs a password in order to continue." = "%@ precisa de uma senha para continuar.";
-"Downie has detected that the site %@ may require you to login before displaying the content. Would you like to login?" = "Downie detectou que o site %@ pode solicitar autenticação antes de exibir seu conteúdo. Gostaria de autenticar?";
-
-"Clear History Automatically" = "Limpar Histórico Automaticamente";
-"Automatically clear deleted files" = "Limpar arquivos apagados automaticamente";
-"Never" = "Nunca";
-"After a month" = "Depois de um mês";
-"After a week" = "Depois de uma semana";
-"Immediately" = "Imediatamente";
-
-// Downie 2.2+
-"User-Guided Extraction..." = "Extração orientada pelo usuário...";
-"Limit to 240p" = "Limitar a 240p";
-"Limit to 144p" = "Limitar a 144p";
-"Download Subtitles" = "Transferir Legendas";
-"Use native M3U8 (HLS) download engine" = "Usar motor de transferência M3U8 (HLS) nativo";
-"Clear Cookies" = "Limpar Cookies";
-
-"Subtitles:" = "Legendas:";
-"Cookies:" = "Cookies:";
-
-"With this option, Downie will name the downloaded files just as named on the server. The name on the server may sometimes be the same for multiple files and may not be descriptive." = "Com esta opção, Downie irá nomear os arquivos transferidos apenas como está o nome no servidor.";
-"When a download fails, Downie by default deletes the file. Unfortunately, some servers do not close the connection gently, but abruptly disconnect, which seems like an error to Downie. If this seems like your case, enable this option." = "Quando uma transferencia falha, Downie por padrão apaga o arquivo. Infelizmente, alguns servidores não fecham a conexão educadamente, mas desconecta de forma bruta, que faz com que pareça um erro para o Downie. Se isso parece ser o seu caso, ative esta opção.";
-"If you experience that Downie sometimes fails during post-processing conversion, enable this option to keep the original download file, so that you can try to re-run the conversion manually." = "Se voce está experimentando falhas em algumas vezes com o Downie durante a conversão no pós-processamento, ative esta opção para manter o arquivo original transferido. com isso você pode tentar novamente converter o arquivo manualmente.";
-"Before Downie 2.2, Downie used FFmpeg for M3U8 downloads, which has a few disadvantages, mainly not being able to download videos over HTTPS and not being able to select desired size. The native engine doesn't have these disadvantages, but is more simple and may not work with more complex manifests. In such cases, try turning this option off." = "Antes do Downie 2.2, Downie usou FFmpeg para transferencias M3U8 , que tem algumas desvantagens, principamente por não ser capaz de transferir vídeos em HTTPS e nao ser capaz de selecionar o tamanho desejado. O motor nativo não tem estas desvantagens, mas é mais simples e não pode funcionar com manifestos mais complexos. Em casos como estes, tente mudar esta opção para Inativo.";
-"Cookies are tiny pieces of information that sites store locally and they contain information about your session on that particular site (e.g. being logged in)." = "Cookies pequenos pedaços de informações que sites armazenam localmente e eles contém informações sobre sua sessão em um site específico (Exemplo: quando voce se autentica).";
-
-"Advanced" = "Avançado";
-"Direct Downloader" = "Transferência Direta";
-"Direct Download" = "Transferência Direta";
-
-"Untitled" = "Sem Título";
-
-"Open in Browser" = "Abrir no Navegador";
-
-"User-Guided Extraction" = "Extração Orientada pelo Usuário";
-"And many, many other improvements and fixes..." = "E muitas, muitas melhorias e correções...";
-"No search results" = "A pesquisa não retornou resultados";
-"%li search results" = "%li resultados da pesquisa";
-
-"Cancelling..." = "Cancelando...";
-"But do not give up! Downie has two more tricks up its sleeve: you can either try a user-guided extraction, where you load the link in Downie's browser and Downie detects supported media and links; or you can request support for the links using the Support button in the top-right corner." = "Mas não desista! Downie tem mais dois truques nas mangas: voce pode tentar a extração orientada pelo usuário, onde voce carrega um link no navegador do Downie e Downie detecta as medias suportadas e links; ou voce pode solicitar um suporte para os links using o botão de Suporte no canto direito superior.";
-"Try User-Guided Extraction" = "Experimente a Extração Orientada pelo Usuário";
-"Ignore" = "Ignorar";
-
-"Estimating" = "Estimando";
-"PluralSight extraction requires a delay of 30 seconds between each video." = "Extração PluralSight  requer uma espera de 30 segundos entre cada vídeo.";
-"This will make Downie look like it's stuck, but please just give it a few minutes." = "Isso irá fazer com que Downie pareça travado, mas por favor apenas dê alguns minutos.";
-
-/// 2.2.3+
-"Unknown" = "Desconhecido";
-"%@ is not a valid URL address." = "%@ não é um endereço de URL válida.";
-
-"Converting - %@" = "Convertendo - %@";
-
-/// 2.3+
-
-// Quick Start
-"How to download a video?" = "Como transfiro um vídeo?";
-"Top Downloads" = "Top Transferências";
-"Search" = "Pesquisa";
-"Support" = "Suporte";
-"By default, Downie downloads files to your Downloads folder. You can change this in the Preferences." = "Por padrão, Downie transfere arquivos para sua pasta Transferência. Você pode alterar isso em Preferencias.";
-"Download Destination" = "Destino das Transferências";
-
-"Drag & drop a link from your browser onto Downie's Dock icon or the main window. You can also copy-paste it directly into the window, or use File > Open URLs... in the menu bar. It is recommended to install a browser extension from Preferences > Browser Extensions for easier downloads." = "Arraste e Solte a URL do seu navegador para o icone do Downie no Dock ou na janela principal. Você pode também copiar e colar diretamente dentro da janela, ou usar o Arquivo -> Abrir URLs... no barra de menu. E é altamente recomendável instalar as extensões de navegadores em Preferencias - Extensões de Navegadores para transferências mais fáceis.";
-"The Preferences contain a lot of various features and options you may be missing - you can access the Preferences from the Downie menu in the menu bar." = "As Preferências contém um monte de recursos variados e opções que voce pode estar esquecendo - você pode acessar as Preferências na barra de menus do Downie.";
-
-"Release Notes" = "Notas de Lançamento";
-"Processing link..." = "Processando link...";
-
-"Send to Permute" = "Enviar para o Permute";
-"Show on AppStore" = "Mostrar na AppStore";
-"Stitch Multi-Part Downloads with Permute" = "Juntar as Transferências multi-partes com o Permute";
-
-"Permute's Preset:" = "Pré-definição do Permute:";
-"Not Installed." = "Não está instalado.";
-
-"Permute is a powerful media conversion utility. It allows you to quickly convert video, audio and images into various formats. Downie can integrate with Permute, allowing you to specify into which format to convert the downloaded file." = "Permute é um poderoso utilitário para converter medias. Ele permite você rapidamente converta vídeos, áudios e imagens em vários formatos. Downie pode integrar com Permute, permitindo que você especifique qual formado converter o arquivo transferido.";
-"Some sites split videos into several parts. Stitching video isn't a completely trivial task, so Downie will only download such a video and keep it split. This option allows you to use Permute to stitch the parts into a single file. Requires Permute 2.1.3 or later to be installed." = "Alguns sites dividem o arquivo de vídeo em várias partes. Juntar os vídeos não é uma tarefa completamente trivial, então Downie irá somente transferir tais vídeos e manterá eles separados. Esta opção permite que você Permute para juntar as partes em um único arquivo de vídeo. Requer que o Permute versão 2.1.3 ou posterior esteja instalado. ";
-
-"Open Full Release Notes..." = "Abrir Notas de Lançamento Completa...";
-"What's new in Downie?" = "O que há de novo no Downie?";
-
-// Accessibility
-"Download" = "Transferência";
-"Preview image. Interact for menu." = "Imagem de Previsão. Interaja pelo Menu.";
-"Show in Finder" = "Mostrar no Finder";
-"Pause" = "Pausar";
-"Report Issue" = "Reportar Problemas";
-
-"Available Qualities" = "Disponível Qualidade";
-"Available Subtitles" = "Disponível Legendas";
-"No Subtitles" = "Sem Legendas";
-"Preset" = "Pré-definição";
-"Audio" = "Audio";
-"Reveal in Finder..." = "Revelar no Finder...";
-
-"Drop zone. There are currently no downloads in the queue." = "Drop Zone. Não há nenhuma transferência na fila.";
-
-"There are no available presets." = "Não há pré-definições disponíveis.";
-"If you have Permute installed, open it for the presets to get updated and relaunch Downie." = "Se voce tem o Permute instalado, abra-o para que as pré-definições sejam atualizadas e reinicie o Downie.";
-
-"Installed, but version 2.1.3+ is required." = "Instalado, mas a versão 2.1.3 ou superior é necessária.";
-
-"An update is available. Please update your copy of Downie and try the download again before submitting a report." = "Uma atualização está disponível. Por favor atualize sua cópia de Downie e tente transferir novamente antes de submeter um reportar.";
-"Each update brings various improvements and fixes. The issue you are about to report might already be fixed." = "Cada atualização traz várias melhorias e correções. O problema que voce está prestes a reportar pode já ter sido corrigido.";
-
-"Extracting using %@ (%i/%i)..." = "Extraindo usando %@ (%i/%i)...";
-
-"No Permute preset set." = "Nenhuma pré-definição do Permite foi configurada.";
-
-"Default" = "Padrão";
-"Sending files to Permute..." = "Enviando arquivos para o Permute...";
-"Subtitles" = "Legendas";
-"Audio Only" = "Somente Áudio";
-"Picture" = "Fotos";
-"DVD" = "DVD";
-
-// 2.4+
-"Pause All Downloads" = "Pausar Todas Transferências";
-"Keep Original Format" = "Mantar Formato Original";
-
-"Click on the icon of your browser to install the extension:" = "Clique no ícone do seu navegador para instalar a extensão:";
-
-"Add All" = "Adicionar Tudo";
-
-"No Preset Selected" = "Nenhuma pré-definição foi selecionada";
-
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Você pode enviar o reporte mesmo assim, mas se a mensagem ainda não estiver em inglês, eu não poderei prover para você um suporte completo.";
-
-"You already have sent a report for this site." = "Você já enviou um reporte para este site.";
-"Please, only send one report per site. Every report gets read and replied to, there's no reason send multiple reports for the same issue." = "Por favor, somente envie um reporte por site. Cada reporte será lido e respondido, não há necessidade de enviar múltiplos reportes para o mesmo problema.";
-
-"This video is DRM protected and cannot be downloaded." = "Este vídeo tem proteção DRM e não pode ser transferido.";
-"DRM protection means that the video is encrypted." = "Proteção DRM significa que o vídeo é criptografado.";
-
-"Please try the download again. If the error persists, send debug log capturing the download and conversion to support@charliemonroe.net (see Debug > About Debug Log in the menu bar)." = "Por favor tente transferir novamente. Se o erro persistir, envie um log de depuração capturando a transferência e a conversão para support@charliemonroe.net (Veja Depurar > Sobre Log de Depuração na barra de menu).";
-"To capture the log, enable debug logging, drop the link onto Downie again, start the download and let it finish to download and convert. After that, select the debug log in Finder using the Debug menu and attach the file to an email sent to support@charliemonroe.net." = "Para capturar o log, ative o log de depuração. Solte o link para dentro do Downie novamente, inicie a transferência a deixe finalizar a transferência e conversão. Depois disso, selecione o Log de Depuração no Finder, usando o menu Depurar e anexe o arquivo ao email que deve ser enviado para support@charliemonroe.net.";
-"Enable Logging and Try Again" = "Ative o Log e Tente Novamente";
-
-"Make sure that the selected download destination isn't read-only and make sure there is enough disk space left." = "Tenha certeza que o destino das transferências selecionadas não é somente-leitura e tenha certeza que há espaço em disco sobrando.";
-"Failed to write data for download of %@." = "Falha gravando dados da transferência de %@.";
-
-// 2.4.x+
-"Open in User-Guided Extraction" = "Abrir em Extração Orientada pelo Usuário";
-"Download Subtitles..." = "Baixar Legendas...";
-"Failed to download subtitles." = "Transferência de legendas falhou.";
-"There are no subtitles to be downloaded." = "Não há legendas para serem transferidas.";
-"Selected subtitles are of unknown format." = "Legenda selecionada está em um formato desconhecido.";
-"Selected subtitles cound not be downloaded. Check your Internet connection and try again." = "Legenda selecionada não pode ser transferida. Verifique a conexão com a internet e tente novamente.";
-"Selected subtitles could not be parsed." = "Legenda selecionada não pode ser analisada.";
-
-"You already have downloaded content on webpage %@. Do you want to download it again?" = "Você já transferiu o conteúdo da página %@. Gostaria de transferir novamente?";
-"You can view your previous downloads in History." = "Você pode visualizar suas transferências anteriores no Histórico.";
-
-// 2.5+
-
-// Safari extension.
-"You no longer need to install it. If it's not appearing in your browser, make sure that you've enabled it in the Preferences of the browser." = "Você não precisa mais instalá-lo. Ele ele não está aparecendo em seu navegador, tenha certeza que você ativou nas Preferencias do seu navegador.";
-
-// Proxy preferences.
-"Proxy Server" = "Servidor Proxy";
-"Use Proxy Server" = "Usar Servidor Proxy";
-"Type" = "Type";
-
-// Proxy types.
-"HTTPS" = "HTTPS";
-"SOCKS" = "SOCKS";
-
-"Host" = "Servidor";
-"Username" = "Usuário";
-"Password" = "Senha";
-"Port" = "Porta";
-
-"Enable the proxy server setting to download videos only available in other parts of the world." = "Ative as configurações do servidor proxy somente para transferir vídeos disponíveis em outras partes do mundo.";
-"Downie can take advantage of a HTTPS proxy for downloading HTTP content, or of a SOCKS proxy for downloading any content." = "Downie pode tirar vantagem do proxy HTTP para trasnferir conteúdo HTTP, ou o proxy SOCK para transferir quaquer conteúdo.";
-"Note: User-Guided Extraction and Login Browser features do not yet support the proxy server." = "Nota: Extração Orientada pelo Usuário e recursos de autenticação ainda não estão disponíveis para o servidor proxy.";
-
-// Update preferences.
-"Updates" = "Atualizações";
-
-// New error messages.
-"Cannot find configuration." = "Não foi possível localizar as configurações.";
-"Cannot find configuration URL." = "Não foi possível localizar as configurações de URL.";
-"Invalid configuration." = "Configuração inválida.";
-"Cannot load configuration." = "Não foi possível carregar as configurações.";
-"Cannot find download ID." = "Não foi possível localizar o ID da transferência.";
-"This video is not available in your country." = "Este vídeo não está disponível para seu país.";
-"Not enough disk space." = "Espaço em disco insuficiente.";
-"Please use user-guided extraction." = "Por favor use a Extração Orientada pelo Usuário.";
-"Video is DRM protected." = "O Vídeo está protegidor por DRM.";
-
-// 2.6+
-"Copy Download URL" = "Copiar a URL de Download";
-
-"Appearance" = "Aparência";
-"Enable Dark Mode" = "Habilitar Modo Dark";
-
-"Downie detected that it's been crashing a lot on you lately. If this is caused by something that's saved in the queue, the queue can be reset now." = "Downie detectou que estão ocorrendo travamentos frequentes para você ultimamente. Se isso for causado por algo salvo na fila, a fila pode ser redefinida agora.";
-"If you are experiencing crashes of Downie, please report them to support@charliemonroe.net." = "Se estão ocorrendo travamentos do Downie, por favor reporte-os para  support@charliemonroe.net.";
-
-"Reset Queue" = "Resetar a Fila";
-
-"Downie cannot check if there are updates available." = "Downie não pode verificar se há atualizações disponíveis.";
-"Before sending a report, Downie needs to check whether there are any updates available. The issue you are about to report may already be fixed. Please make check your Internet connection and try again." = "Antes de enviar um reporte, Downie precisa verificar se existem atualizações disponíveis. O problema que você deseja informar pode já ter sido corrigido. Por favor verifique sua conexão à Internet e tente novamente.";
-
-"You have a proxy server set up in Preferences and this error simply means that Downie was not able to download content for this website. This usually points to a misconfigured proxy server - please verify your proxy settings in Preferences." = "Você tem um servidor proxy configurado em preferências e este erro simplesmente significa que o Downie não conseguiu transferir o conteúdo deste site. Isto usualmente indica um servidor proxy mal configurado - Por favor verifique suas configuração de proxy em Preferências.";
-"If you still believe this is a Downie issue, please report it via the Support button in the main window." = "Se você acredita que é um problema com o Downie, por favor reporte-o utilizando o botão de Suporte na janela principal.";
-
-"Open Preferences" = "Abrir Preferências";
-
-"Please check your Internet connection and try the download again. If you use Little Snitch or HandsOff!, make sure you don't block any Internet access for Downie with it. Ensure that there isn't a firewall on the network that may block certain sites. If the error persists, send debug log capturing the download to support@charliemonroe.net (see Debug > About Debug Log in the menu bar)." = "Por favor verifique a sua conexão à Internet e tente transferir novamente. Se você utiliza Little Snitch ou HandsOff!, assegure-se de que não esteja bloqueando o acesso à Internet para o Downie com estes programas. Verifique se não há um firewall em sua rede que bloqueia o acesso a certos sites. Caso o erro persista, envie o log de depuração ao transferir para support@charliemonroe.net (veja Depuração > Sobre o Log de Depuração na barra de menu).";
-"To capture the log, enable debug logging, drop the link onto Downie again, start the download and let it finish the download. After that, select the debug log in Finder using the Debug menu and attach the file to an email sent to support@charliemonroe.net." = "Para capturar o log, ative o log de depuração. Solte o link para dentro do Downie novamente, inicie a transferência a deixe finalizar a transferência e conversão. Depois disso, selecione o Log de Depuração no Finder, usando o menu Depurar e anexe o arquivo ao email que deve ser enviado para support@charliemonroe.net.";
-
-// 2.6.1+
-"Limit to 4K" = "Limite a 4K";
-
-// 2.7+
-
-// 2.7 Show License Dialog
-"Show License..." = "Exibir licença...";
-"Not activated" = "Não ativado";
-"Email" = "Email";
-"License Code" = "Código de lincença";
-
-// 2.7 Subtitles Preferences
-"Automatically Select Subtitles Labeled As:" = "Automaticamente selecionar legendas rotuladas como:";
-"Remove" = "Remover";
-"Downie will automatically select subtitles that match any of the labels on the list. The match is case insensitive." = "Downie irá automaticamente selecionar subtítulos que combinem com qualquer dos rótulos na lista. A verificação não é sensível para diferenciar letras maiúsculas e minúsculas.";
-
-"You can have Downie automatically select subtitles for you by making a list of preferred languages in the Preferences." = "Você pode fazer com que o Downie selecione automaticamente as legendas para você criando uma lista de idiomas preferidos no menu Preferências.";
-"Remember this choice" = "Lembrar desta escolha";
-
-// 2.7 Advanced Preferences
-"Enable chunked downloads" = "Habilitar transferências fragmentadas";
-"By default, Downie downloads files on multiple threads, resulting in faster downloads. This may, however, cause some downloads to fail. If you are experiencing issues downloading files from some servers, disable this option." = "Por padrão, Downie transfere arquivos utilizando múltiplas trilhas, isso resulta em transferências mais rápidas. Entretanto, isso pode causar a falha de algumas transferências. If you are experiencing issues downloading files from some servers, disable this option.";
-
-// 2.7 Login window.
-"Login to %@" = "Login para %@";
-"Login" = "Login";
-
-// 3.0+
-
-// Onboarding
-"Previous" = "Anteriores";
-
-"Learn More About Downie 3" = "Saiba mais sobre o Downie 3";
-
-// Basic preferences.
-"This seems to be your first launch of Downie. Please take a few moments to set it up. You can always change these settings in Preferences where you can also find many more advanced options." = "Parece que esta é a primeira vez que você utiliza o Downie. Por favor dedique um momento para configurá-lo. Você sempre poderá modificar estas configurações em Preferências, onde você também irá encontrar muitas opções mais avançadas.";
-"Start Downloads Automatically" = "Iniciar Transferências Automaticamente";
-"Download Subtitles if Available" = "Transferir Legendas se disponíveis";
-"Use Dark Mode" = "Usar o Modo Dark";
-"Use Simple Mode" = "Usar o Modo Simples";
-"Learn About Permute" = "Aprender sobre o Permute";
-"Automatically Download and Install Updates" = "Transferir e instalar atualizações automaticamente";
-"Basic Preferences" = "Preferências Básicas";
-"UI Preferences" = "Preferências da Interface";
-"Downloads Destination" = "Local das Transferências";
-"Video Quality" = "Qualidade do Vídeo";
-"Number of Concurrent Downloads" = "Número de Transferências Simultâneas";
-"In dark mode, the main window will be displayed dark." = "No Modo Dark, a janela principal será escurecida.";
-"Simple mode displays downloads with less distracting information and more compactly." = "O Modo Simples exibe as transferências com menos informações visuais e de forma mais compacta.";
-"Perform Postprocessing" = "Realizar Pós-processamento";
-"Permute is available." = "Permute está disponível.";
-"Permute is installed, but version 2.1.3+ is required." = "Permute está instalado, mas a versão 2.1.3+ é necessária.";
-"Permute is not available." = "Permute não está disponível.";
-
-
-// Welcome screen.
-"Welcome to Downie!" = "Bem Vindo ao Downie!";
-"What's new in Downie 3?" = "O que há de novo em Downie 3?";
-"UI Overhaul" = "Interface reformulada";
-"Performance Improvements" = "Melhorias de Performance";
-"New Features" = "Novos recursos";
-"Downie now supports DASH manifests, includes scheduled queue start, many new advanced options and so much more!" = "Downie agora suporta manifestos DASH, incluindo início agendado da fila, novas opções avançadas e muito mais!";
-"Search and Top Downloads" = "Busca e Top Downloads";
-"Welcome to Downie, the best video downloader for macOS!\n\nWe don't want to keep you from downloading, we just want you to keep in mind that the developer of Downie is not responsible for any potential copyright infringements.\n\nIf you do not own a copyright to a particular video, don't download it.\n\nYou've been warned... :)" = "Bem vindo ao Downie, o melhor transferidor de vídeo para macOS!\n\nNão queremos evitar que você faça suas transferências, apenas desejamos que você tenha em mente que o desenvolvedor do Downie não é responsável por quaisquer violações potenciais dos direitos de cópia.\n\nSe você não possui os direitos de cópia para um vídeo em particular, não o transfira.\n\nVocê foi avisado... :)";
-"Downie 3 brings vast improvements to Downie. With many changes under the hood, it uses less memory, is faster, and most noticeably, the UI has undergone a major overhaul with the all-new menu bar icon, simple mode and much much more!" = "Downie 3 traz grandes melhorias ao Downie. Com muitas mudanças sob o capô, ele usa menos memória, é mais rápido, e o mais perceptível, a Interface passou por uma grande renovação, com um novo ícone na barra de menus, novo modo Simples e muito, muito mais!";
-"This update focuses on making the UI simpler, easier to use and more ubiquitous. There is a new menu bar icon from which you can control your downloads, there is a new simple mode that provides a simpler interface that hides unimportant details and so on!" = "Esta atualização foca em tornar a Interface mais simples, fácil de utilizar e mais acessível. Há um novo ícone na barra de menus a partir do qual você pode controlar suas transferências, há também um novo Modo Simples, que apresenta uma interface mais objetiva, ocultando itens não tão importantes e muito mais!";
-"Each part of the app has been carefully examined and performance improvements have been made. As a result, Downie 3 uses less memory, produces faster downloads and thanks to media analysis, the postprocessing is almost instantaneous in many cases." = "Cada parte do aplicativo foi cuidadosamente examinada e foram realizadas melhorias de performance. Como resultado, Downie 3 usa menos memória, realiza transferências mais rápidas e graças a análise de mídia, o pós-processamento é quase instantâneo na maioria dos casos.";
-"Not all downloads are made equal. Some download in formats that you don't want, or even formats that your iPhone or Apple TV doesn't play. Or maybe you just want the audio. In either case, Downie has powerful means to postprocess the download to have it delivered to you in the correct format." = "Nem todas as transferências são iguais. Algumas transferências em formatos que você não deseja, ou mesmo em formatos que o seu iPhone ou Apple TV não reproduzem. Ou talvez você apenas deseje o áudio. Em qualquer caso, Downie tem meios poderosos para realizar o pós-processamento da transferência para entregá-la a você no formato correto.";
-"Downie can search for videos on various sites (YouTube, Vimeo, TED, ...) right from the main window. You can also view videos that others are downloading in the same place." = "Downie pode pesquisar por vídeos em vários sites (YouTube, Vimeo, TED, ...) diretamente a partir da janela principal. Você também pode ver os vídeos que outros estão transferindo do mesmo local.";
-"Whenever you need anything, something doesn't work, or you just want to say hi, use the Support button in the bottom-right corner of the main window." = "Sempre que você precisar de algo, algo não funcionar, ou você apenas desejar mandar um oi, use o botão Suporte, localizado no canto inferior direito da janela principal.";
-
-// Browser extensions.
-"Downie offers browser extensions for all the popular browsers out there. They allow you to quickly send links to Downie with a single click - there will be a button in the browser's toolbar." = "Downie oferece extensões para todos os navegadores mais populares. As extensões permitem que você envie rapidamente links para o Downie com um único clique - haverá um botão na barra de ferramentas do navegador.";
-
-// Menu items.
-"Import" = "Importar";
-"Safari Reading List..." = "Lista de leitura do Safari...";
-"Delayed Start..." = "Retardar início...";
-"View" = "Visualizar";
-"Show Status Bar" = "Exibir Barra de Status";
-"Show Main Window" = "Exibir Janela Principal";
-
-"No Downloads" = "Sem Downloads";
-"Loading..." = "Carregando...";
-
-// Notification.
-"Added 1 download" = "Adicionada 1 transferência";
-"Added %li downloads" = "Adicionadas %li transferências";
-
-"Show User-Guided Extraction" = "Exibir Extração Guiada pelo Usuário";
-
-// About window.
-"Unlicensed Trial Version" = "Versão de testes não licenciada";
-"Setapp Version" = "Versão Setapp";
-"Version %@ (build %@)" = "Versão %@ (build %@)";
-"Licensed to %@" = "Licenciado para %@";
-"Facebook Page" = "Página do Facebook";
-
-// User-guided extraction.
-"Name" = "Nome";
-"Link" = "Link";
-"Expected Size" = "Tamanho esperado";
-"Format" = "Formato";
-"Extracted From" = "Extraído de";
-
-"Unknown Format" = "Formato desconhecido";
-"%@ Download" = "%@ Transferência";
-
-"Added Link" = "Link adicionado";
-"Blocked Popup" = "Popup bloqueado";
-"Enable in Options" = "Ativar em opções";
-
-"Welcome to the User-Guided Extraction! The User-Guided Extraction is a powerful feature that can extract videos that Downie is unable to extract on its own." = "Bem vindo a Extração Guiada pelo Usuário! A Extração Guiada pelo Usuário é um recurso poderoso que pode extrair vídeos que o Downie não consegue extrair sozinho.";
-"Please see the help for description of all features of the User-Guided Extraction and for tips on how to use it." = "Por favor veja a ajuda para a descrição de todos os recursos da Extração Guiada pelo Usuário e para dicas de como utilizá-la.";
-"Show Help" = "Exibir Ajuda";
-
-"unknown" = "desconhecido";
-
-"Results Table View" = "Visão da tabela de resultados";
-"Change User Agent" = "Trocar Agente do Usuário";
-"Get Info" = "Obter Informações";
-"Add to Queue" = "Adicionar a fila";
-"Toggle Sidebar" = "Ativar barra lateral";
-"Enable Plug-Ins" = "Ativar Plug-Ins";
-"Enable pop-up windows" = "Ativar janelas pop-up";
-
-"User-Agent" = "Agente do Usuário";
-"macOS" = "macOS";
-"iOS" = "iOS";
-"Custom" = "Custom";
-
-// History.
-"File not found." = "Arquivo não encontrado.";
-"Unknown Source" = "Origem desconhecida";
-
-// Download.
-"Report..." = "Reporte...";
-"Open in External Application..." = "Abrir em aplicativo externo...";
-
-// Notification.
-"Started processing links." = "Iniciado o processamento dos links.";
-
-// Preferences - Browser Extensions.
-"Extension for Safari or Safari Technology Preview is now bundled with Downie and is automatically detected by the browser on macOS 10.11.5 or later." = "Extensão para  Safari ou Safari Technology Preview está agora integrada ao Downie e é automaticamente detectada pelo navegador no macOS 10.11.5 ou posterior.";
-"Activate Downie" = "Activate Downie";
-"Show Postprocessing Options in Contextual Menu" = "Exibir Opções de Pós-Processamento no menu de contexto";
-"Safari Extension Options" = "Opções da extensão do Safari";
-
-// Preferences - General.
-"Sort Downloads" = "Classificar Transferências";
-"Sort Downloads By" = "Classificar Transferências por";
-"Sorting Direction" = "Direção da classificação";
-"Queue Order" = "Ordem da fila";
 "Progress" = "Progresso";
-"Ascending" = "Crescente";
-"Descending" = "Decrescente";
-"Remove Completed Downloads from Queue" = "Remover transferências completadas da fila";
+"Posted successfully" = "Publicado com sucesso";
 
-"Sort by Website" = "Classificar por Website";
-"Sort by Playlist" = "Classificar por Playlist";
-"Include Playlist Information in File Name" = "Incluir informação da Playlist no nome do arquivo";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "O %@ continuará funcionando pelas próximas 24 horas. Depois disso, sua funcionalidade será bloqueada. Atualize o %@ para mantê-lo funcionando.";
+"Please download a new build." = "Por favor, baixe uma nova versão.";
 
-"Show Downie in the Menu Bar" = "Exibir Downie na Barra de Menu";
-"Enable Simple Mode" = "Ativar Modo Simples";
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Você pode enviar o relatório mesmo assim, mas se a mensagem não for escrita em inglês, não será possível oferecer um suporte completo.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "A mensagem contém caracteres especiais que indicam que ela não foi escrita em inglês. Embora o %@ esteja traduzido em vários idiomas, o suporte é oferecido apenas em inglês. Obrigado por entender.";
+"%li hours" = "%li horas";
+"%li minutes" = "%li minutos";
+"%li seconds" = "%li segundos";
 
-"Reset All Warnings" = "Resetar todos os avisos";
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Não é possível encontrar o documento. A sincronização pode não ter ocorrido ainda. Verifique mais tarde.";
+"Cannot open document metadata file." = "Não é possível abrir o arquivo de metadados.";
+"Metadata file doesn't contain required information." = "O arquivo de metadados não contém as informações necessárias.";
+"Synchronization is already in progress." = "A sincronização já está em andamento.";
+"An upload operation is already in progress." = "Uma operação de envio já está em andamento";
+"Could not save upload metadata." = "Não foi possível salvar os metadados enviados.";
+"Cannot find entity named %@" = "Não é possível encontrar a entidade chamada %@";
+"Cannot find class named %@" = "Não é possível encontrar a classe chamada %@";
+"Cannot find entity with ID %@" = "Não é possível encontrar a entidade com o ID %@";
+"Can't find synchronization folder for document %@." = "Não é possível encontrar a pasta de sincronização do documento %@.";
+"Can't find synchronization folder for computer %@." = "Não é possível encontrar a pasta de sincronização do computador %@.";
+"Can't open info dictionary computer %@." = "Não é possível abrir o dicionário de informações do computador %@.";
+"Can't find sync folder for document %@." = "Não é possível encontrar a pasta de sincronização para documento %@.";
+"%@ couldn't finish synchronization in the background." = "O %@ não pôde concluir a sincronização em segundo plano.";
+"Please switch back to %@ so that the synchronization can finish." = "Por favor, volte para o %@ para que a sincronização seja concluída.";
 
-// Preferences - Postprocessing.
-"There are no available Permute presets." = "Não há configurações do Permute disponíveis.";
-"Setapp" = "Setapp";
-"AppStore" = "AppStore";
-"Preferred installation type:" = "Tipo de instalação preferido:";
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Não foi possível ler os dados alterados da sincronização .";
+"Could not copy synchronization change data to the cloud." = "Não foi possível copiar os dados alterados da sincronização para a nuvem.";
+"Failing to apply change sets." = "Falha ao aplicar conjuntos de alterações.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "As alterações de sincronização do computador %@ ainda não foram transferidas.";
 
-// Preferences - Supported sites.
-"Here is a list of sites with explicit support for them. If you can't find the site you are looking for on the list, it doesn't mean that Downie doesn't support it." = "Aqui está uma lista de sites com suporte explícito para eles. Se você não encontrou o site que procura nesta lista, isto não significa que o Downie não o suporta.";
-"Downie includes various smart extraction techniques which can detect content on sites that are not on the list, or the extraction is possible with the User-Guided Extraction." = "Downie inclui várias técnicas de extração inteligentes que podem detectar conteúdo em sites que não se encontram na lista, ou a extração é possível utilizando a Extração Guiada pelo Usuário.";
-"Learn More" = "Saiba mais";
+/// XUOAuth2
+"Authentication" = "Autenticação";
+"Server responded with unknown token type." = "O servidor respondeu com um tipo de chave desconhecida.";
+"Server provided invalid authorization response." = "O servidor forneceu uma reposta de autorização inválida.";
+"Server has redirected with invalid URL." = "O servidor foi redirecionado com uma URL inválido.";
+"User cancelled the authorization." = "O usuário cancelou a autorização.";
 
-// Search and top downloads.
-"Top Downloads Disabled" = "Top Downloads Desabilitado";
-"Type to Search" = "Digite para pesquisar";
-"No Search Results" = "Sem resultados para a pesquisa";
+/// Debug Log Menu
+"Debug" = "Depurar";
+"About Debug Log..." = "Sobre o Registro de Depuração......";
+"Debug Logging" = "Registro de Depuração";
+"On" = "Ativo";
+"Off" = "Inativo";
+"Clear Debug Log" = "Limpar Registro de Depuração";
+"Show Log in Finder" = "Mostrar Registro no Finder";
 
-// Support dialog.
-"Your message contains letters which usually indicates that the message is not written in English. Please note that while Downie is translated into various languages, support is provided in English only. Thank you for understanding." = "Sua mensagem contém letras que usualmente indicam que a mensagem não foi escrita em inglês. Por favor compreenda que apesar de o Downie ser traduzido em diversos idiomas, o suporte ao usuário é oferecido apenas em inglês. Obrigado pela sua compreensão.";
-"This link is supported by Downie - it failed for you due to some error. Please select that error on the list." = "Este link é suportado pelo Downie - ele falhou para você devido a algum erro. Por favor selecione o erro na lista.";
-"Selecting an error helps us fix the issue faster." = "Selecionar o erro nos ajuda a corrigir o problema rapidamente.";
-"The entered link isn't valid." = "O link informado não é válido.";
-"Please, enter a link that leads to a particular video. Many sites are in languages foreign to me, which makes it hard for me to find a video to test Downie with." = "Por favor, insira um link que leve a um vídeo específico. Muitos sites estão em idiomas desconhecidos para mim, o que torna mais difícil encontrar um vídeo para testar o Downie.";
-"Unspecified" = "Não especificado";
-"Link:" = "Link:";
-"Error Displayed:" = "Erro exibido:";
-"Report a Link" = "Reporte um link";
-"What can we help you with?" = "Em que podemos auxiliá-lo?";
-"Generic Report" = "Reporte Genérico";
-"Something not working? Have a suggestion or feedback? Let us know!" = "Algo não está funcionando? Você tem uma sugestão ou opinião sobre o sistema? Deixe-nos saber!";
-"A video not downloading for you? Report it to us and we'll do our best to fix it!" = "Um vídeo não está transferindo para você? Reporte ele para nós e faremos todo o possível para solucionar o problema!";
-"We stride to provide the best support out there and we do our best reply to your reports as soon as possible. No report is left behind and each and single one is replied to. Please do not enter a fake email address as we then have no way of contacting you back, which may be necessary in order to fix some issues. We do not include your email in any database. See the Privacy Information for details. Thank you for understanding." = "Nós buscamos oferecer o melhor suporte e fazemos o máximo para responder a todos os reportes tão logo quanto possível. Nenhum reporte e deixado para trás e cada um é respondido individualmente. Por favor não insira um e-mail falso pois assim não teremos como contactar você de volta, o que pode ser necessário para resolver alguns problemas. Nós não incluiremos seu e-mail em nenhuma base de dados. Veja as informações sobre privacidade para maiores detalhes. Obrigado por sua compreensão.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "O registro de depuração é um arquivo de texto que contém alguns detalhes técnicos sobre as tarefas em segundo plano do %@. Ele é útil para corrigir erros do aplicativo rápidamente, pois permite que o desenvolvedor analise o que está ocorrendo. Para obter o registro de depuração, siga estes passos:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) Caso este não seja o primeiro registro de depuração que estiver enviando, por favor, selecione “Limpar Registro de Depuração” no menu Depurar.\n2) No menu Depurar, verifique se “Registro de Depuração” está ativado.\n3) Realize o procedimento com o qual estiver com problemas.\n4) No menu Depurar, selecione Inativo em “Registro de Depuração”.\n5) No menu Depurar, selecione “Mostrar Registro no Finder”. Essa ação mostra o arquivo de registro no Finder para que você possa enviá‑lo. Anexe o arquivo ao e‑mail em vez de copiar e colar as informações.\n\nO arquivo de registro não contém dados pessoais e você pode abri‑lo e inspecioná‑lo, já que o mesmo é um simples arquivo de texto. Caso considere algum dado como confidencial ou pessoal, você pode substituí‑lo por um texto padrão (como XXXXXXXX) e indicar tal modificação no arquivo de registro ao enviá‑lo.";
 
-// Link processing.
-"Do you really want to cancel loading of the remainder of links?" = "Você realmente deseja cancelar o carregamento dos links restantes?";
-"These links will be discarded. This action cannot be undone." = "Estes links serão descartados. Esta ação não pode ser desfeita.";
-"Cancel Loading" = "Cancelar Carregamento";
-"Continue Loading" = "Continuar Carregamento";
-"Download %@ was added to the queue." = "Transferência %@ foi adicionada na fila.";
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "O documento não pode ser transferido neste momento.";
+"Log Current Application State" = "Registrar o Estado Atual da Aplicação";
 
-// Delayed start.
-"Do you want to reschedule?" = "Você quer reagendar?";
-"Reschedule" = "Reagendar";
-"Set time when Downie should start downloads in the queue." = "Configure quando o Downie deve iniciar as transferências na fila.";
-"You have selected date and time that's already in the past." = "Você selecionou uma data e horário no passado.";
-"You have already enabled delayed start and it is scheduled for %@." = "Você já ativou o início programado e ele está agendado para %@.";
+/// 9/28/2016+
 
-// Safari reading list import.
-"Downie is unable to locate or read Safari bookmarks." = "Downie não conseguiu localizar ou ler os favoritos do Safari.";
-"Cannot find reading list in bookmark data." = "Não pode encontrar a lista de leitura nos dados dos favoritos.";
-"There are no links on the reading list." = "Não há links na lista de leitura.";
-"Downie will now process them." = "Downie agora irá processá-los.";
-"There are %i links on the reading list. Do you want to open them?" = "Existem %i links na lista de leitura. Você deseja abri-los?";
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Este beta irá expirar em menos de uma hora.";
+"Please update your copy of this beta build." = "Por favor, atualize a sua cópia deste beta.";
 
-// Menu bar.
-"Remove Finished Downloads" = "Remova transferências finalizadas";
-
-// Link filtering.
-"Add Selected" = "Adicionar selecionados";
-"Select None" = "Selecionar nenhum";
-"Downie found several downloads when processing this link." = "Downie encontrou diversas transferências quando processou este link.";
-
-// Login dialog.
-"Cancel Login" = "Cancelar Login";
-"Consider Logged In" = "Considerar Logado";
-"Downie will treat login requests for this site as cancelled." = "Downie irá considerar as solicitações de login para este site como canceladas.";
-"This will disable login dialogs for %@ until next launch. Do you want to continue?" = "Isto irá desabilitar os diálogos de login para %@ até o próximo lançamento. Você deseja continuar?";
-"Disable Login Requests For This Site" = "Desabilitar as solicitações de login para este site";
-
-// Not available.
-"n/a" = "n/d";
-"Info" = "Info";
-"Current URL" = "URL atual";
-"Original URL" = "URL Original";
-"Initiated From" = "Iniciado de";
-
-// Quality selection.
-"%i parts" = "%i partes";
-"Do you want to cancel the entire queue or just this one download?" = "Você deseja cancelar toda a fila ou apenas esta transferência?";
-"There is an additional download waiting to be processed." = "Há uma transferência adicional aguardando para ser processada.";
-"Cancel Download" = "Cancelar Transferência";
-"Cancel All" = "Cancelar Tudo";
-"Select Quality" = "Selecionar Qualidade";
-"There are additional %i downloads waiting to be processed." = "Há %i transferências adicionais aguardando para serem processadas.";
-"Select" = "Selecionar";
-"Downie found several qualities and it needs you to select one." = "Downie encontrou diversas qualidades e precisa que você selecione uma.";
-
-// Download queue statistics.
-"1 Download" = "1 Transferência";
-"1 Waiting to Start" = "1 Aguarda para Iniciar";
-"1 Failed" = "1 Falhou";
-"%i Downloads" = "%i Transferências";
-"%i Waiting to Start" = "%i Aguardam para Iniciar";
-"%i Failed" = "%i Falharam";
-
-// Postprocessing.
-"Enforce MP3" = "Forçar MP3";
-"When using audio-only postprocessing option, enabling this will enforce the output to be an MP3 file." = "Quando utiliza a opção de pós-processamento apenas do áudio, ativar isto faz com que a saída seja um arquivo MP3.";
-
+// Preferences.
+"All Preferences" = "Todas Preferências";
+"Show All" = "Mostrar Tudo";
+"Preferences" = "Preferências";
