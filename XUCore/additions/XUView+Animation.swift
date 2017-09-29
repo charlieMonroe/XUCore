@@ -138,7 +138,11 @@ public extension XUViewAnimation {
 		viewSetup.progress.progress = x
 		_pulsatingViews[view] = viewSetup
 		
-		view.alphaValue = CGFloat(alpha)
+		#if os(iOS)
+			view.alpha = CGFloat(alpha)
+		#else // macOS
+			view.alphaValue = CGFloat(alpha)
+		#endif
 	}
 	
 	/// Hides the views by fading them out and then setting isHidden to true.
@@ -184,8 +188,10 @@ public extension XUViewAnimation {
 				self._updatePulsating(for: view)
 			})
 			
-			RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
-			RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
+			#if os(macOS)
+				RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
+				RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
+			#endif
 			
 			_pulsatingViews[view] = (timer, _XUPulsationProgress(1.0, false))
 		}
@@ -194,7 +200,11 @@ public extension XUViewAnimation {
 	/// Stops pulsating.
 	public func stopPulsating() {
 		for view in self.views {
-			view.alphaValue = 1.0
+			#if os(iOS)
+				view.alpha = 1.0
+			#else
+				view.alphaValue = 1.0
+			#endif
 			
 			guard let viewSetup = _pulsatingViews[view] else {
 				return

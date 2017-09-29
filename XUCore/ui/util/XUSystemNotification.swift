@@ -53,9 +53,9 @@ public final class XUSystemNotificationCenter {
 		_currentController = nil
 		_currentNotification = nil
 		
-		_queue = Array(_queue.dropFirst())
+		_queue.remove(at: 0)
 		
-		if _queue.count > 0 {
+		if !_queue.isEmpty {
 			self._show()
 		}
 	}
@@ -91,7 +91,7 @@ public final class XUSystemNotificationCenter {
 	
 }
 
-private class XUSystemNotificationWindowController: NSWindowController {
+private class XUSystemNotificationWindowController: NSWindowController, NSWindowDelegate {
 	
 	/// Notification this was initialized with.
 	var notification: XUSystemNotificationCenter.Notification!
@@ -112,10 +112,13 @@ private class XUSystemNotificationWindowController: NSWindowController {
 		return XUCoreFramework.bundle.path(forResource: "SystemNotification", ofType: "nib")
 	}
 	
+	
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
 		let window = self.window as! XUSystemNotificationWindow
+		window.delegate = self
+		
 		switch self.notification! {
 		case .system(let notification):
 			window.messageField.stringValue = notification.message
@@ -135,6 +138,10 @@ private class XUSystemNotificationWindowController: NSWindowController {
 			window._updateVisualEffectViewMask()
 			window._updateWindowFrame()
 		}
+	}
+	
+	func windowWillClose(_ notification: Notification) {
+		self.window = nil
 	}
 	
 }
@@ -194,8 +201,8 @@ internal class XUSystemNotificationWindow: NSWindow {
 		}
 		
 		self.level = NSWindow.Level.screenSaver
-		
 		self.backgroundColor = NSColor.clear
+		self.isReleasedWhenClosed = true
 		
 		self._updateWindowFrame()
 	}

@@ -124,7 +124,7 @@ import UIKit
 	@objc private func _textDidChangeNotification() {
 		if self.maximumCharacterCount != 0 {
 			if let text = self.text, text.characters.count > self.maximumCharacterCount {
-				self.text = text.substring(to: text.index(text.startIndex, offsetBy: self.maximumCharacterCount))
+				self.text = text.prefix(ofLength: self.maximumCharacterCount)
 				_characterCounterLabel.animation.wobble()
 			}
 		}

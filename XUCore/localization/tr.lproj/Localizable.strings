@@ -1,0 +1,139 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 saat";
+"1 minute" = "1 dakika";
+"1 second" = "1 saniye";
+"Unknown error." = "Bilinmeyen hata.";
+
+"OK" = "Tamam";
+"Cancel" = "Vazgeç";
+
+"Failed to parse CSV file." = "CSV dosyası ayrıştırılamadı.";
+
+"Send Report" = "Rapor gönder";
+"Privacy Information..." = "Gizlilik Bilgileri ...";
+"%AppName% has encountered a problem." = "%AppName% bir sorunla karşı karşıya.";
+"%AppName% will terminate after sending the report." = "%AppName% rapor gönderildikten sonra sonlandırılıcaktır.";
+"Report to be sent:" = "Gönderilecek rapor:";
+"Your Email:" = "E-posta adresiniz:";
+"Description:" = "Açıklama:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Lütfen, bu durum oluştuğundaki durumu açıklayın ve mümkünse sorunu yeniden üretmek için gerekli adımları sağlayın. E-posta adresinizi aşağıya giriniz - bu sorun ne zaman giderileceğini size bildiririz veya bu istisna durum ile ilgili bazı ayrıntıları size sorabiliriz. E-posta adresiniz hiçbir veritabanına dahil edilmez ve istenmeyen e-postalar almazsınız.\n\nBu raporu gönderirseniz, bu programı geliştirmemize yardım edeceksiniz. Teşekkür ederim!";
+
+"Report Problem" = "Sorunu Bildir";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Görüşlerinize değer veriyoruz ve istenmeyen bilgileri toplamıyoruz. E-posta adresiniz herhangi bir yerde saklanmayacak ve yalnızca bu sorun giderildiğinde veya bu sorunu gidermek için daha fazla bilgiye ihtiyacımız olduğumuzda kullanılacaktır.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Yalnızca aşağıdaki bilgiler gönderilecektir: \ n • Gönderdiğiniz mesaj. \ N • Bu uygulamanın sürümü. \ N • Sisteminizin sürümü (OS). \ N • Bilgisayarınızın modeli (MAC adresi veya benzeri bilgiler bilgisayarınızı tanımlayabilir).";
+
+"Could not post your report." = "Raporunuzu gönderemedik.";
+"Check your Internet connection and try again." = "İnternet bağlantınızı kontrol edin ve tekrar deneyin.";
+"Heh, nice try. Please, enter a valid email address." = "Hah, iyi deneme. Lütfen geçerli bir e-posta adresi girin.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Bunu düzeltmek için sizinle iletişime geçmemiz gerekebilir. Isırmayız, e-posta adresinizi satmayacağız ya da başka bir şekilde kullanmayacağız. Söz veriyoruz.";
+"You need to enter a valid email address." = "Geçerli bir e-posta adresi girmeniz gerekiyor.";
+"We may need to get in touch with you in order to fix this." = "Bunu düzeltmek için sizinle iletişime geçmemiz gerekebilir.";
+"Please, provide some details as to when this exception happened." = "Lütfen, bunun ne zaman gerçekleştiğine dair bazı ayrıntılar verin.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Uygulamanın ön planda veya arka planda olması durumunda, devam eden görevler hakkında bilgi ekleyin; herhangi bir şeyi tıkladıysanız vb. Sadece rapordan gelen hatayı anlamaya çalışmak zor olabilir ve ek bilgi olmadan imkansız.";
+"Thank you for the report!" = "Rapor için teşekkür ederim!";
+"We'll fix it as soon as possible!" = "Mümkün olan en kısa sürede düzelteceğiz!";
+
+"Welcome to beta testing of %@." = "%@ beta testine hoş geldiniz..";
+"This is the first time you run a beta build %@." = "Bu, beta yapı %@'yi ilk çalıştırmanızdır.";
+"This beta build of %@ has expired." = "%@'nin bu beta yapı süresi doldu.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Yazılımımızın tadını çıkarın! Herhangi bir sorunuz varsa veya herhangi bir hatayla karşılaşırsanız, destek sayfamızdan bize söyleyebilirsiniz %@";
+
+"Continue" = "Devam Et";
+"Purchase..." = "Satın Al...";
+"I'm Still Not Sure" = "Hala Emin Değilim";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ İnternet'e bağlanamadı. Uygulamadan bir saat içinde çıkılacaktır.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ 'nin denemeyi düzgün bir şekilde sürdürebilmek için İnternet bağlantısına ihtiyaç duyar.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Bir kopya satın alabileceğin bir sayfaya yönlendirileceksin. %@ 'nin sizin için doğru olup olmadığından hâlâ emin değilseniz ve sorularınız varsa, bize ulaşın.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@'yi denediğin için teşekkürler! %li gün herhangi bir sınırlama olmadan kullanabilirsiniz. Deneme süresi bittikten sonra %@'nin bir kopyasını satın almanız gerekir.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "%@ 'yi denediğin için teşekkürler! %li gündür kullanıyorsun. %@ kullanmaya devam etmek için bir kopyasını satın almanız gerekiyor.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@ 'yi denediğin için teşekkürler! %@ 'yi %i için herhangi bir sınırlama olmaksızın kullanabilirsiniz. Deneme süresi dolduktan sonra %@ 'nin bir kopyasını satın almanız gerekir.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "%@ 'yi denediğin için teşekkürler! %@ 'yi %i için kullandın. %@ 'yi kullanmaya devam etmek için bir kopyasını satın almanız gerekiyor.";
+"Working..." = "Çalışıyor...";
+
+"Progress" = "Devam Ediyor";
+"Posted successfully" = "Başarıyla gönderildi";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ önümüzdeki 24 saatte çalışmaya devam edecek ve sonrasında işlevselliği engellenecektir. Lütfen %@ 'yi güncel tutmak için güncelleyin..";
+"Please download a new build." = "Lütfen yeni yapıyı indirin.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Raporu yine de gönderebilirsiniz, ancak mesaj İngilizce değilse, tam destek sağlayamam.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Mesajınızın İngilizce olarak yazılmadığını gösteren harfler içeriyor. Lütfen, %@' nin çeşitli dillere tercüme edilmesine rağmen, yalnızca İngilizce olarak destek sağlandığını unutmayın. Anlayışınız için teşekkürler.";
+"%li hours" = "%li saat";
+"%li minutes" = "%li dakika";
+"%li seconds" = "%li saniye";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Böyle bir belge bulunamadı. Daha sonra tekrar kontrol edin, henüz senkronize edilmemiş olabilir.";
+"Cannot open document metadata file." = "Belge meta veri dosyası açılamadı.";
+"Metadata file doesn't contain required information." = "Meta veri dosyası gerekli bilgileri içermiyor.";
+"Synchronization is already in progress." = "Senkronizasyon zaten sürüyor.";
+"An upload operation is already in progress." = "Bir yükleme işlemi zaten devam ediyor.";
+"Could not save upload metadata." = "Yüklenen meta verileri kaydedilemedi.";
+"Cannot find entity named %@" = "%@ adlı varlık bulunamadı";
+"Cannot find class named %@" = "%@ adlı sınıf bulunamadı";
+"Cannot find entity with ID %@" = "% kimlikli varlık bulunamadı";
+"Can't find synchronization folder for document %@." = "%@ Belgesi için senkronizasyon klasörü bulunamadı.";
+"Can't find synchronization folder for computer %@." = "Bilgisayar %@ için senkronizasyon klasörü bulunamadı.";
+"Can't find sync folder for document %@." = "%@ belgesi için senkronizasyon klasörü bulunamadı.";
+"%@ couldn't finish synchronization in the background." = "%@ arka planda senkronizasyonu tamamlayamadı.";
+"Please switch back to %@ so that the synchronization can finish." = "Senkronizasyonu bitirmek için lütfen %@'ye geri dönün";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Senkronizasyon verisindeki değişiklikler okunamadı.";
+"Could not copy synchronization change data to the cloud." = "Senkronizasyon verisindeki değişiklikler buluta kopyalanamadı.";
+"Failing to apply change sets." = "Değişim gruplarını uygulamakta başarısız oluyor.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Bilgisayar %@'den gelen senkronizasyon değişiklikleri henüz indirilmedi.";
+
+/// XUOAuth2
+"Authentication" = "Kimlik Doğrulama";
+"Server responded with unknown token type." = "Sunucu bilinmeyen simge türü ile yanıt verdi.";
+"Server provided invalid authorization response." = "Sunucu, geçersiz yetkilendirme yanıtı verdi.";
+"Server has redirected with invalid URL." = "Sunucu geçersiz URL ile yeniden yönlendirildi.";
+"User cancelled the authorization." = "Kullanıcı yetkiyi iptal etti.";
+
+/// Debug Log Menu
+"Debug" = "Hata Ayıklama";
+"About Debug Log..." = "Hata Ayıklama Günlüğü Hakkında ...";
+"Debug Logging" = "Hata Ayıklama Günlüğü";
+"On" = "Açık";
+"Off" = "Kapalı";
+"Clear Debug Log" = "Hata Ayıklama Günlüğünü Temizle";
+"Show Log in Finder" = "Finder'da Göster";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Hata ayıklama günlüğü, %@ 'nin arka planda ne yaptığıyla ilgili bazı teknik ayrıntıları içeren bir metin dosyasıdır. Neler olup bittiğini görmemi sağladığı için işleri hızla düzeltmek için oldukça yararlıdır. Hata ayıklama günlüğünü almak için aşağıdaki basit adımları uygulayın:";
+"1) If this isn\'t your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn\'t contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you\'ve modified the log file." = "1) 1) Gönderdiğiniz ilk hata ayıklama günlüğünüz bu değilse, Hata Ayıklama menüsünden Hata Ayıkla Günlüğünü Temizle'yi seçin.\n2) Hata Ayıklama menüsünde, Hata Ayıklama Günlüğünün Açık olduğundan emin olun.\n3) Sorun yaşadığınız şeyi gerçekleştirin.\n4) Hata Ayıkla menüsünde Hata Ayıklama Günlüğü Kapat seçeneğini açın.\n5) Hata Ayıklama menüsünde Günlüğü Finder'da Göster'i seçin. Bu, Finder'da günlük dosyasını seçer ve kolayca bana gönderebilirsiniz. Lütfen, dosyayı kopyalayıp yapıştırmak yerine e-postaya ekleyin.\n\n Günlük dosyası, günlük dosyasını açarak doğrulanabilecek kişisel verileri içermez (basit bir metin dosyasıdır). Bazı verilerin gizli veya kişisel olduğunu düşünüyorsanız, lütfen yerine kolaylıkla tanımlanabilen bir şeyle (ör. XXXXXXXX) değiştirin ve günlük dosyasını değiştirdiğinizi bildirin.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "Doküman şu an indirilemedi.";
+"Log Current Application State" = "Geçerli Uygulama Durumunu Kaydet";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Bu beta yapısı bir saatten az sürede sona ericektir.";
+"Please update your copy of this beta build." = "Lütfen bu beta sürümünü güncelleyin.";
+
+// Preferences.
+"All Preferences" = "Tüm Tercihler";
+"Show All" = "Tümünü göster";
+"Preferences" = "Terichler";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Arama sonucu bulunamadı";
+"%li search results" = "%li arama sonuçları";
+
+// Certificate view.
+"Select..." = "Seç...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Senkronizasyon verileri indiriliyor.";
+"Copy Current Application State" = "Geçerli Uygulama Durumunu Kopyala";
+

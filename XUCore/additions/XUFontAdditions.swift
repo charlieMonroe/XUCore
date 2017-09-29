@@ -116,7 +116,7 @@ public extension XUFont {
 	/// optional.
 	public class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
 		if #available(OSX 10.11, *) {
-			return self.systemFont(ofSize: pointSize, weight: NSFont.Weight(rawValue: weight.value))
+			return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
 		} else {
 			if weight.rawValue <= XUFontWeight.regular.rawValue {
 				return self.systemFont(ofSize: pointSize)

@@ -12,19 +12,19 @@ public extension UIColor {
 		
 	/// Initializes self from a hexString color.
 	public convenience init?(hexString originalHexString: String) {
-		var hexString = originalHexString.deleting(prefix: "#")
-		guard hexString.characters.count == 6 || hexString.characters.count == 8 else {
+		let hexString = originalHexString.deleting(prefix: "#")
+		guard hexString.count == 6 || hexString.count == 8 else {
 			return nil // Wrong fromat
 		}
 		
 		let startIndex = hexString.startIndex
-		let redByte = hexString.substring(with: startIndex ..< hexString.index(startIndex, offsetBy: 2)).hexValue
-		let greenByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 2) ..< hexString.index(startIndex, offsetBy: 4)).hexValue
-		let blueByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 4) ..< hexString.index(startIndex, offsetBy: 6)).hexValue
+		let redByte = String(hexString[startIndex ..< hexString.index(startIndex, offsetBy: 2)]).hexValue
+		let greenByte = String(hexString[hexString.index(startIndex, offsetBy: 2) ..< hexString.index(startIndex, offsetBy: 4)]).hexValue
+		let blueByte = String(hexString[hexString.index(startIndex, offsetBy: 4) ..< hexString.index(startIndex, offsetBy: 6)]).hexValue
 		
 		let alpha: CGFloat
-		if hexString.characters.count == 8 {
-			let alphaByte = hexString.substring(with: hexString.index(startIndex, offsetBy: 6) ..< hexString.index(startIndex, offsetBy: 8)).hexValue
+		if hexString.count == 8 {
+			let alphaByte = String(hexString[hexString.index(startIndex, offsetBy: 6) ..< hexString.index(startIndex, offsetBy: 8)]).hexValue
 			alpha = CGFloat(alphaByte) / 255.0
 		} else {
 			alpha = 1.0

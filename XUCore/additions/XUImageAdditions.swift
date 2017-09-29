@@ -12,6 +12,29 @@ import Foundation
 	import UIKit
 	
 	public typealias XUImage = UIImage
+	
+	/// Unifying iOS and macOS API.
+	public extension XUImage {
+		
+		/// Allow the same API on iOS and macOS.
+		public struct Name: RawRepresentable {
+			
+			public typealias RawValue = String
+			
+			public let rawValue: String
+			
+			public init(rawValue: String) {
+				self.rawValue = rawValue
+			}
+			
+		}
+		
+		public convenience init?(named name: Name) {
+			self.init(named: name.rawValue)
+		}
+		
+	}
+	
 #else
 	import Cocoa
 	

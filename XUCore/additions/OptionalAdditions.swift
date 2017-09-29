@@ -53,3 +53,17 @@ public extension Optional {
 	
 }
 
+public extension Optional where Wrapped == String {
+	
+	/// Returns true if the string wrapped in this optional is either nil or empty.
+	public var isNilOrEmpty: Bool {
+		switch self {
+		case .none:
+			return true
+		case .some(let string):
+			return string.isEmpty
+		}
+	}
+	
+}
+

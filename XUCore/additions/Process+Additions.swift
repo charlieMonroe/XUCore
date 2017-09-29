@@ -10,7 +10,6 @@ import Foundation
 
 public extension Process {
 	
-	
 	/// Waits until exits and reads all data as string (from stdout). This will
 	/// set self.standardOutput to a new pipe. If you have previously set it to
 	/// something else, it will be overwritten.

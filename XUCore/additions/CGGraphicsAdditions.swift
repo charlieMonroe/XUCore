@@ -49,6 +49,16 @@ public extension CGRect {
 
 }
 
+/// Returns lhs multiplied by rhs.
+public func *(_ lhs: CGSize, _ rhs: CGFloat) -> CGSize {
+	return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
+}
+
+/// Multiplies lhs by rhs.
+public func *=(_ lhs: inout CGSize, _ rhs: CGFloat) {
+	lhs.width *= rhs
+	lhs.height *= rhs
+}
 
 public extension CGSize {
 	

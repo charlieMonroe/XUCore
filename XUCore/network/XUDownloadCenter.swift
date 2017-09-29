@@ -703,7 +703,7 @@ open class XUDownloadCenter {
 	/// to find the JSON potential callback function.
 	public func jsonObject(fromCallback jsonString: String!) -> Any? {
 		guard let innerJSON = jsonString?.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
-			if jsonString.characters.first == Character("{") && jsonString.characters.last == Character("}") {
+			if jsonString.first == Character("{") && jsonString.last == Character("}") {
 				return self.jsonObject(from: jsonString)
 			}
 			
