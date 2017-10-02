@@ -316,6 +316,8 @@
 		077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */; };
 		0784480B1D12A4C000E8467B /* OptionalAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784480A1D12A4C000E8467B /* OptionalAdditions.swift */; };
 		0784480C1D12A4C000E8467B /* OptionalAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784480A1D12A4C000E8467B /* OptionalAdditions.swift */; };
+		07855DDA1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */; };
+		07855DDB1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */; };
 		078E2D6C1CEB58AB00715CB8 /* NSBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */; };
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
@@ -609,6 +611,9 @@
 		077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Additions.swift"; sourceTree = "<group>"; };
 		077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationState.swift; sourceTree = "<group>"; };
 		0784480A1D12A4C000E8467B /* OptionalAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAdditions.swift; sourceTree = "<group>"; };
+		07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUJSONHelper.swift; sourceTree = "<group>"; };
+		07855DEA1F80DE3A0040AC77 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		07855DF11F82269F0040AC77 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0788DE901ED2EB0F00D2A81B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
@@ -1143,6 +1148,7 @@
 				07B153C21E5369A6003A5263 /* XUExceptionCatcher+Swift.swift */,
 				077AFE141BBD101400872A48 /* XUFatalError.swift */,
 				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
+				07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */,
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
 				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
 				076A5DF31F29CA0B006E93D1 /* XULockPool.swift */,
@@ -1472,6 +1478,8 @@
 				fa,
 				"zh-Hant",
 				tr,
+				ru,
+				bg,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1689,6 +1697,7 @@
 				075DC7801CF06ABE0043EBD0 /* XUManagedObject.swift in Sources */,
 				07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
+				07855DDA1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */,
 				075DC7A11CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
 				0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */,
 				077DA6BD1EE956F50018170E /* XUView+Animation.swift in Sources */,
@@ -1727,6 +1736,7 @@
 				07FD4BDB1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */,
 				075F70B21D1D50A200540B42 /* XUAuthorizationWebViewController.swift in Sources */,
 				07FD4BD51C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */,
+				07855DDB1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */,
 				07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */,
 				073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */,
 				0749DCE21C00C1910075CC9B /* UIColorAdditions.swift in Sources */,
@@ -1877,6 +1887,8 @@
 				0751A4761F6FB930006C4BEE /* fa */,
 				072998391F6EAB5500C8CD35 /* zh-Hant */,
 				0743D1C81F78C33F00836330 /* tr */,
+				07855DEA1F80DE3A0040AC77 /* ru */,
+				07855DF11F82269F0040AC77 /* bg */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

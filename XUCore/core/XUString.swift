@@ -302,7 +302,7 @@ public class XUStringGenerator: IteratorProtocol {
 	/// Initializes with a string.
 	public init(string: XUString) {
 		self.string = string
-		self.currentIndex = 0
+		self.currentIndex = -1
 	}
 	
 }

@@ -527,20 +527,11 @@ open class XUDownloadCenter {
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
 	public func downloadJSONDictionary(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
-		guard let obj = self.downloadJSON(at: url, withRequestModifier: modifier) else {
-			return nil // Error already set.
-		}
-		
-		guard let dict = obj as? XUJSONDictionary else {
-			self.owner.downloadCenter(self, didEncounterError: .wrongJSONFormat)
-			return nil
-		}
-		
-		return dict
+		return self.downloadJSON(at: url, withRequestModifier: modifier)
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSON(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> Any? {
+	public func downloadJSON<T>(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
 		let data = self.downloadData(at: url) { (request) -> Void in
 			request.acceptType = URLRequest.ContentType.json
 			
@@ -552,7 +543,7 @@ open class XUDownloadCenter {
 			return nil
 		}
 		
-		guard let obj = self.jsonObject(from: data!) else {
+		guard let obj: T = XUJSONHelper.jsonObject(from: data!) else {
 			return nil // Error already set by jsonObject(from:)
 		}
 		
@@ -647,6 +638,7 @@ open class XUDownloadCenter {
 	#endif
 	
 	/// Parses the `JSONString` as JSON and attempts to cast it to XUJSONDictionary.
+	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonDictionary(from jsonString: String!) -> XUJSONDictionary? {
 		guard let obj = self.jsonObject(from: jsonString) else {
 			return nil
@@ -663,6 +655,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Attempts to parse `data` as JSON.
+	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonObject(from data: Data) -> Any? {
 		guard let obj = try? JSONSerialization.jsonObject(with: data, options: []) else {
 			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
@@ -677,6 +670,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Attempts to parse `JSONString` as JSON.
+	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonObject(from jsonString: String!) -> Any? {
 		if jsonString == nil {
 			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
@@ -701,6 +695,7 @@ open class XUDownloadCenter {
 	
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
+	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonObject(fromCallback jsonString: String!) -> Any? {
 		guard let innerJSON = jsonString?.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			if jsonString.first == Character("{") && jsonString.last == Character("}") {

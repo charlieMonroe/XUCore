@@ -1,0 +1,77 @@
+//
+//  XUJSONHelper.swift
+//  XUCore
+//
+//  Created by Charlie Monroe on 9/29/17.
+//  Copyright © 2017 Charlie Monroe Software. All rights reserved.
+//
+
+import Foundation
+
+/// XUJSONHelper defines a helper struct that defines various methods that allow
+/// easier conversion between JSON and String.
+public struct XUJSONHelper {
+
+	/// Helper method that casts the object to XUJSONDictionary.
+	public static func jsonDictionary(from data: Data) -> XUJSONDictionary? {
+		return self.jsonObject(from: data)
+	}
+	
+	/// Helper method that casts the object to XUJSONDictionary.
+	public static func jsonDictionary(from jsonString: String) -> XUJSONDictionary? {
+		return self.jsonObject(from: jsonString)
+	}
+	
+	/// Helper method that casts the object to XUJSONDictionary.
+	public static func jsonDictionary(fromCallback jsonString: String) -> XUJSONDictionary? {
+		return self.jsonObject(fromCallback: jsonString)
+	}
+	
+	/// Converts json data to a JSON object.
+	public static func jsonObject<T>(from data: Data) -> T? {
+		guard let genericObj = try? JSONSerialization.jsonObject(with: data, options: []) else {
+			XULog("Failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
+			return nil
+		}
+		
+		guard let obj = genericObj as? T else {
+			XULog("Failed to cast JSON to \(T.self): \(genericObj).")
+			return nil
+		}
+		
+		return obj
+	}
+	
+	/// Converts jsonString to a JSON object.
+	public static func jsonObject<T>(from jsonString: String) -> T? {
+		return self.jsonObject(from: jsonString.utf8Data)
+	}
+	
+	/// Some JSON responses may contain secure prefixes - this method attempts
+	/// to find the JSON potential callback function.
+	public static func jsonObject<T>(fromCallback jsonString: String) -> T? {
+		guard let innerJSON = jsonString.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
+			if jsonString.first == Character("{") && jsonString.last == Character("}") {
+				return self.jsonObject(from: jsonString)
+			}
+
+			XULog("No inner JSON in callback string \(jsonString)")
+			return nil
+		}
+		
+		return self.jsonObject(from: innerJSON)
+	}
+	
+	/// Returns a string from a JSON object. Returns nil if the object is not
+	/// representable in JSON.
+	public static func jsonString(from object: Any) -> String? {
+		guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+			return nil
+		}
+		
+		return String(data: data)
+	}
+	
+	private init() {}
+	
+}

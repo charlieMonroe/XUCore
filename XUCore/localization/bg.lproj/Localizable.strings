@@ -1,0 +1,135 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 час";
+"1 minute" = "1 минута";
+"1 second" = "1 секунда";
+"Unknown error." = "Непозната грешка.";
+
+"OK" = "OK";
+"Cancel" = "Отказ";
+
+"Failed to parse CSV file." = "Парсването на CSV файла се провали.";
+
+"Send Report" = "Изпрати Доклад";
+"Privacy Information..." = "Информация за поверителността...";
+"%AppName% has encountered a problem." = "%AppName% се натъкна на грешка.";
+"%AppName% will terminate after sending the report." = "%AppName% ще се изключи след като изпратите доклада.";
+"Report to be sent:" = "Доклад:";
+"Your Email:" = "Вашият Email:";
+"Description:" = "Съдържание:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Моля, опишете ситуацията която доведе до това и опишете стъпките необходими за да се възпроизведе проблемът отново, ако е възможно. Въведете email адреса си отдолу - Ние ще ви уведомим когато поправим проблема или може да се свържем с Вас за да ви попитаме за допълнителни детайли за самия проблем. Email адресът Ви няма да бъде колекциониран в никакви бази от дани и няма да ви изпращаме непоискани писма.\n\nС изпращането на този доклад ни помагане да подобрим софтуерът си. Благодарим Ви!";
+
+"Report Problem" = "Докладвайте Проблем";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Ние оценямаме Вашите отзиви и не бихме си позволили да събираме всякаква друга допълнителна информация. Вашият email адрес няма да бъде съхраняван никъде и ще се използва само за да Ви уведомим кога проблемът ще бъде решен, или когато ни трябва още информация за да решим проблема.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Само следната информация ще бъде изпратена:\n• Описанието което Вие напишете.\n• Информацията за грешката по долу.\n• Версията на програмата.\n• Версията на системата (OS).\n• Модел на компютъра (без MAC адрес или подобна информация която може да разпознае компютърът Ви).";
+
+"Could not post your report." = "Изпращането на доклада се провали.";
+"Check your Internet connection and try again." = "Проверете интернет връзката и опитайте пак.";
+"Heh, nice try. Please, enter a valid email address." = "Email адресът изглежда невалиден.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Може да се наложи да се свържем с Вас за да оправим проблема. Не хапем, няма да злоупотребим с email адресът Ви. Обещаваме.";
+"You need to enter a valid email address." = "Трябва да въведете валиден email адрес.";
+"We may need to get in touch with you in order to fix this." = "Може да се наложи да се свържем с Вас за да оправим проблема.";
+"Please, provide some details as to when this exception happened." = "Моля, добавете някои детайли, като например кога се случи проблемът.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включете и информация за това какво е правила програмата по същото време, минимизирана без работа или не; кликнали ли сте някъде, и т.н. Оправянето на бъгове е трудно а без допълнителна информация почти невъзможно.";
+"Thank you for the report!" = "Благодарим Ви за доклада!";
+"We'll fix it as soon as possible!" = "Ще го поправим възможно най-скоро!";
+
+"Welcome to beta testing of %@." = "Добре дошли в бета теста на %@.";
+"This is the first time you run a beta build %@." = "Това е пърият път в който включвате бета билд %@.";
+"This beta build of %@ has expired." = "Този бета билд %@ вече не е годен за употреба.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Насладете се на нашия софтуер! Ако имате въпроси или се натъкнете на проблеми, попитайте ни на нашата страница за поддръжка %@";
+
+"Continue" = "Continue";
+"Purchase..." = "Purchase...";
+"I'm Still Not Sure" = "I'm Still Not Sure";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ couldn't connect to the Internet. The application will exit in one hour.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ requires connection to the Internet to continue the trial properly.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.";
+"Working..." = "Working...";
+
+"Progress" = "Progress";
+"Posted successfully" = "Posted successfully";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.";
+"Please download a new build." = "Please download a new build.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.";
+"%li hours" = "%li hours";
+"%li minutes" = "%li minutes";
+"%li seconds" = "%li seconds";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
+"Cannot open document metadata file." = "Cannot open document metadata file.";
+"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
+"Synchronization is already in progress." = "Synchronization is already in progress.";
+"An upload operation is already in progress." = "An upload operation is already in progress.";
+"Could not save upload metadata." = "Could not save upload metadata.";
+"Cannot find entity named %@" = "Cannot find entity named %@";
+"Cannot find class named %@" = "Cannot find class named %@";
+"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
+"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
+"Can't find synchronization folder for computer %@." = "Can't find synchronization folder for computer %@.";
+"Can't find sync folder for document %@." = "Can't find sync folder for document %@.";
+"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
+"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Could not read synchronization change data.";
+"Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
+"Failing to apply change sets." = "Failing to apply change sets.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
+
+/// XUOAuth2
+"Authentication" = "Authentication";
+"Server responded with unknown token type." = "Server responded with unknown token type.";
+"Server provided invalid authorization response." = "Server provided invalid authorization response.";
+"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
+"User cancelled the authorization." = "User cancelled the authorization.";
+
+/// Debug Log Menu
+"Debug" = "Debug";
+"About Debug Log..." = "About Debug Log...";
+"Debug Logging" = "Debug Logging";
+"On" = "On";
+"Off" = "Off";
+"Clear Debug Log" = "Clear Debug Log";
+"Show Log in Finder" = "Show Log in Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
+"Log Current Application State" = "Log Current Application State";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
+"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "Show All";
+"Preferences" = "Preferences";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "No search results";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "Select...";
+

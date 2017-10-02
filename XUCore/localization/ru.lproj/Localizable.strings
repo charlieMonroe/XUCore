@@ -1,0 +1,139 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 час";
+"1 minute" = "1 минута";
+"1 second" = "1 секунда";
+"Unknown error." = "Неизвестная ошибка.";
+
+"OK" = "OK";
+"Cancel" = "Отмена";
+
+"Failed to parse CSV file." = "Не удалось выполнить анализ файла CSV.";
+
+"Send Report" = "Отправить отчет";
+"Privacy Information..." = "Информация о конфиденциальности...";
+"%AppName% has encountered a problem." = "%AppName% столкнулся с проблемой.";
+"%AppName% will terminate after sending the report." = "%AppName% завершит работу после отправки отчета.";
+"Report to be sent:" = "Отчет будет отправлен:";
+"Your Email:" = "Ваш адрес эл.почты:";
+"Description:" = "Описание:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется ваша помощь при её ликвидации. Ваш адрес электронной почты не будет собран в базе данных, и вы не получите каких-либо нежелательных сообщений.\n\nBy предоставления настоящего отчета, что вы поможете нам улучшить эту программу. Спасибо!";
+
+"Report Problem" = "Сообщить о проблеме";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Мы ценим ваши отзывы и не собираем никакой нежелательной информации. Ваш адрес электронной почты будет использоваться только для информирования вас о статусе исправления ошибки.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "К отчету будет прикреплена следующая информация:\n• Ваше описание проблемы.\n• Версия программы.\n• Версия вашей системы (OС).\n• Модель вашего компьютера (MAC-адрес или аналогичная информация, которая могла бы идентифицировать Ваш компьютер).";
+
+"Could not post your report." = "Не удалось отправить отчет.";
+"Check your Internet connection and try again." = "Проверьте подключение к Интернету и повторите попытку.";
+"Heh, nice try. Please, enter a valid email address." = "Хорошая попытка, но нет: нам нужен ваш настоящий электронный адрес.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Нам может потребоваться ваша дальнейшая помощь для разрешения данной проблемы. Ну, правда — мы не кусаемся и уж точно не передадим ваш адрес никаким сторонним компаниям. Обещаем.";
+"You need to enter a valid email address." = "Некорректный адрес электронной почты.";
+"We may need to get in touch with you in order to fix this." = "Нам может потребоваться ваша дальнейшая помощь для разрешения данной проблемы.";
+"Please, provide some details as to when this exception happened." = "Пожалуйста, предоставьте некоторые подробности о том, когда произошла эта ситуация.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включите информацию о текущих задачах в приложении, если приложение было на переднем или заднем плане; Если вы нажали на что угодно, и т.д. Определить ошибку только из отчета может быть сложно и без дополнительной информации невозможно.";
+"Thank you for the report!" = "Спасибо за отчет!";
+"We'll fix it as soon as possible!" = "Мы исправим это как можно скорее!";
+
+"Welcome to beta testing of %@." = "Добро пожаловать на бета тестирование %@.";
+"This is the first time you run a beta build %@." = "Это первый раз, когда вы запускаете сборку бета-версии %@.";
+"This beta build of %@ has expired." = "Срок этой сборки бета-версии %@ истек.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Наслаждайтесь нашим программным обеспечением! Если у вас есть какие-либо вопросы или возникли какие-либо ошибки, не стесняйтесь задавать вопросы на нашей странице поддержки %@";
+
+"Continue" = "Продолжить";
+"Purchase..." = "Покупка...";
+"I'm Still Not Sure" = "Я до сих пор не уверен";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ не удалось подключиться к интернету. Программа завершит работу через час.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ Требуется подключение к интернету для продолжения работы пробной версии.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Вы попадете на страницу, где вы сможете купить копию. Если вы все еще не уверены, что %@ является правильным для вас и есть вопросы, свяжитесь с нами.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали  %@! Вы можете использовать его %li дней без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Спасибо, что попробовали %@! Вы использовали %li дней. Чтобы продолжить использование %@ вам нужно приобрести копию.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали %@! Вы можете использовать его %i %@ без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Спасибо, что попробовали %@! Вы уже использовали %@ сейчас. Чтобы продолжить использование %@ вам нужно приобрести копию.";
+"Working..." = "Работа...";
+
+"Progress" = "Прогресс";
+"Posted successfully" = "Успешно добавлено";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ будет продолжать работать ближайшие 24 часа, после чего его функциональность будет заблокирована. Пожалуйста, обновите %@ для того, чтобы поддерживать работоспособность.";
+"Please download a new build." = "Пожалуйста, скачайте новую сборку.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Вы можете отправить отчет так или иначе, но если сообщение написано не на английском языке, я не смогу предоставить вам полную поддержку.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ваше сообщение содержит специальные символы, которые обычно указывают на то, что сообщение написано не на английском языке. Обратите внимание, что, хотя %@ и переведен на различные языки, поддержка оказывается только на английском. Спасибо за понимание.";
+"%li hours" = "%li часа(ов)";
+"%li minutes" = "%li минут(ы)";
+"%li seconds" = "%li секунд(ы)";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Невозможно найти этот документ. Попробуйте позже, возможно нет синхронизации.";
+"Cannot open document metadata file." = "Невозможно открыть файл метаданных.";
+"Metadata file doesn't contain required information." = "Файл метаданных не содержит требуемой информации.";
+"Synchronization is already in progress." = "Синхронизация уже идет.";
+"An upload operation is already in progress." = "Уже выполняется операция загрузки.";
+"Could not save upload metadata." = "Не удалось сохранить загрузку метаданных.";
+"Cannot find entity named %@" = "Невозможно найти объект с именем %@";
+"Cannot find class named %@" = "Невозможно найти класс с именем %@";
+"Cannot find entity with ID %@" = "Невозможно найти объект с ID %@";
+"Can't find synchronization folder for document %@." = "Невозможно найти папку синхронизации для документа %@.";
+"Can't find synchronization folder for computer %@." = "Невозможно найти папку синхронизации для компьютера %@.";
+"Can't find sync folder for document %@." = "Невозможно найти папку синхронизации для документа %@.";
+"%@ couldn't finish synchronization in the background." = "%@ невозможно закончить синхронизацию в фоновом режиме.";
+"Please switch back to %@ so that the synchronization can finish." = "Пожалуйста, перейдите обратно в %@ чтобы закончить синхронизацию.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Невозможно прочитать синхронизации изменений данных.";
+"Could not copy synchronization change data to the cloud." = "Можно не копировать синхронизированные данные в облако.";
+"Failing to apply change sets." = "В случае невозможности применить изменения наборов.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Изменения в синхронизации с компьютера %@ не были загружены.";
+
+/// XUOAuth2
+"Authentication" = "Проверка подлинности";
+"Server responded with unknown token type." = "Сервер ответил с неизвестного типа маркера.";
+"Server provided invalid authorization response." = "Неверный ответ авторизации сервера.";
+"Server has redirected with invalid URL." = "Сервер перенаправлен с недопустимого URL-адреса.";
+"User cancelled the authorization." = "Пользователь отменил разрешение.";
+
+/// Debug Log Menu
+"Debug" = "Отладка";
+"About Debug Log..." = "О Журнале Отладки...";
+"Debug Logging" = "Ведение Журнала Отладки";
+"On" = "Вкл";
+"Off" = "Выкл";
+"Clear Debug Log" = "Очистить Журнал Отладки";
+"Show Log in Finder" = "Показать Журнал в Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом Отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить Журнал Отладки, выполните следующие простые действия:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если это ваш первый Журнал Отладки, который вы посылаете, пожалуйста, выберите Очистить Журнал Отладки в меню Отладка.\n2) В меню Отладка убедитесь, что ведение Журнала Отладки включено.\n3) Выполните все задачи, имеющие проблемы.\n4) В меню Отладка отключите ведение Журнала Отладки.\n5) В меню Отладка выберите пункт Показать Журнал в Finder. Это действие открывает лог-файл в Finder, и вы можете легко отправить его мне. Пожалуйста, прикрепите файл к электронной почте, вместо копирования вставки information.\n\nФайл Журнала не содержит никаких личных данных, которые можно проверить, открыв файл (это простой текстовый файл). Если вы считаете, что некоторые из данных конфиденциальные или личные, пожалуйста, замените их чем-то, что могут быть легко идентифицированы как заполнитель (например XXXXXXXX) и дайте мне знать, что вы модифицировали файл Журнала.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "Документ не может быть загружен в данный момент.";
+"Log Current Application State" = "Состояние Журнала текущего приложения";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Эта бета-версия истекает менее чем через час.";
+"Please update your copy of this beta build." = "Пожалуйста, обновите вашу копию этой бета-версии.";
+
+// Preferences.
+"All Preferences" = "Все настройки";
+"Show All" = "Показать все";
+"Preferences" = "Настройки";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Нет результатов поиска";
+"%li search results" = "%li результат (а),(ов) поиска";
+
+// Certificate view.
+"Select..." = "Выбрать...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Синхронизация данных загружается.";
+"Copy Current Application State" = "Копия текущего состояния приложения";
+
