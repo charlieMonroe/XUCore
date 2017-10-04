@@ -133,3 +133,6 @@
 // Certificate view.
 "Select..." = "Vælg...";
 
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
+"Copy Current Application State" = "Copy Current Application State";

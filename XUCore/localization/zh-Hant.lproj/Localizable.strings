@@ -54,7 +54,6 @@
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "感謝您試用%@! 您的試用還有%i %@ 到期. 試用期結束後，您需要付費購買%@.";
 "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "感謝您試用%@! 您已經使用了%i %@.要繼續使用%@ 您需要付費購買.";
 "Working..." = "處理中...";
-"Copy Current Application State" = "記錄軟體目前的狀態";
 
 "Progress" = "進度";
 "Posted successfully" = "發布成功";
@@ -108,7 +107,7 @@
 "Show Log in Finder" = "在 Finder 中顯示日誌";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "除錯日誌是包含一些 %@ 在後台執行時技術細節的文本文件。這些除錯日誌讓我們能夠快速解決問題來說非常有幫助。如果想要獲取除錯日誌，請按照以下步驟進行操作：";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "如果這不是您第一次發送除錯日誌，請點擊“除錯”選單，選擇“清理除錯日誌”。\ N2）在“除錯”選單中，請確保“除錯日誌記錄”處於開啟狀態。\ N3） 請重現遇到問題的操作。\ n4）點擊“除錯”菜單中，關閉“除錯日誌記錄”。\ n5）點擊“除錯”菜單，選擇“在Finder中顯示日誌”在打開的Finder窗口中，選擇日誌文件通過電子郵件發送給我們。請注意要將日誌文件作為附件發送，而不要直接複製其中的內容。\ n\ n日誌文件中不包含任何個人數據，您可以通過直接打開日誌文件來進行檢驗（日誌文件實際上就是簡單的文本文件）。如果您認為日誌文件中的某些數據為機密或者個人信息，請將這些信息使用易識別的符號進行替換（比如XXXXXXXX），讓我們知道您對日誌文件進行過修改。";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "如果這不是您第一次發送除錯日誌，請點擊“除錯”選單，選擇“清理除錯日誌”。 N2）在“除錯”選單中，請確保“除錯日誌記錄”處於開啟狀態。 N3） 請重現遇到問題的操作。 n4）點擊“除錯”菜單中，關閉“除錯日誌記錄”。 n5）點擊“除錯”菜單，選擇“在Finder中顯示日誌”在打開的Finder窗口中，選擇日誌文件通過電子郵件發送給我們。請注意要將日誌文件作為附件發送，而不要直接複製其中的內容。 n n日誌文件中不包含任何個人數據，您可以通過直接打開日誌文件來進行檢驗（日誌文件實際上就是簡單的文本文件）。如果您認為日誌文件中的某些數據為機密或者個人信息，請將這些信息使用易識別的符號進行替換（比如XXXXXXXX），讓我們知道您對日誌文件進行過修改。";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "該文件目前無法下載。";
@@ -133,3 +132,7 @@
 
 // Certificate view.
 "Select..." = "選擇...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
+"Copy Current Application State" = "記錄軟體目前的狀態";
