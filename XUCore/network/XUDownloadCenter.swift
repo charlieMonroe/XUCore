@@ -361,7 +361,7 @@ open class XUDownloadCenter {
 	open var logTraffic: Bool = true
 	
 	/// Owner of the download center. Used for delegation. Must be non-nil.
-	open private(set) weak var owner: XUDownloadCenterOwner!
+	open private(set) weak var owner: XUDownloadCenterOwner?
 	
 	/// Proxy configuration. By default nil, set to nonnil value for proxy support.
 	/// Note that this changes self.session since NSURLSessionConfiguration won't
@@ -407,6 +407,9 @@ open class XUDownloadCenter {
 		let storage = HTTPCookieStorage.shared
 		storage.setCookies(cookies, for: url, mainDocumentURL: nil)
 	}
+	
+	/// We cache the name as the owner is weak-references.
+	private lazy var _ownerName: String = self.owner!.name
 	
 	/// Sets the Cookie HTTP header field on request.
 	private func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
@@ -496,7 +499,7 @@ open class XUDownloadCenter {
 			request.acceptType = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
 		}
 		
-		self.owner.setupURLRequest(&request, forDownloadingPageAtURL: url!)
+		self.owner?.setupURLRequest(&request, forDownloadingPageAtURL: url!)
 
 		modifier?(&request)
 		
@@ -506,7 +509,7 @@ open class XUDownloadCenter {
 				logString += "\nHTTP Body: \(String(data: request.httpBody) ?? "")"
 			}
 			
-			XULog("[\(self.owner.name)] Will be downloading URL \(url!):\n\(logString)", method: referingFunction)
+			XULog("[\(_ownerName)] Will be downloading URL \(url!):\n\(logString)", method: referingFunction)
 		}
 		
 		do {
@@ -514,7 +517,7 @@ open class XUDownloadCenter {
 			self.lastHTTPURLResponse = response as? HTTPURLResponse
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - downloaded web site source from \(url!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
+				XULog("[\(_ownerName)] - downloaded web site source from \(url!), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
 			}
 			
 			return data
@@ -539,7 +542,7 @@ open class XUDownloadCenter {
 		}
 		
 		if data == nil {
-			self.owner.downloadCenter(self, didEncounterError: .noInternetConnection)
+			self.owner?.downloadCenter(self, didEncounterError: .noInternetConnection)
 			return nil
 		}
 		
@@ -558,12 +561,12 @@ open class XUDownloadCenter {
 		
 		guard let data = self.downloadData(at: url, withRequestModifier: modifier) else {
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - Failed to load URL connection to URL \(url!) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
+				XULog("[\(_ownerName)] - Failed to load URL connection to URL \(url!) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
 			}
 			return nil
 		}
 		
-		if let responseString = String(data: data, encoding: self.owner.defaultSourceEncoding) {
+		if let responseString = String(data: data, encoding: self.owner?.defaultSourceEncoding ?? .utf8) {
 			return responseString
 		}
 		
@@ -586,9 +589,9 @@ open class XUDownloadCenter {
 		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - no input fields in \(source)")
+				XULog("[\(_ownerName)] - no input fields in \(source)")
 			}
-			self.owner.downloadCenter(self, didEncounterError: .noInputFields)
+			self.owner?.downloadCenter(self, didEncounterError: .noInputFields)
 			return nil
 		}
 		
@@ -603,11 +606,11 @@ open class XUDownloadCenter {
 	public func downloadWebPage(postingFormWithValues values: [String : String], toURL url: URL!, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
 		return self.downloadWebPage(at: url, withRequestModifier: { (request) in
 			request.httpMethod = "POST"
-			request.referer = self.owner.refererURL?.absoluteString
-			request.userAgent = self.owner.infoPageUserAgent
+			request.referer = self.owner?.refererURL?.absoluteString
+			request.userAgent = self.owner?.infoPageUserAgent
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] POST fields: \(values)")
+				XULog("[\(self._ownerName)] POST fields: \(values)")
 			}
 			
 			let bodyString = values.urlQueryString
@@ -628,9 +631,9 @@ open class XUDownloadCenter {
 		let doc = try? XMLDocument(xmlString: source, options: .documentTidyXML)
 		if doc == nil {
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - failed to parse XML document \(source)")
+				XULog("[\(_ownerName)] - failed to parse XML document \(source)")
 			}
-			self.owner.downloadCenter(self, didEncounterError: .invalidXMLResponse)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidXMLResponse)
 		}
 		return doc
 	}
@@ -648,7 +651,7 @@ open class XUDownloadCenter {
 			if self.logTraffic {
 				XULog("String represents a valid JSON object, but isn't dictionary: \(type(of: obj)) \(obj)")
 			}
-			self.owner.downloadCenter(self, didEncounterError: .wrongJSONFormat)
+			self.owner?.downloadCenter(self, didEncounterError: .wrongJSONFormat)
 			return nil
 		}
 		return dict
@@ -658,10 +661,10 @@ open class XUDownloadCenter {
 	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonObject(from data: Data) -> Any? {
 		guard let obj = try? JSONSerialization.jsonObject(with: data, options: []) else {
-			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
+				XULog("[\(_ownerName)] - failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
 			}
 			return nil
 		}
@@ -673,19 +676,19 @@ open class XUDownloadCenter {
 	@available(*, deprecated, message: "Use XUJSONHelper")
 	public func jsonObject(from jsonString: String!) -> Any? {
 		if jsonString == nil {
-			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - Trying to pass nil JSONString.")
+				XULog("[\(_ownerName)] - Trying to pass nil JSONString.")
 			}
 			return nil
 		}
 		
 		guard let data = jsonString!.data(using: String.Encoding.utf8) else {
-			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - Cannot get non-nil string data! \(jsonString!)")
+				XULog("[\(_ownerName)] - Cannot get non-nil string data! \(jsonString!)")
 			}
 			return nil
 		}
@@ -702,10 +705,10 @@ open class XUDownloadCenter {
 				return self.jsonObject(from: jsonString)
 			}
 			
-			self.owner.downloadCenter(self, didEncounterError: .invalidJSONResponse)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidJSONResponse)
 			
 			if self.logTraffic {
-				XULog("[\(self.owner.name)] - no inner JSON in callback string \(jsonString ?? "")")
+				XULog("[\(_ownerName)] - no inner JSON in callback string \(jsonString ?? "")")
 			}
 			return nil
 		}
@@ -748,13 +751,13 @@ open class XUDownloadCenter {
 			
 			guard let httpResponse = response as? HTTPURLResponse else {
 				if self.logTraffic {
-					XULog("-[\(self)[\(self.owner.name)] \(#function)] - invalid response (non-HTTP): \(response.descriptionWithDefaultValue())")
+					XULog("-[\(self)[\(_ownerName)] \(#function)] - invalid response (non-HTTP): \(response.descriptionWithDefaultValue())")
 				}
 				return nil
 			}
 			
 			if self.logTraffic {
-				XULog("-[\(self)[\(self.owner.name)] \(#function)] - 'HEAD'ing \(url!), response: \(httpResponse) \(httpResponse.allHeaderFields)")
+				XULog("-[\(self)[\(_ownerName)] \(#function)] - 'HEAD'ing \(url!), response: \(httpResponse) \(httpResponse.allHeaderFields)")
 			}
 			
 			self._importCookies(from: httpResponse)
@@ -763,7 +766,7 @@ open class XUDownloadCenter {
 			return httpResponse
 		} catch let error {
 			if self.logTraffic {
-				XULog("-[\(self)[\(self.owner.name)] \(#function)] - Failed to send HEAD to URL \(url!) - \(error)")
+				XULog("-[\(self)[\(_ownerName)] \(#function)] - Failed to send HEAD to URL \(url!) - \(error)")
 			}
 			return nil
 		}

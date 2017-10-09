@@ -46,6 +46,12 @@
 	return decryptedData;
 }
 
+-(NSData *)encryptedRC4DataWithEncryptionKey:(NSString *)key {
+	CCCryptorStatus status;
+	NSData *encryptedData = [self dataEncryptedUsingAlgorithm:kCCAlgorithmRC4 key:key error:&status];
+	return encryptedData;
+}
+
 -(NSData *)HMACSHA1WithKey:(NSString *)key {
 	return [self HMACWithAlgorithm:kCCHmacAlgSHA1 key:key];
 }
