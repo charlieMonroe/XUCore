@@ -30,6 +30,7 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		while cl != nil {
 			var count: UInt32 = 0
 			guard let props = class_copyPropertyList(cl, &count) else {
+				cl = class_getSuperclass(cl)
 				continue
 			}
 			
