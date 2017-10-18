@@ -368,6 +368,8 @@ public final class XUDebugLog {
 			XUDebugLog._debugLoggingOff.state = .off
 			
 			XUDebugLog.isLoggingEnabled = true
+			
+			self._logAppState()
 		}
 		
 		@objc fileprivate func _turnLoggingOff() {

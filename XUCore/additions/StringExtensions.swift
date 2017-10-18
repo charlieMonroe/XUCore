@@ -17,8 +17,8 @@ public func + (lhs: String, rhs: Character) -> String {
 	return lhs + String(rhs)
 }
 
-/// + operator for String + Character
-public func + (lhs: inout String, rhs: Character) {
+/// += operator for String + Character
+public func += (lhs: inout String, rhs: Character) {
 	lhs = lhs + String(rhs)
 }
 
@@ -45,7 +45,7 @@ public enum XUEmailFormatValidity {
 		// It's about right, see for some obviously phony emails
 		let matches = [
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
-			"noname@nothing.com"
+			"noname@nothing.com", "example.com", "sdsbgt@gmail.com"
 		]
 		if matches.contains(where: email.contains(caseInsensitive:)) {
 			self = .phony

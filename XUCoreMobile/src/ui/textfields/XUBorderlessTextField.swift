@@ -123,7 +123,7 @@ import UIKit
 	
 	@objc private func _textDidChangeNotification() {
 		if self.maximumCharacterCount != 0 {
-			if let text = self.text, text.characters.count > self.maximumCharacterCount {
+			if let text = self.text, text.count > self.maximumCharacterCount {
 				self.text = text.prefix(ofLength: self.maximumCharacterCount)
 				_characterCounterLabel.animation.wobble()
 			}
@@ -135,7 +135,7 @@ import UIKit
 	
 	private func _updateCharacterCount() {
 		if self.isCharacterCounterDisplayed {
-			_characterCounterLabel.text = "\(self.text?.characters.count ?? 0)/\(self.maximumCharacterCount)"
+			_characterCounterLabel.text = "\(self.text.isNilOrEmpty)/\(self.maximumCharacterCount)"
 		}
 	}
 	
