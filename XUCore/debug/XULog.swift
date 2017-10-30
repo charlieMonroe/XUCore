@@ -341,6 +341,9 @@ public final class XUDebugLog {
 				let pboard = NSPasteboard.general
 				pboard.declareTypes([.string], owner: self)
 				pboard.setString(state, forType: .string)
+				
+				let notification = XUSystemNotification(confirmationMessage: XULocalizedString("Copied"))
+				XUSystemNotificationCenter.shared.showNotification(notification)
 			}
 		}
 		

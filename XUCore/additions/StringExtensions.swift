@@ -201,9 +201,8 @@ public extension String {
 		string = string.replacingOccurrences(of: "&apos;", with: "'", options: .literal)
 		string = string.replacingOccurrences(of: "&reg;", with: "®", options: .literal)
 
-		let regex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .caseless)
-		let allOccurrences = self.allValues(of: "C", forRegex: regex).distinct()
-		for occurrence in allOccurrences {
+		let hexRegex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .caseless)
+		for occurrence in self.allValues(of: "C", forRegex: hexRegex).distinct() {
 			let value: Int
 			if occurrence.hasPrefix("x") {
 				// Hex
@@ -213,6 +212,11 @@ public extension String {
 			}
 			
 			string = string.replacingOccurrences(of: "&#\(occurrence);", with: String(Character(UnicodeScalar(value)!)))
+		}
+		
+		let acuteRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])acute;", andOptions: [])
+		for occurrence in self.allValues(of: "C", forRegex: acuteRegex).distinct() {
+			string = string.replacingOccurrences(of: "&\(occurrence)acute;", with: occurrence + "\u{0341}")
 		}
 		
 		return string
