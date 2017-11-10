@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MapKit
+import CoreLocation
 
 extension CLLocationCoordinate2D: Equatable {
 	
@@ -18,9 +18,9 @@ extension CLLocationCoordinate2D: Equatable {
 	
 	/// Returns distance to the other coordinate. Works by using map points.
 	public func distance(to other: CLLocationCoordinate2D) -> CLLocationDistance {
-		let mp1 = MKMapPointForCoordinate(self)
-		let mp2 = MKMapPointForCoordinate(other)
-		return MKMetersBetweenMapPoints(mp1, mp2)
+		let point1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
+		let point2 = CLLocation(latitude: other.latitude, longitude: other.longitude)
+		return point1.distance(from: point2)
 	}
 	
 }

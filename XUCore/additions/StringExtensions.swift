@@ -45,7 +45,7 @@ public enum XUEmailFormatValidity {
 		// It's about right, see for some obviously phony emails
 		let matches = [
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
-			"noname@nothing.com", "example.com", "sdsbgt@gmail.com"
+			"noname@nothing.com", "example.com", "sdsbgt@gmail.com", "me@you.com", "none@none.com"
 		]
 		if matches.contains(where: email.contains(caseInsensitive:)) {
 			self = .phony

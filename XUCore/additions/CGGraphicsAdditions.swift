@@ -54,10 +54,44 @@ public func *(_ lhs: CGSize, _ rhs: CGFloat) -> CGSize {
 	return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
 }
 
+/// Returns lhs multiplied by rhs.
+public func *(_ lhs: CGSize, _ rhs: Double) -> CGSize {
+	return CGSize(width: lhs.width * CGFloat(rhs), height: lhs.height * CGFloat(rhs))
+}
+
 /// Multiplies lhs by rhs.
 public func *=(_ lhs: inout CGSize, _ rhs: CGFloat) {
 	lhs.width *= rhs
 	lhs.height *= rhs
+}
+
+/// Multiplies lhs by rhs.
+public func *=(_ lhs: inout CGSize, _ rhs: Double) {
+	lhs.width *= CGFloat(rhs)
+	lhs.height *= CGFloat(rhs)
+}
+
+
+/// Returns lhs divided by rhs.
+public func /(_ lhs: CGSize, _ rhs: CGFloat) -> CGSize {
+	return CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
+}
+
+/// Returns lhs divided by rhs.
+public func /(_ lhs: CGSize, _ rhs: Double) -> CGSize {
+	return CGSize(width: lhs.width / CGFloat(rhs), height: lhs.height / CGFloat(rhs))
+}
+
+/// Divides lhs by rhs.
+public func /=(_ lhs: inout CGSize, _ rhs: CGFloat) {
+	lhs.width /= rhs
+	lhs.height /= rhs
+}
+
+/// Divides lhs by rhs.
+public func /=(_ lhs: inout CGSize, _ rhs: Double) {
+	lhs.width /= CGFloat(rhs)
+	lhs.height /= CGFloat(rhs)
 }
 
 public extension CGSize {

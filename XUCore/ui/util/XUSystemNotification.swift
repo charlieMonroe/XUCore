@@ -133,6 +133,10 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 				window.bottomLayoutConstraint.constant = 0.0
 			}
 		case .custom(let view):
+			window.iconView.removeFromSuperview()
+			window.messageField.removeFromSuperview()
+			window.subtitleField.removeFromSuperview()
+			
 			let contentSize = view.frame.insetBy(dx: -15.0, dy: -15.0).size
 			window.setContentSize(contentSize)
 			

@@ -33,7 +33,6 @@
 		07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		072D9F9A1C7471A100DB3E8A /* UINavigationControllerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */; };
 		07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
-		07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
 		07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */; };
 		07311DCD1C0C62DD001B95AC /* XUBundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DC81C0C5DD2001B95AC /* XUBundleUtilities.swift */; };
 		07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */; };
@@ -41,7 +40,6 @@
 		073391AE1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */; };
 		073391AF1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */; };
 		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
-		0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0734D9001CE35D31008E2B31 /* MKGeometryAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
@@ -1586,7 +1584,6 @@
 				073E6B051BE1F86D00706283 /* pcre.cc in Sources */,
 				07FD4BE01C7DC2E900559CF0 /* DateFormatterISO8601.swift in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,
-				07311DCB1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */,
 				07B908201BF39EF0008D254A /* XUExceptionCatcher.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* DateAdditions.swift in Sources */,
@@ -1688,7 +1685,6 @@
 				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
 				075DC79F1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
-				0734D8FF1CE35BD8008E2B31 /* MKGeometryAdditions.swift in Sources */,
 				07B908311BF3C4A9008D254A /* XURedView.swift in Sources */,
 				0749DCDE1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B521BE2026600706283 /* XULog.swift in Sources */,
