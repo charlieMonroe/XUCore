@@ -535,18 +535,16 @@ open class XUDownloadCenter {
 	
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSON<T>(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
-		let data = self.downloadData(at: url) { (request) -> Void in
+		guard let data = self.downloadData(at: url, withRequestModifier: { (request: inout URLRequest) in
 			request.acceptType = URLRequest.ContentType.json
 			
 			modifier?(&request)
-		}
-		
-		if data == nil {
+		}) else {
 			self.owner?.downloadCenter(self, didEncounterError: .noInternetConnection)
 			return nil
 		}
 		
-		guard let obj: T = XUJSONHelper.jsonObject(from: data!) else {
+		guard let obj: T = XUJSONHelper.object(from: data) else {
 			return nil // Error already set by jsonObject(from:)
 		}
 		

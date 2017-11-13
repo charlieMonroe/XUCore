@@ -13,22 +13,22 @@ import Foundation
 public struct XUJSONHelper {
 
 	/// Helper method that casts the object to XUJSONDictionary.
-	public static func jsonDictionary(from data: Data) -> XUJSONDictionary? {
-		return self.jsonObject(from: data)
+	public static func dictionary(from data: Data) -> XUJSONDictionary? {
+		return self.object(from: data)
 	}
 	
 	/// Helper method that casts the object to XUJSONDictionary.
-	public static func jsonDictionary(from jsonString: String) -> XUJSONDictionary? {
-		return self.jsonObject(from: jsonString)
+	public static func dictionary(from jsonString: String) -> XUJSONDictionary? {
+		return self.object(from: jsonString)
 	}
 	
 	/// Helper method that casts the object to XUJSONDictionary.
-	public static func jsonDictionary(fromCallback jsonString: String) -> XUJSONDictionary? {
-		return self.jsonObject(fromCallback: jsonString)
+	public static func dictionary(fromCallback jsonString: String) -> XUJSONDictionary? {
+		return self.object(fromCallback: jsonString)
 	}
 	
 	/// Converts json data to a JSON object.
-	public static func jsonObject<T>(from data: Data) -> T? {
+	public static func object<T>(from data: Data) -> T? {
 		guard let genericObj = try? JSONSerialization.jsonObject(with: data, options: []) else {
 			XULog("Failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
 			return nil
@@ -43,23 +43,23 @@ public struct XUJSONHelper {
 	}
 	
 	/// Converts jsonString to a JSON object.
-	public static func jsonObject<T>(from jsonString: String) -> T? {
-		return self.jsonObject(from: jsonString.utf8Data)
+	public static func object<T>(from jsonString: String) -> T? {
+		return self.object(from: jsonString.utf8Data)
 	}
 	
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
-	public static func jsonObject<T>(fromCallback jsonString: String) -> T? {
+	public static func object<T>(fromCallback jsonString: String) -> T? {
 		guard let innerJSON = jsonString.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			if jsonString.first == Character("{") && jsonString.last == Character("}") {
-				return self.jsonObject(from: jsonString)
+				return self.object(from: jsonString)
 			}
 
 			XULog("No inner JSON in callback string \(jsonString)")
 			return nil
 		}
 		
-		return self.jsonObject(from: innerJSON)
+		return self.object(from: innerJSON)
 	}
 	
 	/// Returns a string from a JSON object. Returns nil if the object is not
