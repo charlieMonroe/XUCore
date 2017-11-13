@@ -136,3 +136,6 @@
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
 "Copy Current Application State" = "記錄軟體目前的狀態";
+
+/// 11/12/2017+
+"Copied" = "Copied";

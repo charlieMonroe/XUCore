@@ -136,3 +136,6 @@
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Синхронизация данных загружается.";
 "Copy Current Application State" = "Копия текущего состояния приложения";
+
+/// 11/12/2017+
+"Copied" = "Copied";

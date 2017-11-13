@@ -136,3 +136,6 @@
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Senkronizasyon verileri indiriliyor.";
 "Copy Current Application State" = "Geçerli Uygulama Durumunu Kopyala";
+
+/// 11/12/2017+
+"Copied" = "Copied";
