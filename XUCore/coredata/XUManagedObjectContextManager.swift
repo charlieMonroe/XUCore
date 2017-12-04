@@ -19,6 +19,7 @@ import CoreData
 /// - modelFileName
 /// - persistentStoreFileName
 ///
+@available(*, deprecated)
 open class XUManagedObjectContextManager {
 	
 	private var _managedObjectContext: NSManagedObjectContext!

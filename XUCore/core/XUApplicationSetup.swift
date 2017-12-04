@@ -51,7 +51,7 @@ open class XUApplicationSetup {
 	
 	/// Returns the shared setup.
 	public static let shared: XUApplicationSetup = {
-		let infoDictionary = XUMainBundle.infoDictionary ?? [:]
+		let infoDictionary = Bundle.main.infoDictionary ?? [:]
 		let setupClass: XUApplicationSetup.Type
 		if let className = infoDictionary["XUApplicationSetupClass"] as? String {
 			guard let genericClass = NSClassFromString(className) else {
@@ -270,7 +270,7 @@ open class XUApplicationSetup {
 		trialSessionsURL = _createURL(forKey: "XUTrialSessionsURL", inInfoDictionary: infoDictionary)
 		
 		
-		let appIdentifier = XUMainBundle.bundleIdentifier ?? ProcessInfo.processInfo.processName
+		let appIdentifier = Bundle.main.bundleIdentifier ?? ProcessInfo.processInfo.processName
 		self.applicationIdentifier = appIdentifier
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
 		

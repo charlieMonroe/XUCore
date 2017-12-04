@@ -11,7 +11,7 @@ import Foundation
 
 public extension NSMenu {
 	
-	public func localizeMenu(_ bundle: Bundle = XUMainBundle) {
+	public func localizeMenu(_ bundle: Bundle = Bundle.main) {
 		self.title = XULocalizedString(self.title)
 		for item in self.items {
 			if let attributedTitle = item.attributedTitle {

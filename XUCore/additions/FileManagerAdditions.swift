@@ -11,6 +11,15 @@ import Foundation
 /// Convenience methods that ignore some of the arguments of longer methods.
 public extension FileManager {
 	
+	public struct Directories {
+	
+		/// Returns application support directory.
+		public static var applicationSupportDirectory: URL {
+			return try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+		}
+		
+	}
+	
 	public func contentsOfDirectory(at url: URL) -> [URL] {
 		return (try? self.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())) ?? []
 	}

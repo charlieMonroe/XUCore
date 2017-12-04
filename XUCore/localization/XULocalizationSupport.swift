@@ -40,14 +40,14 @@ public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
 
 /// Returns a localized string.
 @inline(__always)
-public func XULocalizedString(_ key: String, inBundle bundle: Bundle = XUMainBundle, withLocale language: String? = nil) -> String {
+public func XULocalizedString(_ key: String, inBundle bundle: Bundle = Bundle.main, withLocale language: String? = nil) -> String {
 	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifierForBundle(bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
 @inline(__always)
-public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = XUMainBundle) -> String {
+public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = Bundle.main) -> String {
 	return String(format: XULocalizedString(format, inBundle: bundle, withLocale: language), arguments: arguments)
 }
 
@@ -192,7 +192,7 @@ public final class XULocalizationCenter {
 	}
 	
 	/// Returns a localized string.
-	public func localizedString(_ key: String, withLocale _language: String? = nil, inBundle bundle: Bundle = XUMainBundle) -> String {
+	public func localizedString(_ key: String, withLocale _language: String? = nil, inBundle bundle: Bundle = Bundle.main) -> String {
 		let language = _language ?? self.localizationIdentifier(for: bundle)
 		
 		if key.isEmpty {
