@@ -47,7 +47,7 @@ public enum XUEmailFormatValidity {
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
 			"noname@nothing.com", "example.com", "sdsbgt@gmail.com", "me@you.com", "none@none.com",
 			"tembo@mac.com", "any@hotmail.com", "nowhere.us", "www@gmail.com", "john@mac.com",
-			"dasdsad"
+			"dasdsad", "noreply", "@abc.com", "123@123.com"
 		]
 		
 		if matches.contains(where: email.contains(caseInsensitive:)) {

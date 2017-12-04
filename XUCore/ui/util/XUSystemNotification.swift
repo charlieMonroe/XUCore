@@ -42,10 +42,14 @@ public final class XUSystemNotificationCenter {
 		
 		/// Custom notification with a view.
 		case custom(NSView)
+		
+		/// Progress indicator with a message.
+		case progress(message: String?)
 	}
 	
-	private var _currentController: NSWindowController!
+	private var _currentController: XUSystemNotificationWindowController!
 	private var _currentNotification: Notification!
+	private var _progressController: XUSystemNotificationWindowController?
 	private var _queue: [Notification] = []
 	
 	@objc private func _hideNotification() {
@@ -73,7 +77,13 @@ public final class XUSystemNotificationCenter {
 		Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
 	}
 	
-	/// /// Displays a notification showing a custom view. The size of the notification
+	/// Hides currently displayed progress indicator. See showProgressIndicator(with:).
+	public func hideProgressIndicator() {
+		_progressController?.window?.close()
+		_progressController = nil
+	}
+	
+	/// Displays a notification showing a custom view. The size of the notification
 	/// window is determined by the view frame. If another notification is already being
 	/// displayed, this notification gets queued.
 	public func showCustomNotification(with view: NSView) {
@@ -93,9 +103,102 @@ public final class XUSystemNotificationCenter {
 		}
 	}
 	
+	/// Shows a HUD with an indeterminate progress indicator and it is shown until
+	/// you call hideProgressIndicator(_:).
+	///
+	/// Note that only one progress indicator may be shown at a time. Also, it is
+	/// not queued like other notifications, but it is displayed right away.
+	///
+	/// - Parameter message: Optional message to be displayed.
+	public func showProgressIndicator(with message: String?) {
+		if let progressController = _progressController {
+			let window = progressController.window as! XUSystemNotificationWindow
+			window.messageField.stringValue = message ?? ""
+		} else {
+			let controller = XUSystemNotificationWindowController(notification: .progress(message: message))
+			controller.loadWindow()
+			_progressController = controller
+			
+			if let message = message {
+				NSAccessibilityPostNotificationWithUserInfo(controller, NSAccessibilityNotificationName.announcementRequested, [NSAccessibilityNotificationUserInfoKey.announcement : message])
+			}
+		}
+	}
+	
 }
 
 private class XUSystemNotificationWindowController: NSWindowController, NSWindowDelegate {
+	
+	private class ProgressIndicator: NSView {
+		
+		private var _animationValue: Double = 0.0
+		private var _timer: Timer?
+		
+		deinit {
+			_timer?.invalidate()
+		}
+		
+		override func draw(_ dirtyRect: NSRect) {
+			let context = NSGraphicsContext.current!.cgContext
+			let numberOfRays = 12
+			let offset = Int((_animationValue * Double(numberOfRays - 1)).rounded())
+			
+			let bounds = self.bounds
+			let center = CGPoint(x: bounds.midX, y: bounds.midY)
+			let angle: CGFloat = 0.0
+			let arc: CGFloat = CGFloat.pi * 2.0 / CGFloat(numberOfRays)
+			let minAxis: CGFloat = min(bounds.width, bounds.height)
+			
+			var lineWidth: CGFloat = minAxis / CGFloat(numberOfRays) / 2.0
+			lineWidth += lineWidth * 0.75
+			
+			context.setLineWidth(lineWidth)
+			context.setLineCap(.round)
+			
+			for i in 0 ..< numberOfRays {
+				let startGray: CGFloat = 0.0
+				let endGray: CGFloat = 0.4
+				
+				let place = (i - offset < 0) ? numberOfRays + (i - offset) : i - offset
+				let gray = 1.0 - (startGray + ((endGray - startGray) / CGFloat(numberOfRays)) * CGFloat(place))
+				
+				let rotate = CGAffineTransform(rotationAngle: angle + arc * CGFloat(i))
+				let move = CGAffineTransform(translationX: center.x, y: center.y)
+				let transform = rotate.concatenating(move)
+				
+				let point1 = CGPoint(x: 0.0, y: minAxis / 2.0 - lineWidth).applying(transform)
+				let point2 = CGPoint(x: 0.0, y: minAxis / 4.0).applying(transform)
+				
+				context.setStrokeColor(gray: gray, alpha: 1.0)
+				context.move(to: point1)
+				context.addLine(to: point2)
+				
+				context.strokePath()
+			}
+		}
+		
+		override init(frame frameRect: NSRect) {
+			super.init(frame: frameRect)
+			
+			_timer = Timer.scheduledTimer(timeInterval: 0.05, repeats: true, usingBlock: { [weak self] (_) in
+				guard let strongSelf = self else {
+					return
+				}
+				
+				strongSelf._animationValue -= 0.05
+				if strongSelf._animationValue < 0.0 {
+					strongSelf._animationValue = 1.0
+				}
+				
+				strongSelf.setNeedsDisplay(strongSelf.bounds)
+			})
+		}
+		
+		required init?(coder decoder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
+		
+	}
 	
 	/// Notification this was initialized with.
 	var notification: XUSystemNotificationCenter.Notification!
@@ -145,6 +248,27 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 			window.visualEffectView.subviews = [view]
 			window._updateVisualEffectViewMask()
 			window._updateWindowFrame()
+		case .progress(message: let message):
+			window.messageField.stringValue = message ?? ""
+			window.iconView.image = nil
+			window.subtitleField.stringValue = ""
+			window.bottomLayoutConstraint.constant = 0.0
+
+			let size: CGFloat = 96.0
+			let progressIndicatorWrapper = NSView(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
+			progressIndicatorWrapper.translatesAutoresizingMaskIntoConstraints = false
+
+			window.visualEffectView.addSubview(progressIndicatorWrapper)
+			window.visualEffectView.addConstraints(centeringView: progressIndicatorWrapper, verticalOffset: -10.0)
+			progressIndicatorWrapper.addConstraints(forWidth: size, height: size)
+			
+			let progressIndicator = ProgressIndicator(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
+			progressIndicator.translatesAutoresizingMaskIntoConstraints = false
+			
+			progressIndicatorWrapper.addSubview(progressIndicator)
+			progressIndicatorWrapper.addConstraints(pinningViewOnAllSides: progressIndicator)
+			
+			progressIndicator.appearance = NSAppearance(named: .vibrantDark)
 		}
 	}
 	

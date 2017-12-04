@@ -1185,12 +1185,12 @@
 		077AFE611BBD101400872A48 /* localization */ = {
 			isa = PBXGroup;
 			children = (
-				07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */,
+				0737DC631C5381B9004F5D84 /* Localizable.strings */,
 				0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */,
 				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
 				0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */,
 				0779E18B1BF2348D00832858 /* UIViewLocalizationSupport.swift */,
-				0737DC631C5381B9004F5D84 /* Localizable.strings */,
+				07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */,
 			);
 			path = localization;
 			sourceTree = "<group>";

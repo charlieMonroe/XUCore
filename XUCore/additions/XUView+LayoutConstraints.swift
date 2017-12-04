@@ -15,9 +15,9 @@ public extension __XUBridgedView {
 	/// in self. The `view` must already be a subview of self. Returns the 
 	/// created constraints if needed.
 	@discardableResult
-	public func addConstraints(centeringView view: __XUBridgedView) -> (horizontal: NSLayoutConstraint, vertical: NSLayoutConstraint) {
-		let horizontal = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-		let vertical = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+	public func addConstraints(centeringView view: __XUBridgedView, horizontalOffset: CGFloat = 0.0, verticalOffset: CGFloat = 0.0) -> (horizontal: NSLayoutConstraint, vertical: NSLayoutConstraint) {
+		let horizontal = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: horizontalOffset)
+		let vertical = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: verticalOffset)
 		self.addConstraints([horizontal, vertical])
 		return (horizontal, vertical)
 	}
@@ -54,6 +54,15 @@ public extension __XUBridgedView {
 		], views: ["view": view])
 		self.addConstraints(constraints)
 		return constraints
+	}
+	
+	/// Adds constraints for width and height.
+	@discardableResult
+	public func addConstraints(forWidth width: CGFloat, height: CGFloat) -> (width: NSLayoutConstraint, height: NSLayoutConstraint) {
+		let widthConstraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
+		let heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)
+		self.addConstraints([widthConstraint, heightConstraint])
+		return (widthConstraint, heightConstraint)
 	}
 	
 }
