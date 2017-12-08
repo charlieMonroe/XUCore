@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 
 public extension UIButton {
-	public override func localizeView(bundle: Bundle = XUMainBundle) {
+	public override func localizeView(bundle: Bundle = Bundle.main) {
 		if let title = self.title(for: .normal) {
 			self.setTitle(XULocalizedString(title, inBundle: bundle), for: .normal)
 		}
 	}
 }
 public extension UILabel {
-	public override func localizeView(bundle: Bundle = XUMainBundle) {
+	public override func localizeView(bundle: Bundle = Bundle.main) {
 		if let text = self.text {
 			self.text = XULocalizedString(text, inBundle: bundle)
 		}
 	}
 }
 public extension UITextField {
-	public override func localizeView(bundle: Bundle = XUMainBundle) {
+	public override func localizeView(bundle: Bundle = Bundle.main) {
 		if let originalPlaceholder = self.attributedPlaceholder {
 			let attributes = originalPlaceholder.attributes(at: 0, effectiveRange: nil)
 			self.attributedPlaceholder = NSAttributedString(string: XULocalizedString(originalPlaceholder.string, inBundle: bundle), attributes: attributes)
@@ -37,7 +37,7 @@ public extension UITextField {
 	}
 }
 public extension UIView {
-	@objc public func localizeView(bundle: Bundle = XUMainBundle) {
+	@objc public func localizeView(bundle: Bundle = Bundle.main) {
 		for view in self.subviews {
 			view.localizeView(bundle: bundle)
 		}

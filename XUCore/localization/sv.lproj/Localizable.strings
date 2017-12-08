@@ -3,7 +3,7 @@
 "1 hour" = "1 timma";
 "1 minute" = "1 minut";
 "1 second" = "1 sekund";
-"Unknown error." = "Okänd fel.";
+"Unknown error." = "Okänt fel.";
 
 "OK" = "OK";
 "Cancel" = "Avbryt";
@@ -11,51 +11,51 @@
 "Failed to parse CSV file." = "Kan inte tolka CSV filer.";
 
 "Send Report" = "Sänd en rapport";
-"Privacy Information..." = "Privat Information...";
+"Privacy Information..." = "Sekretessinformation...";
 "%AppName% has encountered a problem." = "%AppName% har stött på ett problem.";
 "%AppName% will terminate after sending the report." = "%AppName% kommer att avslutas efter att ha sänt en rapport.";
-"Report to be sent:" = "Rapporten har sänts:";
+"Report to be sent:" = "Rapporten som kommer att sändas:";
 "Your Email:" = "Din E-post Adress:";
 "Description:" = "Beskrivning:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Var god och beskriv den situationen som gjord att felet uppstod, om det finns möjlighet, beskriv steg för steg vad gjord tills det blev fel. Skriv din e-post adress nedanför - vi kommer att höra av oss när felet är avhjälpt eller vi kanske behöver mera information angående buggen. Din e-post kommer inte att sparas i någon databas och du kommer inte få någon spam e-post. \n\nGenom att sända en bugg rapport så hjälper du oss att förbättra programmet. Tack så mycket";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Var snäll och beskriv den situationen som gjorde att felet uppstod. Om möjligt, beskriv steg för steg vad du gjorde tills det blev fel. Skriv din e-post adress här nedanför - vi kommer att höra av oss när felet är avhjälpt eller vi kanske behöver mera information angående felet. Din e-post kommer inte att sparas i någon databas och du kommer inte få någon spam e-post. \n\nGenom att sända en felrapport så hjälper du oss att förbättra programmet. Tack så mycket";
 
-"Report Problem" = "Rappotera Ett Problem";
+"Report Problem" = "Rapportera ett problem";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Vi värdesätter din feedback och vågar inte samla in oönskad information. Din e-postadress lagras inte någonstans och kommer bara att användas för att informera dig när det här problemet kan lösas eller när vi behöver mer information för att åtgärda problemet.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Vi värdesätter din återkoppling och vågar inte samla in oönskad information. Din e-postadress lagras inte någonstans och kommer bara att användas för att informera dig när det här problemet kan lösas eller när vi behöver mer information för att åtgärda problemet.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Bara dom följande information kommer att sändas med:\n• Beskrivning på problemet.\n• Förutom informationen nedan.\n• Vilken version på programmet.\n• Vilken OS version på datorn.\n• Modellen på din dator (ej någon MAC adress eller liknade information som kan identifiera din dator).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Bara den följande informationen kommer att sändas med:\n• Beskrivning av problemet.\n• Apples felrapport nedan.\n• Vilken version av programmet.\n• Vilken OS version på datorn.\n• Modellen på din dator (inte något som kan identifiera din dator).";
 
 "Could not post your report." = "Kunde inte sända din rapport.";
-"Check your Internet connection and try again." = "Kolla din Internet anslutning och försök igen.";
+"Check your Internet connection and try again." = "Kontrollera din internet-anslutning och försök igen.";
 "Heh, nice try. Please, enter a valid email address." = "Bra försök, skriv en godkänd e-post adress.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Vi kanske måste kontakta dig för att fixa problemet. Vi bits, vi kommer inte heller sälja din e-post adress till någon eller på annat sätt sprida den. Vi lovar.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Vi kanske måste kontakta dig för att fixa problemet. Vi bits inte, vi kommer inte heller sälja din e-post adress till någon eller på annat sätt sprida den. Vi lovar.";
 "You need to enter a valid email address." = "Du måste skriva en godkänd e-post adress.";
 "We may need to get in touch with you in order to fix this." = "Vi kanske måste kontakta dig för att fixa problemet.";
-"Please, provide some details as to when this exception happened." = "Var god och ge detaljer när problemet uppstod.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Sänd med information om det var några andra program igång samtidigt, om programmet var i förgrunden eller bakgrunden, i fall du klicka någonstans m.m.m. Att försöka komma på vad är för bug med bara en rapport utan mera information, kan vara svårt, nästan omöjligt.";
+"Please, provide some details as to when this exception happened." = "Var snäll och ge detaljer om hur och när problemet uppstod.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Sänd med information om det var några andra program igång samtidigt, om programmet var i förgrunden eller bakgrunden, i fall du klickade någonstans mm. Att försöka komma på vad det är för fel med bara en rapport utan mera information kan vara svårt, ibland omöjligt.";
 "Thank you for the report!" = "Tack för rapporten!";
 "We'll fix it as soon as possible!" = "Vi kommer att fixa problemet så snart som möjligt!";
 
-"Welcome to beta testing of %@." = "Välkommen till beta testning av %@.";
-"This is the first time you run a beta build %@." = "Är det här först gången som du kör beta programet %@.";
-"This beta build of %@ has expired." = "Den beta versionen av %@ har upphört.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Njut av vår mjukvara! Om du har några frågor eller stöter på några fel kan du fråga oss på vår support sida %@";
+"Welcome to beta testing of %@." = "Välkommen till beta-testning av %@.";
+"This is the first time you run a beta build %@." = "Är det här först gången som du kör beta-programmet %@.";
+"This beta build of %@ has expired." = "Denna beta-versionen av %@ har upphört.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Njut av vår mjukvara! Om du har några frågor eller stöter på några fel kan du fråga oss på vår supportsida %@";
 
 "Continue" = "Fortsätt";
 "Purchase..." = "Köp...";
 "I'm Still Not Sure" = "Jag är inte riktigt säker än";
 
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunde inte koppla till Internet. Programmet kommer att avslutas om en 1 timma.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ kräver att den är koppla till Internet för att provperioden skall fungera på rätt sätt.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du kommer nu att förflyttas till hemsida där du har möjlighet att köpa en kopia av programmet. Om du är fortfarande osäker om %@ rätt program för dig eller om du har några frågor, kontakta oss.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att ha provat %@! Du kan prova i % dagar utan några restriktioner. Efter att prov perioden är över så måste köpa en kopia av %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du kan använda programmet i % dagar nu. För att fortsätta och använda %@ måste du köpa en kopia av programmet.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att ha provat %@! Du kan prova i % dagar utan några restriktioner. Efter att prov perioden är över så måste köpa en kopia av %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tack för att du har provat %@! Du har använt %@ i % dagar. För att fortfarande använda %@ måste du köpa en kopia av programmet.";
-"Working..." = "Jobbar På...";
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunde inte koppla till internet. Programmet kommer att avslutas om en 1 timma.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ kräver att den är kopplad till internet för att provperioden skall fungera på rätt sätt.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du kommer nu att förflyttas till en hemsida där du har möjlighet att köpa en kopia av programmet. Om du är fortfarande osäker om %@ rätt program för dig eller om du har några frågor, kontakta oss.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att du provar %@! Du kan prova i % dagar utan några restriktioner. Efter att provperioden är över så måste du köpa en kopia av %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du kan använda programmet i % dagar nu. För att fortsätta att använda %@ så måste du köpa en kopia av programmet.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att du provar %@! Du kan prova i % dagar utan några restriktioner. Efter att provperioden är över så måste köpa en kopia av %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du har använt %@ i % dagar. För att fortsätta använda %@ måste du köpa en kopia av programmet.";
+"Working..." = "Arbetar...";
 
-"Progress" = "Framsteg";
+"Progress" = "Förlopp";
 "Posted successfully" = "Postad med framgång";
 
 "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ kommer att fungera 24 timmar till, efter det kommer programmet att blockeras. Var god och uppdatera %@ för att det ska fortsätta att fungera.";
@@ -63,38 +63,38 @@
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kan sända rapporten ändå, men är meddelandet inte på engelska, då kan jag inte ge dig full support.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ditt meddelande innehåller special tecken, vilket indikerar att ditt meddelande är inte skrivet på engelska.Tänk på att även om %@ är översatt till många språk, så sker supporten bara på Engelska. Tack för att du har överseende för det.";
-"%li hours" = "% timmar";
-"%li minutes" = "% minuter";
-"%li seconds" = "% sekunder";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ditt meddelande innehåller specialtecken, vilket indikerar att ditt meddelande är inte skrivet på engelska. Tänk på att även om %@ är översatt till många språk, så sker supporten bara på engelska. Tack för att du har överseende med det.";
+"%li hours" = "%li timmar";
+"%li minutes" = "%li minuter";
+"%li seconds" = "%li sekunder";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Kan inte hitta dokumentet. Kolla lite senare, då kan den ha synkat igenom.";
-"Cannot open document metadata file." = "Kan inte öppna dokument filens metadata.";
+"Cannot find such document. Check back later, it might not have synced through." = "Kan inte hitta dokumentet. Kontrollera lite senare, då kan det ha synkat igenom.";
+"Cannot open document metadata file." = "Kan inte öppna dokumentfilens metadata.";
 "Metadata file doesn't contain required information." = "Filens metadata innehåller inte den informationen som behövs.";
 "Synchronization is already in progress." = "Håller redan på att synkronisera.";
 "An upload operation is already in progress." = "Uppladdning är redan igång.";
-"Could not save upload metadata." = "Kan inte spara den uppladdade metadata.";
-"Cannot find entity named %@" = "Det går inte att hitta en enhet som heter %@";
-"Cannot find class named %@" = "Cannot find class named %@";
+"Could not save upload metadata." = "Kan inte spara den uppladdade metadatan.";
+"Cannot find entity named %@" = "Kan inte hitta en enhet som heter %@";
+"Cannot find class named %@" = "Kan inte hitta en klass som heter %@";
 "Cannot find entity with ID %@" = "Kan inte hitta enheten med ID %@";
-"Can't find synchronization folder for document %@." = "Kan inte hitta synkroniseringsmapp för dokument %@.";
-"Can't find synchronization folder for computer %@." = "Kan inte hitta synkroniseringsmapp för dator %@.";
-"Can't find sync folder for document %@." = "Kan inte hitta synk mapp för dokument %@.";
+"Can't find synchronization folder for document %@." = "Kan inte hitta synkroniseringsmapp för dokumentet %@.";
+"Can't find synchronization folder for computer %@." = "Kan inte hitta synkroniseringsmapp för datorn %@.";
+"Can't find sync folder for document %@." = "Kan inte hitta synk-mapp för dokument %@.";
 "%@ couldn't finish synchronization in the background." = "%@ kan inte slutföra synkroniseringen i bakgrunden.";
 "Please switch back to %@ so that the synchronization can finish." = "Var god och växla tillbaka till %@ så att synkroniseringen kan slutföras.";
 
 /// XUSyncEngine - 6/20/2016 changes
 "Could not read synchronization change data." = "Kunde inte läsa ändringen i synkroniseringsdata.";
-"Could not copy synchronization change data to the cloud." = "Det gick inte att kopiera ändringen i synkroniseringsdata till molnet.";
+"Could not copy synchronization change data to the cloud." = "Det gick inte att kopiera ändringen av synkroniseringsdata till molnet.";
 "Failing to apply change sets." = "Misslyckade med ändring i uppsättningen.";
 "Synchronization changes from computer %@ haven't been downloaded yet." = "Synkroniseringsändringar från dator %@ har inte laddats ner än.";
 
 /// XUOAuth2
 "Authentication" = "Verifiering";
-"Server responded with unknown token type." = "Serven svara med en okänd symbol typ.";
-"Server provided invalid authorization response." = "Serven svara med ogiltig godkännandet.";
-"Server has redirected with invalid URL." = "Servern har omdirigerats med ogiltig webbadress.";
+"Server responded with unknown token type." = "Serven svarade med en okänd symboltyp.";
+"Server provided invalid authorization response." = "Serven svarade med ogiltig åtkomst.";
+"Server has redirected with invalid URL." = "Servern har omdirigerats till en ogiltig webbadress.";
 "User cancelled the authorization." = "Användaren avbröt godkännandet.";
 
 /// Debug Log Menu
@@ -106,21 +106,21 @@
 "Clear Debug Log" = "Rensar Debug Loggen";
 "Show Log in Finder" = "Visa Loggen i Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Felsökningslogg är en textfil som innehåller några tekniska detaljer om vad %@ utför i bakgrunden. Det är ganska användbart för mig för att fixa saker snabbt eftersom det låter mig se vad som händer. Följ dessa enkla steg för att få en felsökningsloggen:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Om det här inte din första Debug logg som du sänder, se till att rensa Debug loggen från Debug menyn.\n2) I Debug meny ska se till att Debug loggningen är påslagen.\n3) Utför den uppgiften som du har problem med.\n4) Nu i Debug menyn så stänger du av Debug loggningen.\n5 I Debug menyn väljer du, Visa Loggen i Finder. Den visar var logg filen (som är en vanlig text fil) ligger och som du enkel kan maila mig. Om du anser att någon av datan som finns i filen är för personlig, så kan du ersätta den med något som kan lätt identifieras (t.ex XXXXXXXXX) och låt mig få reda på vad du har modifierat i logg filen.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug-loggen är en textfil som innehåller några tekniska detaljer om vad %@ utför i bakgrunden. Det är ganska användbart för mig för att fixa saker snabbt eftersom det låter mig se vad som händer. Följ dessa enkla steg för att skapa en debug-logg:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Om det här inte din första Debug logg som du sänder, se till att rensa Debug loggen från Debug menyn.\n2) I Debug menyn, se till att Debug-loggningen är påslagen.\n3) Utför uppgiften som du har problem med.\n4) Nu i Debug menyn så stänger du av Debug-loggningen.\n5 I Debug menyn väljer du, Visa Loggen i Finder. Den visar var loggfilen (som är en vanlig textfil) ligger och som du enkel kan maila mig. Om du anser att någon av datan som finns i filen är för personlig, så kan du ersätta den med något som kan lätt identifieras (t.ex XXXXXXXXX) och låt mig få reda på vad du har modifierat i loggfilen.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Dokumentet kan för närvarande inte laddas ner.";
-"Log Current Application State" = "Logga Aktuell Program Tillstånd";
+"Log Current Application State" = "Logga aktuellt Programtillstånd";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "Den beta test version kommer att sluta fungera om 1 timma.";
-"Please update your copy of this beta build." = "Var god och uppdatera din kopia av beta versionen.";
+"This beta build will expire in less than an hour." = "Denna beta-version kommer att sluta fungera om 1 timma.";
+"Please update your copy of this beta build." = "Var god och uppdatera din kopia av beta-versionen.";
 
 // Preferences.
-"All Preferences" = "Alla Inställningar";
+"All Preferences" = "Alla inställningar";
 "Show All" = "Visa Alla";
 "Preferences" = "Inställningar";
 
@@ -135,7 +135,7 @@
 
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Synkroniseringsdata har börjat att laddas ner.";
-"Copy Current Application State" = "Kopiera Nuvarande Program Status";
+"Copy Current Application State" = "Kopiera aktuell Programstatus";
 
 /// 11/12/2017+
 "Copied" = "Kopierade";
