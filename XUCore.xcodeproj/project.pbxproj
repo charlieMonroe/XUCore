@@ -189,7 +189,6 @@
 		074446A71C528BE20026F5DD /* XUArrowKeysObservingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */; };
 		074446AE1C529AB60026F5DD /* XUSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074446AD1C529AB60026F5DD /* XUSystemNotification.swift */; };
 		074446B11C529F270026F5DD /* SystemNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074446B01C529F270026F5DD /* SystemNotification.xib */; };
-		0746A9FD1D42037600650106 /* XUManagedObjectContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746A9FC1D42037600650106 /* XUManagedObjectContextManager.swift */; };
 		0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
 		0749DCCD1BFF1A400075CC9B /* NSAlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */; };
 		0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */; };
@@ -323,6 +322,9 @@
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		07A1DFC21D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
+		07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
+		07A48B6B1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */; };
+		07A48B6C1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */; };
 		07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; };
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
@@ -353,7 +355,6 @@
 		07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* TimerAdditions.swift */; };
 		07B9082D1BF3BC87008D254A /* TimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* TimerAdditions.swift */; };
 		07B9082F1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */; };
-		07B908311BF3C4A9008D254A /* XURedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908301BF3C4A9008D254A /* XURedView.swift */; };
 		07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B908321BF3C602008D254A /* XUMouseTracker.swift */; };
 		07BC79E81EE71CC0000D7E5D /* XUBorderlessTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC79E71EE71CC0000D7E5D /* XUBorderlessTextField.swift */; };
 		07C23A1A1C639E2400DF5DFD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C23A191C639E2400DF5DFD /* Media.xcassets */; };
@@ -379,8 +380,6 @@
 		07DA882D1D1BE09B00989595 /* XUOAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882B1D1BE09B00989595 /* XUOAuth2.swift */; };
 		07DA88301D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */; };
 		07DA88311D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */; };
-		07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
-		07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */; };
 		07E35B951C02384C007D31BE /* XUTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B941C02384C007D31BE /* XUTrial.swift */; };
 		07E35B9C1C024387007D31BE /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 		07E38A311C06132100AE6EAB /* UIAlertControllerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */; };
@@ -520,7 +519,6 @@
 		074446A61C528BE20026F5DD /* XUArrowKeysObservingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUArrowKeysObservingWindow.swift; path = windows/XUArrowKeysObservingWindow.swift; sourceTree = "<group>"; };
 		074446AD1C529AB60026F5DD /* XUSystemNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUSystemNotification.swift; path = util/XUSystemNotification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		074446B01C529F270026F5DD /* SystemNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SystemNotification.xib; path = util/SystemNotification.xib; sourceTree = "<group>"; };
-		0746A9FC1D42037600650106 /* XUManagedObjectContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUManagedObjectContextManager.swift; path = coredata/XUManagedObjectContextManager.swift; sourceTree = "<group>"; };
 		0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSAlertAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSColorAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -536,9 +534,9 @@
 		0749DCF21C00CF270075CC9B /* XUMessageCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUMessageCenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0749DCF61C00D5060075CC9B /* _XUCoreLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _XUCoreLoader.h; path = private/_XUCoreLoader.h; sourceTree = "<group>"; };
 		0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _XUCoreLoader.m; path = private/_XUCoreLoader.m; sourceTree = "<group>"; };
-		0749DD001C01F4580075CC9B /* XUExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUExceptionHandler.swift; path = exception_handling/XUExceptionHandler.swift; sourceTree = "<group>"; };
-		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUExceptionReporter.swift; path = exception_handling/XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExceptionReporter.xib; path = exception_handling/ExceptionReporter.xib; sourceTree = "<group>"; };
+		0749DD001C01F4580075CC9B /* XUExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUExceptionHandler.swift; sourceTree = "<group>"; };
+		0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUExceptionReporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0749DD041C0203430075CC9B /* ExceptionReporter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExceptionReporter.xib; sourceTree = "<group>"; };
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		074B43CC1C6B39780010F80E /* __XUInAppPurchaseManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __XUInAppPurchaseManagerHelper.h; sourceTree = "<group>"; };
@@ -547,17 +545,17 @@
 		0751A4761F6FB930006C4BEE /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
-		075DC7771CF069470043EBD0 /* XUManagedDataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUManagedDataContext.swift; path = coredata/XUManagedDataContext.swift; sourceTree = "<group>"; };
-		075DC77C1CF069CF0043EBD0 /* XUSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUSyncChange.swift; path = coredata/sync/model/XUSyncChange.swift; sourceTree = "<group>"; };
-		075DC77F1CF06ABE0043EBD0 /* XUManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUManagedObject.swift; path = coredata/sync/XUManagedObject.swift; sourceTree = "<group>"; };
-		075DC7821CF1DCD50043EBD0 /* XUSyncChangeSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUSyncChangeSet.swift; path = coredata/sync/model/XUSyncChangeSet.swift; sourceTree = "<group>"; };
-		075DC7851CF1E0080043EBD0 /* XUAttributeSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAttributeSyncChange.swift; path = coredata/sync/model/XUAttributeSyncChange.swift; sourceTree = "<group>"; };
-		075DC7881CF1E1760043EBD0 /* XUDeletionSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDeletionSyncChange.swift; path = coredata/sync/model/XUDeletionSyncChange.swift; sourceTree = "<group>"; };
-		075DC78B1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUInsertionSyncChange.swift; path = coredata/sync/model/XUInsertionSyncChange.swift; sourceTree = "<group>"; };
-		075DC78E1CF1E2C00043EBD0 /* XURelationshipSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURelationshipSyncChange.swift; path = coredata/sync/model/XURelationshipSyncChange.swift; sourceTree = "<group>"; };
-		075DC79A1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUSyncManagerPathUtilities.swift; path = coredata/sync/XUSyncManagerPathUtilities.swift; sourceTree = "<group>"; };
-		075DC79D1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUApplicationSyncManager.swift; path = coredata/sync/XUApplicationSyncManager.swift; sourceTree = "<group>"; };
-		075DC79E1CF31FAE0043EBD0 /* XUDocumentSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUDocumentSyncManager.swift; path = coredata/sync/XUDocumentSyncManager.swift; sourceTree = "<group>"; };
+		075DC7771CF069470043EBD0 /* XUManagedDataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUManagedDataContext.swift; sourceTree = "<group>"; };
+		075DC77C1CF069CF0043EBD0 /* XUSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSyncChange.swift; sourceTree = "<group>"; };
+		075DC77F1CF06ABE0043EBD0 /* XUManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUManagedObject.swift; sourceTree = "<group>"; };
+		075DC7821CF1DCD50043EBD0 /* XUSyncChangeSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSyncChangeSet.swift; sourceTree = "<group>"; };
+		075DC7851CF1E0080043EBD0 /* XUAttributeSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAttributeSyncChange.swift; sourceTree = "<group>"; };
+		075DC7881CF1E1760043EBD0 /* XUDeletionSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDeletionSyncChange.swift; sourceTree = "<group>"; };
+		075DC78B1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInsertionSyncChange.swift; sourceTree = "<group>"; };
+		075DC78E1CF1E2C00043EBD0 /* XURelationshipSyncChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURelationshipSyncChange.swift; sourceTree = "<group>"; };
+		075DC79A1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSyncManagerPathUtilities.swift; sourceTree = "<group>"; };
+		075DC79D1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationSyncManager.swift; sourceTree = "<group>"; };
+		075DC79E1CF31FAE0043EBD0 /* XUDocumentSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDocumentSyncManager.swift; sourceTree = "<group>"; };
 		075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUKeychainAccess_iOS.swift; sourceTree = "<group>"; };
 		075F70B01D1D509F00540B42 /* XUAuthorizationWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewController.swift; path = oauth2/XUAuthorizationWebViewController.swift; sourceTree = "<group>"; };
 		0763AE871F94751E00EED10B /* OperatingSystemVersionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemVersionExtensions.swift; sourceTree = "<group>"; };
@@ -622,13 +620,14 @@
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
+		07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
 		07A9E9BB1EE0286B006B200C /* XURoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XURoundedView.swift; path = ../XUCore/ui/views/XURoundedView.swift; sourceTree = "<group>"; };
 		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
-		07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializable.swift; path = deserialization/XUJSONDeserializable.swift; sourceTree = "<group>"; };
-		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUiCloudSyncManager.swift; path = coredata/sync/XUiCloudSyncManager.swift; sourceTree = "<group>"; };
+		07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializable.swift; sourceTree = "<group>"; };
+		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUiCloudSyncManager.swift; sourceTree = "<group>"; };
 		07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerAdditions.swift; sourceTree = "<group>"; };
 		07B153AC1E534C4B003A5263 /* UITextFieldAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldAdditions.swift; sourceTree = "<group>"; };
 		07B153C21E5369A6003A5263 /* XUExceptionCatcher+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XUExceptionCatcher+Swift.swift"; sourceTree = "<group>"; };
@@ -639,7 +638,6 @@
 		07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionCatcher.m; sourceTree = "<group>"; };
 		07B9082B1BF3BC84008D254A /* TimerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAdditions.swift; sourceTree = "<group>"; };
 		07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppScopeBookmarksManager.swift; sourceTree = "<group>"; };
-		07B908301BF3C4A9008D254A /* XURedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XURedView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
 		07BC79E71EE71CC0000D7E5D /* XUBorderlessTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUBorderlessTextField.swift; path = src/ui/textfields/XUBorderlessTextField.swift; sourceTree = "<group>"; };
 		07C23A191C639E2400DF5DFD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -658,11 +656,10 @@
 		07D263781E4AFDB5009BAFAA /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
 		07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XUView+LayoutConstraints.swift"; sourceTree = "<group>"; };
-		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializationLog.swift; path = deserialization/XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
+		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOAuth2.swift; path = oauth2/XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAuthorizationWebViewWindowController.swift; path = oauth2/XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
 		07DA882F1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUAuthorizationWebViewWindowController.xib; path = oauth2/XUAuthorizationWebViewWindowController.xib; sourceTree = "<group>"; };
-		07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
 		07E35B941C02384C007D31BE /* XUTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = XUTrial.swift; path = trial/XUTrial.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUHardwareInfo.swift; sourceTree = "<group>"; };
 		07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIAlertControllerAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -674,8 +671,8 @@
 		07EAAEE81DA3C417006C98A5 /* NSArrayControllerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArrayControllerAdditions.swift; sourceTree = "<group>"; };
 		07EBEA321CD8B3A600681651 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07FC1CDA1F0F4A2C00942FC4 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUObjCProperty.swift; path = deserialization/XUObjCProperty.swift; sourceTree = "<group>"; };
-		07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUJSONDeserializer.swift; path = deserialization/XUJSONDeserializer.swift; sourceTree = "<group>"; };
+		07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUObjCProperty.swift; sourceTree = "<group>"; };
+		07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializer.swift; sourceTree = "<group>"; };
 		07FD4BDF1C7DC2E900559CF0 /* DateFormatterISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterISO8601.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -926,7 +923,7 @@
 				0749DD021C01F8720075CC9B /* XUExceptionReporter.swift */,
 				0749DD041C0203430075CC9B /* ExceptionReporter.xib */,
 			);
-			name = exception_handling;
+			path = exception_handling;
 			sourceTree = "<group>";
 		};
 		075A929B1C43D70F006DD45B /* ui_bridged */ = {
@@ -951,9 +948,8 @@
 			children = (
 				075DC77A1CF069910043EBD0 /* sync */,
 				075DC7771CF069470043EBD0 /* XUManagedDataContext.swift */,
-				0746A9FC1D42037600650106 /* XUManagedObjectContextManager.swift */,
 			);
-			name = coredata;
+			path = coredata;
 			sourceTree = "<group>";
 		};
 		075DC77A1CF069910043EBD0 /* sync */ = {
@@ -966,13 +962,13 @@
 				075DC79A1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift */,
 				075DC77F1CF06ABE0043EBD0 /* XUManagedObject.swift */,
 			);
-			name = sync;
+			path = sync;
 			sourceTree = "<group>";
 		};
 		075DC77B1CF069AE0043EBD0 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */,
+				07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */,
 				075DC7851CF1E0080043EBD0 /* XUAttributeSyncChange.swift */,
 				075DC7881CF1E1760043EBD0 /* XUDeletionSyncChange.swift */,
 				075DC78B1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift */,
@@ -980,7 +976,7 @@
 				075DC77C1CF069CF0043EBD0 /* XUSyncChange.swift */,
 				075DC7821CF1DCD50043EBD0 /* XUSyncChangeSet.swift */,
 			);
-			name = model;
+			path = model;
 			sourceTree = "<group>";
 		};
 		076ACE751E37D4B8001BA622 /* XUCoreTests */ = {
@@ -1059,6 +1055,8 @@
 		077AFDA71BBD101400872A48 /* additions */ = {
 			isa = PBXGroup;
 			children = (
+				07A48B661FE91ADC002F5DF1 /* iOS */,
+				07A48B641FE91ABF002F5DF1 /* macOS */,
 				077AFDA81BBD101400872A48 /* ArrayExtensions.swift */,
 				071BC28F1C4701810097FCEC /* BoolAdditions.swift */,
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
@@ -1073,47 +1071,19 @@
 				073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */,
 				0779E1691BF06AE200832858 /* HTTPURLResponseAdditions.swift */,
 				073E6B421BE1FD7E00706283 /* InputStream+Reading.swift */,
-				0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */,
-				07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */,
-				0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */,
-				07EAAEE81DA3C417006C98A5 /* NSArrayControllerAdditions.swift */,
 				0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */,
-				078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */,
-				0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */,
-				07E8ED8B1F31E299006B62BB /* NSControl+Additions.swift */,
 				073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */,
 				073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */,
 				073E6B431BE1FD7E00706283 /* NSData+CommonCryptoSwift.h */,
 				073E6B441BE1FD7E00706283 /* NSData+CommonCryptoSwift.m */,
 				0779E16D1BF06C6200832858 /* NSDecimalNumberAdditions.swift */,
-				0779E1671BF0697700832858 /* NSEventAdditions.swift */,
-				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
 				07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */,
-				077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */,
-				073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */,
-				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
-				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
-				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
-				07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */,
-				07758A301BEFC6B6004B29A8 /* NSViewAdditions.swift */,
-				0749DCD31C004D640075CC9B /* NSWindow-NoodleEffects.swift */,
-				077AFDF61BBD101400872A48 /* NSXMLAdditions.h */,
-				077AFDF71BBD101400872A48 /* NSXMLAdditions.m */,
 				0763AE871F94751E00EED10B /* OperatingSystemVersionExtensions.swift */,
 				0784480A1D12A4C000E8467B /* OptionalAdditions.swift */,
-				0710EDCD1F32155A00A697FA /* Process+Additions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
 				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
-				07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */,
-				0749DCE01C00C1910075CC9B /* UIColorAdditions.swift */,
-				07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */,
-				072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */,
-				07CD35A11E5DBEF000DF8AED /* UILabelAdditions.swift */,
-				0779E17B1BF2307100832858 /* UIView+Enclosing.swift */,
-				07B153AC1E534C4B003A5263 /* UITextFieldAdditions.swift */,
 				073E6B3C1BE1FA2700706283 /* URLExtensions.swift */,
 				0779E1961BF23B6000832858 /* URLRequestAdditions.swift */,
-				0779E1911BF2362B00832858 /* XMLAdditions.swift */,
 				07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */,
 				07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */,
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
@@ -1139,25 +1109,20 @@
 		077AFE081BBD101400872A48 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				0749DCDA1C00BAEC0075CC9B /* iOSCommon.swift */,
-				0779E16F1BF07E3B00832858 /* XUApplication.swift */,
+				07A48B671FE91BD2002F5DF1 /* iOS */,
+				07A48B681FE91BD6002F5DF1 /* macOS */,
 				0749DCDD1C00BD130075CC9B /* XUApplicationSetup.swift */,
 				077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */,
-				07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */,
 				073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */,
 				07241D3A1D17D57300206E27 /* XUCompoundError.swift */,
 				07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */,
 				07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */,
 				07B153C21E5369A6003A5263 /* XUExceptionCatcher+Swift.swift */,
 				077AFE141BBD101400872A48 /* XUFatalError.swift */,
-				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
 				07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */,
-				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
-				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
 				076A5DF31F29CA0B006E93D1 /* XULockPool.swift */,
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
 				074228761E3CE296003A485A /* XUPointerEquality.swift */,
-				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
 				07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
@@ -1170,7 +1135,6 @@
 			isa = PBXGroup;
 			children = (
 				073E6B511BE2026600706283 /* XULog.swift */,
-				07B908301BF3C4A9008D254A /* XURedView.swift */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -1186,11 +1150,9 @@
 		077AFE611BBD101400872A48 /* localization */ = {
 			isa = PBXGroup;
 			children = (
+				07A48B6E1FE91DEE002F5DF1 /* iOS */,
+				07A48B6D1FE91DE2002F5DF1 /* macOS */,
 				0737DC631C5381B9004F5D84 /* Localizable.strings */,
-				0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */,
-				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
-				0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */,
-				0779E18B1BF2348D00832858 /* UIViewLocalizationSupport.swift */,
 				07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */,
 			);
 			path = localization;
@@ -1199,8 +1161,7 @@
 		077AFE691BBD101400872A48 /* misc */ = {
 			isa = PBXGroup;
 			children = (
-				07B908321BF3C602008D254A /* XUMouseTracker.swift */,
-				07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */,
+				07A48B6F1FE91E1F002F5DF1 /* macOS */,
 				07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */,
 			);
 			path = misc;
@@ -1232,6 +1193,96 @@
 				077DA6C11EE95A270018170E /* XUScrollViewKeyboardInsetManager.swift */,
 			);
 			name = util;
+			sourceTree = "<group>";
+		};
+		07A48B641FE91ABF002F5DF1 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */,
+				07EAAEE81DA3C417006C98A5 /* NSArrayControllerAdditions.swift */,
+				078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */,
+				0749DCD11BFF7B960075CC9B /* NSColorAdditions.swift */,
+				07E8ED8B1F31E299006B62BB /* NSControl+Additions.swift */,
+				0779E1671BF0697700832858 /* NSEventAdditions.swift */,
+				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
+				077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */,
+				073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */,
+				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
+				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
+				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
+				07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */,
+				07758A301BEFC6B6004B29A8 /* NSViewAdditions.swift */,
+				0749DCD31C004D640075CC9B /* NSWindow-NoodleEffects.swift */,
+				077AFDF61BBD101400872A48 /* NSXMLAdditions.h */,
+				077AFDF71BBD101400872A48 /* NSXMLAdditions.m */,
+				0710EDCD1F32155A00A697FA /* Process+Additions.swift */,
+				0779E1911BF2362B00832858 /* XMLAdditions.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		07A48B661FE91ADC002F5DF1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */,
+				07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */,
+				07E38A301C06132100AE6EAB /* UIAlertControllerAdditions.swift */,
+				0749DCE01C00C1910075CC9B /* UIColorAdditions.swift */,
+				07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */,
+				072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */,
+				07CD35A11E5DBEF000DF8AED /* UILabelAdditions.swift */,
+				0779E17B1BF2307100832858 /* UIView+Enclosing.swift */,
+				07B153AC1E534C4B003A5263 /* UITextFieldAdditions.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		07A48B671FE91BD2002F5DF1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0749DCDA1C00BAEC0075CC9B /* iOSCommon.swift */,
+				075F70A61D1D336900540B42 /* XUKeychainAccess_iOS.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		07A48B681FE91BD6002F5DF1 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				0779E16F1BF07E3B00832858 /* XUApplication.swift */,
+				07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */,
+				07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */,
+				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
+				0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		07A48B6D1FE91DE2002F5DF1 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */,
+				0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */,
+				0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		07A48B6E1FE91DEE002F5DF1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0779E18B1BF2348D00832858 /* UIViewLocalizationSupport.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		07A48B6F1FE91E1F002F5DF1 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				07B908321BF3C602008D254A /* XUMouseTracker.swift */,
+				07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */,
+			);
+			path = macOS;
 			sourceTree = "<group>";
 		};
 		07A7BDFA1C199A45004BCDAF /* controllers */ = {
@@ -1280,7 +1331,7 @@
 				07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */,
 				07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */,
 			);
-			name = deserialization;
+			path = deserialization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1589,7 +1640,6 @@
 				07B908331BF3C602008D254A /* XUMouseTracker.swift in Sources */,
 				07B908201BF39EF0008D254A /* XUExceptionCatcher.m in Sources */,
 				07758A251BEFBB2B004B29A8 /* DateAdditions.swift in Sources */,
-				0746A9FD1D42037600650106 /* XUManagedObjectContextManager.swift in Sources */,
 				07B821121C86395B0079868F /* CGGraphicsAdditions.swift in Sources */,
 				073E6B311BE1F86D00706283 /* XURegex+BasicRegex.swift in Sources */,
 				073E6B231BE1F86D00706283 /* valgrind.cc in Sources */,
@@ -1674,6 +1724,7 @@
 				077AFF8C1BBD101400872A48 /* XUFatalError.swift in Sources */,
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
+				07A48B6B1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */,
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
 				07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */,
@@ -1687,7 +1738,6 @@
 				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
 				075DC79F1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
-				07B908311BF3C4A9008D254A /* XURedView.swift in Sources */,
 				0749DCDE1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B521BE2026600706283 /* XULog.swift in Sources */,
 				07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */,
@@ -1698,7 +1748,6 @@
 				0779E16C1BF06B3E00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				0779E1681BF0697800832858 /* NSEventAdditions.swift in Sources */,
 				075DC7801CF06ABE0043EBD0 /* XUManagedObject.swift in Sources */,
-				07DC35361CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
 				07855DDA1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */,
 				075DC7A11CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
@@ -1734,6 +1783,7 @@
 				075A92A21C43D775006DD45B /* XUUIBridge.swift in Sources */,
 				07311DCC1C0C5E3B001B95AC /* MKPolygonAdditions.swift in Sources */,
 				073E6B061BE1F86D00706283 /* pcre.cc in Sources */,
+				07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */,
 				075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */,
 				07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */,
 				07FD4BDB1C7CE5D800559CF0 /* XUJSONDeserializer.swift in Sources */,
@@ -1840,6 +1890,7 @@
 				072D9F9A1C7471A100DB3E8A /* UINavigationControllerAdditions.swift in Sources */,
 				07B153C41E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */,
 				0779E18D1BF2348D00832858 /* UIViewLocalizationSupport.swift in Sources */,
+				07A48B6C1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				075F70A71D1D336900540B42 /* XUKeychainAccess_iOS.swift in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
@@ -1856,7 +1907,6 @@
 				073391AF1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */,
 				073E6AEC1BE1F86D00706283 /* tostring.cc in Sources */,
 				07B32BF11E3A17440003BC9E /* __XUInAppPurchaseManagerHelper.m in Sources */,
-				07DC35371CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2186,14 +2236,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		07DC35341CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodeld */ = {
+		07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */,
+				07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */,
 			);
-			currentVersion = 07DC35351CF5E0D8007A6DF1 /* XUSyncEngineModel.xcdatamodel */;
-			name = XUSyncEngineModel.xcdatamodeld;
-			path = coredata/sync/model/XUSyncEngineModel.xcdatamodeld;
+			currentVersion = 07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */;
+			path = XUSyncEngineModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

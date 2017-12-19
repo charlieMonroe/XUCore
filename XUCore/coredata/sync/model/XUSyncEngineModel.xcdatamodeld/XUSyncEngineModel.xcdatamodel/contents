@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Xcode 4.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="XUAttributeSyncChange" representedClassName="XUAttributeSyncChange" parentEntity="XUSyncChange" syncable="YES">
         <attribute name="attributeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="attributeValue" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -17,11 +17,11 @@
     <entity name="XUSyncChange" representedClassName="XUSyncChange" isAbstract="YES" syncable="YES">
         <attribute name="objectEntityName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objectSyncID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="changeSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XUSyncChangeSet" inverseName="changes" inverseEntity="XUSyncChangeSet" syncable="YES"/>
     </entity>
     <entity name="XUSyncChangeSet" representedClassName="XUSyncChangeSet" syncable="YES">
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="changes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="XUSyncChange" inverseName="changeSet" inverseEntity="XUSyncChange" syncable="YES"/>
     </entity>
     <entity name="XUToManyRelationshipAdditionSyncChange" representedClassName="XUToManyRelationshipAdditionSyncChange" parentEntity="XURelationshipSyncChange" syncable="YES"/>
