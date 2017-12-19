@@ -1,0 +1,142 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 Ωρα";
+"1 minute" = "1 λεπτό";
+"1 second" = "1 δευτερόλεπτο";
+"Unknown error." = "Αγνωστο σφάλμα.";
+
+"OK" = "Οκ";
+"Cancel" = "Ακυρο";
+
+"Failed to parse CSV file." = "Αποτυχία ανάλυσης αρχείου CSV.";
+
+"Send Report" = "Αποστολή αναφοράς";
+"Privacy Information..." = "Πληροφορίες Προστασίας Προσωπικών Δεδομένων...";
+"%AppName% has encountered a problem." = "Το %AppName% αντιμετώπισε κάποιο πρόβλημα.";
+"%AppName% will terminate after sending the report." = "Το %AppName% θα κλείσει μετά την αποστολή της αναφοράς.";
+"Report to be sent:" = "Αναφορά προς αποστολή:";
+"Your Email:" = "Το Email σας:";
+"Description:" = "Περιγραφή:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Παρακαλούμε, περιγράψτε την κατάσταση όταν συνέβη αυτό το σφάλμα και δώστε τα βήματα για την αναπαραγωγή του προβλήματος αν είναι δυνατόν. Εισαγάγετε τη διεύθυνση του ηλεκτρονικού σας ταχυδρομείου παρακάτω - θα σας ενημερώσουμε πότε θα διορθωθεί αυτό το πρόβλημα ή ίσως να σας ρωτήσουμε για κάποιες λεπτομέρειες σχετικά με το σφάλμα. Η διεύθυνση του ηλεκτρονικού σας ταχυδρομείου, δεν θα συμπεριληφθεί σε καμία βάση δεδομένων και δεν θα λάβετε ανεπιθύμητα μηνύματα μέσω ηλεκτρονικού ταχυδρομείου.\n\nΜε την υποβολή αυτής της αναφοράς θα μας βοηθήσετε να βελτιώσουμε αυτό το λογισμικό. Σας ευχαριστούμε!";
+
+"Report Problem" = "Αναφορά προβλήματος";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Εκτιμούμε τα σχόλιά σας και δεν θα τολμούσαμε να συλλέξουμε, οποιαδήποτε ανεπιθύμητη πληροφορία. Η διεύθυνση του ηλεκτρονικού σας ταχυδρομείου, δεν θα συμπεριληφθεί σε καμία βάση δεδομένων και θα χρησιμοποιηθεί μόνον, για να σας ενημερώσουμε, πότε θα διορθωθεί ενδεχομένως το πρόβλημα ή αν χρειαστούμε περισσότερες πληροφορίες σχετικά με το σφάλμα.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Θα αποσταλούν μόνον οι ακόλουθες πληροφορίες:\n• Η περιγραφή που παρέχετε.\n• Οι παρακάτω πληροφορίες.\n• Εκδοση αυτής της εφαρμογής.\n• Εκδοση του λειτουργικού σας συστήματος (OS).\n• Μοντέλο του υπολογιστή σας (καμία διεύθυνση MAC ή παρόμοιες πληροφορίες που θα μπορούσαν να ταυτοποιήσουν τον υπολογιστή σας).";
+
+"Could not post your report." = "Δεν ήταν δυνατή η αποστολή της αναφοράς σας.";
+"Check your Internet connection and try again." = "Ελέγξτε τη σύνδεσή σας στο Internet και δοκιμάστε πάλι.";
+"Heh, nice try. Please, enter a valid email address." = "Καλή η προσπάθεια. Παρακαλώ εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Ίσως χρειαστεί να επικοινωνήσουμε μαζί σας για να διορθώσουμε το σφάλμα. Δεν δαγκώνουμε, δεν θα πουλήσουμε τη διεύθυνση του ηλεκτρονικού ταχυδρομείου σας σε κανέναν, ούτε θα την χρησιμοποιήσουμε με οποιονδήποτε άλλο τρόπο. Το υποσχόμαστε.";
+"You need to enter a valid email address." = "Πρέπει να εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου.";
+"We may need to get in touch with you in order to fix this." = "Ίσως χρειαστεί να επικοινωνήσουμε μαζί σας για να διορθώσουμε το σφάλμα.";
+"Please, provide some details as to when this exception happened." = "Παρακαλούμε, δώστε μας μερικές λεπτομέρειες, σχετικά με το πότε παρουσιάστηκε αυτό το σφάλμα.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Συμπεριλάβετε πληροφορίες σχετικά με τις τρέχουσες εργασίες στην εφαρμογή, εάν η εφαρμογή ήταν ενεργή μπροστά ή πίσω, εάν κλικάρατε κάπου, κλπ. Η προσπάθεια να εντοπίσουμε το σφάλμα μόνο από την αναφορά μπορεί να είναι δύσκολη και χωρίς πρόσθετες πληροφορίες αδύνατη.";
+"Thank you for the report!" = "Ευχαριστούμε για την αναφορά!";
+"We'll fix it as soon as possible!" = "Θα το διορθώσουμε το συντομότερο δυνατό!";
+
+"Welcome to beta testing of %@." = "Καλώς ήλθατε στην beta δοκιμή του %@.";
+"This is the first time you run a beta build %@." = "Αυτή είναι η πρώτη φορά που εκτελείτε μια έκδοση beta του %@.";
+"This beta build of %@ has expired." = "Αυτή η έκδοση beta του %@ έχει λήξει.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Απολαύστε το λογισμικό μας! Εάν έχετε οποιεσδήποτε ερωτήσεις ή αντιμετωπίζετε τυχόν σφάλματα, μπορείτε να μας ρωτήσετε στη σελίδα υποστήριξης %@";
+
+"Continue" = "Συνέχεια";
+"Purchase..." = "Αγορά...";
+"I'm Still Not Sure" = "Δεν είμαι ακόμα βέβαιος";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "Το %@ δεν μπόρεσε να συνδεθεί στο Internet. Η εφαρμογή θα κλείσει σε μία ώρα.";
+"%@ requires connection to the Internet to continue the trial properly." = "Το %@ απαιτεί σύνδεση στο Internet για να συνεχιστεί σωστά η δοκιμή.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Θα μεταφερθείτε σε μια σελίδα όπου θα μπορείτε να αγοράσετε ένα αντίγραφο. Αν εξακολουθείτε να μην είστε σίγουροι αν το %@ είναι κατάλληλο για εσάς και έχετε κάποιες απορίες, επικοινωνήστε μαζί μας.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Ευχαριστούμε που δοκιμάζετε το %@! Μπορείτε να το χρησιμοποιήσετε για %li ημέρες, χωρίς περιορισμούς. Αφού λήξει η δοκιμαστική περίοδος, θα χρειαστεί να αγοράσετε ένα αντίγραφο του %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Ευχαριστούμε που δοκιμάσατε το %@! Το χρησιμοποιήσατε για %li ημέρες. Για να συνεχίσετε να χρησιμοποιείτε το %@ θα πρέπει να αγοράσετε ένα αντίγραφο.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Ευχαριστούμε που δοκιμάζετε το %@! Μπορείτε τώρα να το χρησιμοποιήσετε για %i %@ χωρίς περιορισμούς. Αφού λήξει η δοκιμαστική περίοδος, θα χρειαστεί να αγοράσετε ένα αντίγραφο του %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Ευχαριστούμε που δοκιμάσατε το %@! Το χρησιμοποιήσατε για %i %@. Για να συνεχίσετε να χρησιμοποιείτε το %@ θα πρέπει να αγοράσετε ένα αντίγραφο.";
+"Working..." = "Επεξεργασία δεδομένων...";
+
+"Progress" = "Εξέλιξη";
+"Posted successfully" = "Επιτυχής αποστολή";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "Το %@ θα συνεχίσει να λειτουργεί για τις επόμενες 24 ώρες, μετά από τις οποίες η λειτουργία του θα σταματήσει. Ενημερώστε το %@ για να το κρατήσετε σε λειτουργία.";
+"Please download a new build." = "Παρακαλώ κατεβάστε μια νέα έκδοση.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Μπορείτε να στείλετε την αναφορά, αλλά αν δεν είναι στην αγγλική γλώσσα, δεν θα μπορέσουμε να σας παράσχουμε πλήρη υποστήριξη.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Το μήνυμά σας περιέχει ειδικούς χαρακτήρες οι οποίοι συνήθως υποδηλώνουν ότι το μήνυμα δεν είναι γραμμένο στα Αγγλικά. Λάβετε υπόψη ότι ενώ το %@ μεταφράζεται σε διάφορες γλώσσες, η υποστήριξη παρέχεται μόνο στα Αγγλικά. Σας ευχαριστούμε για την κατανόηση.";
+"%li hours" = "%li ώρες";
+"%li minutes" = "%li λεπτά";
+"%li seconds" = "%li δευτερόλεπτα";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Δεν είναι δυνατή η εύρεση αυτού του αρχείου. Ελέγξτε ξανά αργότερα, ίσως να μην έχει γίνει πλήρης συγχρονισμός.";
+"Cannot open document metadata file." = "Δεν είναι δυνατό το άνοιγμα του metadata αρχείου.";
+"Metadata file doesn't contain required information." = "Το αρχείο metadata δεν περιέχει τις απαιτούμενες πληροφορίες.";
+"Synchronization is already in progress." = "Ο συγχρονισμός βρίσκεται ήδη σε εξέλιξη.";
+"An upload operation is already in progress." = "Μια διαδικασία αποστολής είναι ήδη σε εξέλιξη.";
+"Could not save upload metadata." = "Δεν ήταν δυνατή η αποθήκευση των metadata δεδομένων.";
+"Cannot find entity named %@" = "Δεν είναι δυνατή η εύρεση entity με όνομα %@";
+"Cannot find class named %@" = "Δεν είναι δυνατή η εύρεση class με όνομα %@";
+"Cannot find entity with ID %@" = "Δεν είναι δυνατή η εύρεση entity με ID %@";
+"Can't find synchronization folder for document %@." = "Αδυναμία εύρεσης του φακέλου συγχρονισμού, για το έγγραφο %@.";
+"Can't find synchronization folder for computer %@." = "Αδυναμία εύρεσης του φακέλου συγχρονισμού, για τον υπολογιστή %@.";
+"Can't find sync folder for document %@." = "Αδυναμία εύρεσης του φακέλου sync folder για το αρχείο %@.";
+"%@ couldn't finish synchronization in the background." = "%@ δεν ήταν δυνατή η ολοκλήρωση του συγχρονισμού στο παρασκήνιο (background).";
+"Please switch back to %@ so that the synchronization can finish." = "Ενεργοποιήστε ξανά το %@ ώστε να ολοκληρωθεί ο συγχρονισμός.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Αδυναμία ανάγνωσης δεδομένων αλλαγής συγχρονισμού (synchronization change data).";
+"Could not copy synchronization change data to the cloud." = "Αδυναμία αντιγραφής δεδομένων αλλαγής συγχρονισμού (synchronization change data) στο cloud.";
+"Failing to apply change sets." = "Αποτυχία εφαρμογής του σετ αλλαγών.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Οι αλλαγές συγχρονισμού από τον υπολογιστή %@ δεν έχουν κατέβει ακόμα.";
+
+/// XUOAuth2
+"Authentication" = "Έλεγχος ταυτότητας";
+"Server responded with unknown token type." = "Ο διακομιστής αποκρίθηκε με άγνωστο τύπο token.";
+"Server provided invalid authorization response." = "Ο διακομιστής παρέσχε μη έγκυρη απάντηση εξουσιοδότησης.";
+"Server has redirected with invalid URL." = "Ο διακομιστής ανακατεύθυνε με μη έγκυρη διεύθυνση URL.";
+"User cancelled the authorization." = "Ο χρήστης ακύρωσε την εξουσιοδότηση.";
+
+/// Debug Log Menu
+"Debug" = "Εντοπισμός Σφαλμάτων (Debug)";
+"About Debug Log..." = "Περι του Αρχείου Καταγραφής Εντοπισμού Σφαλμάτων (Debug Log)...";
+"Debug Logging" = "Καταγραφή Εντοπισμού Σφαλμάτων";
+"On" = "Ενεργή";
+"Off" = "Ανενεργή";
+"Clear Debug Log" = "Διαγραφή Αρχείου Καταγραφής Εντοπισμού Σφαλμάτων (Debug Log)";
+"Show Log in Finder" = "Εμφάνιση Αρχείου Καταγραφής στον Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Το αρχείο καταγραφής εντοπισμού σφαλμάτων (Debug Log), είναι ένα αρχείο κειμένου που περιέχει μερικές τεχνικές λεπτομέρειες σχετικά με το τι κάνει το %@ στο παρασκήνιο. Είναι αρκετά χρήσιμο για εμάς, προκειμένου να διορθώσουμε τα πράγματα γρήγορα, καθώς μας επιτρέπει να δούμε τι συμβαίνει. Για να δείτε το αρχείο καταγραφής εντοπισμού σφαλμάτων, ακολουθήστε αυτά τα απλά βήματα:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Εάν αυτό δεν είναι το πρώτο σας Αρχείο Καταγραφής Εντοπισμού Σφαλμάτων (Debug Log) που στέλνετε, παρακαλούμε επιλέξτε Καθαρισμός του Αρχείου Καταγραφής Εντοπισμού Σφαλμάτων από το μενού Εντοπισμός Σφαλμάτων.\n2) Στο μενού Εντοπισμός Σφαλμάτων, βεβαιωθείτε ότι η Καταγραφή Εντοπισμού Σφαλμάτων είναι Ενεργή.\n3) Εκτελέστε οποιαδήποτε εργασία με την οποία έχετε προβλήματα.\n4) Στο μενού Εντοπισμός Σφαλμάτων, γυρίστε την επιλογή Καταγραφή Εντοπισμού Σφαλμάτων σε Ανενεργή.\n5) Στο μενού εντοπισμού σφαλμάτων, επιλέξτε Εμφάνιση Αρχείου Καταγραφής στον Finder. Αυτό επιλέγει το Αρχείο Καταγραφής στον Finder και μπορείτε εύκολα να μας το στείλετε. Παρακαλούμε, επισυνάψτε το αρχείο στο email αντί να αντιγράψετε-επικολλήσετε απλώς τις πληροφορίες.\n\nΤο αρχείο καταγραφής δεν περιέχει κανένα προσωπικό δεδομένο, πράγμα που μπορεί να επαληθευτεί, ανοίγοντας το αρχείο καταγραφής (είναι ένα απλό αρχείο κειμένου). Αν θεωρείτε ορισμένα από τα δεδομένα εμπιστευτικά ή προσωπικά, αντικαταστήστε τα με κάτι που μπορεί εύκολα να αναγνωριστεί ως σύμβολο κράτησης θέσης (π.χ. XXXXXXXX) και ενημερώστε μας ότι έχετε τροποποιήσει το αρχείο καταγραφής.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "Δεν ήταν δυνατή η λήψη του αρχείου αυτή τη στιγμή.";
+"Log Current Application State" = "Καταγραφή της Τρέχουσας Κατάστασης της Εφαρμογής";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Αυτή η έκδοση beta θα λήξει σε λιγότερο από μία ώρα.";
+"Please update your copy of this beta build." = "Παρακαλούμε, ενημερώστε το αντίγραφο αυτής της έκδοσης beta.";
+
+// Preferences.
+"All Preferences" = "Όλες οι προτιμήσεις";
+"Show All" = "Εμφάνιση όλων";
+"Preferences" = "Προτιμήσεις";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Δεν υπάρχουν αποτελέσματα αναζήτησης";
+"%li search results" = "%li αποτελέσματα αναζήτησης";
+
+// Certificate view.
+"Select..." = "Επιλογή...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Πραγματοποιούνται λήψεις δεδομένων συγχρονισμού.";
+"Copy Current Application State" = "Αντιγραφή της Τρέχουσας Κατάστασης Εφαρμογής";
+
+/// 11/12/2017+
+"Copied" = "Αντιγράφηκαν";
+

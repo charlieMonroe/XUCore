@@ -564,6 +564,7 @@
 		0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUDownloadCenter.swift; sourceTree = "<group>"; };
 		0765CC951DDB3C43001D8603 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		076657811DE4ACC8007D0BE7 /* XUView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUView.swift; sourceTree = "<group>"; };
+		0766BB131FDE6F9000AD7B98 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		076A5DF31F29CA0B006E93D1 /* XULockPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XULockPool.swift; sourceTree = "<group>"; };
 		076ACE741E37D4B7001BA622 /* XUCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XUCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		076ACE761E37D4B8001BA622 /* XUCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUCoreTests.swift; sourceTree = "<group>"; };
@@ -1482,6 +1483,7 @@
 				tr,
 				ru,
 				bg,
+				el,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1891,6 +1893,7 @@
 				0743D1C81F78C33F00836330 /* tr */,
 				07855DEA1F80DE3A0040AC77 /* ru */,
 				07855DF11F82269F0040AC77 /* bg */,
+				0766BB131FDE6F9000AD7B98 /* el */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
