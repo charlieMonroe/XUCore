@@ -36,6 +36,13 @@ public extension URL {
 		try? self.setResourceValues(values)
 	}
 	
+	/// Just like appendingPathComponent(_:), but appends several of them.
+	public func appendingPathComponents(_ components: String...) -> URL {
+		var result = self
+		components.forEach({ result.appendPathComponent($0) })
+		return result
+	}
+	
 	/// Date the URL was created at.
 	public var creationDate: Date? {
 		get {

@@ -265,6 +265,8 @@
 		077093821CC1296C0093830B /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		0771E0791C26BF1C004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
 		0771E07A1C26BF22004305F4 /* XUSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771E0781C26BF1C004305F4 /* XUSearchable.swift */; };
+		0774AA2520049F3D008E7200 /* TimeZoneAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */; };
+		0774AA2620049F3D008E7200 /* TimeZoneAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */; };
 		07758A251BEFBB2B004B29A8 /* DateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* DateAdditions.swift */; };
 		07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */; };
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
@@ -571,6 +573,7 @@
 		076ACE811E37D707001BA622 /* DataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		077093811CC1296C0093830B /* DataAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAdditions.swift; sourceTree = "<group>"; };
 		0771E0781C26BF1C004305F4 /* XUSearchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUSearchable.swift; sourceTree = "<group>"; };
+		0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneAdditions.swift; sourceTree = "<group>"; };
 		07758A241BEFBB2B004B29A8 /* DateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAdditions.swift; sourceTree = "<group>"; };
 		07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLockAdditions.swift; sourceTree = "<group>"; };
 		07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTabViewAdditions.swift; sourceTree = "<group>"; };
@@ -616,6 +619,7 @@
 		07855DF11F82269F0040AC77 /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0788DE901ED2EB0F00D2A81B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07927FAD20036FCE005A636A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1082,6 +1086,7 @@
 				0784480A1D12A4C000E8467B /* OptionalAdditions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
 				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
+				0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */,
 				073E6B3C1BE1FA2700706283 /* URLExtensions.swift */,
 				0779E1961BF23B6000832858 /* URLRequestAdditions.swift */,
 				07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */,
@@ -1535,6 +1540,7 @@
 				ru,
 				bg,
 				el,
+				nl,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1628,6 +1634,7 @@
 				076657821DE4ACC8007D0BE7 /* XUView.swift in Sources */,
 				075DC7831CF1DCD50043EBD0 /* XUSyncChangeSet.swift in Sources */,
 				078E2D6C1CEB58AB00715CB8 /* NSBezierPathAdditions.swift in Sources */,
+				0774AA2520049F3D008E7200 /* TimeZoneAdditions.swift in Sources */,
 				07311DC91C0C5DD2001B95AC /* XUBundleUtilities.swift in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
 				0749DCEA1C00C6DF0075CC9B /* XUAppStoreHidingView.swift in Sources */,
@@ -1792,6 +1799,7 @@
 				07855DDB1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */,
 				07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */,
 				073E6AC61BE1F86D00706283 /* mimics_pcre.cc in Sources */,
+				0774AA2620049F3D008E7200 /* TimeZoneAdditions.swift in Sources */,
 				0749DCE21C00C1910075CC9B /* UIColorAdditions.swift in Sources */,
 				07C4B8F21C2AE6240058EE6A /* XULineView.swift in Sources */,
 				075DC78A1CF1E1760043EBD0 /* XUDeletionSyncChange.swift in Sources */,
@@ -1944,6 +1952,7 @@
 				07855DEA1F80DE3A0040AC77 /* ru */,
 				07855DF11F82269F0040AC77 /* bg */,
 				0766BB131FDE6F9000AD7B98 /* el */,
+				07927FAD20036FCE005A636A /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2112,6 +2121,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -2137,6 +2147,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -2161,6 +2172,7 @@
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -2186,6 +2198,7 @@
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;

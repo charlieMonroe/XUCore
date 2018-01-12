@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
 	s.ios.source_files = 'XUCore/additions/iOS/*.swift', 'XUCore/core/iOS/*.swift', 'XUCore/localization/iOS/*.swift', 'XUCore/misc/*.swift'
 	s.osx.source_files = 'XUCore/additions/macOS/*.swift', 'XUCore/app_store/*.swift', 'XUCore/core/macOS/*.swift', 'XUCore/exception_handling/*.swift', 'XUCore/localization/macOS/*.swift', 'XUCore/misc/macOS/*.swift'
 	
-	s.resources = 'XUCore/coredata/sync/model/*.{xcdatamodeld,xcdatamodel}', 'XUCore/exception_handling/*.xib'
+	s.resources = 'XUCore/coredata/sync/model/*.{xcdatamodeld,xcdatamodel}'
+	s.osx.resources = 'XUCore/exception_handling/*.xib'
 
 	s.frameworks = 'CoreLocation', 'CoreData'
 	s.ios.frameworks = 'UIKit', 'MapKit'

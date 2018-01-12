@@ -10,6 +10,11 @@
 
 #import "NSData+CommonCrypto.h"
 
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonCryptor.h>
+#import <CommonCrypto/CommonHMAC.h>
+
+
 @implementation NSData (CommonCryptoSwift)
 
 +(NSString *)MD5DigestOfBytes:(const void *)bytes ofLength:(NSInteger)length {
@@ -54,6 +59,22 @@
 
 -(NSData *)HMACSHA1WithKey:(NSString *)key {
 	return [self HMACWithAlgorithm:kCCHmacAlgSHA1 key:key];
+}
+
+-(NSData *)HMACSHA256WithKey:(id)key {
+	NSData * keyData;
+	if ([key isKindOfClass:[NSData class]]) {
+		keyData = key;
+	} else {
+		// String
+		keyData = [key dataUsingEncoding: NSUTF8StringEncoding];
+	}
+	
+	// this could be either CC_SHA1_DIGEST_LENGTH or CC_MD5_DIGEST_LENGTH. SHA1 is larger.
+	unsigned char buf[CC_SHA256_DIGEST_LENGTH];
+	CCHmac(kCCHmacAlgSHA256, [keyData bytes], [keyData length], [self bytes], [self length], buf);
+	
+	return ( [NSData dataWithBytes: buf length: CC_SHA256_DIGEST_LENGTH] );
 }
 
 -(NSData *)SHA256Digest {

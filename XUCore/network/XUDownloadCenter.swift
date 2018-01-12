@@ -409,7 +409,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// We cache the name as the owner is weak-references.
-	private lazy var _ownerName: String = self.owner!.name
+	private lazy var _ownerName: String = self.owner?.name ?? "<<deallocated>>"
 	
 	/// Sets the Cookie HTTP header field on request.
 	private func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
@@ -545,7 +545,8 @@ open class XUDownloadCenter {
 		}
 		
 		guard let obj: T = XUJSONHelper.object(from: data) else {
-			return nil // Error already set by jsonObject(from:)
+			self.owner?.downloadCenter(self, didEncounterError: .invalidJSONResponse)
+			return nil
 		}
 		
 		return obj

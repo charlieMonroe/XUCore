@@ -49,10 +49,10 @@
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunde inte koppla till internet. Programmet kommer att avslutas om en 1 timma.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ kräver att den är kopplad till internet för att provperioden skall fungera på rätt sätt.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du kommer nu att förflyttas till en hemsida där du har möjlighet att köpa en kopia av programmet. Om du är fortfarande osäker om %@ rätt program för dig eller om du har några frågor, kontakta oss.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att du provar %@! Du kan prova i % dagar utan några restriktioner. Efter att provperioden är över så måste du köpa en kopia av %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du kan använda programmet i % dagar nu. För att fortsätta att använda %@ så måste du köpa en kopia av programmet.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att du provar %@! Du kan prova i % dagar utan några restriktioner. Efter att provperioden är över så måste köpa en kopia av %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du har använt %@ i % dagar. För att fortsätta använda %@ måste du köpa en kopia av programmet.";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tack för att du provar %@! Du kan prova i %li dagar utan några restriktioner. Efter att provperioden är över så måste du köpa en kopia av %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du kan nu använda programmet i %li dagar. För att fortsätta att använda %@ så måste du köpa en kopia av programmet.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "TTack för att du provar %@! Du kan prova i %@ dagar utan några begränsningar. Efter att provperioden är över så måste köpa en kopia av %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tack för att du provar %@! Du har använt %@ i %@ dagar. För att fortsätta använda %@ måste du köpa en kopia av programmet.";
 "Working..." = "Arbetar...";
 
 "Progress" = "Förlopp";

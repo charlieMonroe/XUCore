@@ -107,6 +107,17 @@ public extension Data {
 		return hexString
 	}
 	
+	public func hmacSHA265(with key: Data) -> Data? {
+		let cocoaData = (self as NSData)
+		return cocoaData.hmacsha256(withKey: key)
+	}
+	
+	public func hmacSHA265(with key: String) -> Data? {
+		let data = NSData(bytes: (self as NSData).bytes, length: self.count)
+		let cocoaKey = NSString(format: "%@", key as NSString)
+		return data.hmacsha256(withKey: cocoaKey)
+	}
+	
 	/// Returns first occurrence of bytes within `self`. If it doesn't contain
 	/// the data, nil is returned since this method is based on
 	/// self.rangeOfData(_:options:range:).

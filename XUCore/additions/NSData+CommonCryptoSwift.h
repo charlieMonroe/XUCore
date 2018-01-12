@@ -33,8 +33,11 @@
 /// Encrypts data with RC4 using an encryption key.
 -(nullable NSData *)encryptedRC4DataWithEncryptionKey:(nonnull NSString *)key;
 
-/// Creates a HMAC-SH1 with custom key.
+/// Creates a HMAC-SHA1 with custom key.
 -(nullable NSData *)HMACSHA1WithKey:(nonnull NSString *)key;
+
+/// Creates a HMAC-SHA256 with custom key.
+-(nullable NSData *)HMACSHA256WithKey:(nonnull id)key;
 
 /// Digest.
 -(nonnull NSData *)SHA256Digest;

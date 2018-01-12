@@ -12,6 +12,8 @@ import Foundation
 /// line and method in the reason of fatalError.
 public func XUFatalError(_ additionalInformation: String = "", file: String = #file.components(separatedBy: "/").last!, line: Int = #line, method: String = #function) -> Never  {
 	let reason = "XUFatalError: [\(file):\(line) \(method)] \(additionalInformation)"
+	XULogStacktrace(reason)
+	
 	fatalError(reason)
 }
 

@@ -156,7 +156,7 @@ public class XUMessageCenter {
 				}
 				
 				#if os(iOS)
-					UIApplication.shared.openURL(url)
+					UIApplication.shared.open(url, options: [:], completionHandler: nil)
 				#else
 					NSWorkspace.shared.open(url)
 				#endif

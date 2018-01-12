@@ -112,7 +112,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	
 	/// Initialize with values.
 	public init(values: [T]) {
-		_innerArray = values.map({ XUWeakReference(objectValue: $0) })
+		_innerArray = values.map(XUWeakReference.init(objectValue:))
 	}
 	
 }
