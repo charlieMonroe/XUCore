@@ -25,10 +25,19 @@ private extension XUPreferences {
 	
 }
 
+/// A UI element that's localizable. See localization support files for NSView,
+/// NSWindow, NSMenu, UIView.
+public protocol XULocalizableUIElement {
+	
+	/// Localizes the element using localization from a particular bundle.
+	func localize(from bundle: Bundle)
+	
+}
+
 
 /// Returns the identifier of current localization.
 @inline(__always)
-public func XUCurrentLocalizationIdentifierForBundle(_ bundle: Bundle) -> String {
+public func XUCurrentLocalizationIdentifier(for bundle: Bundle) -> String {
 	return XULocalizationCenter.shared.localizationIdentifier(for: bundle)
 }
 
@@ -41,7 +50,7 @@ public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
 /// Returns a localized string.
 @inline(__always)
 public func XULocalizedString(_ key: String, inBundle bundle: Bundle = Bundle.main, withLocale language: String? = nil) -> String {
-	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifierForBundle(bundle), inBundle: bundle)
+	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifier(for: bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
@@ -63,8 +72,13 @@ public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg...
 ///
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
-public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
+public func XULocalizedString(_ key: String, withFormatValues values: [String : Any]) -> String {
 	return XULocalizationCenter.shared.localizedString(key, withValues: values)
+}
+
+@available(*, deprecated, renamed: "XULocalizedString(_:withFormatValues:)")
+public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
+	return XULocalizedString(key, withFormatValues: values)
 }
 
 

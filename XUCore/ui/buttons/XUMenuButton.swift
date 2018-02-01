@@ -72,7 +72,7 @@ open class XUMenuButton: NSButton {
 		self.target = self
 		self.action = #selector(XUMenuButton._displayMenu)
 		
-		self.menu?.localizeMenu()
+		self.menu?.localize()
 		self._updateMenuFont()
 		
 		super.awakeFromNib()

@@ -19,7 +19,7 @@ internal func XU_SYNC_DEVICE_ID() -> String {
 		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
 		assert(platformExpert != 0, "Failed to obtain computer UUID.")
 		
-		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber" as CFString!, kCFAllocatorDefault, 0).takeRetainedValue()
+		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber" as CFString, kCFAllocatorDefault, 0).takeRetainedValue()
 		
 		IOObjectRelease(platformExpert)
 		

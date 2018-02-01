@@ -8,12 +8,12 @@
 
 import Foundation
 
-public extension NSWindow {
+extension NSWindow: XULocalizableUIElement {
 	
-	public func localizeWindow(_ bundle: Bundle = Bundle.main) {
+	public func localize(from bundle: Bundle = Bundle.main) {
 		self.title = XULocalizedString(self.title, inBundle: bundle)
 		
-		self.contentView?.localizeView(bundle)
+		self.contentView?.localize(from: bundle)
 		
 		if let toolbar = self.toolbar {
 			for item in toolbar.items {
@@ -21,5 +21,9 @@ public extension NSWindow {
 			}
 		}
 	}
-	
+
+	@available(*, deprecated, renamed: "localize(from:)")
+	public func localizeWindow(_ bundle: Bundle = Bundle.main) {
+		self.localize(from: bundle)
+	}
 }

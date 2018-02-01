@@ -41,7 +41,7 @@ open class XUPositionedWindowView: NSView {
 		self.postsFrameChangedNotifications = false
 
 		self.updateFramePosition()
-		self.localizeView()
+		self.localize()
 	}
 
 	deinit {

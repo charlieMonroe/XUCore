@@ -69,7 +69,7 @@ public extension String {
 		urlString = url!.absoluteString
 		if urlString.range(of: "&") != nil && urlString.range(of: "?") == nil {
 			if let firstURL = URL(string: urlString.components(separatedBy: "&").first!) {
-				return [url, firstURL].flatMap({ $0 })
+				return [url, firstURL].compactMap({ $0 })
 			}
 		}
 		
@@ -79,11 +79,11 @@ public extension String {
 	private func _urls(from occurrences: [String]) -> [URL] {
 		var urls: [URL] = [ ]
 		
-		urls += occurrences.flatMap({ (originalURLString) -> [URL]? in
+		urls += occurrences.compactMap({ (originalURLString) -> [URL]? in
 			return self._standardizedURL(from: originalURLString)
 		}).joined()
 		
-		urls = urls.flatMap({ (url) -> URL? in
+		urls = urls.compactMap({ (url) -> URL? in
 			if url.host == nil {
 				return nil
 			}
@@ -130,7 +130,7 @@ public extension String {
 		occurrences += self.allValues(of: "URL", forRegex: XURegex.URL.iframeSource.regex)
 		occurrences += self.allValues(of: "URL", forRegex: "<a[^>]+href=\"(?P<URL>[^\"]+)\"")
 		
-		occurrences = occurrences.flatMap({ (URLString) -> String? in
+		occurrences = occurrences.compactMap({ (URLString) -> String? in
 			if URLString.hasPrefix("http") || URLString.hasPrefix("//") {
 				return nil /* We want just relative URLs. */
 			}

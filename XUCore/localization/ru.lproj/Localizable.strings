@@ -99,19 +99,19 @@
 
 /// Debug Log Menu
 "Debug" = "Отладка";
-"About Debug Log..." = "О Журнале Отладки...";
-"Debug Logging" = "Ведение Журнала Отладки";
+"About Debug Log..." = "О журнале отладки...";
+"Debug Logging" = "Ведение журнала отладки";
 "On" = "Вкл";
 "Off" = "Выкл";
-"Clear Debug Log" = "Очистить Журнал Отладки";
-"Show Log in Finder" = "Показать Журнал в Finder";
+"Clear Debug Log" = "Очистить журнал отладки";
+"Show Log in Finder" = "Показать журнал в Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом Отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить Журнал Отладки, выполните следующие простые действия:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если это ваш первый Журнал Отладки, который вы посылаете, пожалуйста, выберите Очистить Журнал Отладки в меню Отладка.\n2) В меню Отладка убедитесь, что ведение Журнала Отладки включено.\n3) Выполните все задачи, имеющие проблемы.\n4) В меню Отладка отключите ведение Журнала Отладки.\n5) В меню Отладка выберите пункт Показать Журнал в Finder. Это действие открывает лог-файл в Finder, и вы можете легко отправить его мне. Пожалуйста, прикрепите файл к электронной почте, вместо копирования вставки information.\n\nФайл Журнала не содержит никаких личных данных, которые можно проверить, открыв файл (это простой текстовый файл). Если вы считаете, что некоторые из данных конфиденциальные или личные, пожалуйста, замените их чем-то, что могут быть легко идентифицированы как заполнитель (например XXXXXXXX) и дайте мне знать, что вы модифицировали файл Журнала.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить журнал отладки, выполните следующие простые действия:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если это ваш первый журнал отладки, который вы посылаете, пожалуйста, выберите Очистить журнал отладки в меню Отладка.\n2) В меню Отладка убедитесь, что ведение журнала отладки включено.\n3) Выполните все задачи, имеющие проблемы.\n4) В меню Отладка отключите ведение журнала отладки.\n5) В меню Отладка выберите пункт Показать журнал в Finder. Это действие открывает лог-файл в Finder, и вы можете легко отправить его мне. Пожалуйста, прикрепите файл к электронной почте, вместо копирования вставки information.\n\nФайл журнала не содержит никаких личных данных, которые можно проверить, открыв файл (это простой текстовый файл). Если вы считаете, что некоторые из данных конфиденциальные или личные, пожалуйста, замените их чем-то, что могут быть легко идентифицированы как заполнитель (например XXXXXXXX) и дайте мне знать, что вы модифицировали файл журнала.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Документ не может быть загружен в данный момент.";
-"Log Current Application State" = "Состояние Журнала текущего приложения";
+"Log Current Application State" = "Состояние журнала текущего приложения";
 
 /// 9/28/2016+
 
@@ -138,4 +138,5 @@
 "Copy Current Application State" = "Копия текущего состояния приложения";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "Скопировано";
+

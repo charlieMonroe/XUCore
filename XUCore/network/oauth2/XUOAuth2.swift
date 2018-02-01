@@ -375,7 +375,7 @@ public final class XUOAuth2Client {
 			return []
 		}
 		
-		return dicts.flatMap({ XUOAuth2Client(dictionary: $0) })
+		return dicts.compactMap({ XUOAuth2Client(dictionary: $0) })
 	}
 	
 	/// Registers a client with configuration. This causes the client to be 
@@ -560,7 +560,7 @@ public final class XUOAuth2Client {
 		
 		self.init(configuration: configuration)
 		
-		self.accounts += accountDicts.flatMap({ Account(client: self, andDictionary: $0) })
+		self.accounts += accountDicts.compactMap({ Account(client: self, andDictionary: $0) })
 	}
 	
 	#if os(OSX)

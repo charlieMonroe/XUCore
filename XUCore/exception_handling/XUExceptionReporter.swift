@@ -118,7 +118,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		_nib.instantiate(withOwner: self, topLevelObjects: &_topLevelObjects)
 		
 		_reporterWindow.delegate = self
-		_reporterWindow.localizeWindow(XUCoreFramework.bundle)
+		_reporterWindow.localize(from: XUCoreFramework.bundle)
 		
 		_stackTraceTextView.string = stackTrace
 		_stackTraceTextView.font = NSFont.userFixedPitchFont(ofSize: 11.0)

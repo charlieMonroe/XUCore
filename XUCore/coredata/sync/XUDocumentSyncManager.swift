@@ -61,20 +61,21 @@ open class XUDocumentSyncManager {
 		
 		var documentURL: URL?
 		var error: NSError?
+		var innerError: NSError?
 		
 		let coordinator = NSFileCoordinator(filePresenter: nil)
 		coordinator.coordinate(readingItemAt: config.accountURL, options: .withoutChanges, error: &error, byAccessor: { (newURL) in
 			let infoFileURL = config.accountURL.deletingLastPathComponent().appendingPathComponent("Info.plist")
 			
 			guard let accountDict = NSDictionary(contentsOf: infoFileURL) as? XUJSONDictionary else {
-				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+				innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreFramework.bundle)
 				])
 				return
 			}
 			
 			guard let documentName = accountDict[XUDocumentNameKey] as? String else {
-				error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+				innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: XUCoreFramework.bundle)
 				])
 				return
@@ -92,7 +93,7 @@ open class XUDocumentSyncManager {
 				
 				// We need to copy the sync timestamp
 				guard let syncInfoURL = XUSyncManagerPathUtilities.persistentSyncStorageInfoURLForSyncManager(appSyncManager, computerID: config.computerID, andDocumentUUID: documentID) else {
-					error = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+					innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 						NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreFramework.bundle)
 						])
 					return
@@ -108,9 +109,11 @@ open class XUDocumentSyncManager {
 				syncInfoDict.write(to: syncInfoURL, atomically: true)
 				appSyncManager.didUpdateFile(at: syncInfoURL)
 			} catch let localError as NSError {
-				error = localError
+				innerError = localError
 			}
 		})
+		
+		error = error ?? innerError
 		
 		if let error = error {
 			throw error
@@ -242,7 +245,7 @@ open class XUDocumentSyncManager {
 		
 		// We need to apply insertion changes first since other changes may include
 		// relationship changes, which include these entities
-		let insertionChanges = changes.flatMap({ $0 as? XUInsertionSyncChange })
+		let insertionChanges = changes.compactMap({ $0 as? XUInsertionSyncChange })
 		for change in insertionChanges {
 			XULog("Applying insertion change [\(change.insertedEntityName)]")
 			
@@ -781,6 +784,7 @@ open class XUDocumentSyncManager {
 		XU_PERFORM_BLOCK_ASYNC {
 			let coordinator = NSFileCoordinator(filePresenter: nil)
 			var err: NSError?
+			var innerError: NSError?
 			var success: Bool = true
 			coordinator.coordinate(writingItemAt: entireDocumentFolderURL, options: .forReplacing, error: &err, byAccessor: { (newURL) in
 				let docURL = newURL.appendingPathComponent("Document")
@@ -798,7 +802,7 @@ open class XUDocumentSyncManager {
 					
 					self.applicationSyncManager.didUpdateFile(at: targetURL)
 				} catch let error as NSError {
-					err = error
+					innerError = error
 					success = false
 					return
 				}
@@ -812,7 +816,7 @@ open class XUDocumentSyncManager {
 				let configURL = newURL.appendingPathComponent("Info.plist")
 				if !documentConfig.write(to: configURL, atomically: true) {
 					success = false
-					err = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
+					innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
 						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.", inBundle: XUCoreFramework.bundle)
 					])
 					return
@@ -821,6 +825,8 @@ open class XUDocumentSyncManager {
 				self.applicationSyncManager.didUpdateFile(at: configURL)
 				success = true
 			})
+			
+			err = err ?? innerError
 	
 			XU_PERFORM_BLOCK_ON_MAIN_THREAD({ 
 				completionHandler(success, err)

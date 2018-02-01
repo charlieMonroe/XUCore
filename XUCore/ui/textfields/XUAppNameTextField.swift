@@ -15,7 +15,7 @@ public final class XUAppNameTextField: NSTextField {
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		self.localizeView()
+		self.localize()
 		
 		let appName = ProcessInfo().processName
 		self.stringValue = self.stringValue.replacingOccurrences(of: "%AppName%", with: appName)

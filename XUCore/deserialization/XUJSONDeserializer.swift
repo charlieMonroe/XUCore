@@ -326,7 +326,7 @@ public final class XUJSONDeserializer {
 				return (nil, .none)
 			}
 			
-			let result = dicts.flatMap({ (dict) -> Any? in
+			let result = dicts.compactMap({ (dict) -> Any? in
 				guard let obj = self._fetchOrCreateObject(from: dict, forKey: key, onObject: object, toProperty: property).value else {
 					return nil // Can be some filtering.
 				}

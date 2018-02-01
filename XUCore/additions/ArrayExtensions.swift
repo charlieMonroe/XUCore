@@ -17,19 +17,21 @@ public extension Sequence {
 		return try self.first(where: { try !filter($0) }) == nil
 	}
 	
+	#if swift(>=4.1)
+	#else
+	/// This is a backward compatibility from Swift 4.1 which renames flatMap to
+	/// compactMap.
+	public func compactMap<U>(_ mapper: (Iterator.Element) throws -> U?) rethrows -> [U] {
+		return try self.flatMap(mapper)
+	}
+	#endif
+	
 	/// Counts elements that match the filter
 	public func count(where filter: Filter) rethrows -> Int {
 		let count = try self.sum({ (obj) -> Int in
 			return try filter(obj) ? 1 : 0
 		})
 		return count
-	}
-	
-	/// Returns the first element in self that matches the filter. As this was
-	/// eventually added to the stdlib, it's now deprecated.
-	@available(*, deprecated, renamed: "first(where:)")
-	public func find(where filter: Filter) rethrows -> Self.Iterator.Element? {
-		return try self.first(where: filter)
 	}
 	
 	/// Finds a mapped value. When `filter` returns a non-nil value, that value
@@ -223,8 +225,8 @@ public extension Array {
 		}
 	}
 	
-	/// Similar to flatMap, but provides an index.
-	public func flatMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
+	/// Similar to compactMap, but provides an index.
+	public func compactMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
 		var result: [U] = []
 		for i in 0 ..< self.count {
 			if let obj = mapper(i, self[i]) {
@@ -232,6 +234,12 @@ public extension Array {
 			}
 		}
 		return result
+	}
+	
+	/// Similar to flatMap, but provides an index.
+	@available(*, deprecated, renamed: "compactMapIndexed")
+	public func flatMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
+		return self.compactMapIndexed(mapper)
 	}
 	
 	/// Similar to map(), but provides the index of the element.

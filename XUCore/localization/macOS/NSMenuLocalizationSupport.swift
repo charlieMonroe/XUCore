@@ -9,9 +9,9 @@
 import Foundation
 
 
-public extension NSMenu {
+extension NSMenu: XULocalizableUIElement {
 	
-	public func localizeMenu(_ bundle: Bundle = Bundle.main) {
+	public func localize(from bundle: Bundle = Bundle.main) {
 		self.title = XULocalizedString(self.title)
 		for item in self.items {
 			if let attributedTitle = item.attributedTitle {
@@ -23,9 +23,14 @@ public extension NSMenu {
 			}
 			
 			if item.hasSubmenu {
-				item.submenu?.localizeMenu()
+				item.submenu?.localize()
 			}
 		}
+	}
+	
+	@available(*, deprecated, renamed: "localize(from:)")
+	public func localizeMenu(_ bundle: Bundle = Bundle.main) {
+		self.localize(from: bundle)
 	}
 	
 }

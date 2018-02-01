@@ -154,6 +154,31 @@ public extension XUPreferences {
 		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 	}
 	
+	/// Decodes a codable object into preferences for a key.
+	public func decode<T: Codable>(for key: Key, defaultValue: T? = nil) -> T? {
+		guard let data: Data = self.value(for: key) else {
+			return nil
+		}
+		
+		do {
+			let decoder = PropertyListDecoder()
+			let obj = try decoder.decode(T.self, from: data)
+			return obj
+		} catch let error {
+			print("Failed to decode value for \(key.rawValue): \(error)")
+			return nil
+		}
+	}
+	
+	/// Encodes a codable object into preferences for a key. Throws if the encode
+	/// fails.
+	public func encode<T: Encodable>(_ obj: T, forKey key: Key) throws {
+		let encoder = PropertyListEncoder()
+		let payload = try encoder.encode(obj)
+		
+		self.set(value: payload, forKey: key)
+	}
+	
 	/// Fetches a value for key.
 	public func value<T>(for key: Key) -> T? {
 		return UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T

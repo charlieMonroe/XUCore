@@ -66,7 +66,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	
 	private func _createBinaryMD5sApplicationStateItem() -> XUApplicationStateItem {
 		let frameworkURLs = FileManager.default.contentsOfDirectory(at: Bundle.main.bundleURL.appendingPathComponent("Contents").appendingPathComponent("Frameworks")).filter({ $0.pathExtension == "framework" })
-		let frameworkBundles = frameworkURLs.flatMap(Bundle.init(url:))
+		let frameworkBundles = frameworkURLs.compactMap(Bundle.init(url:))
 		let otherBinaryMD5s = frameworkBundles.map({ "\t\($0.bundleURL.lastPathComponent): \(self._calculateBinaryMD5(for: $0))" }).joined(separator: "\n")
 		return XUApplicationStateItem(name: "Binary MD5s", andValue: "\n\tMain: \(self._calculateBinaryMD5(for: Bundle.main))\n\(otherBinaryMD5s)", requiresAdditionalTrailingNewLine: true)
 	}

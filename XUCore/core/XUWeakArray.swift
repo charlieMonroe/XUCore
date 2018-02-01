@@ -33,7 +33,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	
 	/// Gathers all non-nil values into an array.
 	public var allValues: [T] {
-		return _innerArray.flatMap({ $0.objectValue })
+		return _innerArray.compactMap({ $0.objectValue })
 	}
 	
 	/// Returns whether the array contains the object. The comparison is pointer

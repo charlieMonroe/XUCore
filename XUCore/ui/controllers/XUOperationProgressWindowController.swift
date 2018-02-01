@@ -31,7 +31,7 @@ public protocol XUProgressableOperation: AnyObject {
 	var currentStep: Int { get }
 	
 	/// Delegate.
-	weak var delegate: XUProgressableOperationDelegate? { get set }
+	var delegate: XUProgressableOperationDelegate? { get set }
 	
 	/// Return the total number of steps.
 	var numberOfSteps: Int { get }

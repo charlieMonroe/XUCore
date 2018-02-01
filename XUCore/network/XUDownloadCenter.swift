@@ -440,7 +440,7 @@ open class XUDownloadCenter {
 			return
 		}
 		
-		var cookieString = cookies.flatMap({ (obj: HTTPCookie) -> String? in
+		var cookieString = cookies.compactMap({ (obj: HTTPCookie) -> String? in
 			return "\(obj.name)=\(obj.value)"
 		}).joined(separator: ";")
 		
