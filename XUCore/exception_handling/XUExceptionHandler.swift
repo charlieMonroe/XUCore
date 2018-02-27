@@ -125,15 +125,9 @@ public final class XUExceptionHandler: NSObject {
 		
 		stackTraceString += exception.description + "\n\n"
 		
-		let exceptionStackTrace = XUStacktraceStringFromException(exception)
+		let exceptionStackTrace = XUStacktraceString(from: exception)
 		if !exceptionStackTrace.isEmpty {
 			stackTraceString = exceptionStackTrace + "\n\n"
-		}
-		
-		if let stackTraceSymbolsString = exception.userInfo?[NSStackTraceKey] as? String {
-			let stackTraceSymbols = stackTraceSymbolsString.components(separatedBy: "  ").map({ NSNumber(value: $0.deleting(prefix: "0x").hexValue as Int) })
-			stackTraceString += _XUBacktrace.backtraceString(forAddresses: stackTraceSymbols).joined(separator: "\n")
-			stackTraceString += "\n\n"
 		}
 		
 		stackTraceString += XUStacktraceString()

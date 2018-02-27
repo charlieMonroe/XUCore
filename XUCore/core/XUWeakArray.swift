@@ -74,7 +74,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	}
 	
 	public func makeIterator() -> XUWeakArrayGenerator<T> {
-		return XUWeakArrayGenerator(slice: _innerArray.map({ $0.objectValue }).slice(with: 0 ..< _innerArray.count))
+		return XUWeakArrayGenerator(items: _innerArray.map({ $0.objectValue }))
 	}
 	
 	/// Returns number of nonnil values by going through the inner array. Always
@@ -121,12 +121,14 @@ public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
 	
 	public typealias Element = T
 	
-	private var _items: ArraySlice<T?>
+	private var _index: Int = 0
+	private var _items: [T?]
 	
 	mutating public func next() -> T? {
-		while !_items.isEmpty {
-			let next = _items[0]
-			_items = _items.dropFirst()
+		while _index < _items.count {
+			let next = _items[_index]
+			_index += 1
+			
 			if next != nil {
 				return next
 			}
@@ -134,8 +136,8 @@ public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
 		return nil
 	}
 	
-	fileprivate init(slice: ArraySlice<T?>) {
-		self._items = slice
+	fileprivate init(items: [T?]) {
+		self._items = items
 	}
 
 }

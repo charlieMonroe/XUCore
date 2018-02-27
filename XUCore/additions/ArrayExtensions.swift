@@ -17,6 +17,12 @@ public extension Sequence {
 		return try self.first(where: { try !filter($0) }) == nil
 	}
 	
+	/// Casts all elements in self to certain type - this is equivalent to
+	/// array.compactMap({ $0 as? T }).
+	public func compactCast<T>(to type: T.Type) -> [T] {
+		return self.compactMap({ $0 as? T })
+	}
+	
 	#if swift(>=4.1)
 	#else
 	/// This is a backward compatibility from Swift 4.1 which renames flatMap to

@@ -159,8 +159,8 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", ProcessInfo.processInfo.processName, inBundle: XUCoreFramework.bundle)
 			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.", inBundle: XUCoreFramework.bundle)
-			alert.addButton(withTitle: "Cancel")
-			alert.addButton(withTitle: "Send Anyway")
+			alert.addButton(withTitle: XULocalizedString("Cancel", inBundle: XUCoreFramework.bundle))
+			alert.addButton(withTitle: XULocalizedString("Send Anyway", inBundle: XUCoreFramework.bundle))
 			if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
 				return
 			}

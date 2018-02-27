@@ -43,16 +43,16 @@
 "Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Наслаждайтесь нашим программным обеспечением! Если у вас есть какие-либо вопросы или возникли какие-либо ошибки, не стесняйтесь задавать вопросы на нашей странице поддержки %@";
 
 "Continue" = "Продолжить";
-"Purchase..." = "Покупка...";
+"Purchase..." = "Купить...";
 "I'm Still Not Sure" = "Я до сих пор не уверен";
 
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ не удалось подключиться к интернету. Программа завершит работу через час.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ Требуется подключение к интернету для продолжения работы пробной версии.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Вы попадете на страницу, где вы сможете купить копию. Если вы все еще не уверены, что %@ является правильным для вас и есть вопросы, свяжитесь с нами.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали  %@! Вы можете использовать его %li дней без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали  %@! Вы можете использовать %li дней без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Спасибо, что попробовали %@! Вы использовали %li дней. Чтобы продолжить использование %@ вам нужно приобрести копию.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали %@! Вы можете использовать его %i %@ без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Спасибо, что попробовали %@! Вы уже использовали %@ сейчас. Чтобы продолжить использование %@ вам нужно приобрести копию.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Спасибо, что попробовали %@! Вы можете использовать %i %@ без каких-либо ограничений. После истечения пробного периода, вам нужно приобрести копию %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Спасибо, что попробовали %@! Вы уже использовали %i %@ сейчас. Чтобы продолжить использование %@ вам нужно приобрести копию.";
 "Working..." = "Работа...";
 
 "Progress" = "Прогресс";

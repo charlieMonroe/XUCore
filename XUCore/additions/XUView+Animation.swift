@@ -235,7 +235,7 @@ public extension XUViewAnimation {
 			
 			let positionX: CGFloat = layer.position.x
 			let bounceAnimation = CAKeyframeAnimation(keyPath: "position.x")
-			bounceAnimation.values = [positionX, positionX + 3.0, positionX - 2.0, positionX + 1.0, positionX]
+			bounceAnimation.values = [positionX, positionX + 6.0, positionX - 4.0, positionX + 2.0, positionX]
 			bounceAnimation.duration = 0.25
 			
 			layer.add(bounceAnimation, forKey: "wobble")

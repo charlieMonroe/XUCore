@@ -22,6 +22,3 @@ FOUNDATION_EXPORT const unsigned char XUCoreMobileVersionString[];
 
 /** Regex. */
 #import "XURegex.h"
-#import "_XUBacktrace.h"
-
-#import "__XUInAppPurchaseManagerHelper.h"

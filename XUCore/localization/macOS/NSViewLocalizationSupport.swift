@@ -24,6 +24,10 @@ public extension NSTextField {
 	
 	public override func localize(from bundle: Bundle = Bundle.main) {
 		self.stringValue = XULocalizedString(self.stringValue, inBundle: bundle)
+		
+		if let placeholder = self.placeholderString {
+			self.placeholderString = XULocalizedString(placeholder, inBundle: bundle)
+		}
 	}
 	
 }

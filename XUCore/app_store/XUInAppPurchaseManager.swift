@@ -278,7 +278,10 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		}
 		
 		isLoadingProducts = true
-		__XUInAppPurchaseManagerHelper.requestProducts(withIdentifiers: self.delegate.availableProductIdentifiers, with: self)
+		
+		let request = SKProductsRequest(productIdentifiers: Set(self.delegate.availableProductIdentifiers))
+		request.delegate = self
+		request.start()
 	}
 	
 	public func request(_ request: SKRequest, didFailWithError error: Error) {

@@ -186,7 +186,7 @@ open class XUApplicationSetup {
 	/// etc. Default is simply "items". You can change this using the key
 	/// XUItemBasedTrialItemName. Note that the name must be plural and is
 	/// passed to XULocalizedString(_) before being used.
-	public let itemBasedTrialItemName: String
+	public var itemBasedTrialItemName: String
 	
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining

@@ -82,7 +82,7 @@ public func XUStacktraceString() -> String {
 }
 
 /// Returns a string containing stacktrace of the exception.
-public func XUStacktraceStringFromException(_ exception: NSException) -> String {
+public func XUStacktraceString(from exception: NSException) -> String {
 	return exception.callStackSymbols.joined(separator: "\n")
 }
 
