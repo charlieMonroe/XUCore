@@ -135,51 +135,6 @@ public extension Sequence {
 		return arr
 	}
 	
-	/// Sums up values of elements in self.
-	public func sum<T: SignedInteger>(_ numerator: (Self.Iterator.Element) throws -> T) rethrows -> T {
-		var result: T = 0
-		for obj in self {
-			result += try numerator(obj)
-		}
-		return result
-	}
-	
-	/// Sums up values of elements in self.
-	public func sum<T: UnsignedInteger>(_ numerator: (Self.Iterator.Element) -> T) -> T {
-		var result: T = 0
-		for obj in self {
-			result += numerator(obj)
-		}
-		return result
-	}
-	
-	/// Sums up values of elements in self.
-	public func sum(_ numerator: (Self.Iterator.Element) -> CGFloat) -> CGFloat {
-		var result: CGFloat = 0.0
-		for obj in self {
-			result += numerator(obj)
-		}
-		return result
-	}
-	
-	/// Sums up values of elements in self.
-	public func sum(_ numerator: (Self.Iterator.Element) -> Double) -> Double {
-		var result: Double = 0.0
-		for obj in self {
-			result += numerator(obj)
-		}
-		return result
-	}
-	
-	/// Sums up values of elements in self.
-	public func sum(_ numerator: (Self.Iterator.Element) -> NSDecimalNumber) -> NSDecimalNumber {
-		var result: NSDecimalNumber = NSDecimalNumber.zero
-		for obj in self {
-			result = result.adding(numerator(obj))
-		}
-		return result
-	}
-	
 }
 
 public extension Sequence where Iterator.Element : Equatable {

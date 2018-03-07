@@ -76,6 +76,10 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	
 	
 	private func _update() {
+		if !self.isWindowLoaded {
+			self.loadWindow()
+		}
+		
 		self.currentActionNameLabel.stringValue = self.operation.currentActionName
 		self.progressIndicator.minValue = 0.0
 		self.progressIndicator.maxValue = Double(self.operation.numberOfSteps)

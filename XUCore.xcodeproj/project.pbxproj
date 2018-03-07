@@ -265,6 +265,8 @@
 		07758A291BEFC500004B29A8 /* NSTabViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */; };
 		07758A2F1BEFC640004B29A8 /* NSToolbarAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */; };
 		0775F38B1EC0D768005DA86F /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0775F38A1EC0D768005DA86F /* ArrayTests.swift */; };
+		0777C64C2049282C00202BB7 /* Array+Numerics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777C64B2049282C00202BB7 /* Array+Numerics.swift */; };
+		0777C64D2049282C00202BB7 /* Array+Numerics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777C64B2049282C00202BB7 /* Array+Numerics.swift */; };
 		0779E1531BEE5D7300832858 /* NSWindowLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */; };
 		0779E1551BEE5E2800832858 /* NSViewLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */; };
 		0779E1571BEE5FE700832858 /* NSMenuLocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */; };
@@ -569,6 +571,7 @@
 		07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSToolbarAdditions.swift; sourceTree = "<group>"; };
 		07758A301BEFC6B6004B29A8 /* NSViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSViewAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0775F38A1EC0D768005DA86F /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
+		0777C64B2049282C00202BB7 /* Array+Numerics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Numerics.swift"; sourceTree = "<group>"; };
 		0779E1521BEE5D7300832858 /* NSWindowLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSWindowLocalizationSupport.swift; sourceTree = "<group>"; };
 		0779E1541BEE5E2800832858 /* NSViewLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewLocalizationSupport.swift; sourceTree = "<group>"; };
 		0779E1561BEE5FE700832858 /* NSMenuLocalizationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuLocalizationSupport.swift; sourceTree = "<group>"; };
@@ -1050,6 +1053,7 @@
 				07A48B661FE91ADC002F5DF1 /* iOS */,
 				07A48B641FE91ABF002F5DF1 /* macOS */,
 				077AFDA81BBD101400872A48 /* ArrayExtensions.swift */,
+				0777C64B2049282C00202BB7 /* Array+Numerics.swift */,
 				071BC28F1C4701810097FCEC /* BoolAdditions.swift */,
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
 				07B821111C86395B0079868F /* CGGraphicsAdditions.swift */,
@@ -1639,6 +1643,7 @@
 				079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */,
 				075DC7861CF1E0080043EBD0 /* XUAttributeSyncChange.swift in Sources */,
 				07E38A331C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
+				0777C64C2049282C00202BB7 /* Array+Numerics.swift in Sources */,
 				073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */,
 				0749DCD61C0056450075CC9B /* XUPowerAssertion.swift in Sources */,
 				07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */,
@@ -1830,6 +1835,7 @@
 				070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */,
 				074228781E3CE296003A485A /* XUPointerEquality.swift in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
+				0777C64D2049282C00202BB7 /* Array+Numerics.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,
 				0747EB2B1D3F9F4800E517C0 /* XUTimeUtilities.swift in Sources */,
 				074A12FB1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */,
