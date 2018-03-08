@@ -9,29 +9,24 @@
 import Foundation
 import CoreData
 
-@objc(XURelationshipSyncChange)
 public class XURelationshipSyncChange: XUSyncChange {
 	
 	/// Name of the relationship.
-	@NSManaged public private(set) var relationshipName: String
+	public let relationshipName: String
 	
 	/// Name of the entity of value.
-	@NSManaged public private(set) var valueEntityName: String?
+	public let valueEntityName: String?
 	
 	/// ID of the object that is being either deleted from or inserted into
 	/// the relationship.
-	@NSManaged public private(set) var valueSyncID: String?
+	public let valueSyncID: String?
 
 	public init(object: XUManagedObject, relationshipName relationship: String, andValue value: XUManagedObject?) {
-		super.init(object: object)
-		
 		self.relationshipName = relationship
 		self.valueEntityName = value?.entity.name
 		self.valueSyncID = value?.syncUUID
+		
+		super.init(object: object)
 	}
 	
-	internal override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-		super.init(entity: entity, insertInto: context)
-	}
-
 }

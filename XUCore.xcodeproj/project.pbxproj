@@ -321,8 +321,6 @@
 		07A1DFC21D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
-		07A48B6B1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */; };
-		07A48B6C1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */; };
 		07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; };
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
@@ -617,7 +615,6 @@
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
-		07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
@@ -963,7 +960,6 @@
 		075DC77B1CF069AE0043EBD0 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */,
 				075DC7851CF1E0080043EBD0 /* XUAttributeSyncChange.swift */,
 				075DC7881CF1E1760043EBD0 /* XUDeletionSyncChange.swift */,
 				075DC78B1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift */,
@@ -1717,7 +1713,6 @@
 				077AFF8C1BBD101400872A48 /* XUFatalError.swift in Sources */,
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
-				07A48B6B1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */,
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
 				07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */,
@@ -1886,7 +1881,6 @@
 				072D9F9A1C7471A100DB3E8A /* UINavigationControllerAdditions.swift in Sources */,
 				07B153C41E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */,
 				0779E18D1BF2348D00832858 /* UIViewLocalizationSupport.swift in Sources */,
-				07A48B6C1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld in Sources */,
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
 				075F70A71D1D336900540B42 /* XUKeychainAccess_iOS.swift in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
@@ -2244,19 +2238,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		07A48B691FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */,
-			);
-			currentVersion = 07A48B6A1FE91C6B002F5DF1 /* XUSyncEngineModel.xcdatamodel */;
-			path = XUSyncEngineModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 077AFD861BBD0E5300872A48 /* Project object */;
 }

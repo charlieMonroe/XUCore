@@ -202,6 +202,7 @@ open class XUDocumentSyncManager {
 	public final let managedObjectContext: NSManagedObjectContext
 	
 	/// MOC used for sync changes.
+	@available(*, deprecated)
 	public final let syncManagedObjectContext: NSManagedObjectContext
 	
 	/// UUID of the document.

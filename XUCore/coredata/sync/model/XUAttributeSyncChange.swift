@@ -10,25 +10,20 @@ import Foundation
 import CoreData
 
 /// This class represents a change of attribute's value.
-@objc(XUAttributeSyncChange)
 public final class XUAttributeSyncChange: XUSyncChange {
 	
 	/// Name of the attribute.
-	@NSManaged public private(set) var attributeName: String
+	public let attributeName: String
 	
 	/// Value of the attribute.
-	@NSManaged public private(set) var attributeValue: AnyObject?
+	public let attributeValue: Any?
 
 	
-	public init(object: XUManagedObject, attributeName name: String, andValue value: AnyObject?) {
-		super.init(object: object)
-		
+	public init(object: XUManagedObject, attributeName name: String, value: Any?) {
 		self.attributeName = name
 		self.attributeValue = value
+		
+		super.init(object: object)
 	}
-	
-	internal override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-		super.init(entity: entity, insertInto: context)
-	}
-	
+		
 }
