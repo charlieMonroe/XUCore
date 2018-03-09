@@ -9,13 +9,14 @@
 import Foundation
 import CoreData
 
+
 /// This is a base class for all sync changes.
-public class XUSyncChange: Codable {
+public class XUSyncChange: NSObject, NSCoding {
 	
-	private enum CodingKeys: String, CodingKey {
-		case objectEntityName
-		case objectSyncID
-		case timestamp
+	private struct CodingKeys {
+		static let objectEntityName: String = "ObjectEntityName"
+		static let objectSyncID: String = "ObjectSyncID"
+		static let timestamp: String = "Timestamp"
 	}
 
 	
@@ -32,7 +33,8 @@ public class XUSyncChange: Codable {
 	
 	/// Object that is being sync'ed. This is only referenced when freshly created
 	/// from that object.
-	public let syncObject: XUManagedObject?
+	@available(*, deprecated)
+	public let syncObject: XUManagedObject? = nil
 	
 	/// Timestamp of the change.
 	public let timestamp: TimeInterval
@@ -40,23 +42,37 @@ public class XUSyncChange: Codable {
 	
 	/// Creates a new sync change.
 	public init(object: XUManagedObject) {
-		self.syncObject = object
-		
 		self.objectEntityName = object.entity.name!
 		self.objectSyncID = object.syncUUID
 		self.timestamp = Date.timeIntervalSinceReferenceDate
+		
+		super.init()
 	}
 	
 	
+	public func encode(with coder: NSCoder) {
+		coder.encode(self.objectEntityName, forKey: CodingKeys.objectEntityName)
+		coder.encode(self.objectSyncID, forKey: CodingKeys.objectSyncID)
+		coder.encode(self.timestamp, forKey: CodingKeys.timestamp)
+	}
 	
-	public required init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
+	public required init?(coder decoder: NSCoder) {
+		let timestamp = decoder.decodeDouble(forKey: CodingKeys.timestamp)
 		
-		self.syncObject = nil
+		guard
+			let entityName = decoder.decodeObject(forKey: CodingKeys.objectEntityName) as? String,
+			let objectID = decoder.decodeObject(forKey: CodingKeys.objectSyncID) as? String,
+			timestamp != 0.0
+		else {
+			XULog("Sync Change cannot be decoded - missing value: \(decoder)")
+			return nil
+		}
 		
-		self.objectEntityName = try values.decode(String.self, forKey: .objectEntityName)
-		self.objectSyncID = try values.decode(String.self, forKey: .objectSyncID)
-		self.timestamp = try values.decode(TimeInterval.self, forKey: .timestamp)
+		self.objectEntityName = entityName
+		self.objectSyncID = objectID
+		self.timestamp = timestamp
+		
+		super.init()
 	}
 
 }

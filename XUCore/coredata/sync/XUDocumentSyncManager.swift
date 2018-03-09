@@ -345,7 +345,7 @@ open class XUDocumentSyncManager {
 		}
 	
 		// Create a change set.
-		let set = XUSyncChangeSet(managedObjectContext: self.syncManagedObjectContext, andChanges: changes)
+		let set = XUSyncChangeSet(changes: changes)
 		XULog("\(self) - created change set \(set.timestamp) with \(changes.count) changes")
 	
 		self._performSyncCleanup()

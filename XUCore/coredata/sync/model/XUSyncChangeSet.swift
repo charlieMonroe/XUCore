@@ -12,12 +12,11 @@ import CoreData
 /// To make the syncing more efficient, we group XUSyncChanges in to change sets.
 /// This allows XUSyncEngine to go just through a few change sets, instead of
 /// potentially hundreds or even thousands of actual changes.
-public final class XUSyncChangeSet: Codable {
+public final class XUSyncChangeSet: NSObject, NSCoding {
 	
-	private enum CodingKeys: String, CodingKey {
-		case changes
-		case numberOfChanges
-		case timestamp
+	private struct CodingKeys {
+		static let changes: String = "Changes"
+		static let timestamp: String = "Timestamp"
 	}
 	
 	/// A set of changes within this change set.
@@ -31,20 +30,28 @@ public final class XUSyncChangeSet: Codable {
 	public init(changes: [XUSyncChange]) {
 		self.changes = changes
 		self.timestamp = Date.timeIntervalSinceReferenceDate
-	}
-	
-	
-	public func encode(to encoder: Encoder) throws {
-		let values = encoder.container(keyedBy: CodingKeys.self)
 		
-		values.encode(self.changes, forKey: .changes)
-		values.encode(self.timestamp, forKey: .timestamp)
+		super.init()
 	}
 	
-	public init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		self.timestamp = try values.decode(TimeInterval.self, forKey: .timestamp)
-		self.changes = try values.decode([XUSyncChange].self, forKey: .changes)
+	
+	public func encode(with coder: NSCoder) {
+		coder.encode(self.changes, forKey: CodingKeys.changes)
+		coder.encode(self.timestamp, forKey: CodingKeys.timestamp)
+	}
+	
+	public init?(coder decoder: NSCoder) {
+		let timestamp = decoder.decodeDouble(forKey: CodingKeys.timestamp)
+		
+		guard let changes = decoder.decodeObject(forKey: CodingKeys.changes) as? [XUSyncChange], timestamp != 0.0 else {
+			XULog("Failing to decode XUSyncChangeSet as it's missing some value from coder: \(decoder)")
+			return nil
+		}
+		
+		self.changes = changes
+		self.timestamp = timestamp
+		
+		super.init()
 	}
 
 }

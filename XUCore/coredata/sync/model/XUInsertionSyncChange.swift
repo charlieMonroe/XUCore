@@ -13,6 +13,11 @@ import CoreData
 /// into the MOC.
 public final class XUInsertionSyncChange: XUSyncChange {
 	
+	private struct CodingKeys {
+		static let attributes: String = "Attributes"
+		static let insertedEntityName: String = "InsertedEntityName"
+	}
+	
 	/// A list of all attributes. Created by init(object:). Relationships are
 	/// handled by separate relationship changes.
 	public let attributes: [String : Any]
@@ -20,9 +25,15 @@ public final class XUInsertionSyncChange: XUSyncChange {
 	/// Name of the entity being inserted. Created by -initWithObject:.
 	public let insertedEntityName: String
 	
-	public override init(object: XUManagedObject) {
-		super.init(object: object)
+	
+	public override func encode(with coder: NSCoder) {
+		coder.encode(self.attributes, forKey: CodingKeys.attributes)
+		coder.encode(self.insertedEntityName, forKey: CodingKeys.insertedEntityName)
 		
+		super.encode(with: coder)
+	}
+	
+	public override init(object: XUManagedObject) {
 		// Create attribute changes
 		let objectAttributeNames = object.entity.attributesByName
 		var attributeValues: [String : Any] = [:]
@@ -32,16 +43,23 @@ public final class XUInsertionSyncChange: XUSyncChange {
 		
 		self.attributes = attributeValues
 		self.insertedEntityName = object.entity.name!
+		
+		super.init(object: object)
+	}
+	
+	public required init?(coder decoder: NSCoder) {
+		guard
+			let entityName = decoder.decodeObject(forKey: CodingKeys.insertedEntityName) as? String,
+			let values = decoder.decodeObject(forKey: CodingKeys.attributes) as? [String : Any]
+		else {
+			XULog("Failing to decode XUInsertionSyncChange as it's missing some value from coder: \(decoder)")
+			return nil
+		}
+		
+		self.attributes = values
+		self.insertedEntityName = entityName
+		
+		super.init(coder: decoder)
 	}
 	
 }
-
-/// This class represents a change where an object was added into a -to-many
-/// relationship set.
-public final class XUToManyRelationshipAdditionSyncChange: XURelationshipSyncChange { }
-
-/// This class represents a change where an object was removed from a -to-many
-/// relationship set.
-public final class XUToManyRelationshipDeletionSyncChange: XURelationshipSyncChange { }
-
-public final class XUToOneRelationshipSyncChange: XURelationshipSyncChange { }

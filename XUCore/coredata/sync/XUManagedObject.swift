@@ -28,7 +28,7 @@ private var _insertionChanges: Set<String> = Set()
 
 /// This dictionary holds the last values of attributes. The dictionary has this
 /// signature: [syncID:[attr:value]].
-private var _attributeValueChanges: [String : [String : AnyObject]] = [:]
+private var _attributeValueChanges: [String : [String : Any]] = [:]
 
 /// This dictionary holds the last values of relationships. The dictionary
 /// has this signature: [syncID:[relationship:(syncID|[syncIDs])]].
@@ -89,7 +89,7 @@ open class XUManagedObject: NSManagedObject {
 				value = NSNull()
 			}
 			
-			changes[syncChange.attributeName] = value;
+			changes[syncChange.attributeName] = value
 			
 			_attributeValueChanges[self.syncUUID] = changes
 		}
@@ -480,7 +480,7 @@ open class XUManagedObject: NSManagedObject {
 			_attributeValueChanges[self.syncUUID] = objDict
 			_changesLock.unlock()
 
-			let change = XUAttributeSyncChange(object: self, attributeName: propertyName, andValue: value)
+			let change = XUAttributeSyncChange(object: self, attributeName: propertyName, value: value)
 			XULog("Creating value change on \(type(of: self)).\(propertyName) [\(self.syncUUID)]")
 			
 			changes.append(change)
