@@ -156,6 +156,10 @@ internal class XUPreferencePanesView: NSView {
 
 private class XUPreferencePaneButtonCell: NSButtonCell {
 	
+	override func accessibilityLabel() -> String? {
+		return self.title
+	}
+	
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var attributes: [NSAttributedStringKey : Any] = [.font: XUPreferencePanesView.titleFont]
 		let parts: [String] = title.string.components(separatedBy: " ")

@@ -24,14 +24,14 @@ public protocol XUApplicationStateProvider {
 public struct XUApplicationStateItem {
 	
 	/// Name of the item. E.g. "Running since".
-	let name: String
+	public let name: String
 	
 	/// If true, when the application state items are transformed into a string,
 	/// there is an extra new line after this block.
-	let requiresAdditionalTrailingNewLine: Bool
+	public let requiresAdditionalTrailingNewLine: Bool
 	
 	/// Value of the item. E.g. "May 14".
-	let value: String
+	public let value: String
 	
 	/// Designated initializer.
 	public init(name: String, andValue value: String, requiresAdditionalTrailingNewLine: Bool = false) {

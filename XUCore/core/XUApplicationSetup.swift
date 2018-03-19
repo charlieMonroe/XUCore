@@ -141,6 +141,11 @@ open class XUApplicationSetup {
 	/// for more information.
 	public let exceptionHandlerReportURL: URL?
 	
+	/// Returns an identifier that's used by XUDocumentSyncManager as CloudKit
+	/// container. See XUDocumentSyncManager for more information. The value
+	/// must be stored under the key XUCloudKitSynchronizationContainerIdentifier.
+	public let iCloudSynchronizationContainerIdentifier: String?
+	
 	/// Returns true, if the current build is made for AppStore submission. To
 	/// allow this, enter a boolean into Info.plist under key XUAppStoreBuild.
 	/// True by default.
@@ -260,19 +265,21 @@ open class XUApplicationSetup {
 		}
 		
 		
-		applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
-		applicationVersionNumber = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"
+		self.applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
+		self.applicationVersionNumber = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"
 		
-		exceptionHandlerReportURL = _createURL(forKey: "XUExceptionReporterURL", inInfoDictionary: infoDictionary)
-		messageCenterFeedURL = _createURL(forKey: "XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)
-		purchaseURL = _createURL(forKey: "XUPurchaseURL", inInfoDictionary: infoDictionary)
-		supportURL = _createURL(forKey: "XUSupportURL", inInfoDictionary: infoDictionary)
-		trialSessionsURL = _createURL(forKey: "XUTrialSessionsURL", inInfoDictionary: infoDictionary)
+		self.exceptionHandlerReportURL = _createURL(forKey: "XUExceptionReporterURL", inInfoDictionary: infoDictionary)
+		self.messageCenterFeedURL = _createURL(forKey: "XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)
+		self.purchaseURL = _createURL(forKey: "XUPurchaseURL", inInfoDictionary: infoDictionary)
+		self.supportURL = _createURL(forKey: "XUSupportURL", inInfoDictionary: infoDictionary)
+		self.trialSessionsURL = _createURL(forKey: "XUTrialSessionsURL", inInfoDictionary: infoDictionary)
 		
 		
 		let appIdentifier = Bundle.main.bundleIdentifier ?? ProcessInfo.processInfo.processName
 		self.applicationIdentifier = appIdentifier
 		self.messageCenterAppIdentifier = (infoDictionary["XUMessageCenterAppIdentifier"] as? String) ?? appIdentifier
+		
+		self.iCloudSynchronizationContainerIdentifier = infoDictionary["XUCloudKitSynchronizationContainerIdentifier"] as? String
 		
 		self.isRunningInDebugMode = ProcessInfo.processInfo.arguments.contains("--debug")
 		self.isDebuggingInAppPurchases = ProcessInfo.processInfo.arguments.contains("--iap-debug")

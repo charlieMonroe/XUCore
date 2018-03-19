@@ -301,8 +301,10 @@ internal class XUSystemNotificationWindow: NSWindow {
 	
 	fileprivate func _updateWindowFrame() {
 		var windowFrame = self.frame
-		let screenFrame = NSScreen.main!.frame
 		
+		let screen = self.screen ?? NSScreen.main!
+		let screenFrame = screen.frame
+
 		windowFrame.origin.x = (screenFrame.width / 2.0) - (windowFrame.width / 2.0)
 		windowFrame.origin.y = screenFrame.height / 4.0
 		

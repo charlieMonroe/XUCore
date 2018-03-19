@@ -43,7 +43,7 @@ private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUAppli
 		return
 	}
 	
-	print("====== Printing \(manager).rootURL Contents [\(XU_SYNC_DEVICE_ID())] ======")
+	print("====== Printing \(manager).rootURL Contents [\(XUSyncManagerPathUtilities.currentDeviceIdentifier)] ======")
 	_XULogFileAtURL(rootURL!, fileURL: rootURL!, level: 0);
 }
 

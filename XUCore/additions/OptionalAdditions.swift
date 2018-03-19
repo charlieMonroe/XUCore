@@ -67,3 +67,28 @@ public extension Optional where Wrapped == String {
 	
 }
 
+public extension Optional where Wrapped: Collection {
+	
+	/// Returns true if the string wrapped in this optional is either nil or empty.
+	public var isNilOrEmpty: Bool {
+		switch self {
+		case .none:
+			return true
+		case .some(let collection):
+			return collection.isEmpty
+		}
+	}
+	
+	/// Returns values of the collection, or an empty array if self is nil. This
+	/// allows you to do stuff like `for x in optional.values { ... }`.
+	public var values: [Wrapped.Element] {
+		switch self {
+		case .none:
+			return []
+		case .some(let collection):
+			return Array(collection)
+		}
+	}
+	
+}
+

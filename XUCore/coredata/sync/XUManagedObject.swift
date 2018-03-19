@@ -47,7 +47,7 @@ private func _lockInit(_ isSync: Bool) {
 	
 	if _currentInitInitiatedInSync {
 		_initializationLock.unlock()
-		fatalError("Nested object creation within synchronization - this is likely caused by you inserting new entities into MOC from -awakeFromInsert. Use -awakeFromNonSyncInsert instead.")
+		XUFatalError("Nested object creation within synchronization - this is likely caused by you inserting new entities into MOC from -awakeFromInsert. Use -awakeFromNonSyncInsert instead.")
 	}
 	
 	_currentInitInitiatedInSync = isSync
@@ -235,7 +235,7 @@ open class XUManagedObject: NSManagedObject {
 		let deletionSyncChange = XUDeletionSyncChange(object: self)
 		XULog("Created deletion sync change for \(self.syncUUID) [\(type(of: self))]")
 		
-		return [ deletionSyncChange ]
+		return [deletionSyncChange]
 	}
 	
 	private func _createInsertionChanges() -> [XUSyncChange] {
@@ -394,7 +394,13 @@ open class XUManagedObject: NSManagedObject {
 		
 		let genericValue = self.value(forKey: relationshipName)
 		let value = genericValue as? XUManagedObject
-		let valueClassName = "\(type(of: value))"
+		let valueClassName: String
+		if let actualValue = genericValue {
+			valueClassName = "\(type(of: actualValue))"
+		} else {
+			valueClassName = "nil"
+		}
+		
 		if genericValue != nil && value == nil {
 			XULog("Skipping sync of [\(type(of: self)) \(relationshipName)]{\(self.syncUUID)} because value isn't subclass of XUManagedObject (\(valueClassName)).")
 			return []
@@ -548,11 +554,6 @@ open class XUManagedObject: NSManagedObject {
 
 	/// This method will create sync change if necessary for this object.
 	public final func createSyncChanges() -> [XUSyncChange] {
-		if self.managedObjectContext?.documentSyncManager == nil {
-			XULog("Skipping creating sync change for object \(type(of: self))[\(self.ticdsSyncID)] since there is no document sync manager!")
-			return []
-		}
-		
 		if self.isInserted {
 			return self._createInsertionChanges()
 		}
