@@ -306,8 +306,21 @@ internal final class XUCloudKitSynchronization {
 		record["timestamp"] = Date(timeIntervalSinceReferenceDate: pendingChange.changeSet.timestamp) as NSDate
 		record["deviceID"] = XUSyncManagerPathUtilities.currentDeviceIdentifier as NSString
 		
-		// TODO - if data.count > 1MB -> Asset
-		record["payload"] = pendingChange.data as NSData
+		// 1MB, but we make some reserve.
+		if pendingChange.data.count > 900_000 {
+			// Create CKAsset.
+			let tempFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".asset")
+			do {
+				try pendingChange.data.write(to: tempFileURL)
+			} catch let err {
+				XUFatalError("Failed to write pending change data to temporary file: \(tempFileURL) - \(err)")
+			}
+			
+			let asset = CKAsset(fileURL: tempFileURL)
+			record["asset"] = asset
+		} else {
+			record["payload"] = pendingChange.data as NSData
+		}
 		
 		XULog("Uploading pending change \(pendingChange.changeSet.timestamp) for \(self.documentManager.documentID)")
 		

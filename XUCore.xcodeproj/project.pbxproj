@@ -213,6 +213,8 @@
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		074A12FA1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
 		074A12FB1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
+		074F22C22060189E00A19601 /* XUUpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F22C12060189E00A19601 /* XUUpdateChecker.swift */; };
+		074F22C32060189E00A19601 /* XUUpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F22C12060189E00A19601 /* XUUpdateChecker.swift */; };
 		07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		075A929E1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
 		075A929F1C43D72B006DD45B /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
@@ -542,6 +544,7 @@
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		074E08501C6CB65A00A0FD48 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		074F22C12060189E00A19601 /* XUUpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUUpdateChecker.swift; sourceTree = "<group>"; };
 		0751A4761F6FB930006C4BEE /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUUIBridge.swift; path = ui/XUUIBridge.swift; sourceTree = "<group>"; };
@@ -1113,6 +1116,7 @@
 				0749DCE91C00C6DF0075CC9B /* XUAppStoreHidingView.swift */,
 				0749DCEC1C00C7BF0075CC9B /* XUAppStoreMenuCleaner.swift */,
 				079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */,
+				074F22C12060189E00A19601 /* XUUpdateChecker.swift */,
 			);
 			path = app_store;
 			sourceTree = "<group>";
@@ -1779,6 +1783,7 @@
 				076A5DF41F29CA0B006E93D1 /* XULockPool.swift in Sources */,
 				07311DD51C0C77D2001B95AC /* NSImageAdditions.swift in Sources */,
 				07C3FA0A1BEB7158008A4200 /* XUURLHandlingCenter.swift in Sources */,
+				074F22C22060189E00A19601 /* XUUpdateChecker.swift in Sources */,
 				07C3FA161BEBBA22008A4200 /* XUPositionedWindowView.swift in Sources */,
 				0749DD011C01F4580075CC9B /* XUExceptionHandler.swift in Sources */,
 			);
@@ -1911,6 +1916,7 @@
 				07B153C41E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */,
 				0779E18D1BF2348D00832858 /* UIViewLocalizationSupport.swift in Sources */,
 				073E6AC21BE1F86D00706283 /* filtered_re2.cc in Sources */,
+				074F22C32060189E00A19601 /* XUUpdateChecker.swift in Sources */,
 				075F70A71D1D336900540B42 /* XUKeychainAccess_iOS.swift in Sources */,
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
 				07A7BE921C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */,
