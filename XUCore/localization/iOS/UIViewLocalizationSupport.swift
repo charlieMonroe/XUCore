@@ -37,12 +37,7 @@ public extension UITextField {
 	}
 }
 extension UIView: XULocalizableUIElement {
-	
-	@available(*, deprecated, renamed: "localize(from:)")
-	@objc public func localizeView(bundle: Bundle = Bundle.main) {
-		self.localize(from: bundle)
-	}
-	
+		
 	@objc public func localize(from bundle: Bundle = Bundle.main) {
 		for view in self.subviews {
 			view.localize(from: bundle)

@@ -17,7 +17,7 @@ import Foundation
 /// This class handles checking for updates based on the app's bundle identifier.
 /// As this check is done against the AppStore, the app must be distributed via
 /// the AppStore.
-public final class XUUpdateChecker: XUDownloadCenterOwner {
+public final class XUUpdateChecker {
 	
 	/// Result of the version checking.
 	public enum Result {
@@ -44,15 +44,7 @@ public final class XUUpdateChecker: XUDownloadCenterOwner {
 	public private(set) var appStoreURL: URL?
 	
 	/// Download center used by the checker.
-	private lazy var _downloadCenter: XUDownloadCenter = XUDownloadCenter(owner: self)
-	
-	/// XUDownloadCenterOwner requirement.
-	public let name: String = "XUUpdateChecker"
-	
-	/// XUDownloadCenterOwner requirement.
-	public func downloadCenter(_ downloadCenter: XUDownloadCenter, didEncounterError error: XUDownloadCenterError) {
-		
-	}
+	private let _downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
 	
 	
 	/// Checks for updates synchronously and returns the result.

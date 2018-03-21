@@ -65,11 +65,13 @@ public struct XUJSONHelper {
 	/// Returns a string from a JSON object. Returns nil if the object is not
 	/// representable in JSON.
 	public static func jsonString(from object: Any) -> String? {
-		guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+		do {
+			let data = try JSONSerialization.data(withJSONObject: object, options: [])
+			return String(data: data)
+		} catch let error {
+			XULog("Failed to convert \(type(of: object)) to JSON: \(error).")
 			return nil
 		}
-		
-		return String(data: data)
 	}
 	
 	private init() {}

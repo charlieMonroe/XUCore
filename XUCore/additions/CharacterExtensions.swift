@@ -29,7 +29,7 @@ extension Character {
 		// random byte - which is positive, we add 0x20 to lower-case the char.
 		
 		var randomInt = XURandomGenerator.shared.randomUnsignedInteger(in: 0x41 ..< 0x5a)
-		if XURandomGenerator.shared.randomBool {
+		if XURandomGenerator.shared.randomBoolean {
 			randomInt += 0x20
 		}
 		

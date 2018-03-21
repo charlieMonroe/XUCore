@@ -120,7 +120,7 @@ public extension Sequence {
 	/// Randomizes the array (by shuffling it).
 	public func randomized() -> [Self.Iterator.Element] {
 		return self.sorted(by: { (_, _) -> Bool in
-			return XURandomGenerator.shared.randomBool
+			return XURandomGenerator.shared.randomBoolean
 		})
 	}
 	
@@ -196,13 +196,7 @@ public extension Array {
 		}
 		return result
 	}
-	
-	/// Similar to flatMap, but provides an index.
-	@available(*, deprecated, renamed: "compactMapIndexed")
-	public func flatMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
-		return self.compactMapIndexed(mapper)
-	}
-	
+		
 	/// Similar to map(), but provides the index of the element.
 	public func mapIndexed<U>(_ mapper: (Iterator.Element, Int) -> U) -> [U] {
 		var result: [U] = [ ]

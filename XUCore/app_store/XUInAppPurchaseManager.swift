@@ -34,9 +34,9 @@ private extension XUPreferences.Key {
 
 private extension XUPreferences {
 	
-	var inAppPurchaseIndentifiers: [String]? {
+	var inAppPurchaseIndentifiers: [String] {
 		get {
-			return self.value(for: .InAppPurchaseIdentifiers)
+			return self.value(for: .InAppPurchaseIdentifiers, defaultValue: [])
 		}
 		set {
 			self.set(value: newValue, forKey: .InAppPurchaseIdentifiers)
@@ -141,7 +141,8 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		
 		if XUAppSetup.isDebuggingInAppPurchases {
 			self.purchasedProductIdentifiers = self.delegate.availableProductIdentifiers
-		} else if let savedPurchases = XUPreferences.shared.inAppPurchaseIndentifiers {
+		} else {
+			let savedPurchases = XUPreferences.shared.inAppPurchaseIndentifiers
 			let allowedIdentifiers = self.delegate.availableProductIdentifiers
 			for hashedIdentifier in savedPurchases {
 				for inAppPurchaseID in allowedIdentifiers {
@@ -152,9 +153,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 				}
 			}
 			
-			XULog("Restored in-app purchases: \(purchasedProductIdentifiers)")
-		}else{
-			XULog("No saved in-app purchases data")
+			XULog("Restored in-app purchases: \(self.purchasedProductIdentifiers)")
 		}
 		
 		#if os(iOS)

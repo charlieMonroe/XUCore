@@ -27,11 +27,6 @@ extension NSMenu: XULocalizableUIElement {
 			}
 		}
 	}
-	
-	@available(*, deprecated, renamed: "localize(from:)")
-	public func localizeMenu(_ bundle: Bundle = Bundle.main) {
-		self.localize(from: bundle)
-	}
-	
+		
 }
 

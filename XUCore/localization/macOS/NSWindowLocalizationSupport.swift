@@ -22,8 +22,4 @@ extension NSWindow: XULocalizableUIElement {
 		}
 	}
 
-	@available(*, deprecated, renamed: "localize(from:)")
-	public func localizeWindow(_ bundle: Bundle = Bundle.main) {
-		self.localize(from: bundle)
-	}
 }

@@ -24,7 +24,7 @@ public struct XURandomGenerator {
 	
 	/// Returns a random boolean. Does so by getting a random byte and returning
 	/// byte % 2 == 0
-	public var randomBool: Bool {
+	public var randomBoolean: Bool {
 		return self.randomByte % 2 == 0
 	}
 	
@@ -49,7 +49,7 @@ public struct XURandomGenerator {
 	}
 	
 	/// Returns an UInt64 value.
-	public var randomUnsignedLongLong: UInt64 {
+	public var random64BitUnsignedInteger: UInt64 {
 		var value = UInt64(arc4random())
 		value <<= 32
 		value |= UInt64(arc4random())

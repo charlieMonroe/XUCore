@@ -11,8 +11,7 @@ import AppKit
 /// This class represents the Dock icon's progress bar.
 open class XUDockIconProgress {
 
-	private let kXUDockProgressBarHeight: CGFloat = 20.0
-	private let kXUDockProgressBarInsideHeight = (20.0 - 2.0)
+	private static let barHeight: CGFloat = 20.0
 
 	private var _lastUpdated: Double = 0.0
 
@@ -23,7 +22,7 @@ open class XUDockIconProgress {
 		let im: NSImage = NSImage(named: NSImage.Name.applicationIcon)!.copy() as! NSImage
 		im.size = CGSize(width: 128.0, height: 128.0)
 		
-		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: kXUDockProgressBarHeight)
+		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: XUDockIconProgress.barHeight)
 
 		var progress = self.progressValue
 		if progress < 0.1 {

@@ -70,10 +70,5 @@ extension NSView: XULocalizableUIElement {
 		}
 	}
 	
-	@available(*, deprecated, renamed: "localize(from:)")
-	public final func localizeView(_ bundle: Bundle = Bundle.main) {
-		self.localize(from: bundle)
-	}
-	
 }
 

@@ -12,7 +12,18 @@
 	import AppKit
 #endif
 
+extension BinaryFloatingPoint {
+	
+	/// Returns degrees converted to radian.
+	func convertDegreesToRadian() -> Self {
+		return self * (Self.pi / 180.0)
+	}
+	
+}
+
+
 /// Returns degrees converted to radian.
+@available(*, deprecated, message: "Use number.convertDegreesToRadian() instead.")
 public func XUDegreesToRadian(_ degrees: CGFloat) -> CGFloat {
 	return degrees * CGFloat(CGFloat.pi / 180.0)
 }

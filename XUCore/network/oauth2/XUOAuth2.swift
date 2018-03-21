@@ -186,7 +186,7 @@ private extension XUPreferences.Key {
 public final class XUOAuth2Client {
 	
 	/// A particular account.
-	public final class Account: XUDownloadCenterOwner {
+	public final class Account {
 		
 		private struct AccountKeys {
 			static let identifierKey: String = "identifier"
@@ -207,7 +207,7 @@ public final class XUOAuth2Client {
 		/// Download center for this particular account. The account automatically
 		/// sets the authorization token and automatically renews the token when
 		/// you use this download center.
-		public lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(owner: self)
+		public private(set) lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "OAuth2 - \(self.identifier) - \(self.client.configuration.name)")
 		
 		/// A unique identifier of the account.
 		public let identifier: String
@@ -232,10 +232,6 @@ public final class XUOAuth2Client {
 				AccountKeys.identifierKey: self.identifier as AnyObject,
 				AccountKeys.tokenExpirationDateKey: self.tokenExpirationDate as AnyObject
 			]
-		}
-		
-		public func downloadCenter(_ downloadCenter: XUDownloadCenter, didEncounterError error: XUDownloadCenterError) {
-			/// No-op
 		}
 		
 		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String?, andExpirationDate expirationDate: Date) {
@@ -274,9 +270,6 @@ public final class XUOAuth2Client {
 			self.refreshToken = refreshToken
 		}
 		
-		public var name: String {
-			return "OAuth2 - \(self.identifier) - \(self.client.configuration.name)"
-		}
 		
 		/// Renews authentication token and returns true if it was successful.
 		/// The request for token renewal is synchronous.
@@ -433,7 +426,7 @@ public final class XUOAuth2Client {
 	public let configuration: XUOAuth2Configuration
 	
 	/// Download center.
-	private lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(owner: self)
+	private lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "\(self.configuration.name) OAuth2 Client")
 	
 	
 	/// Takes the code from redirection URL, requests authorization.
@@ -585,18 +578,6 @@ public final class XUOAuth2Client {
 			})
 		}
 	#endif
-	
-}
-
-extension XUOAuth2Client: XUDownloadCenterOwner {
-	
-	public var name: String {
-		return "\(self.configuration.name) OAuth2 Client"
-	}
-	
-	public func downloadCenter(_ downloadCenter: XUDownloadCenter, didEncounterError error: XUDownloadCenterError) {
-		///
-	}
 	
 }
 

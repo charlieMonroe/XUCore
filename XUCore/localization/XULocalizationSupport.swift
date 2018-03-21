@@ -37,12 +37,14 @@ public protocol XULocalizableUIElement {
 
 /// Returns the identifier of current localization.
 @inline(__always)
+@available(*, deprecated, renamed: "XULocalizationCenter.shared.localizationIdentifier(for:)")
 public func XUCurrentLocalizationIdentifier(for bundle: Bundle) -> String {
 	return XULocalizationCenter.shared.localizationIdentifier(for: bundle)
 }
 
 /// Sets the language identifier as the default langauge.
 @inline(__always)
+@available(*, deprecated, renamed: "XULocalizationCenter.shared.setCurrentLocalizationIdentifier(_:)")
 public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
 	XULocalizationCenter.shared.setCurrentLocalizationIdentifier(identifier)
 }
@@ -50,7 +52,7 @@ public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
 /// Returns a localized string.
 @inline(__always)
 public func XULocalizedString(_ key: String, inBundle bundle: Bundle = Bundle.main, withLocale language: String? = nil) -> String {
-	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XUCurrentLocalizationIdentifier(for: bundle), inBundle: bundle)
+	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XULocalizationCenter.shared.localizationIdentifier(for: bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,

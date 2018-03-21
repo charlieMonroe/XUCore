@@ -146,13 +146,6 @@ public extension String {
 		return range.lowerBound == self.startIndex
 	}
 
-	/// Returns true if the receiver has `substring` in case-insensitive
-	/// comparison.
-	@available(*, deprecated, renamed: "contains(caseInsensitive:)")
-	public func hasCaseInsensitive(substring: String) -> Bool {
-		return self.range(of: substring, options: .caseInsensitive) != nil
-	}
-
 	/// Returns true if the receiver has prefix `suffix` in case-insensitive
 	/// comparison.
 	public func hasCaseInsensitive(suffix: String) -> Bool {

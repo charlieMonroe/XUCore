@@ -20,22 +20,12 @@ public class XUSyncChange: NSObject, NSCoding {
 	}
 
 	
-	/// Change set this change belongs to. Nil during initialization, hence nullable,
-	/// but otherwise should be nonnull.
-	@available(*, deprecated)
-	public private(set) var changeSet: XUSyncChangeSet!
-	
 	/// Name of the entity.
 	public let objectEntityName: String
 	
 	/// This is generally all we need to identify the object.
 	public let objectSyncID: String
-	
-	/// Object that is being sync'ed. This is only referenced when freshly created
-	/// from that object.
-	@available(*, deprecated)
-	public let syncObject: XUManagedObject? = nil
-	
+		
 	/// Timestamp of the change.
 	public let timestamp: TimeInterval
 	

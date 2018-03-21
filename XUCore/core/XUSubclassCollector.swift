@@ -83,18 +83,3 @@ public struct XUSubclassCollector {
 	
 }
 
-
-
-/// Works pretty much as +isKindOfClass: on NSObject, but will work fine even with
-/// NSProxy subclasses, which do not respond to +isKindOfClass:
-@available(*, deprecated, renamed: "XUSubclassCollector.isClass(_:subclassOf:)")
-public func XUClassIsSubclassOfClass(_ superclass: AnyClass, subclass: AnyClass) -> Bool {
-	return XUSubclassCollector.isClass(subclass, subclassOf: superclass)
-}
-
-/// Returns a list of subclasses of class T. Doesn't include the root T class.
-@available(*, deprecated, renamed: "XUSubclassCollector.allSubclasses(of:)")
-public func XUAllSubclasses<T: AnyObject>(of aClass: T.Type) -> [T.Type] {
-	return XUSubclassCollector.allSubclasses(of: aClass)
-}
-

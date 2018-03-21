@@ -161,12 +161,7 @@ public extension URL {
 		urlComponents.query = nil
 		return urlComponents.url ?? self
 	}
-	
-	@available(*, deprecated, renamed: "updatingQuery(to:)")
-	public func appendingQuery(_ query: XUJSONDictionary) -> URL {
-		return self.updatingQuery(to: query)
-	}
-	
+		
 	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
 	public func updatingQuery(to query: XUJSONDictionary) -> URL {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
