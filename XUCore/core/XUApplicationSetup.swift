@@ -177,6 +177,11 @@ open class XUApplicationSetup {
 	/// to the arguments list to enable it.
 	public let isDebuggingInAppPurchases: Bool
 	
+	#if os(iOS)
+	/// Marked as true if we're running from TestFlight installation.
+	public let isInstalledFromTestFlight: Bool
+	#endif
+	
 	/// Returns true, if the app is being run in debug mode. Unlike Objective-C,
 	/// where #if DEBUG macro can be applied, in Swift, this is a bit more
 	/// complicated - edit the scheme of your project and add "--debug" to the
@@ -289,6 +294,14 @@ open class XUApplicationSetup {
 		
 		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? Int) ?? 10
 		self.itemBasedTrialItemName = (infoDictionary["XUItemBasedTrialItemName"] as? String) ?? "items"
+		
+		#if os(iOS)
+			if let receiptURL = Bundle.main.appStoreReceiptURL, receiptURL.path.contains("sandboxReceipt") {
+				self.isInstalledFromTestFlight = true
+			} else {
+				self.isInstalledFromTestFlight = false
+			}
+		#endif
 	}
 	
 }
