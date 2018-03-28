@@ -73,7 +73,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIControl & XUPickerC
 		self.parentController = parentController
 		_picker = ItemControl()
 		
-		super.init(nibName: "XUPickerViewController", bundle: nil)
+		super.init(nibName: "XUPickerViewController", bundle: XUCoreFramework.bundle)
 		
 		self.view.backgroundColor = .clear
 		
