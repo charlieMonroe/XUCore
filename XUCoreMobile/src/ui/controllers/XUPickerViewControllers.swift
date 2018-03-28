@@ -158,9 +158,9 @@ public class XUDatePickerViewController: XUPickerBaseViewController<Date, UIDate
 public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<Int, UIPickerView>, UIPickerViewDataSource, UIPickerViewDelegate {
 
 	/// Data item to be displayed in the picker.
-	public struct DataItem<T: Equatable>: Equatable {
+	public struct DataItem: Equatable {
 		
-		public static func ==<T>(lhs: DataItem<T>, rhs: DataItem<T>) -> Bool {
+		public static func ==(lhs: DataItem, rhs: DataItem) -> Bool {
 			return lhs.title == rhs.title && lhs.value == rhs.value
 		}
 		
@@ -177,9 +177,9 @@ public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<In
 	}
 	
 	/// Items.
-	public let items: [DataItem<T>]
+	public let items: [DataItem]
 	
-	public init(parentController: UIViewController, items: [DataItem<T>], selectedItem: DataItem<T>) {
+	public init(parentController: UIViewController, items: [DataItem], selectedItem: DataItem) {
 		guard !items.isEmpty, let index = items.index(of: selectedItem) else {
 			XUFatalError("Items are either empty or the selected item is not among them.")
 		}
@@ -205,7 +205,7 @@ public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<In
 	}
 	
 	/// Convenience method that passes the selected data item instead of the index.
-	public func show(with completionHandler: @escaping (DataItem<T>?) -> Void) {
+	public func show(with completionHandler: @escaping (DataItem?) -> Void) {
 		let items = self.items
 		self.show { (index: Int?) in
 			guard let index = index else {
