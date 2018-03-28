@@ -14,19 +14,16 @@ public protocol XUPickerControl: AnyObject {
 	associatedtype Item
 	
 	/// Returns selected item.
-	var selectedItem: Item? { get set }
+	var selectedItem: Item { get set }
 	
 }
 
 /// A base class that displays a picker inside a controller. We need a base class
 /// so that we can easily support both generic picker and date picker.
-public class XUPickerBaseViewController<Item, ItemControl: UIControl & XUPickerControl>: UIViewController where ItemControl.Item == Item {
+public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerControl>: UIViewController where ItemControl.Item == Item {
 	
 	/// Background control that handles dismissal.
 	@IBOutlet private weak var _backgroundControl: UIControl!
-	
-	/// Picker.
-	private let _picker: ItemControl
 	
 	/// View encapsulating the picker.
 	@IBOutlet private weak var _pickerEnclosingView: UIView!
@@ -37,10 +34,14 @@ public class XUPickerBaseViewController<Item, ItemControl: UIControl & XUPickerC
 	/// Completion handler set in show(with:).
 	private var _completionHandler: ((Item?) -> Void)?
 	
+	
+	
 	/// Parent controller in which the content should be displayer.
 	public let parentController: UIViewController
 	
-	
+	/// Picker.
+	public let picker: ItemControl
+
 	
 	
 	/// An action from _backgroundControl that causes cancellation.
@@ -65,30 +66,30 @@ public class XUPickerBaseViewController<Item, ItemControl: UIControl & XUPickerC
 	
 	/// An action from the Done button.
 	@IBAction private func _done(_ sender: Any?) {
-		self._dismiss(with: _picker.selectedItem)
+		self._dismiss(with: picker.selectedItem)
 	}
 	
 	/// Designated initializer.
-	public init(parentController: UIViewController, selectedItem: Item? = nil) {
+	public init(parentController: UIViewController, selectedItem: Item) {
 		self.parentController = parentController
-		_picker = ItemControl()
+		picker = ItemControl()
 		
 		super.init(nibName: "XUPickerViewController", bundle: XUCoreFramework.bundle)
 		
 		self.view.backgroundColor = .clear
 		
-		_picker.translatesAutoresizingMaskIntoConstraints = false
-		_pickerEnclosingView.addSubview(_picker)
+		picker.translatesAutoresizingMaskIntoConstraints = false
+		_pickerEnclosingView.addSubview(picker)
 		
-		_pickerEnclosingView.addConstraints(pinningViewHorizontally: _picker)
+		_pickerEnclosingView.addConstraints(pinningViewHorizontally: picker)
 		
-		let bottomConstraint = NSLayoutConstraint(item: _picker, attribute: .bottom, relatedBy: .equal, toItem: _pickerEnclosingView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+		let bottomConstraint = NSLayoutConstraint(item: picker, attribute: .bottom, relatedBy: .equal, toItem: _pickerEnclosingView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
 		_pickerEnclosingView.addConstraint(bottomConstraint)
 		_pickerEnclosingViewBottomLayoutConstraint = bottomConstraint
 		
-		_picker.addConstraint(NSLayoutConstraint(item: _picker, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 216.0))
+		picker.addConstraint(NSLayoutConstraint(item: picker, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 216.0))
 		
-		_picker.selectedItem = selectedItem
+		picker.selectedItem = selectedItem
 	}
 	
 	/// Displays the picker with a completion handler.
@@ -123,23 +124,98 @@ public class XUPickerBaseViewController<Item, ItemControl: UIControl & XUPickerC
 
 extension UIDatePicker: XUPickerControl {
 	
-	public var selectedItem: Date? {
+	public var selectedItem: Date {
 		get {
 			return self.date
 		}
 		set {
-			guard let date = newValue else {
-				self.date = Date()
-				return
-			}
-			
-			self.date = date
+			self.date = newValue
 		}
 	}
 	
 }
 
+extension UIPickerView: XUPickerControl {
+	
+	public var selectedItem: Int {
+		get {
+			return self.selectedRow(inComponent: 0)
+		}
+		set {
+			self.selectRow(newValue, inComponent: 0, animated: true)
+		}
+	}
+	
+}
+
+/// A date picker controller. It will slide from the bottom of the screen like a keyboard
+/// and will allow you to select a date.
 public class XUDatePickerViewController: XUPickerBaseViewController<Date, UIDatePicker> {
 }
 
+/// A generic picker controller. It will slide from the bottom of the screen like a keyboard
+/// and will allow you to select one of the options.
+public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<Int, UIPickerView>, UIPickerViewDataSource, UIPickerViewDelegate {
+
+	/// Data item to be displayed in the picker.
+	public struct DataItem<T: Equatable>: Equatable {
+		
+		public static func ==<T>(lhs: DataItem<T>, rhs: DataItem<T>) -> Bool {
+			return lhs.title == rhs.title && lhs.value == rhs.value
+		}
+		
+		/// Title of the item.
+		public let title: String
+		
+		/// Value of the item.
+		public let value: T
+		
+		public init(title: String, value: T) {
+			self.title = title
+			self.value = value
+		}
+	}
+	
+	/// Items.
+	public let items: [DataItem<T>]
+	
+	public init(parentController: UIViewController, items: [DataItem<T>], selectedItem: DataItem<T>) {
+		guard !items.isEmpty, let index = items.index(of: selectedItem) else {
+			XUFatalError("Items are either empty or the selected item is not among them.")
+		}
+		
+		self.items = items
+		
+		super.init(parentController: parentController, selectedItem: index)
+		
+		self.picker.dataSource = self
+		self.picker.delegate = self
+	}
+	
+	public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+		return 1
+	}
+	
+	public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return self.items.count
+	}
+	
+	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		return self.items[row].title
+	}
+	
+	/// Convenience method that passes the selected data item instead of the index.
+	public func show(with completionHandler: @escaping (DataItem<T>?) -> Void) {
+		let items = self.items
+		self.show { (index: Int?) in
+			guard let index = index else {
+				completionHandler(nil)
+				return
+			}
+			
+			completionHandler(items[index])
+		}
+	}
+	
+}
 
