@@ -35,7 +35,7 @@ public struct XUJSONHelper {
 		}
 		
 		guard let obj = genericObj as? T else {
-			XULog("Failed to cast JSON to \(T.self): \(genericObj).")
+			XULog("Failed to cast JSON of type \(type(of: genericObj)) to \(T.self): \(genericObj).")
 			return nil
 		}
 		
@@ -50,7 +50,7 @@ public struct XUJSONHelper {
 	/// Some JSON responses may contain secure prefixes - this method attempts
 	/// to find the JSON potential callback function.
 	public static func object<T>(fromCallback jsonString: String) -> T? {
-		guard let innerJSON = jsonString.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
+		guard let innerJSON = jsonString.trimmingWhitespace.value(of: "JSON", inRegexes: "^([\\w\\.\\$]+)?\\((?P<JSON>.*)\\)", "/\\*-secure-\\s*(?P<JSON>{.*})", "^\\w+=(?P<JSON>{.*})") else {
 			if jsonString.first == Character("{") && jsonString.last == Character("}") {
 				return self.object(from: jsonString)
 			}
