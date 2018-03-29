@@ -201,7 +201,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			self.progressIndicator.startAnimation(nil)
 			
 			self.resultsDelegate?.searchField(self, didChangeQuery: _searchString, completionHandler: { (results) in
-				XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+				DispatchQueue.main.syncOrNow {
 					self.progressIndicator.stopAnimation(nil)
 					
 					if self._searchString != actualSearchString {

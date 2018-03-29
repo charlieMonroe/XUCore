@@ -46,7 +46,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
+		DispatchQueue.main.syncOrNow { () -> Void in
 			let reporter = XUExceptionReporter(exception: exception, thread: thread, queue: queue, stackTrace: stackTrace)
 			_reporters.append(reporter)
 			

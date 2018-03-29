@@ -161,7 +161,7 @@ open class XUApplicationSyncManager {
 	/// The documentURL within the response is nonnull upon success and contains 
 	/// a URL to the document file.
 	open func downloadDocument(withID documentID: String, toURL fileURL: URL, withCompletionHandler completionHandler: @escaping (_ success: Bool, _ documentURL: URL?, _ error: NSError?) -> Void) {
-		XU_PERFORM_BLOCK_ASYNC { 
+		DispatchQueue.global(qos: .default).async { 
 			var err: NSError?
 			var documentURL: URL?
 			do {
@@ -170,7 +170,7 @@ open class XUApplicationSyncManager {
 				err = error
 			}
 			
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				// Remove document ID from available, since the download failed
 				if documentURL == nil {
 					if let index = self.availableDocumentUUIDs.index(of: documentID) {

@@ -201,7 +201,7 @@ public class XUMessageCenter {
 		}
 		
 		XULog("Will be launching message center.")
-		XU_PERFORM_BLOCK_ASYNC { () -> Void in
+		DispatchQueue.global(qos: .default).async { () -> Void in
 			self.checkForMessages()
 		}
 		
@@ -310,7 +310,7 @@ public class XUMessageCenter {
 					}))
 				}
 
-				XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
+				DispatchQueue.main.syncOrNow(execute: { () -> Void in
 					UIApplication.shared.windows.first!.rootViewController?.present(alert, animated: true, completion: nil)
 				})
 			#else
@@ -346,7 +346,7 @@ public class XUMessageCenter {
 		
 		// Repeat this every hour.
 		_ = Timer.scheduledTimer(timeInterval: XUTimeInterval.hour, repeats: true) { (_) -> Void in
-			XU_PERFORM_BLOCK_ASYNC({ () -> Void in
+			DispatchQueue.global(qos: .default).async(execute: { () -> Void in
 				self.checkForMessages()
 			})
 		}

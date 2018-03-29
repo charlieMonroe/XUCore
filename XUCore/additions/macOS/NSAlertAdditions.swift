@@ -152,7 +152,7 @@ public extension NSAlert {
 	@discardableResult
 	public func runModalOnMainThread() -> NSApplication.ModalResponse {
 		var result: NSApplication.ModalResponse = NSApplication.ModalResponse.alertFirstButtonReturn
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD({ () -> Void in
+		DispatchQueue.main.syncOrNow(execute: { () -> Void in
 			result = self.runModal()
 		})
 		

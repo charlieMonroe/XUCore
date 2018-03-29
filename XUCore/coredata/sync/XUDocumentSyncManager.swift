@@ -268,7 +268,7 @@ open class XUDocumentSyncManager {
 	/// This method is an observer for NSManagedObjectContextWillSaveNotification.
 	@objc private func _createSyncChanges(_ aNotif: Notification) {
 		if !Thread.isMainThread {
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD { self._createSyncChanges(aNotif) }
+			DispatchQueue.main.syncOrNow { self._createSyncChanges(aNotif) }
 			return
 		}
 	
@@ -451,7 +451,7 @@ open class XUDocumentSyncManager {
 			return
 		}
 	
-		XU_PERFORM_BLOCK_ASYNC {
+		DispatchQueue.global(qos: .default).async {
 			let coordinator = NSFileCoordinator(filePresenter: nil)
 			var err: NSError?
 			var innerError: NSError?
@@ -498,7 +498,7 @@ open class XUDocumentSyncManager {
 			
 			err = err ?? innerError
 	
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD({ 
+			DispatchQueue.main.syncOrNow(execute: { 
 				completionHandler(success, err)
 				self._isUploadingEntireDocument = false
 			})

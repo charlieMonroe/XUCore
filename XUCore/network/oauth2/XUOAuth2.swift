@@ -451,7 +451,7 @@ public final class XUOAuth2Client {
 				request[key] = value
 			}
 		}) else {
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -461,7 +461,7 @@ public final class XUOAuth2Client {
 		guard obj["token_type"] as? String == "bearer" else {
 			XULog("Token type is not bearer \(obj).")
 			
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				self._authorizationController!.close(withResult: .error(.invalidTokenType))
 				self._authorizationController = nil
 			}
@@ -471,7 +471,7 @@ public final class XUOAuth2Client {
 		guard let accessToken = obj["access_token"] as? String else {
 			XULog("No access token in \(obj).")
 			
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -482,7 +482,7 @@ public final class XUOAuth2Client {
 		if !self.configuration.tokenNeverExpires && refreshToken == nil {
 			XULog("No refresh token in \(obj).")
 			
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -496,7 +496,7 @@ public final class XUOAuth2Client {
 			expiresInSeconds = XUTimeInterval.day * 14.0
 		}
 		
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+		DispatchQueue.main.syncOrNow {
 			let account = Account(client: self, accessToken: accessToken, refreshToken: refreshToken, andExpirationDate: Date(timeIntervalSinceNow: expiresInSeconds))
 			self.accounts.append(account)
 			
@@ -530,7 +530,7 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		XU_PERFORM_BLOCK_ASYNC {
+		DispatchQueue.global(qos: .default).async {
 			self._finishAuthorization(withCode: code)
 		}
 	}

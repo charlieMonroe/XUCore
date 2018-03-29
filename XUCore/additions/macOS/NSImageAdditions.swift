@@ -150,7 +150,7 @@ public extension NSImage {
 	/// or if some of the underlying calls fails.
 	public func imageWithSingleImageRepresentation(ofSize size: CGSize) -> XUImage? {
 		var result: XUImage? = nil
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
+		DispatchQueue.main.syncOrNow { () -> Void in
 			result = self._imageWithSingleImageRepOfSize(size)
 		}
 		return result

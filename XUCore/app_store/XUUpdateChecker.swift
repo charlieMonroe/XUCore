@@ -96,9 +96,9 @@ public final class XUUpdateChecker {
 	/// Check for update and calls the completionHandler with result. The completion
 	/// handler is guaranteed to be called on the main thread.
 	public func checkForUpdates(completionHandler: @escaping (Result) -> Void) {
-		XU_PERFORM_BLOCK_ASYNC {
+		DispatchQueue.global(qos: .default).async {
 			let result = self._checkForUpdates()
-			XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+			DispatchQueue.main.syncOrNow {
 				completionHandler(result)
 			}
 		}

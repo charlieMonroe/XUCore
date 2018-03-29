@@ -99,7 +99,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			
 			_currentView = view
 			
-			XU_PERFORM_DELAYED_BLOCK(0.5, block: {
+			DispatchQueue.main.asyncAfter(deadline: .seconds(0.5), execute: {
 				preferencesWindow.recalculateKeyViewLoop()
 			})
 		}
@@ -231,7 +231,7 @@ internal class XULongPressButton: NSButton {
 		
 		let timeDelta = Date.timeIntervalSinceReferenceDate - _mouseDownDate
 		if timeDelta > 0.5 {
-			XU_PERFORM_DELAYED_BLOCK(0.01) {
+			DispatchQueue.main.asyncAfter(deadline: .seconds(0.01)) {
 				self._showMenu()
 			}
 			return

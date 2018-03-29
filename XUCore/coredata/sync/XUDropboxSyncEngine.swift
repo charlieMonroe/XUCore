@@ -155,7 +155,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 		
 		/// As we now tend to sleep between requests, we should perform this
 		/// async.
-		XU_PERFORM_BLOCK_ASYNC {
+		DispatchQueue.global(qos: .default).async {
 			self._syncFiles(at: "")
 			
 			/// Try to re-upload failed file uploads
@@ -171,7 +171,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	fileprivate func _syncFiles(at path: String) {
 		_syncCounter += 1
 		_ = self.client.files.listFolder(path: path).response { (result, error) in
-			XU_PERFORM_BLOCK_ASYNC {
+			DispatchQueue.global(qos: .default).async {
 				self._handleListingResult(at: path, result: result, error: error)
 			}
 		}
@@ -262,7 +262,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 		/// We need the timer to be created on main thread. When created on a separate
 		/// thread, it gets scheduled with the runloop and that thread and when 
 		/// the thread exits, the timer never gets called.
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+		DispatchQueue.main.syncOrNow {
 			self._syncTimer = Timer.scheduledTimer(timeInterval: 90.0, target: self, selector: #selector(_syncFilesTimerHandler), userInfo: nil, repeats: true)
 		}
 	}

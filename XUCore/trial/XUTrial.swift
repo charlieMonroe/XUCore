@@ -372,7 +372,7 @@ open class XUItemBasedTrial: XUTrial {
 	/// Decreases number of items left. Posts the notification. Always is performed
 	/// on main thread.
 	open func decreaseItemsLeft() {
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
+		DispatchQueue.main.syncOrNow { () -> Void in
 			self._itemsLeft -= 1
 
 			self.saveTrialInformation()

@@ -35,7 +35,7 @@ public final class XUMouseTracker {
 		}
 	}
 	private func _notifyObserversAboutMovementToPoint(_ point: CGPoint, atDisplay displayID: CGDirectDisplayID, withEventFlags flags: CGEventFlags) {
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+		DispatchQueue.main.syncOrNow {
 			self._lock.perform {
 				for observer in self._observers {
 					observer.mouseMoved(to: point, atDisplay: displayID, withEventFlags: flags)

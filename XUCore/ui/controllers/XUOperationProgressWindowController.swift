@@ -89,13 +89,13 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	public func progressableOperationDidFinish(_ operation: XUProgressableOperation) {
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD { () -> Void in
+		DispatchQueue.main.syncOrNow { () -> Void in
 			self.window?.orderOut(nil)
 		}
 	}
 	
 	public func progressableOperationDidUpdateProgress(_ operation: XUProgressableOperation) {
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD {
+		DispatchQueue.main.syncOrNow {
 			self._update()
 		}
 	}
