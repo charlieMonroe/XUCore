@@ -97,11 +97,11 @@ open class XUManagedObject: NSManagedObject {
 	
 	private func _applyDeletionSyncChange(_ syncChange: XUDeletionSyncChange) {
 		// Delete
-		let UUID = self.syncUUID
-		self.managedObjectContext!.delete(self)
+		let objectID = self.syncUUID
+		self.managedObjectContext?.delete(self) // We can already be deleted.
 		
 		_changesLock.perform {
-			_deletionChanges.insert(UUID)
+			_deletionChanges.insert(objectID)
 		}
 	}
 	

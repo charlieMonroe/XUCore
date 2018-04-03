@@ -232,7 +232,7 @@ public final class XUDebugLog {
 			return true
 		}
 		
-		#if os(iOS) && (arch(i386) || arch(x86_64))
+		#if targetEnvironment(simulator)
 			return true
 		#else
 			return false

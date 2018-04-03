@@ -32,7 +32,7 @@ internal struct XUSyncManagerPathUtilities {
 	
 	static var currentDeviceIdentifier: String = {
 		#if os(iOS)
-			#if (arch(i386) || arch(x86_64)) && os(iOS)
+			#if targetEnvironment(simulator)
 				/// Simulator changes vendor ID each run.
 				return Bundle.main.bundleURL.path.components(separatedBy: "data/Containers/Bundle")[0].md5Digest.uppercased()
 			#else
