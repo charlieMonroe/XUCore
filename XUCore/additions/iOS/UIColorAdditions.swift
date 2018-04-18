@@ -33,6 +33,17 @@ public extension UIColor {
 		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: alpha)
 	}
 	
+	/// Creates an image with size that is a swatch of the color.
+	public func swatchImage(with size: CGSize) -> UIImage {
+		let renderer = UIGraphicsImageRenderer(size: size)
+		return renderer.image { (ctx) in
+			self.setFill()
+			
+			let bounds = CGRect(origin: .zero, size: size)
+			UIBezierPath(rect: bounds).fill()
+		}
+	}
+	
 }
 
 

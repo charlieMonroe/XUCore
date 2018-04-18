@@ -245,9 +245,10 @@ public final class XUOAuth2Client {
 		}
 		
 		public init?(client: XUOAuth2Client, andDictionary dictionary: XUJSONDictionary) {
-			guard let
-				identifier = dictionary[AccountKeys.identifierKey] as? String,
-				let expirationDate = dictionary[AccountKeys.tokenExpirationDateKey] as? Date else {
+			guard
+				let identifier = dictionary[AccountKeys.identifierKey] as? String,
+				let expirationDate = dictionary[AccountKeys.tokenExpirationDateKey] as? Date
+			else {
 				return nil
 			}
 			
@@ -541,9 +542,10 @@ public final class XUOAuth2Client {
 	}
 
 	private convenience init?(dictionary: XUJSONDictionary) {
-		guard let
-			configurationDict = dictionary[ClientKeys.configurationKey] as? XUJSONDictionary,
-			let accountDicts = dictionary[ClientKeys.accountsKey] as? [XUJSONDictionary] else {
+		guard
+			let configurationDict = dictionary[ClientKeys.configurationKey] as? XUJSONDictionary,
+			let accountDicts = dictionary[ClientKeys.accountsKey] as? [XUJSONDictionary]
+		else {
 			return nil
 		}
 		
@@ -560,7 +562,7 @@ public final class XUOAuth2Client {
 		public func startAccountAuthorization(withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
 			XUURLHandlingCenter.shared.add(handler: self, forURLScheme: configuration.redirectionScheme)
 			
-			_authorizationController = XUAuthorizationWebViewWindowController(URL: self.configuration.authorizationURL)
+			_authorizationController = XUAuthorizationWebViewWindowController(url: self.configuration.authorizationURL)
 			_authorizationController!.runModal(withCompletionHandler: { result in
 				XUURLHandlingCenter.shared.remove(handler: self, forURLScheme: self.configuration.redirectionScheme)
 				completionHandler?(result)

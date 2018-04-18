@@ -13,16 +13,16 @@ import Cocoa
 @IBDesignable open class XUView: NSView {
 	
 	/// Background color.
-	@IBInspectable var backgroundColor: NSColor = NSColor.clear
+	@IBInspectable public var backgroundColor: NSColor = NSColor.clear
 	
 	/// Border color.
-	@IBInspectable var borderColor: NSColor = NSColor.clear
+	@IBInspectable public var borderColor: NSColor = NSColor.clear
 	
 	/// Border width.
-	@IBInspectable var borderWidth: Double = 1.0
+	@IBInspectable public var borderWidth: Double = 1.0
 	
 	/// Corner radius.
-	@IBInspectable var cornerRadius: Double = 0.0
+	@IBInspectable public var cornerRadius: Double = 0.0
 	
 	
 	open override func draw(_ dirtyRect: CGRect) {

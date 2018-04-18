@@ -96,7 +96,7 @@ public extension XUViewAnimation {
 		let alphaStep = (targetAlpha - sourceAlpha) /  CGFloat(numberOfSteps)
 		
 		var stepCounter = 0
-		Timer.scheduledTimer(timeInterval: step, repeats: true) { (timer) in
+		let timer = Timer.scheduledTimer(timeInterval: step, repeats: true) { (timer) in
 			stepCounter += 1
 			
 			self.views.forEach({ $0.alphaValue += alphaStep })
@@ -108,6 +108,8 @@ public extension XUViewAnimation {
 				completion?()
 			}
 		}
+		RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
+		RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
 	}
 	#endif
 	
