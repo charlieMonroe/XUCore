@@ -134,8 +134,8 @@
 "Select..." = "Auswählen...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "Synchronisierungsdaten werden heruntergeladen.";
+"Copy Current Application State" = "Aktuellen Anwendungsstatus kopieren";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "Kopiert";

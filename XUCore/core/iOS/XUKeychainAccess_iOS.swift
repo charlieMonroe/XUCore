@@ -18,7 +18,7 @@ public struct XUKeychainAccess {
 		genericPasswordQuery[kSecAttrAccount as String] = "\(account): \(username)" as AnyObject?
 		
 		if let accessGroup = accessGroup {
-			#if (arch(i386) || arch(x86_64)) && os(iOS)
+			#if targetEnvironment(simulator)
 				// Ignore the access group if running on the iPhone simulator.
 				//
 				// Apps that are built for the simulator aren't signed, so there's no keychain access group
@@ -89,7 +89,7 @@ public struct XUKeychainAccess {
 			dict = [:]
 
 			if let accessGroup = accessGroup {
-				#if (arch(i386) || arch(x86_64)) && os(iOS)
+				#if targetEnvironment(simulator)
 				#else
 					dict[kSecAttrAccessGroup as String] = accessGroup
 				#endif

@@ -1,8 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"1 hour" = "1 hour";
+"1 hour" = "1 heure";
 "1 minute" = "1 minute";
-"1 second" = "1 second";
+"1 second" = "1 seconde";
 "Unknown error." = "Unknown error.";
 
 "OK" = "OK";
@@ -12,8 +12,8 @@
 
 "Send Report" = "Send Report";
 "Privacy Information..." = "Privacy Information...";
-"%AppName% has encountered a problem." = "%AppName% has encountered a problem.";
-"%AppName% will terminate after sending the report." = "%AppName% will terminate after sending the report.";
+"%AppName% has encountered a problem." = "%AppName% a rencontré un problème.";
+"%AppName% will terminate after sending the report." = "%AppName% se terminera après l'envoi du rapport.";
 "Report to be sent:" = "Report to be sent:";
 "Your Email:" = "Your Email:";
 "Description:" = "Description:";
@@ -46,9 +46,9 @@
 "Purchase..." = "Purchase...";
 "I'm Still Not Sure" = "I'm Still Not Sure";
 
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ couldn't connect to the Internet. The application will exit in one hour.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ requires connection to the Internet to continue the trial properly.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@";
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ n'a pas pu se connecter à Internet. L'application va quitter dans une heure.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ nécessite une connexion à Internet pour continuer l'essai correctement.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Vous serez redirigé vers une page où vous pourrez acheter une copie. Si vous ne savez toujours pas si %@ vous convient et si vous avez des questions, contactez-nous.%@";
 "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
 "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.";
 "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
@@ -58,13 +58,13 @@
 "Progress" = "Progress";
 "Posted successfully" = "Posted successfully";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera à travailler pendant les prochaines 24 heures, après quoi sa fonctionnalité sera bloquée. Veuillez mettre à jour% @ afin de continuer à travailler.";
 "Please download a new build." = "Please download a new build.";
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.";
-"%li hours" = "%li hours";
+"%li hours" = "%li heures";
 "%li minutes" = "%li minutes";
 "%li seconds" = "%li seconds";
 
@@ -73,15 +73,15 @@
 "Cannot open document metadata file." = "Cannot open document metadata file.";
 "Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
 "Synchronization is already in progress." = "Synchronization is already in progress.";
-"An upload operation is already in progress." = "An upload operation is already in progress.";
+"An upload operation is already in progress." = "Une opération de téléchargement est déjà en cours.";
 "Could not save upload metadata." = "Could not save upload metadata.";
 "Cannot find entity named %@" = "Cannot find entity named %@";
 "Cannot find class named %@" = "Cannot find class named %@";
 "Cannot find entity with ID %@" = "Cannot find entity with ID %@";
-"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
-"Can't find synchronization folder for computer %@." = "Can't find synchronization folder for computer %@.";
-"Can't find sync folder for document %@." = "Can't find sync folder for document %@.";
-"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
+"Can't find synchronization folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";
+"Can't find synchronization folder for computer %@." = "Impossible de trouver le dossier de synchronisation pour l'ordinateur %@.";
+"Can't find sync folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";
+"%@ couldn't finish synchronization in the background." = "%@ n'a pas pu terminer la synchronisation en arrière-plan.";
 "Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
 
 /// XUSyncEngine - 6/20/2016 changes
@@ -99,15 +99,15 @@
 
 /// Debug Log Menu
 "Debug" = "Debug";
-"About Debug Log..." = "About Debug Log...";
+"About Debug Log..." = "À propos du journal de débogage...";
 "Debug Logging" = "Debug Logging";
 "On" = "On";
 "Off" = "Off";
-"Clear Debug Log" = "Clear Debug Log";
+"Clear Debug Log" = "Effacer le journal de débogage";
 "Show Log in Finder" = "Show Log in Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Le journal de débogage est un fichier texte contenant des détails techniques sur ce que% @ exécute en arrière-plan. C'est assez utile pour régler les choses rapidement car cela me permet de voir ce qui se passe. Pour obtenir le journal de débogage, procédez comme suit:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Si vous n'envoyez pas votrepremier journal de débogage , sélectionnez Effacer le journal de débogage dans le menu Déboguer.\n2) Dans le menu Déboguer, assurez-vous que la journalisation de débogage est activée.\n3) Effectuez n'importe quelle tâche avec laquelle vous rencontrez des problèmes.\n4) Dans le menu Déboguer, désactivez la déconnexion du débogage.\n5) Dans le menu Déboguer, sélectionnez Afficher le journal dans le Finder. Cela sélectionne le fichier journal dans le Finder et vous pouvez facilement me l'envoyer. Veuillez joindre le fichier à l'e-mail plutôt que de copier-coller les informations.\n\nLe fichier journal ne contient aucune donnée personnelle pouvant être vérifiée en ouvrant le fichier journal (il s'agit d'un simple fichier texte). Si vous considérez que certaines données sont confidentielles ou personnelles, veuillez les remplacer par quelque chose qui peut être facilement identifié comme un espace réservé (par exemple XXXXXXXX) et faites-moi savoir que vous avez modifié le fichier journal.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
@@ -120,7 +120,7 @@
 "Please update your copy of this beta build." = "Please update your copy of this beta build.";
 
 // Preferences.
-"All Preferences" = "All Preferences";
+"All Preferences" = "Toutes les préférences";
 "Show All" = "Show All";
 "Preferences" = "Preferences";
 
@@ -135,7 +135,7 @@
 
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Copy Current Application State" = "Copier l'état actuel de l'application";
 
 /// 11/12/2017+
 "Copied" = "Copied";

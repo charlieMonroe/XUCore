@@ -32,6 +32,10 @@ public extension UIView {
 	public var enclosingTableViewCell: UITableViewCell? {
 		return self._enclosingView()
 	}
+	
+	public func enclosingView<T: UIView>(ofType type: T.Type) -> T? {
+		return self._enclosingView()
+	}
 
 	
 	/// Returns the first responder, if there is one in the subview hierarchy.

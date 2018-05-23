@@ -393,7 +393,7 @@ public extension String {
 	}
 		
 	/// Returns size with attributes, limited to width.
-	public func size(withAttributes attrs: [NSAttributedStringKey : AnyObject], maximumWidth width: CGFloat) -> CGSize {
+	public func size(withAttributes attrs: [NSAttributedStringKey : Any], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		#if os(iOS)
 			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs, context: nil).size

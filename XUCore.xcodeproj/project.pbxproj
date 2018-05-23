@@ -23,6 +23,8 @@
 		0716A1211D7D706E003423B1 /* XUPreferencePanesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716A1201D7D706E003423B1 /* XUPreferencePanesView.swift */; };
 		0716A12D1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0716A12C1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib */; };
 		071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
+		072220692089C5C8004C2988 /* XUWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072220682089C5C8004C2988 /* XUWarning.swift */; };
+		0722206A2089C5C8004C2988 /* XUWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072220682089C5C8004C2988 /* XUWarning.swift */; };
 		07241D3B1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		0726FA4320625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */; };
@@ -435,6 +437,7 @@
 		071A74A31C54DA3600EEA7FC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		071A74A41C54DA7000EEA7FC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
+		072220682089C5C8004C2988 /* XUWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUWarning.swift; sourceTree = "<group>"; };
 		07241D2D1D17B16700206E27 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07241D3A1D17D57300206E27 /* XUCompoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCompoundError.swift; sourceTree = "<group>"; };
 		0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUDownloadCenter+Proxy.swift"; sourceTree = "<group>"; };
@@ -1138,6 +1141,7 @@
 			isa = PBXGroup;
 			children = (
 				073E6B511BE2026600706283 /* XULog.swift */,
+				072220682089C5C8004C2988 /* XUWarning.swift */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -1676,6 +1680,7 @@
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				07156FEE1C396F82006D3616 /* XUBorderlessWindow.swift in Sources */,
+				072220692089C5C8004C2988 /* XUWarning.swift in Sources */,
 				075DC79B1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				07C3FA1F1BECADA5008A4200 /* XUSwitchableView.swift in Sources */,
@@ -1902,6 +1907,7 @@
 				073E6B3B1BE1F9D500706283 /* CharacterExtensions.swift in Sources */,
 				0779E1811BF2317A00832858 /* HTTPURLResponseAdditions.swift in Sources */,
 				073E6AE81BE1F86D00706283 /* simplify.cc in Sources */,
+				0722206A2089C5C8004C2988 /* XUWarning.swift in Sources */,
 				073E6AC81BE1F86D00706283 /* nfa.cc in Sources */,
 				073E6B2C1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
 				0749DCDF1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,

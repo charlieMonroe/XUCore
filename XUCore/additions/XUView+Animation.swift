@@ -160,7 +160,17 @@ public extension XUViewAnimation {
 				})
 			})
 		#else
-			fatalError("Unimplemented animation.")
+			UIView.animate(withDuration: 0.25, animations: {
+				self.views.forEach({ $0.alpha = 0.0 })
+			}, completion: { _ in
+				self.views.forEach({
+					guard $0.alpha == 0.0 else {
+						return // Something else is modifying it already.
+					}
+					
+					$0.isHidden = true
+				})
+			})
 		#endif
 	}
 	
@@ -174,7 +184,14 @@ public extension XUViewAnimation {
 			
 			self._animateAlphaUsingTimer(from: 0.0, to: 1.0)
 		#else
-			fatalError("Unimplemented animation.")
+			self.views.forEach({
+				$0.alpha = 0.0
+				$0.isHidden = false
+			})
+		
+			UIView.animate(withDuration: 0.25, animations: {
+				self.views.forEach({ $0.alpha = 1.0 })
+			})
 		#endif
 	}
 	

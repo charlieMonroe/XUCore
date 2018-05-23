@@ -8,6 +8,21 @@
 
 import Foundation
 
+/// A download center observer. This allows you to observe that the download center
+/// will be downloading some content. This may get further extended in the future.
+/// All methods are optional as they have a default implementation.
+public protocol XUDownloadCenterObserver: AnyObject {
+	func downloadCenter(_ center: XUDownloadCenter, didDownloadContentFrom url: URL, response: HTTPURLResponse?, data: Data)
+	func downloadCenter(_ center: XUDownloadCenter, didFailToDownloadContentFrom url: URL, error: Error?)
+	func downloadCenter(_ center: XUDownloadCenter, willDownloadContentFrom url: URL)
+}
+
+extension XUDownloadCenterObserver {
+	public func downloadCenter(_ center: XUDownloadCenter, didDownloadContentFrom url: URL, response: HTTPURLResponse?, data: Data) {}
+	public func downloadCenter(_ center: XUDownloadCenter, didFailToDownloadContentFrom url: URL, error: Error?) {}
+	public func downloadCenter(_ center: XUDownloadCenter, willDownloadContentFrom url: URL) {}
+}
+
 
 /// Class that handles communication over HTTP and parsing the responses.
 open class XUDownloadCenter {
@@ -69,6 +84,9 @@ open class XUDownloadCenter {
 	
 	/// If true, logs all traffic via XULog.
 	public final var logTraffic: Bool = true
+	
+	/// Observer.
+	public weak var observer: XUDownloadCenterObserver?
 	
 	/// Proxy configuration. By default nil, set to nonnil value for proxy support.
 	/// Note that this changes self.session since NSURLSessionConfiguration won't
@@ -203,6 +221,8 @@ open class XUDownloadCenter {
 			return nil
 		}
 		
+		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
+		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
@@ -227,10 +247,14 @@ open class XUDownloadCenter {
 				XULog("[\(self.identifier)] - downloaded web site source from \(url), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
 			}
 			
+			self.observer?.downloadCenter(self, didDownloadContentFrom: url, response: response as? HTTPURLResponse, data: data)
+			
 			return data
 		} catch let error {
 			self.lastHTTPURLResponse = nil
 			self.lastError = error
+			
+			self.observer?.downloadCenter(self, didFailToDownloadContentFrom: url, error: error)
 			return nil
 		}
 	}

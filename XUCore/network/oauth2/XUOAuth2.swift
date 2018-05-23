@@ -186,7 +186,7 @@ private extension XUPreferences.Key {
 public final class XUOAuth2Client {
 	
 	/// A particular account.
-	public final class Account {
+	public final class Account: XUDownloadCenterObserver {
 		
 		private struct AccountKeys {
 			static let identifierKey: String = "identifier"
@@ -207,7 +207,18 @@ public final class XUOAuth2Client {
 		/// Download center for this particular account. The account automatically
 		/// sets the authorization token and automatically renews the token when
 		/// you use this download center.
-		public private(set) lazy var downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "OAuth2 - \(self.identifier) - \(self.client.configuration.name)")
+		public private(set) lazy var downloadCenter: XUDownloadCenter = {
+			let center = XUDownloadCenter(identifier: "OAuth2 - \(self.identifier) - \(self.client.configuration.name)")
+			
+			for (key, value) in self.client.configuration.additionalHTTPHeaders {
+				center.automaticHeaderFieldValues[key] = value
+			}
+			center.automaticHeaderFieldValues["Authorization"] = "Bearer \(self.accessToken)"
+
+			
+			center.observer = self
+			return center
+		}()
 		
 		/// A unique identifier of the account.
 		public let identifier: String
@@ -311,6 +322,8 @@ public final class XUOAuth2Client {
 			
 			let expiresInSeconds: TimeInterval = obj.double(forKey: "expires_in")
 			self.accessToken = accessToken
+			self.downloadCenter.automaticHeaderFieldValues["Authorization"] = "Bearer \(accessToken)"
+			
 			self.tokenExpirationDate = Date(timeIntervalSinceNow: expiresInSeconds)
 			
 			self.save()
@@ -329,15 +342,12 @@ public final class XUOAuth2Client {
 			XUOAuth2Client.save()
 		}
 		
-		public func setupURLRequest(_ request: inout URLRequest, forDownloadingPageAtURL pageURL: URL) {
+		
+		public func downloadCenter(_ center: XUDownloadCenter, willDownloadContentFrom url: URL) {
 			if self.isTokenExpired {
 				_ = self.renewToken() // TODO: if we fail, notify the delegate
 			}
 			
-			for (key, value) in self.client.configuration.additionalHTTPHeaders {
-				request[key] = value
-			}
-			request["Authorization"] = "Bearer \(self.accessToken)"
 		}
 		
 	}

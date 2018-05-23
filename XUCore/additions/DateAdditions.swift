@@ -110,6 +110,10 @@ public struct XUMonth : OptionSet {
 
 
 public extension Date {
+	
+	public static func -(lhs: Date, rhs: Date) -> TimeInterval {
+		return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+	}
 		
 	/// Returns today at 00:00:00.
 	public static var today: Date {

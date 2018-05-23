@@ -51,7 +51,7 @@ public extension NSAlert {
 		public var stringValue: String {
 			switch self {
 			case .cancelled(_):
-				fatalError("Calling stringValue on StringModalResponse.cancelled(_).")
+				XUFatalError("Calling stringValue on StringModalResponse.cancelled(_).")
 			case .confirmed(let value, _):
 				return value
 			}
@@ -68,19 +68,29 @@ public extension NSAlert {
 			return response == NSApplication.ModalResponse.alertFirstButtonReturn
 		}
 		
-		fatalError("Running a deprecated NSAlert instance!")
+		XUFatalError("Running a deprecated NSAlert instance!")
 	}
 	
 	private func _prepareAccessoryTextField(withInitialValue initialValue: String, secure: Bool) {
 		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {
-			accessory = NSSecureTextField(frame: frame)
+			if #available(macOS 10.12, *) {
+				accessory = NSSecureTextField(string: initialValue)
+				accessory.frame = frame
+			} else {
+				accessory = NSSecureTextField(frame: frame)
+				accessory.stringValue = initialValue
+			}
 		} else {
-			accessory = NSTextField(frame: frame)
+			if #available(macOS 10.12, *) {
+				accessory = NSTextField(string: initialValue)
+				accessory.frame = frame
+			} else {
+				accessory = NSTextField(frame: frame)
+				accessory.stringValue = initialValue
+			}
 		}
-		
-		accessory.stringValue = initialValue
 		
 		self.accessoryView = accessory
 

@@ -156,11 +156,11 @@ private final class _XUAlertViewController: UIViewController {
 
 extension _XUAlertViewController: UIViewControllerTransitioningDelegate {
 
-	@objc private func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		return _XUAlertModalTransitionAnimator()
 	}
-
-	@objc private func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+	
+	func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		return _XUAlertModalTransitionAnimator()
 	}
 

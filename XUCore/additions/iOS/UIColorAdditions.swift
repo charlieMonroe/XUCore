@@ -9,6 +9,38 @@
 import UIKit
 
 public extension UIColor {
+	
+	private func _offsettedRGBColor(by offset: CGFloat) -> UIColor {
+		var r: CGFloat = 0.0
+		var g: CGFloat = 0.0
+		var b: CGFloat = 0.0
+		var alpha: CGFloat = 0.0
+		guard self.getRed(&r, green: &g, blue: &b, alpha: &alpha) else {
+			return self
+		}
+		
+		r += offset
+		g += offset
+		b += offset
+		
+		if offset < 0.0 {
+			r = max(0.0, r)
+			g = max(0.0, g)
+			b = max(0.0, b)
+		} else {
+			r = min(1.0, r)
+			g = min(1.0, g)
+			b = min(1.0, b)
+		}
+		
+		return UIColor(red: r, green: g, blue: b, alpha: alpha)
+	}
+	
+	/// Returns a darker variant of the color by offset. Currently only works on
+	/// RGB colors.
+	public func darker(by offset: CGFloat) -> UIColor {
+		return self._offsettedRGBColor(by: offset * -1.0)
+	}
 		
 	/// Initializes self from a hexString color.
 	public convenience init?(hexString originalHexString: String) {
@@ -31,6 +63,12 @@ public extension UIColor {
 		}
 		
 		self.init(red: CGFloat(redByte) / 255.0, green: CGFloat(greenByte) / 255.0, blue: CGFloat(blueByte) / 255.0, alpha: alpha)
+	}
+	
+	/// Returns lighter variant of the color by offset. Currently only works on
+	/// RGB colors.
+	public func lighterColor(by offset: CGFloat) -> UIColor {
+		return self._offsettedRGBColor(by: offset)
 	}
 	
 	/// Creates an image with size that is a swatch of the color.
