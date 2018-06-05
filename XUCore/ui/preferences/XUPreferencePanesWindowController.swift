@@ -174,7 +174,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: XUCoreFramework.bundle)
 		
 		self.window!.delegate = self
-		self.window!.title = XULocalizedString("Preferences")
+		self.window!.title = XULocalizedString("Preferences", inBundle: XUCoreFramework.bundle)
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
 		if #available(OSX 10.11, *) {
