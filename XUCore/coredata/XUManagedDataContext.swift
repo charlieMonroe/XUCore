@@ -14,9 +14,9 @@ import CoreData
 /// methods that help fetching entities.
 open class XUManagedDataContext {
 	
-	open let managedObjectContext: NSManagedObjectContext
-	open let persistentStore: NSPersistentStore
-	open let persistentStoreCoordinator: NSPersistentStoreCoordinator
+	public let managedObjectContext: NSManagedObjectContext
+	public let persistentStore: NSPersistentStore
+	public let persistentStoreCoordinator: NSPersistentStoreCoordinator
 	
 	
 	/// Inits by reading/creating a database at `URL`.

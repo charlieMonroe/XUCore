@@ -14,7 +14,7 @@
 	abort();
 }
 
-+(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler andFinallyBlock:(XUExceptionFinallyHandler)finallyBlock {
++(void)performBlock:(__attribute__((__noescape__)) void (^)(void))block withCatchHandler:(__attribute__((__noescape__)) XUExceptionCatchHandler)catchHandler andFinallyBlock:(__attribute__((__noescape__)) XUExceptionFinallyHandler)finallyBlock {
 	@try {
 		block();
 	} @catch (NSException *exception) {
@@ -24,7 +24,7 @@
 	}
 }
 
-+(void)performBlock:(void (^)(void))block withCatchHandler:(XUExceptionCatchHandler)catchHandler {
++(void)performBlock:(__attribute__((__noescape__)) void (^)(void))block withCatchHandler:(__attribute__((__noescape__)) XUExceptionCatchHandler)catchHandler {
 	[self performBlock:block withCatchHandler:catchHandler andFinallyBlock:^{
 		// No-op
 	}];
