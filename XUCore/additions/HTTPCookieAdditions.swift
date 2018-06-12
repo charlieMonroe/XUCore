@@ -8,6 +8,20 @@
 
 import Foundation
 
+public extension HTTPCookie {
+	
+	/// Returns true if the cookie has an expiresDate and it's in the past.
+	public var isExpired: Bool {
+		guard let date = self.expiresDate, date.isPast else {
+			return false
+		}
+		
+		return true
+	}
+	
+}
+
+
 public extension HTTPCookieStorage {
 	
 	/// Looks through cookies returned by cookies(for:) for a cookie named "name".

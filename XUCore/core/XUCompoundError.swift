@@ -34,7 +34,7 @@ public final class XUCompoundError: NSError {
 	/// This class automatically provides a localized description by putting
 	/// together failure reasons of self.errors.
 	public override var localizedDescription: String {
-		let failureReasons = self.errors.map({ $0.localizedFailureReason }).compactMap({ $0 })
+		let failureReasons = self.errors.map({ $0.localizedFailureReason }).compacted()
 		return failureReasons.joined(separator: "\n• ")
 	}
 	

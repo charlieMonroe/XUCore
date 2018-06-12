@@ -99,10 +99,13 @@ public extension String {
 	
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
-	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGRect {
-		let stringSize = self.size(withAttributes: atts)
-		self.draw(at: CGPoint(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0), withAttributes: atts)
-		return CGRect(x: rect.midX - stringSize.width / 2.0, y: rect.midY - stringSize.height / 2.0, width: stringSize.width, height: stringSize.height)
+	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedStringKey : Any] = [:]) -> CGRect {
+		let stringSize = self.size(withAttributes: atts, maximumWidth: rect.width)
+		var frame = rect
+		frame.size = stringSize
+		frame = rect.centeringRectInSelf(frame)
+		self.draw(in: frame, withAttributes: atts)
+		return frame
 	}
 
 	/// Draws `self` aligned right to point. Returns size of the drawn string.

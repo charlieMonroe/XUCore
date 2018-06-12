@@ -163,8 +163,8 @@ public class XUMessageCenter {
 			} else if key == "XUBlockApp" {
 				self.isAppBlocked = false
 				
-				// Not yet - it will be in 24 hours, though
-				guard let maxVersion = (message["XUMaxVersion"] as? String)?.integerValue else {
+				// Not yet - it will be in 24 hours, though.
+				guard let maxVersion = message["XUMaxVersion"] as? Int else {
 					XULog("Invalid message \(message)")
 					continue
 				}
@@ -201,12 +201,13 @@ public class XUMessageCenter {
 		}
 		
 		XULog("Will be launching message center.")
-		DispatchQueue.global(qos: .default).async { () -> Void in
+		DispatchQueue.global(qos: .default).async {
 			self.checkForMessages()
 		}
 		
 		if let blockedDate = XUPreferences.shared.appBlockedDate {
 			// We are more lenient now and give the user 24 hours to update
+			XULog("The app is bloacked.")
 			if Date.timeIntervalSinceReferenceDate - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
 				return
 			}
@@ -227,10 +228,12 @@ public class XUMessageCenter {
 	/// Checks for messages with the server. Must not be called from main thread.
 	private func checkForMessages() {
 		guard let feedURL = XUAppSetup.messageCenterFeedURL else {
+			XULog("Missing feed URL.")
 			return
 		}
 		
 		guard let dict = NSDictionary(contentsOf: feedURL) else {
+			XULog("Can't load feed dictionary.")
 			return
 		}
 
@@ -245,6 +248,8 @@ public class XUMessageCenter {
 			return
 		}
 		
+		XULog("Checking for messages.")
+		
 		for message in messages {
 			guard let messageID = message["XUMessageID"] as? Int else {
 				XULog("Invalid message (missing ID) \(message)")
@@ -253,6 +258,7 @@ public class XUMessageCenter {
 			
 			if messageID <= lastMessageID {
 				// Already seen it
+				XULog("Ignoring message \(messageID) as it's already been seen (last ID: \(lastMessageID).")
 				continue
 			}
 			

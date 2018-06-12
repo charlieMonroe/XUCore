@@ -43,7 +43,9 @@ Regexp::~Regexp() {
       delete[] runes_;
       break;
     case kRegexpCharClass:
-      cc_->Delete();
+		  if (cc_ != NULL) {
+			  cc_->Delete();
+		  }
       delete ccb_;
       break;
   }

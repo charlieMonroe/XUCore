@@ -76,7 +76,7 @@
 "An upload operation is already in progress." = "Une opération de téléchargement est déjà en cours.";
 "Could not save upload metadata." = "Could not save upload metadata.";
 "Cannot find entity named %@" = "Cannot find entity named %@";
-"Cannot find class named %@" = "Cannot find class named %@";
+"Cannot find class named %@" = "Impossible de trouver la classe nommée %@";
 "Cannot find entity with ID %@" = "Cannot find entity with ID %@";
 "Can't find synchronization folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";
 "Can't find synchronization folder for computer %@." = "Impossible de trouver le dossier de synchronisation pour l'ordinateur %@.";
@@ -91,7 +91,7 @@
 "Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
 
 /// XUOAuth2
-"Authentication" = "Authentication";
+"Authentication" = "Authentification";
 "Server responded with unknown token type." = "Server responded with unknown token type.";
 "Server provided invalid authorization response." = "Server provided invalid authorization response.";
 "Server has redirected with invalid URL." = "Server has redirected with invalid URL.";

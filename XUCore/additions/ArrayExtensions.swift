@@ -17,6 +17,11 @@ public extension Sequence {
 		return try self.first(where: { try !filter($0) }) == nil
 	}
 	
+	/// Returns a compacted sequence - removing nil values.
+	public func compacted<T>() -> [T] where Element == Optional<T> {
+		return self.compactMap({ $0 })
+	}
+	
 	/// Casts all elements in self to certain type - this is equivalent to
 	/// array.compactMap({ $0 as? T }).
 	public func compactCast<T>(to type: T.Type) -> [T] {
