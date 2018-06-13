@@ -336,6 +336,7 @@
 		07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
 		07A5940B20D126EB00429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
+		07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
 		07A7BDFD1C199A70004BCDAF /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; };
 		07A7BDFE1C199A70004BCDAF /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; };
 		07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */; };
@@ -1866,6 +1867,7 @@
 				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				07D57DFE1EE1A88300B5101F /* XUView+LayoutConstraints.swift in Sources */,
 				07CD35A21E5DBEF000DF8AED /* UILabelAdditions.swift in Sources */,
+				07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */,
 				0763AE891F94752C00EED10B /* OperatingSystemVersionExtensions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
 				07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
