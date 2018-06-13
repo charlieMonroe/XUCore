@@ -19,6 +19,74 @@ import Foundation
 /// the AppStore.
 public final class XUUpdateChecker {
 	
+	/// Version struct. Assumes that the version is in format 1.2.3.
+	public struct Version: Comparable, Equatable {
+		
+		public static func < (lhs: XUUpdateChecker.Version, rhs: XUUpdateChecker.Version) -> Bool {
+			guard lhs.major == rhs.major else {
+				if lhs.major < rhs.major {
+					return true
+				} else {
+					return false
+				}
+			}
+			
+			guard lhs.minor == rhs.minor else {
+				if lhs.minor < rhs.minor {
+					return true
+				} else {
+					return false
+				}
+			}
+			
+			return lhs.patch < rhs.patch
+		}
+		
+		/// Returns version of the current app.
+		public static let current: Version = Version(versionString: XUAppSetup.applicationBuildNumber)
+		
+		
+		/// Major: [1].2.3
+		public let major: Int
+		
+		/// Minor: 1.[2].3
+		public let minor: Int
+		
+		/// Patch: 1.2.[3]
+		public let patch: Int
+		
+		/// Returns a version string. It doesn't guarantee to equal to the one
+		/// passed via .init(versionString:) as this is reconstructed from the
+		/// integers.
+		public var versionString: String {
+			return "\(self.major).\(self.minor).\(self.patch)"
+		}
+		
+		/// Default initializer.
+		public init(major: Int, minor: Int, patch: Int = 0) {
+			self.major = major
+			self.minor = minor
+			self.patch = patch
+		}
+		
+		/// Initializes with a version string. Must be in format 1.2.3, where the
+		/// patch number isn't required.
+		public init(versionString: String) {
+			let components = versionString.components(separatedBy: ".")
+			assert(components.count <= 3)
+			
+			if components.count == 1 {
+				self.init(major: components[0].integerValue, minor: 0)
+			} else if components.count == 2 {
+				self.init(major: components[0].integerValue, minor: components[1].integerValue)
+			} else {
+				self.init(major: components[0].integerValue, minor: components[1].integerValue, patch: components[2].integerValue)
+			}
+		}
+		
+	}
+	
+	
 	/// Result of the version checking.
 	public enum Result {
 		
@@ -31,12 +99,12 @@ public final class XUUpdateChecker {
 		
 		/// A minor update was found (includes which version). Minor update is
 		/// e.g. 1.0.1 -> 1.0.2.
-		case minorUpdateAvailable(version: String)
+		case minorUpdateAvailable(version: Version)
 		
 		/// A major update was found (includes which version). Major update is
 		/// either 1.x -> 2.x, or 1.0 -> 1.1. When such an update is discovered,
 		/// you should not allow the user to use the app.
-		case majorUpdateAvailable(version: String)
+		case majorUpdateAvailable(version: Version)
 		
 	}
 	
@@ -53,43 +121,27 @@ public final class XUUpdateChecker {
 			return .failure
 		}
 		
-		guard let version = obj.string(forKeyPath: "[results][0][version]") else {
+		guard let versionString = obj.string(forKeyPath: "[results][0][version]") else {
 			return .failure
 		}
+		
+		let appStoreVersion = Version(versionString: versionString)
 		
 		if let urlString = obj.string(forKeyPath: "[results][0][trackViewUrl]") {
 			self.appStoreURL = URL(string: urlString)
 		}
 		
-		let currentVersion = XUAppSetup.applicationVersionNumber
-		if version == currentVersion {
+		let currentVersion = Version.current
+		if appStoreVersion <= currentVersion {
 			return .noUpdateAvailable
 		}
 		
-		let appStoreVersionComponents = version.components(separatedBy: ".")
-		let currentVersionComponents = currentVersion.components(separatedBy: ".")
-		
 		// 1.x -> 2.x
-		if appStoreVersionComponents[0] != currentVersionComponents[0] {
-			return .majorUpdateAvailable(version: version)
+		if appStoreVersion.major != currentVersion.major {
+			return .majorUpdateAvailable(version: appStoreVersion)
 		}
 		
-		// The version of the current build is e.g. just "1", without ".0". While
-		// this is a bad practice, it can happen.
-		if currentVersionComponents.count == 1 {
-			if appStoreVersionComponents[1] != "0" {
-				return .majorUpdateAvailable(version: version)
-			} else {
-				return .minorUpdateAvailable(version: version)
-			}
-		}
-		
-		// 1.0.x -> 1.1.x
-		if appStoreVersionComponents[1] != currentVersionComponents[1] {
-			return .majorUpdateAvailable(version: version)
-		}
-		
-		return .minorUpdateAvailable(version: version)
+		return .minorUpdateAvailable(version: appStoreVersion)
 	}
 	
 	
@@ -111,9 +163,9 @@ public final class XUUpdateChecker {
 	public func openAppStoreAndTerminate() {
 		if let appStoreURL = self.appStoreURL {
 			#if os(macOS)
-				NSWorkspace.shared.open(appStoreURL)
+			NSWorkspace.shared.open(appStoreURL)
 			#else
-				UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+			UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
 			#endif
 		}
 		

@@ -128,12 +128,20 @@ open class XUDownloadCenter {
 		guard
 			let url = response.url,
 			let fields = response.allHeaderFields as? [String : String]
-			else {
-				XULog("Not importing cookies, because response.url is nil, or can't get any header fields: \(response)")
-				return
+		else {
+			XULog("Not importing cookies, because response.url is nil, or can't get any header fields: \(response)")
+			return
 		}
 		
-		let cookies = HTTPCookie.cookies(withResponseHeaderFields: fields, for: url)
+		var cookies = HTTPCookie.cookies(withResponseHeaderFields: fields, for: url)
+		
+		// The cookie storage will not properly save them in case they do not have
+		// the expiration date.
+		cookies = cookies.map({ (cookie) -> HTTPCookie in
+			var properties = cookie.properties ?? [:]
+			properties[.expires] = Date.distantFuture
+			return HTTPCookie(properties: properties)!
+		})
 		
 		XULog("Importing cookies for \(url): \(cookies)")
 		
