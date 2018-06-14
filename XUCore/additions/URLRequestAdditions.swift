@@ -65,33 +65,14 @@ public extension URLRequest {
 	
 }
 
-
-public extension URLRequest {
+public protocol XUHTTPHeaderFields {
 	
-	public mutating func addAccept(_ accept: String) {
-		self.addValue(accept, forHTTPHeaderField: "Accept")
-	}
-	public mutating func addContentType(_ contentType: String) {
-		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
-	}
-	public mutating func addJSONAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.json)
-	}
-	public mutating func addJSONContentToHeader() {
-		self.addContentType(URLRequest.ContentType.json)
-	}
-	public mutating func addMultipartFormDataContentToHeader() {
-		self.addContentType("multipart/form-data")
-	}
-	public mutating func addWWWFormContentToHeader() {
-		self.addContentType(URLRequest.ContentType.wwwForm)
-	}
-	public mutating func addXMLAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.xml)
-	}
-	public mutating func addXMLContentToHeader() {
-		self.addContentType(URLRequest.ContentType.xml)
-	}
+	/// Subscript is all that is required.
+	subscript(field: String) -> String? { get set }
+	
+}
+
+extension XUHTTPHeaderFields {
 	
 	public var acceptType: String? {
 		get {
@@ -108,6 +89,15 @@ public extension URLRequest {
 		}
 		set {
 			self["Content-Type"] = newValue
+		}
+	}
+	
+	public var forwardedForIP: String? {
+		get {
+			return self["X-Forwarded-For"]
+		}
+		set {
+			self["X-Forwarded-For"] = newValue
 		}
 	}
 	
@@ -129,36 +119,18 @@ public extension URLRequest {
 		}
 	}
 	
-	public mutating func setFormBody(_ formBody: [String : String]) {
-		let bodyString = formBody.urlQueryString
-		self.httpBody = bodyString.data(using: String.Encoding.utf8)
-	}
-	public mutating func setJSONBody(_ obj: Any) {
-		self.httpBody = try? JSONSerialization.data(withJSONObject: obj)
-	}
-	public mutating func setUsername(_ name: String, andPassword password: String) {
-		guard let b64 = "\(name):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString() else {
+	public mutating func setBasicAuthentication(user: String, password: String) {
+		guard let b64 = "\(user):\(password)".data(using: String.Encoding.utf8)?.base64EncodedString() else {
 			XULog("Failed to set name and password - cannot create a base64-encoded string!")
 			return
 		}
-		self.addValue("Basic \(b64)", forHTTPHeaderField: "Authorization")
+		self["Authorization"] = "Basic \(b64)"
 	}
 	
-	/// You can subscript the URL request and get/set HTTP header fields.
-	public subscript(field: String) -> String? {
-		get {
-			return self.value(forHTTPHeaderField: field)
-		}
-		set {
-			self.setValue(newValue, forHTTPHeaderField: field)
-		}
-	}
-	
-
 	/// User agent.
 	public var userAgent: URLRequest.UserAgent? {
 		get {
-			guard let userAgent = self.value(forHTTPHeaderField: "User-Agent") else {
+			guard let userAgent = self["User-Agent"] else {
 				return nil
 			}
 			
@@ -168,5 +140,77 @@ public extension URLRequest {
 			self["User-Agent"] = newValue?.rawValue
 		}
 	}
+	
+}
+
+
+
+extension URLRequest: XUHTTPHeaderFields {
+	
+	/// You can subscript the URL request and get/set HTTP header fields.
+	public subscript(field: String) -> String? {
+		get {
+			return self.allHTTPHeaderFields?[field]
+		}
+		set {
+			self.setValue(newValue, forHTTPHeaderField: field)
+		}
+	}
+
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addAccept(_ accept: String) {
+		self.addValue(accept, forHTTPHeaderField: "Accept")
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addContentType(_ contentType: String) {
+		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addJSONAcceptToHeader() {
+		self.addAccept(URLRequest.ContentType.json)
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addJSONContentToHeader() {
+		self.addContentType(URLRequest.ContentType.json)
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addMultipartFormDataContentToHeader() {
+		self.addContentType("multipart/form-data")
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addWWWFormContentToHeader() {
+		self.addContentType(URLRequest.ContentType.wwwForm)
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addXMLAcceptToHeader() {
+		self.addAccept(URLRequest.ContentType.xml)
+	}
+	
+	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
+	public mutating func addXMLContentToHeader() {
+		self.addContentType(URLRequest.ContentType.xml)
+	}
+	
+	@available(*, deprecated, renamed: "setBasicAuthentication(user:password:)")
+	public mutating func setUsername(_ name: String, andPassword password: String) {
+		self.setBasicAuthentication(user: name, password: password)
+	}
+	
+	
+	public mutating func setFormBody(_ formBody: [String : String]) {
+		let bodyString = formBody.urlQueryString
+		self.httpBody = bodyString.data(using: String.Encoding.utf8)
+	}
+	public mutating func setJSONBody(_ obj: Any) {
+		self.httpBody = try? JSONSerialization.data(withJSONObject: obj)
+	}
+	
 }
 

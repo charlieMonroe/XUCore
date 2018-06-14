@@ -302,9 +302,9 @@ public final class XUOAuth2Client {
 			]
 			
 			guard let obj = self.client.downloadCenter.downloadJSONDictionary(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
-				request.setUsername(self.client.configuration.clientID, andPassword: self.client.configuration.secret)
+				request.setBasicAuthentication(user: self.client.configuration.clientID, password: self.client.configuration.secret)
 				request.acceptType = URLRequest.ContentType.json
-				request.addWWWFormContentToHeader()
+				request.contentType = URLRequest.ContentType.wwwForm
 				request["Cookie"] = nil
 				request.httpMethod = "POST"
 				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
@@ -451,9 +451,9 @@ public final class XUOAuth2Client {
 		]
 		
 		guard let obj = self.downloadCenter.downloadJSONDictionary(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
-			request.setUsername(self.configuration.clientID, andPassword: self.configuration.secret)
+			request.setBasicAuthentication(user: self.configuration.clientID, password: self.configuration.secret)
 			request.acceptType = URLRequest.ContentType.json
-			request.addWWWFormContentToHeader()
+			request.contentType = URLRequest.ContentType.wwwForm
 			request["Cookie"] = nil
 			request.httpMethod = "POST"
 			request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)

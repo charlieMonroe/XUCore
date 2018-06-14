@@ -188,7 +188,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
-		request.addJSONContentToHeader()
+		request.contentType = URLRequest.ContentType.json
 		request.httpMethod = "POST"
 		request.setJSONBody(reportDictionary)
 		

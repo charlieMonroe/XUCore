@@ -51,6 +51,36 @@ open class XUDownloadCenter {
 		
 	}
 	
+	/// Structure that encloses HTTP header fields and is used by XUDownloadCenter's
+	/// automatic header fields.
+	public struct HeaderFields: XUHTTPHeaderFields {
+		
+		public init() {}
+		
+		/// Request modifier. Can be used along with XUDownloadCenter.
+		public var requestModifier: (inout URLRequest) -> Void {
+			return { (request: inout URLRequest) in
+				for (key, value) in self.values {
+					request[key] = value
+				}
+			}
+		}
+		
+		public subscript(field: String) -> String? {
+			get {
+				return values[field] ?? nil
+			}
+			set {
+				self.values[field] = newValue
+			}
+		}
+		
+		/// Raw values.
+		public var values: [String : String?] = [:]
+		
+	}
+	
+	
 	/// A closure typealias that takes fields as a parameter - this dictionary
 	/// should be modified and supplied with fields to be sent in a POST request.
 	public typealias POSTFieldsModifier = (_ fields: inout [String : String]) -> Void
@@ -63,7 +93,7 @@ open class XUDownloadCenter {
 	/// These values are automatically applied to all requests. This can be an
 	/// authorization header field, or some other additional header fields required
 	/// by the server. These are applied before the requestModifier is called.
-	public final var automaticHeaderFieldValues: [String : String?] = [:]
+	public final var automaticHeaderFieldValues: HeaderFields = HeaderFields()
 	
 	/// Default encoding used by self.downloadWebPage(at:...).
 	public final var defaultStringEncoding: String.Encoding = .utf8
@@ -118,9 +148,7 @@ open class XUDownloadCenter {
 	
 	/// Applies self.automaticHeaderFieldValues to a request.
 	private func _applyAutomaticHeaderFields(to request: inout URLRequest) {
-		for (key, value) in self.automaticHeaderFieldValues {
-			request[key] = value
-		}
+		self.automaticHeaderFieldValues.requestModifier(&request)
 	}
 	
 	/// Imports cookies from response to NSHTTPCookieStorage.
