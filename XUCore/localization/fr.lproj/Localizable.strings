@@ -75,9 +75,9 @@
 "Synchronization is already in progress." = "Synchronization is already in progress.";
 "An upload operation is already in progress." = "Une opération de téléchargement est déjà en cours.";
 "Could not save upload metadata." = "Could not save upload metadata.";
-"Cannot find entity named %@" = "Cannot find entity named %@";
+"Cannot find entity named %@" = "Impossible de trouver l'entité nommée %@";
 "Cannot find class named %@" = "Impossible de trouver la classe nommée %@";
-"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
+"Cannot find entity with ID %@" = "Impossible de trouver l'entité avec l'ID %@";
 "Can't find synchronization folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";
 "Can't find synchronization folder for computer %@." = "Impossible de trouver le dossier de synchronisation pour l'ordinateur %@.";
 "Can't find sync folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";

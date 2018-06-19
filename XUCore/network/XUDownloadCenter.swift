@@ -251,7 +251,7 @@ open class XUDownloadCenter {
 	
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
-	public func downloadData(at url: URL!, referingFunction: String = #function, acceptType: String? = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
+	public func downloadData(at url: URL!, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
 		guard let url = url else {
 			XULogStacktrace("Trying to download from nil URL, returning nil.")
 			return nil
