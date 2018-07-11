@@ -172,7 +172,7 @@ private extension XUPreferences {
 		get {
 			return self.value(for: .oAuth2Accounts)
 		}
-		set {
+		nonmutating set {
 			self.set(value: newValue, forKey: .oAuth2Accounts)
 		}
 	}

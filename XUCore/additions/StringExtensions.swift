@@ -47,7 +47,7 @@ public enum XUEmailFormatValidity {
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
 			"noname@nothing.com", "example.com", "sdsbgt@gmail.com", "me@you.com", "none@none.com",
 			"tembo@mac.com", "any@hotmail.com", "nowhere.us", "www@gmail.com", "john@mac.com",
-			"dasdsad", "noreply", "@abc.com", "123@123.com"
+			"dasdsad", "noreply", "@abc.com", "123@123.com", "test@gmail.com"
 		]
 		
 		if matches.contains(where: email.contains(caseInsensitive:)) {
@@ -97,6 +97,12 @@ public extension String {
 		return self.range(of: substring, options: .caseInsensitive) != nil
 	}
 	
+	/// Returns true if the receiver contains a unicode scalar from the character
+	/// set.
+	public func containsCharacter(from charSet: CharacterSet) -> Bool {
+		return self.unicodeScalars.contains(where: { charSet.contains($0) })
+	}
+	
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
 	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedStringKey : Any] = [:]) -> CGRect {
@@ -114,6 +120,24 @@ public extension String {
 		let s = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
+	}
+	
+	/// Ensures that the string has a prefix. If the string already has a prefix,
+	/// `self` is returned, otherwise `prefix + self`.
+	func ensuring(prefix: String) -> String {
+		if self.hasPrefix(prefix) {
+			return self
+		}
+		return prefix + self
+	}
+	
+	/// Ensures that the string has a suffix. If the string already has a suffix,
+	/// `self` is returned, otherwise `self + suffix`.
+	func ensuring(suffix: String) -> String {
+		if self.hasSuffix(suffix) {
+			return self
+		}
+		return self + suffix
 	}
 
 	/// Returns the first character or \0 if the string is empty.

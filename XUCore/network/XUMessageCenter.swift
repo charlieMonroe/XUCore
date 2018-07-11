@@ -38,7 +38,7 @@ private extension XUPreferences {
 		get {
 			return self.value(for: .AppBlockedDate)
 		}
-		set {
+		nonmutating set {
 			self.set(value: newValue, forKey: .AppBlockedDate)
 		}
 	}
@@ -47,7 +47,7 @@ private extension XUPreferences {
 		get {
 			return self.integer(for: .AppBlockedMaxVersion)
 		}
-		set {
+		nonmutating set {
 			self.set(integer: newValue, forKey: .AppBlockedMaxVersion)
 		}
 	}
@@ -56,7 +56,7 @@ private extension XUPreferences {
 		get {
 			return self.boolean(for: .AppBlocked)
 		}
-		set {
+		nonmutating set {
 			self.set(boolean: newValue, forKey: .AppBlocked)
 		}
 	}
@@ -65,7 +65,7 @@ private extension XUPreferences {
 		get {
 			return self.integer(for: .LastMessageID)
 		}
-		set {
+		nonmutating set {
 			self.set(integer: newValue, forKey: .LastMessageID)
 		}
 	}

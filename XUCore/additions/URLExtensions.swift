@@ -33,7 +33,11 @@ public extension URL {
 	private mutating func _setResourceValue(with block: (inout URLResourceValues) -> Void) {
 		var values = URLResourceValues()
 		block(&values)
-		try? self.setResourceValues(values)
+		do {
+			try self.setResourceValues(values)
+		} catch {
+			XULog("Failed to set value on \(self) - \(error).")
+		}
 	}
 	
 	/// Just like appendingPathComponent(_:), but appends several of them.

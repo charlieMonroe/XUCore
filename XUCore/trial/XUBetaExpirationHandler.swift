@@ -20,7 +20,7 @@ private extension XUPreferences {
 		get {
 			return self.boolean(for: .BetaDidShowExpirationWarning)
 		}
-		set {
+		nonmutating set {
 			self.set(boolean: newValue, forKey: .BetaDidShowExpirationWarning)
 		}
 	}
@@ -29,7 +29,7 @@ private extension XUPreferences {
 		get {
 			return self.integer(for: .LastBetaBuildNumber)
 		}
-		set {
+		nonmutating set {
 			self.set(integer: newValue, forKey: .LastBetaBuildNumber)
 		}
 	}
@@ -38,7 +38,7 @@ private extension XUPreferences {
 		get {
 			return self.value(for: .LastBetaTimestamp)
 		}
-		set {
+		nonmutating set {
 			self.set(value: newValue, forKey: .LastBetaTimestamp)
 		}
 	}

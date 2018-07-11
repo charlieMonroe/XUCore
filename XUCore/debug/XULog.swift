@@ -26,7 +26,7 @@ extension XUPreferences {
 		get {
 			return self.boolean(for: .LoggingEnabled)
 		}
-		set {
+		nonmutating set {
 			self.set(boolean: newValue, forKey: .LoggingEnabled)
 		}
 	}

@@ -96,6 +96,11 @@ public func /=(_ lhs: inout CGSize, _ rhs: Double) {
 
 public extension CGSize {
 	
+	/// Creates a size with both width and height being set to dimension.
+	public init(dimension: CGFloat) {
+		self.init(width: dimension, height: dimension)
+	}
+	
 	/// Returns a copy of self that contains integral width and height.
 	public var integral: CGSize {
 		return CGSize(width: Int(self.width), height: Int(self.height))

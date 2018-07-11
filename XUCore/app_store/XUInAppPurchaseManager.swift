@@ -38,7 +38,7 @@ private extension XUPreferences {
 		get {
 			return self.value(for: .InAppPurchaseIdentifiers, defaultValue: [])
 		}
-		set {
+		nonmutating set {
 			self.set(value: newValue, forKey: .InAppPurchaseIdentifiers)
 		}
 	}

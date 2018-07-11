@@ -31,7 +31,7 @@ public extension XUPreferences {
 		get {
 			return self.boolean(for: .ApplicationIsPendingLaunch)
 		}
-		set {
+		nonmutating set {
 			self.set(boolean: newValue, forKey: .ApplicationIsPendingLaunch)
 		}
 	}
@@ -41,7 +41,7 @@ public extension XUPreferences {
 		get {
 			return self.boolean(for: .LastLaunchDidCrash)
 		}
-		set {
+		nonmutating set {
 			self.set(boolean: newValue, forKey: .LastLaunchDidCrash)
 		}
 	}
@@ -51,7 +51,7 @@ public extension XUPreferences {
 		get {
 			return self.integer(for: .NumberOfConsecutiveCrashes)
 		}
-		set {
+		nonmutating set {
 			self.set(integer: newValue, forKey: .NumberOfConsecutiveCrashes)
 		}
 	}

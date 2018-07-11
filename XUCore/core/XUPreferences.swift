@@ -50,11 +50,12 @@ public extension XUReflectablePreferences {
 }
 
 
-/// Preferences class. It is final, should not be subclassed, the only thing that
+/// Preferences. It is a struct, should not be subclassed, the only thing that
 /// you should do is create an extension that contains computed variables for getting
 /// and setting values. These vars should use the API of XUPreferences for storing
-/// items.
-public final class XUPreferences {
+/// items. The setters should be declared as nonmutating as there are no mutable
+/// instances passed around.
+public struct XUPreferences {
 	
 	/// This is a struct that identifies a key for the preferences.
 	/// TODO - make it generic - this would allow some great stuff with it, but
@@ -80,12 +81,12 @@ public final class XUPreferences {
 	private static var _shared: XUPreferences?
 	
 	/// Returns true iff the shared preferences have been inited.
-	public class var isApplicationUsingPreferences: Bool {
+	public static var isApplicationUsingPreferences: Bool {
 		return _shared != nil
 	}
 	
 	/// Returns the shared preferences.
-	public class var shared: XUPreferences {
+	public static var shared: XUPreferences {
 		if _shared == nil {
 			_shared = XUPreferences()
 			

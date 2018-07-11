@@ -3,78 +3,78 @@
 "1 hour" = "1 heure";
 "1 minute" = "1 minute";
 "1 second" = "1 seconde";
-"Unknown error." = "Unknown error.";
+"Unknown error." = "Erreur inconnue.";
 
 "OK" = "OK";
 "Cancel" = "Annuler";
 
-"Failed to parse CSV file." = "Failed to parse CSV file.";
+"Failed to parse CSV file." = "Impossible d'analyser le fichier CSV.";
 
-"Send Report" = "Send Report";
+"Send Report" = "Envoyer un rapport";
 "Privacy Information..." = "Privacy Information...";
 "%AppName% has encountered a problem." = "%AppName% a rencontré un problème.";
 "%AppName% will terminate after sending the report." = "%AppName% se terminera après l'envoi du rapport.";
-"Report to be sent:" = "Report to be sent:";
+"Report to be sent:" = "Rapport à envoyer:";
 "Your Email:" = "Your Email:";
 "Description:" = "Description:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Veuillez décrire la situation dans laquelle le bug s'est produit et indiquer comment le reproduire. Entrez votre adresse e-mail ci-dessous - nous vous ferons savoir quand il sera résolu ou nous pourrions vous demander quelques détails. Votre adresse e-mail ne sera pas collectée dans une base de données et vous ne recevrez aucun e-mail indésirable.\n\nEn soumettant ce rapport, vous nous aiderez à améliorer ce logiciel. Je vous remercie!";
 
-"Report Problem" = "Report Problem";
+"Report Problem" = "Signaler un problème";
 
 "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Seuls les renseignements suivants seront envoyés:\n• Le message que vous rédigez.\n• La version de l'application.\n• La version de votre système (OS).\n• Le modèle de votre ordinateur (aucune adresse MAC ni renseignement similaire qui permettrait d'identifier votre ordinateur).";
 
 "Could not post your report." = "Could not post your report.";
 "Check your Internet connection and try again." = "Check your Internet connection and try again.";
 "Heh, nice try. Please, enter a valid email address." = "Heh, nice try. Please, enter a valid email address.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Nous pourrions avoir besoin de vous contacter pour résoudre ce problème. Nous ne mordons pas, nous ne vendrons l'adresse e-mail à personne et ne l'utiliserons pas d'une autre manière. On promet.";
 "You need to enter a valid email address." = "You need to enter a valid email address.";
-"We may need to get in touch with you in order to fix this." = "We may need to get in touch with you in order to fix this.";
-"Please, provide some details as to when this exception happened." = "Please, provide some details as to when this exception happened.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.";
+"We may need to get in touch with you in order to fix this." = "Nous pourrions avoir besoin de vous contacter pour résoudre ce problème.";
+"Please, provide some details as to when this exception happened." = "S'il vous plaît, fournissez quelques détails quant à quand cette exception s'est produite.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inclure des informations sur les tâches en cours dans l'application, si l'application était au premier plan ou en arrière-plan; si vous avez cliqué sur quelque chose, etc. Essayer de comprendre le bug juste à partir du rapport peut être difficile et sans information supplémentaire impossible.";
 "Thank you for the report!" = "Thank you for the report!";
-"We'll fix it as soon as possible!" = "We'll fix it as soon as possible!";
+"We'll fix it as soon as possible!" = "Nous allons le résoudre dès que possible!";
 
-"Welcome to beta testing of %@." = "Welcome to beta testing of %@.";
-"This is the first time you run a beta build %@." = "This is the first time you run a beta build %@.";
-"This beta build of %@ has expired." = "This beta build of %@ has expired.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@";
+"Welcome to beta testing of %@." = "Bienvenue aux tests bêta de %@.";
+"This is the first time you run a beta build %@." = "C'est la première fois que vous exécutez une version bêta de %@.";
+"This beta build of %@ has expired." = "Cette version bêta de %@ a expiré.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Profitez de notre logiciel! Si vous avez des questions ou rencontrez des bugs, n'hésitez pas à nous contacter sur notre page d'assistance %@";
 
-"Continue" = "Continue";
-"Purchase..." = "Purchase...";
-"I'm Still Not Sure" = "I'm Still Not Sure";
+"Continue" = "Continuer";
+"Purchase..." = "Acheter...";
+"I'm Still Not Sure" = "Je ne suis toujours pas sûr";
 
 "%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ n'a pas pu se connecter à Internet. L'application va quitter dans une heure.";
 "%@ requires connection to the Internet to continue the trial properly." = "%@ nécessite une connexion à Internet pour continuer l'essai correctement.";
 "You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Vous serez redirigé vers une page où vous pourrez acheter une copie. Si vous ne savez toujours pas si %@ vous convient et si vous avez des questions, contactez-nous.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy.";
-"Working..." = "Working...";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Merci d'avoir essayé %@! Vous pouvez l'utiliser pour %li jours sans aucune limitation. Une fois la période d'essai expirée, vous devrez acheter une copie de %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Merci d'avoir essayé %@! Vous l'avez utilisé %li jours maintenant. Pour continuer à utiliser %@, vous devez acheter une copie.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Merci d'avoir essayé %@! Vous pouvez l'utiliser pour %i %@ maintenant sans aucune limitation. Une fois la période d'essai expirée, vous devrez acheter une copie de %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Merci d'avoir essayé %@! Vous l'avez utilisé pour %i %@ maintenant. Pour continuer à utiliser %@, vous devez acheter une copie.";
+"Working..." = "En cours...";
 
 "Progress" = "Progress";
-"Posted successfully" = "Posted successfully";
+"Posted successfully" = "Publié avec succès";
 
 "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera à travailler pendant les prochaines 24 heures, après quoi sa fonctionnalité sera bloquée. Veuillez mettre à jour% @ afin de continuer à travailler.";
-"Please download a new build." = "Please download a new build.";
+"Please download a new build." = "S'il vous plaît télécharger une nouvelle version.";
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Votre message contient des caractères spéciaux qui indiquent généralement que le message n'est pas écrit en anglais. Veuillez noter que bien que %@ soit traduit dans plusieurs langues, le support est fourni uniquement en anglais. Merci de votre compréhension.";
 "%li hours" = "%li heures";
 "%li minutes" = "%li minutes";
 "%li seconds" = "%li seconds";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
-"Cannot open document metadata file." = "Cannot open document metadata file.";
-"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
-"Synchronization is already in progress." = "Synchronization is already in progress.";
+"Cannot find such document. Check back later, it might not have synced through." = "Impossible de trouver ce document. Revenez plus tard, il se peut qu'il ne soit pas synchronisé.";
+"Cannot open document metadata file." = "Impossible d'ouvrir le fichier de métadonnées du document.";
+"Metadata file doesn't contain required information." = "Le fichier de métadonnées ne contient pas les informations requises.";
+"Synchronization is already in progress." = "La synchronisation est déjà en cours.";
 "An upload operation is already in progress." = "Une opération de téléchargement est déjà en cours.";
-"Could not save upload metadata." = "Could not save upload metadata.";
+"Could not save upload metadata." = "Impossible d'enregistrer les métadonnées de téléchargement.";
 "Cannot find entity named %@" = "Impossible de trouver l'entité nommée %@";
 "Cannot find class named %@" = "Impossible de trouver la classe nommée %@";
 "Cannot find entity with ID %@" = "Impossible de trouver l'entité avec l'ID %@";
@@ -82,42 +82,42 @@
 "Can't find synchronization folder for computer %@." = "Impossible de trouver le dossier de synchronisation pour l'ordinateur %@.";
 "Can't find sync folder for document %@." = "Impossible de trouver le dossier de synchronisation pour le document %@.";
 "%@ couldn't finish synchronization in the background." = "%@ n'a pas pu terminer la synchronisation en arrière-plan.";
-"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+"Please switch back to %@ so that the synchronization can finish." = "Veuillez revenir à %@ pour que la synchronisation puisse se terminer.";
 
 /// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Could not read synchronization change data.";
-"Could not copy synchronization change data to the cloud." = "Could not copy synchronization change data to the cloud.";
-"Failing to apply change sets." = "Failing to apply change sets.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Synchronization changes from computer %@ haven't been downloaded yet.";
+"Could not read synchronization change data." = "Impossible de lire les données de changement de synchronisation.";
+"Could not copy synchronization change data to the cloud." = "Impossible de copier les données de changement de synchronisation dans le cloud.";
+"Failing to apply change sets." = "Omettre d'appliquer des ensembles de modifications.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Les modifications de synchronisation à partir de l'ordinateur %@ n'ont pas encore été téléchargées.";
 
 /// XUOAuth2
 "Authentication" = "Authentification";
-"Server responded with unknown token type." = "Server responded with unknown token type.";
-"Server provided invalid authorization response." = "Server provided invalid authorization response.";
-"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
-"User cancelled the authorization." = "User cancelled the authorization.";
+"Server responded with unknown token type." = "Le serveur a répondu avec un type de jeton inconnu.";
+"Server provided invalid authorization response." = "Le serveur a fourni une réponse d'autorisation non valide.";
+"Server has redirected with invalid URL." = "Le serveur a été redirigé avec une URL non valide.";
+"User cancelled the authorization." = "L'utilisateur a annulé l'autorisation.";
 
 /// Debug Log Menu
-"Debug" = "Debug";
+"Debug" = "Débogage";
 "About Debug Log..." = "À propos du journal de débogage...";
-"Debug Logging" = "Debug Logging";
-"On" = "On";
-"Off" = "Off";
+"Debug Logging" = "Journalisation du débogage";
+"On" = "Activé";
+"Off" = "Désactivé";
 "Clear Debug Log" = "Effacer le journal de débogage";
-"Show Log in Finder" = "Show Log in Finder";
+"Show Log in Finder" = "Afficher le journal dans le Finder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Le journal de débogage est un fichier texte contenant des détails techniques sur ce que% @ exécute en arrière-plan. C'est assez utile pour régler les choses rapidement car cela me permet de voir ce qui se passe. Pour obtenir le journal de débogage, procédez comme suit:";
 "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Si vous n'envoyez pas votrepremier journal de débogage , sélectionnez Effacer le journal de débogage dans le menu Déboguer.\n2) Dans le menu Déboguer, assurez-vous que la journalisation de débogage est activée.\n3) Effectuez n'importe quelle tâche avec laquelle vous rencontrez des problèmes.\n4) Dans le menu Déboguer, désactivez la déconnexion du débogage.\n5) Dans le menu Déboguer, sélectionnez Afficher le journal dans le Finder. Cela sélectionne le fichier journal dans le Finder et vous pouvez facilement me l'envoyer. Veuillez joindre le fichier à l'e-mail plutôt que de copier-coller les informations.\n\nLe fichier journal ne contient aucune donnée personnelle pouvant être vérifiée en ouvrant le fichier journal (il s'agit d'un simple fichier texte). Si vous considérez que certaines données sont confidentielles ou personnelles, veuillez les remplacer par quelque chose qui peut être facilement identifié comme un espace réservé (par exemple XXXXXXXX) et faites-moi savoir que vous avez modifié le fichier journal.";
 
 /// 8/23/2016+
-"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
-"Log Current Application State" = "Log Current Application State";
+"The document could not be downloaded at this moment." = "Le document n'a pas pu être téléchargé pour le moment.";
+"Log Current Application State" = "Etat actuel de l'application";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
-"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+"This beta build will expire in less than an hour." = "Cette version bêta expirera en moins d'une heure.";
+"Please update your copy of this beta build." = "Veuillez mettre à jour votre copie de cette version bêta.";
 
 // Preferences.
 "All Preferences" = "Toutes les préférences";
@@ -131,11 +131,11 @@
 "%li search results" = "%li search results";
 
 // Certificate view.
-"Select..." = "Select...";
+"Select..." = "Sélectionnez...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
+"Synchronization data is being downloaded." = "Les données de synchronisation sont en cours de téléchargement.";
 "Copy Current Application State" = "Copier l'état actuel de l'application";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "Copié";

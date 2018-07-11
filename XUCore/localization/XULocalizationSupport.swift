@@ -18,7 +18,7 @@ private extension XUPreferences {
 		get {
 			return self.value(for: .Language)
 		}
-		set {
+		nonmutating set {
 			self.set(value: newValue, forKey: .Language)
 		}
 	}
