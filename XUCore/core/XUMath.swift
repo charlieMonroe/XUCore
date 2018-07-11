@@ -15,7 +15,7 @@
 extension BinaryFloatingPoint {
 	
 	/// Returns degrees converted to radian.
-	func convertDegreesToRadian() -> Self {
+	public func convertDegreesToRadian() -> Self {
 		return self * (Self.pi / 180.0)
 	}
 	
