@@ -8,13 +8,15 @@
 
 #if os(macOS)
 	import AppKit
+	public typealias __XUBridgedColor = NSColor
 #else
 	import UIKit
+	public typealias __XUBridgedColor = UIColor
 #endif
 
 public extension NSShadow {
 	
-	public convenience init(color: NSColor, offset: CGSize, blurRadius: CGFloat) {
+	public convenience init(color: __XUBridgedColor, offset: CGSize, blurRadius: CGFloat) {
 		self.init()
 		
 		self.shadowColor = color
