@@ -353,6 +353,7 @@
 		07B153C41E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B153C21E5369A6003A5263 /* XUExceptionCatcher+Swift.swift */; };
 		07B211011D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
 		07B211021D4903DC005203F0 /* XUWeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B211001D4903DC005203F0 /* XUWeakArray.swift */; };
+		07B3086C20F739E1002BB3F2 /* NSShadowAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */; };
 		07B4D0F11DAFA9AF00DE65E7 /* XUSearchFieldWithResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B4D0F01DAFA9AF00DE65E7 /* XUSearchFieldWithResults.swift */; };
 		07B59D68206B7EE000196027 /* XUAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B59D67206B7EE000196027 /* XUAlertViewController.swift */; };
 		07B59D6A206B7F2600196027 /* XUPickerViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B59D69206B7F2600196027 /* XUPickerViewControllers.swift */; };
@@ -1087,6 +1088,7 @@
 				073E6B441BE1FD7E00706283 /* NSData+CommonCryptoSwift.m */,
 				0779E16D1BF06C6200832858 /* NSDecimalNumberAdditions.swift */,
 				07758A261BEFC48D004B29A8 /* NSLockAdditions.swift */,
+				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				07A5940A20D126EB00429374 /* NumericExtensions.swift */,
 				0763AE871F94751E00EED10B /* OperatingSystemVersionExtensions.swift */,
 				0784480A1D12A4C000E8467B /* OptionalAdditions.swift */,
@@ -1220,7 +1222,6 @@
 				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
 				077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */,
 				073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */,
-				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
 				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
 				07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */,
@@ -1857,6 +1858,7 @@
 				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				0749DCF41C00CF270075CC9B /* XUMessageCenter.swift in Sources */,
 				076A5DF51F29CA0B006E93D1 /* XULockPool.swift in Sources */,
+				07B3086C20F739E1002BB3F2 /* NSShadowAdditions.swift in Sources */,
 				0779E1821BF2318E00832858 /* NSLockAdditions.swift in Sources */,
 				075DC7871CF1E0080043EBD0 /* XUAttributeSyncChange.swift in Sources */,
 				075DC7901CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,

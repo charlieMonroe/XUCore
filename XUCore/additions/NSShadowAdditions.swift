@@ -6,7 +6,11 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Foundation
+#if os(macOS)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 public extension NSShadow {
 	
