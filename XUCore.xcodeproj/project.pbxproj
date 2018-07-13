@@ -321,6 +321,7 @@
 		078E2D6C1CEB58AB00715CB8 /* NSBezierPathAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */; };
 		079A0E2520131CB80087DCF6 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */; };
 		079D2E3720F8927A0018A1D5 /* XUStoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3620F8927A0018A1D5 /* XUStoryboardInstantiable.swift */; };
+		079D2E3B20F89D8E0018A1D5 /* UIViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3A20F89D8E0018A1D5 /* UIViewAdditions.swift */; };
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		07A015512052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
@@ -634,6 +635,7 @@
 		07927FAD20036FCE005A636A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		079D2E3620F8927A0018A1D5 /* XUStoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUStoryboardInstantiable.swift; sourceTree = "<group>"; };
+		079D2E3A20F89D8E0018A1D5 /* UIViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAdditions.swift; sourceTree = "<group>"; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07A015502052748D0070D0DD /* XUPreferences+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferences+Sync.swift"; sourceTree = "<group>"; };
@@ -1250,6 +1252,7 @@
 				072D9F991C7471A100DB3E8A /* UINavigationControllerAdditions.swift */,
 				07CD35A11E5DBEF000DF8AED /* UILabelAdditions.swift */,
 				0779E17B1BF2307100832858 /* UIView+Enclosing.swift */,
+				079D2E3A20F89D8E0018A1D5 /* UIViewAdditions.swift */,
 				079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */,
 				07B153AC1E534C4B003A5263 /* UITextFieldAdditions.swift */,
 			);
@@ -1932,6 +1935,7 @@
 				07BC79E81EE71CC0000D7E5D /* XUBorderlessTextField.swift in Sources */,
 				07B59D68206B7EE000196027 /* XUAlertViewController.swift in Sources */,
 				073E6AF21BE1F86D00706283 /* unicode_groups.cc in Sources */,
+				079D2E3B20F89D8E0018A1D5 /* UIViewAdditions.swift in Sources */,
 				07B9082D1BF3BC87008D254A /* TimerAdditions.swift in Sources */,
 				0726FA4720625A9000A5BD17 /* XUSynchronousDataLoader.swift in Sources */,
 				075DC7811CF06ABE0043EBD0 /* XUManagedObject.swift in Sources */,
