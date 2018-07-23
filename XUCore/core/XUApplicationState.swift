@@ -52,6 +52,27 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	/// running.
 	public let launchTime: Date = Date()
 	
+	public var memoryUsage: UInt64 {
+		let basicInfoCount = MemoryLayout<mach_task_basic_info_data_t>.size / MemoryLayout<natural_t>.size
+		var outCount = mach_msg_type_number_t(basicInfoCount)
+		
+		var info = mach_task_basic_info()
+		
+		// call task_info - note extra UnsafeMutablePointer(...) call
+		let status = withUnsafeMutablePointer(to: &info) {
+			$0.withMemoryRebound(to: integer_t.self, capacity: 1, {
+				task_info(mach_task_self_, task_flavor_t(MACH_TASK_BASIC_INFO), $0, &outCount)
+			})
+		}
+		
+		guard status == KERN_SUCCESS else {
+			XULog("Can't get memory usage.")
+			return 0
+		}
+		
+		return info.resident_size
+	}
+	
 	private func _calculateBinaryMD5(for bundle: Bundle) -> String {
 		guard let executableURL = bundle.executableURL else {
 			return "nil"
@@ -79,6 +100,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			XUApplicationStateItem(name: "Locale", andValue: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "Build Type", andValue: XUAppSetup.buildType.rawValue),
+			XUApplicationStateItem(name: "Memory Usage", andValue: ByteCountFormatter.string(fromByteCount: Int64(self.memoryUsage), countStyle: .memory)),
 			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate))
 		]
 		

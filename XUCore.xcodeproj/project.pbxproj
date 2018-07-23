@@ -322,6 +322,8 @@
 		079A0E2520131CB80087DCF6 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */; };
 		079D2E3720F8927A0018A1D5 /* XUStoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3620F8927A0018A1D5 /* XUStoryboardInstantiable.swift */; };
 		079D2E3B20F89D8E0018A1D5 /* UIViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3A20F89D8E0018A1D5 /* UIViewAdditions.swift */; };
+		079D2E3D20F8C34B0018A1D5 /* XUView+Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3C20F8C34B0018A1D5 /* XUView+Crawler.swift */; };
+		079D2E3E20F8C34B0018A1D5 /* XUView+Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2E3C20F8C34B0018A1D5 /* XUView+Crawler.swift */; };
 		079E24911C03789F002E159A /* XUInAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */; };
 		079E24A41C048ACB002E159A /* XUEventIgnoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */; };
 		07A015512052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
@@ -636,6 +638,7 @@
 		079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		079D2E3620F8927A0018A1D5 /* XUStoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUStoryboardInstantiable.swift; sourceTree = "<group>"; };
 		079D2E3A20F89D8E0018A1D5 /* UIViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAdditions.swift; sourceTree = "<group>"; };
+		079D2E3C20F8C34B0018A1D5 /* XUView+Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUView+Crawler.swift"; sourceTree = "<group>"; };
 		079E24901C03789F002E159A /* XUInAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUInAppPurchaseManager.swift; sourceTree = "<group>"; };
 		079E24A31C048ACB002E159A /* XUEventIgnoringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUEventIgnoringButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07A015502052748D0070D0DD /* XUPreferences+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferences+Sync.swift"; sourceTree = "<group>"; };
@@ -1106,6 +1109,7 @@
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
 				0771E0781C26BF1C004305F4 /* XUSearchable.swift */,
 				077DA6BC1EE956F50018170E /* XUView+Animation.swift */,
+				079D2E3C20F8C34B0018A1D5 /* XUView+Crawler.swift */,
 				07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */,
 			);
 			path = additions;
@@ -1779,6 +1783,7 @@
 				073E6B521BE2026600706283 /* XULog.swift in Sources */,
 				07C3FA141BEBB912008A4200 /* XUAppNameTextField.swift in Sources */,
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
+				079D2E3D20F8C34B0018A1D5 /* XUView+Crawler.swift in Sources */,
 				0749DCD21BFF7B960075CC9B /* NSColorAdditions.swift in Sources */,
 				073E6ACB1BE1F86D00706283 /* parse.cc in Sources */,
 				07241D3B1D17D57300206E27 /* XUCompoundError.swift in Sources */,
@@ -1884,6 +1889,7 @@
 				07A015552052A8F70070D0DD /* XUCloudKitSynchronization.swift in Sources */,
 				070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */,
 				074228781E3CE296003A485A /* XUPointerEquality.swift in Sources */,
+				079D2E3E20F8C34B0018A1D5 /* XUView+Crawler.swift in Sources */,
 				07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */,
 				0777C64D2049282C00202BB7 /* Array+Numerics.swift in Sources */,
 				073E6B1C1BE1F86D00706283 /* thread.cc in Sources */,

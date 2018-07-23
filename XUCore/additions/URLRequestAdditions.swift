@@ -215,6 +215,10 @@ extension XUHTTPHeaderFields {
 		self["Authorization"] = "Basic \(b64)"
 	}
 	
+	public mutating func setBearerAuthorization(with token: String) {
+		self["Authorization"] = "Bearer " + token
+	}
+	
 	/// User agent.
 	public var userAgent: URLRequest.UserAgent? {
 		get {
