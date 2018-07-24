@@ -28,15 +28,6 @@ public extension Sequence {
 		return self.compactMap({ $0 as? T })
 	}
 	
-	#if swift(>=4.1)
-	#else
-	/// This is a backward compatibility from Swift 4.1 which renames flatMap to
-	/// compactMap.
-	public func compactMap<U>(_ mapper: (Iterator.Element) throws -> U?) rethrows -> [U] {
-		return try self.flatMap(mapper)
-	}
-	#endif
-	
 	/// Counts elements that match the filter
 	public func count(where filter: Filter) rethrows -> Int {
 		let count = try self.sum({ (obj) -> Int in

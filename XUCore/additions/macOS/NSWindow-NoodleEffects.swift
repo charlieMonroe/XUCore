@@ -52,12 +52,7 @@ public extension NSWindow {
 		view.cacheDisplay(in: view.bounds, to: imageRep)
 		image.addRepresentation(imageRep)
 		
-		#if swift(>=3.2)
-			let mask = NSWindow.StyleMask.borderless
-		#else
-			let mask = NSBorderlessWindowMask
-		#endif
-		
+		let mask = NSWindow.StyleMask.borderless		
 		let zoomWindow = __XUZoomWindow(contentRect: rect, styleMask: mask, backing: .buffered, defer: false)
 		zoomWindow.backgroundColor = NSColor(deviceWhite: 0.0, alpha: 0.0)
 		zoomWindow.hasShadow = self.hasShadow
