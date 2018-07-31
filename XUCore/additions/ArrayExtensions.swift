@@ -135,6 +135,19 @@ public extension Sequence {
 
 public extension Sequence where Iterator.Element : Equatable {
 	
+	/// Returns common elements that this sequence shares with `otherSequence`.
+	public func commonElements<T: Sequence>(with otherSequence: T) -> [Iterator.Element] where T.Element == Iterator.Element {
+		var arr: [Iterator.Element] = []
+		for x in self {
+			for y in otherSequence {
+				if x == y {
+					arr.append(x)
+				}
+			}
+		}
+		return arr
+	}
+	
 	/// Returns true if the otherArray contains the same elements as self, but
 	/// the order may differ.
 	public func containsAll(from otherArray: [Self.Iterator.Element]) -> Bool {

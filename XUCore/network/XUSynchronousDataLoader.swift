@@ -25,7 +25,7 @@ public final class XUSynchronousDataLoader {
 	}
 	
 	/// Loads data from self.request and either throws, or returns a tuple of
-	/// NSData and NSURLResponse?. Note that the response can indeed be nil even
+	/// Data and URLResponse?. Note that the response can indeed be nil even
 	/// if the data part is nonnil.
 	///
 	/// IMPORTANT: This method asserts that the current queue != delegateQueue of

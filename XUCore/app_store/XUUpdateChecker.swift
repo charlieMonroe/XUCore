@@ -16,7 +16,8 @@ import Foundation
 
 /// This class handles checking for updates based on the app's bundle identifier.
 /// As this check is done against the AppStore, the app must be distributed via
-/// the AppStore.
+/// the AppStore. If the app is a trial and the infoDictionary of the main bundle
+/// contains SUFeedURL value, the check is done against that.
 public final class XUUpdateChecker {
 	
 	/// Version struct. Assumes that the version is in format 1.2.3.
@@ -88,7 +89,22 @@ public final class XUUpdateChecker {
 	
 	
 	/// Result of the version checking.
-	public enum Result {
+	public enum Result: Equatable {
+		
+		public static func ==(lhs: Result, rhs: Result) -> Bool {
+			switch (lhs, rhs) {
+			case (.failure, .failure):
+				return true
+			case (.noUpdateAvailable, .noUpdateAvailable):
+				return true
+			case (.minorUpdateAvailable(let v1), .minorUpdateAvailable(let v2)):
+				return v1 == v2
+			case (.majorUpdateAvailable(let v1), .majorUpdateAvailable(let v2)):
+				return v1 == v2
+			default:
+				return false
+			}
+		}
 		
 		/// This indicates either no Internet connection or that the app is not
 		/// on the AppStore yet, or some other issue occurred.
@@ -116,8 +132,8 @@ public final class XUUpdateChecker {
 	
 	
 	/// Checks for updates synchronously and returns the result.
-	private func _checkForUpdates() -> Result {
-		guard let obj = self._downloadCenter.downloadJSONDictionary(at: URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier)) else {
+	private func _checkForUpdatesAgainstAppStore() -> Result {
+		guard let obj = _downloadCenter.downloadJSONDictionary(at: URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier)) else {
 			return .failure
 		}
 		
@@ -144,12 +160,50 @@ public final class XUUpdateChecker {
 		return .minorUpdateAvailable(version: appStoreVersion)
 	}
 	
+	private func _checkForUpdatesAgainstSparkleFeed() -> Result {
+		guard let feedURLString = Bundle.main.infoDictionary?["SUFeedURL"] as? String, let feedURL = URL(string: feedURLString) else {
+			return .failure
+		}
+		
+		guard let doc = _downloadCenter.downloadXMLDocument(at: feedURL) else {
+			return .failure
+		}
+		
+		let nodes = doc.nodes(forXPath: "rss/channel/item/enclosure")
+		guard let newestNode = nodes.findMax({ $0.integerValue(ofAttributeNamed: "sparkle:version") }) else {
+			return .noUpdateAvailable
+		}
+		
+		guard let versionString = newestNode.stringValue(ofAttributeNamed: "sparkle:shortVersionString") else {
+			return .noUpdateAvailable
+		}
+		
+		
+		let remoteVersion = Version(versionString: versionString)
+		let currentVersion = Version.current
+		if remoteVersion <= currentVersion {
+			return .noUpdateAvailable
+		}
+		
+		// 1.x -> 2.x
+		if remoteVersion.major != currentVersion.major {
+			return .majorUpdateAvailable(version: remoteVersion)
+		}
+		
+		return .minorUpdateAvailable(version: remoteVersion)
+	}
+	
 	
 	/// Check for update and calls the completionHandler with result. The completion
 	/// handler is guaranteed to be called on the main thread.
 	public func checkForUpdates(completionHandler: @escaping (Result) -> Void) {
 		DispatchQueue.global(qos: .default).async {
-			let result = self._checkForUpdates()
+			let result: Result
+			if XUAppSetup.buildType == .appStore {
+				 result = self._checkForUpdatesAgainstAppStore()
+			} else {
+				result = self._checkForUpdatesAgainstSparkleFeed()
+			}
 			DispatchQueue.main.syncOrNow {
 				completionHandler(result)
 			}
@@ -160,12 +214,13 @@ public final class XUUpdateChecker {
 	
 	/// Opens the AppStore. This is based on the information it gets back from
 	/// the bundle ID lookup during update checking. It terminates the app as well.
+	/// Only use it when you are running an AppStore version of the app.
 	public func openAppStoreAndTerminate() {
 		if let appStoreURL = self.appStoreURL {
 			#if os(macOS)
-			NSWorkspace.shared.open(appStoreURL)
+				NSWorkspace.shared.open(appStoreURL)
 			#else
-			UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+				UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
 			#endif
 		}
 		

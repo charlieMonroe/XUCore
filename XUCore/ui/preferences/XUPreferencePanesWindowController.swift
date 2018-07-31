@@ -44,17 +44,23 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// property. This allows you to have an app-wide preferences controller,
 	/// which is the typical scenario. If you need e.g. a per-account controller,
 	/// use the initializer and create as many controllers as needed.
+	@discardableResult
 	open class func createSharedController(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
 		assert(_sharedController == nil, "Can't be creating the shared controller for the second time.")
 		
 		_sharedController = self.controller(withSections: sections)
-		return self.sharedController
+		return self.shared
 	}
 	
 	/// Shared controller. Will return nil until createSharedController(withSections:)
 	/// is called.
-	open class var sharedController: XUPreferencePanesWindowController! {
+	open class var shared: XUPreferencePanesWindowController! {
 		return _sharedController
+	}
+	
+	@available(*, deprecated, renamed: "shared")
+	open class var sharedController: XUPreferencePanesWindowController! {
+		return self.shared
 	}
 	
 	
