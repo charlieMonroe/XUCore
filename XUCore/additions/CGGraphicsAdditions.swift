@@ -94,6 +94,17 @@ public func /=(_ lhs: inout CGSize, _ rhs: Double) {
 	lhs.height /= CGFloat(rhs)
 }
 
+/// Adds two CGSizes.
+public func +(_ lhs: CGSize, _ rhs: CGSize) -> CGSize {
+	return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.width)
+}
+
+/// Adds two CGSizes.
+public func +=(_ lhs: inout CGSize, _ rhs: CGSize) {
+	lhs.width += rhs.width
+	lhs.height += rhs.height
+}
+
 public extension CGSize {
 	
 	/// Creates a size with both width and height being set to dimension.

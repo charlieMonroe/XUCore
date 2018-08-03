@@ -126,7 +126,7 @@ public struct XUPreferences {
 	
 }
 
-/// Default accessors.
+/// Default getters.
 public extension XUPreferences {
 	
 	/// Fetches boolean for key.
@@ -137,26 +137,8 @@ public extension XUPreferences {
 		return value.boolValue
 	}
 	
-	/// Sets boolean for key.
-	public func set(boolean value: Bool, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
-	}
-	
-	/// Fetches integer for key.
-	public func integer(for key: Key, defaultValue: Int = 0) -> Int {
-		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
-			return defaultValue
-		}
-		return value.intValue
-	}
-	
-	/// Sets integer for key.
-	public func set(integer value: Int, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
-	}
-	
 	/// Decodes a codable object into preferences for a key.
-	public func decode<T: Codable>(for key: Key, defaultValue: T? = nil) -> T? {
+	public func decode<T: Codable>(for key: Key) -> T? {
 		guard let data: Data = self.value(for: key) else {
 			return nil
 		}
@@ -170,14 +152,32 @@ public extension XUPreferences {
 			return nil
 		}
 	}
-	
-	/// Encodes a codable object into preferences for a key. Throws if the encode
-	/// fails.
-	public func encode<T: Encodable>(_ obj: T, forKey key: Key) throws {
-		let encoder = PropertyListEncoder()
-		let payload = try encoder.encode(obj)
+
+	/// Decodes a codable object into preferences for a key with a default value.
+	public func decode<T: Codable>(for key: Key, defaultValue: T) -> T {
+		return self.decode(for: key) ?? defaultValue
+	}
 		
-		self.set(value: payload, forKey: key)
+	/// Fetches integer for key.
+	public func integer(for key: Key, defaultValue: Int = 0) -> Int {
+		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
+			return defaultValue
+		}
+		return value.intValue
+	}
+	
+	/// Fetches a raw representable for key.
+	public func rawRepresentable<T: RawRepresentable>(for key: Key) -> T? {
+		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T.RawValue else {
+			return nil
+		}
+		
+		return T(rawValue: value)
+	}
+
+	/// Fetches a raw representable for key with default value.
+	public func rawRepresentable<T: RawRepresentable>(for key: Key, defaultValue: T) -> T {
+		return self.rawRepresentable(for: key) ?? defaultValue
 	}
 	
 	/// Fetches a value for key.
@@ -193,6 +193,34 @@ public extension XUPreferences {
 		return obj
 	}
 	
+}
+
+/// Default setters.
+public extension XUPreferences {
+
+	/// Encodes a codable object into preferences for a key. Throws if the encode
+	/// fails.
+	public func encode<T: Encodable>(_ obj: T, forKey key: Key) throws {
+		let encoder = PropertyListEncoder()
+		let payload = try encoder.encode(obj)
+		
+		self.set(value: payload, forKey: key)
+	}
+	
+	/// Sets boolean for key.
+	public func set(boolean value: Bool, forKey key: Key) {
+		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
+	}
+	
+	/// Sets integer for key.
+	public func set(integer value: Int, forKey key: Key) {
+		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
+	}
+	
+	public func set<T: RawRepresentable>(rawRepresentable: T, for key: Key) {
+		return self.set(value: rawRepresentable.rawValue, forKey: key)
+	}
+
 	/// Sets a value for key. Note that the value is passed to UserDefaults,
 	/// so the value needs to be ObjC compatible.
 	public func set(value: Any?, forKey key: Key) {
@@ -201,6 +229,7 @@ public extension XUPreferences {
 		} else {
 			UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 		}
-	}
-	
+	}	
+
 }
+

@@ -120,9 +120,9 @@
 "Please update your copy of this beta build." = "请更新您的测试版.";
 
 // Preferences.
-"All Preferences" = "全部偏好设置";
+"All Preferences" = "所有首选项设置";
 "Show All" = "显示全部";
-"Preferences" = "偏好设置";
+"Preferences" = "首选项";
 
 /// 12/21/2016+
 
@@ -134,8 +134,8 @@
 "Select..." = "选择...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "开始下载同步数据。";
+"Copy Current Application State" = "复制当前程序状态";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "已复制";

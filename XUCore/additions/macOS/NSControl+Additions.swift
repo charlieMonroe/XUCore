@@ -10,6 +10,11 @@ import AppKit
 
 public extension NSControl.StateValue {
 	
+	/// Returns true if self == .off.
+	public var isOff: Bool {
+		return self == .off
+	}
+	
 	/// Returns true if self == .on.
 	public var isOn: Bool {
 		return self == .on

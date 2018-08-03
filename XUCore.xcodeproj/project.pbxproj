@@ -215,6 +215,8 @@
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		074A12FA1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
 		074A12FB1EC43F39001EA1E3 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */; };
+		074EBDE52110667E0055444B /* XUView+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074EBDE42110667E0055444B /* XUView+Array.swift */; };
+		074EBDE62110667E0055444B /* XUView+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074EBDE42110667E0055444B /* XUView+Array.swift */; };
 		074F22C22060189E00A19601 /* XUUpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F22C12060189E00A19601 /* XUUpdateChecker.swift */; };
 		074F22C32060189E00A19601 /* XUUpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F22C12060189E00A19601 /* XUUpdateChecker.swift */; };
 		07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
@@ -558,6 +560,7 @@
 		0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUCoreUtils.swift; path = private/XUCoreUtils.swift; sourceTree = "<group>"; };
 		074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		074E08501C6CB65A00A0FD48 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		074EBDE42110667E0055444B /* XUView+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUView+Array.swift"; sourceTree = "<group>"; };
 		074F22C12060189E00A19601 /* XUUpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUUpdateChecker.swift; sourceTree = "<group>"; };
 		0751A4761F6FB930006C4BEE /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUAutocollapsingView.swift; path = ui/views/XUAutocollapsingView.swift; sourceTree = "<group>"; };
@@ -1113,6 +1116,7 @@
 				0749DCCE1BFF57FC0075CC9B /* XUImageAdditions.swift */,
 				0771E0781C26BF1C004305F4 /* XUSearchable.swift */,
 				077DA6BC1EE956F50018170E /* XUView+Animation.swift */,
+				074EBDE42110667E0055444B /* XUView+Array.swift */,
 				079D2E3C20F8C34B0018A1D5 /* XUView+Crawler.swift */,
 				07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */,
 			);
@@ -1696,6 +1700,7 @@
 				073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */,
 				0749DCD61C0056450075CC9B /* XUPowerAssertion.swift in Sources */,
 				07A7BE911C1C8CC9004BCDAF /* XUFontAdditions.swift in Sources */,
+				074EBDE52110667E0055444B /* XUView+Array.swift in Sources */,
 				0779E1971BF23B6000832858 /* URLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
@@ -1860,6 +1865,7 @@
 				0779E17D1BF2307100832858 /* UIView+Enclosing.swift in Sources */,
 				07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */,
 				075DC7A21CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
+				074EBDE62110667E0055444B /* XUView+Array.swift in Sources */,
 				077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */,
 				0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				073E6B461BE1FD7E00706283 /* InputStream+Reading.swift in Sources */,
