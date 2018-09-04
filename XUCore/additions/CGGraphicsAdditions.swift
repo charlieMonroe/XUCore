@@ -18,7 +18,7 @@ public extension CGRect {
 	/// Returns bottom half. Bottom by coordinates, doesn't take into account flipped
 	/// graphics context.
 	public var bottomHalf: CGRect {
-		return CGRect(x: self.minX, y: self.minY, width: self.width, height: self.height)
+		return CGRect(x: self.minX, y: self.minY, width: self.width, height: self.height / 2.0)
 	}
 	
 	public var center: CGPoint {
@@ -44,7 +44,7 @@ public extension CGRect {
 	/// Returns top half. Top by coordinates, doesn't take into account flipped
 	/// graphics context.
 	public var topHalf: CGRect {
-		return CGRect(x: self.minX, y: self.midY, width: self.width, height: self.height)
+		return CGRect(x: self.minX, y: self.midY, width: self.width, height: self.height / 2.0)
 	}
 
 }
@@ -122,8 +122,14 @@ public extension CGSize {
 		return self.height.isZero && self.width.isZero
 	}
 	
-	/// Takes self and proportinally changes it to fit `otherSize`.
-	public func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
+	/// Takes self and proportinally changes it to fit `otherSize`. If `allowScaleUp`
+	/// is true (default), smaller size will be enlarged.
+	public func fitting(into otherSize: CGSize, scalingUp: Bool = true) -> CGSize {
+		if !scalingUp && self.width < otherSize.width && self.height < otherSize.height {
+			// Don't scale up!
+			return self
+		}
+
 		if self.width / self.height > otherSize.width / otherSize.height {
 			// Wider
 			return CGSize(width: otherSize.width, height: self.height * (otherSize.width / self.width))
@@ -131,7 +137,11 @@ public extension CGSize {
 			// Taller
 			return CGSize(width: self.width * (otherSize.height / self.height), height: otherSize.height)
 		}
-		
+	}
+	
+	@available(*, deprecated, renamed: "fitting(into:)")
+	public func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
+		return self.fitting(into: otherSize)
 	}
 
 	

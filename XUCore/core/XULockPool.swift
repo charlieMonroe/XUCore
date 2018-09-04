@@ -53,7 +53,9 @@ public final class XULockPool {
 	/// - Returns: Lock associated with the object.
 	public func lock(for object: AnyObject) -> NSLock {
 		let hash = ObjectIdentifier(object).hashValue
-		let index = hash % self.poolSize
+		
+		// The hash can be negative -> the index would be negative as well.
+		let index = abs(hash % self.poolSize)
 		if let lock = _locks[index] {
 			return lock
 		}

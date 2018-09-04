@@ -160,6 +160,7 @@ public final class XUUpdateChecker {
 		return .minorUpdateAvailable(version: appStoreVersion)
 	}
 	
+	#if os(macOS)
 	private func _checkForUpdatesAgainstSparkleFeed() -> Result {
 		guard let feedURLString = Bundle.main.infoDictionary?["SUFeedURL"] as? String, let feedURL = URL(string: feedURLString) else {
 			return .failure
@@ -192,6 +193,7 @@ public final class XUUpdateChecker {
 		
 		return .minorUpdateAvailable(version: remoteVersion)
 	}
+	#endif
 	
 	
 	/// Check for update and calls the completionHandler with result. The completion
@@ -202,7 +204,11 @@ public final class XUUpdateChecker {
 			if XUAppSetup.buildType == .appStore {
 				 result = self._checkForUpdatesAgainstAppStore()
 			} else {
-				result = self._checkForUpdatesAgainstSparkleFeed()
+				#if os(macOS)
+					result = self._checkForUpdatesAgainstSparkleFeed()
+				#else
+					XUFatalError()
+				#endif
 			}
 			DispatchQueue.main.syncOrNow {
 				completionHandler(result)

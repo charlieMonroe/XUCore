@@ -58,7 +58,7 @@ public enum XUEmailFormatValidity {
 		let regexMatchs = [
 			"1+@1+.com"
 		]
-		if regexMatchs.contains(where: email.matches(regex:)) {
+		if regexMatchs.contains(where: { email.matches(regex: $0) }) {
 			self = .phony
 			return
 		}
@@ -116,7 +116,7 @@ public extension String {
 
 	/// Draws `self` aligned right to point. Returns size of the drawn string.
 	@discardableResult
-	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGSize {
+	public func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGSize {
 		let s = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
@@ -124,7 +124,7 @@ public extension String {
 	
 	/// Ensures that the string has a prefix. If the string already has a prefix,
 	/// `self` is returned, otherwise `prefix + self`.
-	func ensuring(prefix: String) -> String {
+	public func ensuring(prefix: String) -> String {
 		if self.hasPrefix(prefix) {
 			return self
 		}
@@ -133,7 +133,7 @@ public extension String {
 	
 	/// Ensures that the string has a suffix. If the string already has a suffix,
 	/// `self` is returned, otherwise `self + suffix`.
-	func ensuring(suffix: String) -> String {
+	public func ensuring(suffix: String) -> String {
 		if self.hasSuffix(suffix) {
 			return self
 		}

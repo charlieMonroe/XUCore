@@ -44,7 +44,7 @@ public extension Data {
 		}
 		
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Bool in
-			return prefix.enumerated().all(matching: { (arg0) -> Bool in
+			return prefix.enumerated().allSatisfy({ (arg0) -> Bool in
 				return ptr[arg0.offset] == arg0.element
 			})
 			

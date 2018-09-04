@@ -129,6 +129,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			fatalError("There is no preference pane with identifier \(identifier)!")
 		}
 		
+		self.window?.makeKeyAndOrderFront(nil)
 		self.selectPane(pane)
 	}
 	

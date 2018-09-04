@@ -13,9 +13,17 @@ public extension Sequence {
 	public typealias Filter = (Self.Iterator.Element) throws -> Bool
 	
 	/// Returns true if all of the elements in self match the filter
+//	@available(*, deprecated, renamed: "allSatisfy(_:)")
 	public func all(matching filter: Filter) rethrows -> Bool {
 		return try self.first(where: { try !filter($0) }) == nil
 	}
+	
+//	#if swift(>=4.2)
+//	#else
+//	public func allSatisfy(_ predicate: Filter) rethrows -> Bool {
+//		return try self.first(where: { try !predicate($0) }) == nil
+//	}
+//	#endif
 	
 	/// Returns a compacted sequence - removing nil values.
 	public func compacted<T>() -> [T] where Element == Optional<T> {
@@ -151,7 +159,7 @@ public extension Sequence where Iterator.Element : Equatable {
 	/// Returns true if the otherArray contains the same elements as self, but
 	/// the order may differ.
 	public func containsAll(from otherArray: [Self.Iterator.Element]) -> Bool {
-		return self.all(matching: { otherArray.contains($0) })
+		return self.allSatisfy({ otherArray.contains($0) })
 	}
 	
 	/// Returns a distinct array. This means that it will toss away any duplicate

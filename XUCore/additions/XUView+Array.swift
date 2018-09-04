@@ -19,7 +19,7 @@ public extension Array where Element: __XUBridgedView {
 	/// set: Sets isHidden to newValue for all elements.
 	public var isHidden: Bool {
 		get {
-			return self.all(matching: { $0.isHidden })
+			return self.allSatisfy({ $0.isHidden })
 		}
 		nonmutating set {
 			self.forEach({ $0.isHidden = newValue })

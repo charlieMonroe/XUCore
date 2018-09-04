@@ -13,31 +13,61 @@ import Cocoa
 @IBDesignable open class XUView: NSView {
 	
 	/// Background color.
-	@IBInspectable public var backgroundColor: NSColor = NSColor.clear
+	@IBInspectable public var backgroundColor: NSColor = NSColor.clear {
+		didSet {
+			self._updateLayer()
+		}
+	}
 	
 	/// Border color.
-	@IBInspectable public var borderColor: NSColor = NSColor.clear
+	@IBInspectable public var borderColor: NSColor = NSColor.clear {
+		didSet {
+			self._updateLayer()
+		}
+	}
 	
 	/// Border width.
-	@IBInspectable public var borderWidth: Double = 1.0
+	@IBInspectable public var borderWidth: Double = 1.0 {
+		didSet {
+			self._updateLayer()
+		}
+	}
 	
 	/// Corner radius.
-	@IBInspectable public var cornerRadius: Double = 0.0
-	
-	
-	open override func draw(_ dirtyRect: CGRect) {
-		self.backgroundColor.setFill()
-		self.borderColor.setStroke()
-		
-		let bPath: NSBezierPath
-		if self.cornerRadius == 0.0 {
-			bPath = NSBezierPath(rect: self.bounds)
-		} else {
-			bPath = NSBezierPath(roundedRect: self.bounds, xRadius: CGFloat(self.cornerRadius), yRadius: CGFloat(self.cornerRadius))
+	@IBInspectable public var cornerRadius: Double = 0.0 {
+		didSet {
+			self._updateLayer()
 		}
-		bPath.lineWidth = CGFloat(self.borderWidth)
-		bPath.fill()
-		bPath.stroke()
 	}
+	
+	private func _updateLayer() {
+		self.wantsLayer = true
+		
+		self.layer!.backgroundColor = self.backgroundColor.cgColor
+		self.layer!.borderColor = self.borderColor.cgColor
+		self.layer!.borderWidth = CGFloat(self.borderWidth)
+		self.layer!.cornerRadius = CGFloat(self.cornerRadius)
+	}
+	
+	open override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		self._updateLayer()
+	}
+	
+//	open override func draw(_ dirtyRect: CGRect) {
+//		self.backgroundColor.setFill()
+//		self.borderColor.setStroke()
+//
+//		let bPath: NSBezierPath
+//		if self.cornerRadius == 0.0 {
+//			bPath = NSBezierPath(rect: self.bounds)
+//		} else {
+//			bPath = NSBezierPath(roundedRect: self.bounds, xRadius: CGFloat(self.cornerRadius), yRadius: CGFloat(self.cornerRadius))
+//		}
+//		bPath.lineWidth = CGFloat(self.borderWidth)
+//		bPath.fill()
+//		bPath.stroke()
+//	}
 	
 }

@@ -72,6 +72,11 @@ public struct XUPreferences {
 		public var rawValue: String
 		
 		/// Initializer.
+		public init(_ rawValue: String) {
+			self.rawValue = rawValue
+		}
+		
+		/// Initializer.
 		public init(rawValue: String) {
 			self.rawValue = rawValue
 		}
@@ -154,8 +159,8 @@ public extension XUPreferences {
 	}
 
 	/// Decodes a codable object into preferences for a key with a default value.
-	public func decode<T: Codable>(for key: Key, defaultValue: T) -> T {
-		return self.decode(for: key) ?? defaultValue
+	public func decode<T: Codable>(for key: Key, defaultValue: @autoclosure () -> T) -> T {
+		return self.decode(for: key) ?? defaultValue()
 	}
 		
 	/// Fetches integer for key.
@@ -176,8 +181,8 @@ public extension XUPreferences {
 	}
 
 	/// Fetches a raw representable for key with default value.
-	public func rawRepresentable<T: RawRepresentable>(for key: Key, defaultValue: T) -> T {
-		return self.rawRepresentable(for: key) ?? defaultValue
+	public func rawRepresentable<T: RawRepresentable>(for key: Key, defaultValue: @autoclosure () -> T) -> T {
+		return self.rawRepresentable(for: key) ?? defaultValue()
 	}
 	
 	/// Fetches a value for key.
@@ -229,7 +234,7 @@ public extension XUPreferences {
 		} else {
 			UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
 		}
-	}	
-
+	}
+	
 }
 

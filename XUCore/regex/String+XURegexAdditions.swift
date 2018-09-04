@@ -20,8 +20,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allOccurrences(ofRegex regexString: String) -> [String] {
-		return self.allOccurrences(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func allOccurrences(ofRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
+		return self.allOccurrences(ofRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
@@ -34,8 +34,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allValues(of varName: String, forRegex regexString: String) -> [String] {
-		return self.allValues(of: varName, forRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func allValues(of varName: String, forRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
+		return self.allValues(of: varName, forRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 	
 	/// Returns a dictionary of keys and values. This dictionary is created by
@@ -62,8 +62,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func allVariablePairs(forRegex regexString: String) -> [String : String] {
-		return self.allVariablePairs(forRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func allVariablePairs(forRegex regexString: String, options: XURegexOptions = .caseless) -> [String : String] {
+		return self.allVariablePairs(forRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 	
 	/// Returns components separated by regex. Works pretty much like separating
@@ -91,8 +91,8 @@ public extension String {
 	
 	/// @see components(separatedByRegex:) - this is a convenience method that 
 	/// takes in a regex string.
-	public func components(separatedByRegex regexString: String) -> [String] {
-		return self.components(separatedByRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func components(separatedByRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
+		return self.components(separatedByRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 
 	/// The most basic usage - first regex match.
@@ -105,8 +105,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func firstOccurrence(ofRegex regexString: String) -> String? {
-		return self.firstOccurrence(ofRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func firstOccurrence(ofRegex regexString: String, options: XURegexOptions = .caseless) -> String? {
+		return self.firstOccurrence(ofRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 	
 	/// Iterates regex strings and returns the first one to return a nonnull match.
@@ -148,8 +148,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func matches(regex: String) -> Bool {
-		return self.matches(regex: XURegex(pattern: regex, andOptions: .caseless))
+	public func matches(regex: String, options: XURegexOptions = .caseless) -> Bool {
+		return self.matches(regex: XURegex(pattern: regex, andOptions: options))
 	}
 	
 	/// Replaces occurrences of `regex` with `replacement`. Note that `replacement`
@@ -182,8 +182,8 @@ public extension String {
 	
 	/// Convenience method that takes a regex string instead. See the XURegex
 	/// variant for more information.
-	public func replacingOccurrences(ofRegex regex: String, with replacement: String) -> String {
-		return self.replacingOccurrences(ofRegex: XURegex(pattern: regex, andOptions: .caseless), with: replacement)
+	public func replacingOccurrences(ofRegex regex: String, with replacement: String, options: XURegexOptions = .caseless) -> String {
+		return self.replacingOccurrences(ofRegex: XURegex(pattern: regex, andOptions: options), with: replacement)
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
@@ -198,8 +198,8 @@ public extension String {
 	/// Convenience method that takes String as an argument rather than XURegex.
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
-	public func value(of name: String, inRegex regexString: String) -> String? {
-		return self.value(of: name, inRegex: XURegex(pattern: regexString, andOptions: .caseless))
+	public func value(of name: String, inRegex regexString: String, options: XURegexOptions = .caseless) -> String? {
+		return self.value(of: name, inRegex: XURegex(pattern: regexString, andOptions: options))
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
