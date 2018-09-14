@@ -13,6 +13,11 @@ import AppKit
 /// as needed.
 final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	
+	public enum Text {
+		case plain(String)
+		case attributed(NSAttributedString)
+	}
+	
 	/// Popovers displayed.
 	private static var _displayedPopovers: [XUTextPopover] = []
 	
@@ -34,7 +39,10 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	public let relativeRect: CGRect
 	
 	/// Text being displayed.
-	public let text: String
+	public let text: Text
+	
+	/// Text alignment.
+	public var textAlignment: NSTextAlignment = .natural
 	
 	/// Font of the text. Small system font by default.
 	public var textFont: NSFont = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -43,7 +51,11 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	public let view: NSView
 	
 	
-	public init(text: String, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
+	public convenience init(text: String, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
+		self.init(text: .plain(text), from: view, relativeTo: rect, preferredEdge: preferredEdge)
+	}
+	
+	public init(text: Text, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
 		self.preferredEdge = preferredEdge
 		self.relativeRect = rect
 		self.text = text
@@ -67,12 +79,21 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 		let view = NSView()
 		
 		let textField = NSTextField()
-		textField.font = self.textFont
 		textField.drawsBackground = false
 		textField.isBordered = false
 		textField.isEditable = false
 		textField.isSelectable = false
-		textField.stringValue = self.text
+		
+		textField.font = self.textFont
+		textField.alignment = self.textAlignment
+		
+		switch self.text {
+		case .plain(let plain):
+			textField.stringValue = plain
+		case .attributed(let attributed):
+			textField.attributedStringValue = attributed
+		}
+		
 		textField.translatesAutoresizingMaskIntoConstraints = false
 		
 		view.addSubview(textField)

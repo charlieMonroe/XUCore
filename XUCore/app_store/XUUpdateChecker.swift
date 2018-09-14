@@ -44,7 +44,7 @@ public final class XUUpdateChecker {
 		}
 		
 		/// Returns version of the current app.
-		public static let current: Version = Version(versionString: XUAppSetup.applicationBuildNumber)
+		public static let current: Version = Version(versionString: XUAppSetup.applicationVersionNumber)
 		
 		
 		/// Major: [1].2.3

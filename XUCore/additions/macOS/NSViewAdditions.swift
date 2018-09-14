@@ -21,7 +21,7 @@ public extension NSView {
 		}
 		return nil
 	}
-	
+		
 	/// Returns enclosing table row view or nil.
 	public var enclosingTableRowView: NSTableRowView? {
 		return self._enclosingView()

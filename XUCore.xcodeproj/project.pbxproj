@@ -27,6 +27,7 @@
 		0722206A2089C5C8004C2988 /* XUWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072220682089C5C8004C2988 /* XUWarning.swift */; };
 		07241D3B1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
+		0725C2392147976900511B63 /* XUOneShotPopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725C2382147976900511B63 /* XUOneShotPopoverManager.swift */; };
 		0726FA4320625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */; };
 		0726FA4420625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */; };
 		0726FA4620625A9000A5BD17 /* XUSynchronousDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4520625A9000A5BD17 /* XUSynchronousDataLoader.swift */; };
@@ -451,6 +452,7 @@
 		072220682089C5C8004C2988 /* XUWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUWarning.swift; sourceTree = "<group>"; };
 		07241D2D1D17B16700206E27 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07241D3A1D17D57300206E27 /* XUCompoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCompoundError.swift; sourceTree = "<group>"; };
+		0725C2382147976900511B63 /* XUOneShotPopoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = XUOneShotPopoverManager.swift; path = util/XUOneShotPopoverManager.swift; sourceTree = "<group>"; };
 		0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUDownloadCenter+Proxy.swift"; sourceTree = "<group>"; };
 		0726FA4520625A9000A5BD17 /* XUSynchronousDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUSynchronousDataLoader.swift; sourceTree = "<group>"; };
 		072998391F6EAB5500C8CD35 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 		077DA6C11EE95A270018170E /* XUScrollViewKeyboardInsetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUScrollViewKeyboardInsetManager.swift; sourceTree = "<group>"; };
 		077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Additions.swift"; sourceTree = "<group>"; };
 		077DE4911D61C3EC00FD6639 /* XUApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUApplicationState.swift; sourceTree = "<group>"; };
+		0783704A214A6AA300BE7B0B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0784480A1D12A4C000E8467B /* OptionalAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAdditions.swift; sourceTree = "<group>"; };
 		07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUJSONHelper.swift; sourceTree = "<group>"; };
 		07855DEA1F80DE3A0040AC77 /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -746,6 +749,7 @@
 			children = (
 				070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */,
 				0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */,
+				0725C2382147976900511B63 /* XUOneShotPopoverManager.swift */,
 				074446AD1C529AB60026F5DD /* XUSystemNotification.swift */,
 				074446B01C529F270026F5DD /* SystemNotification.xib */,
 				076C2E34203FEC7300377FE0 /* XUTextPopover.swift */,
@@ -898,7 +902,7 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		073E6B541BE203E800706283 /* ui_osx */ = {
+		073E6B541BE203E800706283 /* ui_macos */ = {
 			isa = PBXGroup;
 			children = (
 				07A7BDFA1C199A45004BCDAF /* controllers */,
@@ -909,7 +913,7 @@
 				073E6B551BE203E800706283 /* views */,
 				07156FEC1C396F58006D3616 /* windows */,
 			);
-			name = ui_osx;
+			name = ui_macos;
 			path = ui;
 			sourceTree = "<group>";
 		};
@@ -1057,7 +1061,7 @@
 				07E35B931C02383E007D31BE /* trial */,
 				075A929B1C43D70F006DD45B /* ui_bridged */,
 				070FEF7B1C106BB200C1B62E /* ui_ios */,
-				073E6B541BE203E800706283 /* ui_osx */,
+				073E6B541BE203E800706283 /* ui_macos */,
 				077AFD941BBD0E5300872A48 /* Info.plist */,
 				07C23A191C639E2400DF5DFD /* Media.xcassets */,
 				077A00A81BBD107500872A48 /* Cocoa.framework */,
@@ -1579,6 +1583,7 @@
 				nl,
 				es,
 				fr,
+				ja,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1806,6 +1811,7 @@
 				075DC7A11CF31FAE0043EBD0 /* XUDocumentSyncManager.swift in Sources */,
 				0749DCCF1BFF57FC0075CC9B /* XUImageAdditions.swift in Sources */,
 				077DA6BD1EE956F50018170E /* XUView+Animation.swift in Sources */,
+				0725C2392147976900511B63 /* XUOneShotPopoverManager.swift in Sources */,
 				073E6AED1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
 				07A0155A2052AD1F0070D0DD /* XUCloudKitSynchronization+Error.swift in Sources */,
 				073E6B131BE1F86D00706283 /* stringpiece.cc in Sources */,
@@ -2017,6 +2023,7 @@
 				07927FAD20036FCE005A636A /* nl */,
 				0703290B2021A2ED0074A8B6 /* es */,
 				07D14D2D207A694000914C4E /* fr */,
+				0783704A214A6AA300BE7B0B /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2192,6 +2199,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XUCore/Info.plist;
@@ -2224,6 +2232,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XUCore/Info.plist;

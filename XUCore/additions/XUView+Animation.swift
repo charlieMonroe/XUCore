@@ -174,6 +174,24 @@ public extension XUViewAnimation {
 		#endif
 	}
 	
+	/// This is a convenience shortcut to hideWithFadeOut and showWithFadeIn.
+	public var isHidden: Bool {
+		get {
+			return self.views.isHidden
+		}
+		nonmutating set {
+			guard newValue != self.isHidden else {
+				return
+			}
+			
+			if newValue {
+				self.hideWithFadeOut()
+			} else {
+				self.showWithFadeIn()
+			}
+		}
+	}
+	
 	/// Shows the views by fading them in and then setting isHidden to false.
 	public func showWithFadeIn() {
 		#if os(macOS)

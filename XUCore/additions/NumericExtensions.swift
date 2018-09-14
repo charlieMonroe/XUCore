@@ -8,6 +8,19 @@
 
 import Foundation
 
+extension FloatingPoint {
+	
+	/// Returns true if the number is integral. This is based on rounding both
+	/// up and down is the same number. Returns false for non-finite numbers.
+	public var isIntegral: Bool {
+		guard self.isFinite else {
+			return false
+		}
+		return self.rounded(.down) == self.rounded(.up)
+	}
+	
+}
+
 extension Numeric where Self: Comparable {
 	
 	/// Clamps the value to a range.

@@ -22,7 +22,7 @@ open class XUDockIconProgress {
 		let im: NSImage = NSImage(named: NSImage.Name.applicationIcon)!.copy() as! NSImage
 		im.size = CGSize(width: 128.0, height: 128.0)
 		
-		let barRect = CGRect(x: 0.0, y: 25.0, width: 128.0, height: XUDockIconProgress.barHeight)
+		let barRect = self.progressBarFrame
 
 		var progress = self.progressValue
 		if progress < 0.1 {
@@ -49,6 +49,12 @@ open class XUDockIconProgress {
 
 		im.unlockFocus()
 		return im
+	}
+	
+	/// Frame of the progress bar within the image. The image is always 128.0 x 128.0
+	/// in size.
+	open var progressBarFrame: CGRect {
+		return CGRect(x: 0.0, y: 25.0, width: 128.0, height: XUDockIconProgress.barHeight)
 	}
 
 	public var progressValue: Double = 0.0 {
