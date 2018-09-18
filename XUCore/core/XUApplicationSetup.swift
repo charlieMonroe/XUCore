@@ -165,7 +165,6 @@ open class XUApplicationSetup {
 	
 	/// Returns true if the Dark Mode for menu bar and Dock is enabled. Will always
 	/// return false on iOS.
-	@available(OSX 10.0, *)
 	@available(iOS, unavailable)
 	public var isDarkModeEnabled: Bool {
 		return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
@@ -187,6 +186,15 @@ open class XUApplicationSetup {
 	/// complicated - edit the scheme of your project and add "--debug" to the
 	/// arguments list to enable it.
 	public let isRunningInDebugMode: Bool
+	
+	/// Returns true if we're running Mojave or later and dark mode is enabled.
+	public var isRunningMojaveWithDarkMode: Bool {
+		if #available(OSX 10.14, *) {
+			return self.isDarkModeEnabled
+		} else {
+			return false
+		}
+	}
 	
 	/// Number of items allowed for item-based trials. Enter into Info.plist as
 	/// number under the key XUItemBasedTrialNumberOfItems. Default is 10.
