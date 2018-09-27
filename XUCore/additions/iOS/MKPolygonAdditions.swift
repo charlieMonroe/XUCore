@@ -58,7 +58,7 @@ public extension MKPolygon {
 		let pointCount = self.pointCount
 		if pointCount == 1 {
 			// It's a single point, that's the center
-			return MKCoordinateForMapPoint(points[0])
+			return points[0].coordinate
 		}
 		
 		/** Find minX, minY, maxX, maxY */
@@ -77,7 +77,7 @@ public extension MKPolygon {
 		
 		/** Now find the center. */
 		let centerPoint = MKMapPoint(x: minX + (maxX - minX) / 2.0, y: minY + (maxY - minY) / 2.0)
-		return MKCoordinateForMapPoint(centerPoint)
+		return centerPoint.coordinate
 	}
 	
 	/// Returns the center of the polygon by approximation. Puts the polygon

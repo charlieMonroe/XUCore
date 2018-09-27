@@ -128,7 +128,7 @@ private final class _XUAlertViewController: UIViewController {
 		super.init(nibName: nil, bundle: nil)
 
 		self.view = _XUAlertView(alert: alert)
-		self.addChildViewController(self.alert.viewController)
+		self.addChild(self.alert.viewController)
 
 		self.providesPresentationContextTransitionStyle = true
 		self.definesPresentationContext = true

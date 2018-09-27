@@ -256,7 +256,7 @@ open class XUDocumentSyncManager {
 	
 	#if os(iOS)
 		/// Background task while syncing.
-		private var _syncBackgroundTaskIdentifier: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+	private var _syncBackgroundTaskIdentifier: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
 	#endif
 	
 	
@@ -378,12 +378,12 @@ open class XUDocumentSyncManager {
 	
 		#if os(iOS)
 			_syncBackgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(withName: "XUDocumentSyncManager.Sync", expirationHandler: {
-				if self._syncBackgroundTaskIdentifier == UIBackgroundTaskInvalid {
+				if self._syncBackgroundTaskIdentifier == UIBackgroundTaskIdentifier.invalid {
 					return
 				}
 				
 				// The sync hasn't finished yet. Inform the user.
-				self._syncBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+				self._syncBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
 
 				let notification = UILocalNotification()
 				notification.alertTitle = XULocalizedFormattedString("%@ couldn't finish synchronization in the background.", ProcessInfo.processInfo.processName)
@@ -403,7 +403,7 @@ open class XUDocumentSyncManager {
 			
 			#if os(iOS)
 				UIApplication.shared.endBackgroundTask(self._syncBackgroundTaskIdentifier)
-				self._syncBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+			self._syncBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
 			#endif
 		}
 		synchronization.startSynchronization()

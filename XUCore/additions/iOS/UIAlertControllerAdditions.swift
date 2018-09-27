@@ -39,7 +39,7 @@ public extension UIAlertController {
 	/// let alert = UIAlertController(style: .alert)
 	/// alert.message = "123"
 	/// alert.title = "456"
-	public convenience init(style: UIAlertControllerStyle) {
+	public convenience init(style: UIAlertController.Style) {
 		self.init(title: nil, message: nil, preferredStyle: style)
 	}
 	

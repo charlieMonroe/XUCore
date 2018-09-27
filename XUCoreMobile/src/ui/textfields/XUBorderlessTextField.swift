@@ -145,7 +145,7 @@ import UIKit
 		
 		self.borderStyle = .none
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(_textDidChangeNotification), name: NSNotification.Name.UITextFieldTextDidChange, object: self)
+		NotificationCenter.default.addObserver(self, selector: #selector(_textDidChangeNotification), name: UITextField.textDidChangeNotification, object: self)
 		
 		_lineView.lineWidth = 1.0
 		self.addSubview(_lineView)

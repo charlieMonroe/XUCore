@@ -29,11 +29,11 @@ public class XUScrollViewKeyboardInsetManager {
 	}
 	
 	private func _updateScrollViewInset(from keyboardNotification: Notification) {
-		guard let keyboardFrame = keyboardNotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+		guard let keyboardFrame = keyboardNotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
 			return
 		}
 		
-		if keyboardNotification.name == Notification.Name.UIKeyboardDidHide {
+		if keyboardNotification.name == UIResponder.keyboardDidHideNotification {
 			self.scrollView.contentInset.bottom = 0.0
 		} else {
 			self.scrollView.contentInset.bottom = keyboardFrame.height
@@ -44,9 +44,9 @@ public class XUScrollViewKeyboardInsetManager {
 	public init(scrollView: UIScrollView) {
 		self.scrollView = scrollView
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(_didChangeKeyboard(_:)), name: Notification.Name.UIKeyboardDidChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(_didHideKeyboard(_:)), name: Notification.Name.UIKeyboardDidHide, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(_didShowKeyboard(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_didChangeKeyboard(_:)), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_didHideKeyboard(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(_didShowKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 	}
 	
 }

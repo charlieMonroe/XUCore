@@ -188,6 +188,7 @@ open class XUApplicationSetup {
 	public let isRunningInDebugMode: Bool
 	
 	/// Returns true if we're running Mojave or later and dark mode is enabled.
+	@available(iOS, unavailable)
 	public var isRunningMojaveWithDarkMode: Bool {
 		if #available(OSX 10.14, *) {
 			return self.isDarkModeEnabled

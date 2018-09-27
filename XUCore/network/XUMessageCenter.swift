@@ -343,7 +343,7 @@ public class XUMessageCenter {
 		
 	private init() {
 		#if os(iOS)
-			let notificationName = NSNotification.Name.UIApplicationDidFinishLaunching
+			let notificationName = UIApplication.didFinishLaunchingNotification
 		#else
 			let notificationName = NSApplication.didFinishLaunchingNotification
 		#endif

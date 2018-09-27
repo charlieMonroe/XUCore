@@ -55,7 +55,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 			self._backgroundControl.alpha = 0.0
 			self._pickerEnclosingView.frame.origin.y += self._pickerEnclosingView.frame.height
 		}) { (_) in
-			self.removeFromParentViewController()
+			self.removeFromParent()
 			self.view.removeFromSuperview()
 			
 			self._completionHandler?(item)

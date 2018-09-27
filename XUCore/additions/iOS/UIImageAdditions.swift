@@ -67,7 +67,7 @@ public extension UIImage {
 	
 	/// Returns PNG representation of the image.
 	public var pngRepresentation: Data? {
-		return UIImagePNGRepresentation(self)
+		return self.pngData()
 	}
 	
 }

@@ -168,7 +168,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		#endif
 		
 		#if os(iOS)
-			let notificationName = NSNotification.Name.UIApplicationWillTerminate
+			let notificationName = UIApplication.willTerminateNotification
 		#else
 			let notificationName = NSApplication.willTerminateNotification
 		#endif
