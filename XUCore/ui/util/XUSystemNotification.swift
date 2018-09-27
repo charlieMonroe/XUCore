@@ -24,7 +24,7 @@ public struct XUSystemNotification {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public init(confirmationMessage: String, subtitle: String? = nil) {
-		self.init(icon: XUCoreFramework.bundle.image(forResource: NSImage.Name(rawValue: "Checkmark"))!, message: confirmationMessage, subtitle: subtitle)
+		self.init(icon: XUCoreFramework.bundle.image(forResource: "Checkmark")!, message: confirmationMessage, subtitle: subtitle)
 	}
 	
 }
@@ -71,7 +71,7 @@ public final class XUSystemNotificationCenter {
 		_currentController.loadWindow()
 		
 		if case .system(let notification) = _currentNotification! {
-			NSAccessibilityPostNotificationWithUserInfo(_currentController, NSAccessibilityNotificationName.announcementRequested, [NSAccessibilityNotificationUserInfoKey.announcement : notification.message])
+			NSAccessibility.post(element: _currentController, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : notification.message])
 		}
 		
 		Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
@@ -120,7 +120,7 @@ public final class XUSystemNotificationCenter {
 			_progressController = controller
 			
 			if let message = message {
-				NSAccessibilityPostNotificationWithUserInfo(controller, NSAccessibilityNotificationName.announcementRequested, [NSAccessibilityNotificationUserInfoKey.announcement : message])
+				NSAccessibility.post(element: controller, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : message])
 			}
 		}
 	}
@@ -204,7 +204,7 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 	var notification: XUSystemNotificationCenter.Notification!
 	
 	convenience init(notification: XUSystemNotificationCenter.Notification) {
-		self.init(windowNibName: NSNib.Name(rawValue: "SystemNotification"))
+		self.init(windowNibName: "SystemNotification")
 		
 		self.notification = notification
 	}

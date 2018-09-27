@@ -1545,7 +1545,7 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = D43XN356JM;
 						DevelopmentTeamName = "Krystof Vasa";
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					077AFD9E1BBD0ED200872A48 = {
@@ -2217,8 +2217,7 @@
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -2250,8 +2249,7 @@
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

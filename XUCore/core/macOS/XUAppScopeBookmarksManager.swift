@@ -51,9 +51,7 @@ public final class XUAppScopeBookmarksManager {
 			
 			var isStale: Bool = false
 			do {
-				if let reloadedURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale) {
-					newURL = reloadedURL
-				}
+				newURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
 			} catch _ { }
 		#endif
 		

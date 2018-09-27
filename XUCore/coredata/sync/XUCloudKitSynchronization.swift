@@ -186,7 +186,7 @@ internal final class XUCloudKitSynchronization {
 	}
 	
 	/// Downloads changes from device at index in _devices.
-	private func _downloadChangesFromDevice(at index: Int, cursor: CKQueryCursor? = nil) {
+	private func _downloadChangesFromDevice(at index: Int, cursor: CKQueryOperation.Cursor? = nil) {
 		if index == _devices.count {
 			DispatchQueue.main.sync {
 				self._applyChanges()
@@ -301,7 +301,7 @@ internal final class XUCloudKitSynchronization {
 			return
 		}
 		
-		let record = CKRecord(recordType: ChangeSet.recordType, zoneID: self.documentManager.cloudKitContainerRecordZone.zoneID)
+		let record = CKRecord(recordType: ChangeSet.recordType, recordID: CKRecord.ID(zoneID: self.documentManager.cloudKitContainerRecordZone.zoneID))
 		record["documentID"] = self.documentManager.documentID as NSString
 		record["timestamp"] = Date(timeIntervalSinceReferenceDate: pendingChange.changeSet.timestamp) as NSDate
 		record["deviceID"] = XUSyncManagerPathUtilities.currentDeviceIdentifier as NSString

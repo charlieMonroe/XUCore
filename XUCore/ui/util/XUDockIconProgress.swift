@@ -19,7 +19,7 @@ open class XUDockIconProgress {
 	
 	/// Create an image for the Dock icon. It should include the application icon.
 	open func createProgressImage() -> NSImage {
-		let im: NSImage = NSImage(named: NSImage.Name.applicationIcon)!.copy() as! NSImage
+		let im: NSImage = NSImage(named: NSImage.applicationIconName)!.copy() as! NSImage
 		im.size = CGSize(width: 128.0, height: 128.0)
 		
 		let barRect = self.progressBarFrame

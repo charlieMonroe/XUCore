@@ -18,8 +18,8 @@ import UIKit
 		
 		if let placeholder = self.placeholder {
 			self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-				NSAttributedStringKey.foregroundColor: UIColor(white: 0.3, alpha: 1.0),
-				NSAttributedStringKey.font: self.font ?? UIFont.systemFont(ofSize: 13.0)
+				NSAttributedString.Key.foregroundColor: UIColor(white: 0.3, alpha: 1.0),
+				NSAttributedString.Key.font: self.font ?? UIFont.systemFont(ofSize: 13.0)
 			])
 		}
 	}

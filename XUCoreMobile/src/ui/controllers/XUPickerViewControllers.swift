@@ -41,7 +41,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 	
 	/// Picker.
 	public let picker: ItemControl
-
+	
 	
 	
 	/// An action from _backgroundControl that causes cancellation.
@@ -53,8 +53,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 		// Animation of dismissal.
 		UIView.animate(withDuration: 0.3, animations: {
 			self._backgroundControl.alpha = 0.0
-			self._pickerEnclosingViewBottomLayoutConstraint.constant = self._pickerEnclosingView.frame.height
-			self.view.layoutSubviews()
+			self._pickerEnclosingView.frame.origin.y += self._pickerEnclosingView.frame.height
 		}) { (_) in
 			self.removeFromParentViewController()
 			self.view.removeFromSuperview()
@@ -98,19 +97,19 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 		
 		_completionHandler = completionHandler
 		
-		_backgroundControl.alpha = 0.0
-		_pickerEnclosingViewBottomLayoutConstraint.constant = _pickerEnclosingView.frame.height
-		
 		self.view.layoutSubviews()
+		
+		_backgroundControl.alpha = 0.0
+		_pickerEnclosingView.frame.origin.y += _pickerEnclosingView.frame.height
+		
 		self.view.translatesAutoresizingMaskIntoConstraints = false
 		
 		self.parentController.view.window!.addSubview(self.view)
 		self.parentController.view.window!.addConstraints(pinningViewOnAllSides: self.view)
 		
-		UIView.animate(withDuration: 0.3) {
+		UIView.animate(withDuration: 0.3) { [unowned self] in
 			self._backgroundControl.alpha = 1.0
-			self._pickerEnclosingViewBottomLayoutConstraint.constant = 0.0
-			self.view.layoutSubviews()
+			self._pickerEnclosingView.frame.origin.y -= self._pickerEnclosingView.frame.height
 		}
 	}
 	
@@ -156,7 +155,7 @@ public class XUDatePickerViewController: XUPickerBaseViewController<Date, UIDate
 /// A generic picker controller. It will slide from the bottom of the screen like a keyboard
 /// and will allow you to select one of the options.
 public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<Int, UIPickerView>, UIPickerViewDataSource, UIPickerViewDelegate {
-
+	
 	/// Data item to be displayed in the picker.
 	public struct DataItem: Equatable {
 		

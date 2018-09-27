@@ -105,7 +105,7 @@ public extension String {
 	
 	/// Draws `self` centered in rect with attributes.
 	@discardableResult
-	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedStringKey : Any] = [:]) -> CGRect {
+	public func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedString.Key : Any] = [:]) -> CGRect {
 		let stringSize = self.size(withAttributes: atts, maximumWidth: rect.width)
 		var frame = rect
 		frame.size = stringSize
@@ -116,7 +116,7 @@ public extension String {
 
 	/// Draws `self` aligned right to point. Returns size of the drawn string.
 	@discardableResult
-	public func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedStringKey : Any]? = nil) -> CGSize {
+	public func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedString.Key : Any]? = nil) -> CGSize {
 		let s = self.size(withAttributes: atts)
 		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
 		return s
@@ -391,7 +391,7 @@ public extension String {
 	
 	/// Truncates the string in the middle with '...' in order to fit the width, 
 	/// similarily as NSTextField does.
-	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [NSAttributedStringKey : Any]) -> String {
+	public func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [NSAttributedString.Key : Any]) -> String {
 		var front = Substring()
 		var tail = Substring()
 		
@@ -420,7 +420,7 @@ public extension String {
 	}
 		
 	/// Returns size with attributes, limited to width.
-	public func size(withAttributes attrs: [NSAttributedStringKey : Any], maximumWidth width: CGFloat) -> CGSize {
+	public func size(withAttributes attrs: [NSAttributedString.Key : Any], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		#if os(iOS)
 			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs, context: nil).size

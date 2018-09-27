@@ -30,7 +30,7 @@ internal class XUPreferencePanesView: NSView {
 	internal static let sectionHeight: CGFloat = 92.0
 
 	/// Attributes of the title.
-	internal static let titleAttributes: [NSAttributedStringKey : Any] = [
+	internal static let titleAttributes: [NSAttributedString.Key : Any] = [
 		.foregroundColor: NSColor.textColor,
 		.font: XUPreferencePanesView.titleFont
 	]
@@ -169,7 +169,7 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 	}
 	
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
-		var attributes: [NSAttributedStringKey : Any] = [
+		var attributes: [NSAttributedString.Key : Any] = [
 			.font: XUPreferencePanesView.titleFont,
 			.foregroundColor: NSColor.textColor
 		]
@@ -213,7 +213,7 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 			paragraphStyle.maximumLineHeight = 12.0
 		}
 
-		attributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
+		attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
 
 		let textSize = attributedString.string.size(withAttributes: attributes)
 		let textBounds = CGRect(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
@@ -256,7 +256,7 @@ private class XUPreferencePaneButton: NSButton {
 	}
 	
 	fileprivate override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var attributes: [NSAttributedStringKey : Any] = [.font: XUPreferencePanesView.titleFont]
+		var attributes: [NSAttributedString.Key : Any] = [.font: XUPreferencePanesView.titleFont]
 		let parts: [String] = self.title.components(separatedBy: " ")
 		var lineParts: [String] = []
 		

@@ -37,8 +37,8 @@ public class XUSwitchableView: NSView {
 		
 		self.currentView?.frame = self.bounds
 		
-		NSAccessibilityPostNotification(self, NSAccessibilityNotificationName.focusedWindowChanged)
-		NSAccessibilityPostNotification(self, NSAccessibilityNotificationName.layoutChanged)
+		NSAccessibility.post(element: self, notification: NSAccessibility.Notification.focusedWindowChanged)
+		NSAccessibility.post(element: self, notification: NSAccessibility.Notification.layoutChanged)
 		self.window?.recalculateKeyViewLoop()
 	}
 	
@@ -91,8 +91,8 @@ public class XUSwitchableView: NSView {
 			view.frame = self.bounds
 			self.currentView = view
 			
-			NSAccessibilityPostNotification(self, NSAccessibilityNotificationName.focusedWindowChanged)
-			NSAccessibilityPostNotification(self, NSAccessibilityNotificationName.layoutChanged)
+			NSAccessibility.post(element: self, notification: NSAccessibility.Notification.focusedWindowChanged)
+			NSAccessibility.post(element: self, notification: NSAccessibility.Notification.layoutChanged)
 			self.window?.recalculateKeyViewLoop()
 
 			return

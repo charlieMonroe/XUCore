@@ -30,7 +30,7 @@ public extension NSBezierPath {
 		}
 
 		let drawingPath = NSBezierPath(rect: bounds)
-		drawingPath.windingRule = .evenOddWindingRule
+		drawingPath.windingRule = .evenOdd
 		drawingPath.append(self)
 		drawingPath.transform(using: transform)
 

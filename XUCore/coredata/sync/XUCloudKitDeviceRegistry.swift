@@ -112,7 +112,7 @@ internal class XUCloudKitDeviceRegistry {
 	
 	/// Actually registers self.
 	private func _registerDevice() {
-		let record = CKRecord(recordType: XUCloudKitSynchronization.SynchronizedDevice.recordType, zoneID: self.recordZone.zoneID)
+		let record = CKRecord(recordType: XUCloudKitSynchronization.SynchronizedDevice.recordType, recordID: CKRecord.ID(zoneID: self.recordZone.zoneID))
 		#if os(macOS)
 			record["name"] = (Host.current().localizedName ?? "unknown") as NSString
 		#else
@@ -127,7 +127,7 @@ internal class XUCloudKitDeviceRegistry {
 				XULog("Register current device with CloudKit: \(record).")
 				self.isRegistered = true
 			} else {
-				XULog("Both record and record are nil... ¯\\_(ツ)_/¯")
+				XULog("Both record and error are nil... ¯\\_(ツ)_/¯")
 			}
 		}
 	}
@@ -153,10 +153,12 @@ internal class XUCloudKitDeviceRegistry {
 		if #available(macOS 10.12, iOS 10.0, *) {
 			subscription = CKQuerySubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)
 		} else {
-			subscription = CKSubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)
+			XULog("Change subscription currently not available on macOS 11.")
+			return
+//			subscription = CKSubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)
 		}
 		
-		let info = CKNotificationInfo()
+		let info = CKSubscription.NotificationInfo()
 		subscription.notificationInfo = info
 		
 		self.database.save(subscription) { (subscriptionOptional, errorOptional) in

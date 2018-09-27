@@ -108,8 +108,8 @@ public extension XUViewAnimation {
 				completion?()
 			}
 		}
-		RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
-		RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
+		RunLoop.current.add(timer, forMode: RunLoop.Mode.modalPanel)
+		RunLoop.current.add(timer, forMode: RunLoop.Mode.eventTracking)
 	}
 	#endif
 	
@@ -226,8 +226,8 @@ public extension XUViewAnimation {
 			})
 			
 			#if os(macOS)
-				RunLoop.current.add(timer, forMode: .eventTrackingRunLoopMode)
-				RunLoop.current.add(timer, forMode: .modalPanelRunLoopMode)
+				RunLoop.current.add(timer, forMode: RunLoop.Mode.eventTracking)
+				RunLoop.current.add(timer, forMode: RunLoop.Mode.modalPanel)
 			#endif
 			
 			_pulsatingViews[view] = (timer, _XUPulsationProgress(1.0, false))
@@ -299,7 +299,7 @@ public extension XUViewAnimation {
 				
 				NSAnimationContext.runAnimationGroup({ (context) in
 					context.duration = 0.5
-					context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+					context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 					field.animator().alphaValue = 0.0
 				}, completionHandler: {
 					if let string = _textFieldValues[field] {
@@ -309,7 +309,7 @@ public extension XUViewAnimation {
 					
 					NSAnimationContext.runAnimationGroup({ (context) in
 						context.duration = 0.5
-						context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+						context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 						field.animator().alphaValue = 1.0
 					}, completionHandler: nil)
 				})

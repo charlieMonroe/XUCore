@@ -107,7 +107,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		_thread = thread
 		_queue = queue
 		
-		_nib = NSNib(nibNamed: NSNib.Name(rawValue: "ExceptionReporter"), bundle: XUCoreFramework.bundle)!
+		_nib = NSNib(nibNamed: "ExceptionReporter", bundle: XUCoreFramework.bundle)!
 		
 		super.init()
 		
