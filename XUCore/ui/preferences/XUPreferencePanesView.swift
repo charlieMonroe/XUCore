@@ -244,7 +244,7 @@ private class XUPreferencePaneButton: NSButton {
 
 		self.translatesAutoresizingMaskIntoConstraints = false
 		self.title = paneController.paneName
-		self.image = paneController.paneIcon
+		self.image = paneController.paneIcon.imageWithSingleImageRepresentation(ofSize: CGSize(dimension: 32.0))!
 		self.imagePosition = .imageAbove
 		self.font = XUPreferencePanesView.titleFont
 		self.isBordered = false

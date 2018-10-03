@@ -46,7 +46,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		DispatchQueue.main.syncOrNow { () -> Void in
+		DispatchQueue.main.syncOrNow {
 			let reporter = XUExceptionReporter(exception: exception, thread: thread, queue: queue, stackTrace: stackTrace)
 			_reporters.append(reporter)
 			
@@ -75,11 +75,25 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	private var _topLevelObjects: NSArray? = []
 	
+	private let _updateChecker: XUUpdateChecker = XUUpdateChecker()
+	
 	@IBOutlet private var _reporterWindow: NSWindow!
 	
 	@IBOutlet private weak var _emailTextField: NSTextField!
 	@IBOutlet private var _stackTraceTextView: NSTextView!
+	@IBOutlet private var _updateInfoView: NSView!
 	@IBOutlet private var _userInputTextView: NSTextView!
+	
+	private func _processUpdateResult(_ result: XUUpdateChecker.Result) {
+		switch result {
+		case let .majorUpdateAvailable(version: version):
+			self._showUpdateInformation(for: version)
+		case let .minorUpdateAvailable(version: version):
+			self._showUpdateInformation(for: version)
+		default:
+			break
+		}
+	}
 	
 	private func _reportFailedReportSend() {
 		let alert = NSAlert()
@@ -87,6 +101,10 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		alert.informativeText = XULocalizedString("Check your Internet connection and try again.", inBundle: XUCoreFramework.bundle)
 		alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 		alert.beginSheetModal(for: _reporterWindow, completionHandler: nil)
+	}
+	
+	private func _showUpdateInformation(for version: XUUpdateChecker.Version) {
+		_updateInfoView.isHidden = false
 	}
 	
 	private func _validateDescriptionText() -> Bool {
@@ -102,6 +120,23 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		return true
 	}
 	
+	@IBAction func downloadUpdate(_ sender: Any?) {
+		if XUAppSetup.buildType == .appStore {
+			if let appStoreURL = _updateChecker.appStoreURL {
+				NSWorkspace.shared.open(appStoreURL)
+			} else {
+				NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/App Store.app"))
+			}
+		} else if let updateURL = _updateChecker.updateURL {
+			NSWorkspace.shared.open(updateURL)
+		} else if let supportURL = XUAppSetup.supportURL {
+			NSWorkspace.shared.open(supportURL)
+		} else {
+			// Not sure what to do otherwise.
+			NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/App Store.app"))
+		}
+	}
+	
 	private init(exception: NSException, thread: Thread, queue: OperationQueue?, stackTrace: String) {
 		_exception = exception
 		_thread = thread
@@ -113,11 +148,18 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		_nib.instantiate(withOwner: self, topLevelObjects: &_topLevelObjects)
 		
+		_updateInfoView.isHidden = true
+		
 		_reporterWindow.delegate = self
 		_reporterWindow.localize(from: XUCoreFramework.bundle)
 		
 		_stackTraceTextView.string = stackTrace
 		_stackTraceTextView.font = NSFont.userFixedPitchFont(ofSize: 11.0)
+		
+		_updateChecker.checkForUpdates { [weak self] (result) in
+			self?._processUpdateResult(result)
+		}
+
 	}
 	
 	

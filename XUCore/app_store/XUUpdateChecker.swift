@@ -127,6 +127,9 @@ public final class XUUpdateChecker {
 	/// AppStore URL. It is automatically retrieved during the update check.
 	public private(set) var appStoreURL: URL?
 	
+	/// Direct download URL for the update discovered in the Sparkle update feed.
+	public private(set) var updateURL: URL?
+	
 	/// Download center used by the checker.
 	private let _downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
 	
@@ -175,10 +178,13 @@ public final class XUUpdateChecker {
 			return .noUpdateAvailable
 		}
 		
+		if let urlString = newestNode.stringValue(ofAttributeNamed: "url") {
+			self.updateURL = ~urlString
+		}
+		
 		guard let versionString = newestNode.stringValue(ofAttributeNamed: "sparkle:shortVersionString") else {
 			return .noUpdateAvailable
 		}
-		
 		
 		let remoteVersion = Version(versionString: versionString)
 		let currentVersion = Version.current
@@ -210,9 +216,13 @@ public final class XUUpdateChecker {
 					XUFatalError()
 				#endif
 			}
-			DispatchQueue.main.syncOrNow {
+			
+			// As DispatchQueue dispatch doesn't work in case of e.g. modal dialogs,
+			// we're using a little helper.
+			let performer = XUThreadPerformer(action: {
 				completionHandler(result)
-			}
+			})
+			performer.perform(on: .main)
 		}
 	}
 	

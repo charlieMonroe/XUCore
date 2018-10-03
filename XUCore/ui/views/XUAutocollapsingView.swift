@@ -58,6 +58,10 @@ open class XUAutocollapsingView: __XUBridgedView {
 		return constraint
 	}
 	
+	public override init(frame: CGRect) {
+		super.init(frame: frame)
+	}
+	
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		

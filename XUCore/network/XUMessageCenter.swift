@@ -72,20 +72,13 @@ private extension XUPreferences {
 	
 }
 
-
-/// Defines which build types should receive the message.
-public enum XUMessageTarget: Int {
-	
-	/// All build types will receive the message.
-	case all = 0
-	
-	/// Only apps that have AppStoreBuild true in XUApplicationSetup.
-	case appStore = 1
-	
-	/// Only apps that have AppStoreBuild false in XUApplicationSetup.
-	case nonAppStore = 2
-	
+protocol XUMessageCenterAction {
+	init?(value: String)
+	func performAction(with message: XUMessageCenter.Message)
 }
+
+@available(*, deprecated)
+public typealias XUMessageTarget = XUMessageCenter.Target
 
 
 /// This class automatically pulls down a property list from the server which
@@ -131,53 +124,27 @@ public class XUMessageCenter {
 	
 	public static let shared = XUMessageCenter()
 	
-
-	/// When set to true, the app was remotely blocked.
-	public private(set) var isAppBlocked: Bool = false
-	
-	private func _markMessageWithIDAsRead(_ messageID: Int) {
-		// Save the message ID
-		XUPreferences.shared.perform(andSynchronize: { (prefs) in
-			prefs.lastMessageID = messageID
-		})
-	}
-	
-	private func _processActions(from message: XUJSONDictionary, withMessageID messageID: Int) {
-		guard let actions = message["XUActions"] as? [String : String] else {
-			XULog("Invalid message \(message)")
-			return
+	struct BlockApplicationAction: XUMessageCenterAction {
+		
+		init(value: String) {
+			// We ignore the value
 		}
 		
-		for (key, value) in actions {
-			if key == "XUOpenURL" {
-				guard let url = URL(string: value) else {
-					XULog("Invalid URL string: \(value)")
-					continue
-				}
-				
-				#if os(iOS)
-					UIApplication.shared.open(url, options: [:], completionHandler: nil)
-				#else
-					NSWorkspace.shared.open(url)
-				#endif
-			} else if key == "XUBlockApp" {
-				self.isAppBlocked = false
-				
-				// Not yet - it will be in 24 hours, though.
-				guard let maxVersion = message["XUMaxVersion"] as? Int else {
-					XULog("Invalid message \(message)")
-					continue
-				}
-				
-				XUPreferences.shared.perform(andSynchronize: { (prefs) in
-					prefs.isAppBlocked = true
-					prefs.appBlockedDate = Date()
-					prefs.appBlockedMaxVersion = maxVersion
-				})
-
-				let appName = ProcessInfo.processInfo.processName
-				let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCoreFramework.bundle)
-				
+		func performAction(with message: XUMessageCenter.Message) {
+			XUMessageCenter.shared.isAppBlocked = false
+			
+			// Not yet - it will be in 24 hours, though.
+			let maxVersion = message.maximumBuildNumber
+			XUPreferences.shared.perform(andSynchronize: { (prefs) in
+				prefs.isAppBlocked = true
+				prefs.appBlockedDate = Date()
+				prefs.appBlockedMaxVersion = maxVersion
+			})
+			
+			let appName = ProcessInfo.processInfo.processName
+			let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: XUCoreFramework.bundle)
+			
+			DispatchQueue.main.syncOrNow {
 				#if os(iOS)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreFramework.bundle), style: .default, handler: nil))
@@ -185,14 +152,161 @@ public class XUMessageCenter {
 				#else
 					let alert = NSAlert()
 					alert.messageText = title
-					alert.runModalOnMainThread()
+					alert.runModal()
 				#endif
-			} else {
-				XULog("*** Unknown action \(key)")
 			}
 		}
 		
-		self._markMessageWithIDAsRead(messageID)
+	}
+	
+	/// A structure encapsulating the message.
+	struct Message {
+		
+		/// Actions.
+		let actions: [XUMessageCenterAction]
+		
+		/// If true, the user is presented with a cancel button.
+		let allowsIgnoringMessage: Bool
+		
+		/// Ignore button title.
+		let customIgnoreButtonTitle: String?
+		
+		/// ID of the message.
+		let id: Int
+
+		/// Informative text (subtitle).
+		let informativeText: String?
+		
+		/// Maximum build number for which is this message.
+		let maximumBuildNumber: Int
+		
+		/// Actual message.
+		let message: String
+		
+		/// Minimum build number for which is this message.
+		let minimumBuildNumber: Int
+		
+		/// The original dictionary.
+		let rawDictionary: XUJSONDictionary
+		
+		/// Target.
+		let target: Target
+		
+		
+		/// Returns a title for an ignore button. Takes into account custom title.
+		/// Asserts that ignore button is allowed.
+		var ignoreButtonTitle: String {
+			assert(self.allowsIgnoringMessage)
+			return self.customIgnoreButtonTitle ?? XULocalizedString("Cancel", inBundle: XUCoreFramework.bundle)
+		}
+		
+		init?(dictionary: XUJSONDictionary) {
+			guard let messageID = dictionary["XUMessageID"] as? Int else {
+				XULog("Invalid message (missing ID) \(dictionary)")
+				return nil
+			}
+			
+			guard let minVersion = dictionary["XUMinVersion"] as? Int, let maxVersion = dictionary["XUMaxVersion"] as? Int else {
+				XULog("Invalid message (missing min or max version) \(dictionary)")
+				return nil
+			}
+			
+			guard let targetNumber = dictionary["XUTarget"] as? Int, let target = Target(rawValue: targetNumber) else {
+				XULog("Invalid message (missing or invalid target) \(dictionary)")
+				return nil
+			}
+			
+			guard let messageText = dictionary["XUMessage"] as? String else {
+				XULog("Invalid message (missing message text) \(dictionary)")
+				return nil
+			}
+
+			self.rawDictionary = dictionary
+			self.allowsIgnoringMessage = dictionary.boolean(forKey: "XUCanIgnoreMessage")
+			self.customIgnoreButtonTitle = dictionary["XUIgnoreButtonTitle"] as? String
+			self.id = messageID
+			self.informativeText = dictionary["XUDescription"] as? String
+			self.maximumBuildNumber = maxVersion
+			self.message = messageText
+			self.minimumBuildNumber = minVersion
+			self.target = target
+			
+			guard let actionDicts = dictionary["XUActions"] as? [String : String] else {
+				XULog("Message \(messageID) is has no actions: \(dictionary)")
+				self.actions = []
+				return
+			}
+			
+			let actions = actionDicts.compactMap { (key, value) -> XUMessageCenterAction? in
+				switch key {
+				case "XUOpenURL":
+					return OpenURLAction(value: value)
+				case "XUBlockApp":
+					return BlockApplicationAction(value: value)
+				default:
+					XULog("*** Unknown action \(key)")
+					return nil
+				}
+			}
+			
+			self.actions = actions
+		}
+		
+	}
+	
+	struct OpenURLAction: XUMessageCenterAction {
+		
+		let url: URL
+		
+		init?(value: String) {
+			guard let url = ~value else {
+				XULog("Invalid URL string: \(value)")
+				return nil
+			}
+			
+			self.url = url
+		}
+		
+		func performAction(with message: XUMessageCenter.Message) {
+			#if os(iOS)
+				UIApplication.shared.open(self.url, options: [:], completionHandler: nil)
+			#else
+				NSWorkspace.shared.open(self.url)
+			#endif
+		}
+		
+	}
+	
+	/// Defines which build types should receive the message.
+	public enum Target: Int {
+		
+		/// All build types will receive the message.
+		case all = 0
+		
+		/// Only apps that have AppStoreBuild true in XUApplicationSetup.
+		case appStore = 1
+		
+		/// Only apps that have AppStoreBuild false in XUApplicationSetup.
+		case nonAppStore = 2
+		
+	}
+
+	
+
+	/// When set to true, the app was remotely blocked.
+	public private(set) var isAppBlocked: Bool = false
+	
+	
+	private func _markMessageAsRead(_ message: Message) {
+		// Save the message ID
+		XUPreferences.shared.perform(andSynchronize: { (prefs) in
+			prefs.lastMessageID = message.id
+		})
+	}
+	
+	private func _processActions(from message: Message) {
+		message.actions.forEach({ $0.performAction(with: message) })
+		self._markMessageAsRead(message)
 	}
 	
 	@objc private func _launchMessageCenter() {
@@ -250,95 +364,65 @@ public class XUMessageCenter {
 		
 		XULog("Checking for messages.")
 		
-		for message in messages {
-			guard let messageID = message["XUMessageID"] as? Int else {
-				XULog("Invalid message (missing ID) \(message)")
+		for dictionary in messages {
+			guard let message = Message(dictionary: dictionary) else {
 				continue
 			}
 			
-			if messageID <= lastMessageID {
+			if message.id <= lastMessageID {
 				// Already seen it
-				XULog("Ignoring message \(messageID) as it's already been seen (last ID: \(lastMessageID).")
+				XULog("Ignoring message \(message.id) as it's already been seen (last ID: \(lastMessageID).")
 				continue
 			}
 			
-			guard let minVersion = message["XUMinVersion"] as? Int else {
-				XULog("Invalid message (missing min version) \(message)")
+			if message.minimumBuildNumber > appBuildNumber || message.maximumBuildNumber < appBuildNumber {
 				continue
 			}
 			
-			guard let maxVersion = message["XUMaxVersion"] as? Int else {
-				XULog("Invalid message (missing max version) \(message)")
+			if (message.target == .appStore && !isAppStoreBuild) || (message.target == .nonAppStore && isAppStoreBuild) {
 				continue
 			}
 			
-			if minVersion > appBuildNumber || maxVersion < appBuildNumber {
-				continue
+			DispatchQueue.main.syncOrNow {
+				self._showMessage(with: message)
 			}
-			
-			guard let targetNumber = message["XUTarget"] as? Int else {
-				XULog("Invalid message (missing target) \(message)")
-				continue
-			}
-			
-			guard let target = XUMessageTarget(rawValue: targetNumber) else {
-				XULog("Invalid message (unknown target) \(message)")
-				continue
-			}
-			
-			if (target == .appStore && !isAppStoreBuild) || (target == .nonAppStore && isAppStoreBuild) {
-				continue
-			}
-			
-			let allowsIgnoringMessage = (message["XUCanIgnoreMessage"] as? Bool) ?? false
-			
-			var ignoreButtonTitle = XULocalizedString("Cancel", inBundle: XUCoreFramework.bundle)
-			if allowsIgnoringMessage {
-				if let customIgnoreButtonTitle = message["XUIgnoreButtonTitle"] as? String {
-					ignoreButtonTitle = customIgnoreButtonTitle
-				}
-			}
-			
-			guard let messageText = message["XUMessage"] as? String else {
-				XULog("Invalid message (missing message text) \(message)")
-				continue
-			}
-			
-			// We should display this message!
-			#if os(iOS)
-				let alert = UIAlertController(title: messageText, message: message["XUDescription"] as? String, preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreFramework.bundle), style: .default, handler: { (_) -> Void in
-					self._processActions(from: message, withMessageID: messageID)
-				}))
-				if allowsIgnoringMessage {
-					alert.addAction(UIAlertAction(title: ignoreButtonTitle, style: .cancel, handler: { (_) -> Void in
-						self._markMessageWithIDAsRead(messageID)
-					}))
-				}
-
-				DispatchQueue.main.syncOrNow(execute: { () -> Void in
-					UIApplication.shared.windows.first!.rootViewController?.present(alert, animated: true, completion: nil)
-				})
-			#else
-				let alert = NSAlert()
-				alert.messageText = messageText
-				alert.informativeText = (message["XUDescription"] as? String) ?? ""
-				alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
-				if allowsIgnoringMessage {
-					alert.addButton(withTitle: ignoreButtonTitle)
-				}
-				
-				if alert.runModalOnMainThread() == NSApplication.ModalResponse.alertFirstButtonReturn {
-					self._processActions(from: message, withMessageID: messageID)
-				}else{
-					self._markMessageWithIDAsRead(messageID)
-				}
-			#endif
 			
 			/* Only one alert per check. */
 			break
 		}
 		
+	}
+	
+	
+	private func _showMessage(with message: Message) {
+		// We should display this message!
+		#if os(iOS)
+			let alert = UIAlertController(title: message.message, message: message.informativeText, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: XUCoreFramework.bundle), style: .default, handler: { (_) -> Void in
+				self._processActions(from: message)
+			}))
+			if message.allowsIgnoringMessage {
+				alert.addAction(UIAlertAction(title: message.ignoreButtonTitle, style: .cancel, handler: { (_) -> Void in
+					self._markMessageAsRead(message)
+				}))
+			}
+		
+			UIApplication.shared.windows.first!.rootViewController?.present(alert, animated: true, completion: nil)
+		#else
+			let alert = NSAlert()
+			alert.messageText = message.message
+			alert.informativeText = message.informativeText ?? ""
+			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
+			if message.allowsIgnoringMessage {
+				alert.addButton(withTitle: message.ignoreButtonTitle)
+			}
+		
+			if alert.runModal() == .alertFirstButtonReturn {
+				self._processActions(from: message)
+			} else {
+				self._markMessageAsRead(message)
+			}
+		#endif
 	}
 		
 	private init() {

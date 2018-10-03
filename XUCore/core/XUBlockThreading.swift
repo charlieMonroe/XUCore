@@ -24,7 +24,7 @@ public func XU_PERFORM_BLOCK_ON_MAIN_THREAD(_ block: () -> Void) {
 public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(_ block: @escaping () -> Void) {
 	if Thread.isMainThread {
 		block()
-	}else{
+	} else {
 		DispatchQueue.main.async(execute: block)
 	}
 }
@@ -63,6 +63,29 @@ extension DispatchQueue {
 		} else {
 			self.sync(execute: closure)
 		}
+	}
+	
+}
+
+/// A simple class that allows you to perform a block on main thread via the old
+/// ObjC thread-based API. This can be useful for various operations done asynchronously
+/// within a modal dialog.
+public final class XUThreadPerformer: NSObject {
+
+	/// Action to be performed.
+	public let action: () -> Void
+	
+	
+	@objc private func _invokeAction() {
+		self.action()
+	}
+	
+	public init(action: @escaping () -> Void) {
+		self.action = action
+	}
+	
+	public func perform(on thread: Thread) {
+		self.perform(#selector(_invokeAction), on: thread, with: nil, waitUntilDone: true, modes: [RunLoop.Mode.common.rawValue])
 	}
 	
 }
