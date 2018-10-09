@@ -98,7 +98,7 @@ public extension URLRequest {
 	}
 	
 	/// Structure representing a User Agent.
-	public struct UserAgent: RawRepresentable {
+	public struct UserAgent: RawRepresentable, Codable {
 		
 		/// Default user agent.
 		public static let `default`: UserAgent = macOS.Safari10

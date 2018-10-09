@@ -9,17 +9,17 @@
 import Foundation
 
 private extension XUPreferences.Key {
-	static let Language = XUPreferences.Key(rawValue: "XULanguage")
+	static let language = XUPreferences.Key(rawValue: "XULanguage")
 }
 
 private extension XUPreferences {
 	
 	var languageIdentifier: String? {
 		get {
-			return self.value(for: .Language)
+			return self.value(for: .language)
 		}
 		nonmutating set {
-			self.set(value: newValue, forKey: .Language)
+			self.set(value: newValue, forKey: .language)
 		}
 	}
 	
@@ -34,20 +34,6 @@ public protocol XULocalizableUIElement {
 	
 }
 
-
-/// Returns the identifier of current localization.
-@inline(__always)
-@available(*, deprecated, renamed: "XULocalizationCenter.shared.localizationIdentifier(for:)")
-public func XUCurrentLocalizationIdentifier(for bundle: Bundle) -> String {
-	return XULocalizationCenter.shared.localizationIdentifier(for: bundle)
-}
-
-/// Sets the language identifier as the default langauge.
-@inline(__always)
-@available(*, deprecated, renamed: "XULocalizationCenter.shared.setCurrentLocalizationIdentifier(_:)")
-public func XUSetCurrentLocalizationLanguageIdentifier(_ identifier: String) {
-	XULocalizationCenter.shared.setCurrentLocalizationIdentifier(identifier)
-}
 
 /// Returns a localized string.
 @inline(__always)
@@ -78,19 +64,13 @@ public func XULocalizedString(_ key: String, withFormatValues values: [String : 
 	return XULocalizationCenter.shared.localizedString(key, withValues: values)
 }
 
-@available(*, deprecated, renamed: "XULocalizedString(_:withFormatValues:)")
-public func XULocalizedStringWithFormatValues(_ key: String, andValues values: [String : Any]) -> String {
-	return XULocalizedString(key, withFormatValues: values)
-}
-
-
 /// This class contains all the necessary methods for localization. You should,
 /// however, use the global functions instead, this class is mostly for encapsulation
 /// as well as allowing access from Objective-C.
 public final class XULocalizationCenter {
 	
 	/// Shared instance.
-	public static let shared = XULocalizationCenter()
+	public static let shared: XULocalizationCenter = XULocalizationCenter()
 
 	/// Cached identifiers
 	private var _cachedLanguageIdentifiers: [Bundle : String] = [:]
@@ -163,7 +143,7 @@ public final class XULocalizationCenter {
 			for language in languages {
 				if let identifier = self._identifierFromComposedIdentifier(language, inBundle: bundle) {
 					_lock.perform {
-//						self._cachedLanguageIdentifiers[bundle] = identifier
+						self._cachedLanguageIdentifiers[bundle] = identifier
 					}
 					return identifier
 				}
