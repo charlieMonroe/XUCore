@@ -25,5 +25,11 @@ public extension NSMenuItem {
 		self.init(title: title, action: nil, keyEquivalent: "")
 	}
 	
+	/// Convenience initializer that takes `target` instead of `keyEquivalent`.
+	public convenience init(title: String, target: AnyObject?, action: Selector?) {
+		self.init(title: title, action: action, keyEquivalent: "")
+		self.target = target
+	}
+	
 }
 

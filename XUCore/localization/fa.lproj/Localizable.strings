@@ -1,30 +1,30 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"1 hour" = "1 ساعت";
-"1 minute" = "1 دقیقه";
-"1 second" = "1 ثانیه";
+"1 hour" = "۱ ساعت";
+"1 minute" = "۱ دقیقه";
+"1 second" = "۱ ثانیه";
 "Unknown error." = "خطای ناشناخته.";
 
-"OK" = "OK";
+"OK" = "تایید";
 "Cancel" = "لغو";
 
-"Failed to parse CSV file." = "تجزیه فایل CSV ناموفق.";
+"Failed to parse CSV file." = "تجزیه و تحلیل فایل CSV ناموفق بود";
 
 "Send Report" = "ارسال گزارش";
 "Privacy Information..." = "اطلاعات حریم خصوصی ...";
 "%AppName% has encountered a problem." = "%AppName% مشکلی را تجربه کرده است.";
-"%AppName% will terminate after sending the report." = "%AppName% بعد از ارسال گزارش خاتمه خواهد یافت.";
+"%AppName% will terminate after sending the report." = "%AppName% پس از ارسال گزارش بسته خواهد شد.";
 "Report to be sent:" = "گزارش ارسال می شود:";
 "Your Email:" = "ایمیل شما:";
 "Description:" = "توضیحات:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "لطفا، زمانی که این استثنا رخ داده است را شرح دهید و مراحل چگونگی تولید مشکل را در صورت امکان ارائه دهید. آدرس ایمیل خود را در زیر وارد کنید - به شما اطلاع خواهیم داد که چه زمانی مشکل برطرف خواهد شد یا ممکن است درباره برخی جزئیات مربوط به این مشکل از شما سوال کند. آدرس ایمیل شما به هیچ پایگاه داده جمع آوری نخواهد شد و شما هیچ ایمیل ناخواسته دریافت نخواهید کرد.\n\n با ارسال این گزارش شما به ما کمک می کنید تا این نرم افزار را بهبود ببخشیم. متشکرم!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "لطفا، زمانی که این استثنا رخ داده است را شرح دهید و مراحل چگونگی تولید مشکل را در صورت امکان ارائه دهید. آدرس ایمیل خود را در زیر وارد کنید - به شما اطلاع خواهیم داد که چه زمانی مشکل برطرف خواهد شد یا ممکن است درباره برخی جزئیات مربوط به این مشکل از شما سوال کند. آدرس ایمیل شما در هیچ پایگاه داده جمع آوری نخواهد شد و شما هیچ ایمیل ناخواسته دریافت نخواهید کرد.\n\n با ارسال این گزارش شما به ما کمک می کنید تا این نرم افزار را بهبود ببخشیم. متشکرم!";
 
 "Report Problem" = "مشکل را گزارش بدهید";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "ما بازخورد شما را ارزیابی می کنیم و نمی خواهیم اطلاعاتی ناخواسته را جمع آوری کنیم. آدرس ایمیل شما هرگز ذخیره نخواهد شد و فقط برای اطلاع شما هنگامی که این مسئله ممکن است برطرف شود یا زمانی که ما برای اطلاعات بیشتر به منظور حل این مشکل نیاز داریم.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "ما بازخورد شما را ارج می نهیم و نمی خواهیم اطلاعاتی ناخواسته را جمع آوری کنیم. آدرس ایمیل شما هرگز ذخیره نخواهد شد و فقط برای اطلاع رسانی به شما هنگامی که این مسئله ممکن است برطرف شود و یا زمانی که ما برای حل این مشکل به اطلاعات بیشتر نیاز داریم استفاده خواهد شد.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "فقط اطلاعات زیر ارسال خواهد شد: \n• توضیحات ارائه شده. \n• اطلاعات استثنایی زیر. \n• نسخه این برنامه. \n• نسخه سیستم شما (سیستم عامل). \n• مدل رایانه شما (بدون آدرس مک یا اطلاعات مشابهی که می تواند رایانه شما را شناسایی کند).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "فقط اطلاعات زیر ارسال خواهد شد: \n• توضیحات ارائه شده. \n• اطلاعات خطای زیر. \n• نسخه این برنامه. \n• نسخه سیستم شما (سیستم عامل). \n• مدل رایانه شما (بدون آدرس مک یا اطلاعات مشابهی که می تواند رایانه شما را شناسایی کند).";
 
 "Could not post your report." = "گزارش شما نمیتواند ارسال شود.";
 "Check your Internet connection and try again." = "اتصال اینترنت خود را بررسی کنید و دوباره امتحان کنید.";
@@ -81,7 +81,7 @@
 "Can't find synchronization folder for document %@." = "پوشه همگام سازی برای سند %@ یافت نشد.";
 "Can't find synchronization folder for computer %@." = "پوشه همگام سازی برای رایانه %@ یافت نشد";
 "Can't find sync folder for document %@." = "پوشه همگام سازی برای سند %@ یافت نشد.";
-"%@ couldn't finish synchronization in the background." = "%@ نمی تواند هماهنگ سازی را در پس زمینه انجام دهد.";
+"%@ couldn't finish synchronization in the background." = "%@ نمی تواند هماهنگ سازی را در پس زمینه به اتمام برساند.";
 "Please switch back to %@ so that the synchronization can finish." = "لطفا به %@ برگردید تا هماهنگ سازی به پایان برسد.";
 
 /// XUSyncEngine - 6/20/2016 changes
@@ -110,19 +110,19 @@
 "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) در صورتی که این نخستین ورودی خطایابی شما نیست، لطفا پاک کردن لاگ اشکال زدایی  را از منوی اشکال زدایی انتخاب کنید. \n2) در منوی اشکال زدایی، مطمئن شوید که رفع اشکال فعال است. \n3)کاری که با آن به مشکل میخورید را انجام دهید. \n4) در منوی اشکال زدایی، خاموش رفع اشکال را خاموش کنید. \n5) در منوی اشکال زدایی، نمایش لاگ در فایندر را انتخاب کنید. این فایل ورودی را در فایندر را انتخاب می کند و می توانید به راحتی آن را برای من ارسال کنید. لطفا فایل را به ایمیل الصاق کنید تا از کپی کردن اطلاعات استفاده کنید. \n\n فایل ورودی حاوی اطلاعات شخصی نیست که با باز کردن فایل ورودی تایید می شود (یک فایل متنی ساده). اگر برخی از داده ها را محرمانه یا شخصی در نظر بگیرید، لطفا آنها را با چیزی که می تواند به آسانی به عنوان نگهدارنده شناسایی شود (مثلا XXXXXXXX) جایگزین کنید و به من اطلاع دهید که فایل log را تغییر داده اید.";
 
 /// 8/23/2016+
-"The document could not be downloaded at this moment." = "این سند نمیتواند در این لحظه دانلود شود";
-"Log Current Application State" = "به برنامه وارد شوید";
+"The document could not be downloaded at this moment." = " سند نمیتواند در این لحظه دانلود شود";
+"Log Current Application State" = "لاگ گذاری وضعیت فعلی نرم افزار";
 
 /// 9/28/2016+
 
 // Beta testing related.
 "This beta build will expire in less than an hour." = "این ساخت بتا در کمتر از یک ساعت منقضی خواهد شد.";
-"Please update your copy of this beta build." = "لطفا کپی خود را از این بتا بسازید.";
+"Please update your copy of this beta build." = "لطفا کپی خود را از این بتا بروز رسانی کنید.";
 
 // Preferences.
-"All Preferences" = "همه تنظیمات";
+"All Preferences" = "همه ویژگی ها";
 "Show All" = "نمایش همه";
-"Preferences" = "تنظیمات";
+"Preferences" = "ویژگی ها";
 
 /// 12/21/2016+
 
@@ -134,8 +134,8 @@
 "Select..." = "انتخاب...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "اطلاعات همگام سازی شده دریافت شد.";
+"Copy Current Application State" = "کپی وضعیت فعلی نرم افزار";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "کپی شد";

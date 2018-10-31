@@ -34,6 +34,13 @@ public struct XUViewAnimation<T: __XUBridgedView> {
 	
 }
 
+public struct XUViewAnimationDuration {
+	
+	/// Duration for hideWithFadeOut and showWithFadeIn.
+	public static let fadeAnimationDuration: TimeInterval = 0.5
+
+}
+
 public extension __XUBridgedView {
 	
 	/// Returns an animation structure that gathers some animations. Ideally,
@@ -87,7 +94,7 @@ public extension XUViewAnimation {
 	
 	#if os(macOS)
 	private func _animateAlphaUsingTimer(from sourceAlpha: CGFloat, to targetAlpha: CGFloat, completion: (() -> Void)? = nil) {
-		let animationDuration: TimeInterval = 0.5
+		let animationDuration: TimeInterval = XUViewAnimationDuration.fadeAnimationDuration
 		let targetFPS = 30.0
 		let step = animationDuration / targetFPS
 		let numberOfSteps = Int(animationDuration * targetFPS)
@@ -160,7 +167,7 @@ public extension XUViewAnimation {
 				})
 			})
 		#else
-			UIView.animate(withDuration: 0.25, animations: {
+			UIView.animate(withDuration: XUViewAnimationDuration.fadeAnimationDuration, animations: {
 				self.views.forEach({ $0.alpha = 0.0 })
 			}, completion: { _ in
 				self.views.forEach({
@@ -207,7 +214,7 @@ public extension XUViewAnimation {
 				$0.isHidden = false
 			})
 		
-			UIView.animate(withDuration: 0.25, animations: {
+			UIView.animate(withDuration: XUViewAnimationDuration.fadeAnimationDuration, animations: {
 				self.views.forEach({ $0.alpha = 1.0 })
 			})
 		#endif

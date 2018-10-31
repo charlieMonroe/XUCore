@@ -18,6 +18,14 @@ public extension FileManager {
 			return try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 		}
 		
+		/// Returns a temporary directory. It automatically appends the bundle identifier
+		/// to the basic temp directory and makes sure the folder exists.
+		public static var temporaryDirectory: URL {
+			let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(Bundle.main.bundleIdentifier!)
+			FileManager.default.createDirectory(at: url)
+			return url
+		}
+		
 	}
 	
 	public func contentsOfDirectory(at url: URL) -> [URL] {

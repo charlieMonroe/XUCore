@@ -32,6 +32,10 @@ public extension NSView {
 		return self._enclosingView()
 	}
 	
+	public func enclosingView<T: NSView>(ofType type: T.Type) -> T? {
+		return self._enclosingView()
+	}
+	
 	/// Sets enabled on subviews.
 	@objc public func setDeepEnabled(_ flag: Bool) {
 		for view in self.subviews {

@@ -229,18 +229,13 @@ public extension Array {
 			return
 		}
 		
-		var targetIndex = toIndex
-		if targetIndex >= fromIndex {
-			targetIndex -= 1
-		}
-		
 		let obj = self[fromIndex]
 		self.remove(at: fromIndex)
 		
-		if targetIndex >= self.count {
+		if toIndex >= self.count {
 			self.append(obj)
 		} else {
-			self.insert(obj, at: targetIndex)
+			self.insert(obj, at: toIndex)
 		}
 	}
 	

@@ -19,6 +19,21 @@ public extension HTTPCookie {
 		return true
 	}
 	
+	/// Convenience init. It takes the domain from the URL. If path is not specified,
+	/// a "/" is used. Returns nil if the url's domain is nil.
+	public convenience init?(url: URL, path: String = "/", name: String, value: String) {
+		guard let host = url.host else {
+			return nil
+		}
+		
+		self.init(domain: host, path: path, name: name, value: value)
+	}
+	
+	/// Convenience init.
+	public convenience init?(domain: String, path: String = "/", name: String, value: String) {
+		self.init(properties: [.name: name, .value: value, .path: path, .domain: domain])
+	}
+	
 }
 
 

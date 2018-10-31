@@ -13,7 +13,7 @@ class URLTests: XCTestCase {
 	
 	func testAppendingQuery() {
 		let url = URL(string: "http://apple.com/")!
-		let updatedURL = url.appendingQuery([
+		let updatedURL = url.updatingQuery(to: [
 			"c": "http://"
 		])
 		

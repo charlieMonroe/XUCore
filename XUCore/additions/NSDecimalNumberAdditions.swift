@@ -66,6 +66,19 @@ public func /=(lhs: inout NSDecimalNumber, rhs: Double) {
 	lhs = lhs / rhs
 }
 
+public func +=(lhs: inout NSDecimalNumber, rhs: Int) {
+	lhs = lhs + rhs
+}
+public func -=(lhs: inout NSDecimalNumber, rhs: Int) {
+	lhs = lhs - rhs
+}
+public func *=(lhs: inout NSDecimalNumber, rhs: Int) {
+	lhs = lhs * rhs
+}
+public func /=(lhs: inout NSDecimalNumber, rhs: Int) {
+	lhs = lhs / rhs
+}
+
 public func +(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
 	return lhs.adding(rhs)
 }
@@ -80,17 +93,31 @@ public func /(lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
 }
 
 public func +(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.adding(NSDecimalNumber(value: rhs as Double))
+	return lhs.adding(NSDecimalNumber(value: rhs))
 }
 public func -(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.subtracting(NSDecimalNumber(value: rhs as Double))
+	return lhs.subtracting(NSDecimalNumber(value: rhs))
 }
 public func *(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.multiplying(by: NSDecimalNumber(value: rhs as Double))
+	return lhs.multiplying(by: NSDecimalNumber(value: rhs))
 }
 public func /(lhs: NSDecimalNumber, rhs: Double) -> NSDecimalNumber {
-	return lhs.dividing(by: NSDecimalNumber(value: rhs as Double))
+	return lhs.dividing(by: NSDecimalNumber(value: rhs))
 }
+
+public func +(lhs: NSDecimalNumber, rhs: Int) -> NSDecimalNumber {
+	return lhs.adding(NSDecimalNumber(value: rhs))
+}
+public func -(lhs: NSDecimalNumber, rhs: Int) -> NSDecimalNumber {
+	return lhs.subtracting(NSDecimalNumber(value: rhs))
+}
+public func *(lhs: NSDecimalNumber, rhs: Int) -> NSDecimalNumber {
+	return lhs.multiplying(by: NSDecimalNumber(value: rhs))
+}
+public func /(lhs: NSDecimalNumber, rhs: Int) -> NSDecimalNumber {
+	return lhs.dividing(by: NSDecimalNumber(value: rhs))
+}
+
 
 public extension NSDecimalNumber {
 	

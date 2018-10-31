@@ -26,9 +26,17 @@ open class XUAutocollapsingView: __XUBridgedView {
 		}
 		
 		if hidden {
+			if constraint.constant == 0.0 {
+				return
+			}
+			
 			_originalHeight = constraint.constant
 			constraint.constant = 0.0
 		} else {
+			if constraint.constant == _originalHeight {
+				return
+			}
+			
 			constraint.constant = _originalHeight
 		}
 		

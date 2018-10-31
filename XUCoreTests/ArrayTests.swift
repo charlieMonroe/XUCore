@@ -35,5 +35,24 @@ class ArrayTests: XCTestCase {
 		XCTAssert([1, 2, 3, 4, 5].splitIntoChunks(ofSize: 2) == ([[1, 2], [3, 4], [5]] as [[Int]]))
 	}
 	
+	func testMemberMove() {
+		var arr = [1, 2, 3, 4, 5]
+		arr.move(at: 0, to: 0)
+		
+		XCTAssertEqual(arr, [1, 2, 3, 4, 5])
+		
+		arr.move(at: 0, to: 1)
+		XCTAssertEqual(arr, [2, 1, 3, 4, 5])
+		
+		arr.move(at: 1, to: 0)
+		XCTAssertEqual(arr, [1, 2, 3, 4, 5])
+		
+		arr.move(at: 4, to: 0)
+		XCTAssertEqual(arr, [5, 1, 2, 3, 4])
+		
+		arr.move(at: 0, to: 4)
+		XCTAssertEqual(arr, [1, 2, 3, 4, 5])
+	}
+	
 }
 

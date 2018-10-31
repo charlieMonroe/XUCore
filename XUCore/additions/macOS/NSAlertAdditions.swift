@@ -160,8 +160,9 @@ public extension NSAlert {
 	/// Ensures that the alert is run on main thread. If current thread isn't main,
 	/// the thread is blocked until the alert is dismissed.
 	@discardableResult
+	@available(*, deprecated, message: "You should no longer create NSAlert on non-main thread.")
 	public func runModalOnMainThread() -> NSApplication.ModalResponse {
-		var result: NSApplication.ModalResponse = NSApplication.ModalResponse.alertFirstButtonReturn
+		var result: NSApplication.ModalResponse = .alertFirstButtonReturn
 		DispatchQueue.main.syncOrNow(execute: { () -> Void in
 			result = self.runModal()
 		})
@@ -175,7 +176,7 @@ public extension NSAlert {
 	public func runModal(withTextField initialValue: String, secure: Bool = false) -> String? {
 		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: secure)
 		
-		if !self._isDefaultButton(self.runModalOnMainThread()) {
+		if !self._isDefaultButton(self.runModal()) {
 			return nil // Cancelled
 		}
 		

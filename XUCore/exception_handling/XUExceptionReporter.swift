@@ -53,6 +53,11 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			reporter._reporterWindow.center()
 			reporter._reporterWindow.makeKeyAndOrderFront(nil)
 			
+			NSAccessibility.post(element: reporter._reporterWindow, notification: .announcementRequested, userInfo: [
+				NSAccessibility.NotificationUserInfoKey.announcement: XULocalizedFormattedString("%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.", ProcessInfo().processName, inBundle: XUCoreFramework.bundle),
+				NSAccessibility.NotificationUserInfoKey.priority: NSAccessibilityPriorityLevel.high.rawValue
+				])
+			
 			NSApp.runModal(for: reporter._reporterWindow)
 			
 			if XUPreferences.isApplicationUsingPreferences {

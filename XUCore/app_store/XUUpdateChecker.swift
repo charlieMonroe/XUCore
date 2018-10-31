@@ -21,7 +21,7 @@ import Foundation
 public final class XUUpdateChecker {
 	
 	/// Version struct. Assumes that the version is in format 1.2.3.
-	public struct Version: Comparable, Equatable {
+	public struct Version: Codable, Comparable, Equatable {
 		
 		public static func < (lhs: XUUpdateChecker.Version, rhs: XUUpdateChecker.Version) -> Bool {
 			guard lhs.major == rhs.major else {
