@@ -21,7 +21,7 @@ public extension FileManager {
 		/// Returns a temporary directory. It automatically appends the bundle identifier
 		/// to the basic temp directory and makes sure the folder exists.
 		public static var temporaryDirectory: URL {
-			let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(Bundle.main.bundleIdentifier!)
+			let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(Bundle.main.bundleIdentifier ?? ProcessInfo().processName)
 			FileManager.default.createDirectory(at: url)
 			return url
 		}

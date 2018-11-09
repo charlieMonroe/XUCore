@@ -321,7 +321,7 @@ public class XUMessageCenter {
 		
 		if let blockedDate = XUPreferences.shared.appBlockedDate {
 			// We are more lenient now and give the user 24 hours to update
-			XULog("The app is bloacked.")
+			XULog("The app is blocked.")
 			if Date.timeIntervalSinceReferenceDate - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
 				return
 			}
@@ -371,7 +371,7 @@ public class XUMessageCenter {
 			
 			if message.id <= lastMessageID {
 				// Already seen it
-				XULog("Ignoring message \(message.id) as it's already been seen (last ID: \(lastMessageID).")
+				XULog("Ignoring message \(message.id) as it's already been seen (last ID: \(lastMessageID)).")
 				continue
 			}
 			
