@@ -43,6 +43,10 @@ import Cocoa
 	private func _updateLayer() {
 		self.wantsLayer = true
 		
+		if self.layer == nil {
+			self.layer = CALayer()
+		}
+		
 		self.layer!.backgroundColor = self.backgroundColor.cgColor
 		self.layer!.borderColor = self.borderColor.cgColor
 		self.layer!.borderWidth = CGFloat(self.borderWidth)
