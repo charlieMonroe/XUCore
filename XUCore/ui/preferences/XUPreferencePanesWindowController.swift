@@ -282,7 +282,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		let panes = preferencePanesWindowController.sections.map({ $0.paneControllers }).joined().sorted(by: { $0.paneName < $1.paneName })
 		
 		let menuItem = { () -> NSMenuItem in
-			let item = NSMenuItem(title: XULocalizedString("Show All"), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
+			let item = NSMenuItem(title: XULocalizedString("Show All", inBundle: XUCoreFramework.bundle), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
 			item.target = self
 			item.image = NSImage(named: NSImage.preferencesGeneralName)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
 			return item
@@ -299,8 +299,8 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		
 		_button.menu = menu
 		
-		_button.setAccessibilityTitle(XULocalizedString("Show All"))
-		_button.setAccessibilityLabel(XULocalizedString("Show All"))
+		_button.setAccessibilityTitle(XULocalizedString("Show All", inBundle: XUCoreFramework.bundle))
+		_button.setAccessibilityLabel(XULocalizedString("Show All", inBundle: XUCoreFramework.bundle))
 	}
 	
 	required init?(coder: NSCoder) {
