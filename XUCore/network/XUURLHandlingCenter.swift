@@ -19,6 +19,7 @@ public protocol XUURLHandler: AnyObject {
 /// This object handles opening of URLs on macOS. On macOS, NSApplicationDelegate
 /// doesn't get a -applicationShouldOpenURL: call, so we need to do this by adding
 /// and AppleEvent handler.
+@available(macOS, deprecated: 10.13, message: "On macOS 10.13 and later, the app delegate has a application(_:open:) callback.")
 public final class XUURLHandlingCenter {
 
 	/// Returns shared center.

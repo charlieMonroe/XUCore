@@ -107,7 +107,26 @@ public final class XUDebugLog {
 	}()
 	fileprivate static var _didCachePreferences = false
 	fileprivate static var _didRedirectToLogFile = false
-	fileprivate static var _lastLogTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
+	
+	private static var __lastLogTimeIntervalBacking: TimeInterval = Date.distantPast.timeIntervalSinceReferenceDate
+	private static var _logLock: NSRecursiveLock = NSRecursiveLock(name: "com.charliemonroe.XULog")
+	
+	fileprivate static var _lastLogTimeInterval: TimeInterval {
+		get {
+			_logLock.lock()
+			defer {
+				_logLock.unlock()
+			}
+			
+			return __lastLogTimeIntervalBacking
+		}
+		set {
+			_logLock.perform {
+				__lastLogTimeIntervalBacking = newValue
+			}
+		}
+	}
+	
 	fileprivate static var _logFile: UnsafeMutablePointer<FILE>?
 
 	/// Clears the log file.

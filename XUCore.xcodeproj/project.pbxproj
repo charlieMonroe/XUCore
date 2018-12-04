@@ -658,6 +658,8 @@
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
 		07A5940A20D126EB00429374 /* NumericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtensions.swift; sourceTree = "<group>"; };
+		07A7A04321B3C70A00F59DB9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		07A7A04421B3C70A00F59DB9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUOperationProgressWindowController.swift; path = controllers/XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XUOperationProgressWindowController.xib; path = controllers/XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
@@ -1605,6 +1607,7 @@
 				es,
 				fr,
 				ja,
+				uk,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -2046,6 +2049,7 @@
 				0703290B2021A2ED0074A8B6 /* es */,
 				07D14D2D207A694000914C4E /* fr */,
 				0783704A214A6AA300BE7B0B /* ja */,
+				07A7A04321B3C70A00F59DB9 /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2072,6 +2076,7 @@
 				07C18503219980720017A539 /* ar */,
 				07C18504219980720017A539 /* th */,
 				07C18505219980720017A539 /* sv */,
+				07A7A04421B3C70A00F59DB9 /* uk */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";
