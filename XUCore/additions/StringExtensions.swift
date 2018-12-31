@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(OSX)
+#if os(macOS)
 	import Cocoa
 #endif
 

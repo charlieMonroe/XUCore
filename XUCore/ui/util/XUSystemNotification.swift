@@ -293,7 +293,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 		image.lockFocus()
 		
 		NSColor.black.set()
-		NSBezierPath(roundedRect: CGRect(origin: CGPoint(), size: self.frame.size), xRadius: 15.0, yRadius: 15.0).fill()
+		NSBezierPath(roundedRect: CGRect(origin: .zero, size: self.frame.size), xRadius: 15.0, yRadius: 15.0).fill()
 		
 		image.unlockFocus()
 		self.visualEffectView.maskImage = image
@@ -320,12 +320,14 @@ internal class XUSystemNotificationWindow: NSWindow {
 		
 		self._updateVisualEffectViewMask()
 		
-		if XUAppSetup.isDarkModeEnabled {
+		if #available(macOS 10.14, *) {
+			self.visualEffectView.material = .hudWindow
+			self.messageField.textColor = .textColor
+		} else if XUAppSetup.isDarkModeEnabled {
 			self.visualEffectView.material = .dark
-			
-			self.messageField.textColor = NSColor.white
+			self.messageField.textColor = .white
 		} else {
-			if #available(OSX 10.11, *) {
+			if #available(macOS 10.11, *) {
 			    self.visualEffectView.material = .mediumLight
 			} else {
 			    self.visualEffectView.material = .light

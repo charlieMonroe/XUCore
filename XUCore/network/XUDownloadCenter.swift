@@ -40,7 +40,7 @@ open class XUDownloadCenter {
 		/// The download center did load some data, but it cannot be parsed as JSON.
 		case invalidJSONResponse
 		
-		#if os(OSX)
+		#if os(macOS)
 		/// The download center did load some data, but it cannot be parsed as XML.
 		case invalidXMLResponse
 		#endif
@@ -386,7 +386,7 @@ open class XUDownloadCenter {
 		})
 	}
 	
-	#if os(OSX)
+	#if os(macOS)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
 	public func downloadXMLDocument(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {

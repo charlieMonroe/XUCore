@@ -24,7 +24,7 @@ public enum XUDirection: Int {
 	case bottomToTop
 	case topToBottom
 	
-	#if os(OSX)
+	#if os(macOS)
 	
 	/// If the context is flipped, the opposite direction is returned for bottom/
 	/// top.
@@ -70,7 +70,7 @@ public enum XUDirection: Int {
 public extension __XUBezierPath {
 	
 	private func _addLine(to point: CGPoint) {
-		#if os(OSX)
+		#if os(macOS)
 			self.line(to: point)
 		#else
 			self.addLine(to: point)
@@ -81,7 +81,7 @@ public extension __XUBezierPath {
 		self.init()
 		
 		let correctDirection: XUDirection
-		#if os(OSX)
+		#if os(macOS)
 			correctDirection = direction.directionInCurrentGraphicsContext
 		#else
 			if direction.isVertical {

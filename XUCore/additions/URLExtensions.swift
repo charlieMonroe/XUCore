@@ -142,7 +142,7 @@ public extension URL {
 		}
 	}
 
-	#if os(OSX)
+	#if os(macOS)
 		/// Icon image for the file.
 		public var iconImage: NSImage? {
 			return self._resourceValue(forKey: .effectiveIconKey)

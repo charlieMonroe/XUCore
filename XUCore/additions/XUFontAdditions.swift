@@ -60,8 +60,8 @@ public enum XUFontWeight: Int {
 			case .black:
 				return UIFont.Weight.black.rawValue
 			}
-		#elseif os(OSX)
-			if #available(OSX 10.11, *) {
+		#elseif os(macOS)
+			if #available(macOS 10.11, *) {
 				switch self {
 				case .ultraLight:
 					return NSFont.Weight.ultraLight.rawValue
@@ -115,7 +115,7 @@ public extension XUFont {
 	/// should include all weights, the returned value is IUO, instead of a pure
 	/// optional.
 	public class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 			return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
 		} else {
 			if weight.rawValue <= XUFontWeight.regular.rawValue {

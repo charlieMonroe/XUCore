@@ -27,7 +27,7 @@ public extension XUDownloadCenter {
 			/// Pure HTTP proxy.
 			case http
 			
-			#if os(OSX)
+			#if os(macOS)
 			/// HTTPS proxy. Not tested on iOS at this point. Use with caution.
 			case https
 			
@@ -170,7 +170,7 @@ public extension XUDownloadCenter {
 		/// NSURLSessionConfiguration.connectionProxyDictionary.
 		public var urlSessionProxyDictionary: [String : Any] {
 			var dict: [String : Any] = [:]
-			#if os(OSX)
+			#if os(macOS)
 			switch self.proxyType {
 			case .http:
 				dict[kCFNetworkProxiesHTTPEnable as String] = true

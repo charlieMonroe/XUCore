@@ -271,7 +271,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	public override func layout() {
 		super.layout()
 		
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 			self.progressIndicator.frame = self.rectForCancelButton(whenCentered: false)
 		} else {
 			var frame = self.progressIndicator.frame

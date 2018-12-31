@@ -184,7 +184,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self.window!.title = XULocalizedString("Preferences", inBundle: XUCoreFramework.bundle)
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 			self.window!.addTitlebarAccessoryViewController(_titleViewController)
 		}
 		
@@ -270,7 +270,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		super.init(nibName: "_XUAllPanesButtonViewController", bundle: XUCoreFramework.bundle)
 		
 		self.fullScreenMinHeight = 48.0
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 			self.layoutAttribute = .left
 		} else {
 			self.layoutAttribute = .right
@@ -328,7 +328,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: XUCoreFramework.bundle)
 		
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 			self.layoutAttribute = .left
 		} else {
 			self.layoutAttribute = .right
@@ -336,7 +336,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		self.loadView() // Required so that _titleLabel is available
 		
-		if #available(OSX 10.11, *) {
+		if #available(macOS 10.11, *) {
 		} else {
 			_titleLabel.alignment = .right
 		}

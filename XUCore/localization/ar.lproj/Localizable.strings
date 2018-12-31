@@ -98,16 +98,16 @@
 "User cancelled the authorization." = "تم إلغاء عملية التحقيق من قبل المستخدم.";
 
 /// Debug Log Menu
-"Debug" = "Debug";
-"About Debug Log..." = "حول سجل الـDebug";
-"Debug Logging" = "Debug تسجيل";
+"Debug" = "التصحيح";
+"About Debug Log..." = "حول سجل التصحيح";
+"Debug Logging" = "تسجيل بيانات عملية التصحيح";
 "On" = "تشغيل";
 "Off" = "تعطيل";
-"Clear Debug Log" = "Clear Debug Log";
+"Clear Debug Log" = "مسح سجل التصحيح";
 "Show Log in Finder" = "عرض السجل في المجلد";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "debug log هو ملف نصي يحتوي على بعض التفاصيل التقنية حول ما يقوم @% بإجراءه في الخلفية. هذا الملف يساعدني على اجراء التصليحات للبرنامج بسرعة لانه يساعدني على الاطلاع على ما يجري. للحصول على الـ debug log، قم باتباع الخطوات التالية:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "(1 اذا لم تكن هذه هي المرة الاولى التي تقوم بها بإرسال الـ debug log، رجاءاً، قم بتحديد Clear Debug Log من قائمة Debug.\n2) في قائمة الـ Debug، تأكد من تفعيل خيار الـ Debug Logging.\n3) قم بإجراء اي مهمة التي تسبب حدوث المشكة.\n4) في قائمة الـ Debug، قم بإيقاف الـ Debug Logging.\n5) في قائمة الـ Debug، قم بإختيار “عرض السجل في الـ Finder” او “Shlow Log in Finder”. سيؤدي ذلك الاختيار الى تحديد السجل في الـ Finder و بالتالي يمكنك أرساله لي بسهولة. رجاءا قم بإرفاق الملف في البريد الالكتروني بدلا من نسخ و لصق البيانات.\n\nملف السجل لا يحتوي على اي معلومات شخصية ويمكنك التأكد من ذلك من خلال فتح ملف السجل (ملف نصي اعتيادي). أذا و جدت شيئاً تعتقد انه خصوصي او سري، رجاءا قم بإبدال تلك المعلومة بشيء يمكن تمييزه بسهولة (على سبيل المثال: XXXXXXXX) و أعلمني بأنك قمت بإجراء تعديل على ملف السجل (log file).";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "سجل التصحيح هو ملف نصي يحتوي على بعض التفاصيل التقنية حول ما يقوم @% بإجراءه في الخلفية. هذا الملف يساعدني على اجراء التصليحات للبرنامج بسرعة لانه يساعدني على الاطلاع على ما يجري. للحصول على سجل التصحيح، قم باتباع الخطوات التالية:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "(1 اذا لم تكن هذه هي المرة الاولى التي تقوم بها بإرسال سجل التصحيح، رجاءاً، قم بتحديد إمسح سجل التصحيح من قائمة التصحيح.\n2) في قائمة الـ Debug، تأكد من تفعيل خيار الـ Debug Logging.\n3) قم بإجراء اي مهمة التي تسبب حدوث المشكة.\n4) في قائمة الـ Debug، قم بإيقاف الـ Debug Logging.\n5) في قائمة الـ Debug، قم بإختيار “عرض السجل في الـ Finder” او “Shlow Log in Finder”. سيؤدي ذلك الاختيار الى تحديد السجل في الـ Finder و بالتالي يمكنك أرساله لي بسهولة. رجاءا قم بإرفاق الملف في البريد الالكتروني بدلا من نسخ و لصق البيانات.\n\nملف السجل لا يحتوي على اي معلومات شخصية ويمكنك التأكد من ذلك من خلال فتح ملف السجل (ملف نصي اعتيادي). أذا و جدت شيئاً تعتقد انه خصوصي او سري، رجاءا قم بإبدال تلك المعلومة بشيء يمكن تمييزه بسهولة (على سبيل المثال: XXXXXXXX) و أعلمني بأنك قمت بإجراء تعديل على ملف السجل (log file).";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "تعذر تحميل الملف الان.";
@@ -134,8 +134,8 @@
 "Select..." = "تحديد...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "يتُم تحميل بيانات المزامنة.";
+"Copy Current Application State" = "انسخ حالة التطبيق الحالية";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "تم النسخ";

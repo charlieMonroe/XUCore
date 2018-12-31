@@ -128,7 +128,7 @@
 
 // Search field with results.
 "No search results" = "Žádné výsledky vyhledávání";
-"%li search result" = "%li výsledky vyhledávání";
+"%li search results" = "%li search results";
 
 // Certificate view.
 "Select..." = "Vybrat...";

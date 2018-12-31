@@ -412,14 +412,14 @@ public final class XUOAuth2Client {
 		if let index = self.registeredClients.index(where: { $0 === client }) {
 			self.registeredClients.remove(at: index)
 			
-			#if os(OSX)
+			#if os(macOS)
 				XUURLHandlingCenter.shared.remove(handler: client)
 			#endif
 		}
 	}
 	
 	
-	#if os(OSX)
+	#if os(macOS)
 		/// Only non-nil during authentication.
 		private var _authorizationController: XUAuthorizationWebViewWindowController?
 	#else
@@ -469,7 +469,8 @@ public final class XUOAuth2Client {
 			return
 		}
 		
-		guard obj["token_type"] as? String == "bearer" else {
+		// Some responses include "Bearer" with capital "B".
+		guard (obj["token_type"] as? String)?.lowercased() == "bearer" else {
 			XULog("Token type is not bearer \(obj).")
 			
 			DispatchQueue.main.syncOrNow {
@@ -568,7 +569,7 @@ public final class XUOAuth2Client {
 		self.accounts += accountDicts.compactMap({ Account(client: self, andDictionary: $0) })
 	}
 	
-	#if os(OSX)
+	#if os(macOS)
 		public func startAccountAuthorization(withCompletionHandler completionHandler: ((AuthorizationResult) -> Void)?) {
 			XUURLHandlingCenter.shared.add(handler: self, forURLScheme: configuration.redirectionScheme)
 			
@@ -593,7 +594,7 @@ public final class XUOAuth2Client {
 	
 }
 
-#if os(OSX)
+#if os(macOS)
 	extension XUOAuth2Client: XUURLHandler {
 		
 		public func handlerShouldProcessURL(_ URL: URL) {

@@ -110,7 +110,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		
 		stateItems.append(self._createBinaryMD5sApplicationStateItem())
 		
-		#if os(OSX)
+		#if os(macOS)
 			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")
 			stateItems.append(XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)", requiresAdditionalTrailingNewLine: true))
 		#endif

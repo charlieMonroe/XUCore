@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(OSX)
+#if os(macOS)
 	import Cocoa
 #endif
 
@@ -188,7 +188,7 @@ public final class XUDebugLog {
 		return logFile
 	}
 	
-	#if os(OSX)
+	#if os(macOS)
 	
 	/// Menu that contains all the necessary menu items to deal with the debug
 	/// log. Use XUDebugLog.installDebugMenu() to install this menu into the
@@ -342,7 +342,7 @@ public final class XUDebugLog {
 	}
 #endif
 
-#if os(OSX)
+#if os(macOS)
 	
 	private let _actionHandler = _XUDebugLogActionHandler()
 	
