@@ -250,6 +250,11 @@ public extension String {
 			string = string.replacingOccurrences(of: "&\(occurrence)acute;", with: occurrence + "\u{0341}")
 		}
 		
+		let caronRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])caron;", andOptions: [])
+		for occurrence in self.allValues(of: "C", forRegex: caronRegex).distinct() {
+			string = string.replacingOccurrences(of: "&\(occurrence)caron;", with: occurrence + "\u{030C}")
+		}
+		
 		return string
 	}
 	

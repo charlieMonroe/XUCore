@@ -87,7 +87,7 @@ public final class XUAppScopeBookmarksManager {
 		
 			do {
 				var isStale: Bool = false
-				result = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+				result = try URL(resolvingBookmarkData: bookmarkData, options: [.withSecurityScope, .withoutMounting], relativeTo: nil, bookmarkDataIsStale: &isStale)
 			} catch let error {
 				XULog("Failed to resolve bookmark data for \(defaultsKey) - error \(error).")
 				result = nil

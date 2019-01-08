@@ -1,0 +1,141 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 jam";
+"1 minute" = "1 menit";
+"1 second" = "1 detik";
+"Unknown error." = "Kesalahan tak dikenal.";
+
+"OK" = "OK";
+"Cancel" = "Batal";
+
+"Failed to parse CSV file." = "Gagal mem-parsing berkas CSV.";
+
+"Send Report" = "Kirim Laporan";
+"Privacy Information..." = "Informasi Privasi...";
+"%AppName% has encountered a problem." = "%AppName% telah mengalami masalah.";
+"%AppName% will terminate after sending the report." = "%AppName% akan dimatikan setelah mengirim laporan.";
+"Report to be sent:" = "Laporan yang akan dikirim:";
+"Your Email:" = "Email Anda:";
+"Description:" = "Deskripsi:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Mohon, jelaskan situasi ketika pengecualian ini telah terjadi dan berikan langkah-langkah bagaimana mereproduksi masalah jika memungkinkan. Masukkan alamat email Anda di bawah ini - kami akan memberi tahu Anda saat masalah ini akan diperbaiki atau mungkin bertanya detail tentang pengecualian ini. Alamat email Anda tidak akan dikumpulkan ke dalam basis data apa pun dan Anda tidak akan menerima email yang tidak diinginkan.\n\nDengan mengirimkan laporan ini Anda akan membantu kami meningkatkan perangkat lunak ini. Terima kasih!";
+
+"Report Problem" = "Laporkan Masalah";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Kami menghargai umpan balik Anda dan tidak akan berani mengumpulkan informasi yang tidak diinginkan. Alamat email Anda tidak akan disimpan di mana pun dan hanya akan digunakan untuk memberi tahu Anda ketika masalah ini mungkin diperbaiki atau ketika kami membutuhkan informasi lebih lanjut untuk memperbaiki masalah ini.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Hanya informasi berikut yang akan dikirim:\n• Deskripsi yang Anda berikan.\n• Informasi pengecualian di bawah ini.\n• Versi aplikasi ini.\n• Versi sistem Anda (OS).\n• Model komputer Anda (tidak ada alamat MAC atau informasi serupa yang dapat mengidentifikasi komputer Anda).";
+
+"Could not post your report." = "Tidak dapat memposting laporan Anda.";
+"Check your Internet connection and try again." = "Periksa koneksi internet Anda dan coba lagi.";
+"Heh, nice try. Please, enter a valid email address." = "Heh, usaha yang bagus. Silakan isi alamat email.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Kami mungkin perlu menghubungi Anda untuk memperbaikinya. Kami tidak menggigit, kami tidak akan menjual alamat email kepada siapa pun atau menggunakannya dengan cara lain. Kami berjanji.";
+"You need to enter a valid email address." = "Anda harus memasukkan alamat email yang valid.";
+"We may need to get in touch with you in order to fix this." = "Kami mungkin perlu menghubungi Anda untuk memperbaikinya.";
+"Please, provide some details as to when this exception happened." = "Harap berikan beberapa detail kapan pengecualian ini terjadi.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Sertakan informasi tentang tugas yang sedang berlangsung dalam aplikasi, jika aplikasi berada di latar depan, atau latar belakang; jika Anda telah mengklik apa pun, dll. Mencoba mengetahui bug hanya dari laporan bisa jadi sulit dan tanpa informasi tambahan tidak mungkin.";
+"Thank you for the report!" = "Terimakasih atas laporan Anda!";
+"We'll fix it as soon as possible!" = "Kami akan memperbaikinya sesegera mungkin!";
+
+"Welcome to beta testing of %@." = "Selamat datang di pengetesan beta %@.";
+"This is the first time you run a beta build %@." = "Ini adalah pertama kalinya Anda menjalankan versi beta %@.";
+"This beta build of %@ has expired." = "Versi beta dari %@ ini telah kedaluwarsa.";
+"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Nikmati perangkat lunak kami! Jika Anda memiliki pertanyaan atau mengalami bug, jangan ragu untuk bertanya kepada kami di halaman dukungan kami %@";
+
+"Continue" = "Lanjutkan";
+"Purchase..." = "Beli...";
+"I'm Still Not Sure" = "Saya masih ragu";
+
+"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ tidak dapat terhubung ke Internet. Aplikasi akan keluar dalam satu jam.";
+"%@ requires connection to the Internet to continue the trial properly." = "%@ membutuhkan koneksi ke Internet untuk melanjutkan percobaan dengan benar.";
+"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Anda akan dibawa ke halaman tempat Anda bisa membeli salinannya. Jika Anda masih tidak yakin apakah %@ cocok untuk Anda dan memiliki beberapa pertanyaan, hubungi kami.%@";
+"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Terima kasih telah mencoba %@! Anda dapat menggunakannya untuk %li hari sekarang tanpa batasan apa pun. Setelah masa uji coba berakhir, Anda harus membeli salinan %@.";
+"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Terima kasih telah mencoba %@! Anda telah menggunakannya %li hari. Untuk terus menggunakan %@ Anda harus membeli salinan.";
+"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Terima kasih telah mencoba %@! Anda dapat menggunakannya untuk %i %@ sekarang tanpa batasan. Setelah masa uji coba berakhir, Anda harus membeli salinan %@.";
+"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Terima kasih telah mencoba %@! Anda telah menggunakannya untuk %i %@ sekarang. Untuk terus menggunakan %@ Anda harus membeli salinan.";
+"Working..." = "Bekerja...";
+
+"Progress" = "Progres";
+"Posted successfully" = "Berhasil diposting";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ akan terus bekerja 24 jam ke depan, setelah itu fungsinya akan diblokir. Perbarui %@ agar tetap berfungsi.";
+"Please download a new build." = "Silakan unduh versi baru.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Anda dapat tetap mengirim laporan, tetapi jika pesannya memang tidak dalam bahasa Inggris, saya tidak akan dapat memberi Anda dukungan penuh.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Pesan Anda mengandung karakter khusus yang biasanya menunjukkan bahwa pesan tersebut tidak ditulis dalam bahasa Inggris. Harap dicatat bahwa sementara %@ diterjemahkan ke dalam berbagai bahasa, dukungan diberikan hanya dalam bahasa Inggris. Terima kasih atas pengertian.";
+"%li hours" = "%li jam";
+"%li minutes" = "%li menit";
+"%li seconds" = "%li detik";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Tidak dapat menemukan dokumen seperti itu. Periksa kembali nanti, mungkin belum disinkronkan.";
+"Cannot open document metadata file." = "Tidak dapat membuka berkas metadata dokumen.";
+"Metadata file doesn't contain required information." = "Berkas metadata tidak mengandung informasi yang diperlukan.";
+"Synchronization is already in progress." = "Sinkronisasi sedang berlangsung.";
+"An upload operation is already in progress." = "Operasi unggahan sedang berlangsung.";
+"Could not save upload metadata." = "Tidak dapat menyimpan metadata unggahan.";
+"Cannot find entity named %@" = "Tidak menemukan entitas bernama %@";
+"Cannot find class named %@" = "Tidak  menemukan kelas bernama %@";
+"Cannot find entity with ID %@" = "Tidak menemukan entitas dengan ID %@";
+"Can't find synchronization folder for document %@." = "Tidak dapat menemukan folder sinkronisasi untuk dokumen %@.";
+"Can't find synchronization folder for computer %@." = "Tidak dapat menemukan folder sinkronisasi untuk komputer %@.";
+"Can't find sync folder for document %@." = "Tidak dapat menemukan folder sinkron untuk dokumen %@.";
+"%@ couldn't finish synchronization in the background." = "%@ tidak dapat menyelesaikan sinkronisasi di latar belakang.";
+"Please switch back to %@ so that the synchronization can finish." = "Harap kembali ke %@ agar sinkronisasi dapat selesai.";
+
+/// XUSyncEngine - 6/20/2016 changes
+"Could not read synchronization change data." = "Tidak dapat membaca sinkronisasi perubahan data.";
+"Could not copy synchronization change data to the cloud." = "Tidak dapat menyalin sinkronisasi perubahan data ke cloud.";
+"Failing to apply change sets." = "Gagal menerapkan set perubahan.";
+"Synchronization changes from computer %@ haven't been downloaded yet." = "Perubahan sinkronisasi dari komputer %@ belum diunduh.";
+
+/// XUOAuth2
+"Authentication" = "Otentikasi";
+"Server responded with unknown token type." = "Server merespons dengan jenis token yang tidak dikenal.";
+"Server provided invalid authorization response." = "Server memberikan respons otorisasi yang tidak valid.";
+"Server has redirected with invalid URL." = "Server telah dialihkan dengan URL yang tidak valid.";
+"User cancelled the authorization." = "Pengguna membatalkan otorisasi.";
+
+/// Debug Log Menu
+"Debug" = "Debug";
+"About Debug Log..." = "Tentang Log Debug...";
+"Debug Logging" = "Pencatatan Debug";
+"On" = "Hidup";
+"Off" = "Mati";
+"Clear Debug Log" = "Kosongkan Log Debug";
+"Show Log in Finder" = "Tampilkan Log di Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log adalah berkas teks yang berisi beberapa detail teknis tentang apa yang dilakukan %@ dibelakang. Ini cukup berguna bagi saya untuk memperbaiki hal-hal dengan cepat karena memungkinkan saya untuk melihat apa yang terjadi. Untuk mendapatkan log debug, ikuti langkah-langkah sederhana ini:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Jika ini bukan log debug pertama yang Anda kirim, pilih Hapus Log Debug dari menu Debug.\n2) Di menu Debug, pastikan bahwa Log Debug Aktif.\n3) Lakukan tugas apa pun yang Anda lakukan mengalami masalah.\n4) Di menu Debug, matikan pencatatan Debug.\n5) Di menu Debug, pilih Tampilkan Log di Finder. Ini memilih berkas log di Finder dan Anda dapat dengan mudah mengirimkannya kepada saya. Harap lampirkan berkas ke email daripada menyalin-menempelkan informasi.\n\nBerkas log tidak berisi data pribadi apa pun yang dapat diverifikasi dengan membuka berkas log (ini adalah berkas teks sederhana). Jika Anda menganggap beberapa data bersifat rahasia atau pribadi, harap ganti dengan sesuatu yang dapat dengan mudah diidentifikasi sebagai samaran (mis. XXXXXXXX) dan beri tahu saya bahwa Anda telah memodifikasi berkas log.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "Dokumen tidak dapat diunduh saat ini.";
+"Log Current Application State" = "Catat Status Aplikasi Saat Ini";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Versi beta ini akan kedaluwarsa dalam waktu kurang dari satu jam.";
+"Please update your copy of this beta build." = "Harap perbarui salinan versi beta ini.";
+
+// Preferences.
+"All Preferences" = "Semua Pengaturan";
+"Show All" = "Lihat Semua";
+"Preferences" = "Pengaturan";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Tidak ada hasil pencarian";
+"%li search results" = "%li hasil pencarian";
+
+// Certificate view.
+"Select..." = "Pilih...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Data sinkronisasi sedang diunduh.";
+"Copy Current Application State" = "Salin Keadaan Aplikasi Saat Ini";
+
+/// 11/12/2017+
+"Copied" = "Tersalin";
