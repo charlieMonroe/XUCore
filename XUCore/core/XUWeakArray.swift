@@ -21,24 +21,24 @@ public final class XUWeakReference<T: AnyObject> {
 	}
 }
 
-public struct XUWeakArray<T: AnyObject>: Sequence {
+public struct XUWeakArray<Element: AnyObject>: Sequence {
 	
-	typealias GeneratorType = XUWeakArrayGenerator<T>
+	typealias GeneratorType = XUWeakArrayGenerator<Element>
 
-	private var _innerArray: [XUWeakReference<T>] = []
+	private var _innerArray: [XUWeakReference<Element>] = []
 	
-	public mutating func append(_ value: T?) {
+	public mutating func append(_ value: Element?) {
 		_innerArray.append(XUWeakReference(objectValue: value))
 	}
 	
 	/// Gathers all non-nil values into an array.
-	public var allValues: [T] {
+	public var allValues: [Element] {
 		return _innerArray.compactMap({ $0.objectValue })
 	}
 	
 	/// Returns whether the array contains the object. The comparison is pointer
 	/// based.
-	public func contains(_ obj: T) -> Bool {
+	public func contains(_ obj: Element) -> Bool {
 		return _innerArray.contains(where: { $0.objectValue === obj })
 	}
 	
@@ -59,21 +59,21 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	}
 	
 	/// Returns the first item in the list, not checking for nil.
-	public var first: T? {
+	public var first: Element? {
 		return _innerArray.first?.objectValue
 	}
 	
 	/// Returns index of an object. The equality is always considered pointer-wise.
-	public func index(of obj: T) -> Int? {
+	public func index(of obj: Element) -> Int? {
 		return _innerArray.index(where: { $0.objectValue === obj })
 	}
 	
 	/// Returns the last item in the list, not checking for nil.
-	public var last: T? {
+	public var last: Element? {
 		return _innerArray.last?.objectValue
 	}
 	
-	public func makeIterator() -> XUWeakArrayGenerator<T> {
+	public func makeIterator() -> XUWeakArrayGenerator<Element> {
 		return XUWeakArrayGenerator(items: _innerArray.map({ $0.objectValue }))
 	}
 	
@@ -97,7 +97,7 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 		_innerArray.remove(at: index)
 	}
 	
-	public subscript(index: Int) -> T? {
+	public subscript(index: Int) -> Element? {
 		get {
 			return _innerArray[index].objectValue
 		}
@@ -111,20 +111,18 @@ public struct XUWeakArray<T: AnyObject>: Sequence {
 	}
 	
 	/// Initialize with values.
-	public init(values: [T]) {
+	public init(values: [Element]) {
 		_innerArray = values.map(XUWeakReference.init(objectValue:))
 	}
 	
 }
 
-public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
-	
-	public typealias Element = T
+public struct XUWeakArrayGenerator<Element: AnyObject>: IteratorProtocol {
 	
 	private var _index: Int = 0
-	private var _items: [T?]
+	private var _items: [Element?]
 	
-	mutating public func next() -> T? {
+	mutating public func next() -> Element? {
 		while _index < _items.count {
 			let next = _items[_index]
 			_index += 1
@@ -136,7 +134,7 @@ public struct XUWeakArrayGenerator<T: AnyObject>: IteratorProtocol {
 		return nil
 	}
 	
-	fileprivate init(items: [T?]) {
+	fileprivate init(items: [Element?]) {
 		self._items = items
 	}
 

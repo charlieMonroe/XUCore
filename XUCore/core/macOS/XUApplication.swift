@@ -131,7 +131,7 @@ open class XUApplication: NSApplication {
 			if keyCode == XUKeyCode.escape.rawValue || keyCode == XUKeyCode.enter.rawValue || keyCode == XUKeyCode.return.rawValue {
 				w.makeFirstResponder(w.nextResponder)
 				w.keyDown(with: theEvent)
-			}else if keyCode == 9 && theEvent.modifierFlags.contains(.command) {
+			} else if keyCode == 9 && theEvent.modifierFlags.contains(.command) {
 				// Command-V
 				if let textView = w.firstResponder as? NSTextView {
 					if NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string) != nil {
@@ -148,7 +148,22 @@ open class XUApplication: NSApplication {
 		}
 		
 		// Not modal
-		var windowIsEditingAField = self.mainWindow?.firstResponder?.isKind(of: NSTextView.self) ?? false
+		var windowIsEditingAField: Bool
+		if let textView = self.mainWindow?.firstResponder as? NSTextView {
+			windowIsEditingAField = true
+			
+			// Here is a nasty hack - as the Japanese input methods require usage
+			// of key arrows and return key, we can't handle those without breaking
+			// the input method. Unfortunately, I haven't found a better way to detect
+			// this other than this:
+			if let source = textView.inputContext?.selectedKeyboardInputSource, source.hasPrefix("com.apple.inputmethod.") {
+				super.sendEvent(theEvent)
+				return
+			}
+		} else {
+			windowIsEditingAField = false
+		}
+		
 		if _arrowKeyEventObserver != nil && _arrowKeyEventObserver!.observeEvenWhenEditing {
 			windowIsEditingAField = false
 		}

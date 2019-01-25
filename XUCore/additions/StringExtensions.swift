@@ -446,9 +446,11 @@ public extension String {
 		return firstLetter.uppercased() + restOfString
 	}
 
-	public var deletingLastCharacter: String {
+	/// Returns a string with the last character removed. Will trap in case
+	/// the string is empty.
+	public func deletingLastCharacter() -> String {
 		if self.isEmpty {
-			fatalError("Cannot delete last character from an empty string!")
+			XUFatalError("Cannot delete last character from an empty string!")
 		}
 
 		return String(self[..<self.index(before: self.endIndex)])
