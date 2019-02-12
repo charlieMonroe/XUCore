@@ -90,7 +90,7 @@ public struct XUPreferences {
 		return _shared != nil
 	}
 	
-	/// Returns the shared preferences.
+	/// Returns the shared preferences. This uses the standard suite.
 	public static var shared: XUPreferences {
 		if _shared == nil {
 			_shared = XUPreferences()
@@ -113,10 +113,14 @@ public struct XUPreferences {
 	/// to get the modified key.
 	public let keyModifier: (String) -> String
 	
+	/// User defaults associated with these preferences.
+	let userDefaults: UserDefaults
+	
 	/// Inits self and if is reflectable, dumps contents into the log. See the
 	/// `keyModifier`
-	public init(keyModifier: @escaping (String) -> String = { $0 }) {
+	public init(userDefaults: UserDefaults = .standard, keyModifier: @escaping (String) -> String = { $0 }) {
 		self.keyModifier = keyModifier
+		self.userDefaults = userDefaults
 	}
 	
 	/// Executes the block and calls synchronize on UserDefaults. This is the
@@ -126,7 +130,7 @@ public struct XUPreferences {
 	public func perform(andSynchronize block: (XUPreferences) -> ()) {
 		block(self)
 		
-		UserDefaults.standard.synchronize()
+		self.userDefaults.synchronize()
 	}
 	
 }
@@ -136,7 +140,7 @@ public extension XUPreferences {
 	
 	/// Fetches boolean for key.
 	func boolean(for key: Key, defaultValue: Bool = false) -> Bool {
-		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
+		guard let value = self.userDefaults.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
 			return defaultValue
 		}
 		return value.boolValue
@@ -165,7 +169,7 @@ public extension XUPreferences {
 		
 	/// Fetches integer for key.
 	func integer(for key: Key, defaultValue: Int = 0) -> Int {
-		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
+		guard let value = self.userDefaults.object(forKey: self.keyModifier(key.rawValue)) as? NSNumber else {
 			return defaultValue
 		}
 		return value.intValue
@@ -173,7 +177,7 @@ public extension XUPreferences {
 	
 	/// Fetches a raw representable for key.
 	func rawRepresentable<T: RawRepresentable>(for key: Key) -> T? {
-		guard let value = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T.RawValue else {
+		guard let value = self.userDefaults.object(forKey: self.keyModifier(key.rawValue)) as? T.RawValue else {
 			return nil
 		}
 		
@@ -187,12 +191,12 @@ public extension XUPreferences {
 	
 	/// Fetches a value for key.
 	func value<T>(for key: Key) -> T? {
-		return UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T
+		return self.userDefaults.object(forKey: self.keyModifier(key.rawValue)) as? T
 	}
 	
 	/// Fetches a value with default value for key.
 	func value<T>(for key: Key, defaultValue: T) -> T {
-		guard let obj = UserDefaults.standard.object(forKey: self.keyModifier(key.rawValue)) as? T else  {
+		guard let obj = self.userDefaults.object(forKey: self.keyModifier(key.rawValue)) as? T else  {
 			return defaultValue
 		}
 		return obj
@@ -214,12 +218,12 @@ public extension XUPreferences {
 	
 	/// Sets boolean for key.
 	func set(boolean value: Bool, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
+		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 	}
 	
 	/// Sets integer for key.
 	func set(integer value: Int, forKey key: Key) {
-		UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
+		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 	}
 	
 	func set<T: RawRepresentable>(rawRepresentable: T, for key: Key) {
@@ -230,9 +234,9 @@ public extension XUPreferences {
 	/// so the value needs to be ObjC compatible.
 	func set(value: Any?, forKey key: Key) {
 		if value == nil {
-			UserDefaults.standard.removeObject(forKey: self.keyModifier(key.rawValue))
+			self.userDefaults.removeObject(forKey: self.keyModifier(key.rawValue))
 		} else {
-			UserDefaults.standard.set(value, forKey: self.keyModifier(key.rawValue))
+			self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		}
 	}
 	
