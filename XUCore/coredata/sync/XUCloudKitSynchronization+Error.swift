@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension, unavailable)
 extension XUCloudKitSynchronization {
 	
 	/// Error domain used.

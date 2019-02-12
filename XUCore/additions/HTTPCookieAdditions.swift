@@ -11,7 +11,7 @@ import Foundation
 public extension HTTPCookie {
 	
 	/// Returns true if the cookie has an expiresDate and it's in the past.
-	public var isExpired: Bool {
+	var isExpired: Bool {
 		guard let date = self.expiresDate, date.isPast else {
 			return false
 		}
@@ -21,7 +21,7 @@ public extension HTTPCookie {
 	
 	/// Convenience init. It takes the domain from the URL. If path is not specified,
 	/// a "/" is used. Returns nil if the url's domain is nil.
-	public convenience init?(url: URL, path: String = "/", name: String, value: String) {
+	convenience init?(url: URL, path: String = "/", name: String, value: String) {
 		guard let host = url.host else {
 			return nil
 		}
@@ -30,7 +30,7 @@ public extension HTTPCookie {
 	}
 	
 	/// Convenience init.
-	public convenience init?(domain: String, path: String = "/", name: String, value: String) {
+	convenience init?(domain: String, path: String = "/", name: String, value: String) {
 		self.init(properties: [.name: name, .value: value, .path: path, .domain: domain])
 	}
 	
@@ -40,7 +40,7 @@ public extension HTTPCookie {
 public extension HTTPCookieStorage {
 	
 	/// Looks through cookies returned by cookies(for:) for a cookie named "name".
-	public func cookie(named name: String, for url: URL) -> HTTPCookie? {
+	func cookie(named name: String, for url: URL) -> HTTPCookie? {
 		guard let cookies = self.cookies(for: url) else {
 			return nil
 		}
@@ -49,7 +49,7 @@ public extension HTTPCookieStorage {
 	}
 
 	/// Removes all cookies for a particular URL.
-	public func removeAllCookies(for url: URL) {
+	func removeAllCookies(for url: URL) {
 		guard let cookies = self.cookies(for: url) else {
 			return
 		}

@@ -32,14 +32,14 @@ public func += <KeyType, ValueType> (left: inout Dictionary<KeyType, ValueType>,
 public extension Dictionary {
 	
 	/// A convenience method for retrieving an array of dictionaries
-	public func arrayOfDictionaries(forKeyPath keyPath: String) -> [XUJSONDictionary]? {
+	func arrayOfDictionaries(forKeyPath keyPath: String) -> [XUJSONDictionary]? {
 		return self.firstNonNilValue(forKeyPaths: keyPath)
 	}
 	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
 	/// If the value is NSNumber, boolean value of it is returned. False is
 	/// returned otherwise.
-	public func boolean(forKey key: Key) -> Bool {
+	func boolean(forKey key: Key) -> Bool {
 		if let boolValue = self[key] as? Bool {
 			return boolValue
 		}
@@ -52,7 +52,7 @@ public extension Dictionary {
 	}
 	
 	/// See booleanForKey. Except here the argument is keyPath.
-	public func boolean(forKeyPath keyPath: String) -> Bool {
+	func boolean(forKeyPath keyPath: String) -> Bool {
 		guard let value = self.value(forKeyPath: keyPath) else {
 			return false
 		}
@@ -69,7 +69,7 @@ public extension Dictionary {
 	}
 	
 	/// A convenience method for retrieving dictionaries.
-	public func dictionary(forKeyPath keyPath: String) -> XUJSONDictionary? {
+	func dictionary(forKeyPath keyPath: String) -> XUJSONDictionary? {
 		return self.value(forKeyPath: keyPath) as? XUJSONDictionary
 	}
 		
@@ -77,7 +77,7 @@ public extension Dictionary {
 	/// the key in the dictionary. Unfortunately, getting an optional Double? sucks
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
 	/// 0 is fine when the value cannot be determined.
-	public func double(forKey key: Key) -> Double {
+	func double(forKey key: Key) -> Double {
 		if let double = self[key] as? Double {
 			return double
 		}
@@ -97,7 +97,7 @@ public extension Dictionary {
 	/// the key in the dictionary. Unfortunately, getting an optional Double? sucks
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
 	/// 0 is fine when the value cannot be determined.
-	public func double(forKeyPath keyPath: String) -> Double {
+	func double(forKeyPath keyPath: String) -> Double {
 		guard let value = self.value(forKeyPath: keyPath) else {
 			return 0.0
 		}
@@ -120,48 +120,48 @@ public extension Dictionary {
 	
 	/// See value(forKeyPath:) - this method attempts to find the first
 	/// non-nil value of T.
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
+	func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
 	
 	/// See value(forKeyPath:) - this method attempts to find the first
 	/// non-nil value of T.
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
+	func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
 		return keyPaths.findMapped({ self.value(forKeyPath: $0) as? T })
 	}
 	
 	/// A convenience method for firstNonNilValue(forKeyPaths:) defaulting to Any.
-	public func firstNonNilValue(forKeyPaths keyPaths: String...) -> Any? {
+	func firstNonNilValue(forKeyPaths keyPaths: String...) -> Any? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
+	func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
 		return self.firstNonNilValue(forKeys: keys)
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
+	func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
 		return keys.findMapped({ self[$0] as? T })
 	}
 
 	/// Returns first non-nil string value for key paths.
-	public func firstNonNilString(forKeyPaths keyPaths: [String]) -> String? {
+	func firstNonNilString(forKeyPaths keyPaths: [String]) -> String? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil string value for key paths.
-	public func firstNonNilString(forKeyPaths keyPaths: String...) -> String? {
+	func firstNonNilString(forKeyPaths keyPaths: String...) -> String? {
 		return self.firstNonNilValue(forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil string value for keys.
-	public func firstNonNilString(forKeys keys: [Key]) -> String? {
+	func firstNonNilString(forKeys keys: [Key]) -> String? {
 		return self.firstNonNilValue(forKeys: keys)
 	}
 	
 	/// Returns first non-nil string value for keys.
-	public func firstNonNilString(forKeys keys: Key...) -> String? {
+	func firstNonNilString(forKeys keys: Key...) -> String? {
 		return self.firstNonNilValue(forKeys: keys)
 	}
 	
@@ -169,7 +169,7 @@ public extension Dictionary {
 	/// the key in the dictionary. Unfortunately, getting an optional UInt? sucks
 	/// when dealing with ObjC as well, since ObjC doesn't have optionals. So, simply
 	/// 0 is fine when the value cannot be determined.
-	public func integer(forKey key: Key) -> Int {
+	func integer(forKey key: Key) -> Int {
 		if let int = self[key] as? Int {
 			return int
 		}
@@ -186,7 +186,7 @@ public extension Dictionary {
 	}
 	
 	/// @see integerForKey.
-	public func integer(forKeyPath keyPath: String) -> Int {
+	func integer(forKeyPath keyPath: String) -> Int {
 		guard let obj = self.value(forKeyPath: keyPath) else {
 			return 0
 		}
@@ -209,14 +209,14 @@ public extension Dictionary {
 	/// Most of the time, you need to use value(forKeyPath:) for getting end nodes
 	/// in JSON dictionaries, which are strings. This method allows is
 	/// a convenience method that allows you to get the string without casting.
-	public func string(forKeyPath keyPath: String) -> String? {
+	func string(forKeyPath keyPath: String) -> String? {
 		return self.value(forKeyPath: keyPath) as? String
 	}
 	
 	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
 	/// percent encoding the value. If the value is not a String - description
 	/// is called on that object.
-	public var urlQueryString: String {
+	var urlQueryString: String {
 		var keyValuePairs: [String] = []
 		for (key, value) in self {
 			let stringKey = (key as? String) ?? "INVALID KEY-\(key)"
@@ -236,7 +236,7 @@ public extension Dictionary {
 	/// The keyPath isn't like in the rest of Cocoa dot-separated, but has the
 	/// following format: [key1][0][key2][key3]. XUCore will parse this and will
 	/// apply the keys on arrays and dictionaries seemlessly.
-	public func value(forKeyPath keyPath: String) -> Any? {
+	func value(forKeyPath keyPath: String) -> Any? {
 		let components = keyPath.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: "][")
 		
 		var obj: Any? = self

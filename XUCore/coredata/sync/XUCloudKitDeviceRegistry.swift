@@ -11,6 +11,7 @@ import Foundation
 
 /// Class that registers the device in iCloud as Synchronized Device. It also keeps
 /// the subscription.
+@available(iOSApplicationExtension, unavailable)
 internal class XUCloudKitDeviceRegistry {
 	
 	/// A subscription ID. Each document has its own subscription which is encoded

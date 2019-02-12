@@ -37,7 +37,7 @@ public extension XUPreferences {
 	}
 	
 	/// Indicates whether the previous launch did crash or not.
-	public internal(set) var lastLaunchDidCrash: Bool {
+	internal(set) var lastLaunchDidCrash: Bool {
 		get {
 			return self.boolean(for: .LastLaunchDidCrash)
 		}
@@ -47,7 +47,7 @@ public extension XUPreferences {
 	}
 	
 	/// Returns number of consecutive crashes.
-	public internal(set) var numberOfConsecutiveCrashes: Int {
+	internal(set) var numberOfConsecutiveCrashes: Int {
 		get {
 			return self.integer(for: .NumberOfConsecutiveCrashes)
 		}

@@ -154,7 +154,7 @@ public extension NSDecimalNumber {
 	}
 	
 	/// Returns an absolute value of the decimal number.
-	public var absoluteValue: NSDecimalNumber {
+	var absoluteValue: NSDecimalNumber {
 		if self.doubleValue < 0.0 {
 			return self * (-1.0)
 		}
@@ -163,42 +163,42 @@ public extension NSDecimalNumber {
 	}
 	
 	/// Returns a ceiled decimal number.
-	public var ceiled: NSDecimalNumber {
+	var ceiled: NSDecimalNumber {
 		return NSDecimalNumber(value: ceil(self.doubleValue))
 	}
 	
 	/// Returns the decimal part - e.g. 5.32 --> 0.32.
-	public var decimalPart: NSDecimalNumber {
+	var decimalPart: NSDecimalNumber {
 		return self - self.integralValue
 	}
 	
 	/// Returns number without the decimal part.
-	public var integralValue: NSDecimalNumber {
+	var integralValue: NSDecimalNumber {
 		return NSDecimalNumber(value: floor(self.doubleValue))
 	}
 	
 	/// Rounds the decimal number.
-	public var roundedDecimalNumber: NSDecimalNumber {
+	var roundedDecimalNumber: NSDecimalNumber {
 		return NSDecimalNumber(value: round(self.doubleValue))
 	}
 	
 	/// Returns whether this number is an integer, i.e. is the decimalPart is 0.0
-	public var isInteger: Bool {
+	var isInteger: Bool {
 		return self.decimalPart.doubleValue == 0.0
 	}
 	
 	/// Returns whether this number is less than 0.
-	public var isNegative: Bool {
+	var isNegative: Bool {
 		return self.doubleValue < 0.0
 	}
 	
 	/// Returns whether this number is more or equal to 0.
-	public var isPositive: Bool {
+	var isPositive: Bool {
 		return self.doubleValue >= 0.0
 	}
 	
 	/// Returns true is the current double value is 0.0
-	public var isZero: Bool {
+	var isZero: Bool {
 		return self.doubleValue == 0.0
 	}
 		

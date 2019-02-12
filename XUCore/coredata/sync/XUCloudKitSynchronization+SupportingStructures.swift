@@ -9,6 +9,7 @@
 import CloudKit
 import Foundation
 
+@available(iOSApplicationExtension, unavailable)
 extension XUCloudKitSynchronization {
 	
 	/// Structure defining the change set.

@@ -30,7 +30,7 @@ public protocol XUProgressableOperation: AnyObject {
 	/// The current step.
 	var currentStep: Int { get }
 	
-	/// Delegate.
+	/// Delegate. You can call it from any thread.
 	var delegate: XUProgressableOperationDelegate? { get set }
 	
 	/// Return the total number of steps.
@@ -89,8 +89,11 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	public func progressableOperationDidFinish(_ operation: XUProgressableOperation) {
-		DispatchQueue.main.syncOrNow { () -> Void in
-			self.window?.orderOut(nil)
+		DispatchQueue.main.syncOrNow {
+			if self.window!.isSheet {
+				self.window!.sheetParent?.endSheet(self.window!)
+			}
+			self.window!.close()
 		}
 	}
 	

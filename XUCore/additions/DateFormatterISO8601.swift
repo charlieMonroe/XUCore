@@ -48,7 +48,7 @@ public extension DateFormatter {
 	}()
 	
 	/// Returns true if the current locale places the month before day.
-	public static var isMonthBeforeDayInDateFormat: Bool {
+	static var isMonthBeforeDayInDateFormat: Bool {
 		get {
 			return DateFormatter._isMonthBeforeDayInDateFormat
 		}
@@ -59,7 +59,7 @@ public extension DateFormatter {
 public extension Date {
 	
 	/// Tries to parse the string as an ISO 8601 string.
-	public static func date(withISO8601 string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>? = nil) -> Date? {
+	static func date(withISO8601 string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>? = nil) -> Date? {
 		var date: AnyObject?
 		if !DateFormatter._ISO8601Formatter.getObjectValue(&date, for: string, errorDescription: error) {
 			DateFormatter._ISO8601FormatterWithoutTime.getObjectValue(&date, for: string, errorDescription: error)
@@ -69,7 +69,7 @@ public extension Date {
 	}
 	
 	/// Returns a formatted string with options.
-	public func iso8601FormattedString(withOptions options: XUISO8601Option) -> String {
+	func iso8601FormattedString(withOptions options: XUISO8601Option) -> String {
 		switch options {
 			case .withoutTime:
 				return DateFormatter._ISO8601FormatterWithoutTime.string(from: self)

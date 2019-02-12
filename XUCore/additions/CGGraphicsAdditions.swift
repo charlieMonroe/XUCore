@@ -17,33 +17,33 @@ public extension CGRect {
 	
 	/// Returns bottom half. Bottom by coordinates, doesn't take into account flipped
 	/// graphics context.
-	public var bottomHalf: CGRect {
+	var bottomHalf: CGRect {
 		return CGRect(x: self.minX, y: self.minY, width: self.width, height: self.height / 2.0)
 	}
 	
-	public var center: CGPoint {
+	var center: CGPoint {
 		return CGPoint(x: self.midX, y: self.midY)
 	}
 
 	/// Centers the rect so that self.center is the same as the returned value's.
-	public func centeringRectInSelf(_ rect: CGRect) -> CGRect {
+	func centeringRectInSelf(_ rect: CGRect) -> CGRect {
 		let origin = CGPoint(x: self.minX + (self.width - rect.width) / 2.0, y: self.minY + (self.height - rect.height) / 2.0)
 		return CGRect(origin: origin, size: rect.size)
 	}
 	
 	/// Returns max of self.width and self.height.
-	public var maxSize: CGFloat {
+	var maxSize: CGFloat {
 		return max(self.width, self.height)
 	}
 	
 	/// Returns min of self.width and self.height.
-	public var minSize: CGFloat {
+	var minSize: CGFloat {
 		return min(self.width, self.height)
 	}
 	
 	/// Returns top half. Top by coordinates, doesn't take into account flipped
 	/// graphics context.
-	public var topHalf: CGRect {
+	var topHalf: CGRect {
 		return CGRect(x: self.minX, y: self.midY, width: self.width, height: self.height / 2.0)
 	}
 
@@ -108,23 +108,23 @@ public func +=(_ lhs: inout CGSize, _ rhs: CGSize) {
 public extension CGSize {
 	
 	/// Creates a size with both width and height being set to dimension.
-	public init(dimension: CGFloat) {
+	init(dimension: CGFloat) {
 		self.init(width: dimension, height: dimension)
 	}
 	
 	/// Returns a copy of self that contains integral width and height.
-	public var integral: CGSize {
+	var integral: CGSize {
 		return CGSize(width: Int(self.width), height: Int(self.height))
 	}
 	
 	/// Returns true if both width and height is zero.
-	public var isEmpty: Bool {
+	var isEmpty: Bool {
 		return self.height.isZero && self.width.isZero
 	}
 	
 	/// Takes self and proportinally changes it to fit `otherSize`. If `allowScaleUp`
 	/// is true (default), smaller size will be enlarged.
-	public func fitting(into otherSize: CGSize, scalingUp: Bool = true) -> CGSize {
+	func fitting(into otherSize: CGSize, scalingUp: Bool = true) -> CGSize {
 		if !scalingUp && self.width < otherSize.width && self.height < otherSize.height {
 			// Don't scale up!
 			return self
@@ -140,7 +140,7 @@ public extension CGSize {
 	}
 	
 	@available(*, deprecated, renamed: "fitting(into:)")
-	public func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
+	func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
 		return self.fitting(into: otherSize)
 	}
 

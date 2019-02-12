@@ -114,7 +114,7 @@ public extension XUFont {
 	/// Returns system font of size with a particular weight. Since the system font
 	/// should include all weights, the returned value is IUO, instead of a pure
 	/// optional.
-	public class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
+	class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
 		if #available(macOS 10.11, *) {
 			return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
 		} else {
@@ -127,7 +127,7 @@ public extension XUFont {
 	}
 	
 	/// Returns the same font with bold trait.
-	public var boldFont: XUFont? {
+	var boldFont: XUFont? {
 		#if os(iOS)
 			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitBold)
 			return XUFont(descriptor: descriptor!, size: self.pointSize)
@@ -152,7 +152,7 @@ public extension XUFont {
 //	}
 	
 	/// Returns the same font with italic trait.
-	public var italicFont: XUFont? {
+	var italicFont: XUFont? {
 		#if os(iOS)
 			let descriptor = self.fontDescriptor.withSymbolicTraits(.traitItalic)
 			return XUFont(descriptor: descriptor!, size: self.pointSize)
@@ -165,13 +165,13 @@ public extension XUFont {
 	
 	/// Creates a Helvetica font. Automatically unwrapping the optional. Since
 	/// all sane systems have Helvetica installed, this is bound to work.
-	public convenience init(helveticaFontOfSize size: CGFloat) {
+	convenience init(helveticaFontOfSize size: CGFloat) {
 		self.init(name: "Helvetica", size: size)!
 	}
 	
 	/// Creates a Helvetica Bold font. Automatically unwrapping the optional.
 	/// Since all sane systems have Helvetica installed, this is bound to work.
-	public convenience init(boldHelveticaFontOfSize size: CGFloat) {
+	convenience init(boldHelveticaFontOfSize size: CGFloat) {
 		self.init(name: "Helvetica Bold", size: size)!
 	}
 	

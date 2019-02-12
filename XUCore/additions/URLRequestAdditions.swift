@@ -11,7 +11,7 @@ import Foundation
 
 public extension URLRequest {
 	
-	public struct ContentType: RawRepresentable {
+	struct ContentType: RawRepresentable {
 		
 		/// Returns a new content type that consists of lhs and rhs.
 		public static func +(lhs: ContentType, rhs: ContentType) -> ContentType {
@@ -98,7 +98,7 @@ public extension URLRequest {
 	}
 	
 	/// Structure representing a User Agent.
-	public struct UserAgent: RawRepresentable, Equatable, Codable {
+	struct UserAgent: RawRepresentable, Equatable, Codable {
 		
 		/// Default user agent.
 		public static let `default`: UserAgent = macOS.Safari12

@@ -46,7 +46,7 @@ public extension NSImage {
 	}
 	
 	/// Applies color tint to the image.
-	public func applying(tint color: NSColor) -> NSImage {
+	func applying(tint color: NSColor) -> NSImage {
 		let result = self.copy() as! NSImage
 		result.lockFocus()
 		
@@ -64,7 +64,7 @@ public extension NSImage {
 	/// is returned.
 	///
 	/// - Returns: Average color.
-	public func averageColor() -> NSColor {
+	func averageColor() -> NSColor {
 		if self.size.isEmpty {
 			return .clear
 		}
@@ -86,7 +86,7 @@ public extension NSImage {
 	
 	/// Returns a black & white copy of the image. May return nil, if the image
 	/// contains no bitmap image representations, or if the conversion fails.
-	public var blackAndWhiteImage: XUImage? {
+	var blackAndWhiteImage: XUImage? {
 		guard let rep = self.representations.first as? NSBitmapImageRep else {
 			return nil
 		}
@@ -102,7 +102,7 @@ public extension NSImage {
 	
 	/// Draws the image at point from rect. If respectFlipped is true, the current
 	/// context's flip is respected.
-	public func draw(at point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
+	func draw(at point: CGPoint, fromRect: CGRect, operation op: NSCompositingOperation, fraction delta: CGFloat, respectFlipped: Bool) {
 		var rect: CGRect = CGRect()
 		rect.origin = point
 		rect.size = self.size
@@ -111,7 +111,7 @@ public extension NSImage {
 	}
 
 	/// Inits with GCImageRef.
-	public convenience init?(cgImage: CGImage, asBitmapImageRep: Bool) {
+	convenience init?(cgImage: CGImage, asBitmapImageRep: Bool) {
 		let width = cgImage.width;
 		let height = cgImage.height;
 		
@@ -148,7 +148,7 @@ public extension NSImage {
 	/// Scales down the image and if it contains multiple image representations,
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
-	public func imageWithSingleImageRepresentation(ofSize size: CGSize) -> XUImage? {
+	func imageWithSingleImageRepresentation(ofSize size: CGSize) -> XUImage? {
 		var result: XUImage? = nil
 		DispatchQueue.main.syncOrNow { () -> Void in
 			result = self._imageWithSingleImageRepOfSize(size)
@@ -157,7 +157,7 @@ public extension NSImage {
 	}
 	
 	/// Returns NSData with a bitmap image file type representation.
-	public func representation(forFileType fileType: NSBitmapImageRep.FileType, properties: [String : AnyObject] = [:]) -> Data? {
+	func representation(forFileType fileType: NSBitmapImageRep.FileType, properties: [String : AnyObject] = [:]) -> Data? {
 		guard let temp = self.tiffRepresentation else {
 			return nil
 		}
@@ -168,27 +168,27 @@ public extension NSImage {
 	}
 	
 	/// Returns a basic BMP image representation.
-	public var bmpRepresentation: Data? {
+	var bmpRepresentation: Data? {
 		return self.representation(forFileType: .bmp)
 	}
 	
 	/// Returns a basic GIF image representation.
-	public var gifRepresentation: Data? {
+	var gifRepresentation: Data? {
 		return self.representation(forFileType: .gif)
 	}
 	
 	/// Returns a GIF image representation
-	public func gifRepresentation(withDitheredTransparency dither: Bool) -> Data? {
+	func gifRepresentation(withDitheredTransparency dither: Bool) -> Data? {
 		return self.representation(forFileType: .gif, properties: [NSBitmapImageRep.PropertyKey.ditherTransparency.rawValue: dither as AnyObject])
 	}
 	
 	/// Returns a basic JPEG image representation.
-	public var jpegRepresentation: Data? {
+	var jpegRepresentation: Data? {
 		return self.representation(forFileType: .jpeg)
 	}
 	
 	/// Returns a JPEG image representation with specified quality.
-	public func jpegRepresentation(usingCompressionFactor compressionFactor: Int, progressive: Bool) -> Data? {
+	func jpegRepresentation(usingCompressionFactor compressionFactor: Int, progressive: Bool) -> Data? {
 		let properties: [String : AnyObject] = [
 			NSBitmapImageRep.PropertyKey.compressionFactor.rawValue: compressionFactor as AnyObject,
 			NSBitmapImageRep.PropertyKey.progressive.rawValue: progressive as AnyObject
@@ -197,27 +197,27 @@ public extension NSImage {
 	}
 	
 	/// Returns a basic JPEG 2000 image representation.
-	public var jpeg2000Representation: Data? {
+	var jpeg2000Representation: Data? {
 		return self.representation(forFileType: .jpeg)
 	}
 	
 	/// Returns a basic PNG image representation.
-	public var pngRepresentation: Data? {
+	var pngRepresentation: Data? {
 		return self.representation(forFileType: .png)
 	}
 	
 	/// Returns a PNG image representation with interlace as defined.
-	public func pngRepresentation(interlaced interlace: Bool) -> Data? {
+	func pngRepresentation(interlaced interlace: Bool) -> Data? {
 		return self.representation(forFileType: .png, properties: [NSBitmapImageRep.PropertyKey.interlaced.rawValue : interlace as AnyObject])
 	}
 	
 	/// Returns a TIFF image representation with defined compression.
-	public func tiffRepresentation(usingCompression compression: NSBitmapImageRep.TIFFCompression) -> Data? {
+	func tiffRepresentation(usingCompression compression: NSBitmapImageRep.TIFFCompression) -> Data? {
 		return self.representation(forFileType: .tiff, properties: [NSBitmapImageRep.PropertyKey.compressionMethod.rawValue: compression.rawValue as AnyObject])
 	}
 	
 	/// Draws the image as tile in specified rect.
-	public func tile(inRect rect: CGRect) {
+	func tile(inRect rect: CGRect) {
 		let size = self.size
 		var destRect = CGRect(x: rect.minX, y: rect.minY, width: size.width, height: size.height)
 		let top = rect.minY + rect.height

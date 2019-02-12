@@ -72,13 +72,11 @@ private extension XUPreferences {
 	
 }
 
+@available(iOSApplicationExtension, unavailable)
 protocol XUMessageCenterAction {
 	init?(value: String)
 	func performAction(with message: XUMessageCenter.Message)
 }
-
-@available(*, deprecated)
-public typealias XUMessageTarget = XUMessageCenter.Target
 
 
 /// This class automatically pulls down a property list from the server which
@@ -120,6 +118,7 @@ public typealias XUMessageTarget = XUMessageCenter.Target
 ///		- XUOpenURL - the value must contains a string with the URL.
 ///		- XUBlockApp - the value must be a string, but can contain anything.
 ///
+@available(iOSApplicationExtension, unavailable)
 public class XUMessageCenter {
 	
 	public static let shared = XUMessageCenter()

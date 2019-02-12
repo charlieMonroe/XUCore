@@ -10,7 +10,7 @@ import Foundation
 
 public extension NSButton {
 	
-	public override func localize(from bundle: Bundle = Bundle.main) {
+	override func localize(from bundle: Bundle = Bundle.main) {
 		self.menu?.localize(from: bundle)
 		
 		if self.imagePosition != .imageOnly || self is NSPopUpButton {
@@ -22,7 +22,7 @@ public extension NSButton {
 
 public extension NSTextField {
 	
-	public override func localize(from bundle: Bundle = Bundle.main) {
+	override func localize(from bundle: Bundle = Bundle.main) {
 		self.stringValue = XULocalizedString(self.stringValue, inBundle: bundle)
 		
 		if let placeholder = self.placeholderString {
@@ -33,7 +33,7 @@ public extension NSTextField {
 }
 public extension NSTabView {
 	
-	public override func localize(from bundle: Bundle = Bundle.main) {
+	override func localize(from bundle: Bundle = Bundle.main) {
 		for item in self.tabViewItems {
 			item.label = XULocalizedString(item.label, inBundle: bundle)
 			item.view?.localize(from: bundle)
@@ -43,7 +43,7 @@ public extension NSTabView {
 }
 public extension NSTableView {
 	
-	public override func localize(from bundle: Bundle = Bundle.main) {
+	override func localize(from bundle: Bundle = Bundle.main) {
 		for column in self.tableColumns {
 			column.headerCell.title = XULocalizedString(column.headerCell.title, inBundle: bundle)
 		}
@@ -52,7 +52,7 @@ public extension NSTableView {
 }
 public extension NSSegmentedControl {
 	
-	public override func localize(from bundle: Bundle = Bundle.main) {
+	override func localize(from bundle: Bundle = Bundle.main) {
 		for i in 0 ..< self.segmentCount {
 			if let label = self.label(forSegment: i) {
 				self.setLabel(XULocalizedString(label, inBundle: bundle), forSegment: i)

@@ -30,8 +30,10 @@ public extension Data {
 	///
 	/// - Parameter index: Index of the byte.
 	/// - Returns: Byte at index.
-	func byte(at index: Index) -> UInt8 {
-		return self.withUnsafeBytes({ $0[index] })
+	func byte(at index: Int) -> UInt8 {
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> UInt8 in
+			return ptr[index]
+		}
 	}
 	
 	/// Returns true if self has a prefix that is defined by the bytes in `prefix`.
@@ -52,7 +54,7 @@ public extension Data {
 	}
 	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
-	public init(hexEncodedString hexString: String) {
+	init<T: StringProtocol>(hexEncodedString hexString: T) {
 		if hexString.count % 2 != 0 {
 			self.init()
 			return
@@ -74,7 +76,7 @@ public extension Data {
 	
 	/// Returns `self.bytes` as `Int8` with `filter` applied. If nil is passed as
 	/// `filter` (default value of `filter`), all bytes are included.
-	public func filteredByteArray(using filter: (_ index: Int, _ byte: Int8) -> Bool) -> [Int8] {
+	func filteredByteArray(using filter: (_ index: Int, _ byte: Int8) -> Bool) -> [Int8] {
 		var result: [Int8] = []
 		self.withUnsafeBytes { (ptr: UnsafePointer<Int8>) in
 			for i in 0 ..< self.count {
@@ -90,7 +92,7 @@ public extension Data {
 	}
 	
 	/// Returns a string such as 194736ca92698d0282b76e979f32b1fa7b9b6d
-	public var hexEncodedString: String {
+	var hexEncodedString: String {
 		let dataLength = self.count
 		if dataLength == 0 {
 			return ""
@@ -107,12 +109,12 @@ public extension Data {
 		return hexString
 	}
 	
-	public func hmacSHA265(with key: Data) -> Data? {
+	func hmacSHA265(with key: Data) -> Data? {
 		let cocoaData = (self as NSData)
 		return cocoaData.hmacsha256(withKey: key)
 	}
 	
-	public func hmacSHA265(with key: String) -> Data? {
+	func hmacSHA265(with key: String) -> Data? {
 		let data = NSData(bytes: (self as NSData).bytes, length: self.count)
 		let cocoaKey = NSString(format: "%@", key as NSString)
 		return data.hmacsha256(withKey: cocoaKey)
@@ -121,40 +123,40 @@ public extension Data {
 	/// Returns first occurrence of bytes within `self`. If it doesn't contain
 	/// the data, nil is returned since this method is based on
 	/// self.rangeOfData(_:options:range:).
-	public func indexOfFirstOccurrence(of bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
+	func indexOfFirstOccurrence(of bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
 		let byteData = Data(bytesNoCopy: bytes, count: length, deallocator: .none)
 		return self.range(of: byteData)?.lowerBound
 	}
 	
-	public var md5Digest: String {
+	var md5Digest: String {
 		return self.withUnsafeBytes({
 			return NSData.md5Digest(ofBytes: $0, ofLength: self.count)
 		})
 	}
 	
 	/// SHA-1 digest.
-	public var sha1Digest: String {
+	var sha1Digest: String {
 		let data = (self as NSData).sha1Digest()
 		let bytes = data.map { String(format: "%02x", $0) }
 		return bytes.joined()
 	}
 	
 	/// SHA-256 digest.
-	public var sha256Digest: String {
+	var sha256Digest: String {
 		let data = (self as NSData).sha256Digest()
 		let bytes = data.map { String(format: "%02x", $0) }
 		return bytes.joined()
 	}
 	
 	/// SHA-512 digest.
-	public var sha512Digest: String {
+	var sha512Digest: String {
 		let data = (self as NSData).sha512Digest()
 		let bytes = data.map { String(format: "%02x", $0) }
 		return bytes.joined()
 	}
 	
 	/// Reads Int-typed value from stream.
-	public func readInteger<T: FixedWidthInteger>(startingAtByte index: Int) -> T {
+	func readInteger<T: FixedWidthInteger>(startingAtByte index: Int) -> T {
 		return self.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> T in
 			let bytes = bytes.advanced(by: index)
 			return bytes.withMemoryRebound(to: T.self, capacity: 1, { $0.pointee })
@@ -173,7 +175,7 @@ public extension Data {
 	}
 	
 	/// Removes trailing bytes that have value 0.
-	public var trimmingTrailingZeros: Data {
+	var trimmingTrailingZeros: Data {
 		let index = self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Data.Index in
 			var index = self.endIndex - 1
 			while index >= 0 && ptr[index] == 0 {

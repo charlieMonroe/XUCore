@@ -11,6 +11,7 @@ import CoreData
 import Foundation
 
 /// Class that performs the synchronization against CloudKit. The
+@available(iOSApplicationExtension, unavailable)
 internal final class XUCloudKitSynchronization {
 		
 	/// Completion handler of the synchronization operation.

@@ -49,7 +49,7 @@ public extension __XUBridgedView {
 	/// create XUViewAnimation instance yourself.
 	///
 	/// Usage: e.g. view.animation.wobble()
-	public var animation: XUViewAnimation<__XUBridgedView> {
+	var animation: XUViewAnimation<__XUBridgedView> {
 		return XUViewAnimation(view: self)
 	}
 	
@@ -64,7 +64,7 @@ public extension NSAnimatablePropertyContainer {
 	///
 	/// - Parameter animate: Whether to animate.
 	/// - Returns: Self or a animator proxy.
-	public func conditionalAnimator(_ animate: Bool) -> Self {
+	func conditionalAnimator(_ animate: Bool) -> Self {
 		if animate {
 			return self.animator()
 		} else {
@@ -80,7 +80,7 @@ public extension Array where Element : __XUBridgedView {
 	/// Returns an animation structure that gathers some animations.
 	///
 	/// Usage: e.g. views.animation.wobble()
-	public var animation: XUViewAnimation<Element> {
+	var animation: XUViewAnimation<Element> {
 		return XUViewAnimation(views: self)
 	}
 	
@@ -155,7 +155,7 @@ public extension XUViewAnimation {
 	}
 	
 	/// Hides the views by fading them out and then setting isHidden to true.
-	public func hideWithFadeOut() {
+	func hideWithFadeOut() {
 		#if os(macOS)
 			self._animateAlphaUsingTimer(from: 1.0, to: 0.0, completion: {
 				self.views.forEach({
@@ -182,7 +182,7 @@ public extension XUViewAnimation {
 	}
 	
 	/// This is a convenience shortcut to hideWithFadeOut and showWithFadeIn.
-	public var isHidden: Bool {
+	var isHidden: Bool {
 		get {
 			return self.views.isHidden
 		}
@@ -200,7 +200,7 @@ public extension XUViewAnimation {
 	}
 	
 	/// Shows the views by fading them in and then setting isHidden to false.
-	public func showWithFadeIn() {
+	func showWithFadeIn() {
 		#if os(macOS)
 			self.views.forEach({
 				$0.alphaValue = 0.0
@@ -222,7 +222,7 @@ public extension XUViewAnimation {
 	
 	/// Starts pulsating, if it's not already. Pulsating view will decrease and
 	/// increase its opacity. Note that a strong reference is kept for the views.
-	public func startPulsating() {
+	func startPulsating() {
 		for view in self.views {
 			guard _pulsatingViews[view] == nil else {
 				continue // Already pulsating.
@@ -242,7 +242,7 @@ public extension XUViewAnimation {
 	}
 	
 	/// Stops pulsating.
-	public func stopPulsating() {
+	func stopPulsating() {
 		for view in self.views {
 			#if os(iOS)
 				view.alpha = 1.0
@@ -263,7 +263,7 @@ public extension XUViewAnimation {
 	/// Animates a wobbling movement indicating that the value is invalid. Note
 	/// that since it's layer-based animation, the view must be layer-backed on
 	/// macOS, otherwise is ignored. Patches are welcome.
-	public func wobble() {
+	func wobble() {
 		for view in self.views {
 			// Layer is optional on macOS.
 			let layer: CALayer
@@ -300,7 +300,7 @@ public extension XUViewAnimation {
 		
 		/// Animates text change in a text field. Should only be used on text fields
 		/// that act as labels.
-		public func setStringValueAnimated(_ stringValue: String) {
+		func setStringValueAnimated(_ stringValue: String) {
 			for field in self.views {
 				_textFieldValues[field] = stringValue
 				
@@ -374,7 +374,7 @@ public extension XUViewAnimation {
 	public extension NSStatusItem {
 		
 		/// Animates self to a certain length.
-		public func animate(to length: CGFloat) {
+		func animate(to length: CGFloat) {
 			if let delegate = _statusItemValues[self] {
 				delegate.animation.stop()
 			}

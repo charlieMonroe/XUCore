@@ -11,7 +11,7 @@ import Foundation
 public extension XUDownloadCenter {
 
 	/// Configuration of the proxy.
-	public struct ProxyConfiguration {
+	struct ProxyConfiguration {
 		
 		/// Keys for dictionaryRepresentation and init(dictionary:)
 		private struct DictionaryKeys {

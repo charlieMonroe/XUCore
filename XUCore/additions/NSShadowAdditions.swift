@@ -16,7 +16,7 @@
 
 public extension NSShadow {
 	
-	public convenience init(color: __XUBridgedColor, offset: CGSize, blurRadius: CGFloat) {
+	convenience init(color: __XUBridgedColor, offset: CGSize, blurRadius: CGFloat) {
 		self.init()
 		
 		self.shadowColor = color

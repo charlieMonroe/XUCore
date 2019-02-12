@@ -15,7 +15,7 @@
 public extension CGContext {
 	
 	/// Adds a rounded rect to the CGContextRef.
-	public func addRoundedRect(in rect: CGRect, withCornerRadius cornerRadius: CGFloat) {
+	func addRoundedRect(in rect: CGRect, withCornerRadius cornerRadius: CGFloat) {
 		let x_left = rect.minX
 		let x_left_center = rect.minX + cornerRadius
 		let x_right_center = rect.minX + rect.width - cornerRadius

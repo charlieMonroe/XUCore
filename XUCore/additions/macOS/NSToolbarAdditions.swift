@@ -11,7 +11,7 @@ import Foundation
 public extension NSToolbar {
 	
 	/// Returns item with identifier.
-	public func item(withIdentifier identifier: NSToolbarItem.Identifier) -> NSToolbarItem? {
+	func item(withIdentifier identifier: NSToolbarItem.Identifier) -> NSToolbarItem? {
 		return self.items.first(where: { $0.itemIdentifier == identifier })
 	}
 	

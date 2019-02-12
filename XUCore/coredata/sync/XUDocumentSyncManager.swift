@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 import CoreData
 
+@available(iOSApplicationExtension, unavailable)
 public protocol XUDocumentSyncManagerDelegate: AnyObject {
 
 	/// This method is called when the sync manager fails to save information
@@ -27,9 +28,10 @@ public protocol XUDocumentSyncManagerDelegate: AnyObject {
 
 }
 
+@available(iOSApplicationExtension, unavailable)
 public extension XUDocumentSyncManagerDelegate {
-	public func documentSyncManager(_ manager: XUDocumentSyncManager, didEncounterNonFatalErrorDuringSynchronization error: NSError) {}
-	public func documentSyncManagerDidSuccessfullyFinishSynchronization(_ manager: XUDocumentSyncManager) {}
+	func documentSyncManager(_ manager: XUDocumentSyncManager, didEncounterNonFatalErrorDuringSynchronization error: NSError) {}
+	func documentSyncManagerDidSuccessfullyFinishSynchronization(_ manager: XUDocumentSyncManager) {}
 }
 
 
@@ -59,6 +61,7 @@ private let XUDocumentNameKey = "XUDocumentName"
 /// Each time the document sync manager applies some sync changes, it posts a notification
 /// XUDocumentSyncManager.didApplySynchronizationChangesNotification. You should catch that and
 /// refresh the UI.
+@available(iOSApplicationExtension, unavailable)
 open class XUDocumentSyncManager {
 	
 	

@@ -77,7 +77,7 @@ public extension __XUBezierPath {
 		#endif
 	}
 	
-	public convenience init(triangleInRect rect: CGRect, direction: XUDirection) {
+	convenience init(triangleInRect rect: CGRect, direction: XUDirection) {
 		self.init()
 		
 		let correctDirection: XUDirection

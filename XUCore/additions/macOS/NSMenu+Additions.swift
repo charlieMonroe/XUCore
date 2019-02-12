@@ -12,7 +12,7 @@ public extension NSMenu {
 	
 	/// Adds menu items to the menu. A convenience method so that one can use
 	/// array.map() to create menu items.
-	public func addItems(_ menuItems: [NSMenuItem]) {
+	func addItems(_ menuItems: [NSMenuItem]) {
 		menuItems.forEach({ self.addItem($0) })
 	}
 	
@@ -21,12 +21,12 @@ public extension NSMenu {
 public extension NSMenuItem {
 	
 	/// Convenience initializer that passes nil as action and empty key equivalent.
-	public convenience init(title: String) {
+	convenience init(title: String) {
 		self.init(title: title, action: nil, keyEquivalent: "")
 	}
 	
 	/// Convenience initializer that takes `target` instead of `keyEquivalent`.
-	public convenience init(title: String, target: AnyObject?, action: Selector?) {
+	convenience init(title: String, target: AnyObject?, action: Selector?) {
 		self.init(title: title, action: action, keyEquivalent: "")
 		self.target = target
 	}

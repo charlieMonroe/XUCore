@@ -12,7 +12,7 @@ import Foundation
 public extension NSAttributedString {
 	
 	/// Returns all text attachments within self
-	public var allAttachments: [NSTextAttachment] {
+	var allAttachments: [NSTextAttachment] {
 		var attachments: [NSTextAttachment] = [ ]
 		
 		let stringRange = NSMakeRange(0, self.length)

@@ -51,7 +51,7 @@ private extension NSView {
 public extension NSApplication {
 	
 	/// Returns whether the current application is in foreground.
-	public var isForegroundApplication: Bool {
+	var isForegroundApplication: Bool {
 		return NSRunningApplication.current.isActive
 	}
 	

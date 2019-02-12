@@ -32,7 +32,7 @@ import Foundation
 public extension XUImage {
 	
 	/// Draws the rect centered within rect. The image is scaled, if necessary.
-	public func drawCentered(in rect: CGRect, fraction: CGFloat = 1.0) {
+	func drawCentered(in rect: CGRect, fraction: CGFloat = 1.0) {
 		let image = self
 		let mySize = image.size
 		var targetRect = rect
@@ -56,7 +56,7 @@ public extension XUImage {
 	}
 	
 	/// Proportionally scales the image to maximum size.
-	public func proportinallyScaledSize(forMaxSize size: CGSize) -> CGSize {
+	func proportinallyScaledSize(forMaxSize size: CGSize) -> CGSize {
 		let image = self
 		let mySize = image.size
 		if mySize.width < size.width && mySize.height < size.height {

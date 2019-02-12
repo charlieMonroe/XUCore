@@ -11,7 +11,7 @@ import Cocoa
 public extension NSRunningApplication {
 	
 	/// A covenience var for getting the frontmost application.
-	public class var frontmostApplication: NSRunningApplication! {
+	class var frontmostApplication: NSRunningApplication! {
 		return NSWorkspace.shared.frontmostApplication
 	}
 	

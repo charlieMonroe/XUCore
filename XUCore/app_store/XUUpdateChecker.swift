@@ -231,6 +231,7 @@ public final class XUUpdateChecker {
 	/// Opens the AppStore. This is based on the information it gets back from
 	/// the bundle ID lookup during update checking. It terminates the app as well.
 	/// Only use it when you are running an AppStore version of the app.
+	@available(iOSApplicationExtension, unavailable)
 	public func openAppStoreAndTerminate() {
 		if let appStoreURL = self.appStoreURL {
 			#if os(macOS)

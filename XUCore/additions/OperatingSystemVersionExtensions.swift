@@ -11,7 +11,7 @@ import Foundation
 public extension OperatingSystemVersion {
 	
 	/// Converts this version to a version string, such as "10.13.1".
-	public var versionString: String {
+	var versionString: String {
 		return "\(self.majorVersion).\(self.minorVersion).\(self.patchVersion)"
 	}
 	

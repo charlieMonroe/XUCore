@@ -23,21 +23,21 @@ public extension NSView {
 	}
 		
 	/// Returns enclosing table row view or nil.
-	public var enclosingTableRowView: NSTableRowView? {
+	var enclosingTableRowView: NSTableRowView? {
 		return self._enclosingView()
 	}
 	
 	/// Returns enclosing table view or nil.
-	public var enclosingTableView: NSTableView? {
+	var enclosingTableView: NSTableView? {
 		return self._enclosingView()
 	}
 	
-	public func enclosingView<T: NSView>(ofType type: T.Type) -> T? {
+	func enclosingView<T: NSView>(ofType type: T.Type) -> T? {
 		return self._enclosingView()
 	}
 	
 	/// Sets enabled on subviews.
-	@objc public func setDeepEnabled(_ flag: Bool) {
+	@objc func setDeepEnabled(_ flag: Bool) {
 		for view in self.subviews {
 			if let control = view as? NSControl {
 				control.isEnabled = flag
@@ -49,13 +49,13 @@ public extension NSView {
 	
 	/// Returns screen coordinates of the view. Note that it will return an empty
 	/// rect if the view is not attached to a window.
-	public var screenCoordinates: CGRect {
+	var screenCoordinates: CGRect {
 		return self.screenCoordinates(ofRect: self.bounds)
 	}
 	
 	/// Returns screen coordinates of the rect inside this view. Note that it will
 	/// return an empty rect if the view is not attached to a window.
-	public func screenCoordinates(ofRect frame: CGRect) -> CGRect {
+	func screenCoordinates(ofRect frame: CGRect) -> CGRect {
 		if self.window == nil {
 			return CGRect()
 		}
@@ -69,7 +69,7 @@ public extension NSView {
 	
 	/// Returns screen coordinates of the point inside this view. Note that it will
 	/// return an empty point if the view is not attached to a window.
-	public func screenCoordinates(ofPoint point: CGPoint) -> CGPoint {
+	func screenCoordinates(ofPoint point: CGPoint) -> CGPoint {
 		if self.window == nil {
 			return CGPoint()
 		}

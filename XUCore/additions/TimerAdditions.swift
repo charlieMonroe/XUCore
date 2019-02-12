@@ -21,7 +21,7 @@ private class __XUTimerBlockHolder {
 
 public extension Timer {
 	
-	public typealias TimerBlock = (Timer) -> Void
+	typealias TimerBlock = (Timer) -> Void
 	
 	@objc private class func __executionMethod(_ timer: Timer) {
 		let holder = timer.userInfo as! __XUTimerBlockHolder
@@ -29,11 +29,11 @@ public extension Timer {
 	}
 	
 	@discardableResult
-	public class func scheduledTimer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
+	class func scheduledTimer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
 		return self.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	
-	public class func timer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
+	class func timer(timeInterval seconds: TimeInterval, repeats: Bool, usingBlock fireBlock: @escaping TimerBlock) -> Timer {
 		return self.init(timeInterval: seconds, target: self, selector: #selector(Timer.__executionMethod(_:)), userInfo: __XUTimerBlockHolder(timerBlock: fireBlock), repeats: repeats)
 	}
 	

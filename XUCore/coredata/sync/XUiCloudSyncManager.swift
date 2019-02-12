@@ -29,6 +29,7 @@ private func _rootURLForManager(named name: String) -> URL? {
 }
 
 /// Manager for syncing via iCloud.
+@available(iOSApplicationExtension, unavailable)
 public final class XUiCloudSyncManager: XUApplicationSyncManager {
 	
 	

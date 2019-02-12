@@ -33,22 +33,22 @@ public extension NSEvent {
 	}
 		
 	/// Returns whether the Command key is currently held down.
-	public class var isCommandKeyDown: Bool {
+	class var isCommandKeyDown: Bool {
 		return self._isKeyDown(UInt32(cmdKey))
 	}
 	
 	/// Returns whether the Control key is currently held down.
-	public class var isControlKeyDown: Bool {
+	class var isControlKeyDown: Bool {
 		return self._isKeyDown(UInt32(controlKey))
 	}
 	
 	/// Returns whether the Option key is currently held down.
-	public class var isOptionKeyDown: Bool {
+	class var isOptionKeyDown: Bool {
 		return self._isKeyDown(UInt32(optionKey))
 	}
 	
 	/// Returns whether the Shift key is currently held down.
-	public class var isShiftKeyDown: Bool {
+	class var isShiftKeyDown: Bool {
 		return self._isKeyDown(UInt32(shiftKey))
 	}
 	

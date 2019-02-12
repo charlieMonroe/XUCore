@@ -11,7 +11,7 @@ import Foundation
 public extension NSAlert {
 	
 	/// This enum contains the payload used by beginSheetModal(withTextField:...).
-	public enum StringModalResponse {
+	enum StringModalResponse {
 		
 		/// The alert was cancelled - or to be precise a button was pressed that
 		/// is not the first button.
@@ -98,12 +98,12 @@ public extension NSAlert {
 	}
 	
 	/// Adds a button with title "Cancel".
-	public func addCancelButton() {
+	func addCancelButton() {
 		self.addButton(withTitle: XULocalizedString("Cancel", inBundle: XUCoreFramework.bundle))
 	}
 	
 	/// Adds a button with title "OK".
-	public func addOKButton() {
+	func addOKButton() {
 		self.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
 	}
 		
@@ -113,7 +113,7 @@ public extension NSAlert {
 	/// The completion handler will be called with one of the values of the 
 	/// StringModalResponse enum. The alert is considered as confirmed if the
 	/// NSAlertFirstButtonReturn button is pressed.
-	public func beginSheetModal(withTextField initialValue: String, isSecure: Bool = false, forWindow window: NSWindow, completionHandler: @escaping (StringModalResponse) -> Void) {
+	func beginSheetModal(withTextField initialValue: String, isSecure: Bool = false, forWindow window: NSWindow, completionHandler: @escaping (StringModalResponse) -> Void) {
 		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: isSecure)
 		self.beginSheetModal(for: window, completionHandler: { (response) in
 			if response == NSApplication.ModalResponse.alertFirstButtonReturn {
@@ -133,7 +133,7 @@ public extension NSAlert {
 	/// it with menuItems. It returnes the pop up button it created for further
 	/// customization.
 	@discardableResult
-	public func createAccessoryPopUpButton(withMenuItems menuItems: [NSMenuItem]) -> NSPopUpButton {
+	func createAccessoryPopUpButton(withMenuItems menuItems: [NSMenuItem]) -> NSPopUpButton {
 		let popUpButton = NSPopUpButton(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 22.0), pullsDown: false)
 		self.accessoryView = popUpButton
 		
@@ -161,7 +161,7 @@ public extension NSAlert {
 	/// the thread is blocked until the alert is dismissed.
 	@discardableResult
 	@available(*, deprecated, message: "You should no longer create NSAlert on non-main thread.")
-	public func runModalOnMainThread() -> NSApplication.ModalResponse {
+	func runModalOnMainThread() -> NSApplication.ModalResponse {
 		var result: NSApplication.ModalResponse = .alertFirstButtonReturn
 		DispatchQueue.main.syncOrNow(execute: { () -> Void in
 			result = self.runModal()
@@ -173,7 +173,7 @@ public extension NSAlert {
 	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. If secure is ture, the text field is secure.
-	public func runModal(withTextField initialValue: String, secure: Bool = false) -> String? {
+	func runModal(withTextField initialValue: String, secure: Bool = false) -> String? {
 		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: secure)
 		
 		if !self._isDefaultButton(self.runModal()) {

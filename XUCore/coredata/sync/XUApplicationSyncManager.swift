@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension, unavailable)
 public protocol XUApplicationSyncManagerDelegate: AnyObject {
 	
 	/// Called when the manager found a new document. It might not be downloaded yet.
@@ -31,6 +32,7 @@ private func _XULogFileAtURL(_ rootURL: URL, fileURL: URL, level: Int) {
 	}
 }
 
+@available(iOSApplicationExtension, unavailable)
 private func _XULogFolderContentsStartingAtURL(_ rootURL: URL?, manager: XUApplicationSyncManager) {
 	guard XUDebugLog.isLoggingEnabled else {
 		return
@@ -68,6 +70,7 @@ private let XUApplicationSyncManagerErrorDomain = "XUApplicationSyncManagerError
 
 /// This is an abstract class that represents a sync manager. You should only
 /// create one instance per subclass within the app.
+@available(iOSApplicationExtension, unavailable)
 open class XUApplicationSyncManager {
 	
 	/// Timer that checks for new documents every 30 seconds.

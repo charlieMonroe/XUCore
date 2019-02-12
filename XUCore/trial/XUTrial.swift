@@ -336,7 +336,7 @@ open class XUTimeBasedTrial: XUTrial {
 public extension Notification.Name {
 	
 	/// Posted whenever items left in the trial is changed.
-	public static let ItemBasedTrialNumberOfItemsLeftDidChange = Notification.Name(rawValue: "XUItemBasedTrialNumberOfItemsLeftDidChangeNotification")
+	static let ItemBasedTrialNumberOfItemsLeftDidChange = Notification.Name(rawValue: "XUItemBasedTrialNumberOfItemsLeftDidChangeNotification")
 	
 }
 

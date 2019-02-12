@@ -27,8 +27,8 @@ public func asOptional<T>(_ anyValue: Any) -> T? {
 public extension String {
 	
 	@available(*, deprecated, message: "Interpolation of optionals is deprecated.")
-	public init<T>(stringInterpolationSegment segment: Optional<T>) {
-		self.init(stringInterpolationSegment: segment as Any)
+	init<T>(stringInterpolationSegment segment: Optional<T>) {
+		self = String(describing: segment)
 	}
 	
 }
@@ -37,7 +37,7 @@ public extension Optional {
 
 	/// Returns a description which returns defaultValue for nil and "value" for
 	/// non-nil values.
-	public func descriptionWithDefaultValue(_ defaultValue: String = "nil") -> String {
+	func descriptionWithDefaultValue(_ defaultValue: String = "nil") -> String {
 		if self == nil {
 			return String(defaultValue)
 		} else {
@@ -47,7 +47,7 @@ public extension Optional {
 	
 	/// Returns description that is "nil" for nil value and "Optional(value)" for
 	/// non-nil values.
-	public var detailedDescription: String {
+	var detailedDescription: String {
 		return self.debugDescription
 	}
 	
@@ -56,7 +56,7 @@ public extension Optional {
 public extension Optional where Wrapped: Collection {
 	
 	/// Returns true if the string wrapped in this optional is either nil or empty.
-	public var isNilOrEmpty: Bool {
+	var isNilOrEmpty: Bool {
 		switch self {
 		case .none:
 			return true
@@ -67,7 +67,7 @@ public extension Optional where Wrapped: Collection {
 	
 	/// Returns values of the collection, or an empty array if self is nil. This
 	/// allows you to do stuff like `for x in optional.values { ... }`.
-	public var values: [Wrapped.Element] {
+	var values: [Wrapped.Element] {
 		switch self {
 		case .none:
 			return []

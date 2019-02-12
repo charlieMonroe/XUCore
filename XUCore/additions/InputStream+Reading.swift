@@ -11,7 +11,7 @@ import Foundation
 public extension InputStream {
 	
 	/// Reads Int-typed value from stream.
-	public func read<T : FixedWidthInteger>() -> T? {
+	func read<T : FixedWidthInteger>() -> T? {
 		var buffer: T = 0
 		let n = withUnsafeMutablePointer(to: &buffer) { (p) in
 			p.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size, { (ptr) -> Int in
@@ -28,7 +28,7 @@ public extension InputStream {
 	}
 	
 	/// Reads a string of length. By default, uses ASCII encoding.
-	public func readString(ofLength length: Int, encoding: String.Encoding = .ascii) -> String? {
+	func readString(ofLength length: Int, encoding: String.Encoding = .ascii) -> String? {
 		let buffer = calloc(1, length + 1).assumingMemoryBound(to: UInt8.self)
 		defer {
 			free(buffer)

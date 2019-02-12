@@ -36,12 +36,11 @@ public struct XUCoreFramework {
 		
 		// First, load the application setup.
 		_ = XUApplicationSetup.shared
-		
-		// Launch the message center.
-		_ = XUMessageCenter.shared
-		
-		
+				
 		#if !os(iOS)
+			// Launch the message center.
+			_ = XUMessageCenter.shared
+		
 			// Start catching exceptions.
 			XUExceptionHandler.startExceptionHandler()
 			

@@ -17,7 +17,7 @@ public extension Array where Element: __XUBridgedView {
 	
 	/// get: Returns true if all the elements are hidden.
 	/// set: Sets isHidden to newValue for all elements.
-	public var isHidden: Bool {
+	var isHidden: Bool {
 		get {
 			return self.allSatisfy({ $0.isHidden })
 		}
@@ -32,7 +32,7 @@ public extension Array where Element: __XUBridgedView {
 public extension Array where Element == Optional<__XUBridgedView> {
 
 	/// See Array<__XUBridgedView>.isHidden.
-	public var isHidden: Bool {
+	var isHidden: Bool {
 		get {
 			return self.compacted().isHidden
 		}

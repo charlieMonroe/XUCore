@@ -26,7 +26,7 @@ public extension Sequence where Iterator.Element == XUString {
 	/// the result.  For example:
 	///
 	///     ["foo", "bar", "baz"].joinWithSeparator("-|-") // "foo-|-bar-|-baz"
-	public func joined(separator: XUString = XUString()) -> XUString {
+	func joined(separator: XUString = XUString()) -> XUString {
 		var result = XUString()
 		var previous: XUString? = nil
 		for item in self {

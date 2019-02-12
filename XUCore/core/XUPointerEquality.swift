@@ -17,11 +17,11 @@ public protocol XUPointerEquatable: AnyObject, Hashable {
 
 public extension XUPointerEquatable {
 	
-	public static func ==(lhs: Self, rhs: Self) -> Bool {
+	static func ==(lhs: Self, rhs: Self) -> Bool {
 		return lhs === rhs
 	}
 	
-	public var hashValue: Int {
+	var hashValue: Int {
 		return ObjectIdentifier(self).hashValue
 	}
 	

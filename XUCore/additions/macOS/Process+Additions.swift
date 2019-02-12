@@ -15,7 +15,7 @@ public extension Process {
 	/// something else, it will be overwritten.
 	///
 	/// - Returns: String value of the output.
-	public func launchAndReadAllData() -> String {
+	func launchAndReadAllData() -> String {
 		let pipe = Pipe()
 		let fileHandle = pipe.fileHandleForReading
 		self.standardOutput = pipe

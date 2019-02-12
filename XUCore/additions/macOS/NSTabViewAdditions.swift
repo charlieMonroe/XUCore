@@ -11,7 +11,7 @@ import Foundation
 public extension NSTabView {
 	
 	/// Sets .enabled on all subviews as `flag`
-	public override func setDeepEnabled(_ flag: Bool) {
+	override func setDeepEnabled(_ flag: Bool) {
 		for item in self.tabViewItems {
 			item.view?.setDeepEnabled(flag)
 		}

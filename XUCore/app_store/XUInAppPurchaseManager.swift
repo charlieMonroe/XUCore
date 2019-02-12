@@ -22,7 +22,7 @@ extension Notification.Name {
 public extension Sequence where Iterator.Element: SKProduct {
 	
 	/// Sorts products by localizedTitle.
-	public func sortedByTitle() -> [Iterator.Element] {
+	func sortedByTitle() -> [Iterator.Element] {
 		return self.sorted(by: { $0.localizedTitle.compare($1.localizedTitle, options: .caseInsensitive) == .orderedAscending })
 	}
 	

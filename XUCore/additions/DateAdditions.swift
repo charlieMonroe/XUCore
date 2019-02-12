@@ -111,12 +111,12 @@ public struct XUMonth : OptionSet {
 
 public extension Date {
 	
-	public static func -(lhs: Date, rhs: Date) -> TimeInterval {
+	static func -(lhs: Date, rhs: Date) -> TimeInterval {
 		return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
 	}
 		
 	/// Returns today at 00:00:00.
-	public static var today: Date {
+	static var today: Date {
 		if __today == nil || __validUntil <= Date.timeIntervalSinceReferenceDate {
 			let date = Date()
 			let calendar = Calendar.current
@@ -128,26 +128,26 @@ public extension Date {
 	
 	
 	/// Converts this date to target time zone.
-	public func converting(from originZone: TimeZone, to targetZone: TimeZone) -> Date {
+	func converting(from originZone: TimeZone, to targetZone: TimeZone) -> Date {
 		var convertedDate = self.timeIntervalSinceReferenceDate
 		convertedDate -= TimeInterval(originZone.secondsFromGMT()) - TimeInterval(targetZone.secondsFromGMT())
 		return Date(timeIntervalSinceReferenceDate: convertedDate)
 	}
 	
-	public var day: Int {
+	var day: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.day, from: self)
 		return components.day!
 	}
 	
-	public var hour: Int {
+	var hour: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.hour, from: self)
 		return components.hour!
 	}
 	
 	/// Returns date with day/month/year/hour/minute/second values, if valid.
-	public init?(day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, second: Int = 0) {
+	init?(day: Int, month: Int, year: Int, hour: Int = 0, minute: Int = 0, second: Int = 0) {
 		var components = DateComponents()
 		components.day = day
 		components.month = month
@@ -163,43 +163,43 @@ public extension Date {
 	}
 	
 	/// Returns a new date object that is rounded down to seconds.
-	public var integralDate: Date {
+	var integralDate: Date {
 		let interval = floor(self.timeIntervalSince1970)
 		return Date(timeIntervalSince1970: interval)
 	}
 	
 	/// Returns true if the receiver is after date.
-	public func isAfter(_ date: Date) -> Bool {
+	func isAfter(_ date: Date) -> Bool {
 		return date.timeIntervalSince1970 < self.timeIntervalSince1970
 	}
 	
 	/// Returns true if the receiver is before date.
-	public func isBefore(_ date: Date) -> Bool {
+	func isBefore(_ date: Date) -> Bool {
 		return self.timeIntervalSince1970 < date.timeIntervalSince1970
 	}
 	
 	/// Returns true iff date1 < self < date2.
-	public func isBetween(_ date1: Date, and date2: Date) -> Bool {
+	func isBetween(_ date1: Date, and date2: Date) -> Bool {
 		return self.isAfter(date1) && self.isBefore(date2)
 	}
 	
 	/// Returns true if the receiver referes to an newer date than in now.
-	public var isFuture: Bool {
+	var isFuture: Bool {
 		return self.timeIntervalSinceReferenceDate > Date.timeIntervalSinceReferenceDate
 	}
 	
 	/// Returns true if the receiver referes to an older date than in now.
-	public var isPast: Bool {
+	var isPast: Bool {
 		return self.timeIntervalSinceReferenceDate < Date.timeIntervalSinceReferenceDate
 	}
 	
 	/// Returns true if the receiver's day, month and year match the one of now.
-	public var isToday: Bool {
+	var isToday: Bool {
 		let now = Date()
 		return now.day == self.day && now.month == self.month && now.year == self.year
 	}
 	
-	public func isWithin(months: XUMonth) -> Bool {
+	func isWithin(months: XUMonth) -> Bool {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.month, from: self)
 		
@@ -207,49 +207,49 @@ public extension Date {
 		return months.contains(month)
 	}
 	
-	public func isWithin(year: Int) -> Bool {
+	func isWithin(year: Int) -> Bool {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.year, from: self)
 		return components.year == year
 	}
 	
-	public var minute: Int {
+	var minute: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.minute, from: self)
 		return components.minute!
 	}
 	
-	public var month: Int {
+	var month: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.month, from: self)
 		return components.month!
 	}
 	
-	public var second: Int {
+	var second: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.second, from: self)
 		return components.second!
 	}
 	
-	public var shortDescription: String {
+	var shortDescription: String {
 		let formatter = DateFormatter()
 		formatter.dateStyle = .short
 		formatter.timeStyle = .none
 		return formatter.string(from: self)
 	}
 	
-	public var shortEuropeanDescription: String {
+	var shortEuropeanDescription: String {
 		let components = (Calendar.current as NSCalendar).components([ .day, .month, .year ], from: self)
 		return String(format: "%02i.%02i.%04i", components.day!, components.month!, components.year!)
 	}
 	
 	/// Returns a date that is within the same day as self, but has 0 hours,
 	/// 0 minutes and 0 seconds.
-	public var startOfDay: Date {
+	var startOfDay: Date {
 		return Date(day: self.day, month: self.month, year: self.year) ?? self
 	}
 	
-	public var year: Int {
+	var year: Int {
 		let calendar = Calendar.current
 		let components = (calendar as NSCalendar).components(.year, from: self)
 		return components.year!

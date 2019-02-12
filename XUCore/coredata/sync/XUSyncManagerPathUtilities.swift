@@ -28,6 +28,7 @@ import Foundation
 	}()
 #endif
 
+@available(iOSApplicationExtension, unavailable)
 internal struct XUSyncManagerPathUtilities {
 	
 	static var currentDeviceIdentifier: String = {
