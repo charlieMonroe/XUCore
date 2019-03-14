@@ -8,49 +8,46 @@
 
 import Foundation
 
-public extension Sequence {
+extension Sequence {
 	
-	typealias Filter = (Self.Iterator.Element) throws -> Bool
+	public typealias Filter = (Self.Iterator.Element) throws -> Bool
 	
 	/// Returns true if all of the elements in self match the filter
-//	@available(*, deprecated, renamed: "allSatisfy(_:)")
-	func all(matching filter: Filter) rethrows -> Bool {
-		return try self.first(where: { try !filter($0) }) == nil
+	@available(*, deprecated, renamed: "allSatisfy(_:)")
+	public func all(matching filter: Filter) rethrows -> Bool {
+		return try self.allSatisfy(filter)
 	}
 	
-//	#if swift(>=4.2)
-//	#else
-//	public func allSatisfy(_ predicate: Filter) rethrows -> Bool {
-//		return try self.first(where: { try !predicate($0) }) == nil
-//	}
-//	#endif
-	
 	/// Returns a compacted sequence - removing nil values.
-	func compacted<T>() -> [T] where Element == Optional<T> {
+	public func compacted<T>() -> [T] where Element == Optional<T> {
 		return self.compactMap({ $0 })
 	}
 	
 	/// Casts all elements in self to certain type - this is equivalent to
 	/// array.compactMap({ $0 as? T }).
-	func compactCast<T>(to type: T.Type) -> [T] {
+	public func compactCast<T>(to type: T.Type) -> [T] {
 		return self.compactMap({ $0 as? T })
 	}
 	
 	/// Counts elements that match the filter
-	func count(where filter: Filter) rethrows -> Int {
+	public func count(where filter: Filter) rethrows -> Int {
 		let count = try self.sum({ (obj) -> Int in
 			return try filter(obj) ? 1 : 0
 		})
 		return count
 	}
 	
-	/// Finds a mapped value. When `filter` returns a non-nil value, that value
+	@available(*, deprecated, renamed: "firstNonNilValue(using:)")
+	public func findMapped<U>(_ filter: (Self.Iterator.Element) -> U?) -> U? {
+		return self.firstNonNilValue(using: filter)
+	}
+	
+	/// Finds a mapped value. When `transformation` returns a non-nil value, that value
 	/// is returned. This way you can do some computation in the block and return
 	/// the value without the need of doing the computation again
-	func findMapped<U>(_ filter: (Self.Iterator.Element) -> U?) -> U? {
+	public func firstNonNilValue<U>(using transformation: (Self.Iterator.Element) -> U?) -> U? {
 		for obj in self {
-			let val = filter(obj)
-			if val != nil {
+			if let val = transformation(obj) {
 				return val
 			}
 		}
@@ -59,7 +56,7 @@ public extension Sequence {
 	
 	/// Finds a maximum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
-	func findMax<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> Self.Iterator.Element? {
+	public func findMax<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> Self.Iterator.Element? {
 		var maxElement: Self.Iterator.Element? = nil
 		var maxValue: T! = nil
 		
@@ -76,7 +73,7 @@ public extension Sequence {
 	
 	/// This will return the maximum value returned by the valuator, or nil if the
 	/// array is empty.
-	func findMaxValue<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> T? {
+	public func findMaxValue<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> T? {
 		var maxValue: T? = nil
 		
 		for obj in self {
@@ -91,7 +88,7 @@ public extension Sequence {
 	
 	/// Finds a minimum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
-	func findMin<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> Self.Iterator.Element? {
+	public func findMin<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> Self.Iterator.Element? {
 		var minElement: Self.Iterator.Element? = nil
 		var minValue: T! = nil
 		
@@ -108,7 +105,7 @@ public extension Sequence {
 	
 	/// This will return the minimum value returned by the valuator, or nil if the
 	/// array is empty.
-	func findMinValue<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> T? {
+	public func findMinValue<T: Comparable>(_ valuator: (Self.Iterator.Element) -> T) -> T? {
 		var minValue: T? = nil
 		
 		for obj in self {
@@ -122,14 +119,14 @@ public extension Sequence {
 	}
 	
 	/// Randomizes the array (by shuffling it).
-	func randomized() -> [Self.Iterator.Element] {
+	public func randomized() -> [Self.Iterator.Element] {
 		return self.sorted(by: { (_, _) -> Bool in
 			return XURandomGenerator.shared.randomBoolean
 		})
 	}
 	
 	/// Returns a new array by removing objects that match the filter
-	func removing(matching filter: Filter) rethrows -> [Self.Iterator.Element] {
+	public func removing(matching filter: Filter) rethrows -> [Self.Iterator.Element] {
 		var arr: [Self.Iterator.Element] = [ ]
 		for obj in self {
 			if try !filter(obj) {
@@ -141,10 +138,10 @@ public extension Sequence {
 	
 }
 
-public extension Sequence where Iterator.Element : Equatable {
+extension Sequence where Iterator.Element : Equatable {
 	
 	/// Returns common elements that this sequence shares with `otherSequence`.
-	func commonElements<T: Sequence>(with otherSequence: T) -> [Iterator.Element] where T.Element == Iterator.Element {
+	public func commonElements<T: Sequence>(with otherSequence: T) -> [Iterator.Element] where T.Element == Iterator.Element {
 		var arr: [Iterator.Element] = []
 		for x in self {
 			for y in otherSequence {
@@ -158,13 +155,13 @@ public extension Sequence where Iterator.Element : Equatable {
 	
 	/// Returns true if the otherArray contains the same elements as self, but
 	/// the order may differ.
-	func containsAll(from otherArray: [Self.Iterator.Element]) -> Bool {
+	public func containsAll(from otherArray: [Self.Iterator.Element]) -> Bool {
 		return self.allSatisfy({ otherArray.contains($0) })
 	}
 	
 	/// Returns a distinct array. This means that it will toss away any duplicate
 	/// items in self
-	func distinct() -> [Self.Iterator.Element] {
+	public func distinct() -> [Self.Iterator.Element] {
 		var unique: [Self.Iterator.Element] = []
 		for item in self {
 			if !unique.contains(item) {
@@ -176,12 +173,12 @@ public extension Sequence where Iterator.Element : Equatable {
 	
 }
 
-public extension Array {
+extension Array {
 	
 	/// Interlaces arrays. First, it takes the first elements of all arrays,
 	/// then second, and so on. Doesn't take into account various array length
 	/// in regards to element distribution.
-	init(interlacedArrays: [[Iterator.Element]]) {
+	public init(interlacedArrays: [[Iterator.Element]]) {
 		self.init()
 		
 		if interlacedArrays.count == 0 {
@@ -204,7 +201,8 @@ public extension Array {
 	}
 	
 	/// Similar to compactMap, but provides an index.
-	func compactMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
+	@available(*, deprecated, message: "Use array.enumerated()")
+	public func compactMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
 		var result: [U] = []
 		for i in 0 ..< self.count {
 			if let obj = mapper(i, self[i]) {
@@ -215,7 +213,8 @@ public extension Array {
 	}
 		
 	/// Similar to map(), but provides the index of the element.
-	func mapIndexed<U>(_ mapper: (Iterator.Element, Int) -> U) -> [U] {
+	@available(*, deprecated, message: "Use array.enumerated()")
+	public func mapIndexed<U>(_ mapper: (Iterator.Element, Int) -> U) -> [U] {
 		var result: [U] = [ ]
 		for i in 0 ..< self.count {
 			result.append(mapper(self[i], i))
@@ -224,7 +223,7 @@ public extension Array {
 	}
 	
 	/// Moves object from one index to another.
-	mutating func move(at fromIndex: Int, to toIndex: Int) {
+	public mutating func move(at fromIndex: Int, to toIndex: Int) {
 		if toIndex == fromIndex {
 			return
 		}
@@ -240,12 +239,12 @@ public extension Array {
 	}
 	
 	/// Returns a slice in range.
-	func slice(with range: Range<Int>) -> ArraySlice<Iterator.Element> {
+	public func slice(with range: Range<Int>) -> ArraySlice<Iterator.Element> {
 		return self[range.lowerBound ..< range.upperBound]
 	}
 	
 	/// Splits array into chunks of maximum size. The last chunk may be shorter.
-	func splitIntoChunks(ofSize chunkSize: Int) -> [[Iterator.Element]] {
+	public func splitIntoChunks(ofSize chunkSize: Int) -> [[Iterator.Element]] {
 		if self.isEmpty {
 			return [[]]
 		}
@@ -259,11 +258,11 @@ public extension Array {
 	
 }
 
-public extension Collection {
+extension Collection {
 	
 	/// This is the same as distinct(), but takes in a custom comparator for arrays
 	/// that do not contain equatable elements.
-	func distinct(_ customComparator: (_ obj1: Self.Iterator.Element, _ obj2: Self.Iterator.Element) -> Bool) -> [Self.Iterator.Element] {
+	public func distinct(_ customComparator: (_ obj1: Self.Iterator.Element, _ obj2: Self.Iterator.Element) -> Bool) -> [Self.Iterator.Element] {
 		var unique: [Self.Iterator.Element] = []
 		for val1 in self {
 			var found = false
@@ -283,10 +282,10 @@ public extension Collection {
 	
 }
 
-public extension Array where Element : Equatable {
+extension Array where Element : Equatable {
 
 	/// Replaces all occurrences of `element` with `newElement`.
-	mutating func replaceAllOccurrences(of element: Iterator.Element, with newElement: Iterator.Element) {
+	public mutating func replaceAllOccurrences(of element: Iterator.Element, with newElement: Iterator.Element) {
 		assert(element != newElement, "Trying to replace a value with the same value!")
 		
 		while let index = self.index(of: element) {

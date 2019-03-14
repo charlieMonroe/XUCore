@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-public extension MKCoordinateRegion {
+extension MKCoordinateRegion {
 	
 	/// Returns true is the region contains this location.
 	public func containsLocation(_ location: CLLocationCoordinate2D) -> Bool {

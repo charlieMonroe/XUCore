@@ -75,7 +75,7 @@ public extension String {
 		var searchString = self
 		while let match = searchString.firstOccurrence(ofRegex: regex) {
 			guard let range = searchString.range(of: match) , !range.isEmpty else {
-				fatalError("The supplied regex \(regex) for components(separatedByRegex:) is infinite.")
+				XUFatalError("The supplied regex \(regex) for components(separatedByRegex:) is infinite.")
 			}
 			
 			result.append(String(searchString[searchString.startIndex ..< range.lowerBound]))
@@ -165,13 +165,13 @@ public extension String {
 	/// be caused when the replacment will only partially match the regex.
 	func replacingOccurrences(ofRegex regex: XURegex, with replacement: String) -> String {
 		if replacement.matches(regex: regex) {
-			fatalError("Replacement matches the regex. This would lead to infinite loop.")
+			XUFatalError("Replacement matches the regex. This would lead to infinite loop.")
 		}
 		
 		var result = self
 		while let match = result.firstOccurrence(ofRegex: regex) {
 			if match.isEmpty {
-				fatalError("Supplied regex is infinite - matches an empty string.")
+				XUFatalError("Supplied regex is infinite - matches an empty string.")
 			}
 			
 			result = result.replacingOccurrences(of: match, with: replacement)

@@ -44,7 +44,7 @@ public extension XUReflectablePreferences {
 	
 	/// State item.
 	var preferencesStateItem: XUApplicationStateItem {
-		return XUApplicationStateItem(name: "Preferences", andValue: "\n" + self.logString.lines.map({ "\t" + $0 }).joined(separator: "\n"), requiresAdditionalTrailingNewLine: true)
+		return XUApplicationStateItem(name: "Preferences", value: "\n" + self.logString.lines.map({ "\t" + $0 }).joined(separator: "\n"), requiresAdditionalTrailingNewLine: true)
 	}
 	
 }
@@ -114,7 +114,7 @@ public struct XUPreferences {
 	public let keyModifier: (String) -> String
 	
 	/// User defaults associated with these preferences.
-	let userDefaults: UserDefaults
+	public let userDefaults: UserDefaults
 	
 	/// Inits self and if is reflectable, dumps contents into the log. See the
 	/// `keyModifier`

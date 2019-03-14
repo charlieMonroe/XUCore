@@ -105,6 +105,16 @@ public func +=(_ lhs: inout CGSize, _ rhs: CGSize) {
 	lhs.height += rhs.height
 }
 
+/// Subtracts two CGSizes.
+public func -(_ lhs: CGSize, _ rhs: CGSize) -> CGSize {
+	return CGSize(width: lhs.width - rhs.width, height: lhs.height - rhs.height)
+}
+
+/// Subtracts two CGSizes.
+public func -=(_ lhs: inout CGSize, _ rhs: CGSize) {
+	lhs = lhs - rhs
+}
+
 public extension CGSize {
 	
 	/// Creates a size with both width and height being set to dimension.

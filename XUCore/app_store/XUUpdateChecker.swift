@@ -178,8 +178,8 @@ public final class XUUpdateChecker {
 			return .noUpdateAvailable
 		}
 		
-		if let urlString = newestNode.stringValue(ofAttributeNamed: "url") {
-			self.updateURL = ~urlString
+		if let url = newestNode.stringValue(ofAttributeNamed: "url").flatMap(URL.init(string:)) {
+			self.updateURL = url
 		}
 		
 		guard let versionString = newestNode.stringValue(ofAttributeNamed: "sparkle:shortVersionString") else {

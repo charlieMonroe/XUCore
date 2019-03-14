@@ -34,7 +34,7 @@ public struct XUApplicationStateItem {
 	public let value: String
 	
 	/// Designated initializer.
-	public init(name: String, andValue value: String, requiresAdditionalTrailingNewLine: Bool = false) {
+	public init(name: String, value: String, requiresAdditionalTrailingNewLine: Bool = false) {
 		self.name = name
 		self.value = value
 		self.requiresAdditionalTrailingNewLine = requiresAdditionalTrailingNewLine
@@ -89,7 +89,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		let frameworkURLs = FileManager.default.contentsOfDirectory(at: Bundle.main.bundleURL.appendingPathComponent("Contents").appendingPathComponent("Frameworks")).filter({ $0.pathExtension == "framework" })
 		let frameworkBundles = frameworkURLs.compactMap(Bundle.init(url:))
 		let otherBinaryMD5s = frameworkBundles.map({ "\t\($0.bundleURL.lastPathComponent): \(self._calculateBinaryMD5(for: $0))" }).joined(separator: "\n")
-		return XUApplicationStateItem(name: "Binary MD5s", andValue: "\n\tMain: \(self._calculateBinaryMD5(for: Bundle.main))\n\(otherBinaryMD5s)", requiresAdditionalTrailingNewLine: true)
+		return XUApplicationStateItem(name: "Binary MD5s", value: "\n\tMain: \(self._calculateBinaryMD5(for: Bundle.main))\n\(otherBinaryMD5s)", requiresAdditionalTrailingNewLine: true)
 	}
 	
 	/// Returns state values. By default, this contains run-time, window list
@@ -97,11 +97,12 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	/// this var and append your values to what super returns.
 	open var stateItems: [XUApplicationStateItem] {
 		var stateItems: [XUApplicationStateItem] = [
-			XUApplicationStateItem(name: "Locale", andValue: Locale.current.identifier),
-			XUApplicationStateItem(name: "Beta", andValue: "\(XUAppSetup.isBetaBuild)"),
-			XUApplicationStateItem(name: "Build Type", andValue: XUAppSetup.buildType.rawValue),
-			XUApplicationStateItem(name: "Memory Usage", andValue: ByteCountFormatter.string(fromByteCount: Int64(self.memoryUsage), countStyle: .memory)),
-			XUApplicationStateItem(name: "Run Time", andValue: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate))
+			XUApplicationStateItem(name: "Version", value: "\(XUAppSetup.applicationVersionNumber) (\(XUAppSetup.applicationBuildNumber))"),
+			XUApplicationStateItem(name: "Locale", value: Locale.current.identifier),
+			XUApplicationStateItem(name: "Beta", value: "\(XUAppSetup.isBetaBuild)"),
+			XUApplicationStateItem(name: "Build Type", value: XUAppSetup.buildType.rawValue),
+			XUApplicationStateItem(name: "Memory Usage", value: ByteCountFormatter.string(fromByteCount: Int64(self.memoryUsage), countStyle: .memory)),
+			XUApplicationStateItem(name: "Run Time", value: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate))
 		]
 		
 		if XUPreferences.isApplicationUsingPreferences, let reflectablePreferences = XUPreferences.shared as? XUReflectablePreferences {
@@ -112,7 +113,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		
 		#if os(macOS)
 			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")
-			stateItems.append(XUApplicationStateItem(name: "Window List", andValue: "\n\(windows)", requiresAdditionalTrailingNewLine: true))
+			stateItems.append(XUApplicationStateItem(name: "Window List", value: "\n\(windows)", requiresAdditionalTrailingNewLine: true))
 		#endif
 		
 		return stateItems

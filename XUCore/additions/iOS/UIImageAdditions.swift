@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UIImage {
+extension UIImage {
 	
 	/// Applies color tint to the image.
 	public func applying(tint color: UIColor) -> UIImage {

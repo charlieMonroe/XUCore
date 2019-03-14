@@ -152,8 +152,9 @@ internal class XUCloudKitDeviceRegistry {
 		
 		let subscription: CKSubscription
 		if #available(macOS 10.12, iOS 10.0, *) {
-			subscription = CKQuerySubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)
+			subscription = CKQuerySubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: CKQuerySubscription.Options.firesOnRecordCreation)
 		} else {
+			#warning("This is fixed in Xcode 10.2 - once officially released, put this back.")
 			XULog("Change subscription currently not available on macOS 11.")
 			return
 //			subscription = CKSubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)

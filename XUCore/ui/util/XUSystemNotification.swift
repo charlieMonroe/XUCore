@@ -110,7 +110,7 @@ public final class XUSystemNotificationCenter {
 	/// not queued like other notifications, but it is displayed right away.
 	///
 	/// - Parameter message: Optional message to be displayed.
-	public func showProgressIndicator(with message: String?) {
+	public func showProgressIndicator(with message: String? = nil) {
 		if let progressController = _progressController {
 			let window = progressController.window as! XUSystemNotificationWindow
 			window.messageField.stringValue = message ?? ""
@@ -229,7 +229,13 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 		switch self.notification! {
 		case .system(let notification):
 			window.messageField.stringValue = notification.message
-			window.iconView.image = notification.icon
+			
+			if #available(macOS 10.13, *) {
+				window.iconView.image = notification.icon
+			} else {
+				window.iconView.image = notification.icon.applying(tint: .black)
+			}
+				
 			window.subtitleField.stringValue = notification.subtitle ?? ""
 			
 			if notification.subtitle == nil {

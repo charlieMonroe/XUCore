@@ -6,18 +6,37 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import UIKit
+#if os(macOS)
+	import AppKit
+#else
+	import UIKit
+#endif
 
-public extension UIColor {
+extension __XUBridgedColor {
 	
-	private func _offsettedRGBColor(by offset: CGFloat) -> UIColor {
+	private func _offsettedRGBColor(by offset: CGFloat) -> __XUBridgedColor {
 		var r: CGFloat = 0.0
 		var g: CGFloat = 0.0
 		var b: CGFloat = 0.0
 		var alpha: CGFloat = 0.0
-		guard self.getRed(&r, green: &g, blue: &b, alpha: &alpha) else {
-			return self
-		}
+		
+		#if os(macOS)
+			let color: __XUBridgedColor
+			if !self.colorSpaceName.rawValue.contains("RGB") {
+				guard let convertedColor = self.usingColorSpace(.deviceRGB) else {
+					return self
+				}
+				
+				color = convertedColor
+			} else {
+				color = self
+			}
+			color.getRed(&r, green: &g, blue: &b, alpha: &alpha) // Returns Void
+		#else
+			guard self.getRed(&r, green: &g, blue: &b, alpha: &alpha) else {
+				return self
+			}
+		#endif
 		
 		r += offset
 		g += offset
@@ -33,12 +52,12 @@ public extension UIColor {
 			b = min(1.0, b)
 		}
 		
-		return UIColor(red: r, green: g, blue: b, alpha: alpha)
+		return __XUBridgedColor(red: r, green: g, blue: b, alpha: alpha)
 	}
 	
 	/// Returns a darker variant of the color by offset. Currently only works on
 	/// RGB colors.
-	public func darker(by offset: CGFloat) -> UIColor {
+	public func darker(by offset: CGFloat) -> __XUBridgedColor {
 		return self._offsettedRGBColor(by: offset * -1.0)
 	}
 		
@@ -67,10 +86,11 @@ public extension UIColor {
 	
 	/// Returns lighter variant of the color by offset. Currently only works on
 	/// RGB colors.
-	public func lighterColor(by offset: CGFloat) -> UIColor {
+	public func lighterColor(by offset: CGFloat) -> __XUBridgedColor {
 		return self._offsettedRGBColor(by: offset)
 	}
 	
+	#if os(iOS)
 	/// Creates an image with size that is a swatch of the color.
 	public func swatchImage(with size: CGSize) -> UIImage {
 		let renderer = UIGraphicsImageRenderer(size: size)
@@ -81,6 +101,7 @@ public extension UIColor {
 			UIBezierPath(rect: bounds).fill()
 		}
 	}
+	#endif
 	
 }
 

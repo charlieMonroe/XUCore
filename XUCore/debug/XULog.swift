@@ -326,7 +326,7 @@ public final class XUDebugLog {
 }
 
 #if os(iOS)
-	public extension XUDebugLog {
+	extension XUDebugLog {
 		
 		/// Displays a share dialog allowing you to share the log from a controller.
 		public class func shareLog(from controller: UIViewController) {

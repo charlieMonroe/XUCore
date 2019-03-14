@@ -25,7 +25,7 @@ public protocol XUMainStoryboardInstantiable: XUStoryboardInstantiable {
 	
 }
 
-public extension XUMainStoryboardInstantiable {
+extension XUMainStoryboardInstantiable {
 	
 	public static func instantiateFromStoryboard() -> Self {
 		return self.instantiate(from: .main, identifier: self.storyboardIdentifier)
@@ -33,15 +33,15 @@ public extension XUMainStoryboardInstantiable {
 	
 }
 
-public extension UIStoryboard {
+extension UIStoryboard {
 	
 	/// Main storyboard in the main bundle. Do not use this if you've renamed
 	/// the main storyboard or there is none in your project.
-	static let main: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+	public static let main: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 	
 }
 
-public extension XUStoryboardInstantiable {
+extension XUStoryboardInstantiable {
 	
 	/// Convenience method that casts the controller into Self.
 	public static func instantiate(from storyboard: UIStoryboard, identifier: String) -> Self {

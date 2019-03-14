@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UINavigationController {
+extension UINavigationController {
 	
 	/// This method allows you to observe when the navigation controller has 
 	/// completed the animation. The completionHandler argument is required -

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIAlertController {
+extension UIAlertController {
 	
 	/// Adds a cancel action.
 	public func addCancelAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {

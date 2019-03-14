@@ -14,7 +14,7 @@ import Foundation
 	public typealias XUImage = UIImage
 	
 	/// Unifying iOS and macOS API.
-	public extension XUImage {
+	extension XUImage {
 		
 		/// Allow the same API on iOS and macOS.
 		public typealias Name = String
@@ -29,10 +29,10 @@ import Foundation
 
 /// Public extension of NSImage or UIImage. You can use XUImage in your code,
 /// to make it universal.
-public extension XUImage {
+extension XUImage {
 	
 	/// Draws the rect centered within rect. The image is scaled, if necessary.
-	func drawCentered(in rect: CGRect, fraction: CGFloat = 1.0) {
+	public func drawCentered(in rect: CGRect, fraction: CGFloat = 1.0) {
 		let image = self
 		let mySize = image.size
 		var targetRect = rect
@@ -56,7 +56,7 @@ public extension XUImage {
 	}
 	
 	/// Proportionally scales the image to maximum size.
-	func proportinallyScaledSize(forMaxSize size: CGSize) -> CGSize {
+	public func proportinallyScaledSize(forMaxSize size: CGSize) -> CGSize {
 		let image = self
 		let mySize = image.size
 		if mySize.width < size.width && mySize.height < size.height {

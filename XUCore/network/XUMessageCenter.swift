@@ -258,7 +258,7 @@ public class XUMessageCenter {
 		let url: URL
 		
 		init?(value: String) {
-			guard let url = ~value else {
+			guard let url = URL(value) else {
 				XULog("Invalid URL string: \(value)")
 				return nil
 			}

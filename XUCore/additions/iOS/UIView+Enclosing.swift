@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIView {
+extension UIView {
 	
 	private func _enclosingView<T: UIView>() -> T? {
 		var view: UIView? = self

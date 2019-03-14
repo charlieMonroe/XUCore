@@ -15,16 +15,18 @@ import Foundation
 prefix operator ~
 prefix operator ~!
 
+@available(*, deprecated)
 public prefix func ~(urlString: String) -> URL? {
 	return URL(string: urlString)
 }
 
+@available(*, deprecated)
 public prefix func ~!(urlString: String) -> URL {
 	return URL(string: urlString)!
 }
 
 
-public extension URL {
+extension URL {
 
 	private func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {
 		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
@@ -57,14 +59,14 @@ public extension URL {
 	}
 	
 	/// Just like appendingPathComponent(_:), but appends several of them.
-	func appendingPathComponents(_ components: String...) -> URL {
+	public func appendingPathComponents(_ components: String...) -> URL {
 		var result = self
 		components.forEach({ result.appendPathComponent($0) })
 		return result
 	}
 	
 	/// Date the URL was created at.
-	var creationDate: Date? {
+	public var creationDate: Date? {
 		get {
 			return self._resourceValue(forKey: .creationDateKey)
 		}
@@ -76,7 +78,7 @@ public extension URL {
 	}
 
 	/// Returns the file size.
-	var fileSize: Int {
+	public var fileSize: Int {
 		var value: AnyObject?
 		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.fileSizeKey)
 
@@ -87,13 +89,17 @@ public extension URL {
 		return number.intValue
 	}
 
+	public init?(_ urlString: String) {
+		self.init(string: urlString)
+	}
+	
 	/// Returns true if the current URL is a directory.
-	var isDirectory: Bool {
+	public var isDirectory: Bool {
 		return self._booleanResourceValue(forKey: .isDirectoryKey)
 	}
 
 	/// Returns true if the current URL is a directory.
-	var isExcludedFromBackup: Bool {
+	public var isExcludedFromBackup: Bool {
 		get {
 			return self._booleanResourceValue(forKey: .isExcludedFromBackupKey)
 		}
@@ -105,22 +111,22 @@ public extension URL {
 	}
 
 	/// Returns true if the URL is writable.
-	var isReadable: Bool {
+	public var isReadable: Bool {
 		return _booleanResourceValue(forKey: .isReadableKey)
 	}
 	
 	/// Returns true if the URL is writable.
-	var isWritable: Bool {
+	public var isWritable: Bool {
 		return _booleanResourceValue(forKey: .isWritableKey)
 	}
 	
 	/// Returns localized name of the file resource.
-	var localizedName: String? {
+	public var localizedName: String? {
 		return self._resourceValue(forKey: .localizedNameKey)
 	}
 
 	/// Modification date of the URL. Uses NSURLContentModificationDateKey.
-	var modificationDate: Date? {
+	public var modificationDate: Date? {
 		get {
 			return self._resourceValue(forKey: .contentModificationDateKey)
 		}
@@ -133,7 +139,7 @@ public extension URL {
 
 	/// If the URL has a query part, returns a dictionary of the query. Otherwise
 	/// an empty dictionary.
-	var queryDictionary: [String : String] {
+	public var queryDictionary: [String : String] {
 		get {
 			return (self.query ?? "").urlQueryDictionary
 		}
@@ -144,18 +150,18 @@ public extension URL {
 
 	#if os(macOS)
 		/// Icon image for the file.
-	var iconImage: NSImage? {
+		public var iconImage: NSImage? {
 			return self._resourceValue(forKey: .effectiveIconKey)
 		}
 	
 		/// Thumbnail image for supported files.
-	var thumbnailImage: XUImage? {
+		public var thumbnailImage: XUImage? {
 			return self._resourceValue(forKey: .thumbnailKey)
 		}
 	#endif
 
 	/// Returns URL with deleted fragment (i.e. the # part). Fallbacks to self.
-	var deletingFragment: URL {
+	public var deletingFragment: URL {
 		if self.fragment == nil {
 			return self
 		}
@@ -169,7 +175,7 @@ public extension URL {
 	}
 	
 	/// Returns URL with deleted query (i.e. the ? part). Fallbacks to self.
-	var deletingQuery: URL {
+	public var deletingQuery: URL {
 		if self.query == nil {
 			return self
 		}
@@ -183,7 +189,7 @@ public extension URL {
 	}
 		
 	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
-	func updatingQuery(to query: XUJSONDictionary) -> URL {
+	public func updatingQuery(to query: XUJSONDictionary) -> URL {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}

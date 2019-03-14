@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UILabel {
+extension UILabel {
 	
 	/// Convenience initializer that takes in text, font and color.
 	public convenience init(text: String, font: UIFont? = nil, color: UIColor = UIColor.darkText) {

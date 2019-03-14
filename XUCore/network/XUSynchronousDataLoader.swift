@@ -19,7 +19,7 @@ public final class XUSynchronousDataLoader {
 	public let session: URLSession
 	
 	/// Designated initializer. Session defaults to NSURLSession.sharedSession().
-	public init(request: URLRequest, andSession session: URLSession = URLSession.shared) {
+	public init(request: URLRequest, session: URLSession = URLSession.shared) {
 		self.request = request
 		self.session = session
 	}

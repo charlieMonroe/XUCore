@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UIView {
+extension UIView {
 	
 	/// Removes all subviews from the view.
 	public func removeAllSubviews() {

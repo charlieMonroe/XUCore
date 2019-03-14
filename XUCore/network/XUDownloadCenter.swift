@@ -225,7 +225,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Adds a cookie with name and value under URL.
-	public func addCookie(_ value: String, forName name: String, andHost host: String) {
+	public func addCookie(_ value: String, forName name: String, host: String) {
 		let storage = HTTPCookieStorage.shared
 		
 		if let cookie = HTTPCookie(properties: [
@@ -276,7 +276,7 @@ open class XUDownloadCenter {
 		}
 		
 		do {
-			let (data, response) = try XUSynchronousDataLoader(request: request as URLRequest, andSession: self.session).loadData()
+			let (data, response) = try XUSynchronousDataLoader(request: request as URLRequest, session: self.session).loadData()
 			self.lastHTTPURLResponse = response as? HTTPURLResponse
 			
 			if self.logTraffic {
@@ -437,7 +437,7 @@ open class XUDownloadCenter {
 		modifier?(&request)
 		
 		do {
-			let (_, response) = try XUSynchronousDataLoader(request: request, andSession: self.session).loadData()
+			let (_, response) = try XUSynchronousDataLoader(request: request, session: self.session).loadData()
 			
 			guard let httpResponse = response as? HTTPURLResponse else {
 				if self.logTraffic {

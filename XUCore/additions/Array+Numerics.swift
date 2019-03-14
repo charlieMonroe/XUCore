@@ -8,15 +8,15 @@
 
 import Foundation
 
-public extension Sequence {
+extension Sequence {
 
 	/// Sums up values of elements in self.
-	func sum<T: Numeric>(_ numerator: (Self.Iterator.Element) throws -> T) rethrows -> T {
+	public func sum<T: Numeric>(_ numerator: (Self.Iterator.Element) throws -> T) rethrows -> T {
 		return try self.map(numerator).sum()
 	}
 	
 	/// Sums up values of elements in self.
-	func sum(_ numerator: (Self.Iterator.Element) throws -> NSDecimalNumber) rethrows -> NSDecimalNumber {
+	public func sum(_ numerator: (Self.Iterator.Element) throws -> NSDecimalNumber) rethrows -> NSDecimalNumber {
 		var result: NSDecimalNumber = NSDecimalNumber.zero
 		for obj in self {
 			result = try result.adding(numerator(obj))
@@ -26,10 +26,10 @@ public extension Sequence {
 	
 }
 
-public extension Sequence where Self.Iterator.Element : Numeric {
+extension Sequence where Self.Iterator.Element : Numeric {
 	
 	/// Sums up itself.
-	func sum() -> Self.Iterator.Element {
+	public func sum() -> Self.Iterator.Element {
 		return self.reduce(0, +)
 	}
 	
