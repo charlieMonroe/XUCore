@@ -6,11 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-#if os(iOS)
-	import UIKit
-#else
-	import AppKit
-#endif
+import Foundation
 
 extension BinaryFloatingPoint {
 	
@@ -19,12 +15,5 @@ extension BinaryFloatingPoint {
 		return self * (Self.pi / 180.0)
 	}
 	
-}
-
-
-/// Returns degrees converted to radian.
-@available(*, deprecated, message: "Use number.convertDegreesToRadian() instead.")
-public func XUDegreesToRadian(_ degrees: CGFloat) -> CGFloat {
-	return degrees * CGFloat(CGFloat.pi / 180.0)
 }
 

@@ -81,7 +81,7 @@ import Foundation
 	@objc optional func propertyName(forDictionaryKey key: String) -> String?
 	
 	/// Transforms the value to the representation required by the class. Return
-	/// nil if you don't want transformation for that key to occurr.
+	/// nil if you don't want transformation for that key to occur.
 	@objc optional func transformedValue(_ value: Any?, forKey key: String) -> Any?
 	
 }

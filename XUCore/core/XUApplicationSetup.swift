@@ -197,16 +197,6 @@ open class XUApplicationSetup {
 		}
 	}
 	
-	/// Number of items allowed for item-based trials. Enter into Info.plist as
-	/// number under the key XUItemBasedTrialNumberOfItems. Default is 10.
-	public let itemBasedTrialNumberOfItems: Int
-	
-	/// Name of the item that is up for the trial. E.g. "documents", "items",
-	/// etc. Default is simply "items". You can change this using the key
-	/// XUItemBasedTrialItemName. Note that the name must be plural and is
-	/// passed to XULocalizedString(_) before being used.
-	public var itemBasedTrialItemName: String
-	
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining
 	/// XUMessageCenterAppIdentifier in Info.plist.
@@ -217,32 +207,9 @@ open class XUApplicationSetup {
 	/// the key XUMessageCenterFeedURL in Info.plist.
 	public let messageCenterFeedURL: URL?
 	
-	/// Returns a URL object that contains a URL to a page, where you can
-	/// purchase the app. Required by XUTrial. Fill the URL under the key
-	/// XUPurchaseURL in Info.plist.
-	public let purchaseURL: URL?
-	
 	/// Returns a URL object that contains a URL to your support page. Required
 	/// by XUTrial. Fill the URL under the key XUSupportURL in Info.plist.
 	public let supportURL: URL?
-	
-	/// Number of days allowed for time-based trials. Enter into Info.plist as
-	/// number under the key XUTimeBasedTrialDays. Default is 14.
-	public let timeBasedTrialDays: Int
-	
-	/// If the value is set to a non-nil value, XUCore will set up a trial. 
-	/// The only allowed value at this moment is either "XUCore.XUTimeBasedTrial",
-	/// or "XUCore.XUItemBasedTrial".
-	/// Enter the value into Info.plist under the key XUTrialClassName. See 
-	/// XUTimeBasedTrial class for more information.
-	///
-	/// @note: This is completely ignored if AppStoreBuild is set to true.
-	public let trialClassName: String?
-	
-	/// Returns a URL object that contains a URL to a server which handles trial
-	/// sessions. Required by XUTrial. See XUTrial for details. Fill the URL 
-	/// under the key XUTrialSessionsURL in Info.plist.
-	public let trialSessionsURL: URL?
 	
 	/// The initializer gets the main bundle's infoDictionary.
 	public required init(infoDictionary: XUJSONDictionary) {
@@ -284,9 +251,7 @@ open class XUApplicationSetup {
 		
 		self.exceptionHandlerReportURL = _createURL(forKey: "XUExceptionReporterURL", inInfoDictionary: infoDictionary)
 		self.messageCenterFeedURL = _createURL(forKey: "XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)
-		self.purchaseURL = _createURL(forKey: "XUPurchaseURL", inInfoDictionary: infoDictionary)
 		self.supportURL = _createURL(forKey: "XUSupportURL", inInfoDictionary: infoDictionary)
-		self.trialSessionsURL = _createURL(forKey: "XUTrialSessionsURL", inInfoDictionary: infoDictionary)
 		
 		
 		let appIdentifier = Bundle.main.bundleIdentifier ?? ProcessInfo.processInfo.processName
@@ -297,12 +262,6 @@ open class XUApplicationSetup {
 		
 		self.isRunningInDebugMode = ProcessInfo.processInfo.arguments.contains("--debug")
 		self.isDebuggingInAppPurchases = ProcessInfo.processInfo.arguments.contains("--iap-debug")
-		
-		self.trialClassName = infoDictionary["XUTrialClassName"] as? String
-		self.timeBasedTrialDays = (infoDictionary["XUTimeBasedTrialDays"] as? Int) ?? 14
-		
-		self.itemBasedTrialNumberOfItems = (infoDictionary["XUItemBasedTrialNumberOfItems"] as? Int) ?? 10
-		self.itemBasedTrialItemName = (infoDictionary["XUItemBasedTrialItemName"] as? String) ?? "items"
 		
 		#if os(iOS)
 			if let receiptURL = Bundle.main.appStoreReceiptURL, receiptURL.path.contains("sandboxReceipt") {

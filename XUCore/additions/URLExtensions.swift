@@ -155,7 +155,7 @@ extension URL {
 		}
 	
 		/// Thumbnail image for supported files.
-		public var thumbnailImage: XUImage? {
+		public var thumbnailImage: NSImage? {
 			return self._resourceValue(forKey: .thumbnailKey)
 		}
 	#endif

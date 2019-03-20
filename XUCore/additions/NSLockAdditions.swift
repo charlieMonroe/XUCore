@@ -37,7 +37,7 @@ extension NamedLock {
 			self.unlock()
 		}, withCatchHandler: { (exception) -> Void in
 			// We only unlock self if an exception was raised. If no exception
-			// occurrs, the lock is unlocked within performing the block.
+			// occurs, the lock is unlocked within performing the block.
 			self.unlock()
 			exception.raise() // Rethrow the exception
 		})

@@ -85,7 +85,7 @@ open class XUDocumentSyncManager {
 			XULog("Document sync manager was unable to find whole-store upload for document with ID \(documentID)")
 			
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot find such document. Check back later, it might not have synced through.", inBundle: XUCoreFramework.bundle)
+				NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot find such document. Check back later, it might not have synced through.", inBundle: .core)
 			])
 		}
 		
@@ -99,14 +99,14 @@ open class XUDocumentSyncManager {
 			
 			guard let accountDict = NSDictionary(contentsOf: infoFileURL) as? XUJSONDictionary else {
 				innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: XUCoreFramework.bundle)
+					NSLocalizedFailureReasonErrorKey : XULocalizedString("Cannot open document metadata file.", inBundle: .core)
 				])
 				return
 			}
 			
 			guard let documentName = accountDict[XUDocumentNameKey] as? String else {
 				innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: XUCoreFramework.bundle)
+					NSLocalizedFailureReasonErrorKey : XULocalizedString("Metadata file doesn't contain required information.", inBundle: .core)
 				])
 				return
 			}
@@ -137,7 +137,7 @@ open class XUDocumentSyncManager {
 		
 		guard let docURL = documentURL else {
 			throw NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey : XULocalizedString("The document could not be downloaded at this moment.", inBundle: XUCoreFramework.bundle)
+				NSLocalizedFailureReasonErrorKey : XULocalizedString("The document could not be downloaded at this moment.", inBundle: .core)
 			])
 		}
 		
@@ -362,7 +362,7 @@ open class XUDocumentSyncManager {
 			// Already syncing
 			_synchronizationLock.unlock()
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization is already in progress.", inBundle: XUCoreFramework.bundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization is already in progress.", inBundle: .core)
 			]))
 			return
 		}
@@ -371,7 +371,7 @@ open class XUDocumentSyncManager {
 			// App manager is downloading data.
 			_synchronizationLock.unlock()
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization data is being downloaded.", inBundle: XUCoreFramework.bundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("Synchronization data is being downloaded.", inBundle: .core)
 			]))
 			return
 		}
@@ -422,7 +422,7 @@ open class XUDocumentSyncManager {
 		// so no locks are necessary
 		if _isUploadingEntireDocument {
 			completionHandler(false, NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("An upload operation is already in progress.", inBundle: XUCoreFramework.bundle)
+				NSLocalizedFailureReasonErrorKey: XULocalizedString("An upload operation is already in progress.", inBundle: .core)
 			]))
 			return
 		}
@@ -490,7 +490,7 @@ open class XUDocumentSyncManager {
 				if !documentConfig.write(to: configURL, atomically: true) {
 					success = false
 					innerError = NSError(domain: XUDocumentSyncManagerErrorDomain, code: 0, userInfo: [
-						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.", inBundle: XUCoreFramework.bundle)
+						NSLocalizedFailureReasonErrorKey: XULocalizedString("Could not save upload metadata.", inBundle: .core)
 					])
 					return
 				}

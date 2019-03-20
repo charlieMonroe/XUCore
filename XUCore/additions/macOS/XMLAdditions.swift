@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public extension XMLNode {
 	
 	/// Returns integer value of the node. This is equivalent to calling integerValue

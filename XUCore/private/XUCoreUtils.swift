@@ -15,7 +15,15 @@ import Foundation
 public struct XUCoreFramework {
 	
 	/// Contains NSBundle of XUCore(Mobile) framework.
+	@available(*, deprecated)
 	public static let bundle = Bundle(for: _XUSwiftCoreLoader.self)
+	
+}
+
+extension Bundle {
+	
+	/// Returns the core bundle.
+	public static let core: Bundle = Bundle(for: _XUSwiftCoreLoader.self)
 	
 }
 
@@ -36,22 +44,6 @@ public struct XUCoreFramework {
 		
 		// First, load the application setup.
 		_ = XUApplicationSetup.shared
-				
-		#if !os(iOS)
-			// Launch the message center.
-			_ = XUMessageCenter.shared
-		
-			// Start catching exceptions.
-			XUExceptionHandler.startExceptionHandler()
-			
-			// Launch the beta expiration handler if supported.
-			if XUAppSetup.isBetaBuild {
-				_ = XUBetaExpirationHandler.shared
-			} else {
-				// Start the trial.
-				_ = XUTrial.shared
-			}
-		#endif
 	}
 	
 }

@@ -8,10 +8,6 @@
 
 import Foundation
 
-#if os(macOS)
-	import Cocoa
-#endif
-
 /// + operator for String + Character
 public func + (lhs: String, rhs: Character) -> String {
 	return lhs + String(rhs)
@@ -127,25 +123,6 @@ public extension String {
 	/// set.
 	func containsCharacter(from charSet: CharacterSet) -> Bool {
 		return self.unicodeScalars.contains(where: { charSet.contains($0) })
-	}
-	
-	/// Draws `self` centered in rect with attributes.
-	@discardableResult
-	func draw(centeredIn rect: CGRect, withAttributes atts: [NSAttributedString.Key : Any] = [:]) -> CGRect {
-		let stringSize = self.size(withAttributes: atts, maximumWidth: rect.width)
-		var frame = rect
-		frame.size = stringSize
-		frame = rect.centeringRectInSelf(frame)
-		self.draw(in: frame, withAttributes: atts)
-		return frame
-	}
-
-	/// Draws `self` aligned right to point. Returns size of the drawn string.
-	@discardableResult
-	func draw(rightAlignedTo point: CGPoint, withAttributes atts: [NSAttributedString.Key : Any]? = nil) -> CGSize {
-		let s = self.size(withAttributes: atts)
-		self.draw(at: CGPoint(x: point.x - s.width, y: point.y), withAttributes: atts)
-		return s
 	}
 	
 	/// Ensures that the string has a prefix. If the string already has a prefix,
@@ -398,46 +375,11 @@ public extension String {
 		return data.sha512Digest
 	}
 	
-	/// Truncates the string in the middle with '...' in order to fit the width, 
-	/// similarily as NSTextField does.
-	func truncatingMiddle(toFitWidth width: CGFloat, withAttributes atts: [NSAttributedString.Key : Any]) -> String {
-		var front = Substring()
-		var tail = Substring()
-		
-		var frontIndex = self.index(self.startIndex, offsetBy: self.count / 2)
-		var tailIndex = frontIndex
-		
-		var result = self
-		var size = self.size(withAttributes: atts)
-		
-		while size.width > width {
-			frontIndex = self.index(before: frontIndex)
-			tailIndex = self.index(after: tailIndex)
-			
-			front = self[..<frontIndex]
-			tail = self[tailIndex...]
-			result = "\(front)...\(tail)"
-			
-			size = result.size(withAttributes: atts)
-		}
-		return result
-	}
-	
 	/// Prepends self with `string`.
 	mutating func prepend(with string: String) {
 		self.insert(contentsOf: string, at: self.startIndex)
 	}
-		
-	/// Returns size with attributes, limited to width.
-	func size(withAttributes attrs: [NSAttributedString.Key : Any], maximumWidth width: CGFloat) -> CGSize {
-		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-		#if os(iOS)
-			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs, context: nil).size
-		#else
-			return self.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attrs).size
-		#endif
-	}
-
+	
 	/// Capitalizes the first letter of the string.
 	var capitalizingFirstLetter: String {
 		if self.isEmpty {

@@ -135,7 +135,7 @@ public final class XUDebugLog {
 			fclose(_logFile!);
 			_logFile = nil;
 			
-			_ = try? FileManager.default.removeItem(atPath: self.logFilePath)
+			_ = try? FileManager.default.removeItem(at: self.logFileURL)
 			
 			_didRedirectToLogFile = false
 			
@@ -143,6 +143,14 @@ public final class XUDebugLog {
 				self._redirectToLogFile()
 				self._startNewSession()
 			}
+		}
+	}
+	
+	/// Flushes the log file.
+	public class func flushLog() {
+		if _logFile != nil {
+			fflush(__stdoutp)
+			fflush(_logFile!)
 		}
 	}
 	
@@ -179,65 +187,16 @@ public final class XUDebugLog {
 		}
 	}
 	
-	fileprivate class var logFilePath: String {
+	/// The log file URL.
+	public static let logFileURL: URL = {
 		let appIdentifier = XUAppSetup.applicationIdentifier
 		
-		let logFolder = ("~/Library/Application Support/\(appIdentifier)/Logs/" as NSString).expandingTildeInPath
-		let logFile = logFolder + "/" + "\(appIdentifier).log"
-		_ = try? FileManager.default.createDirectory(atPath: logFolder, withIntermediateDirectories: true, attributes: nil)
+		let logFolder = FileManager.Directories.applicationSupportDirectory.appendingPathComponents(appIdentifier, "Logs")
+		let logFile = logFolder.appendingPathComponent("\(appIdentifier).log")
+		FileManager.default.createDirectory(at: logFolder)
+		
 		return logFile
-	}
-	
-	#if os(macOS)
-	
-	/// Menu that contains all the necessary menu items to deal with the debug
-	/// log. Use XUDebugLog.installDebugMenu() to install this menu into the
-	/// menu bar next to the Help menu.
-	public static let debugMenu: NSMenu = XUDebugLog._createDebugMenu()
-	
-	/// Installs the debug menu in the menu bar.
-	public class func installDebugMenu() {
-		let menuItem = NSMenuItem(title: XULocalizedString("Debug", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
-		menuItem.submenu = self.debugMenu
-		
-		guard let mainMenu = NSApp?.mainMenu else {
-			fatalError("Installing a debug menu before application is fully launched, or doesn't contain main menu.")
-		}
-		
-		guard mainMenu.numberOfItems > 1 else {
-			fatalError("Main menu is empty. Installing Debug menu requires at least one item.")
-		}
-		
-		mainMenu.insertItem(menuItem, at: mainMenu.numberOfItems - 1)
-	}
-	
-	/// Opens the debug log in Console.
-	public class func openDebugLogInConsole() {
-		if _logFile != nil {
-			fflush(__stdoutp)
-			fflush(_logFile!)
-		}
-		
-		let url = URL(fileURLWithPath: XUDebugLog.logFilePath)
-		NSWorkspace.shared.open([url], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
-	}
-	
-	/// Activates Finder and selects the debug log file.
-	public class func selectDebugLogInFileViewer() {
-		if _logFile != nil {
-			fflush(__stdoutp)
-			fflush(_logFile!)
-		}
-		
-		NSWorkspace.shared.selectFile(XUDebugLog.logFilePath, inFileViewerRootedAtPath: "")
-	}
-
-	
-	fileprivate static var _debugLoggingOn: NSMenuItem!
-	fileprivate static var _debugLoggingOff: NSMenuItem!
-	
-	#endif
-	
+	}()
 	
 	fileprivate class func _cachePreferences() {
 		if !_didCachePreferences {
@@ -287,14 +246,14 @@ public final class XUDebugLog {
 			return
 		}
 		
-		let logFile = self.logFilePath
+		let logFile = self.logFileURL
 		
 		// Try to create the log file
-		if !FileManager.default.fileExists(atPath: logFile) {
-			try? Data().write(to: URL(fileURLWithPath: logFile), options: [.atomic])
+		if !FileManager.default.fileExists(atPath: logFile.path) {
+			try? Data().write(to: logFile, options: [.atomic])
 		}
 		
-		_logFile = fopen((logFile as NSString).fileSystemRepresentation, "a+")
+		_logFile = fopen((logFile.path as NSString).fileSystemRepresentation, "a+")
 		if _logFile != nil {
 			let fileDesc = fileno(_logFile!)
 			dup2(fileDesc, STDOUT_FILENO)
@@ -325,126 +284,9 @@ public final class XUDebugLog {
 	
 }
 
-#if os(iOS)
-	extension XUDebugLog {
-		
-		/// Displays a share dialog allowing you to share the log from a controller.
-		public class func shareLog(from controller: UIViewController) {
-			if _logFile != nil {
-				fflush(__stdoutp)
-				fflush(_logFile!)
-			}
-			
-			let activityController = UIActivityViewController(activityItems: [URL(fileURLWithPath: self.logFilePath)], applicationActivities: nil)
-			controller.present(activityController, animated: true, completion: nil)
-		}
-		
-	}
-#endif
-
-#if os(macOS)
-	
-	private let _actionHandler = _XUDebugLogActionHandler()
-	
-	/// Needs to be NSObject subclass due to OS X 10.11 - calling setTarget: on
-	/// NSMenuItem calls methodForSelector: which is implemented by NSObject.
-	private final class _XUDebugLogActionHandler: NSObject {
-		
-		@objc fileprivate func _clearLog() {
-			XUDebugLog.clearLog()
-		}
-		
-		@objc fileprivate func _copyAppState() {
-			if let provider = XUAppSetup.applicationStateProvider {
-				let state = provider.provideApplicationState()
-				let pboard = NSPasteboard.general
-				pboard.declareTypes([.string], owner: self)
-				pboard.setString(state, forType: .string)
-				
-				let notification = XUSystemNotification(confirmationMessage: XULocalizedString("Copied"))
-				XUSystemNotificationCenter.shared.showNotification(notification)
-			}
-		}
-		
-		@objc fileprivate func _logAppState() {
-			if let provider = XUAppSetup.applicationStateProvider {
-				XULog(provider.provideApplicationState())
-			}
-		}
-		
-		@objc fileprivate func _showAboutDialog() {
-			let alert = NSAlert()
-			let appName = ProcessInfo().processName
-			alert.messageText = XULocalizedFormattedString("Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:", appName, inBundle: XUCoreFramework.bundle)
-			alert.informativeText = XULocalizedFormattedString("1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.", appName, inBundle: XUCoreFramework.bundle)
-			alert.addButton(withTitle: XULocalizedString("OK", inBundle: XUCoreFramework.bundle))
-			alert.runModal()
-		}
-		
-		@objc fileprivate func _showLog() {
-			XUDebugLog.selectDebugLogInFileViewer()
-		}
-		
-		@objc fileprivate func _turnLoggingOn() {
-			XUDebugLog._debugLoggingOn.state = .on
-			XUDebugLog._debugLoggingOff.state = .off
-			
-			XUDebugLog.isLoggingEnabled = true
-			
-			self._logAppState()
-		}
-		
-		@objc fileprivate func _turnLoggingOff() {
-			XUDebugLog._debugLoggingOn.state = .off
-			XUDebugLog._debugLoggingOff.state = .on
-			
-			XUDebugLog.isLoggingEnabled = false
-		}
-		
-	}
-	
-	extension XUDebugLog {
-		
-		fileprivate class func _createDebugMenu() -> NSMenu {
-			let menu = NSMenu(title: XULocalizedString("Debug", inBundle: XUCoreFramework.bundle))
-			menu.addItem(withTitle: XULocalizedString("About Debug Log...", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._showAboutDialog), keyEquivalent: "").target = _actionHandler
-			menu.addItem(NSMenuItem.separator())
-			
-			let loggingMenu = NSMenu(title: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle))
-			XUDebugLog._debugLoggingOn = loggingMenu.addItem(withTitle: XULocalizedString("On", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOn), keyEquivalent: "")
-			XUDebugLog._debugLoggingOff = loggingMenu.addItem(withTitle: XULocalizedString("Off", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._turnLoggingOff), keyEquivalent: "")
-			
-			XUDebugLog._debugLoggingOn.target = _actionHandler
-			XUDebugLog._debugLoggingOff.target = _actionHandler
-			
-			XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? .on : .off
-			XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? .off : .on
-			
-			let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: XUCoreFramework.bundle), action: nil, keyEquivalent: "")
-			loggingItem.submenu = loggingMenu
-			
-			menu.addItem(NSMenuItem.separator())
-			
-			if XUAppSetup.applicationStateProvider != nil {
-				menu.addItem(withTitle: XULocalizedString("Copy Current Application State", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._copyAppState), keyEquivalent: "").target = _actionHandler
-				menu.addItem(withTitle: XULocalizedString("Log Current Application State", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._logAppState), keyEquivalent: "").target = _actionHandler
-			}
-			menu.addItem(withTitle: XULocalizedString("Clear Debug Log", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "").target = _actionHandler
-
-			menu.addItem(NSMenuItem.separator())
-			
-			menu.addItem(withTitle: XULocalizedString("Show Log in Finder", inBundle: XUCoreFramework.bundle), action: #selector(_XUDebugLogActionHandler._showLog), keyEquivalent: "").target = _actionHandler
-			
-			return menu
-		}
-
-	}
-#endif
-
-
 /// Returns file path to the debug log.
-@available(*, deprecated, message: "If you need to clear the log, use XUClearLog, if you need to show it in Finder (OS X), use XUSelectDebugLogFileInFileViewer")
+@available(*, deprecated, message: "Use XUDebugLog.logFileURL")
 /// Currently required for iOS, but is going away.
 public func XULogFilePath() -> String {
-	return XUDebugLog.logFilePath
+	return XUDebugLog.logFileURL.path
 }
