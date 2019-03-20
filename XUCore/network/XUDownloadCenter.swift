@@ -433,6 +433,7 @@ open class XUDownloadCenter {
 		request.httpMethod = "HEAD"
 		
 		self._setupCookieField(forRequest: &request)
+		self._applyAutomaticHeaderFields(to: &request)
 		
 		modifier?(&request)
 		
