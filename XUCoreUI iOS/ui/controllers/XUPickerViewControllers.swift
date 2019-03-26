@@ -180,7 +180,7 @@ public class XUPickerViewController<T: Equatable>: XUPickerBaseViewController<In
 	public let items: [DataItem]
 	
 	public init(parentController: UIViewController, items: [DataItem], selectedItem: DataItem) {
-		guard !items.isEmpty, let index = items.index(of: selectedItem) else {
+		guard !items.isEmpty, let index = items.firstIndex(of: selectedItem) else {
 			XUFatalError("Items are either empty or the selected item is not among them.")
 		}
 		

@@ -58,7 +58,7 @@ public struct XUKeychainAccess {
 		}
 		
 		let returnDictionary = currentDictionary + [
-			(kSecReturnData as String): kCFBooleanTrue,
+			(kSecReturnData as String): kCFBooleanTrue!,
 			(kSecClass as String): kSecClassGenericPassword
 		]
 		

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import XUCore
 
-public extension MKPolygon {
+extension MKPolygon {
 	
 	private class func _parseCoordinates(fromString string: String) -> [CLLocation] {
 		let polygonStrings = string.components(separatedBy: "),(")

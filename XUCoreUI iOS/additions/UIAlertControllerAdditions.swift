@@ -46,7 +46,7 @@ extension UIAlertController {
 	
 }
 
-public extension UIAlertAction {
+extension UIAlertAction {
 	
 	/// A conveniece for a Cancel action.
 	public convenience init(cancelWithCompletionHandler completionHandler: ((UIAlertAction) -> Void)?) {
@@ -59,7 +59,7 @@ public extension UIAlertAction {
 /// These properties are for allowing more shared code with OS X. This way,
 /// you can declare NSAlert on macOS and UIAlertController on iOS and assign
 /// these variables to both.
-public extension UIAlertController {
+extension UIAlertController {
 	
 	public var informativeText: String? {
 		get {
