@@ -112,7 +112,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns an index of the first occurrence of the char.
 	public func index(of char: Character) -> Int? {
-		return _buffer.index(of: char)
+		return _buffer.firstIndex(of: char)
 	}
 	
 	/// Designated initializer.
@@ -130,7 +130,8 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 		let count = data.count
 		
 		var chars = Array<Character>(repeating: 0, count: count)
-		data.withUnsafeBytes { (bytes: UnsafePointer<Character>) in
+		data.withUnsafeBytes { (rawBytes) in
+			let bytes = rawBytes.bindMemory(to: Character.self)
 			for i in 0 ..< count {
 				chars[i] = bytes[i]
 			}

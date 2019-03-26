@@ -65,7 +65,7 @@ extension XUCloudKitSynchronization {
 				data = d
 			case .asset(let asset):
 				do {
-					data = try Data(contentsOf: asset.fileURL)
+					data = try Data(contentsOf: asset.fileURL!)
 				} catch let error {
 					XULog("Failed to read data of asset \(asset) when creating synch change from record: \(record) - \(error)")
 					return nil

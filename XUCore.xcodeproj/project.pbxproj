@@ -311,7 +311,6 @@
 		0772E84222424B880014CDC4 /* XUSearchFieldWithResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B4D0F01DAFA9AF00DE65E7 /* XUSearchFieldWithResults.swift */; };
 		0772E84322424B880014CDC4 /* XUCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */; };
 		0772E84422424B880014CDC4 /* XUFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */; };
-		0772E84522424B880014CDC4 /* XUPositionedWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */; };
 		0772E84622424B880014CDC4 /* XUSwitchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */; };
 		0772E84722424B880014CDC4 /* XUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076657811DE4ACC8007D0BE7 /* XUView.swift */; };
 		0772E84A22424BB20014CDC4 /* XUAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B59D67206B7EE000196027 /* XUAlertViewController.swift */; };
@@ -740,7 +739,6 @@
 		07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURandomGenerator.swift; sourceTree = "<group>"; };
 		07C3FA111BEBB619008A4200 /* XUMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUMenuButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA131BEBB912008A4200 /* XUAppNameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppNameTextField.swift; sourceTree = "<group>"; };
-		07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUPositionedWindowView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUSwitchableView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUArrayNotEmptyTransformer.swift; sourceTree = "<group>"; };
 		07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUZeroBasedIndexTransformer.swift; sourceTree = "<group>"; };
@@ -923,7 +921,6 @@
 			children = (
 				07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */,
 				0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */,
-				07C3FA151BEBBA22008A4200 /* XUPositionedWindowView.swift */,
 				07C3FA1E1BECADA5008A4200 /* XUSwitchableView.swift */,
 				076657811DE4ACC8007D0BE7 /* XUView.swift */,
 			);
@@ -1768,7 +1765,7 @@
 			attributes = {
 				CLASSPREFIX = XU;
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Charlie Monroe Software";
 				TargetAttributes = {
 					076ACE731E37D4B7001BA622 = {
@@ -1779,7 +1776,7 @@
 					};
 					0772E7B0224245170014CDC4 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					0772E7BD2242459E0014CDC4 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1788,7 +1785,7 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = D43XN356JM;
 						DevelopmentTeamName = "Krystof Vasa";
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					077AFD9E1BBD0ED200872A48 = {
@@ -1799,11 +1796,10 @@
 			};
 			buildConfigurationList = 077AFD891BBD0E5300872A48 /* Build configuration list for PBXProject "XUCore" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				English,
 				"pt-BR",
 				cs,
 				"zh-Hans",
@@ -1829,6 +1825,7 @@
 				ja,
 				uk,
 				id,
+				Base,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -1939,7 +1936,6 @@
 				0772E7E0224248580014CDC4 /* CLLocationExtensions.swift in Sources */,
 				0772E84122424B880014CDC4 /* XUClickThroughTextField.swift in Sources */,
 				0772E83722424B300014CDC4 /* XUOneShotPopoverManager.swift in Sources */,
-				0772E84522424B880014CDC4 /* XUPositionedWindowView.swift in Sources */,
 				0772E7EA224248580014CDC4 /* XUView+LayoutConstraints.swift in Sources */,
 				0772E84222424B880014CDC4 /* XUSearchFieldWithResults.swift in Sources */,
 				0772E83E22424B880014CDC4 /* XUEventIgnoringButton.swift in Sources */,
@@ -2412,7 +2408,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -2437,7 +2433,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2452,7 +2448,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -2476,7 +2472,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2489,7 +2485,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
@@ -2528,7 +2524,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
@@ -2692,7 +2688,7 @@
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2723,7 +2719,7 @@
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

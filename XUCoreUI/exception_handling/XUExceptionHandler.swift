@@ -138,6 +138,10 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 		return true
 	}
 	
+	public override func exceptionHandler(_ sender: NSExceptionHandler!, shouldLogException exception: NSException!, mask aMask: Int) -> Bool {
+		return true
+	}
+	
 	public func fatalErrorDidOccur(with reason: String) {
 		let exception = NSException(name: .internalInconsistencyException, reason: reason, userInfo: nil)
 		

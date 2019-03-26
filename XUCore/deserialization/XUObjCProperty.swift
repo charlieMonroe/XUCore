@@ -81,8 +81,9 @@ public struct XUObjCProperty: CustomStringConvertible, Hashable {
 		return "\(self.isScalar ? "S" : "O") \(self.isReadOnly ? "RO" : "RW") \(self.name) (\(self.className ?? "--"))"
 	}
 	
-	public var hashValue: Int {
-		return "\(self.definedOnClass).\(self.name)".hash
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(ObjectIdentifier(self.definedOnClass))
+		hasher.combine(self.name)
 	}
 	
 	/// Returns a property object for this particular property.

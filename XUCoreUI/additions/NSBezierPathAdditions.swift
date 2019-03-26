@@ -153,11 +153,5 @@ extension NSBezierPath {
 
 		self.lineWidth = lineWidth
 	}
-
-	
-	@available(*, deprecated, renamed: "drawBlur(with:radius:)")
-	public func drawBlur(with color: NSColor, andRadius radius: CGFloat) {
-		self.drawBlur(with: color, radius: radius)
-	}
 	
 }

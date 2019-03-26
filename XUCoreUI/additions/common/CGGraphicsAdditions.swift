@@ -149,10 +149,4 @@ public extension CGSize {
 		}
 	}
 	
-	@available(*, deprecated, renamed: "fitting(into:)")
-	func proportionalSizeToFit(in otherSize: CGSize) -> CGSize {
-		return self.fitting(into: otherSize)
-	}
-
-	
 }

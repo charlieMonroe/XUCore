@@ -62,7 +62,7 @@ public extension URLRequest {
 			}
 			set {
 				var components = self.rawValue.components(separatedBy: ";")
-				if let index = components.index(where: { $0.hasCaseInsensitive(prefix: "charset=") }) {
+				if let index = components.firstIndex(where: { $0.hasCaseInsensitive(prefix: "charset=") }) {
 					if let value = newValue {
 						components[index] = "charset=" + value
 					} else {
@@ -260,53 +260,6 @@ extension URLRequest: XUHTTPHeaderFields {
 			self.setValue(newValue, forHTTPHeaderField: field)
 		}
 	}
-
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addAccept(_ accept: String) {
-		self.addValue(accept, forHTTPHeaderField: "Accept")
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addContentType(_ contentType: String) {
-		self.addValue(contentType, forHTTPHeaderField: "Content-Type")
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addJSONAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.json.rawValue)
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addJSONContentToHeader() {
-		self.addContentType(URLRequest.ContentType.json.rawValue)
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addMultipartFormDataContentToHeader() {
-		self.addContentType("multipart/form-data")
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addWWWFormContentToHeader() {
-		self.addContentType(URLRequest.ContentType.wwwForm.rawValue)
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addXMLAcceptToHeader() {
-		self.addAccept(URLRequest.ContentType.xml.rawValue)
-	}
-	
-	@available(*, deprecated, message: "Use the setters as that's what you most likely want anyway.")
-	public mutating func addXMLContentToHeader() {
-		self.addContentType(URLRequest.ContentType.xml.rawValue)
-	}
-	
-	@available(*, deprecated, renamed: "setBasicAuthentication(user:password:)")
-	public mutating func setUsername(_ name: String, andPassword password: String) {
-		self.setBasicAuthentication(user: name, password: password)
-	}
-	
 	
 	public mutating func setFormBody(_ formBody: [String : String]) {
 		let bodyString = formBody.urlQueryString

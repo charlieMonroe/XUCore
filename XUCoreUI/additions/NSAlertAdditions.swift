@@ -157,20 +157,7 @@ public extension NSAlert {
 		}
 		return popUpButton
 	}
-	
-	/// Ensures that the alert is run on main thread. If current thread isn't main,
-	/// the thread is blocked until the alert is dismissed.
-	@discardableResult
-	@available(*, deprecated, message: "You should no longer create NSAlert on non-main thread.")
-	func runModalOnMainThread() -> NSApplication.ModalResponse {
-		var result: NSApplication.ModalResponse = .alertFirstButtonReturn
-		DispatchQueue.main.syncOrNow(execute: { () -> Void in
-			result = self.runModal()
-		})
 		
-		return result
-	}
-	
 	/// Runs modal and displays a text field as accessory view. Nil is returned
 	/// when the user dismisses the dialog with anything else but
 	/// NSAlertFirstButtonReturn. If secure is ture, the text field is secure.

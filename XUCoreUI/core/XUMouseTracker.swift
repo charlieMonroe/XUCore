@@ -103,7 +103,7 @@ public final class XUMouseTracker {
 
 	public func remove(observer: XUMouseTrackingObserver) {
 		_lock.perform {
-			if let index = self._observers.index(where: { $0 === observer }) {
+			if let index = self._observers.firstIndex(where: { $0 === observer }) {
 				self._observers.remove(at: index)
 			}
 		}

@@ -59,11 +59,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		return _sharedController
 	}
 	
-	@available(*, deprecated, renamed: "shared")
-	open class var sharedController: XUPreferencePanesWindowController! {
-		return self.shared
-	}
-	
 	
 	/// Controller that shows the button for accessing all panes.
 	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
@@ -327,7 +322,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
 		self._prefController = preferencePanesWindowController
 		
-		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: .core)
+		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: .coreUI)
 		
 		if #available(macOS 10.11, *) {
 			self.layoutAttribute = .left

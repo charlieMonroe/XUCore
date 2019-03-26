@@ -176,7 +176,7 @@ open class XUApplicationSyncManager {
 			DispatchQueue.main.syncOrNow {
 				// Remove document ID from available, since the download failed
 				if documentURL == nil {
-					if let index = self.availableDocumentUUIDs.index(of: documentID) {
+					if let index = self.availableDocumentUUIDs.firstIndex(of: documentID) {
 						self.availableDocumentUUIDs.remove(at: index)
 					}
 				}

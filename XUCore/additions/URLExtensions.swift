@@ -8,24 +8,6 @@
 
 import Foundation
 
-/// Prefix operator ~. This is currently an experimental operator for creating
-/// a URL from a string. To use it, use ~"http://apple.com". This will produce
-/// an optional URL?, which can be remedied using ~!"http://apple.com". Ideally,
-/// the operator would be @, but can't be as it's used for annotations.
-prefix operator ~
-prefix operator ~!
-
-@available(*, deprecated)
-public prefix func ~(urlString: String) -> URL? {
-	return URL(string: urlString)
-}
-
-@available(*, deprecated)
-public prefix func ~!(urlString: String) -> URL {
-	return URL(string: urlString)!
-}
-
-
 extension URL {
 
 	private func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {

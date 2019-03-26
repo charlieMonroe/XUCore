@@ -410,7 +410,7 @@ public final class XUOAuth2Client {
 	
 	/// Unregisters a client.
 	public class func unregisterClient(_ client: XUOAuth2Client) {
-		if let index = self.registeredClients.index(where: { $0 === client }) {
+		if let index = self.registeredClients.firstIndex(where: { $0 === client }) {
 			self.registeredClients.remove(at: index)
 			
 			#if os(macOS)

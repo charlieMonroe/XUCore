@@ -11,15 +11,6 @@
 
 import Foundation
 
-/// Struct containing some minor stuff around the framework itself.
-public struct XUCoreFramework {
-	
-	/// Contains NSBundle of XUCore(Mobile) framework.
-	@available(*, deprecated)
-	public static let bundle = Bundle(for: _XUSwiftCoreLoader.self)
-	
-}
-
 extension Bundle {
 	
 	/// Returns the core bundle.

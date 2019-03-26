@@ -242,7 +242,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	}
 	
 	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-		XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC({
+		DispatchQueue.main.async {
 			let products = response.products
 			if products.count > 0 {
 				XULog("Found new product identifiers \(products)")
@@ -259,7 +259,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			}
 			
 			self.isLoadingProducts = false
-		})
+		}
 	}
 		
 	/// Starts a purchase. This is asynchronous and the delegate is notified about

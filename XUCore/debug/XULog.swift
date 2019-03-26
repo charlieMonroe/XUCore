@@ -38,7 +38,7 @@ extension XUPreferences {
 public func XUForceLog(_ string: @autoclosure () -> String, method: String = #function, file: String = #file, line: Int = #line) {
 	let originalPreferences = XUDebugLog._cachedPreferences
 	XUDebugLog._cachedPreferences = true
-	XULog(string, method: method, file: file, line: line)
+	XULog(string(), method: method, file: file, line: line)
 	XUDebugLog._cachedPreferences = originalPreferences
 }
 
@@ -282,11 +282,4 @@ public final class XUDebugLog {
 		XULog("")
 	}
 	
-}
-
-/// Returns file path to the debug log.
-@available(*, deprecated, message: "Use XUDebugLog.logFileURL")
-/// Currently required for iOS, but is going away.
-public func XULogFilePath() -> String {
-	return XUDebugLog.logFileURL.path
 }

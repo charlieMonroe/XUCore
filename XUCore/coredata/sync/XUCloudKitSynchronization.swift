@@ -341,7 +341,7 @@ internal final class XUCloudKitSynchronization {
 			let prefs = XUPreferences.shared
 			prefs.perform(andSynchronize: { (prefs) in
 				var dataList = prefs.pendingSynchronizationChanges(for: self.documentManager.documentID).map({ $0.data })
-				if let index = dataList.index(of: pendingChange.data) {
+				if let index = dataList.firstIndex(of: pendingChange.data) {
 					dataList.remove(at: index)
 					prefs.setPendingSynchronizationChanges(dataList, for: self.documentManager.documentID)
 				}

@@ -288,7 +288,7 @@ extension Array where Element : Equatable {
 	public mutating func replaceAllOccurrences(of element: Iterator.Element, with newElement: Iterator.Element) {
 		assert(element != newElement, "Trying to replace a value with the same value!")
 		
-		while let index = self.index(of: element) {
+		while let index = self.firstIndex(of: element) {
 			self[index] = newElement
 		}
 	}

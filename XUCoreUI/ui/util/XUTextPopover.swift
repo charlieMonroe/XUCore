@@ -68,7 +68,7 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	}
 	
 	public func popoverDidClose(_ notification: Notification) {
-		if let index = XUTextPopover._displayedPopovers.index(of: self) {
+		if let index = XUTextPopover._displayedPopovers.firstIndex(of: self) {
 			XUTextPopover._displayedPopovers.remove(at: index)
 		}
 	}

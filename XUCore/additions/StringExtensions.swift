@@ -64,32 +64,36 @@ public enum XUEmailFormatValidity {
 	
 }
 
-public extension String.Encoding {
+extension String.Encoding {
 	
 	/// Init with CFStringEncodings.
-	init(encoding: CFStringEncodings) {
+	public init(encoding: CFStringEncodings) {
 		self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(encoding.rawValue)))
 	}
 	
 }
 
-public extension StringProtocol {
+extension StringProtocol {
 	
 	/// Returns hexValue of the string.
-	var hexValue: Int {
+	public var hexValue: Int {
 		// We support e.g. "0xFF"
 		let suffix = self.drop(while: { $0 == Character("0") || $0 == Character("x") || $0 == Character("X") })
 		var result = 0
 		for c in suffix {
+			guard let ascii = c.asciiValue else {
+				break
+			}
+			
 			if c >= Character("0") && c <= Character("9") {
 				result *= 16
-				result += Int(c.asciiValue - Character("0").asciiValue)
+				result += Int(ascii - Character("0").asciiValue!)
 			} else if c >= Character("a") && c <= Character("f") {
 				result *= 16
-				result += Int(c.asciiValue - Character("a").asciiValue) + 10
+				result += Int(ascii - Character("a").asciiValue!) + 10
 			} else if c >= Character("A") && c <= Character("F") {
 				result *= 16
-				result += Int(c.asciiValue - Character("A").asciiValue) + 10
+				result += Int(ascii - Character("A").asciiValue!) + 10
 			} else {
 				break
 			}
@@ -100,12 +104,12 @@ public extension StringProtocol {
 }
 
 
-public extension String {
+extension String {
 	
 	
 	/// Decodes `self` as base64-encoded `NSData` and tries to create a string
 	/// from the result.
-	var base64DecodedString: String? {
+	public var base64DecodedString: String? {
 		guard let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) else {
 			return nil
 		}
@@ -115,19 +119,19 @@ public extension String {
 
 	/// Returns true if the receiver has `substring` in case-insensitive
 	/// comparison.
-	func contains(caseInsensitive substring: String) -> Bool {
+	public func contains(caseInsensitive substring: String) -> Bool {
 		return self.range(of: substring, options: .caseInsensitive) != nil
 	}
 	
 	/// Returns true if the receiver contains a unicode scalar from the character
 	/// set.
-	func containsCharacter(from charSet: CharacterSet) -> Bool {
+	public func containsCharacter(from charSet: CharacterSet) -> Bool {
 		return self.unicodeScalars.contains(where: { charSet.contains($0) })
 	}
 	
 	/// Ensures that the string has a prefix. If the string already has a prefix,
 	/// `self` is returned, otherwise `prefix + self`.
-	func ensuring(prefix: String) -> String {
+	public func ensuring(prefix: String) -> String {
 		if self.hasPrefix(prefix) {
 			return self
 		}
@@ -136,7 +140,7 @@ public extension String {
 	
 	/// Ensures that the string has a suffix. If the string already has a suffix,
 	/// `self` is returned, otherwise `self + suffix`.
-	func ensuring(suffix: String) -> String {
+	public func ensuring(suffix: String) -> String {
 		if self.hasSuffix(suffix) {
 			return self
 		}
@@ -144,20 +148,21 @@ public extension String {
 	}
 
 	/// Returns the first character or \0 if the string is empty.
-	var firstCharacter: Character {
+	public var firstCharacter: Character {
 		return self.first ?? Character(UInt8(0))
 	}
 
 	/// Returns first line of string. Always non-nil
-	var firstLine: String {
+	public var firstLine: String {
 		return self.components(separatedBy: CharacterSet.newlines)[0]
 	}
 
 	/// This converts string to UInt as a fourCharCode
-	var fourCharCodeValue: Int {
+	public var fourCharCodeValue: Int {
 		var result: Int = 0
 		if let data = self.data(using: String.Encoding.macOSRoman) {
-			data.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) in
+			data.withUnsafeBytes({ (rawBytes) in
+				let bytes = rawBytes.bindMemory(to: UInt8.self)
 				for i in 0 ..< data.count {
 					result = result << 8 + Int(bytes[i])
 				}
@@ -168,7 +173,7 @@ public extension String {
 
 	/// Returns true if the receiver has prefix `prefix` in case-insensitive
 	/// comparison.
-	func hasCaseInsensitive(prefix: String) -> Bool {
+	public func hasCaseInsensitive(prefix: String) -> Bool {
 		guard let range = self.range(of: prefix, options: .caseInsensitive) else {
 			return false
 		}
@@ -178,7 +183,7 @@ public extension String {
 
 	/// Returns true if the receiver has prefix `suffix` in case-insensitive
 	/// comparison.
-	func hasCaseInsensitive(suffix: String) -> Bool {
+	public func hasCaseInsensitive(suffix: String) -> Bool {
 		guard let range = self.range(of: suffix, options: .caseInsensitive) else {
 			return false
 		}
@@ -189,7 +194,7 @@ public extension String {
 	/// Replaces & -> &amp; etc. Unlike htmlUnescapedString, this is not fully
 	/// implemented and will pretty much just substitute several major entities:
 	/// &, ", ', <, >.
-	var htmlEscapedString: String {
+	public var htmlEscapedString: String {
 		var string = self
 		string = string.replacingOccurrences(of: "&", with: "&amp;", options: .literal)
 		string = string.replacingOccurrences(of: "\"", with: "&quot;", options: .literal)
@@ -203,7 +208,7 @@ public extension String {
 	/// Replaces &amp; -> & etc. Unlike htmlEscapedString, this is implemented to
 	/// greated extent. It will replace some known entities (&nbsp;, &quot;, ...)
 	/// but it will also find occurrences of entities such as &#32;, etc.
-	var htmlUnescapedString: String {
+	public var htmlUnescapedString: String {
 		var string = self
 		string = string.replacingOccurrences(of: "&nbsp;", with: " ", options: .literal)
 		string = string.replacingOccurrences(of: "&amp;", with: "&", options: .literal)
@@ -241,12 +246,12 @@ public extension String {
 	
 	/// Returns if the receiver is equal to the other string in a case
 	/// insensitive manner.
-	func isCaseInsensitivelyEqual(to string: String) -> Bool {
+	public func isCaseInsensitivelyEqual(to string: String) -> Bool {
 		return self.compare(string, options: .caseInsensitive) == .orderedSame
 	}
 	
 	/// Creates self from a base64 encoded string.
-	init?(base64EncodedString: String) {
+	public init?(base64EncodedString: String) {
 		guard let data = Data(base64Encoded: base64EncodedString, options: NSData.Base64DecodingOptions()) else {
 			return nil
 		}
@@ -259,11 +264,7 @@ public extension String {
 	/// encodings. This is pretty much a convenience initializer for cases where
 	/// you don't know the source encoding, but want to get a non-nil string
 	/// for as many cases as possible.
-	init?(data: Data!) {
-		if data == nil {
-			return nil
-		}
-
+	public init?(data: Data) {
 		// First, try UTF8, then ASCII.
 		for enc in [String.Encoding.utf8, String.Encoding.ascii] {
 			if let str = String(data: data, encoding: enc) {
@@ -284,7 +285,7 @@ public extension String {
 
 	/// This method takes the string and replaces \r, \n, \t, \u3245, etc. with
 	/// proper characters. This encoding is mostly in JSON and JavaScript.
-	var jsonDecodedString: String {
+	public var jsonDecodedString: String {
 		var result = self
 		result = result.replacingOccurrences(of: "\\r", with: String(Character(UnicodeScalar(13))))
 		result = result.replacingOccurrences(of: "\\n", with: String(Character(UnicodeScalar(10))))
@@ -309,20 +310,29 @@ public extension String {
 		}
 		return result
 	}
+	
+	@available(*, deprecated)
+	public init?(data: Data?) {
+		guard let data = data else {
+			return nil
+		}
+		
+		self.init(data: data)
+	}
 
 	/// Returns the last character or \0 if the string is empty.
-	var lastCharacter: Character {
+	public var lastCharacter: Character {
 		return self.last ?? Character(UInt8(0))
 	}
 	
 	/// Splits `self` using CharacterSet.newlines.
-	var lines: [String] {
+	public var lines: [String] {
 		return self.components(separatedBy: CharacterSet.newlines)
 	}
 
 	/// Computes MD5 digest of self. Will call fatalError if the string can't be
 	/// represented in UTF8.
-	var md5Digest: String {
+	public var md5Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
@@ -332,12 +342,12 @@ public extension String {
 	
 	/// Returns self as octal value - i.e. interpret the number as in octal
 	/// representation.
-	var octalValue: Int {
+	public var octalValue: Int {
 		var result = 0
 		for c in self {
 			if c >= Character("0") && c <= Character("8") {
 				result *= 8
-				result += Int(c.asciiValue - Character("0").asciiValue)
+				result += Int(c.asciiValue! - Character("0").asciiValue!)
 			} else {
 				break
 			}
@@ -347,7 +357,7 @@ public extension String {
 	
 	/// Computes SHA1 digest of self. Will call fatalError if the string can't be
 	/// represented in UTF8.
-	var sha1Digest: String {
+	public var sha1Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
@@ -357,7 +367,7 @@ public extension String {
 	
 	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
 	/// represented in UTF8.
-	var sha256Digest: String {
+	public var sha256Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
@@ -367,7 +377,7 @@ public extension String {
 	
 	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
 	/// represented in UTF8.
-	var sha512Digest: String {
+	public var sha512Digest: String {
 		guard let data = self.data(using: String.Encoding.utf8) else {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
@@ -376,12 +386,12 @@ public extension String {
 	}
 	
 	/// Prepends self with `string`.
-	mutating func prepend(with string: String) {
+	public mutating func prepend(with string: String) {
 		self.insert(contentsOf: string, at: self.startIndex)
 	}
 	
 	/// Capitalizes the first letter of the string.
-	var capitalizingFirstLetter: String {
+	public var capitalizingFirstLetter: String {
 		if self.isEmpty {
 			return self
 		}
@@ -394,7 +404,7 @@ public extension String {
 
 	/// Returns a string with the last character removed. Will trap in case
 	/// the string is empty.
-	func deletingLastCharacter() -> String {
+	public func deletingLastCharacter() -> String {
 		if self.isEmpty {
 			XUFatalError("Cannot delete last character from an empty string!")
 		}
@@ -403,7 +413,7 @@ public extension String {
 	}
 
 	/// Removes the prefix from the string.
-	func deleting(prefix: String) -> String {
+	public func deleting(prefix: String) -> String {
 		if !self.hasPrefix(prefix) {
 			return self
 		}
@@ -412,7 +422,7 @@ public extension String {
 	}
 
 	/// Removes the suffix from the string.
-	func deleting(suffix: String) -> String {
+	public func deleting(suffix: String) -> String {
 		if !self.hasSuffix(suffix) {
 			return self
 		}
@@ -424,7 +434,7 @@ public extension String {
 	/// Encodes string by adding percent escapes. Unlike
 	/// stringByAddingPercentEncodingWithAllowedCharacters(...), this never
 	/// returns nil, but instead falls back to self.
-	var encodingIllegalURLCharacters: String {
+	public var encodingIllegalURLCharacters: String {
 		var characterSet = CharacterSet.urlPathAllowed
 		characterSet.formUnion(CharacterSet.urlQueryAllowed)
 		characterSet.remove(charactersIn: "/:&") // We need / to become %2F
@@ -433,7 +443,7 @@ public extension String {
 	}
 
 	/// Lowercases the first letter of the string.
-	var lowercasingFirstLetter: String {
+	public var lowercasingFirstLetter: String {
 		if self.isEmpty {
 			return self
 		}
@@ -445,7 +455,7 @@ public extension String {
 	}
 
 	/// Trims the string to maximum length of maxLen, trimming the middle.
-	func truncatingMiddle(toMaximumLengthOf maxLen: Int) -> String {
+	public func truncatingMiddle(toMaximumLengthOf maxLen: Int) -> String {
 		if self.count < maxLen {
 			return self
 		}
@@ -456,7 +466,7 @@ public extension String {
 	}
 
 	/// Prepends prefix enough times so that it has the specific length.
-	func paddingFront(toLength length: Int, withString padString: String) -> String {
+	public func paddingFront(toLength length: Int, withString padString: String) -> String {
 		var str = self
 		while str.count + padString.count <= length {
 			str = padString + str
@@ -465,17 +475,17 @@ public extension String {
 	}
 	
 	/// Returns the prefix of length. Doesn't do any range checking.
-	func prefix(ofLength length: Int) -> String {
+	public func prefix(ofLength length: Int) -> String {
 		return String(self[..<self.index(self.startIndex, offsetBy: length)])
 	}
 	
 	/// Returns the suffix of length. Doesn't do any range checking.
-	func suffix(ofLength length: Int) -> String {
+	public func suffix(ofLength length: Int) -> String {
 		return String(self[self.index(self.endIndex, offsetBy: -1 * length)...])
 	}
 	
 	/// Removes characters from the set from the beginning of the string.
-	func trimmingLeftCharacters(in set: CharacterSet) -> String {
+	public func trimmingLeftCharacters(in set: CharacterSet) -> String {
 		var index = 0
 		while index < self.count && self[self.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index += 1
@@ -485,7 +495,7 @@ public extension String {
 	}
 	
 	/// Removes characters from the set from the end of the string.
-	func trimmingRightCharacters(in set: CharacterSet) -> String {
+	public func trimmingRightCharacters(in set: CharacterSet) -> String {
 		var index = self.count - 1
 		while index >= 0 && self[self.index(self.startIndex, offsetBy: index)].isMember(of: set) {
 			index -= 1
@@ -497,14 +507,14 @@ public extension String {
 	}
 
 	/// Trims whitespace whitespace and newlines.
-	var trimmingWhitespace: String {
+	public var trimmingWhitespace: String {
 		return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 	}
 	
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
-	var urlQueryDictionary: [String : String] {
+	public var urlQueryDictionary: [String : String] {
 		let variablePairs = self.allVariablePairs(forRegex: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+|)(&|$)")
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
@@ -525,7 +535,7 @@ public extension String {
 	/// the failable .data(using:), this will always return nonnil value since
 	/// it's using self.utf8CString which is not nullable. You are hence encouraged
 	/// to use this property instead of .data(using: .utf8).
-	var utf8Data: Data {
+	public var utf8Data: Data {
 		return self.utf8CString.withUnsafeBufferPointer { (ptr) -> Data in
 			/// It includes the terminating 0 - we need to remove it.
 			return Data(buffer: ptr).trimmingTrailingZeros
@@ -534,7 +544,7 @@ public extension String {
 	
 	/// Wraps the string so that each line has maximum length of `length`. For 
 	/// example "hello" wrapped to max length of 2 is "he\nll\no".
-	func wrapped(to lineWidth: Int) -> String {
+	public func wrapped(to lineWidth: Int) -> String {
 		let lineCharacters = self.lines.map({
 			Array($0).splitIntoChunks(ofSize: lineWidth)
 		}).joined()
@@ -546,11 +556,11 @@ public extension String {
 }
 
 /// Numeric methods
-public extension String {
+extension String {
 
 	/// This will return double value of the string, kind of like NSString in ObjC;
 	/// if the string cannot be parsed, 0.0 is returned.
-	var doubleValue: Double {
+	public var doubleValue: Double {
 		let doubleValue = Double(self)
 		if doubleValue != nil {
 			return doubleValue!
@@ -580,7 +590,7 @@ public extension String {
 
 	/// This will return integer value of the string, kind of like NSString in ObjC;
 	/// if the string cannot be parsed, 0 is returned.
-	var integerValue: Int {
+	public var integerValue: Int {
 		if let intValue = Int(self) {
 			return intValue
 		}

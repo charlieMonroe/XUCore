@@ -171,7 +171,7 @@ public final class XULocalizationCenter {
 	public func setCurrentLocalizationIdentifier(_ identifier: String) {
 		let defs = UserDefaults.standard
 		var languages = defs.array(forKey: "AppleLanguages") as? [String] ?? [ ]
-		if let index = languages.index(of: identifier) {
+		if let index = languages.firstIndex(of: identifier) {
 			languages.remove(at: index)
 		}
 		languages.insert(identifier, at: 0)

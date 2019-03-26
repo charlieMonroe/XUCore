@@ -321,7 +321,6 @@ public class XUMessageCenter {
 		
 		if let blockedDate = XUPreferences.shared.appBlockedDate {
 			// We are more lenient now and give the user 24 hours to update
-			XULog("The app is blocked.")
 			if Date.timeIntervalSinceReferenceDate - blockedDate.timeIntervalSinceReferenceDate < XUTimeInterval.day {
 				XUPreferences.shared.appBlockedDate = nil
 				return
@@ -336,6 +335,10 @@ public class XUMessageCenter {
 				XUPreferences.shared.perform(andSynchronize: { (prefs) in
 					prefs.isAppBlocked = false
 				})
+			}
+			
+			if self.isAppBlocked {
+				XULog("The app is blocked.")
 			}
 		}
 	}

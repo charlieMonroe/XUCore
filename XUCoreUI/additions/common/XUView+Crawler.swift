@@ -68,7 +68,7 @@ public class XUViewCrawlerGenerator: IteratorProtocol {
 			return nil
 		}
 		
-		guard let index = superview.subviews.index(of: currentView) else {
+		guard let index = superview.subviews.firstIndex(of: currentView) else {
 			// This shouldn't really happen.
 			return nil
 		}

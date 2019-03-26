@@ -72,7 +72,7 @@ public final class XUSystemNotificationCenter {
 		_currentController.loadWindow()
 		
 		if case .system(let notification) = _currentNotification! {
-			NSAccessibility.post(element: _currentController, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : notification.message])
+			NSAccessibility.post(element: _currentController!, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : notification.message])
 		}
 		
 		Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)

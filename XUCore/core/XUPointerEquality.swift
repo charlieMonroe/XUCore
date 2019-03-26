@@ -15,14 +15,14 @@ public protocol XUPointerEquatable: AnyObject, Hashable {
 	
 }
 
-public extension XUPointerEquatable {
+extension XUPointerEquatable {
 	
-	static func ==(lhs: Self, rhs: Self) -> Bool {
+	public static func ==(lhs: Self, rhs: Self) -> Bool {
 		return lhs === rhs
 	}
 	
-	var hashValue: Int {
-		return ObjectIdentifier(self).hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(ObjectIdentifier(self))
 	}
 	
 }

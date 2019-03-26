@@ -73,7 +73,7 @@ public final class XUURLHandlingCenter {
 			return
 		}
 		
-		guard let index = schemes.index(where: { $0 === handler }) else {
+		guard let index = schemes.firstIndex(where: { $0 === handler }) else {
 			return // Not registered for this scheme
 		}
 		

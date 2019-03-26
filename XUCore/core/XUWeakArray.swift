@@ -65,7 +65,7 @@ public struct XUWeakArray<Element: AnyObject>: Sequence {
 	
 	/// Returns index of an object. The equality is always considered pointer-wise.
 	public func index(of obj: Element) -> Int? {
-		return _innerArray.index(where: { $0.objectValue === obj })
+		return _innerArray.firstIndex(where: { $0.objectValue === obj })
 	}
 	
 	/// Returns the last item in the list, not checking for nil.

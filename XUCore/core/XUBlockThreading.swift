@@ -8,40 +8,16 @@
 
 import Foundation
 
-/// Performs the block on main thread synchronously. If the current thread already
-/// is main thread, the block is performed immediately, preventing dead-lock.
-@available(*, deprecated, renamed: "DispatchQueue.main.syncOrNow(execute:)")
-public func XU_PERFORM_BLOCK_ON_MAIN_THREAD(_ block: () -> Void) {
-	if Thread.isMainThread {
-		block()
-	} else {
-		DispatchQueue.main.sync(execute: block)
-	}
-}
 
 /// Performs the block on main thread asynchronously. If the current thread already
 /// is main thread, the block is performed immediately, preventing dead-lock.
+@available(*, deprecated)
 public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(_ block: @escaping () -> Void) {
 	if Thread.isMainThread {
 		block()
 	} else {
 		DispatchQueue.main.async(execute: block)
 	}
-}
-
-/// Creates a new thread on the default priority queue and executes the block.
-@available(*, deprecated, message: "Use DispatchQueue.global(qos: .default).async(execute:)")
-public func XU_PERFORM_BLOCK_ASYNC(_ block: @escaping () -> Void) {
-	DispatchQueue.global(qos: .default).async(execute: block)
-}
-
-/// Dispatches the block after delay on queue. By default, queue is the main queue.
-@available(*, deprecated, message: "Use queue.asyncAfter(.seconds((qos: .default).async(execute:)")
-public func XU_PERFORM_DELAYED_BLOCK(_ delay: TimeInterval, queue: DispatchQueue = DispatchQueue.main, block: @escaping () -> Void) {
-	queue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * TimeInterval(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-		block()
-	})
-
 }
 
 extension DispatchTime {

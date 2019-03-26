@@ -269,7 +269,7 @@ open class XUDownloadCenter {
 		if XUDebugLog.isLoggingEnabled && self.logTraffic {
 			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
 			if request.httpBody != nil && request.httpBody!.count > 0 {
-				logString += "\nHTTP Body: \(String(data: request.httpBody) ?? "")"
+				logString += "\nHTTP Body: \(request.httpBody.flatMap(String.init(data:)) ?? "")"
 			}
 			
 			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referingFunction)

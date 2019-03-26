@@ -54,7 +54,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			reporter._reporterWindow.center()
 			reporter._reporterWindow.makeKeyAndOrderFront(nil)
 			
-			NSAccessibility.post(element: reporter._reporterWindow, notification: .announcementRequested, userInfo: [
+			NSAccessibility.post(element: reporter._reporterWindow!, notification: .announcementRequested, userInfo: [
 				NSAccessibility.NotificationUserInfoKey.announcement: XULocalizedFormattedString("%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.", ProcessInfo().processName, inBundle: .core),
 				NSAccessibility.NotificationUserInfoKey.priority: NSAccessibilityPriorityLevel.high.rawValue
 				])
@@ -199,7 +199,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			return
 		}
 		
-		if _userInputTextView.string.contains(where: { !$0.isASCIIOrPunctuation }) {
+		if _userInputTextView.string.contains(where: { !($0.isASCII || $0.isPunctuation) }) {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", ProcessInfo.processInfo.processName, inBundle: .core)
 			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.", inBundle: .core)
@@ -261,7 +261,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	}
 	
 	func windowWillClose(_ notification: Notification) {
-		guard let index = XUExceptionReporter._reporters.index(of: self) else {
+		guard let index = XUExceptionReporter._reporters.firstIndex(of: self) else {
 			return
 		}
 		

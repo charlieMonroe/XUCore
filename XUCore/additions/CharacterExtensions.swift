@@ -47,9 +47,7 @@ extension Character {
 	#endif
 	
 	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
-	#if swift(>=5.0)
 	@available(*, deprecated, message: "Use c.isASCII || c.isPunctuation instead.")
-	#endif
 	public var isASCIIOrPunctuation: Bool {
 		#if swift(>=5.0)
 			return self.isASCII || self.isPunctuation
@@ -59,9 +57,7 @@ extension Character {
 	}
 	
 	/// Returns true iff `self` is a-z or A-Z.
-	#if swift(>=5.0)
 	@available(*, deprecated, message: "Use c.isASCII && c.isLetter instead.")
-	#endif
 	public var isASCIILetter: Bool {
 		#if swift(>=5.0)
 			return self.isASCII && self.isLetter
@@ -71,9 +67,7 @@ extension Character {
 	}
 	
 	/// Returns true iff `self` is 0-9.
-	#if swift(>=5.0)
 	@available(*, deprecated, message: "Use c.isASCII && c.isNumber instead.")
-	#endif
 	public var isASCIINumber: Bool {
 		#if swift(>=5.0)
 			return self.isASCII && self.isNumber
@@ -86,9 +80,7 @@ extension Character {
 	}
 	
 	/// Returns true iff `self` is a-z.
-	#if swift(>=5.0)
 	@available(*, deprecated, message: "Use c.isASCII && c.isLetter && c.isLowercase instead.")
-	#endif
 	public var isLowercaseASCIILetter: Bool {
 		#if swift(>=5.0)
 			return self.isASCII && self.isLetter && self.isLowercase
@@ -106,9 +98,7 @@ extension Character {
 	}
 	
 	/// Returns true iff `self` is A-Z.
-	#if swift(>=5.0)
 	@available(*, deprecated, message: "Use c.isASCII && c.isLetter && c.isUppercase instead.")
-	#endif
 	public var isUppercaseASCIILetter: Bool {
 		#if swift(>=5.0)
 			return self.isASCII && self.isLetter && self.isUppercase
