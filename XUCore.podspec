@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 	s.summary  = 'A core library used by Charlie Monroe Software.'
 	s.homepage = 'http://github.com/charlieMonroe/XUCore/'
 	s.author   = 'Charlie Monroe'
-	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :branch => 'master' }
+	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'core_1.3' }
 	
 	s.swift_version = '5.0'
 
