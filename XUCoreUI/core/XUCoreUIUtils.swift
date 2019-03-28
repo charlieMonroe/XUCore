@@ -13,7 +13,7 @@ import XUCore
 /// _XUCoreUILoader which implements +load which is not available in Swift. We need,
 /// however, the loader to be in Swift since not all classes are NSObject-based
 /// anymore.
-@objc public class _XUSwiftCoreUILoader: NSObject {
+@objc(_XUSwiftCoreUILoader) public class _XUSwiftCoreUILoader: NSObject {
 	
 	private static var _didLoad: Bool = false
 	

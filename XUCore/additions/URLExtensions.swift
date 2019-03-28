@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if os(macOS)
+	import AppKit // For NSImage
+#endif
 
 extension URL {
 

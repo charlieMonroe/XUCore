@@ -106,7 +106,7 @@ extension Data {
 		var hexString = ""
 		
 		self.withUnsafeBytes { (rawPointer: UnsafeRawBufferPointer) in
-			let bytes = rawPointer.bindMemory(to: Int8.self)
+			let bytes = rawPointer.bindMemory(to: UInt8.self)
 			for i in 0 ..< dataLength {
 				hexString += String(format: "%02x", bytes[i])
 			}
@@ -163,8 +163,10 @@ extension Data {
 	
 	/// Reads Int-typed value from stream.
 	public func readInteger<T: FixedWidthInteger>(startingAtByte index: Int) -> T {
-		return self.withUnsafeBytes { (rawBytes: UnsafeRawBufferPointer) -> T in
-			return rawBytes.load(fromByteOffset: index, as: T.self)
+		// If we don't make subdata, we'll get a read from non-aligned pointer.
+		let subdata = self[index ..< index + T.bitWidth / 8]
+		return subdata.withUnsafeBytes { (rawBytes: UnsafeRawBufferPointer) -> T in
+			return rawBytes.bindMemory(to: T.self)[0]
 		}
 	}
 	

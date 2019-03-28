@@ -8,6 +8,10 @@
 
 import Foundation
 
+#if os(macOS)
+	import AppKit // For NSApplication
+#endif
+
 /// The exception handler can have an application state provider which should
 /// include a single method. See its docs. You can set the current application
 /// state provider on XUApplicationSetup.

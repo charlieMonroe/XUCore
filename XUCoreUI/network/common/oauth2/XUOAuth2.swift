@@ -9,6 +9,10 @@
 import Foundation
 import XUCore
 
+#if os(iOS)
+	import UIKit // For UIViewContoller
+#endif
+
 public final class XUOAuth2Configuration {
 	
 	private struct ConfigurationKeys {

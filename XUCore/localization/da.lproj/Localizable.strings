@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "Velkommmen til beta-udgaven af %@.";
 "This is the first time you run a beta build %@." = "Dette er første gang du kører en betaversion %@.";
 "This beta build of %@ has expired." = "Betaversionen af %@ er udløbet.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Nyd vores software! Hvis du har nogen spørgsmål eller støder på fejl, endelig kontakt os på vores support-side  %@";
 
-"Continue" = "Fortsæt";
-"Purchase..." = "Køb...";
-"I'm Still Not Sure" = "Jeg er stadig ikke helt sikker";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke oprette forbindelse til internettet. Programmet vil blive afsluttet om en time.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ kræver forbindelse til internettet for at kunne fortsætte med prøveversionen";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil blive ført til en side, hvor du kan købe programmet. Hvis du stadig ikke er sikker på, om %@ er det rette program for dig, eller hvis du har nogle spørgsmål, så kontakt os.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak fordi du prøvede %@! Du må anvende programmet i %li dage uden nogle begrænsninger. Når prøveperioden udløber, er du nødt til at købe %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Tak fordi du prøvede %@! Du har nu brugt det i %li dage. For at fortsætte med at anvende %@ er du nødt til at købe programmet.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Tak fordi du prøvede %@! Du må nu bruge programmet nu i %i %@ uden nogle begrænsninger. Når prøveperioden udløber, er du nødt til at købe %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Tak fordi du prøvede %@! Du har nu anvendt programmet i %i %@. For at fortsætte med at anvende %@ er du nødt til at købe programmet.";
 "Working..." = "Arbejder...";
 
 "Progress" = "Forløb";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "Kan ikke finde klassen %@";
 "Cannot find entity with ID %@" = "Kan ikke finde genstanden med ID %@";
 "Can't find synchronization folder for document %@." = "Kan ikke finde synkroniseringsmappen for dokumentet %@.";
-"Can't find synchronization folder for computer %@." = "Kan ikke finde synkroniseringsmappen for computeren %@.";
-"Can't find sync folder for document %@." = "Kan ikke finde synkroniseringsmappen for dokumentet %@.";
 "%@ couldn't finish synchronization in the background." = "%@ kunne ikke fuldføre synkroniseringen i baggrunden.";
 "Please switch back to %@ so that the synchronization can finish." = "Skift venligst tilbage til %@ så synkroniseringen kan fuldføres.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Kunne ikke læse synkroniseringens ændringsdata .";
-"Could not copy synchronization change data to the cloud." = "Kunne ikke kopiere synkroniseringens ændringsdata til skyen.";
-"Failing to apply change sets." = "Kunne ikke anvende 'change sets'.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Synkroniseringsændringerne fra computer %@ er ikke blevet overført endnu.";
 
 /// XUOAuth2
 "Authentication" = "Godkendelse";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Copied";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

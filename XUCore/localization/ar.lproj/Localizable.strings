@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "مرحبا بك في النسخة التجريبية من %@.";
 "This is the first time you run a beta build %@." = "هذه هي المرة الاولى التي تقوم بتشغيل هذه النسخة التجريبية %@.";
 "This beta build of %@ has expired." = "لقد انتهت صلاحية النسخة التجريبية من %@.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "استمتع ببرنامجنا! اذا كان لديك اي سؤال او مررت بأي مشكلة، لا تتردد من التواصل معنا عبر صفحة الدعم الخاصة بنا %@.";
 
-"Continue" = "إستمرار";
-"Purchase..." = "شراء...";
-"I'm Still Not Sure" = "لست متأكدا بعد";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "لم يستطع %@ الإتصال بالإنترنت. سيتم إغلاق التطبيق خلال ساعة.";
-"%@ requires connection to the Internet to continue the trial properly." = "يتطلب اتصال بالانترنت لكي يستمر عمل النسخة التجريبية بصورة صحيحة. %@";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "سيتم تحويلك الى صفحة شراء التطبيق. إذا كنت لا تزال غير من متأكد من أن @% مناسب لك و لديك بعض الأسئلة، إتصل بنا. %@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "شكراً على استخدامك تطبيق @%! يمكنك استخدام هذا التطبيق كاملاً لمدة %li يوم الآن. بعد انتهاء صلاحية النسخة التجريبية، ستحتاج لشراء نسخة من %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "شكراً على تجربتك تطبيق @%! لقد قمت بإستخدام هذا التطبيق لـ %li يوم. للإستمرار بإستخدام @% عليك شراء النسخة.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "شكرا على تجربتك تطبيق @%! يمكنك الان استخدامه لـ i% @% بدون اي قيود. بعد إنتهاء صلاحية النسخة التجريبية عليك شراء نسخة من تطبيق @%.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "شكرا على استخدامك تطبيق @%! لقد قمت بإستخدام التطبيق لـ @%. للإستمرار باستخدام @% عليك بشراء النسخة.";
 "Working..." = "جار العمل...";
 
 "Progress" = "الحالة";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "تعذر العثور على الصنف @%";
 "Cannot find entity with ID %@" = "لا يمكن العثور على رمز الكيان %@";
 "Can't find synchronization folder for document %@." = "تعذر ايجاد مجلد المزامنة للملف @%";
-"Can't find synchronization folder for computer %@." = "تعذر ايجاد مجلد المزامنة للحاسوب %@.";
-"Can't find sync folder for document %@." = "لا يمكن ايجاد مجلد المزامنة للملف @%.";
 "%@ couldn't finish synchronization in the background." = "%@ لم يستطع إنهاء المزامنة في الخلفية.";
 "Please switch back to %@ so that the synchronization can finish." = "الرجاء الرجوع الى @% من اجل إنهاء عملية المزامنة.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "تعذر قراءة بيانات المزامنة.";
-"Could not copy synchronization change data to the cloud." = "تعذر نسخ بيانات المزامنة الى السحابة.";
-"Failing to apply change sets." = "فشل في تطبيق التغييرات.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "لم يتم تحميل تغييرات المزامنة الحاصلة من الحاسوب @% بعد.";
 
 /// XUOAuth2
 "Authentication" = "التحقق";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "تم النسخ";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

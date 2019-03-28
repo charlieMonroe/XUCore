@@ -8,6 +8,9 @@
 
 import CloudKit
 import Foundation
+#if os(iOS)
+	import UIKit // For UIDevice
+#endif
 
 /// Class that registers the device in iCloud as Synchronized Device. It also keeps
 /// the subscription.

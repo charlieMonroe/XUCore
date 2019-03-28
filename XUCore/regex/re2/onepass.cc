@@ -52,9 +52,9 @@
 
 #include <string.h>
 #include <map>
-#include "util.h"
-#include "arena.h"
-#include "sparse_set.h"
+#include "util/util.h"
+#include "util/arena.h"
+#include "util/sparse_set.h"
 #include "prog.h"
 #include "stringpiece.h"
 

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for XUCoreMobile.
 FOUNDATION_EXPORT double XUCoreMobileVersionNumber;

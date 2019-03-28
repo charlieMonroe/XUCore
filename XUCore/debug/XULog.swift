@@ -8,10 +8,6 @@
 
 import Foundation
 
-#if os(macOS)
-	import Cocoa
-#endif
-
 private extension XUPreferences.Key {
 
 	/// We are not exposing this defaults key. Please, use XULoggingEnabled() function

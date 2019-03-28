@@ -23,9 +23,9 @@
 
 #include "prog.h"
 #include "stringpiece.h"
-#include "atomicops.h"
-#include "flags.h"
-#include "sparse_set.h"
+#include "util/atomicops.h"
+#include "util/flags.h"
+#include "util/sparse_set.h"
 
 DEFINE_bool(re2_dfa_bail_when_slow, true,
             "Whether the RE2 DFA should bail out early "

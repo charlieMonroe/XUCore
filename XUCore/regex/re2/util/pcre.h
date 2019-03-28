@@ -159,7 +159,7 @@
 // will leave 64 in a, b, c, and d.
 
 #include "util.h"
-#include "stringpiece.h"
+#include "../stringpiece.h"
 
 #ifdef USEPCRE
 #include <pcre.h>

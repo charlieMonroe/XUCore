@@ -295,3 +295,110 @@ extension Array where Element : Equatable {
 	
 }
 
+extension BidirectionalCollection {
+	
+	/// Extended enumerator. It includes previous, current and next values. This
+	/// way you can more easily look forward and backward without tracking previous
+	/// values.
+	///
+	/// You can use it e.g. like this:
+	///
+	/// for (previous, current, next) in collection.extendedEnumerator() {
+	///     // ...
+	/// }
+	///
+	public func extendedEnumerator() -> XUExtendedEnumerator<Element> {
+		return XUExtendedEnumerator(collection: AnyBidirectionalCollection<Element>(self))
+	}
+	
+}
+
+public struct XUExtendedIterator<T>: IteratorProtocol {
+	
+	public typealias Element = (previous: T?, current: T, next: T?)
+	
+	
+	/// Current index.
+	public private(set) var currentIndex: AnyBidirectionalCollection<T>.Index
+	
+	/// Collection we're iterating.
+	public let collection: AnyBidirectionalCollection<T>
+
+	
+	private mutating func _increaseIndex() {
+		self.currentIndex = self.collection.index(after: self.currentIndex)
+	}
+	
+	public mutating func next() -> Element? {
+		defer {
+			self._increaseIndex()
+		}
+		
+		if self.collection.isEmpty {
+			return nil
+		}
+		
+		let previousIndex = self.collection.index(before: self.currentIndex)
+		let nextIndex = self.collection.index(after: self.currentIndex)
+		if nextIndex < self.collection.endIndex {
+			if previousIndex < self.collection.startIndex {
+				return (nil, self.collection[self.currentIndex], self.collection[nextIndex])
+			} else {
+				return (self.collection[previousIndex], self.collection[self.currentIndex], self.collection[nextIndex])
+			}
+		} else {
+			if previousIndex < self.collection.startIndex {
+				return (nil, self.collection[self.currentIndex], nil)
+			} else {
+				return (self.collection[previousIndex], self.collection[self.currentIndex], nil)
+			}
+		}
+	}
+	
+	public init(collection: AnyBidirectionalCollection<T>) {
+		self.collection = collection
+		self.currentIndex = collection.startIndex
+	}
+	
+}
+
+public struct XUExtendedEnumerator<T>: BidirectionalCollection {
+	
+	public typealias Element = XUExtendedIterator<T>.Element
+	public typealias Index = AnyBidirectionalCollection<T>.Index
+	
+	/// Collection.
+	public let collection: AnyBidirectionalCollection<T>
+	
+	public var endIndex: AnyBidirectionalCollection<T>.Index {
+		return self.collection.endIndex
+	}
+	
+	public func index(after i: AnyBidirectionalCollection<T>.Index) -> AnyBidirectionalCollection<T>.Index {
+		return self.collection.index(after: i)
+	}
+	
+	public func index(before i: AnyBidirectionalCollection<T>.Index) -> AnyBidirectionalCollection<T>.Index {
+		return self.collection.index(before: i)
+	}
+	
+	public var startIndex: AnyBidirectionalCollection<T>.Index {
+		return self.collection.startIndex
+	}
+	
+	public subscript(index: Index) -> Element {
+		let previousIndex = self.collection.index(before: index)
+		let previous = previousIndex < self.collection.startIndex ? nil : self.collection[previousIndex]
+		
+		let nextIndex = self.collection.index(after: index)
+		let next = nextIndex < self.collection.endIndex ? self.collection[nextIndex] : nil
+		
+		return (previous, self.collection[index], next)
+	}
+	
+	public init(collection: AnyBidirectionalCollection<T>) {
+		self.collection = collection
+	}
+	
+}
+

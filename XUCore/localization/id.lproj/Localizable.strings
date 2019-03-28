@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "Selamat datang di pengetesan beta %@.";
 "This is the first time you run a beta build %@." = "Ini adalah pertama kalinya Anda menjalankan versi beta %@.";
 "This beta build of %@ has expired." = "Versi beta dari %@ ini telah kedaluwarsa.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Nikmati perangkat lunak kami! Jika Anda memiliki pertanyaan atau mengalami bug, jangan ragu untuk bertanya kepada kami di halaman dukungan kami %@";
 
-"Continue" = "Lanjutkan";
-"Purchase..." = "Beli...";
-"I'm Still Not Sure" = "Saya masih ragu";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ tidak dapat terhubung ke Internet. Aplikasi akan keluar dalam satu jam.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ membutuhkan koneksi ke Internet untuk melanjutkan percobaan dengan benar.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Anda akan dibawa ke halaman tempat Anda bisa membeli salinannya. Jika Anda masih tidak yakin apakah %@ cocok untuk Anda dan memiliki beberapa pertanyaan, hubungi kami.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Terima kasih telah mencoba %@! Anda dapat menggunakannya untuk %li hari sekarang tanpa batasan apa pun. Setelah masa uji coba berakhir, Anda harus membeli salinan %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Terima kasih telah mencoba %@! Anda telah menggunakannya %li hari. Untuk terus menggunakan %@ Anda harus membeli salinan.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Terima kasih telah mencoba %@! Anda dapat menggunakannya untuk %i %@ sekarang tanpa batasan. Setelah masa uji coba berakhir, Anda harus membeli salinan %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Terima kasih telah mencoba %@! Anda telah menggunakannya untuk %i %@ sekarang. Untuk terus menggunakan %@ Anda harus membeli salinan.";
 "Working..." = "Bekerja...";
 
 "Progress" = "Progres";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "Tidak  menemukan kelas bernama %@";
 "Cannot find entity with ID %@" = "Tidak menemukan entitas dengan ID %@";
 "Can't find synchronization folder for document %@." = "Tidak dapat menemukan folder sinkronisasi untuk dokumen %@.";
-"Can't find synchronization folder for computer %@." = "Tidak dapat menemukan folder sinkronisasi untuk komputer %@.";
-"Can't find sync folder for document %@." = "Tidak dapat menemukan folder sinkron untuk dokumen %@.";
 "%@ couldn't finish synchronization in the background." = "%@ tidak dapat menyelesaikan sinkronisasi di latar belakang.";
 "Please switch back to %@ so that the synchronization can finish." = "Harap kembali ke %@ agar sinkronisasi dapat selesai.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Tidak dapat membaca sinkronisasi perubahan data.";
-"Could not copy synchronization change data to the cloud." = "Tidak dapat menyalin sinkronisasi perubahan data ke cloud.";
-"Failing to apply change sets." = "Gagal menerapkan set perubahan.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Perubahan sinkronisasi dari komputer %@ belum diunduh.";
 
 /// XUOAuth2
 "Authentication" = "Otentikasi";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Tersalin";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

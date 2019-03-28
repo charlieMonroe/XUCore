@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "Bienvenido a las pruebas beta de %@.";
 "This is the first time you run a beta build %@." = "Esta es la pimera vez que ejecutas una versión beta %@.";
 "This beta build of %@ has expired." = "Esta versión beta de %@ ha expirado.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "¡Disfruta tu software! Si tienes alguna pregunta o encuentras algún problema, no dudes en preguntarnos en nuestra página de atención al usuario %@";
 
-"Continue" = "Continuar";
-"Purchase..." = "Compra...";
-"I'm Still Not Sure" = "No Estoy Seguro Todavía";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ no pudo conectar con Internet. La aplicación se cerrará en una hora.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ requiere conexión a Internet para continuar el intento adecuadamente.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Serás transferido a una página web, donde podrás comprar una copia. Si todavía no estás seguro si %@ es adecuado para ti y tienes dudas, contáctanos.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "-Gracias por probar %@!  %@! Puedes usarlo durante %li días ahora, sin ninguna limitación. Una vez expire el periodo de prueba, necesitarás comprar una copia de %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Gracias por probar %@! Lo has estado usando %li días hasta ahora. Para continuar usando %@ debes comprar una copia.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Gracias por probar %@! Puedes usarlo durante %i %@ ahora sin ninguna limitación. Una vez expire el periodo de prueba, necesitarás comprar una copia de %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Gracias por probar %@! Lo has usado durante %i %@ ahora. Para seguir usando %@ debes comprar una copia.";
 "Working..." = "Procesando...";
 
 "Progress" = "Progreso";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "No se encontró la clase llamada %@";
 "Cannot find entity with ID %@" = "No se encontró la entidad con ID %@";
 "Can't find synchronization folder for document %@." = "No se encontró la carpeta de sincronización para el documento %@.";
-"Can't find synchronization folder for computer %@." = "No se encontró la carpeta de sincronización para el ordenador %@.";
-"Can't find sync folder for document %@." = "No se encontró la carpeta de sincronización para el documento %@.";
 "%@ couldn't finish synchronization in the background." = "%@ no pudo terminar la sincronización en el trasfondo.";
 "Please switch back to %@ so that the synchronization can finish." = "Por favor, vuelve a %@ para que la sincronización pueda terminar.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "No se pudieron leer los datos de cambio de sincronización.";
-"Could not copy synchronization change data to the cloud." = "No se pudieron copiar los datos de cambio de sincronización a la nube.";
-"Failing to apply change sets." = "Fallo en aplicación de sets de cambio.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Los cambios de sincronización del ordenador %@ no se han descargado todavía.";
 
 /// XUOAuth2
 "Authentication" = "Autentificación";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Copiado";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

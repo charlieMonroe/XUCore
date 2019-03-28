@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Foundation;
 
 //! Project version number for XUCore.
 FOUNDATION_EXPORT double XUCoreVersionNumber;

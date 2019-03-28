@@ -36,7 +36,7 @@
  *
  */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "NSData+CommonCrypto.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>

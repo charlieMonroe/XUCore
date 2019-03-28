@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <XUCoreUI/XUCoreUI-Swift.h>
+
+@interface _XUSwiftCoreUILoader : NSObject
++ (void)loadSingletons;
+@end
 
 @interface _XUCoreUILoader : NSObject
 

@@ -7,7 +7,10 @@
 //
 
 #import "_XUCoreLoader.h"
-#import <XUCore/XUCore-Swift.h>
+
+@interface _XUSwiftCoreLoader : NSObject
++ (void)loadSingletons;
+@end
 
 @implementation _XUCoreLoader
 

@@ -292,7 +292,7 @@ public class XUStringGenerator: IteratorProtocol {
 	
 	/// Returns next element.
 	public func next() -> XUString.Character? {
-		if currentIndex + 1 >= self.string.length {
+		if self.currentIndex + 1 >= self.string.length {
 			return nil
 		}
 		

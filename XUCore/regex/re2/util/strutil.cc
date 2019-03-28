@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 #include "util.h"
-#include "stringpiece.h"
+#include "../stringpiece.h"
 
 namespace re2 {
 

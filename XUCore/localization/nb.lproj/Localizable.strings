@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "Velkommen til betatesting av %@.";
 "This is the first time you run a beta build %@." = "Dette er første gang du kjører en beta build %@.";
 "This beta build of %@ has expired." = "Denne beta build av %@ er utgått.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Hygg deg med vår programvare! Dersom du får problemer eller oppdager feil, vennligst ta kontakt med oss på vår side for brukerstøtte %@";
 
-"Continue" = "Fortsett";
-"Purchase..." = "Kjøp...";
-"I'm Still Not Sure" = "Jeg er fortsatt ikke sikker";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ kunne ikke koble til Internett. Applikasjonen vil avslutte om en time.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ trenger tilkobling til Internett for å fortsette.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Du vil bli sendt til en side der du kan kjøpe et eksemplar. Dersom du fremdeles ikke er sikker om %@ er riktig for deg, eller har spørsmål, ta kontakt med oss.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving\n %@! Du kan bruke det i %li dager uten begrensninger. Etter at prøveperioden er utgått, mmå du kjøpe en versjon av %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %li dager. For å fortsette å bruke %@ må du kjøpe en lisens.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "Takk for din utprøving %@! Du kan nå bruke det i %i %@ uten begrensninger. Etter at prøveperioden er utløpt, må du kjøpe en lisens for %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "Takk for din utprøving %@! Du har nå brukt det i %i %@. For å fortsette å bruke %@ må du kjøpe en lisens.";
 "Working..." = "Jobber…";
 
 "Progress" = "Fremdrift";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "Kan ikke finne klasse ved navn %@";
 "Cannot find entity with ID %@" = "Kan ikke finne enhet med ID %@";
 "Can't find synchronization folder for document %@." = "Kan ikke finne synkroniseringsmappe for dokument %@.";
-"Can't find synchronization folder for computer %@." = "Kan ikke finne synkroniseringsmappe for datamaskin %@.";
-"Can't find sync folder for document %@." = "Kan ikke finne synkroniseringsmappe for dokument %@.";
 "%@ couldn't finish synchronization in the background." = "%@ kunne ikke fullføre synkronisering i bakgrunnen.";
 "Please switch back to %@ so that the synchronization can finish." = "Vennligst gå tilbake til %@ slik at synkroniseringen kan fullføres.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Kunne ikke lese synkroniserings-endringsdata.";
-"Could not copy synchronization change data to the cloud." = "Kunne ikke kopiere synkroniserings-endringsdata til skyen.";
-"Failing to apply change sets." = "Feilet i å tilføre endrings sett.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Synkroniseringsendring fra datamaskin %@ er ikke nedlastet ennå.";
 
 /// XUOAuth2
 "Authentication" = "Autentisering";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Copied";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

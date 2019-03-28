@@ -6,7 +6,7 @@
 //  Copyright © 2019 Charlie Monroe Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for XUCoreUI_iOS.
 FOUNDATION_EXPORT double XUCoreUI_iOSVersionNumber;

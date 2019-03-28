@@ -209,7 +209,7 @@
 		076ACE821E37D707001BA622 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076ACE811E37D707001BA622 /* DataTests.swift */; };
 		077093821CC1296C0093830B /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		0772E7B5224245170014CDC4 /* XUCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0772E7B3224245170014CDC4 /* XUCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0772E7C22242459E0014CDC4 /* XUCoreUI_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0772E7C02242459E0014CDC4 /* XUCoreUI_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0772E7C22242459E0014CDC4 /* XUCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0772E7C02242459E0014CDC4 /* XUCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0772E7C72242464B0014CDC4 /* NSAlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCCC1BFF1A400075CC9B /* NSAlertAdditions.swift */; };
 		0772E7C82242464B0014CDC4 /* NSMenu+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */; };
 		0772E7C92242464B0014CDC4 /* NSEventAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1671BF0697700832858 /* NSEventAdditions.swift */; };
@@ -345,11 +345,9 @@
 		0777C64C2049282C00202BB7 /* Array+Numerics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777C64B2049282C00202BB7 /* Array+Numerics.swift */; };
 		0777C64D2049282C00202BB7 /* Array+Numerics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777C64B2049282C00202BB7 /* Array+Numerics.swift */; };
 		0779E16A1BF06AE200832858 /* HTTPURLResponseAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1691BF06AE200832858 /* HTTPURLResponseAdditions.swift */; };
-		0779E16C1BF06B3E00832858 /* NSAttributedStringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */; };
 		0779E16E1BF06C6200832858 /* NSDecimalNumberAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16D1BF06C6200832858 /* NSDecimalNumberAdditions.swift */; };
 		0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1781BF20FA000832858 /* XUSubclassCollector.swift */; };
 		0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1781BF20FA000832858 /* XUSubclassCollector.swift */; };
-		0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */; };
 		0779E17F1BF2316700832858 /* DateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07758A241BEFBB2B004B29A8 /* DateAdditions.swift */; };
 		0779E1801BF2317A00832858 /* NSDecimalNumberAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16D1BF06C6200832858 /* NSDecimalNumberAdditions.swift */; };
 		0779E1811BF2317A00832858 /* HTTPURLResponseAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1691BF06AE200832858 /* HTTPURLResponseAdditions.swift */; };
@@ -376,6 +374,7 @@
 		0784480C1D12A4C000E8467B /* OptionalAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784480A1D12A4C000E8467B /* OptionalAdditions.swift */; };
 		07855DDA1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */; };
 		07855DDB1F7E2C100040AC77 /* XUJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07855DD91F7E2C100040AC77 /* XUJSONHelper.swift */; };
+		078D065D224C1316005D0C51 /* NSAttributedStringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */; };
 		07A015512052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
 		07A015522052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
 		07A015542052A8F70070D0DD /* XUCloudKitSynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015532052A8F70070D0DD /* XUCloudKitSynchronization.swift */; };
@@ -619,7 +618,7 @@
 		0772E7B3224245170014CDC4 /* XUCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCoreUI.h; sourceTree = "<group>"; };
 		0772E7B4224245170014CDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0772E7BE2242459E0014CDC4 /* XUCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0772E7C02242459E0014CDC4 /* XUCoreUI_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCoreUI_iOS.h; sourceTree = "<group>"; };
+		0772E7C02242459E0014CDC4 /* XUCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCoreUI.h; sourceTree = "<group>"; };
 		0772E7C12242459E0014CDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0772E7D8224246FA0014CDC4 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		0772E85522424C0D0014CDC4 /* XURoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURoundedView.swift; sourceTree = "<group>"; };
@@ -959,6 +958,7 @@
 		075DC77A1CF069910043EBD0 /* sync */ = {
 			isa = PBXGroup;
 			children = (
+				078D06D9224CD8CB005D0C51 /* extra */,
 				075DC77B1CF069AE0043EBD0 /* model */,
 				075DC79D1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift */,
 				07A015532052A8F70070D0DD /* XUCloudKitSynchronization.swift */,
@@ -1028,7 +1028,7 @@
 				0772E8162242496F0014CDC4 /* localization */,
 				0772E867224250150014CDC4 /* network */,
 				0772E84822424B9D0014CDC4 /* ui */,
-				0772E7C02242459E0014CDC4 /* XUCoreUI_iOS.h */,
+				0772E7C02242459E0014CDC4 /* XUCoreUI.h */,
 				0772E7C12242459E0014CDC4 /* Info.plist */,
 			);
 			path = "XUCoreUI iOS";
@@ -1081,6 +1081,7 @@
 				0749DCE61C00C64A0075CC9B /* CGContextRefAdditions.swift */,
 				07B821111C86395B0079868F /* CGGraphicsAdditions.swift */,
 				074A12F91EC43F39001EA1E3 /* CLLocationExtensions.swift */,
+				0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */,
 				0779E1991BF23C8C00832858 /* NSShadowAdditions.swift */,
 				0772E7D8224246FA0014CDC4 /* StringExtensions.swift */,
 				07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */,
@@ -1433,7 +1434,6 @@
 				073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */,
 				0779E1691BF06AE200832858 /* HTTPURLResponseAdditions.swift */,
 				073E6B421BE1FD7E00706283 /* InputStream+Reading.swift */,
-				0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */,
 				073E6B4B1BE1FE0900706283 /* NSData+CommonCrypto.h */,
 				073E6B4C1BE1FE0900706283 /* NSData+CommonCrypto.m */,
 				073E6B431BE1FD7E00706283 /* NSData+CommonCryptoSwift.h */,
@@ -1533,6 +1533,13 @@
 			path = transformers;
 			sourceTree = "<group>";
 		};
+		078D06D9224CD8CB005D0C51 /* extra */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = extra;
+			sourceTree = "<group>";
+		};
 		07A48B641FE91ABF002F5DF1 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1577,7 +1584,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0772E7C22242459E0014CDC4 /* XUCoreUI_iOS.h in Headers */,
+				0772E7C22242459E0014CDC4 /* XUCoreUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1771,7 +1778,7 @@
 					076ACE731E37D4B7001BA622 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Y9J33V4276;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					0772E7B0224245170014CDC4 = {
@@ -1973,6 +1980,7 @@
 				0772E84622424B880014CDC4 /* XUSwitchableView.swift in Sources */,
 				0772E83822424B300014CDC4 /* XUSystemNotification.swift in Sources */,
 				0772E7CA2242464B0014CDC4 /* Process+Additions.swift in Sources */,
+				078D065D224C1316005D0C51 /* NSAttributedStringAdditions.swift in Sources */,
 				0772E7E3224248580014CDC4 /* XUBezierPathAdditions.swift in Sources */,
 				0772E7F9224248630014CDC4 /* XUUpdateChecker.swift in Sources */,
 				0772E7D52242464B0014CDC4 /* NSColorAdditions.swift in Sources */,
@@ -2132,7 +2140,6 @@
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
 				073E6ACB1BE1F86D00706283 /* parse.cc in Sources */,
 				07241D3B1D17D57300206E27 /* XUCompoundError.swift in Sources */,
-				0779E16C1BF06B3E00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				07A5940B20D126EB00429374 /* NumericExtensions.swift in Sources */,
 				075DC7801CF06ABE0043EBD0 /* XUManagedObject.swift in Sources */,
 				0749DCFA1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
@@ -2192,7 +2199,6 @@
 				075DC7901CF1E2C00043EBD0 /* XURelationshipSyncChange.swift in Sources */,
 				077AFEBB1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				077AFF591BBD101400872A48 /* StringExtensions.swift in Sources */,
-				0779E17E1BF2314A00832858 /* NSAttributedStringAdditions.swift in Sources */,
 				07DEDF6A210716BF008A06C3 /* RangeAdditions.swift in Sources */,
 				07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */,
 				0772E811224248EA0014CDC4 /* XUAppScopeBookmarksManager.swift in Sources */,
@@ -2369,7 +2375,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2393,7 +2399,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2431,6 +2437,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2470,6 +2477,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

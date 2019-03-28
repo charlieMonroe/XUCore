@@ -16,8 +16,8 @@
 #ifndef RE2_PREFILTER_TREE_H_
 #define RE2_PREFILTER_TREE_H_
 
-#include "util.h"
-#include "sparse_array.h"
+#include "util/util.h"
+#include "util/sparse_array.h"
 
 namespace re2 {
 

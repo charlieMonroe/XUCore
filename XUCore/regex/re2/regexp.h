@@ -86,7 +86,7 @@
 #ifndef RE2_REGEXP_H__
 #define RE2_REGEXP_H__
 
-#include "util.h"
+#include "util/util.h"
 #include "stringpiece.h"
 
 namespace re2 {

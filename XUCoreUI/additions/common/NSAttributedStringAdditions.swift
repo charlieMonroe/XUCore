@@ -6,8 +6,12 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
+#if os(macOS)
+	import AppKit
+#else
+	import UIKit
+#endif
 import Foundation
-
 
 public extension NSAttributedString {
 	

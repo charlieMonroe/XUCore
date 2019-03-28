@@ -26,8 +26,8 @@
 
 #include "prog.h"
 #include "regexp.h"
-#include "sparse_array.h"
-#include "sparse_set.h"
+#include "util/sparse_array.h"
+#include "util/sparse_set.h"
 
 namespace re2 {
 

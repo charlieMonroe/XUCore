@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "%@ beta testine hoş geldiniz..";
 "This is the first time you run a beta build %@." = "Bu, beta yapı %@'yi ilk çalıştırmanızdır.";
 "This beta build of %@ has expired." = "%@'nin bu beta yapı süresi doldu.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "Yazılımımızın tadını çıkarın! Herhangi bir sorunuz varsa veya herhangi bir hatayla karşılaşırsanız, destek sayfamızdan bize söyleyebilirsiniz %@";
 
-"Continue" = "Devam Et";
-"Purchase..." = "Satın Al...";
-"I'm Still Not Sure" = "Hala Emin Değilim";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ İnternet'e bağlanamadı. Uygulamadan bir saat içinde çıkılacaktır.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ 'nin denemeyi düzgün bir şekilde sürdürebilmek için İnternet bağlantısına ihtiyaç duyar.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "Bir kopya satın alabileceğin bir sayfaya yönlendirileceksin. %@ 'nin sizin için doğru olup olmadığından hâlâ emin değilseniz ve sorularınız varsa, bize ulaşın.%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@'yi denediğin için teşekkürler! %li gün herhangi bir sınırlama olmadan kullanabilirsiniz. Deneme süresi bittikten sonra %@'nin bir kopyasını satın almanız gerekir.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "%@ 'yi denediğin için teşekkürler! %li gündür kullanıyorsun. %@ kullanmaya devam etmek için bir kopyasını satın almanız gerekiyor.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "%@ 'yi denediğin için teşekkürler! %@ 'yi %i için herhangi bir sınırlama olmaksızın kullanabilirsiniz. Deneme süresi dolduktan sonra %@ 'nin bir kopyasını satın almanız gerekir.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "%@ 'yi denediğin için teşekkürler! %@ 'yi %i için kullandın. %@ 'yi kullanmaya devam etmek için bir kopyasını satın almanız gerekiyor.";
 "Working..." = "Çalışıyor...";
 
 "Progress" = "Devam Ediyor";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "%@ adlı sınıf bulunamadı";
 "Cannot find entity with ID %@" = "% kimlikli varlık bulunamadı";
 "Can't find synchronization folder for document %@." = "%@ Belgesi için senkronizasyon klasörü bulunamadı.";
-"Can't find synchronization folder for computer %@." = "Bilgisayar %@ için senkronizasyon klasörü bulunamadı.";
-"Can't find sync folder for document %@." = "%@ belgesi için senkronizasyon klasörü bulunamadı.";
 "%@ couldn't finish synchronization in the background." = "%@ arka planda senkronizasyonu tamamlayamadı.";
 "Please switch back to %@ so that the synchronization can finish." = "Senkronizasyonu bitirmek için lütfen %@'ye geri dönün";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "Senkronizasyon verisindeki değişiklikler okunamadı.";
-"Could not copy synchronization change data to the cloud." = "Senkronizasyon verisindeki değişiklikler buluta kopyalanamadı.";
-"Failing to apply change sets." = "Değişim gruplarını uygulamakta başarısız oluyor.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "Bilgisayar %@'den gelen senkronizasyon değişiklikleri henüz indirilmedi.";
 
 /// XUOAuth2
 "Authentication" = "Kimlik Doğrulama";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Kopyalandı";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

@@ -10,6 +10,10 @@ import Foundation
 import CloudKit
 import CoreData
 
+#if os(iOS)
+import UIKit // For UIBackgroundTaskIdentifier and UIDevice
+#endif
+
 @available(iOSApplicationExtension, unavailable)
 public protocol XUDocumentSyncManagerDelegate: AnyObject {
 

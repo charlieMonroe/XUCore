@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-#include "util.h"
-#include "flags.h"
+#include "util/util.h"
+#include "util/flags.h"
 #include "prefilter.h"
 #include "prefilter_tree.h"
 #include "re2.h"

@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "ברוך הבא לבדיקות בטא של %@.";
 "This is the first time you run a beta build %@." = "זאת הפעם הראשונה שאתה מריץ את גרסת בטא %@.";
 "This beta build of %@ has expired." = "פג תוקפה של גרסת בטא %@.";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "מקווים שתהנה מהתוכנה שלנו! אם יש לך שארלות או שנתקלת בבאגים, תרגיש חופשי לשאול אותנו בעמוד התמיכה %@";
 
-"Continue" = "המשך";
-"Purchase..." = "לרכישה...";
-"I'm Still Not Sure" = "אני עדיין לא בטוח";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ לא יכל להתחבר לאינטרנט. האפליקציה תיסגר בעוד שעה.";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ זקוק לחיבור לאינטרנט כדי להמשיך את גרסת הניסיון באופן תקין.";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "אתה תילקח לעמוד שבו תוכל לקנות עותק. אם אתה עדיין לא בטוח אם %@ היא התוכנה הנכונה עבורך או אם יש לך שאלות, צור איתנו קשר. %@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "תודה שניסית את %@! אתה יכול להשתמש בתוכנה למשך %li ימים החל מעכשיו ללא הגבלות. אחרי שתקופת הניסיון הסתיימה, תצטרך לרכוש עותק של %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "תודה שניסית את %@! השתמשת בתוכנה במשך %li נכון לעכשיו. כדי להמשיך להשתמש בתוכנה %@, עליך לרכוש רישיון.";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "תודה שניסית את %@! אתה יכול להשתמש בה במשך %@ %i כעת ללא הגבלות. אחרי שתקופת הניסיון תסתיים, תצטרך לרכוש רישיון של %@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "תודה שניסית את %@! השתמשת בתוכנה במשך %@ %i כעת. כדי להמשיך להשתמש בתוכנה %@, עליך לרכוש רישיון.";
 "Working..." = "עובד...";
 
 "Progress" = "קצב התקדמות";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "לא ניתן למצוא את המחלקה בשם %@";
 "Cannot find entity with ID %@" = "לא ניתן למצוא ישות עם מזהה %@";
 "Can't find synchronization folder for document %@." = "לא ניתן למצוא תיקיית סינכרון עבור המסמך %@.";
-"Can't find synchronization folder for computer %@." = "לא ניתן למצוא תיקיית סינכרון עבור המחשב %@.";
-"Can't find sync folder for document %@." = "לא ניתן למצוא תיקיית סינכרון עבור המסמך %@.";
 "%@ couldn't finish synchronization in the background." = "%@ לא הצליח לסיים את הסינכרון ברקע.";
 "Please switch back to %@ so that the synchronization can finish." = "חזור אל %@ בשביל שהסנכרון יהיה יכול להסתיים.";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "לא ניתן לקרוא נתוני שינוי סינכרון.";
-"Could not copy synchronization change data to the cloud." = "לא ניתן להעתיק נתוני שינוי סינכרון לענן.";
-"Failing to apply change sets." = "אי החלת ערכות שינוי.";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "סינכרון שינויים ממחשב %@ עדיין לא הורדו.";
 
 /// XUOAuth2
 "Authentication" = "אימות";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Copied";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";

@@ -39,7 +39,7 @@
 #ifndef RE2_UNICODE_CASEFOLD_H__
 #define RE2_UNICODE_CASEFOLD_H__
 
-#include "util.h"
+#include "util/util.h"
 
 namespace re2 {
 

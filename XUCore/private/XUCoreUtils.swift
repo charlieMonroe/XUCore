@@ -22,7 +22,7 @@ extension Bundle {
 /// _XUCoreLoader which implements +load which is not available in Swift. We need,
 /// however, the loader to be in Swift since not all classes are NSObject-based
 /// anymore.
-@objc public class _XUSwiftCoreLoader: NSObject {
+@objc(_XUSwiftCoreLoader) public class _XUSwiftCoreLoader: NSObject {
 	
 	private static var _didLoad: Bool = false
 	

@@ -40,19 +40,7 @@
 "Welcome to beta testing of %@." = "歡迎使用測試版 %@";
 "This is the first time you run a beta build %@." = "這是您第一次使用測試版 %@";
 "This beta build of %@ has expired." = "此測試版 %@ 已經過期。";
-"Enjoy our software! If you have any questions or run into any bugs, feel free to ask us at our support page %@" = "請享受我們的軟體！ 若您在使用時有任何疑問或遇到任何錯誤，請透過技術支援頁面 %@ 聯絡我們。";
 
-"Continue" = "繼續";
-"Purchase..." = "購買...";
-"I'm Still Not Sure" = "在考慮一下";
-
-"%@ couldn't connect to the Internet. The application will exit in one hour." = "%@ 無法連接到網絡。軟體將在一小時內退出。";
-"%@ requires connection to the Internet to continue the trial properly." = "%@ 需要連接到網絡以繼續試用。";
-"You will be taken to a page where you'll be able to buy a copy. If you're still not sure if %@ is right for you and have some questions, contact us.%@" = "您可以在接下來打開的頁面中完成購買。如果您還不確定 %@ 是否能滿足您的需求或還有其他疑問，請與我們聯絡。%@";
-"Thanks for trying out %@! You may use it for %li days now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "感謝您試用 %@! 您的試用期還有 %li 天，在試用期間內您可以使用所有功能，但在試用期結束後，您將需要付費購買 %@.";
-"Thanks for trying out %@! You've been using it %li days now. To continue using %@ you need to purchase a copy." = "感謝您試用 %@！您已經使用了 %li 天，要繼續試用 %@ 您需要付費購買。";
-"Thanks for trying out %@! You may use it for %i %@ now without any limitations. After the trial period expires, you'll need to purchase a copy of %@." = "感謝您試用%@! 您的試用還有%i %@ 到期. 試用期結束後，您需要付費購買%@.";
-"Thanks for trying out %@! You've used it for %i %@ now. To continue using %@ you need to purchase a copy." = "感謝您試用%@! 您已經使用了%i %@.要繼續使用%@ 您需要付費購買.";
 "Working..." = "處理中...";
 
 "Progress" = "進度";
@@ -79,16 +67,8 @@
 "Cannot find class named %@" = "找不到類別名 %@";
 "Cannot find entity with ID %@" = "找不實體 ID %@";
 "Can't find synchronization folder for document %@." = "找不到文件 %@ 的同步文件夾";
-"Can't find synchronization folder for computer %@." = "找不到計算機 %@ 的同步文件夾";
-"Can't find sync folder for document %@." = "找不到文檔 %@ 的同步文件夾";
 "%@ couldn't finish synchronization in the background." = "%@ 無法在後台完成同步";
 "Please switch back to %@ so that the synchronization can finish." = "請切換回 %@ 以完成同步";
-
-/// XUSyncEngine - 6/20/2016 changes
-"Could not read synchronization change data." = "無法讀取同步變更數據";
-"Could not copy synchronization change data to the cloud." = "無法將同步變更數據複製到雲端";
-"Failing to apply change sets." = "無法應用變更集";
-"Synchronization changes from computer %@ haven't been downloaded yet." = "來自電腦 %@ 的同步變更尚未下載";
 
 /// XUOAuth2
 "Authentication" = "身份驗證";
@@ -139,3 +119,13 @@
 
 /// 11/12/2017+
 "Copied" = "Copied";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Send Anyway";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"Download Update..." = "Download Update...";
+
+"Done" = "Done";
