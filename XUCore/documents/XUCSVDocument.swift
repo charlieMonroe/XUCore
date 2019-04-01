@@ -207,7 +207,7 @@ public final class XUCSVDocument {
 		var csv = try String(contentsOf: fileURL, encoding: .utf8)
 
 		if headerless {
-			let firstLine = csv.firstLine
+			let firstLine = csv.lines[0]
 			let components = firstLine.components(separatedBy: "\(columnSeparator)")
 			var headerNames: [String] = [ ]
 			for i in 0 ..< components.count {

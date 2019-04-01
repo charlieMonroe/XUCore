@@ -53,7 +53,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 	
 	fileprivate func _createFolder(at folderURL: URL) {
 		let path = self._relativePath(to: folderURL)
-		_ = self.client.files.createFolder(path: path).response(completionHandler: { _, error in
+		_ = self.client.files.createFolderV2(path: path).response(completionHandler: { _, error in
 			// Ignore. This is likely just the folder already existing.
 		})
 	}
@@ -191,7 +191,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 			if error != nil {
 				XULog("Failed to upload file at path \(path) - queued reupload.")
 				
-				if self._failedFileUploads.index(of: fileURL) == nil {
+				if self._failedFileUploads.firstIndex(of: fileURL) == nil {
 					self._failedFileUploads.append(fileURL)
 				}
 				return
@@ -199,7 +199,7 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 			
 			self._modificationDates[path] = result!.serverModified
 			
-			if let index = self._failedFileUploads.index(of: fileURL) {
+			if let index = self._failedFileUploads.firstIndex(of: fileURL) {
 				self._failedFileUploads.remove(at: index)
 			}
 		}

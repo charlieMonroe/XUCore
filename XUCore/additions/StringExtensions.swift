@@ -147,16 +147,6 @@ extension String {
 		return self + suffix
 	}
 
-	/// Returns the first character or \0 if the string is empty.
-	public var firstCharacter: Character {
-		return self.first ?? Character(UInt8(0))
-	}
-
-	/// Returns first line of string. Always non-nil
-	public var firstLine: String {
-		return self.components(separatedBy: CharacterSet.newlines)[0]
-	}
-
 	/// This converts string to UInt as a fourCharCode
 	public var fourCharCodeValue: Int {
 		var result: Int = 0
@@ -311,20 +301,6 @@ extension String {
 		return result
 	}
 	
-	@available(*, deprecated)
-	public init?(data: Data?) {
-		guard let data = data else {
-			return nil
-		}
-		
-		self.init(data: data)
-	}
-
-	/// Returns the last character or \0 if the string is empty.
-	public var lastCharacter: Character {
-		return self.last ?? Character(UInt8(0))
-	}
-	
 	/// Splits `self` using CharacterSet.newlines.
 	public var lines: [String] {
 		return self.components(separatedBy: CharacterSet.newlines)
@@ -353,36 +329,6 @@ extension String {
 			}
 		}
 		return result
-	}
-	
-	/// Computes SHA1 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	public var sha1Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha1Digest
-	}
-	
-	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	public var sha256Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha256Digest
-	}
-	
-	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	public var sha512Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha512Digest
 	}
 	
 	/// Prepends self with `string`.
@@ -607,4 +553,69 @@ extension String {
 
 		return Int(numberString) ?? 0
 	}
+}
+
+/// Deprecated.
+extension String {
+
+	/// Returns the first character or \0 if the string is empty.
+	@available(*, deprecated)
+	public var firstCharacter: Character {
+		return self.first ?? Character(UInt8(0))
+	}
+	
+	/// Returns first line of string. Always non-nil
+	@available(*, deprecated)
+	public var firstLine: String {
+		return self.components(separatedBy: CharacterSet.newlines)[0]
+	}
+	
+	@available(*, deprecated)
+	public init?(data: Data?) {
+		guard let data = data else {
+			return nil
+		}
+		
+		self.init(data: data)
+	}
+	
+	/// Returns the last character or \0 if the string is empty.
+	@available(*, deprecated)
+	public var lastCharacter: Character {
+		return self.last ?? Character(UInt8(0))
+	}
+
+	/// Computes SHA1 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
+	@available(*, deprecated, renamed: "utf8Data.sha1Digest")
+	public var sha1Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha1Digest
+	}
+	
+	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
+	@available(*, deprecated, renamed: "utf8Data.sha256Digest")
+	public var sha256Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha256Digest
+	}
+	
+	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
+	/// represented in UTF8.
+	@available(*, deprecated, renamed: "utf8Data.sha512Digest")
+	public var sha512Digest: String {
+		guard let data = self.data(using: String.Encoding.utf8) else {
+			fatalError("Can't represent string as UTF8 - \(self).")
+		}
+		
+		return data.sha512Digest
+	}
+	
 }
