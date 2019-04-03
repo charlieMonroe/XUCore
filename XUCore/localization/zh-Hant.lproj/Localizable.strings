@@ -3,129 +3,129 @@
 "1 hour" = "1 小時";
 "1 minute" = "1 分";
 "1 second" = "1 秒";
-"Unknown error." = "未知的錯誤";
+"Unknown error." = "未知的錯誤。";
 
 "OK" = "確定";
 "Cancel" = "取消";
 
-"Failed to parse CSV file." = "CSV 檔案讀取失敗";
+"Failed to parse CSV file." = "CSV 檔案讀取失敗。";
 
 "Send Report" = "傳送報告";
-"Privacy Information..." = "隱私權資訊";
-"%AppName% has encountered a problem." = "%AppName% 運作發生問題";
-"%AppName% will terminate after sending the report." = "%AppName% 將在錯誤報告送出後關閉";
-"Report to be sent:" = "報告內容:";
-"Your Email:" = "您的電子信箱:";
-"Description:" = "問題描述:";
+"Privacy Information..." = "隱私權資訊...";
+"%AppName% has encountered a problem." = "%AppName% 發生錯誤。";
+"%AppName% will terminate after sending the report." = "%AppName% 將在錯誤報告送出後結束。";
+"Report to be sent:" = "報告內容：";
+"Your Email:" = "您的電子郵件：";
+"Description:" = "問題描述：";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "請描述異常發生的情境，並盡可能地詳細描述造成問題的過程與步驟。記得留下您的電子郵件地址，我們將在問題修復時透過電子郵件通知您，或是進一步向您諮詢有關錯誤問題的資訊。我們保證不會記錄您的電子郵件，也不會發送任何不相關的騷擾電子郵件。您回饋的問題報告將有助於我們改善Downie，謝謝您！";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "請描述問題發生的情況，並盡可能地詳細描述發生過程與您的操作步驟。請留下您的電子郵件地址，我們將在問題修復後透過電子郵件通知您，或是可能會需要進一步向您詢問有關此問題的訊息。我們保證不會記錄您的電子郵件地址，也不會發送任何不相關的騷擾郵件。\n\n您回報有助於我們改善此軟體。感謝您！";
 
-"Report Problem" = "問題回報";
+"Report Problem" = "回報問題";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我們非常重視您的回報，並絕對不會收集任何不相關的信息。請您放心，我們絕對不會記錄下您的電子郵件地址。您提供的電子郵箱將僅用於：在問題得到修復時我們能及時通知您、或是當我們需要更多信息才能解決該問題時與您的聯繫。";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我們非常重視您的反饋，且絕不會收集任何不相關的訊息。我們絕對不會記錄您的電子郵件地址，且僅會使用於在問題修復時通知您，或是我們需要更多訊息以修復該問題時。";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "只有以下資訊將被傳送:\n• 您提供的問題描述。\n• 下方所列的軟體異常資訊\n• 該軟體的版本\n• 您的系統(OS)版本\n• 您的電腦型號 (但不包括您的MAC位置，及其他類似的可用於識別您電腦的信息).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "只會傳送以下訊息：\n• 您所提供的問題描述。\n• 下方的資訊。\n• 軟體版本號。\n• 您的作業系統（OS）版本號。\n• 您的電腦型號 （不包括您的 MAC 位置或其他可用於特定出您電腦的信息）。";
 
 "Could not post your report." = "無法傳送您的報告。";
-"Check your Internet connection and try again." = "請檢查您的網路狀況，然後再次傳送報告。";
-"Heh, nice try. Please, enter a valid email address." = "這似乎是無效地址。請確認您填寫有效的電子郵件地址，再試一次。";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "我們可能將與您聯繫，以修復該問題。但我們保證不會將你的電子郵件地址洩露給任何人或另作他用，決不食言。";
-"You need to enter a valid email address." = "您需要輸入一個有效的電子郵件地址。";
-"We may need to get in touch with you in order to fix this." = "我們可能將與您聯繫，以修復該問題。";
-"Please, provide some details as to when this exception happened." = "請您提供該問題發生時的具體細節。";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "希望您提供這些資訊：軟體當時正在執行的任務、軟體是在前台還是後台運作，您所進行的操作等等。如果沒有您提供的細節信息，我們將幾乎無法修復這個問題。";
-"Thank you for the report!" = "感謝您提交報告！";
-"We'll fix it as soon as possible!" = "我們將盡快修復該問題！";
+"Check your Internet connection and try again." = "請檢查您的網路連線後再試一次。";
+"Heh, nice try. Please, enter a valid email address." = "喂，別亂寫。請填寫有效的電子郵件地址。";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "我們可能得與您聯繫以修復此問題。我們保證絕對不會將您的電子郵件地址販賣給任何人或另作他用。";
+"You need to enter a valid email address." = "您必須輸入有效的電子郵件地址。";
+"We may need to get in touch with you in order to fix this." = "我們可能得與您聯繫以修復此問題。";
+"Please, provide some details as to when this exception happened." = "請提供此問題發生時的具體細節。";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "包含程式正在執行的任務、程式是在前台還是後台運行、您有沒有點擊任何按鈕等等。單靠問題報告很難找出程式問題，若沒有額外的資訊，那更是不可能。";
+"Thank you for the report!" = "感謝您的回報！";
+"We'll fix it as soon as possible!" = "我們會盡快修復此問題！";
 
-"Welcome to beta testing of %@." = "歡迎使用測試版 %@";
-"This is the first time you run a beta build %@." = "這是您第一次使用測試版 %@";
-"This beta build of %@ has expired." = "此測試版 %@ 已經過期。";
+"Welcome to beta testing of %@." = "歡迎使用 %@ 的 beta 測試版。";
+"This is the first time you run a beta build %@." = "這是您第一次執行 beta build %@。";
+"This beta build of %@ has expired." = "此 %@ 的 beta build 已過期。";
 
 "Working..." = "處理中...";
 
 "Progress" = "進度";
-"Posted successfully" = "發布成功";
+"Posted successfully" = "傳送成功";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 還能繼續使用24 個小時，但之後它的功能將會失效。為了不影響您的使用體驗，請及時更新%@。";
-"Please download a new build." = "請您下載最新的版本";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 還能繼續使用 24 小時，之後此功能將會被鎖定。請更新 %@ 以繼續使用。";
+"Please download a new build." = "請下載新 build";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "您依然可以發送該報告，但如果報告中的消息使用的語言不是英語，我們恐怕無法提供完整的技術支持。";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您提供的訊息包含了一些不是英文的字元對吧？很抱歉，雖然Downie提供各種語言版本，但我們的支援只提供英文服務，希望您能諒解。";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "如果您不是使用英文撰寫訊息，我將無法提供您完整的支援。不過您依舊可以傳送報告。";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您的訊息中包含特定字元，這通常表示您不是以英文撰寫此訊息。請注意，雖然 %@ 有被翻譯成多種語言，但我只能提供英文支援。感謝您的理解。";
 "%li hours" = "%li 小時";
 "%li minutes" = "%li 分";
 "%li seconds" = "%li 秒";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "無法找到該文件。可能因為同步尚未完成，請稍後再試。";
-"Cannot open document metadata file." = "無法打開文檔元數據文件";
-"Metadata file doesn't contain required information." = "元數據文件中找不到需要的信息";
-"Synchronization is already in progress." = "正在同步";
-"An upload operation is already in progress." = "正在上傳";
-"Could not save upload metadata." = "無法保存上傳的Metadata";
-"Cannot find entity named %@" = "找不到實體名 %@";
-"Cannot find class named %@" = "找不到類別名 %@";
-"Cannot find entity with ID %@" = "找不實體 ID %@";
-"Can't find synchronization folder for document %@." = "找不到文件 %@ 的同步文件夾";
-"%@ couldn't finish synchronization in the background." = "%@ 無法在後台完成同步";
-"Please switch back to %@ so that the synchronization can finish." = "請切換回 %@ 以完成同步";
+"Cannot find such document. Check back later, it might not have synced through." = "無法找到該文件。可能是因為同步尚未完成，請稍後再試一次。";
+"Cannot open document metadata file." = "無法開啟文件元數據。";
+"Metadata file doesn't contain required information." = "元數據中找不到需要的訊息。";
+"Synchronization is already in progress." = "已經在同步了。";
+"An upload operation is already in progress." = "已有一個正在處理中的上傳任務。";
+"Could not save upload metadata." = "無法保存上傳的元數據。";
+"Cannot find entity named %@" = "找不到名為 %@ 的實體";
+"Cannot find class named %@" = "找不到名為 %@ 的類別";
+"Cannot find entity with ID %@" = "找不 ID 為 %@ 的實體";
+"Can't find synchronization folder for document %@." = "找不到文件 %@ 的同步資料夾。";
+"%@ couldn't finish synchronization in the background." = "%@ 無法在後台完成同步。";
+"Please switch back to %@ so that the synchronization can finish." = "請切換回 %@ 以完成同步。";
 
 /// XUOAuth2
 "Authentication" = "身份驗證";
-"Server responded with unknown token type." = "服務器返回未知的令牌類型.";
-"Server provided invalid authorization response." = "服務器返回無效的身份驗證答复.";
-"Server has redirected with invalid URL." = "服務器重定向至無效的鏈接.";
-"User cancelled the authorization." = "身份驗證被用戶取消.";
+"Server responded with unknown token type." = "伺服器返回未知的令牌類型。";
+"Server provided invalid authorization response." = "伺服器返回無效的身份驗證答复。";
+"Server has redirected with invalid URL." = "伺服器重新定向至無效的網址。";
+"User cancelled the authorization." = "使用者已取消身份驗證。";
 
 /// Debug Log Menu
 "Debug" = "除錯";
-"About Debug Log..." = "關於除錯日誌";
-"Debug Logging" = "除錯日誌紀錄";
+"About Debug Log..." = "關於除錯日誌...";
+"Debug Logging" = "紀錄除錯日誌";
 "On" = "開啟";
 "Off" = "關閉";
 "Clear Debug Log" = "清理除錯日誌";
 "Show Log in Finder" = "在 Finder 中顯示日誌";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "除錯日誌是包含一些 %@ 在後台執行時技術細節的文本文件。這些除錯日誌讓我們能夠快速解決問題來說非常有幫助。如果想要獲取除錯日誌，請按照以下步驟進行操作：";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "如果這不是您第一次發送除錯日誌，請點擊“除錯”選單，選擇“清理除錯日誌”。 N2）在“除錯”選單中，請確保“除錯日誌記錄”處於開啟狀態。 N3） 請重現遇到問題的操作。 n4）點擊“除錯”菜單中，關閉“除錯日誌記錄”。 n5）點擊“除錯”菜單，選擇“在Finder中顯示日誌”在打開的Finder窗口中，選擇日誌文件通過電子郵件發送給我們。請注意要將日誌文件作為附件發送，而不要直接複製其中的內容。 n n日誌文件中不包含任何個人數據，您可以通過直接打開日誌文件來進行檢驗（日誌文件實際上就是簡單的文本文件）。如果您認為日誌文件中的某些數據為機密或者個人信息，請將這些信息使用易識別的符號進行替換（比如XXXXXXXX），讓我們知道您對日誌文件進行過修改。";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "除錯日誌是一個含有 %@ 詳細後台運行資訊的純文字文件。這能幫助我快速修復問題，因為它能讓我了解發生了什麼事。請按以下步驟操作以產生除錯日誌：";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1）如果這不是您第一次傳送除錯日誌，請點擊「除錯」選單中的「清理除錯日誌」。\n2）確認「除錯」選單中的「紀錄除錯日誌」已開啟。\n3）執行您遇到問題的操作。\n4）在「除錯」選單中，關閉「紀錄除錯日誌」。\n5）點擊「除錯」選單中的「在 Finder 中顯示日誌」。這會自動開啟日誌在 Finder 中的儲存位置，以方便您傳送日誌給我。請將該檔案以電子郵件附件形式傳送給我，請不要以拷貝貼上該文件中的內容至電子郵件的形式傳送。\n\n日誌檔案不包含任何個人資訊，您可以直接開啟日誌檔案（這是一個純文字檔案）確認。如果您認為其中有些資料應該保密或者是您的個人資料，請以明顯能辨識為佔位符的文字替代（例如：XXXXXXXX），並告知我您修改過日誌檔案。";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "該文件目前無法下載。";
-"Log Current Application State" = "記錄軟體目前狀態";
+"Log Current Application State" = "記錄程式目前狀態";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "此測試版將在一小時內到期。";
-"Please update your copy of this beta build." = "請更新您的測試版。";
+"This beta build will expire in less than an hour." = "此 beta build 將在一小時內到期。";
+"Please update your copy of this beta build." = "請更新您的 beta build。";
 
 // Preferences.
-"All Preferences" = "所有設定";
+"All Preferences" = "全部偏好設定";
 "Show All" = "顯示全部";
-"Preferences" = "設定";
+"Preferences" = "偏好設定";
 
 /// 12/21/2016+
 
 // Search field with results.
-"No search results" = "無搜尋結果";
+"No search results" = "沒有搜尋結果";
 "%li search results" = "%li 個搜尋結果";
 
 // Certificate view.
 "Select..." = "選擇...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "記錄軟體目前的狀態";
+"Synchronization data is being downloaded." = "同步資料已下載。";
+"Copy Current Application State" = "拷貝程式目前狀態";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "已拷貝";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ 遇到了問題，並將停止運行。待會將會彈出一個回報視窗。請回報此問題，若您想忽略此問題，請直接關閉該視窗。";
+"Send Anyway" = "依舊回報";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "有新的更新可用。";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "新版本可能已修復此問題。請嘗試更新此程式。如果您無法存取此程式的更新功能，請至該程式網站重新下載該程式。";
+"Download Update..." = "下載更新...";
 
-"Done" = "Done";
+"Done" = "完成";
