@@ -65,7 +65,7 @@ open class XUPreferencePaneViewController: NSViewController {
 	public final override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.view.localize()
+		self.view.localize(from: Bundle(for: type(of: self)))
 		self.view.frame.size.width = XUPreferencePanesView.viewWidth
 		self.loadPreferences()
 	}

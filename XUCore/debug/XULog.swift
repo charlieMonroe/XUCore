@@ -219,7 +219,7 @@ public final class XUDebugLog {
 			return
 		}
 		
-		//Don't redirect the log on my computer
+		// Don't redirect the log on development computer.
 		if self._isRunningDevelopmentComputer {
 			_didCachePreferences = true
 			_cachedPreferences = true

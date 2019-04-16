@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if os(iOS)
+	import UIKit // UIDevice
+#endif
 
 #if os(macOS)
 	import IOKit
