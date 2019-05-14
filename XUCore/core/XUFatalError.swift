@@ -37,3 +37,11 @@ public func XUFatalError(_ additionalInformation: String = "", file: String = #f
 	fatalError(reason)
 }
 
+/// Similar to XUFatalError, this is observable and on macOS hooked up to
+/// XUExceptionReporter.
+public func XUAssert(_ assertion: @autoclosure () -> Bool, _ additionalInformation: String = "undefined", file: String = #file, line: Int = #line, method: String = #function) {
+	guard assertion() else {
+		XUFatalError("Failed assertion \(additionalInformation).", file: file, line: line, method: method)
+	}
+}
+

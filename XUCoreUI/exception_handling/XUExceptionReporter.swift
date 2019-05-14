@@ -26,7 +26,7 @@ import XUCore
 ///				operatingSystemVersion values combined using a dot.
 /// stacktrace - stack trace string.
 /// version - version of the app
-class XUExceptionReporter: NSObject, NSWindowDelegate {
+final class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Contains a list of reporters being currently displayed.
 	private static var _reporters: [XUExceptionReporter] = [ ]
@@ -55,9 +55,9 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			reporter._reporterWindow.makeKeyAndOrderFront(nil)
 			
 			NSAccessibility.post(element: reporter._reporterWindow!, notification: .announcementRequested, userInfo: [
-				NSAccessibility.NotificationUserInfoKey.announcement: XULocalizedFormattedString("%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.", ProcessInfo().processName, inBundle: .core),
-				NSAccessibility.NotificationUserInfoKey.priority: NSAccessibilityPriorityLevel.high.rawValue
-				])
+				.announcement: XULocalizedFormattedString("%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.", ProcessInfo().processName, inBundle: .core),
+				.priority: NSAccessibilityPriorityLevel.high.rawValue
+			])
 			
 			NSApp.runModal(for: reporter._reporterWindow)
 			
@@ -89,6 +89,53 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 	@IBOutlet private var _stackTraceTextView: NSTextView!
 	@IBOutlet private var _updateInfoView: NSView!
 	@IBOutlet private var _userInputTextView: NSTextView!
+	
+	
+	private func _proceedSendingReportAfterDescriptionValidation() {
+		let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+		let osVersionString = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+		
+		let reportDictionary = [
+			"description": _userInputTextView.string,
+			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])\nThread: \(_thread)\nQueue: \(_queue.descriptionWithDefaultValue())",
+			"stacktrace": _stackTraceTextView.string,
+			"version": XUAppSetup.applicationVersionNumber,
+			"build": XUAppSetup.applicationBuildNumber,
+			"name": ProcessInfo.processInfo.processName,
+			"os_version": osVersionString,
+			"email": _emailTextField.stringValue
+		]
+		
+		/// The exception catcher doesn't even start without a valid URL. We assume
+		/// that it's still valid. This class is internal, so there should be no
+		/// calls to this from outside of XUCore.
+		let url = XUAppSetup.exceptionHandlerReportURL!
+		
+		
+		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
+		request.contentType = URLRequest.ContentType.json
+		request.httpMethod = "POST"
+		request.setJSONBody(reportDictionary)
+		
+		let loader = XUSynchronousDataLoader(request: request)
+		let result = try? loader.loadData()
+		guard let response = result?.1 as? HTTPURLResponse else {
+			self._reportFailedReportSend()
+			return
+		}
+		
+		if response.statusCode >= 200 && response.statusCode < 300 {
+			let alert = NSAlert()
+			alert.messageText = XULocalizedString("Thank you for the report!", inBundle: .core)
+			alert.informativeText = XULocalizedString("We'll fix it as soon as possible!", inBundle: .core)
+			alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
+			alert.beginSheetModal(for: _reporterWindow, completionHandler: { (_) -> Void in
+				self._reporterWindow.close()
+			})
+		}else{
+			self._reportFailedReportSend()
+		}
+	}
 	
 	private func _processUpdateResult(_ result: XUUpdateChecker.Result) {
 		switch result {
@@ -157,6 +204,7 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		_updateInfoView.isHidden = true
 		
 		_reporterWindow.delegate = self
+		_reporterWindow.isMovableByWindowBackground = true
 		_reporterWindow.localize(from: .core)
 		
 		_stackTraceTextView.string = stackTrace
@@ -168,6 +216,20 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 
 	}
 	
+	@IBAction func quit(_ sender: Any?) {
+		let alert = NSAlert()
+		alert.messageText = XULocalizedString("Please consider submitting this report. We can't fix what we don't know is broken.", inBundle: .core)
+		alert.informativeText = XULocalizedString("Submitting this report allows us to fix the issue.", inBundle: .core)
+		alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
+		alert.addButton(withTitle: XULocalizedString("Quit Anyway", inBundle: .core))
+		alert.beginSheetModal(for: _reporterWindow) { (response) in
+			guard response == .alertSecondButtonReturn else {
+				return
+			}
+			
+			exit(0)
+		}
+	}
 	
 	@IBAction func sendReport(_ sender: AnyObject?) {
 		let valid = XUEmailFormatValidity(email: _emailTextField.stringValue)
@@ -190,12 +252,18 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		if !self._validateDescriptionText() {
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("Please, provide some details as to when this exception happened.", inBundle: .core)
+			alert.messageText = XULocalizedString("Please, consider providing some circumstances under which this issue happened.", inBundle: .core)
 			alert.informativeText = XULocalizedString("Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.", inBundle: .core)
 			alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
-			alert.beginSheetModal(for: _reporterWindow, completionHandler: nil)
-			
-			_reporterWindow.makeFirstResponder(_userInputTextView)
+			alert.addButton(withTitle: XULocalizedString("Send Anyway", inBundle: .core))
+			alert.beginSheetModal(for: _reporterWindow, completionHandler: { (response) in
+				guard response == .alertSecondButtonReturn else {
+					self._reporterWindow.makeFirstResponder(self._userInputTextView)
+					return
+				}
+				
+				self._proceedSendingReportAfterDescriptionValidation()
+			})
 			return
 		}
 		
@@ -203,61 +271,52 @@ class XUExceptionReporter: NSObject, NSWindowDelegate {
 			let alert = NSAlert()
 			alert.messageText = XULocalizedFormattedString("Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.", ProcessInfo.processInfo.processName, inBundle: .core)
 			alert.informativeText = XULocalizedString("You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.", inBundle: .core)
-			alert.addButton(withTitle: XULocalizedString("Cancel", inBundle: .core))
+			alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
 			alert.addButton(withTitle: XULocalizedString("Send Anyway", inBundle: .core))
-			if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
-				return
-			}
-		}
-		
-		
-		let osVersion = ProcessInfo.processInfo.operatingSystemVersion
-		let osVersionString = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
-		
-		let reportDictionary = [
-			"description": _userInputTextView.string,
-			"exception": "Name: \(_exception.name)\nReason: \(_exception.reason ?? "")\nFurther info: \(_exception.userInfo ?? [:])\nThread: \(_thread)\nQueue: \(_queue.descriptionWithDefaultValue())",
-			"stacktrace": _stackTraceTextView.string,
-			"version": XUAppSetup.applicationVersionNumber,
-			"build": XUAppSetup.applicationBuildNumber,
-			"name": ProcessInfo.processInfo.processName,
-			"os_version": osVersionString,
-			"email": _emailTextField.stringValue
-		]
-		
-		/// The exception catcher doesn't even start without a valid URL. We assume
-		/// that it's still valid. This class is internal, so there should be no
-		/// calls to this from outside of XUCore.
-		let url = XUAppSetup.exceptionHandlerReportURL!
-		
-		
-		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 20.0)
-		request.contentType = URLRequest.ContentType.json
-		request.httpMethod = "POST"
-		request.setJSONBody(reportDictionary)
-		
-		let loader = XUSynchronousDataLoader(request: request)
-		let result = try? loader.loadData()
-		guard let response = result?.1 as? HTTPURLResponse else {
-			self._reportFailedReportSend()
+			alert.beginSheetModal(for: _reporterWindow, completionHandler: { (response) in
+				guard response == .alertSecondButtonReturn else {
+					self._reporterWindow.makeFirstResponder(self._userInputTextView)
+					return
+				}
+				
+				self._proceedSendingReportAfterDescriptionValidation()
+			})
 			return
 		}
 		
-		if response.statusCode >= 200 && response.statusCode < 300 {
+		if !_updateInfoView.isHidden {
+			// We're showing update info.
 			let alert = NSAlert()
-			alert.messageText = XULocalizedString("Thank you for the report!", inBundle: .core)
-			alert.informativeText = XULocalizedString("We'll fix it as soon as possible!", inBundle: .core)
-			alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
-			alert.beginSheetModal(for: _reporterWindow, completionHandler: { (_) -> Void in
-				self._reporterWindow.close()
+			alert.messageText = XULocalizedString("There is an update available.", inBundle: .core)
+			alert.informativeText = XULocalizedString("It is possible that the new version has this issue fixed. Try updating this application. If you can't access the update feature of this application, redownload the application from its webpage.", inBundle: .core)
+			alert.addButton(withTitle: XULocalizedString("Download Update...", inBundle: .core))
+			alert.addButton(withTitle: XULocalizedString("Send Anyway", inBundle: .core))
+			
+			alert.beginSheetModal(for: _reporterWindow, completionHandler: { (response) in
+				guard response == .alertSecondButtonReturn else {
+					self.downloadUpdate(nil)
+					return
+				}
+				
+				self._proceedSendingReportAfterDescriptionValidation()
 			})
-		}else{
-			self._reportFailedReportSend()
+			return
 		}
+		
+		self._proceedSendingReportAfterDescriptionValidation()
 	}
 	
 	@IBAction func showPrivacyInformation(_ sender: AnyObject?) {
 		XUExceptionReporter.showPrivacyInformation()
+	}
+	
+	func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: CGRect) -> CGRect {
+		var frame = window.frame
+		frame.origin.x = 5.0
+		frame.origin.y = frame.size.height - 22.0
+		frame.size.width -= 10.0
+		frame.size.height = 0.0
+		return frame
 	}
 	
 	func windowWillClose(_ notification: Notification) {

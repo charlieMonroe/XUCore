@@ -16,7 +16,8 @@ extension NSApplication {
 	/// the name of the app as well. Values that are not contained in this localization
 	/// are attempted to be localized using XULocalizedString from the main bundle.
 	public func localizeMainMenu() {
-		let bundle = Bundle.coreUI
+		// TODO: move the localization files into CoreUI
+		let bundle = Bundle.core
 		let dict: [String : String]
 		if
 			let localizationURL = bundle.url(forResource: "MainMenu", withExtension: "strings", subdirectory: nil, localization: XULocalizationCenter.shared.localizationIdentifier(for: bundle)),

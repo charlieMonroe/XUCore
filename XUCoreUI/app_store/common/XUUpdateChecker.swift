@@ -123,6 +123,20 @@ public final class XUUpdateChecker {
 		/// you should not allow the user to use the app.
 		case majorUpdateAvailable(version: Version)
 		
+		
+		/// Returns a version associated with the result. Will return nil for `.failure`
+		/// and `.noUpdateAvailable`.
+		public var version: Version? {
+			switch self {
+			case .failure, .noUpdateAvailable:
+				return nil
+			case .majorUpdateAvailable(version: let version):
+				return version
+			case .minorUpdateAvailable(version: let version):
+				return version
+			}
+		}
+		
 	}
 	
 	/// AppStore URL. It is automatically retrieved during the update check.

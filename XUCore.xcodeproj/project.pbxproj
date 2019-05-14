@@ -715,6 +715,7 @@
 		07B9082B1BF3BC84008D254A /* TimerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAdditions.swift; sourceTree = "<group>"; };
 		07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppScopeBookmarksManager.swift; sourceTree = "<group>"; };
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
+		07BAC4B92284378B002E6F59 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07BC79E71EE71CC0000D7E5D /* XUBorderlessTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBorderlessTextField.swift; sourceTree = "<group>"; };
 		07C184F221997B670017A539 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		07C184F4219980710017A539 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -1837,6 +1838,7 @@
 				uk,
 				id,
 				Base,
+				af,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -2325,6 +2327,7 @@
 				0783704A214A6AA300BE7B0B /* ja */,
 				07A7A04321B3C70A00F59DB9 /* uk */,
 				07EC4BC321E33DA800E6398B /* id */,
+				07BAC4B92284378B002E6F59 /* af */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -64,4 +64,9 @@ public final class XUSynchronousDataLoader {
 		return (data!, response!)
 	}
 	
+	/// Loads just the data. Useful in case we're not interested in any errors.
+	public func loadRawData() -> Data? {
+		return (try? self.loadData())?.data
+	}
+	
 }
