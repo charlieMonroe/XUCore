@@ -286,7 +286,7 @@ extension Array where Element : Equatable {
 
 	/// Replaces all occurrences of `element` with `newElement`.
 	public mutating func replaceAllOccurrences(of element: Iterator.Element, with newElement: Iterator.Element) {
-		assert(element != newElement, "Trying to replace a value with the same value!")
+		XUAssert(element != newElement, "Trying to replace a value with the same value!")
 		
 		while let index = self.firstIndex(of: element) {
 			self[index] = newElement

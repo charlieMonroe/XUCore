@@ -15,7 +15,7 @@ import Foundation
 	import IOKit
 	private let _cachedID: String = {
 		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
-		assert(platformExpert != 0, "Failed to obtain computer UUID.")
+		XUAssert(platformExpert != 0, "Failed to obtain computer UUID.")
 		
 		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber" as CFString, kCFAllocatorDefault, 0).takeRetainedValue()
 		

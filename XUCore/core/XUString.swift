@@ -171,7 +171,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	}
 	
 	public var lastCharacter: Character {
-		assert(self.length > 0)
+		XUAssert(self.length > 0)
 		
 		return self.character(at: self.length - 1)
 	}
@@ -207,7 +207,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Removes last character.
 	public func removeLastCharacter() {
-		assert(self.length > 0)
+		XUAssert(self.length > 0)
 		
 		self.remove(at: self.length - 1)
 	}

@@ -47,7 +47,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// use the initializer and create as many controllers as needed.
 	@discardableResult
 	open class func createSharedController(withSections sections: [XUPreferencePanesSection]) -> XUPreferencePanesWindowController {
-		assert(_sharedController == nil, "Can't be creating the shared controller for the second time.")
+		XUAssert(_sharedController == nil, "Can't be creating the shared controller for the second time.")
 		
 		_sharedController = self.controller(withSections: sections)
 		return self.shared
@@ -133,7 +133,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// self.sections. If you need to modify the `paneController` before being
 	/// loaded or displayed, override willSelectPane and didSelectPane.
 	public func selectPane(_ paneController: XUPreferencePaneViewController) {
-		assert(self.sections.map({ $0.paneControllers }).joined().contains(where: { $0 === paneController }))
+		XUAssert(self.sections.map({ $0.paneControllers }).joined().contains(where: { $0 === paneController }))
 		
 		self.window!.endEditing(for: nil)
 		

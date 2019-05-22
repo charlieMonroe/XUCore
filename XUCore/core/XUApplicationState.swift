@@ -106,7 +106,8 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			XUApplicationStateItem(name: "Beta", value: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "Build Type", value: XUAppSetup.buildType.rawValue),
 			XUApplicationStateItem(name: "Memory Usage", value: ByteCountFormatter.string(fromByteCount: Int64(self.memoryUsage), countStyle: .memory)),
-			XUApplicationStateItem(name: "Run Time", value: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate))
+			XUApplicationStateItem(name: "Run Time", value: XUTime.timeString(from: Date.timeIntervalSinceReferenceDate - self.launchTime.timeIntervalSinceReferenceDate)),
+			XUApplicationStateItem(name: "Launch Count", value: "\(XUPreferences.shared.launchCount)")
 		]
 		
 		if XUPreferences.isApplicationUsingPreferences, let reflectablePreferences = XUPreferences.shared as? XUReflectablePreferences {

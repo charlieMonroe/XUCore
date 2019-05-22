@@ -68,7 +68,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	/// window.
 	public var results: [Any] = [] {
 		didSet {
-			assert(Thread.isMainThread)
+			XUAssert(Thread.isMainThread)
 			
 			self.searchResultsTableView.reloadData()
 			self.searchResultsTableView.scrollRowToVisible(0)
@@ -243,7 +243,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	/// Sets search results. Asserts that this is called on main thread.
 	private func _setSearchResult(_ items: [Any]) {
-		assert(Thread.isMainThread)
+		XUAssert(Thread.isMainThread)
 		
 		self.results = items
 	}

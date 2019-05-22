@@ -32,7 +32,7 @@ public final class XUSynchronousDataLoader {
 	/// self.session, which usually is the main queue. It is important not to
 	/// invoke this method in such manner since it would lead to a deadlock.
 	public func loadData() throws -> (data: Data, response: URLResponse?) {
-		assert(OperationQueue.current != self.session.delegateQueue,
+		XUAssert(OperationQueue.current != self.session.delegateQueue,
 			   "Can't be loading data on the same queue as is the session's delegate queue!")
 		
 		var data: Data?

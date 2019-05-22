@@ -415,6 +415,8 @@
 		07C3FA211BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA201BECB1E9008A4200 /* XUArrayNotEmptyTransformer.swift */; };
 		07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA281BECB703008A4200 /* XUZeroBasedIndexTransformer.swift */; };
 		07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D263781E4AFDB5009BAFAA /* URLTests.swift */; };
+		07D6EBFD22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */; };
+		07D6EBFE22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */; };
 		07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07DEDF69210716BF008A06C3 /* RangeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DEDF68210716BF008A06C3 /* RangeAdditions.swift */; };
@@ -752,6 +754,7 @@
 		07D263781E4AFDB5009BAFAA /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
 		07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XUView+LayoutConstraints.swift"; sourceTree = "<group>"; };
+		07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferences+Basic.swift"; sourceTree = "<group>"; };
 		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
@@ -1477,6 +1480,7 @@
 				0749DCE31C00C3E00075CC9B /* XUMath.swift */,
 				074228761E3CE296003A485A /* XUPointerEquality.swift */,
 				07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */,
+				07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
 				07B211001D4903DC005203F0 /* XUWeakArray.swift */,
@@ -2118,6 +2122,7 @@
 				077093821CC1296C0093830B /* DataAdditions.swift in Sources */,
 				07758A271BEFC48D004B29A8 /* NSLockAdditions.swift in Sources */,
 				073E6B3D1BE1FA2700706283 /* URLExtensions.swift in Sources */,
+				07D6EBFD22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */,
 				073E6AF51BE1F86D00706283 /* arena.cc in Sources */,
 				075DC7781CF069470043EBD0 /* XUManagedDataContext.swift in Sources */,
 				075DC77D1CF069CF0043EBD0 /* XUSyncChange.swift in Sources */,
@@ -2228,6 +2233,7 @@
 				07FD4BE11C7DC2E900559CF0 /* DateFormatterISO8601.swift in Sources */,
 				073E6B3E1BE1FA2700706283 /* URLExtensions.swift in Sources */,
 				07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */,
+				07D6EBFE22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */,
 				073E6AE41BE1F86D00706283 /* set.cc in Sources */,
 				073E6B241BE1F86D00706283 /* valgrind.cc in Sources */,
 				073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */,

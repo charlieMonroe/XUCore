@@ -420,7 +420,7 @@ open class XUDocumentSyncManager {
 	
 	/// Uploads the entire document to the cloud.
 	open func uploadEntireDocument(fromURL fileURL: URL, withCompletionHandler completionHandler: @escaping (Bool, NSError?) -> Void) {
-		assert(Thread.isMainThread, "This methos must be called from the main thread!")
+		XUAssert(Thread.isMainThread, "This methos must be called from the main thread!")
 		
 		// The _isUploadingEntireDocument flag is only changed from main thread
 		// so no locks are necessary

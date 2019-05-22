@@ -196,7 +196,7 @@ public class XUMessageCenter {
 		/// Returns a title for an ignore button. Takes into account custom title.
 		/// Asserts that ignore button is allowed.
 		var ignoreButtonTitle: String {
-			assert(self.allowsIgnoringMessage)
+			XUAssert(self.allowsIgnoringMessage)
 			return self.customIgnoreButtonTitle ?? XULocalizedString("Cancel", inBundle: .core)
 		}
 		

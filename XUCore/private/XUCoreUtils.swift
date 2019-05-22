@@ -35,6 +35,10 @@ extension Bundle {
 		
 		// First, load the application setup.
 		_ = XUApplicationSetup.shared
+		
+		XUPreferences.shared.perform { (prefs) in
+			prefs.launchCount += 1
+		}
 	}
 	
 }

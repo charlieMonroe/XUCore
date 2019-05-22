@@ -49,15 +49,14 @@ private extension NSView {
 }
 
 
-public extension NSApplication {
+extension NSApplication {
 	
 	/// Returns whether the current application is in foreground.
-	var isForegroundApplication: Bool {
+	public var isForegroundApplication: Bool {
 		return NSRunningApplication.current.isActive
 	}
 	
 }
-
 
 /// If you are using XUApplication, you can use XUApp as an alternative to NSApp
 /// shortcut.

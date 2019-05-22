@@ -94,7 +94,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 	
 	/// Displays the picker with a completion handler.
 	public func show(with completionHandler: @escaping (Item?) -> Void) {
-		assert(_completionHandler == nil)
+		XUAssert(_completionHandler == nil)
 		
 		_completionHandler = completionHandler
 		

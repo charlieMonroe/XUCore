@@ -75,7 +75,7 @@ public final class XUUpdateChecker {
 		/// patch number isn't required.
 		public init(versionString: String) {
 			let components = versionString.components(separatedBy: ".")
-			assert(components.count <= 3)
+			XUAssert(components.count <= 3)
 			
 			if components.count == 1 {
 				self.init(major: components[0].integerValue, minor: 0)

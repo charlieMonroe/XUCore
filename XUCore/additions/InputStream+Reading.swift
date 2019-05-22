@@ -20,7 +20,7 @@ public extension InputStream {
 		}
 		
 		if n > 0 {
-			assert(n == MemoryLayout<T>.size, "read length must be sizeof(T)")
+			XUAssert(n == MemoryLayout<T>.size, "read length must be sizeof(T)")
 			return buffer
 		} else {
 			return nil

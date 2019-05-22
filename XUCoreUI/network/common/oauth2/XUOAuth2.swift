@@ -37,13 +37,14 @@ public final class XUOAuth2Configuration {
 	/// Authorization URL put together from authorizationBaseURL, redirectionScheme,
 	/// and clientID.
 	public var authorizationURL: URL {
-		let queryDict: [String : String] = [
+		var queryDict = self.authorizationBaseURL.queryDictionary
+		queryDict += [
 			"client_id": self.clientID,
 			"response_type": "code",
 			"redirect_uri": self.redirectionURLString
 		]
 		
-		return URL(string: self.authorizationBaseURL.absoluteString + "?" + queryDict.urlQueryString)!
+		return self.authorizationBaseURL.updatingQuery(to: queryDict)
 	}
 	
 	/// ID of the client.
@@ -87,7 +88,7 @@ public final class XUOAuth2Configuration {
 	
 	/// Designated initializer.
 	public init(authorizationBaseURL: URL, clientID: String, name: String, redirectionScheme: String, secret: String, tokenEndpointURL: URL, tokenNeverExpires: Bool = false) {
-		assert(authorizationBaseURL.query == nil, "authorizationBaseURL with query is not supported.")
+		
 		self.authorizationBaseURL = authorizationBaseURL
 		self.clientID = clientID
 		self.name = name
@@ -98,8 +99,8 @@ public final class XUOAuth2Configuration {
 	}
 	
 	public convenience init?(dictionary dict: [String : Any]) {
-		guard let
-			authorizationBaseURLString = dict[ConfigurationKeys.authorizationBaseURLStringKey] as? String,
+		guard
+			let authorizationBaseURLString = dict[ConfigurationKeys.authorizationBaseURLStringKey] as? String,
 			let clientID = dict[ConfigurationKeys.clientIDKey] as? String,
 			let name = dict[ConfigurationKeys.nameKey] as? String,
 			let redirectionScheme = dict[ConfigurationKeys.redirectionSchemeKey] as? String,
@@ -533,7 +534,7 @@ public final class XUOAuth2Client {
 	/// On OS X, refrain from calling this method directly, XUOAuth2Client handles
 	/// this automatically for you via XUURLHandlingCenter.
 	public func handleRedirectURL(_ URL: URL) {
-		assert(_authorizationController != nil, "Handling an authorization call while no controller is being displayed!")
+		XUAssert(_authorizationController != nil, "Handling an authorization call while no controller is being displayed!")
 		
 		guard let query = URL.query else {
 			_authorizationController!.close(withResult: .error(.invalidRedirectionURL))

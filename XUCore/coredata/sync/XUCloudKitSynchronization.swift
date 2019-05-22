@@ -157,8 +157,8 @@ internal final class XUCloudKitSynchronization {
 	/// Applies changes. Asserts that currentStep is .downloadingChanges and
 	/// that Thread.isMainThread.
 	private func _applyChanges() {
-		assert(Thread.isMainThread)
-		assert(self.currentStep == .downloadingChanges)
+		XUAssert(Thread.isMainThread)
+		XUAssert(self.currentStep == .downloadingChanges)
 		self.currentStep = .applyingChanges
 
 		XULog("Applying \(_changeSets.count) change sets.")
@@ -272,8 +272,8 @@ internal final class XUCloudKitSynchronization {
 	/// Synchronizes with devices listed in _devices. Asserts that currentStep is
 	/// .listingDevices and that _devices is not empty.
 	private func _synchronizeWithDevices() {
-		assert(self.currentStep == .listingDevices)
-		assert(!_devices.isEmpty)
+		XUAssert(self.currentStep == .listingDevices)
+		XUAssert(!_devices.isEmpty)
 		
 		XULog("Synchronizing with \(_devices.count) devices.")
 		
@@ -284,7 +284,7 @@ internal final class XUCloudKitSynchronization {
 	
 	/// Takes changes from XUPreferences and uploads them.
 	private func _uploadPendingChanges() {
-		assert(self.currentStep == .applyingChanges)
+		XUAssert(self.currentStep == .applyingChanges)
 		self.currentStep = .uploadingChanges
 		
 		XULog("Uploading changes for document ID \(self.documentManager.documentID).")
@@ -360,7 +360,7 @@ internal final class XUCloudKitSynchronization {
 	
 	/// Starts synchronization. Asserts that currentStep is .initial.
 	func startSynchronization() {
-		assert(self.currentStep == .initial)
+		XUAssert(self.currentStep == .initial)
 		self.currentStep = .listingDevices
 		
 		let listingQuery = CKQuery(recordType: SynchronizedDevice.recordType, predicate: NSPredicate(value: true))
