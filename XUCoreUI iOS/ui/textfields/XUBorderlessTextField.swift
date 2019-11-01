@@ -11,20 +11,20 @@ import XUCore
 
 /// A borderless text field. Automatically moves the placeholder to the top and
 /// makes it font smaller. Similar to how Android text fields work.
-@IBDesignable public class XUBorderlessTextField: UITextField {
+@IBDesignable open class XUBorderlessTextField: UITextField {
 	
 	/// Displays character counter, if maxium character length is non-zero.
-	@IBInspectable public var displayCharacterCounter: Bool = true {
+	@IBInspectable open var displayCharacterCounter: Bool = true {
 		didSet {
 			self.invalidateIntrinsicContentSize()
 		}
 	}
 	
 	/// Color of the character counter.
-	@IBInspectable public var characterCounterTextColor: UIColor = UIColor.darkGray
+	@IBInspectable open var characterCounterTextColor: UIColor = UIColor.darkGray
 	
 	/// Color of the line.
-	@IBInspectable public var lineColor: UIColor {
+	@IBInspectable open var lineColor: UIColor {
 		get {
 			return _lineView.lineColor
 		}
@@ -36,17 +36,17 @@ import XUCore
 	/// The maximum number of characters that the text field allows to be entered.
 	/// By character, we assume actual characters. If this value is set to non-zero
 	/// value, the counter is displayed in the bottom-right corner (unless disabled).
-	@IBInspectable public var maximumCharacterCount: Int = 0 {
+	@IBInspectable open var maximumCharacterCount: Int = 0 {
 		didSet {
 			self.invalidateIntrinsicContentSize()
 		}
 	}
 	
 	/// Padding of the placeholder from the left of the control.
-	@IBInspectable public var placeholderLeftPadding: CGFloat = 15.0
+	@IBInspectable open var placeholderLeftPadding: CGFloat = 15.0
 	
 	/// Color of the placeholder text.
-	@IBInspectable public var placeholderTextColor: UIColor = UIColor.lightGray
+	@IBInspectable open var placeholderTextColor: UIColor = UIColor.lightGray
 	
 	
 	/// Basic height of the field.
@@ -141,7 +141,7 @@ import XUCore
 	}
 	
 	/// See awakeFromNib().
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		self.borderStyle = .none
@@ -162,7 +162,7 @@ import XUCore
 	
 	/// See UIResponder.
 	@discardableResult
-	public override func becomeFirstResponder() -> Bool {
+	open override func becomeFirstResponder() -> Bool {
 		guard super.becomeFirstResponder() else {
 			return false
 		}
@@ -172,7 +172,7 @@ import XUCore
 	}
 	
 	/// See UIView.
-	public override func draw(_ rect: CGRect) {
+	open override func draw(_ rect: CGRect) {
 		super.draw(rect)
 		
 		// Draw placeholder anyway
@@ -180,16 +180,16 @@ import XUCore
 	}
 	
 	/// See UITextField.
-	public override func drawPlaceholder(in rect: CGRect) {
+	open override func drawPlaceholder(in rect: CGRect) {
 		
 	}
 	
 	/// See UITextField.
-	public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+	open override func editingRect(forBounds bounds: CGRect) -> CGRect {
 		return self.textRect(forBounds: bounds)
 	}
 	
-	public override var intrinsicContentSize: CGSize {
+	open override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
 		size.height = _basicTextFieldHeight
 		if self.isCharacterCounterDisplayed {
@@ -199,12 +199,12 @@ import XUCore
 	}
 	
 	/// Indicates if the character counter is displayed.
-	public var isCharacterCounterDisplayed: Bool {
+	open var isCharacterCounterDisplayed: Bool {
 		return self.displayCharacterCounter && self.maximumCharacterCount > 0
 	}
 	
 	/// See UIView.
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		self._layoutPlaceholderLabel()
@@ -226,14 +226,14 @@ import XUCore
 	}
 	
 	/// See UITextField.
-	public override var placeholder: String? {
+	open override var placeholder: String? {
 		didSet {
 			self._reloadPlaceholder()
 		}
 	}
 	
 	/// Returns the font currently used for the placeholder.
-	var placeholderFont: UIFont {
+	public var placeholderFont: UIFont {
 		let font: UIFont
 		if self.isEmpty {
 			font = self.font!
@@ -244,7 +244,7 @@ import XUCore
 	}
 	
 	/// See UIResponder.
-	public override func resignFirstResponder() -> Bool {
+	open override func resignFirstResponder() -> Bool {
 		guard super.resignFirstResponder() else {
 			return false
 		}
@@ -254,7 +254,7 @@ import XUCore
 	}
 	
 	/// See UITextField.
-	public override func textRect(forBounds originalBounds: CGRect) -> CGRect {
+	open override func textRect(forBounds originalBounds: CGRect) -> CGRect {
 		var bounds = originalBounds
 		if self.isCharacterCounterDisplayed {
 			bounds.size.height -= _characterCounterBottomPadding
@@ -266,7 +266,7 @@ import XUCore
 	}
 	
 	/// See UITextField.
-	public override var text: String? {
+	open override var text: String? {
 		didSet {
 			self._textDidChange(allowAnimation: false)
 			self._updateCharacterCount()
