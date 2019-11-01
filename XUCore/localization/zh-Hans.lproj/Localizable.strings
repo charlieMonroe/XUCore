@@ -121,11 +121,11 @@
 "Copied" = "已复制";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ 遇到问题即将崩溃。应用将显示一个报告对话框。请提交对话框内容，如您想忽略此次崩溃请关闭窗口。";
+"Send Anyway" = "仍旧发送";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "有更新可以。";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "新版本可能已修复此问题。请尝试更新此应用程序。如果您无法访问此应用程序的更新功能，请从网站重新下载此应用程序。";
+"Download Update..." = "下载更新…";
 
-"Done" = "Done";
+"Done" = "完成";

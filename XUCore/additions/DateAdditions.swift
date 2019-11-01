@@ -27,7 +27,12 @@ public struct XUTimeInterval {
 
 
 
-public struct XUMonth : OptionSet {
+public struct XUMonth: OptionSet, Comparable, Equatable {
+	
+	public static func <(_ lhs: XUMonth, _ rhs: XUMonth) -> Bool {
+		return lhs.rawValue < rhs.rawValue
+	}
+	
 	public let rawValue: Int
 	
 	public init(rawValue: Int) { self.rawValue = rawValue }

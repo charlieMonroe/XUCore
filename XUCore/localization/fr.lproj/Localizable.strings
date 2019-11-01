@@ -121,7 +121,7 @@
 "Copied" = "Copié";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ a rencontré un problème et va planter. Un rapport de plantage va s'ouvrir. Soumettez-le ou fermez la fenêtre au cas où vous voudriez ignorer le plantage.";
 "Send Anyway" = "Send Anyway";
 
 "There is an update available." = "There is an update available.";

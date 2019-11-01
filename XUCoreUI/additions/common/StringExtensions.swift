@@ -57,14 +57,16 @@ extension String {
 		var size = self.size(withAttributes: atts)
 		
 		while size.width > width {
-			frontIndex = self.index(before: frontIndex)
-			tailIndex = self.index(after: tailIndex)
-			
-			front = self[..<frontIndex]
-			tail = self[tailIndex...]
-			result = "\(front)...\(tail)"
-			
-			size = result.size(withAttributes: atts)
+			autoreleasepool {
+				frontIndex = self.index(before: frontIndex)
+				tailIndex = self.index(after: tailIndex)
+				
+				front = self[..<frontIndex]
+				tail = self[tailIndex...]
+				result = "\(front)...\(tail)"
+				
+				size = result.size(withAttributes: atts)
+			}
 		}
 		return result
 	}

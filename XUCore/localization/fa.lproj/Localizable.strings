@@ -121,11 +121,11 @@
 "Copied" = "کپی شد";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "با مشکل مواجه شده و کرش خواهد کرد. گفتگوی گزارش آماده شده است لطفا آن را تایید کنید و یا در صورتی که میخواهید کرش را نادیده بگیرید پنجره را ببندید.";
+"Send Anyway" = "در هر صورت ارسال کن";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "یک بروزرسانی در دسترس است.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "ممکن است در ورژن جدید این مشکل حل شده باشد.سعی کنید برنامه را بروزرسانی کنید.اگر نمیتوانید به آپدیت جدید این برنامه دسترسی داشته باشید آن را از سایت اصلی دوباره دانلود کنید.";
+"Download Update..." = "دانلود بروزرسانی...";
 
-"Done" = "Done";
+"Done" = "انجام شد.";

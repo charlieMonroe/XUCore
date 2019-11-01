@@ -77,7 +77,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		return info.resident_size
 	}
 	
-	private func _calculateBinaryMD5(for bundle: Bundle) -> String {
+	private class func _calculateBinaryMD5(for bundle: Bundle) -> String {
 		guard let executableURL = bundle.executableURL else {
 			return "nil"
 		}
@@ -89,9 +89,11 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		return data.md5Digest
 	}
 	
-	private func _createBinaryMD5sApplicationStateItem() -> XUApplicationStateItem {
-		let frameworkURLs = FileManager.default.contentsOfDirectory(at: Bundle.main.bundleURL.appendingPathComponent("Contents").appendingPathComponent("Frameworks")).filter({ $0.pathExtension == "framework" })
-		let frameworkBundles = frameworkURLs.compactMap(Bundle.init(url:))
+	/// Creates an application state that contains MD5s of the main binary and
+	/// framework binaries.
+	public class func createBinaryMD5sApplicationStateItem() -> XUApplicationStateItem {
+		let frameworkURLs = FileManager.default.contentsOfDirectory(at: Bundle.main.bundleURL.appendingPathComponents("Contents", "Frameworks")).filter({ $0.pathExtension == "framework" })
+		let frameworkBundles = frameworkURLs.compactMap(Bundle.init(url:)).sorted(by: { $0.bundleURL.lastPathComponent < $1.bundleURL.lastPathComponent })
 		let otherBinaryMD5s = frameworkBundles.map({ "\t\($0.bundleURL.lastPathComponent): \(self._calculateBinaryMD5(for: $0))" }).joined(separator: "\n")
 		return XUApplicationStateItem(name: "Binary MD5s", value: "\n\tMain: \(self._calculateBinaryMD5(for: Bundle.main))\n\(otherBinaryMD5s)", requiresAdditionalTrailingNewLine: true)
 	}
@@ -114,7 +116,9 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			stateItems.append(reflectablePreferences.preferencesStateItem)
 		}
 		
-		stateItems.append(self._createBinaryMD5sApplicationStateItem())
+		let hashItem = XUBasicApplicationStateProvider.createBinaryMD5sApplicationStateItem()
+		stateItems.append(XUApplicationStateItem(name: "Binary Hashes Combined", value: hashItem.value.md5Digest))
+		stateItems.append(hashItem)
 		
 		#if os(macOS)
 			let windows = NSApp.windows.map({ "\t\($0) - \($0.title)" }).joined(separator: "\n")

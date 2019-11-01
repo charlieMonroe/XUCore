@@ -26,7 +26,7 @@
 /** This is a convenience method for Swift 2.0, where instead of returning error,
  * it throws it, adding completely unnecessary do-catch blocks.
  */
--(nullable instancetype)initWithXMLString:(nonnull NSString *)string andOptions:(NSInteger)mask;
+-(nullable instancetype)initWithXMLString:(nonnull NSString *)string andOptions:(NSInteger)mask DEPRECATED_ATTRIBUTE;
 
 @end
 

@@ -104,7 +104,7 @@ import XUCore
 		}
 		
 		if self.isEmpty {
-			placeholderFrame.origin.y = basicFrame.height - placeholderFrame.height - 1.0
+			placeholderFrame.origin.y = (basicFrame.height - placeholderFrame.height) / 2.0 - 1.0
 		} else {
 			placeholderFrame.origin.y = 0.0
 		}

@@ -39,18 +39,18 @@
 		id value = self[key];
 		if ([value isKindOfClass:[NSString class]]) {
 			[element addChild:[[NSXMLElement alloc] initWithName:key stringValue:value]];
-		}else if ([value isKindOfClass:[NSDecimalNumber class]]) {
+		} else if ([value isKindOfClass:[NSDecimalNumber class]]) {
 			[element addChild:[[NSXMLElement alloc] initWithName:key stringValue:[NSString stringWithFormat:@"%0.4f", [value doubleValue]]]];
-		}else if ([value isKindOfClass:[NSNumber class]]) {
+		} else if ([value isKindOfClass:[NSNumber class]]) {
 			[element addChild:[[NSXMLElement alloc] initWithName:key stringValue:[NSString stringWithFormat:@"%g", [value doubleValue]]]];
-		}else if ([value isKindOfClass:[NSDate class]]){
+		} else if ([value isKindOfClass:[NSDate class]]) {
 			[element addChild:[[NSXMLElement alloc] initWithName:key stringValue:[formatter stringFromDate:value]]];
-		}else if ([value isKindOfClass:[NSDictionary class]]) {
+		} else if ([value isKindOfClass:[NSDictionary class]]) {
 			if ([value count] == 0) {
 				continue;
 			}
 			[element addChild:[value XMLElementWithName:key]];
-		}else if ([value isKindOfClass:[NSArray class]]) {
+		} else if ([value isKindOfClass:[NSArray class]]) {
 			if ([value count] == 0) {
 				continue;
 			}

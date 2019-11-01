@@ -9,6 +9,7 @@
 import Foundation
 
 /// Option as to how the date is formatted.
+@available(macOS, deprecated: 10.12) @available(iOS, deprecated: 10.0)
 public enum XUISO8601Option: Int {
 	
 	/// The format includes time.
@@ -59,6 +60,7 @@ public extension DateFormatter {
 public extension Date {
 	
 	/// Tries to parse the string as an ISO 8601 string.
+	@available(macOS, deprecated: 10.12) @available(iOS, deprecated: 10.0)
 	static func date(withISO8601 string: String, andReturnError error: AutoreleasingUnsafeMutablePointer<NSString?>? = nil) -> Date? {
 		var date: AnyObject?
 		if !DateFormatter._ISO8601Formatter.getObjectValue(&date, for: string, errorDescription: error) {
@@ -69,6 +71,7 @@ public extension Date {
 	}
 	
 	/// Returns a formatted string with options.
+	@available(macOS, deprecated: 10.12) @available(iOS, deprecated: 10.0)
 	func iso8601FormattedString(withOptions options: XUISO8601Option) -> String {
 		switch options {
 			case .withoutTime:

@@ -74,6 +74,7 @@ private extension XUPreferences {
 }
 
 @available(iOSApplicationExtension, unavailable)
+@available(macCatalystApplicationExtension, unavailable)
 protocol XUMessageCenterAction {
 	init?(value: String)
 	func performAction(with message: XUMessageCenter.Message)
@@ -120,6 +121,7 @@ protocol XUMessageCenterAction {
 ///		- XUBlockApp - the value must be a string, but can contain anything.
 ///
 @available(iOSApplicationExtension, unavailable)
+@available(macCatalystApplicationExtension, unavailable)
 public class XUMessageCenter {
 	
 	public static let shared = XUMessageCenter()
@@ -145,7 +147,7 @@ public class XUMessageCenter {
 			let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: .core)
 			
 			DispatchQueue.main.syncOrNow {
-				#if os(iOS)
+				#if canImport(UIKit)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: nil))
 					UIApplication.shared.windows.first!.rootViewController?.present(controller, animated: true, completion: nil)
@@ -268,7 +270,7 @@ public class XUMessageCenter {
 		}
 		
 		func performAction(with message: XUMessageCenter.Message) {
-			#if os(iOS)
+			#if canImport(UIKit)
 				UIApplication.shared.open(self.url, options: [:], completionHandler: nil)
 			#else
 				NSWorkspace.shared.open(self.url)
@@ -400,7 +402,7 @@ public class XUMessageCenter {
 	
 	private func _showMessage(with message: Message) {
 		// We should display this message!
-		#if os(iOS)
+		#if canImport(UIKit)
 			let alert = UIAlertController(title: message.message, message: message.informativeText, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: { (_) -> Void in
 				self._processActions(from: message)
@@ -430,7 +432,7 @@ public class XUMessageCenter {
 	}
 		
 	private init() {
-		#if os(iOS)
+		#if canImport(UIKit)
 			let notificationName = UIApplication.didFinishLaunchingNotification
 		#else
 			let notificationName = NSApplication.didFinishLaunchingNotification

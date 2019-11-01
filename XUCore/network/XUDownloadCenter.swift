@@ -251,12 +251,7 @@ open class XUDownloadCenter {
 	
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
-	public func downloadData(at url: URL!, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
-		guard let url = url else {
-			XULogStacktrace("Trying to download from nil URL, returning nil.")
-			return nil
-		}
-		
+	public func downloadData(at url: URL, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
 		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
@@ -296,12 +291,12 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionary(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
-		return self.downloadJSON(at: url, withRequestModifier: modifier)
+	public func downloadJSONDictionary(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
+		return self.downloadJSON(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSON<T>(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
+	public func downloadJSON<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
 		guard let data = self.downloadData(at: url, withRequestModifier: { (request: inout URLRequest) in
 			request.acceptType = URLRequest.ContentType.json
 			
@@ -322,11 +317,7 @@ open class XUDownloadCenter {
 	/// Downloads a pure website source. The download center will try to interpret
 	/// the data with preferredEncoding. If that fails, it will fall back to any
 	/// other encoding.
-	public func downloadWebPage(at url: URL!, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> String? {
-		guard let url = url else {
-			return nil
-		}
-		
+	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> String? {
 		guard let data = self.downloadData(at: url, withRequestModifier: modifier) else {
 			if self.logTraffic {
 				XULog("[\(self.identifier)] - Failed to load URL connection to URL \(url) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
@@ -344,7 +335,7 @@ open class XUDownloadCenter {
 	
 	/// Does the same as the varian without the `fields` argument, but adds or
 	/// replaces some field values.
-	public func downloadWebPage(postingFormIn source: String, toURL url: URL!, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
+	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
 		return self.downloadWebPage(postingFormIn: source, toURL: url, withFieldsModifier: { (inputFields: inout [String : String]) in
 			inputFields += fields
 		}, withRequestModifier: requestModifier)
@@ -352,7 +343,7 @@ open class XUDownloadCenter {
 	
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
-	public func downloadWebPage(postingFormIn source: String, toURL url: URL!, withFieldsModifier modifier: POSTFieldsModifier? = nil, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
+	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withFieldsModifier modifier: POSTFieldsModifier? = nil, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
 		var inputFields = source.allVariablePairs(forRegex: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
@@ -371,7 +362,7 @@ open class XUDownloadCenter {
 	
 	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
 	/// invoke this method that posts the specific values to URL.
-	public func downloadWebPage(postingFormWithValues values: [String : String], toURL url: URL!, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
+	public func downloadWebPage(postingFormWithValues values: [String : String], toURL url: URL, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
 		return self.downloadWebPage(at: url, withRequestModifier: { (request) in
 			request.httpMethod = "POST"
 			
@@ -389,7 +380,7 @@ open class XUDownloadCenter {
 	#if os(macOS)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocument(at url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
+	public func downloadXMLDocument(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
 		guard let source = self.downloadWebPage(at: url, withRequestModifier: modifier) else {
 			return nil // Error already set.
 		}
@@ -419,16 +410,12 @@ open class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL` and returns the status code or 0.
-	public func statusCode(for url: URL!) -> Int {
+	public func statusCode(for url: URL) -> Int {
 		return self.sendHeadRequest(to: url)?.statusCode ?? 0
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequest(to url: URL!, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
-		guard let url = url else {
-			return nil
-		}
-		
+	public func sendHeadRequest(to url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
 		var request = URLRequest(url: url)
 		request.httpMethod = "HEAD"
 		

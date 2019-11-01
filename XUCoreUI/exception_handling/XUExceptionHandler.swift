@@ -110,6 +110,17 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 	}
 	
 	@objc public override func exceptionHandler(_ sender: NSExceptionHandler!, shouldHandle exception: NSException!, mask aMask: Int) -> Bool {
+		let exceptionStackTrace = XUStacktraceString(from: exception)
+		if exceptionStackTrace.contains("TSMProcessRawKeyEventWithOptionsAndCompletionHandler") {
+			// This is a common issue where some of the TSM controller is improperly
+			// configured.
+			return true
+		}
+		
+		if let reason = exception.reason, reason.contains("rdar://problem/20935868") {
+			// This is an issue with some background layer processing.
+			return true
+		}
 		
 		// This method can be called from any thread, under any circumstances,
 		// which is why we just note down the exception and we periodically check
@@ -127,7 +138,6 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 		
 		stackTraceString += exception.description + "\n\n"
 		
-		let exceptionStackTrace = XUStacktraceString(from: exception)
 		if !exceptionStackTrace.isEmpty {
 			stackTraceString = exceptionStackTrace + "\n\n"
 		}

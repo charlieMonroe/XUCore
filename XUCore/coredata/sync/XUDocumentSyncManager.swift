@@ -383,7 +383,7 @@ open class XUDocumentSyncManager {
 		_isSyncing = true
 		_synchronizationLock.unlock()
 	
-		#if os(iOS)
+		#if os(iOS) && !targetEnvironment(macCatalyst)
 			_syncBackgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(withName: "XUDocumentSyncManager.Sync", expirationHandler: {
 				if self._syncBackgroundTaskIdentifier == UIBackgroundTaskIdentifier.invalid {
 					return
@@ -397,7 +397,7 @@ open class XUDocumentSyncManager {
 				notification.alertBody =  XULocalizedFormattedString("Please switch back to %@ so that the synchronization can finish.", ProcessInfo.processInfo.processName)
 				notification.fireDate = Date(timeIntervalSinceNow: 1.0)
 		
-				UIApplication.shared.scheduleLocalNotification(notification)
+//				UIApplication.shared.scheduleLocalNotification(notification)
 			})
 		#endif
 		
@@ -408,9 +408,9 @@ open class XUDocumentSyncManager {
 			
 			completionHandler(error == nil, error)
 			
-			#if os(iOS)
+			#if os(iOS) && !targetEnvironment(macCatalyst)
 				UIApplication.shared.endBackgroundTask(self._syncBackgroundTaskIdentifier)
-			self._syncBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+				self._syncBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
 			#endif
 		}
 		synchronization.startSynchronization()

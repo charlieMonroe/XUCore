@@ -57,6 +57,107 @@ public extension XUReflectablePreferences {
 /// instances passed around.
 public struct XUPreferences {
 	
+	@propertyWrapper
+	struct CodableProperty<T: Codable> {
+		
+		let key: XUPreferences.Key
+		let preferences: XUPreferences
+		
+		init(key: XUPreferences.Key, preferences: XUPreferences = .shared) {
+			self.key = key
+			self.preferences = preferences
+		}
+		
+		var wrappedValue: T? {
+			get {
+				return self.preferences.decode(for: self.key)
+			}
+			nonmutating set {
+				do {
+					try self.preferences.encode(newValue, forKey: self.key)
+				} catch {
+					XULog("Can't set \(newValue.descriptionWithDefaultValue()) for \(self.key) due to coding error: \(error)")
+				}
+			}
+		}
+		
+	}
+
+	@propertyWrapper
+	struct CodablePropertyWithDefaultValue<T: Codable> {
+		
+		let defaultValue: () -> T
+		let key: XUPreferences.Key
+		let preferences: XUPreferences
+		
+		init(key: XUPreferences.Key, defaultValue: @escaping @autoclosure () -> T, preferences: XUPreferences = .shared) {
+			self.defaultValue = defaultValue
+			self.key = key
+			self.preferences = preferences
+		}
+		
+		var wrappedValue: T? {
+			get {
+				return self.preferences.decode(for: self.key, defaultValue: self.defaultValue())
+			}
+			nonmutating set {
+				do {
+					try self.preferences.encode(newValue, forKey: self.key)
+				} catch {
+					XULog("Can't set \(newValue.descriptionWithDefaultValue()) for \(self.key) due to coding error: \(error)")
+				}
+			}
+		}
+		
+	}
+
+	@propertyWrapper
+	struct Property<T> {
+		
+		let key: XUPreferences.Key
+		let preferences: XUPreferences
+		
+		init(key: XUPreferences.Key, preferences: XUPreferences = .shared) {
+			self.key = key
+			self.preferences = preferences
+		}
+		
+		var wrappedValue: T? {
+			get {
+				return self.preferences.value(for: self.key)
+			}
+			nonmutating set {
+				self.preferences.set(value: newValue, forKey: self.key)
+			}
+		}
+		
+	}
+
+	@propertyWrapper
+	struct PropertyWithDefaultValue<T> {
+		
+		let defaultValue: () -> T
+		let key: XUPreferences.Key
+		let preferences: XUPreferences
+		
+		init(key: XUPreferences.Key, defaultValue: @escaping @autoclosure () -> T, preferences: XUPreferences = .shared) {
+			self.defaultValue = defaultValue
+			self.key = key
+			self.preferences = preferences
+		}
+		
+		var wrappedValue: T {
+			get {
+				return self.preferences.value(for: self.key, defaultValue: self.defaultValue())
+			}
+			nonmutating set {
+				self.preferences.set(value: newValue, forKey: self.key)
+			}
+		}
+		
+	}
+
+	
 	/// This is a struct that identifies a key for the preferences.
 	/// TODO - make it generic - this would allow some great stuff with it, but
 	/// current versions of Swift do not support static stored properties on
@@ -82,6 +183,7 @@ public struct XUPreferences {
 		}
 		
 	}
+	
 	
 	private static var _shared: XUPreferences?
 	

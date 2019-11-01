@@ -6,6 +6,9 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
+#if os(macOS)
+	import AppKit
+#endif
 import Foundation
 
 private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [String : Any]) -> URL? {
@@ -18,7 +21,7 @@ private func _createURL(forKey key: String, inInfoDictionary infoDictionary: [St
 			print("\(key) contains a nonnull value, but it doesn't seem to be a proper URL '\(urlString)'")
 		}
 		return url
-	}else{
+	} else {
 		return nil
 	}
 }
@@ -163,12 +166,19 @@ open class XUApplicationSetup {
 	/// beta expiration. False by default. See betaExpirationTimeInterval.
 	public let isBetaBuild: Bool
 	
+	#if os(macOS)
 	/// Returns true if the Dark Mode for menu bar and Dock is enabled. Will always
 	/// return false on iOS.
 	@available(iOS, unavailable)
+	@available(macCatalyst, unavailable)
 	public var isDarkModeEnabled: Bool {
+		if #available(macOS 10.14, *) {
+			let bestMatch = NSAppearance.current.bestMatch(from: [.darkAqua, .vibrantDark])
+			return bestMatch != nil
+ 		}
 		return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
 	}
+	#endif
 
 	/// Returns true, if the app is debugging in-app purchases. When true, the
 	/// XUInAppPurchasesManager will return all available IAPs as purchased. To
@@ -187,8 +197,10 @@ open class XUApplicationSetup {
 	/// arguments list to enable it.
 	public let isRunningInDebugMode: Bool
 	
+	#if os(macOS)
 	/// Returns true if we're running Mojave or later and dark mode is enabled.
 	@available(iOS, unavailable)
+	@available(macCatalyst, unavailable)
 	public var isRunningMojaveWithDarkMode: Bool {
 		if #available(macOS 10.14, *) {
 			return self.isDarkModeEnabled
@@ -196,6 +208,7 @@ open class XUApplicationSetup {
 			return false
 		}
 	}
+	#endif
 	
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining

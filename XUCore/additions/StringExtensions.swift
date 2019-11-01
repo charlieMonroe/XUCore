@@ -32,7 +32,7 @@ public enum XUEmailFormatValidity {
 	
 	public init(email: String) {
 		// First see if it fits the general description
-		let regex = XURegex(pattern: "^[\\w\\.-]{2,}@[\\w\\.-]{2,}\\.\\w{2,}$", andOptions: .caseless)
+		let regex = XURegex(pattern: "^[\\w\\.\\-_+]{1,}@[\\w\\.-]{2,}\\.\\w{2,}$", andOptions: .caseless)
 		if !regex.matchesString(email) {
 			self = .wrong
 			return
@@ -222,16 +222,17 @@ extension String {
 			string = string.replacingOccurrences(of: "&#\(occurrence);", with: String(Character(UnicodeScalar(value)!)))
 		}
 		
-		let acuteRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])acute;", andOptions: [])
-		for occurrence in self.allValues(of: "C", forRegex: acuteRegex).distinct() {
-			string = string.replacingOccurrences(of: "&\(occurrence)acute;", with: occurrence + "\u{0341}")
-		}
+		let accentedCharacterMapping: [(htmlName: String, combiningUnicodeSequence: String)] = [
+			("acute", "\u{0341}"), ("caron", "\u{030C}"), ("grave", "\u{0302}")
+		]
 		
-		let caronRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])caron;", andOptions: [])
-		for occurrence in self.allValues(of: "C", forRegex: caronRegex).distinct() {
-			string = string.replacingOccurrences(of: "&\(occurrence)caron;", with: occurrence + "\u{030C}")
+		for (htmlName, combiningUnicodeSequence) in accentedCharacterMapping {
+			let accentRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])\(htmlName);", andOptions: [])
+			for occurrence in self.allValues(of: "C", forRegex: accentRegex).distinct() {
+				string = string.replacingOccurrences(of: "&\(occurrence)\(htmlName);", with: occurrence + combiningUnicodeSequence)
+			}
 		}
-		
+				
 		return string
 	}
 	
@@ -384,7 +385,7 @@ extension String {
 	public var encodingIllegalURLCharacters: String {
 		var characterSet = CharacterSet.urlPathAllowed
 		characterSet.formUnion(CharacterSet.urlQueryAllowed)
-		characterSet.remove(charactersIn: "/:&") // We need / to become %2F
+		characterSet.remove(charactersIn: "/:&+") // We need / to become %2F
 		
 		return self.addingPercentEncoding(withAllowedCharacters: characterSet) ?? self
 	}

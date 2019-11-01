@@ -9,10 +9,10 @@
 import Foundation
 import XUCore
 
-#if os(macOS)
-	import AppKit
-#else
+#if canImport(UIKit)
 	import UIKit
+#else
+	import AppKit
 #endif
 
 /// This class handles checking for updates based on the app's bundle identifier.
@@ -145,13 +145,15 @@ public final class XUUpdateChecker {
 	/// Direct download URL for the update discovered in the Sparkle update feed.
 	public private(set) var updateURL: URL?
 	
-	/// Download center used by the checker.
-	private let _downloadCenter: XUDownloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
-	
 	
 	/// Checks for updates synchronously and returns the result.
 	private func _checkForUpdatesAgainstAppStore() -> Result {
-		guard let obj = _downloadCenter.downloadJSONDictionary(at: URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier)) else {
+		let downloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
+		defer {
+			downloadCenter.session.invalidateAndCancel()
+		}
+
+		guard let url = URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier), let obj = downloadCenter.downloadJSONDictionary(at: url) else {
 			return .failure
 		}
 		
@@ -184,7 +186,16 @@ public final class XUUpdateChecker {
 			return .failure
 		}
 		
-		guard let doc = _downloadCenter.downloadXMLDocument(at: feedURL) else {
+		let downloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
+		defer {
+			downloadCenter.session.invalidateAndCancel()
+		}
+		
+		let processInfo = ProcessInfo()
+		let userAgent = "\(processInfo.processName)/\(XUAppSetup.applicationVersionNumber) (\(XUAppSetup.applicationBuildNumber))/macOS \(processInfo.operatingSystemVersion.versionString)"
+		guard let doc = downloadCenter.downloadXMLDocument(at: feedURL, withRequestModifier: {
+			$0.userAgent = URLRequest.UserAgent(rawValue: userAgent)
+		}) else {
 			return .failure
 		}
 		
@@ -247,12 +258,13 @@ public final class XUUpdateChecker {
 	/// the bundle ID lookup during update checking. It terminates the app as well.
 	/// Only use it when you are running an AppStore version of the app.
 	@available(iOSApplicationExtension, unavailable)
+	@available(macCatalystApplicationExtension, unavailable)
 	public func openAppStoreAndTerminate() {
 		if let appStoreURL = self.appStoreURL {
-			#if os(macOS)
-				NSWorkspace.shared.open(appStoreURL)
-			#else
+			#if canImport(UIKit)
 				UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+			#else
+				NSWorkspace.shared.open(appStoreURL)
 			#endif
 		}
 		

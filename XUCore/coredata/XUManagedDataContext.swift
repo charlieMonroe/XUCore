@@ -20,7 +20,7 @@ open class XUManagedDataContext {
 	
 	
 	/// Inits by reading/creating a database at `URL`.
-	public init(persistentStoreURL: URL, bundle: Bundle = Bundle.main, concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType) {
+	public init(persistentStoreURL: URL, bundle: Bundle = Bundle.main, concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType, persistentStoreOptions: [String : Any] = [NSMigratePersistentStoresAutomaticallyOption: true]) {
 		self.managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
 		
 		guard let objectModel = NSManagedObjectModel.mergedModel(from: [bundle]) else {
@@ -30,27 +30,30 @@ open class XUManagedDataContext {
 		self.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: objectModel)
 		self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
 		
-		let options = [
-			NSMigratePersistentStoresAutomaticallyOption: true,
-			NSSQLitePragmasOption: [ "journal_mode": "DELETE" ]
-		] as [String : Any]
+		let options = persistentStoreOptions
 		
-		var persistentStore = try? self.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL, options: options)
-		if persistentStore == nil {
-			/// Try to delete the persistent store.
-			let parentURL = persistentStoreURL.deletingLastPathComponent()
-			_ = try? FileManager.default.removeItem(at: parentURL)
-			_ = try? FileManager.default.createDirectory(at: parentURL, withIntermediateDirectories: true, attributes: nil)
+		var persistentStore: NSPersistentStore
+		do {
+			persistentStore = try self.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL, options: options)
+		} catch let firstError {
+			XULog("Failed to add persistent store due to error \(firstError)")
 			
-			persistentStore = try? self.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL, options: options)
+			do {
+				/// Try to delete the persistent store.
+				let parentURL = persistentStoreURL.deletingLastPathComponent()
+				try FileManager.default.removeItem(at: parentURL)
+				try FileManager.default.createDirectory(at: parentURL, withIntermediateDirectories: true, attributes: nil)
+				
+				persistentStore = try self.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL, options: options)
+			} catch let secondError {
+				XULog("Failed to create persistent store due to error \(secondError)")
+				
+				// Still nil - this mustn't happen!
+				fatalError("Cannot create persistent store.")
+			}
 		}
-		
-		if persistentStore == nil {
-			// Still nil - this mustn't happen!
-			fatalError("Cannot create persistent store.")
-		}
-		
-		self.persistentStore = persistentStore!
+	
+		self.persistentStore = persistentStore
 	}
 	
 	

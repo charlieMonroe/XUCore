@@ -203,7 +203,7 @@ public final class XULocalizationCenter {
 		/// Now, we know that the string isn't in the localization. There are two
 		/// options. Either the localization doesn't contain this phrase, or it
 		/// hasn't been loaded yet.
-		if let languageDict = _cachedLanguageDicts[bundle]?[language] , !languageDict.isEmpty {
+		if let languageDict = _cachedLanguageDicts[bundle]?[language], !languageDict.isEmpty {
 			/// The language has already been loaded -> no point in reloading it.
 			return key
 		}

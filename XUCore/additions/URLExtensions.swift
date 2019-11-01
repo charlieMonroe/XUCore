@@ -63,7 +63,7 @@ extension URL {
 	}
 
 	/// Returns the file size.
-	public var fileSize: Int {
+	public var fileSize: Int64 {
 		var value: AnyObject?
 		_ = try? (self as NSURL).getResourceValue(&value, forKey: URLResourceKey.fileSizeKey)
 
@@ -71,7 +71,7 @@ extension URL {
 			return 0 // Fallback to 0
 		}
 
-		return number.intValue
+		return number.int64Value
 	}
 
 	public init?(_ urlString: String) {
