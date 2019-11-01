@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
 	s.name     = 'XUCore'
-	s.version  = '1.3'
+	s.version  = '1.3.3'
 	s.license  = 'MIT License'
 	s.summary  = 'A core library used by Charlie Monroe Software.'
 	s.homepage = 'http://github.com/charlieMonroe/XUCore/'
 	s.author   = 'Charlie Monroe'
-	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'core_1.3' }
+	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'core_1.3.3' }
 	
-	s.swift_version = '5.0'
+	s.swift_version = '5.1'
 
 	s.source_files = 'XUCore/additions/*.{h,m,swift}', 'XUCore/core/*.{h,m,swift}', 'XUCore/coredata/*.swift', 'XUCore/coredata/sync/*.swift', 'XUCore/coredata/sync/model/*.swift', 'XUCore/debug/*.swift', 'XUCore/deserialization/*.swift', 'XUCore/documents/*.swift', 'XUCore/localization/*.swift', 'XUCore/localization/*.lproj/*.strings', 'XUCore/misc/*.swift', 'XUCore/network/*.swift', 'XUCore/private/*.{h,m,swift}', 'XUCore/regex/*.{h,m,mm,swift}', 'XUCore/regex/re2/*.{h,cc}', 'XUCore/regex/re2/util/*.{h,cc}', 'XUCore/transformers/*.swift'
 	s.ios.source_files = 'XUCoreMobile/XUCore.h', 'XUCore/core/iOS/*.swift', 'XUCore/localization/iOS/*.swift'
