@@ -18,27 +18,27 @@
 "Your Email:" = "您的邮箱:";
 "Description:" = "问题描述:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况。如果可以，请提供能够重现该问题的操作步骤。请在下方输入您的电子邮件地址 - 我们会在问题修复时向您发送邮件予以告知，或是通过邮件询问您有关该异常的更多细节。我们保证，我们永远不会将您的电子邮件地址存储在任何数据库中，也不会发送任何不相关的骚扰邮件。提交该问题报告能够帮助我们改善这款软件并增强用户体验。感谢您的帮助和支持!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "请描述该异常发生时的情况。如果可以，请提供能够重现该问题的操作步骤。请在下方输入您的电子邮件地址 - 我们会在问题修复时向您发送邮件予以告知，或是通过邮件询问您有关该异常的更多细节。我们保证，我们永远不会将您的电子邮件地址存储在任何数据库中，也不会发送任何不相关的骚扰邮件。提交该问题报告能够帮助我们改善这款软件并增强用户体验。感谢您的帮助和支持！";
 
 "Report Problem" = "报告问题";
 
 "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我们非常重视您的反馈，且承诺绝对不会收集任何不相关信息。我们不会在任何位置保存您的电子邮件地址，您提供的电子邮件仅用于在问题得到修复时我们能及时予以告知， 或是当我们需要联系您获取更多具体信息来解决您反馈的问题。";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅限以下信息会被发送:\n• 您提供的问题描述.\n• 下方所列的程序异常信息.\n• 当前应用版本.\n• 您所用操作系统 (OS) 的版本.\n• 您所用电脑的型号 (不包括您电脑的物理地址 (MAC), 及其他类似的可用于识别您电脑的信息)。";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅限以下信息会被发送：\n• 您提供的问题描述；\n• 下方所列的程序异常信息；\n• 当前应用版本；\n• 您所用操作系统 (OS) 的版本；\n• 您所用电脑的型号 (不包括您电脑的物理地址 (MAC), 及其他类似的可用于识别您电脑的信息)。";
 
-"Could not post your report." = "无法提交您的报告..";
-"Check your Internet connection and try again." = "请检查您的网络连接, 然后尝试再次提交报告.";
-"Heh, nice try. Please, enter a valid email address." = "谢谢您的支持，但请您填写有效的电子邮件地址并再试一次.";
+"Could not post your report." = "无法提交您的报告";
+"Check your Internet connection and try again." = "请检查您的网络连接, 然后重试。";
+"Heh, nice try. Please, enter a valid email address." = "谢谢您的支持，但请您填写有效的电子邮件地址并再试一次。";
 "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "我们可能会在修复过程中与您再次联系以修复报告的问题。我们保证不会将您的电子邮件地址泄露给其他任何人或将其另作他用，决不食言。";
 "You need to enter a valid email address." = "您需要输入一个有效的电子邮件地址。";
 "We may need to get in touch with you in order to fix this." = "我们可能会在修复过程中再次与您联系以修复报告的问题。";
 "Please, provide some details as to when this exception happened." = "请您提供一些该异常发生时的具体细节。";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "可包含如下信息: 程序当时正在执行的任务，程序是在前台还是后台运行，您所进行的点击操作等等。仅仅通过电脑自动发送的问题报告来解决相关问题是非常困难的，如果可以，请尽可能多的向我们提供额外细节信息，谢谢您的支持与理解。";
-"Thank you for the report!" = "感谢您提交报告并支持我们!";
-"We'll fix it as soon as possible!" = "我们会尽全力尽快修复这个问题!";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "可包含如下信息：程序当时正在执行的任务，程序是在前台还是后台运行，您所进行的点击操作等等。仅仅通过电脑自动发送的问题报告来解决相关问题是非常困难的，如果可以，请尽可能的向我们提供更多细节信息，谢谢您的支持与理解。";
+"Thank you for the report!" = "感谢您的反馈！";
+"We'll fix it as soon as possible!" = "我们会尽全力尽快修复这个问题！";
 
 "Welcome to beta testing of %@." = "欢迎使用 %@ 测试版。";
-"This is the first time you run a beta build %@." = "这是您第一次运行测试版的 %@.";
+"This is the first time you run a beta build %@." = "这是您第一次运行测试版的 %@。";
 "This beta build of %@ has expired." = "这个测试版的 %@ 已经过期。";
 
 "Working..." = "处理中...";
@@ -46,12 +46,12 @@
 "Progress" = "进度";
 "Posted successfully" = "发布成功";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 还可以继续使用 24 个小时，之后它的功能将被全面禁止。为了不影响您的正常使用，请及时更新 %@。";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ 还可以继续使用 24 个小时，之后它的功能将被全面停用。为了不影响您的正常使用，请及时更新 %@。";
 "Please download a new build." = "请您下载新的版本。";
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "您可以继续发送该报告，但如果报告中的使用语言不是英语，我们恐怕无法为您提供完整的技术支持。";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您的消息中含有特殊字符，通常意味着您的消息不是用英语叙述。 %@       虽然已经提供了汉化版以及其他多种语言支持，但我们的官方技术支持目前仅提供基于英语的服务。感谢您的理解与支持。";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您的消息中含有特殊字符，通常意味着您的消息不是用英语叙述。 %@ 虽然已经提供了中文版以及其他多种语言支持，但我们的官方技术支持目前仅提供基于英语的服务。感谢您的理解与支持。";
 "%li hours" = "%li 小时";
 "%li minutes" = "%li 分";
 "%li seconds" = "%li 秒";
@@ -63,9 +63,9 @@
 "Synchronization is already in progress." = "同步正在进行。";
 "An upload operation is already in progress." = "上传操作正在进行。";
 "Could not save upload metadata." = "无法保存上传的元数据。";
-"Cannot find entity named %@" = "无法找到实体名 %@";
+"Cannot find entity named %@" = "无法找到名为 %@的用户";
 "Cannot find class named %@" = "无法找到类名 %@";
-"Cannot find entity with ID %@" = "无法找到实体 ID %@";
+"Cannot find entity with ID %@" = "无法找到名为 %@的用户";
 "Can't find synchronization folder for document %@." = "找不到文档 %@ 的同步文件夹。";
 "%@ couldn't finish synchronization in the background." = "%@ 无法在后台完成相关同步。";
 "Please switch back to %@ so that the synchronization can finish." = "请切换回 %@ 以完成同步任务。";
@@ -86,8 +86,8 @@
 "Clear Debug Log" = "清理调试日志";
 "Show Log in Finder" = "在访达中显示日志";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "调试日志是包含一些 %@ 在后台执行时技术细节的文本文件。这些调试日志对我们能够快速解决问题来说非常有帮助。如果想要获取调试日志，请按照以下步骤进行操作:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "如果这不是您第一次发送调试日志，请点击“调试”菜单，选择“清除调试日志”。\n2)在“调试”菜单中，请确保“调试日志记录”处于开启转改。\n3)请重现遇到问题的操作。\n4)点击“调试”菜单中，关闭“调试日志记录”。\n5)点击“调试”菜单，选择“在 Finder 中显示日志”。在打开的 Finder 窗口中，选择日志文件通过电子邮件发送给我们。请注意要将日志文件作为附件发送，请不要直接复制其中的内容。\n\n日志文件中不包含任何个人数据，您可以通过直接打开日志文件来进行检验(日志文件实际上就是简单的文本文件)。如果您认为日志文件中的某些数据为机密或者个人信息，请将这些信息使用易识别的符号进行替换(比如XXXXXXXX)，让我们知道您对日志文件进行过修改。";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "调试日志是包含一些 %@ 在后台执行时技术细节的文本文件，这些调试日志对我们能够快速解决问题来说非常有帮助。如果想要获取调试日志，请按照以下步骤进行操作:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1)如果这不是您第一次发送调试日志，请点击“调试”菜单，选择“清除调试日志”。\n2)在“调试”菜单中，请确保“调试日志记录”处于开启转改。\n3)请重现遇到问题的操作。\n4)点击“调试”菜单中，关闭“调试日志记录”。\n5)点击“调试”菜单，选择“在访达中显示日志”。在打开的 访达 窗口中，选择日志文件通过电子邮件发送给我们。请注意要将日志文件作为附件发送，请不要直接复制其中的内容。\n\n日志文件中不包含任何个人数据，您可以通过直接打开日志文件来进行检验(日志文件实际上就是简单的文本文件)。如果您认为日志文件中的某些数据为机密或者个人信息，请将这些信息使用易识别的符号进行替换(比如XXXXXXXX)，以便让我们知道您对日志文件进行过修改。";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "很抱歉，该文档当前暂时无法下载。";
@@ -100,9 +100,9 @@
 "Please update your copy of this beta build." = "请更新您的测试版。";
 
 // Preferences.
-"All Preferences" = "所有首选项设置";
+"All Preferences" = "所有偏好设置";
 "Show All" = "显示全部";
-"Preferences" = "首选项";
+"Preferences" = "偏好设置";
 
 /// 12/21/2016+
 
@@ -124,8 +124,8 @@
 "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ 遇到问题即将崩溃。应用将显示一个报告对话框。请提交对话框内容，如您想忽略此次崩溃请关闭窗口。";
 "Send Anyway" = "仍旧发送";
 
-"There is an update available." = "有更新可以。";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "新版本可能已修复此问题。请尝试更新此应用程序。如果您无法访问此应用程序的更新功能，请从网站重新下载此应用程序。";
+"There is an update available." = "有可用的更新。";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "新版本可能已修复此问题，请尝试更新此应用程序。如果您无法访问此应用程序的更新功能，请从网站重新下载此应用程序。";
 "Download Update..." = "下载更新…";
 
 "Done" = "完成";

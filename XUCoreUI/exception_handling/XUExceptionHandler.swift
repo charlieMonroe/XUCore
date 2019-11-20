@@ -153,28 +153,30 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 	}
 	
 	public func fatalErrorDidOccur(with reason: String) {
-		let exception = NSException(name: .internalInconsistencyException, reason: reason, userInfo: nil)
-		
-		var stackTraceString = ""
-		if let provider = XUAppSetup.applicationStateProvider {
-			XUExceptionCatcher.perform({
-				stackTraceString += provider.provideApplicationState() + "\n\n"
-			}, withCatchHandler: { (exception) in
-				stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
-			})
+		DispatchQueue.main.syncOrNow {
+			let exception = NSException(name: .internalInconsistencyException, reason: reason, userInfo: nil)
+			
+			var stackTraceString = ""
+			if let provider = XUAppSetup.applicationStateProvider {
+				XUExceptionCatcher.perform({
+					stackTraceString += provider.provideApplicationState() + "\n\n"
+				}, withCatchHandler: { (exception) in
+					stackTraceString += "Failed to get application state - fetching it resulted in an exception \(exception).\n\n"
+				})
+			}
+			
+			stackTraceString += exception.description + "\n\n"
+			
+			let exceptionStackTrace = XUStacktraceString(from: exception)
+			if !exceptionStackTrace.isEmpty {
+				stackTraceString = exceptionStackTrace + "\n\n"
+			}
+			
+			stackTraceString += XUStacktraceString()
+			
+			
+			XUExceptionReporter.showReporter(for: exception, thread: .main, queue: .current, andStackTrace: stackTraceString)
 		}
-		
-		stackTraceString += exception.description + "\n\n"
-		
-		let exceptionStackTrace = XUStacktraceString(from: exception)
-		if !exceptionStackTrace.isEmpty {
-			stackTraceString = exceptionStackTrace + "\n\n"
-		}
-		
-		stackTraceString += XUStacktraceString()
-		
-		
-		XUExceptionReporter.showReporter(for: exception, thread: .main, queue: .current, andStackTrace: stackTraceString)
 	}
 	
 	private override init() {

@@ -112,8 +112,12 @@ public extension URLRequest {
 			/// Chrome 56 on macOS 10.12.3.
 			public static let Chrome56: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36")
 			
-			/// Chrome 69 on macOS 10.4.
+			/// Chrome 69 on macOS 10.14.
 			public static let Chrome69: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36")
+			
+			/// Chrome 69 on macOS 10.15.1.
+			public static let Chrome79: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.16 Safari/537.36")
+
 			
 			/// Firefox 54 on macOS 10.12.
 			public static let Firefox54: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0) Gecko/20100101 Firefox/54.0")
@@ -254,7 +258,7 @@ extension URLRequest: XUHTTPHeaderFields {
 	/// You can subscript the URL request and get/set HTTP header fields.
 	public subscript(field: String) -> String? {
 		get {
-			return self.allHTTPHeaderFields?[field]
+			return self.value(forHTTPHeaderField: field)
 		}
 		set {
 			self.setValue(newValue, forHTTPHeaderField: field)

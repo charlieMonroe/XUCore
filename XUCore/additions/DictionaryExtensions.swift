@@ -221,10 +221,17 @@ extension Dictionary {
 		for (key, value) in self {
 			let stringKey = (key as? String) ?? "INVALID KEY-\(key)"
 			let encodedKey = stringKey.encodingIllegalURLCharacters
-			let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE-\(value)"
-			let encodedValue = valueObject.description.encodingIllegalURLCharacters
-			
-			keyValuePairs.append("\(encodedKey)=\(encodedValue)")
+			if let array = value as? [CustomStringConvertible] {
+				for v in array {
+					let encodedValue = v.description.encodingIllegalURLCharacters
+					keyValuePairs.append("\(encodedKey)[]=\(encodedValue)")
+				}
+			} else {
+				let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE-\(value)"
+				let encodedValue = valueObject.description.encodingIllegalURLCharacters
+				
+				keyValuePairs.append("\(encodedKey)=\(encodedValue)")
+			}
 		}
 		
 		return keyValuePairs.joined(separator: "&")

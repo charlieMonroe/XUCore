@@ -414,6 +414,8 @@
 		07B9082A1BF3BB62008D254A /* XMLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1911BF2362B00832858 /* XMLAdditions.swift */; };
 		07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* TimerAdditions.swift */; };
 		07B9082D1BF3BC87008D254A /* TimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* TimerAdditions.swift */; };
+		07BF1241237B0DE1002E3780 /* XUUnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */; };
+		07BF1242237B0DE1002E3780 /* XUUnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */; };
 		07C184F321997B670017A539 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07C184F121997B670017A539 /* MainMenu.strings */; };
 		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
 		07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0F1BEBA63D008A4200 /* XURandomGenerator.swift */; };
@@ -728,6 +730,7 @@
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
 		07BAC4B92284378B002E6F59 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07BC79E71EE71CC0000D7E5D /* XUBorderlessTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBorderlessTextField.swift; sourceTree = "<group>"; };
+		07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUUnfairLock.swift; sourceTree = "<group>"; };
 		07C184F221997B670017A539 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		07C184F4219980710017A539 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		07C184F5219980710017A539 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -1499,6 +1502,7 @@
 				07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
+				07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */,
 				07B211001D4903DC005203F0 /* XUWeakArray.swift */,
 			);
 			path = core;
@@ -1805,7 +1809,7 @@
 			attributes = {
 				CLASSPREFIX = XU;
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Charlie Monroe Software";
 				TargetAttributes = {
 					076ACE731E37D4B7001BA622 = {
@@ -2161,6 +2165,7 @@
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
 				07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */,
+				07BF1241237B0DE1002E3780 /* XUUnfairLock.swift in Sources */,
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
 				07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */,
 				073E6AC71BE1F86D00706283 /* nfa.cc in Sources */,
@@ -2302,6 +2307,7 @@
 				073E6B141BE1F86D00706283 /* stringpiece.cc in Sources */,
 				073E6ABE1BE1F86D00706283 /* compile.cc in Sources */,
 				075DC7A01CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
+				07BF1242237B0DE1002E3780 /* XUUnfairLock.swift in Sources */,
 				0779E1801BF2317A00832858 /* NSDecimalNumberAdditions.swift in Sources */,
 				075DC78D1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift in Sources */,
 				073E6B4A1BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
@@ -2728,7 +2734,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 128;
 				DEFINES_MODULE = YES;
@@ -2761,7 +2767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 128;
 				DEFINES_MODULE = YES;

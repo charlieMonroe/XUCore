@@ -100,7 +100,7 @@ open class XUManagedObject: NSManagedObject {
 		let objectID = self.syncUUID
 		self.managedObjectContext?.delete(self) // We can already be deleted.
 		
-		_changesLock.perform {
+		_ = _changesLock.perform {
 			_deletionChanges.insert(objectID)
 		}
 	}

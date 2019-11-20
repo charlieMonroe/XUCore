@@ -1,3 +1,4 @@
+// swift-tools-version:5.1
 //
 //  Package.swift
 //  XUCore
@@ -16,6 +17,7 @@ let package = Package(
 		],
 		products: [
 			.library(name: "XUCore", targets: ["XUCore"]),
+			.library(name: "XUCoreUI", targets: ["XUCoreUI"])
 		],
 		dependencies: [],
 		targets: [
@@ -30,6 +32,7 @@ let package = Package(
 		],
 		products: [
 			.library(name: "XUCore", targets: ["XUCoreMobile"]),
+			.library(name: "XUCoreUI", targets: ["XUCoreUI iOS"])
 		],
 		dependencies: [],
 		targets: [
