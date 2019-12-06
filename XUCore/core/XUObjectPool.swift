@@ -62,8 +62,6 @@ public final class XUObjectPool<T: AnyObject & Hashable> {
 	/// we're over capacity.
 	public func get() -> T {
 		if let first = _retiredObjects.first {
-			print("Reusing object \(ObjectIdentifier(first))")
-			
 			_retiredObjects.remove(first)
 			_trackedObjects.insert(first)
 			
@@ -73,8 +71,6 @@ public final class XUObjectPool<T: AnyObject & Hashable> {
 		
 		let obj = self.initializer()
 		_trackedObjects.insert(obj)
-		
-		print("Creating object \(ObjectIdentifier(obj))")
 		return obj
 	}
 	
@@ -102,10 +98,7 @@ public final class XUObjectPool<T: AnyObject & Hashable> {
 		_trackedObjects.remove(object)
 		
 		if _retiredObjects.count < self.capacity {
-			print("Retiring object \(ObjectIdentifier(object))")
 			_retiredObjects.insert(object)
-		} else {
-			print("Deallocing object \(ObjectIdentifier(object))")
 		}
 	}
 	

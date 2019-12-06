@@ -105,6 +105,9 @@ open class XUDownloadCenter {
 	/// Identifier identifying the download center. This value is used for logging.
 	public final var identifier: String
 	
+	/// Marked true when invalidateSession() is called.
+	public private(set) final var isInvalidated: Bool = false
+	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
 	public final private(set) var lastError: Swift.Error?
 	
@@ -254,6 +257,10 @@ open class XUDownloadCenter {
 	public func downloadData(at url: URL, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
 		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
+		if self.isInvalidated {
+			return nil
+		}
+		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
@@ -397,6 +404,15 @@ open class XUDownloadCenter {
 	
 	#endif
 	
+	/// Invalidates the session (cancelling all current and future requests). Use
+	/// this over calling it on the session itself as there isn't a way for the
+	/// download center to know if the session is invalidated and can cause exceptions
+	/// if calls have been made after the session was invalidated.
+	public func invalidateSession() {
+		self.isInvalidated = true
+		self.session.invalidateAndCancel()
+	}
+	
 	/// Returns last HTTP status code or 0.
 	public var lastHTTPStatusCode: Int {
 		return self.lastHTTPURLResponse?.statusCode ?? 0
@@ -416,6 +432,10 @@ open class XUDownloadCenter {
 	
 	/// Sends a HEAD request to `URL`.
 	public func sendHeadRequest(to url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
+		if self.isInvalidated {
+			return nil
+		}
+		
 		var request = URLRequest(url: url)
 		request.httpMethod = "HEAD"
 		

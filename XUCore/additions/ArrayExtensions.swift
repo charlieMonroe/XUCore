@@ -285,6 +285,13 @@ extension Collection {
 		return unique
 	}
 	
+	/// Sorts the collection using a keyPath.
+	public func sorted<T: Comparable>(using keyPath: KeyPath<Self.Element, T>) -> [Self.Element] {
+		return self.sorted {
+			$0[keyPath: keyPath] < $1[keyPath: keyPath]
+		}
+	}
+	
 }
 
 extension Array where Element : Equatable {

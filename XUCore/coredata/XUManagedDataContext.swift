@@ -20,10 +20,10 @@ open class XUManagedDataContext {
 	
 	
 	/// Inits by reading/creating a database at `URL`.
-	public init(persistentStoreURL: URL, bundle: Bundle = Bundle.main, concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType, persistentStoreOptions: [String : Any] = [NSMigratePersistentStoresAutomaticallyOption: true]) {
+	public init(persistentStoreURL: URL, objectModel model: NSManagedObjectModel? = nil, bundle: Bundle = Bundle.main, concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType, persistentStoreOptions: [String : Any] = [NSMigratePersistentStoresAutomaticallyOption: true]) {
 		self.managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
 		
-		guard let objectModel = NSManagedObjectModel.mergedModel(from: [bundle]) else {
+		guard let objectModel = model ?? NSManagedObjectModel.mergedModel(from: [bundle]) else {
 			fatalError("No models in main bundle.")
 		}
 		

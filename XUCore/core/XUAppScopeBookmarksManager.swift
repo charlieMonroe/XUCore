@@ -19,14 +19,24 @@ public final class XUAppScopeBookmarksManager {
 	/// Sets a URL for key. Returns if the save was successful. Note that previously
 	/// you could set nil and thus remove the URL for a particular key. This is
 	/// no longer possible. Use removeURL(forKey:) instead.
+	///
+	/// If `automaticallyManageSecurityScope` is set to true, then the old URL
+	/// for this key will be called with `stopAccessingSecurityScopedResource()`
+	/// and the new URL will be called with `startAccessingSecurityScopedResource()`.
 	@discardableResult
-	public func setURL(_ url: URL, forKey defaultsKey: XUPreferences.Key) -> Bool {
+	public func setURL(_ url: URL, forKey defaultsKey: XUPreferences.Key, automaticallyManageSecurityScope: Bool = false) -> Bool {
 		var newURL = url
 
 		// Make sure the path is different from the current one -> otherwise
 		// we probably haven't opened the open dialog -> will fail
-		if let savedURL = self.url(forKey: defaultsKey), savedURL == url {
-			return true // Already saved.
+		if let savedURL = self.url(forKey: defaultsKey) {
+			if savedURL == url {
+				return true // Already saved.
+			}
+			
+			if automaticallyManageSecurityScope {
+				savedURL.stopAccessingSecurityScopedResource()
+			}
 		}
 		
 		#if os(iOS)
@@ -53,6 +63,10 @@ public final class XUAppScopeBookmarksManager {
 			do {
 				newURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
 			} catch _ { }
+		
+			if automaticallyManageSecurityScope {
+				_ = newURL.startAccessingSecurityScopedResource()
+			}
 		#endif
 		
 		_cache[defaultsKey] = newURL
@@ -68,8 +82,9 @@ public final class XUAppScopeBookmarksManager {
 		})
 	}
 	
-	/// Returns URL for key.
-	public func url(forKey defaultsKey: XUPreferences.Key) -> URL? {
+	/// Returns URL for key. If `automaticallyManageSecurityScope` is true, then upon resolving
+	/// the URL, `url.startAccessingSecurityScopedResource()` is called.
+	public func url(forKey defaultsKey: XUPreferences.Key, automaticallyManageSecurityScope: Bool = false) -> URL? {
 		if let result = _cache[defaultsKey] {
 			return result
 		}
@@ -92,6 +107,8 @@ public final class XUAppScopeBookmarksManager {
 				XULog("Failed to resolve bookmark data for \(defaultsKey) - error \(error).")
 				result = nil
 			}
+		
+			_ = result?.startAccessingSecurityScopedResource()
 			
 			XULog("Resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
 		#endif

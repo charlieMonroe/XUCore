@@ -150,7 +150,7 @@ public final class XUUpdateChecker {
 	private func _checkForUpdatesAgainstAppStore() -> Result {
 		let downloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
 		defer {
-			downloadCenter.session.invalidateAndCancel()
+			downloadCenter.invalidateSession()
 		}
 
 		guard let url = URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier), let obj = downloadCenter.downloadJSONDictionary(at: url) else {
@@ -188,7 +188,7 @@ public final class XUUpdateChecker {
 		
 		let downloadCenter = XUDownloadCenter(identifier: "XUUpdateChecker")
 		defer {
-			downloadCenter.session.invalidateAndCancel()
+			downloadCenter.invalidateSession()
 		}
 		
 		let processInfo = ProcessInfo()

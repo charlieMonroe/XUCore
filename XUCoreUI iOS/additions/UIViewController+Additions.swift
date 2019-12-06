@@ -12,8 +12,8 @@ extension UIViewController {
 	
 	/// A convenience method that will make UIAlertController from the error
 	/// and present it via self.
-	public func presentError(_ error: Error) {
-		self.present(UIAlertController(error: error, completionHandler: nil), animated: true, completion: nil)
+	public func presentError(_ error: Error, completionHandler: (() -> Void)? = nil) {
+		self.present(UIAlertController(error: error, completionHandler: completionHandler), animated: true, completion: nil)
 	}
 	
 }
