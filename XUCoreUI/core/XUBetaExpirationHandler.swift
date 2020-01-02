@@ -10,37 +10,37 @@ import AppKit
 import XUCore
 
 private extension XUPreferences.Key {
-	static let BetaDidShowExpirationWarning = XUPreferences.Key(rawValue: "XUBetaDidShowExpirationWarning")
-	static let LastBetaBuildNumber = XUPreferences.Key(rawValue: "XULastBetaBuildNumber")
-	static let LastBetaTimestamp = XUPreferences.Key(rawValue: "XULastBetaTimestamp")
+	static let betaDidShowExpirationWarning = XUPreferences.Key(rawValue: "XUBetaDidShowExpirationWarning")
+	static let lastBetaBuildNumber = XUPreferences.Key(rawValue: "XULastBetaBuildNumber")
+	static let lastBetaTimestamp = XUPreferences.Key(rawValue: "XULastBetaTimestamp")
 }
 
 private extension XUPreferences {
 	
 	var betaDidShowExpirationWarning: Bool {
 		get {
-			return self.boolean(for: .BetaDidShowExpirationWarning)
+			return self.boolean(for: .betaDidShowExpirationWarning)
 		}
 		nonmutating set {
-			self.set(boolean: newValue, forKey: .BetaDidShowExpirationWarning)
+			self.set(boolean: newValue, forKey: .betaDidShowExpirationWarning)
 		}
 	}
 	
 	var lastBetaBuildNumber: Int {
 		get {
-			return self.integer(for: .LastBetaBuildNumber)
+			return self.integer(for: .lastBetaBuildNumber)
 		}
 		nonmutating set {
-			self.set(integer: newValue, forKey: .LastBetaBuildNumber)
+			self.set(integer: newValue, forKey: .lastBetaBuildNumber)
 		}
 	}
 	
 	var lastBetaTimestamp: Date? {
 		get {
-			return self.value(for: .LastBetaTimestamp)
+			return self.value(for: .lastBetaTimestamp)
 		}
 		nonmutating set {
-			self.set(value: newValue, forKey: .LastBetaTimestamp)
+			self.set(value: newValue, forKey: .lastBetaTimestamp)
 		}
 	}
 	
@@ -138,9 +138,8 @@ public final class XUBetaExpirationHandler {
 			}
 					
 			if timeInterval < 0 {
-				self._handleExpiration()
-				
-				// No return
+				self._showWarningAndScheduleOneHourExpiration()
+				return
 			}
 			
 			Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(XUBetaExpirationHandler._handleExpiration), userInfo: nil, repeats: false)
@@ -151,11 +150,15 @@ public final class XUBetaExpirationHandler {
 		XUPreferences.shared.perform { (prefs) in
 			prefs.betaDidShowExpirationWarning = false
 			prefs.lastBetaBuildNumber = currentBuildNumber
-			prefs.lastBetaTimestamp = Date()
+			prefs.lastBetaTimestamp = XUAppSetup.buildDate ?? Date()
 		}
 		
-		// Show a dialog.
-		self._showFirstBetaLaunchDialog()
+		if self.expiresInSeconds < 0.0 {
+			self._showWarningAndScheduleOneHourExpiration()
+		} else {
+			// Show a dialog.
+			self._showFirstBetaLaunchDialog()
+		}
 	}
 	
 	

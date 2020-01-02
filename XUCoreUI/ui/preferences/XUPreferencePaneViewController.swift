@@ -60,6 +60,12 @@ open class XUPreferencePaneViewController: NSViewController {
 		
 	}
 	
+	/// You can optionally validate any editing here. The window controller will
+	/// take this into account when closing the window.
+	open func validateEditing() -> Bool {
+		return true
+	}
+	
 	/// Automatically calls localizeView() on self.view. It is final and a preferred
 	/// way to update anything is in loadPreferences()
 	public final override func viewDidLoad() {

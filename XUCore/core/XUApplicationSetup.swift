@@ -132,6 +132,10 @@ open class XUApplicationSetup {
 	/// @discussion - Only available on OS X.
 	public let betaExpirationTimeInterval: TimeInterval
 	
+	/// Build date - this is optional. You can add custom build phase to add
+	/// XUBuildDate key to the Info.plist.
+	public let buildDate: Date?
+	
 	/// Build type. See BuildType. When you use the buildType, you should ignore
 	/// isAppStoreBuild on XUApplicationSetup.
 	///
@@ -261,6 +265,8 @@ open class XUApplicationSetup {
 		
 		self.applicationBuildNumber = infoDictionary["CFBundleVersion"] as? String ?? "0"
 		self.applicationVersionNumber = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"
+		
+		self.buildDate = infoDictionary["XUBuildDate"] as? Date
 		
 		self.exceptionHandlerReportURL = _createURL(forKey: "XUExceptionReporterURL", inInfoDictionary: infoDictionary)
 		self.messageCenterFeedURL = _createURL(forKey: "XUMessageCenterFeedURL", inInfoDictionary: infoDictionary)

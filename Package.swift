@@ -4,7 +4,7 @@
 //  XUCore
 //
 //  Created by Charlie Monroe on 7/14/19.
-//  Copyright © 2019 Charlie Monroe Software. All rights reserved.
+//  Copyright © 2019-2020 Charlie Monroe Software. All rights reserved.
 //
 
 import PackageDescription

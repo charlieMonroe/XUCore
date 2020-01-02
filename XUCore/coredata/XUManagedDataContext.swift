@@ -12,6 +12,7 @@ import CoreData
 /// This is a very simple class that creates a NSManagedObjectContext and either
 /// creates or reads persistent storage. This class also contains several helper
 /// methods that help fetching entities.
+@available(macOS, deprecated: 10.12, message: "Use NSPersistentContainer.")
 open class XUManagedDataContext {
 	
 	public let managedObjectContext: NSManagedObjectContext

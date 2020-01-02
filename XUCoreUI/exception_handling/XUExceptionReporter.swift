@@ -86,6 +86,7 @@ final class XUExceptionReporter: NSObject, NSWindowDelegate {
 	@IBOutlet private var _reporterWindow: NSWindow!
 	
 	@IBOutlet private weak var _emailTextField: NSTextField!
+	@IBOutlet private weak var _informationLabel: NSTextField!
 	@IBOutlet private var _stackTraceTextView: NSTextView!
 	@IBOutlet private var _updateInfoView: NSView!
 	@IBOutlet private var _userInputTextView: NSTextView!
@@ -206,6 +207,8 @@ final class XUExceptionReporter: NSObject, NSWindowDelegate {
 		_reporterWindow.delegate = self
 		_reporterWindow.isMovableByWindowBackground = true
 		_reporterWindow.localize(from: .core)
+		
+
 		
 		_stackTraceTextView.string = stackTrace
 		_stackTraceTextView.font = NSFont.userFixedPitchFont(ofSize: 11.0)

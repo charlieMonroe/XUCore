@@ -194,6 +194,14 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		return Bundle.coreUI.path(forResource: "XUPreferencePanesWindowController", ofType: "nib")
 	}
 	
+	public func windowShouldClose(_ sender: NSWindow) -> Bool {
+		if let currentController = self.currentPaneController, !currentController.validateEditing() {
+			return false
+		}
+		
+		return true
+	}
+	
 	/// Delegate method of the window. If you decide to override this method, it
 	/// is crucial to call super, since the default implementation saves the 
 	/// preferences.
@@ -256,6 +264,10 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	private weak var _prefController: XUPreferencePanesWindowController!
 	
 	@objc private func _showPane(_ menuItem: NSMenuItem) {
+		if let currentController = _prefController.currentPaneController, !currentController.validateEditing() {
+			return
+		}
+		
 		let pane = menuItem.representedObject as! XUPreferencePaneViewController
 		_prefController.preferencePaneView(didSelectPane: pane)
 	}
@@ -304,6 +316,10 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 	}
 	
 	@IBAction @objc func showAll(_ sender: AnyObject) {
+		if let currentController = _prefController.currentPaneController, !currentController.validateEditing() {
+			return
+		}
+		
 		_prefController.showAllPanes()
 	}
 	

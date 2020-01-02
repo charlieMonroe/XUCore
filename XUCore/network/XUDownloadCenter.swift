@@ -60,6 +60,10 @@ open class XUDownloadCenter {
 		/// Request modifier. Can be used along with XUDownloadCenter.
 		public var requestModifier: (inout URLRequest) -> Void {
 			return { (request: inout URLRequest) in
+				if self.values["Cookie"] == .some(nil) {
+					request.httpShouldHandleCookies = false
+				}
+				
 				for (key, value) in self.values {
 					request[key] = value
 				}
@@ -211,7 +215,7 @@ open class XUDownloadCenter {
 		
 		var cookieString = cookies.compactMap({ (obj: HTTPCookie) -> String? in
 			return "\(obj.name)=\(obj.value)"
-		}).joined(separator: ";")
+		}).joined(separator: "; ")
 		
 		if cookieString.isEmpty {
 			XULog("Not setting cookies, because there are no cookies for: \(host)")
@@ -262,6 +266,8 @@ open class XUDownloadCenter {
 		}
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
+		request.httpShouldHandleCookies = false // We're setting them manually below.
+		
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
 		
@@ -409,6 +415,8 @@ open class XUDownloadCenter {
 	/// download center to know if the session is invalidated and can cause exceptions
 	/// if calls have been made after the session was invalidated.
 	public func invalidateSession() {
+		XULog("Invalidating download center \(self.identifier).")
+		
 		self.isInvalidated = true
 		self.session.invalidateAndCancel()
 	}
