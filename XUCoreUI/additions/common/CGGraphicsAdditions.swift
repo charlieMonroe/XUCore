@@ -117,6 +117,11 @@ public func -=(_ lhs: inout CGSize, _ rhs: CGSize) {
 
 public extension CGSize {
 	
+	/// Returns area of the size (width * height).
+	var area: CGFloat {
+		return self.width * self.height
+	}
+	
 	/// Creates a size with both width and height being set to dimension.
 	init(dimension: CGFloat) {
 		self.init(width: dimension, height: dimension)

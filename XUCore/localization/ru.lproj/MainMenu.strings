@@ -1,4 +1,4 @@
-"About <AppName>" = "Об Утилите VoiceOver";
+"About <AppName>" = "Об Утилите <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "Все окна — на передний план";
 "Capitalize" = "С заглавной буквы";
@@ -50,5 +50,5 @@
 "Undo" = "Отменить";
 "Use Selection for Find" = "Найти выбранное";
 "Use Selection for Replace" = "Использовать выделенное для замены";
-"Window" = "Window";
+"Window" = "Окно";
 "Zoom" = "Изменить масштаб";

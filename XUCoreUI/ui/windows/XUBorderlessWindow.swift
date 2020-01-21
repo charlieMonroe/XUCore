@@ -12,6 +12,8 @@ import AppKit
 // / -drawRect:.
 open class XUBorderlessWindow: NSWindow {
 	
+	private var _cachedImageSize: CGSize = .zero
+	
 	private func _innerInit() {
 		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindow.didResizeNotification, object: self)
 		NotificationCenter.default.addObserver(self, selector: #selector(XUBorderlessWindow.updateBackground), name: NSWindow.didMoveNotification, object: self)
@@ -28,6 +30,15 @@ open class XUBorderlessWindow: NSWindow {
 	
 	open override var canBecomeKey: Bool {
 		return true
+	}
+	
+	/// If this returns true then if the window resizes, the background may be kept.
+	/// If the window resizes too much, then the background is discarded to lower
+	/// memory footprint. It also allows for some optimizations like requesting
+	/// larger background image so that during the live resize, the redrawing
+	/// doesn't occurr that often.
+	open var canCropBackgroundImage: Bool {
+		return false
 	}
 	
 	deinit {
@@ -54,16 +65,35 @@ open class XUBorderlessWindow: NSWindow {
 	/// Updates the background by redrawing. You should seldomly need to call
 	/// this method directly.
 	@objc open func updateBackground() {
-		let windowSize = self.frame.size
-		
+		var windowSize = self.frame.size
 		if windowSize.width.isNaN || windowSize.height.isNaN {
 			return
 		}
 		
-		if windowSize == CGSize() {
+		if windowSize == .zero || windowSize == _cachedImageSize {
 			// Zero size -> return;
 			return
 		}
+		
+		if self.canCropBackgroundImage {
+			if windowSize.width <= _cachedImageSize.width, windowSize.height <= _cachedImageSize.height {
+				// We can just crop it. If there is a significant size difference,
+				// however (75%), we will redraw.
+				if windowSize.area / _cachedImageSize.area > 0.75 {
+					// It's fine, let's leave it.
+					return
+				}
+				
+				// We need to redraw, we're becoming too small.
+				
+			} else {
+				// The window is larger. Let's increase the size of the window
+				// so that we can leverage the fact it's croppable.
+				windowSize += CGSize(width: 300.0, height: 300.0)
+			}
+		}
+		
+		_cachedImageSize = windowSize
 		
 		let backgroundImage = NSImage(size: windowSize)
 		backgroundImage.lockFocus()

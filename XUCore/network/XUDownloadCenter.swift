@@ -27,7 +27,13 @@ extension XUDownloadCenterObserver {
 /// Class that handles communication over HTTP and parsing the responses.
 open class XUDownloadCenter {
 	
-	public enum Error {
+	public enum Error: Swift.Error {
+		
+		/// The downloaded data cannot be interpreted as string.
+		case stringDecodingError
+		
+		/// The underlying session was already invalidated.
+		case invalidated
 		
 		/// This error represents a state where the NSURLSession returns nil -
 		/// i.e. connection timeout or no internet connection at all.
@@ -103,7 +109,7 @@ open class XUDownloadCenter {
 	public final var defaultStringEncoding: String.Encoding = .utf8
 	
 	/// Handler called when an error is encountered. This can be used for additional
-	/// logging.
+	/// logging. This is softly deprecated.
 	public final var errorHandler: ((XUDownloadCenter.Error) -> Void)?
 	
 	/// Identifier identifying the download center. This value is used for logging.
@@ -259,14 +265,20 @@ open class XUDownloadCenter {
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
 	public func downloadData(at url: URL, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
+		return try? self.downloadDataThrow(at: url, referringFunction: referingFunction, acceptType: acceptType, withRequestModifier: modifier)
+	}
+	
+	/// Downloads data from `url`, applies request modifier. `referingFunction`
+	/// is for logging purposes, use it with the default value instead.
+	public func downloadDataThrow(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) throws -> Data {
 		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
 		if self.isInvalidated {
-			return nil
+			throw Error.invalidated
 		}
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
-		request.httpShouldHandleCookies = false // We're setting them manually below.
+//		request.httpShouldHandleCookies = false // We're setting them manually below.
 		
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
@@ -280,7 +292,7 @@ open class XUDownloadCenter {
 				logString += "\nHTTP Body: \(request.httpBody.flatMap(String.init(data:)) ?? "")"
 			}
 			
-			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referingFunction)
+			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referringFunction)
 		}
 		
 		do {
@@ -294,34 +306,44 @@ open class XUDownloadCenter {
 			self.observer?.downloadCenter(self, didDownloadContentFrom: url, response: response as? HTTPURLResponse, data: data)
 			
 			return data
-		} catch let error {
+		} catch {
+			if self.logTraffic {
+				XULog("[\(self.identifier)] - Failed to load URL connection to URL \(url) - \(error)")
+			}
+			
 			self.lastHTTPURLResponse = nil
 			self.lastError = error
 			
 			self.observer?.downloadCenter(self, didFailToDownloadContentFrom: url, error: error)
-			return nil
+			throw error
 		}
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
 	public func downloadJSONDictionary(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
-		return self.downloadJSON(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
+		return try? self.downloadJSONThrow(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
+	}
+	
+	/// Downloads the JSON and attempts to cast it to dictionary.
+	public func downloadJSONDictionaryThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XUJSONDictionary {
+		return try self.downloadJSONThrow(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSON<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
-		guard let data = self.downloadData(at: url, withRequestModifier: { (request: inout URLRequest) in
+		return try? self.downloadJSONThrow(ofType: type, at: url, withRequestModifier: modifier)
+	}
+	
+	/// Downloads a website source, parses it as JSON and returns it.
+	public func downloadJSONThrow<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> T {
+		let data = try self.downloadDataThrow(at: url, withRequestModifier: { (request: inout URLRequest) in
 			request.acceptType = URLRequest.ContentType.json
 			
 			modifier?(&request)
-		}) else {
-			self.errorHandler?(.noInternetConnection)
-			return nil
-		}
+		})
 		
 		guard let obj: T = XUJSONHelper.object(from: data) else {
-			self.errorHandler?(.invalidJSONResponse)
-			return nil
+			throw Error.invalidJSONResponse
 		}
 		
 		return obj
@@ -331,52 +353,75 @@ open class XUDownloadCenter {
 	/// the data with preferredEncoding. If that fails, it will fall back to any
 	/// other encoding.
 	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> String? {
-		guard let data = self.downloadData(at: url, withRequestModifier: modifier) else {
-			if self.logTraffic {
-				XULog("[\(self.identifier)] - Failed to load URL connection to URL \(url) - \(self.lastError.descriptionWithDefaultValue("unknown error"))")
-			}
-			return nil
-		}
-		
+		return try? self.downloadWebPageThrow(at: url, preferredEncoding: preferredEncoding, withRequestModifier: modifier)
+	}
+	
+	/// Downloads a pure website source. The download center will try to interpret
+	/// the data with preferredEncoding. If that fails, it will fall back to any
+	/// other encoding.
+	public func downloadWebPageThrow(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) throws -> String {
+		let data = try self.downloadDataThrow(at: url, withRequestModifier: modifier)
+			
 		if let responseString = String(data: data, encoding: preferredEncoding ?? self.defaultStringEncoding) {
 			return responseString
 		}
 		
 		/* Fallback */
-		return String(data: data)
+		guard let string = String(data: data) else {
+			throw Error.stringDecodingError
+		}
+		
+		return string
 	}
 	
 	/// Does the same as the varian without the `fields` argument, but adds or
 	/// replaces some field values.
 	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		return self.downloadWebPage(postingFormIn: source, toURL: url, withFieldsModifier: { (inputFields: inout [String : String]) in
-			inputFields += fields
-		}, withRequestModifier: requestModifier)
+		return try? self.downloadWebPageThrow(postingFormIn: source, toURL: url, withAdditionalValues: fields, withRequestModifier: requestModifier)
 	}
+	
+	/// Does the same as the varian without the `fields` argument, but adds or
+	/// replaces some field values.
+	public func downloadWebPageThrow(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) throws -> String {
+		return try self.downloadWebPageThrow(postingFormIn: source, to: url, fieldsModifier: { (inputFields: inout [String : String]) in
+			inputFields += fields
+		}, requestModifier: requestModifier)
+	}
+
 	
 	/// Sends a POST request to `URL` and automatically gathers <input name="..."
 	/// value="..."> pairs in `source` and posts them as WWW form.
 	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withFieldsModifier modifier: POSTFieldsModifier? = nil, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
+		return try? self.downloadWebPageThrow(postingFormIn: source, to: url, fieldsModifier: modifier, requestModifier: requestModifier)
+	}
+	
+	/// Sends a POST request to `URL` and automatically gathers <input name="..."
+	/// value="..."> pairs in `source` and posts them as WWW form.
+	public func downloadWebPageThrow(postingFormIn source: String, to url: URL, fieldsModifier: POSTFieldsModifier? = nil, requestModifier: URLRequestModifier? = nil) throws -> String {
 		var inputFields = source.allVariablePairs(forRegex: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
 		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
 		if inputFields.count == 0 {
 			if self.logTraffic {
 				XULog("[\(self.identifier)] - no input fields in \(source)")
 			}
-			self.errorHandler?(.noInputFields)
-			return nil
+			throw Error.noInputFields
 		}
 		
-		if modifier != nil {
-			modifier!(&inputFields)
-		}
-		return self.downloadWebPage(postingFormWithValues: inputFields, toURL: url, withRequestModifier: requestModifier)
+		fieldsModifier?(&inputFields)
+	
+		return try self.downloadWebPageThrow(postingFormWithValues: inputFields, to: url, requestModifier: requestModifier)
 	}
 	
 	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
 	/// invoke this method that posts the specific values to URL.
 	public func downloadWebPage(postingFormWithValues values: [String : String], toURL url: URL, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		return self.downloadWebPage(at: url, withRequestModifier: { (request) in
+		return try? self.downloadWebPageThrow(postingFormWithValues: values, to: url, requestModifier: requestModifier)
+	}
+	
+	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
+	/// invoke this method that posts the specific values to URL.
+	public func downloadWebPageThrow(postingFormWithValues values: [String : String], to url: URL, requestModifier: URLRequestModifier? = nil) throws -> String {
+		return try self.downloadWebPageThrow(at: url, withRequestModifier: { (request) in
 			request.httpMethod = "POST"
 			
 			if self.logTraffic {
@@ -394,18 +439,23 @@ open class XUDownloadCenter {
 	
 	/// Attempts to download content at `URL` and parse it as XML.
 	public func downloadXMLDocument(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
-		guard let source = self.downloadWebPage(at: url, withRequestModifier: modifier) else {
-			return nil // Error already set.
-		}
+		return try? self.downloadXMLDocumentThrow(at: url, withRequestModifier: modifier)
+	}
 	
-		guard let doc = try? XMLDocument(xmlString: source, options: .documentTidyXML) else {
+	/// Attempts to download content at `URL` and parse it as XML.
+	public func downloadXMLDocumentThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XMLDocument {
+		let source = try self.downloadWebPageThrow(at: url, withRequestModifier: modifier)
+	
+		do {
+			return try XMLDocument(xmlString: source, options: .documentTidyXML)
+		} catch {
 			if self.logTraffic {
 				XULog("[\(self.identifier)] - failed to parse XML document \(source)")
 			}
+			
 			self.errorHandler?(.invalidXMLResponse)
-			return nil
+			throw error
 		}
-		return doc
 	}
 	
 	#endif

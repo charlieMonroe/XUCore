@@ -17,9 +17,12 @@ import Foundation
 /// an exception if it doesn't) and will set it to 0.0 when hidden and restore
 /// its previous value if not.
 open class XUAutocollapsingView: __XUBridgedView {
-	
-	private var _originalHeight: CGFloat = 0.0
-	
+
+	/// Original height. This is lazily set when the view is hidden. You can
+	/// optionally set a different value here, though note that it has only effect
+	/// when the view is hidden and then re-shown.
+	public var originalHeight: CGFloat = 0.0
+
 	/// Marked as YES on -initWithCoder: and NO at the end. Needed because layout
 	/// constraints aren't loaded yet.
 	private var _inCoderInit: Bool = true
@@ -35,14 +38,14 @@ open class XUAutocollapsingView: __XUBridgedView {
 				return
 			}
 			
-			_originalHeight = constraint.constant
+			self.originalHeight = constraint.constant
 			constraint.constant = 0.0
 		} else {
-			if constraint.constant == _originalHeight {
+			if constraint.constant == self.originalHeight {
 				return
 			}
 			
-			constraint.constant = _originalHeight
+			constraint.constant = self.originalHeight
 		}
 		
 		#if os(iOS)

@@ -153,7 +153,7 @@ public final class XUUpdateChecker {
 			downloadCenter.invalidateSession()
 		}
 
-		guard let url = URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier), let obj = downloadCenter.downloadJSONDictionary(at: url) else {
+		guard let url = URL(string: "https://itunes.apple.com/lookup?bundleId=" + XUAppSetup.applicationIdentifier), let obj = try? downloadCenter.downloadJSONDictionaryThrow(at: url) else {
 			return .failure
 		}
 		
@@ -193,7 +193,7 @@ public final class XUUpdateChecker {
 		
 		let processInfo = ProcessInfo()
 		let userAgent = "\(processInfo.processName)/\(XUAppSetup.applicationVersionNumber) (\(XUAppSetup.applicationBuildNumber))/macOS \(processInfo.operatingSystemVersion.versionString)"
-		guard let doc = downloadCenter.downloadXMLDocument(at: feedURL, withRequestModifier: {
+		guard let doc = try? downloadCenter.downloadXMLDocumentThrow(at: feedURL, withRequestModifier: {
 			$0.userAgent = URLRequest.UserAgent(rawValue: userAgent)
 		}) else {
 			return .failure

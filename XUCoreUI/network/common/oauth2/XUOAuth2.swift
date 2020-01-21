@@ -307,7 +307,7 @@ public final class XUOAuth2Client {
 				"refresh_token": refreshToken
 			]
 			
-			guard let obj = self.client.downloadCenter.downloadJSONDictionary(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
+			guard let obj = try? self.client.downloadCenter.downloadJSONDictionaryThrow(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 				request.setBasicAuthentication(user: self.client.configuration.clientID, password: self.client.configuration.secret)
 				request.acceptType = URLRequest.ContentType.json
 				request.contentType = URLRequest.ContentType.wwwForm
@@ -456,7 +456,7 @@ public final class XUOAuth2Client {
 			"redirect_uri": self.configuration.redirectionURLString
 		]
 		
-		guard let obj = self.downloadCenter.downloadJSONDictionary(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
+		guard let obj = try? self.downloadCenter.downloadJSONDictionaryThrow(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 			request.setBasicAuthentication(user: self.configuration.clientID, password: self.configuration.secret)
 			request.acceptType = URLRequest.ContentType.json
 			request.contentType = URLRequest.ContentType.wwwForm
