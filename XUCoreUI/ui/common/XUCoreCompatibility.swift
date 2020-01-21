@@ -32,10 +32,23 @@ private func _printInformation(for view: __XUBridgedView) {
 }
 
 
+@objc(_TtC6XUCore20XUAutocollapsingView)
+private final class __AutocollapsingView: XUAutocollapsingView {
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		_printInformation(for: self)
+	}
+	
+}
+
 @objc(_TtC6XUCore10XULineView)
 private final class __LineView: XULineView {
 	
 	override func awakeFromNib() {
+		super.awakeFromNib()
+		
 		_printInformation(for: self)
 	}
 	
@@ -45,6 +58,8 @@ private final class __LineView: XULineView {
 private final class __RoundedView: XURoundedView {
 	
 	override func awakeFromNib() {
+		super.awakeFromNib()
+		
 		_printInformation(for: self)
 	}
 	
@@ -54,6 +69,8 @@ private final class __RoundedView: XURoundedView {
 private final class __BorderlessTextField: XUBorderlessTextField {
 	
 	override func awakeFromNib() {
+		super.awakeFromNib()
+		
 		_printInformation(for: self)
 	}
 	
@@ -63,6 +80,8 @@ private final class __BorderlessTextField: XUBorderlessTextField {
 private final class __RoundedTextField: XURoundedTextField {
 	
 	override func awakeFromNib() {
+		super.awakeFromNib()
+		
 		_printInformation(for: self)
 	}
 	
