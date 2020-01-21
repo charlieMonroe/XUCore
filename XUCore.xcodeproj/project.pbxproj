@@ -1226,6 +1226,7 @@
 		0772E82422424AB60014CDC4 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				0799746923D74085000F4634 /* XUCoreCompatibility.swift */,
 				075A92A01C43D775006DD45B /* XUUIBridge.swift */,
 				0772E82722424AC50014CDC4 /* views */,
 			);
@@ -1271,7 +1272,6 @@
 				074446AD1C529AB60026F5DD /* XUSystemNotification.swift */,
 				074446B01C529F270026F5DD /* SystemNotification.xib */,
 				076C2E34203FEC7300377FE0 /* XUTextPopover.swift */,
-				0799746923D74085000F4634 /* XUCoreCompatibility.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
