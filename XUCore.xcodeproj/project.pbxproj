@@ -379,6 +379,8 @@
 		078D065D224C1316005D0C51 /* NSAttributedStringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16B1BF06B3E00832858 /* NSAttributedStringAdditions.swift */; };
 		078D0709224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 078D0707224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodeld */; };
 		078D070A224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 078D0707224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodeld */; };
+		0799746A23D74085000F4634 /* XUCoreCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799746923D74085000F4634 /* XUCoreCompatibility.swift */; };
+		0799746B23D740F6000F4634 /* XUCoreCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799746923D74085000F4634 /* XUCoreCompatibility.swift */; };
 		079D2CA4234F68930084D527 /* NSAppearanceAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D2CA3234F68930084D527 /* NSAppearanceAdditions.swift */; };
 		07A015512052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
 		07A015522052748D0070D0DD /* XUPreferences+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A015502052748D0070D0DD /* XUPreferences+Sync.swift */; };
@@ -690,6 +692,7 @@
 		078D0708224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XUSyncEngineModel.xcdatamodel; sourceTree = "<group>"; };
 		078E2D6B1CEB58AB00715CB8 /* NSBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSBezierPathAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07927FAD20036FCE005A636A /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0799746923D74085000F4634 /* XUCoreCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUCoreCompatibility.swift; sourceTree = "<group>"; };
 		079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		079D2CA3234F68930084D527 /* NSAppearanceAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearanceAdditions.swift; sourceTree = "<group>"; };
 		079D2E3620F8927A0018A1D5 /* XUStoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUStoryboardInstantiable.swift; sourceTree = "<group>"; };
@@ -1268,6 +1271,7 @@
 				074446AD1C529AB60026F5DD /* XUSystemNotification.swift */,
 				074446B01C529F270026F5DD /* SystemNotification.xib */,
 				076C2E34203FEC7300377FE0 /* XUTextPopover.swift */,
+				0799746923D74085000F4634 /* XUCoreCompatibility.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -2001,6 +2005,7 @@
 				0772E83122424B160014CDC4 /* XUPreferencePanesWindowController.swift in Sources */,
 				0772E7CE2242464B0014CDC4 /* NSRunningApplicationAdditions.swift in Sources */,
 				0772E7FC2242486A0014CDC4 /* XUAppStoreHidingView.swift in Sources */,
+				0799746A23D74085000F4634 /* XUCoreCompatibility.swift in Sources */,
 				0772E81A2242498E0014CDC4 /* NSWindowLocalizationSupport.swift in Sources */,
 				0772E7CC2242464B0014CDC4 /* NSTextFieldAdditions.swift in Sources */,
 				0772E813224249510014CDC4 /* XUExceptionReporter.swift in Sources */,
@@ -2073,6 +2078,7 @@
 				0772E806224248700014CDC4 /* UIViewController+Additions.swift in Sources */,
 				0772E804224248700014CDC4 /* UIView+Enclosing.swift in Sources */,
 				0772E8172242497C0014CDC4 /* UIViewLocalizationSupport.swift in Sources */,
+				0799746B23D740F6000F4634 /* XUCoreCompatibility.swift in Sources */,
 				0772E7F4224248580014CDC4 /* XUView+Animation.swift in Sources */,
 				0772E87A224259990014CDC4 /* Bundle+CoreUI.swift in Sources */,
 				0772E7EB224248580014CDC4 /* CGContextRefAdditions.swift in Sources */,
