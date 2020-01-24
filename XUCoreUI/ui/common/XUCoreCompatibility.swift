@@ -43,6 +43,7 @@ private final class __AutocollapsingView: XUAutocollapsingView {
 	
 }
 
+#if os(iOS)
 @objc(_TtC6XUCore10XULineView)
 private final class __LineView: XULineView {
 	
@@ -86,3 +87,4 @@ private final class __RoundedTextField: XURoundedTextField {
 	}
 	
 }
+#endif

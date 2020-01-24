@@ -136,7 +136,8 @@ import XUCore
 	
 	private func _updateCharacterCount() {
 		if self.isCharacterCounterDisplayed {
-			_characterCounterLabel.text = "\(self.text.isNilOrEmpty)/\(self.maximumCharacterCount)"
+			let count = self.text?.count ?? 0
+			_characterCounterLabel.text = "\(count)/\(self.maximumCharacterCount)"
 		}
 	}
 	
