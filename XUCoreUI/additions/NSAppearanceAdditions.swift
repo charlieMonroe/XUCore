@@ -15,7 +15,7 @@ extension NSAppearance {
 		if #available(macOS 10.14, *) {
 			return self.bestMatch(from: [.darkAqua, .vibrantDark]) != nil
 		} else {
-			return false
+			return self.name == .vibrantDark
 		}
 	}
 	

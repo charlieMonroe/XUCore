@@ -208,6 +208,7 @@ extension String {
 		string = string.replacingOccurrences(of: "&apos;", with: "'", options: .literal)
 		string = string.replacingOccurrences(of: "&reg;", with: "®", options: .literal)
 		string = string.replacingOccurrences(of: "&comma;", with: ",", options: .literal)
+		string = string.replacingOccurrences(of: "&trade;", with: "™", options: .literal)
 
 		let hexRegex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .caseless)
 		for occurrence in self.allValues(of: "C", forRegex: hexRegex).distinct() {

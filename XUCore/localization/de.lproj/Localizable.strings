@@ -15,27 +15,27 @@
 "%AppName% has encountered a problem." = "%AppName% hat ein Problem.";
 "%AppName% will terminate after sending the report." = "%AppName% wird nach Senden des Reports beendet.";
 "Report to be sent:" = "Zu sendender Report:";
-"Your Email:" = "E-Mail:";
+"Your Email:" = "Deine E-Mail:";
 "Description:" = "Beschreibung:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Bitte beschreibe wie es zu dem Fehler kam und welche Schritte notwendig sind, um ihn zu reproduzieren. Gib deine E-Mail-Adresse ein damit wir dich kontaktieren können, wenn der Fehler behoben ist, oder wir mehr Information von dir brauchen. Deine E-Mail-Adresse wird nicht gespeichert und du wirst von uns keine Werbung bekommen. Mit diesem Report hilfst du uns, die Software zu verbessern. Danke!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Bitte beschreibe, wie es zu dem Fehler kam und welche Schritte notwendig sind, um ihn zu reproduzieren. Gib deine E-Mail-Adresse ein, damit wir dich kontaktieren können, wenn der Fehler behoben ist, oder wir mehr Information von dir brauchen. Deine E-Mail-Adresse wird nicht gespeichert und du wirst von uns keine Werbung bekommen. Mit diesem Report hilfst du uns, die Software zu verbessern. Danke!";
 
 "Report Problem" = "Problem melden";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Wir schätzen dein Feedback und würden niemals Informationen ohne dein Wissen übertragen. Deine E-Mail-Adresse wird nicht gespeichert und wird nur dazu benutzt dich zu informieren oder weiteren Kontakt mir dir aufzunehmen.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Wir schätzen Dein Feedback und würden niemals Informationen ohne dein Wissen übertragen. Deine E-Mail-Adresse wird nicht gespeichert und wird nur dazu benutzt, dich zu informieren oder weiteren Kontakt mir dir aufzunehmen.";
 
 "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Nur folgende Information wird übermittelt:\n• Deine Problembeschreibung.\n• Die unten stehenden Problem-Infos.\n• Version dieses Programms.\n• Systemversion (OS).\n• Computermodell (aber keine MAC-Adresse oder sonstige Informationen, die deinen Computer identifizieren können).";
 
 "Could not post your report." = "Konnte Report nicht senden.";
-"Check your Internet connection and try again." = "Internetverbindung prüfen und nochmal versuchen.";
+"Check your Internet connection and try again." = "Prüfe Deine Internetverbindung und versuche es nochmal.";
 "Heh, nice try. Please, enter a valid email address." = "Netter Versuch. Bitte eine gültige E-Mail-Adresse eingeben.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Wir werden uns vielleicht mit dir in Verbindung setzen, um das Problem zu lösen. Wir beissen nicht, wir werden deine E-Mail-Adresse nicht verkaufen oder für sonst etwas benutzen. Versprochen.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Wir werden uns vielleicht mit Dir in Verbindung setzen, um das Problem zu lösen. Wir beissen nicht, wir werden Deine E-Mail-Adresse nicht verkaufen oder für sonst etwas benutzen. Versprochen.";
 "You need to enter a valid email address." = "Du musst eine gültige E-Mail-Adresse eingeben.";
-"We may need to get in touch with you in order to fix this." = "Wir müssen möglicherweise Kontakt zu dir aufnehmen, um das Problem zu beheben.";
+"We may need to get in touch with you in order to fix this." = "Wir müssen möglicherweise Kontakt zu Dir aufnehmen, um das Problem zu beheben.";
 "Please, provide some details as to when this exception happened." = "Bitte gib uns nähere Informationen, wann dieses Problem aufgetreten ist.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Ziehe in Betracht, was gerade im Programm passiert ist, ob das Programm im Vordergrund oder im Hintergrund war; ob du was angeklickt hast, etc. Den Bug nur aufgrund des Reports zu beseitigen ist sehr schwierig und ohne weitere Information nahezu unmöglich.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Ziehe in Betracht, was gerade im Programm passiert ist, ob das Programm im Vordergrund oder im Hintergrund war; ob Du was angeklickt hast, etc. den Bug nur aufgrund des Reports zu beseitigen, ist sehr schwierig und ohne weitere Information nahezu unmöglich.";
 "Thank you for the report!" = "Danke für den Report!";
-"We'll fix it as soon as possible!" = "Wir beheben das sobald wie möglich!";
+"We'll fix it as soon as possible!" = "Wir beheben das, sobald wie möglich!";
 
 "Welcome to beta testing of %@." = "Willkommen beim Betatest von %@.";
 "This is the first time you run a beta build %@." = "Dies ist das erste Mal, dass du einen Beta-Build benutzt %@.";
@@ -46,24 +46,24 @@
 "Progress" = "Fortschritt";
 "Posted successfully" = "Erfolgreich gepostet";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ wird noch 24 Stunden funktionieren, danach werden die Funktionen eingestellt. Bitte update %@ damit es weiter funktioniert.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ wird noch 24 Stunden funktionieren, danach werden die Funktionen eingestellt. Bitte aktualisiere %@ damit es weiter funktioniert.";
 "Please download a new build." = "Bitte einen neuen Build downloaden.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kannst natürlich einen Report senden, aber wenn die Sprache nicht Englisch ist, kann ich keinen vollen Support liefern.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Deine Nachricht enthält Zeichen, die darauf hindeuten, dass sie nicht in Englisch verfasst ist. %@ ist zwar in diverse Sprachen übersetzt, Support kann aber nur in Englisch geleistet werden. Danke für dein Verständnis.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Du kannst natürlich einen Report senden, aber wenn die Sprache nicht Englisch ist, kann ich keinen vollen Support anbieten.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Deine Nachricht enthält Zeichen, die darauf hindeuten, dass sie nicht in Englisch verfasst ist. %@ ist zwar in diverse Sprachen übersetzt, Kundenunterstützung kann aber nur in Englisch geleistet werden. Danke für dein Verständnis.";
 "%li hours" = "%li Stunden";
 "%li minutes" = "%li Minuten";
 "%li seconds" = "%li Sekunden";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Kann kein solches Dokument finden. Versuch es später noch einmal, vielleicht hat der Sync noch nicht gegriffen.";
+"Cannot find such document. Check back later, it might not have synced through." = "Kann kein solches Dokument finden. Versuch es später noch einmal, vielleicht ist der Sync noch nicht abgeschlossen.";
 "Cannot open document metadata file." = "Kann die Metadaten des Dokuments nicht öffnen.";
 "Metadata file doesn't contain required information." = "Die Metadaten enthalten die benötigte Information nicht.";
 "Synchronization is already in progress." = "Synchronisierung findet bereits statt.";
-"An upload operation is already in progress." = "Ein Upload findet nereits statt.";
+"An upload operation is already in progress." = "Ein Upload findet bereits statt.";
 "Could not save upload metadata." = "Konnte Metadaten Upload nicht speichern.";
-"Cannot find entity named %@" = "Kann das Vorkommnis namens %@ nicht finden";
+"Cannot find entity named %@" = "Kann das Vorkommnis namens %@ nicht finden.";
 "Cannot find class named %@" = "Kann die Klasse namens %@ nicht finden";
 "Cannot find entity with ID %@" = "Kann Vorkommnis mit der ID %@ nicht finden";
 "Can't find synchronization folder for document %@." = "Kann den Synchronisierungs-Ordner für das Dokument %@ nicht finden.";
@@ -83,11 +83,11 @@
 "Debug Logging" = "Fehler wird protokolliert";
 "On" = "An";
 "Off" = "Aus";
-"Clear Debug Log" = "Löschen des Protokolls";
+"Clear Debug Log" = "Löschen des Fehlersuche Protokolls";
 "Show Log in Finder" = "Anzeigen des Protokolls im Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Das Fehlerprotokoll ist eine Textdatei, die einige technische Details über den Zustand von %@ im Hintergrund beinhaltet. Es ist sehr nützlich für mich, in das Protokoll zu schauen, um eine schnelle Analyse zu ermöglichen. Um mir das Fehlerprotokoll zu senden, führen Sie bitte die folgenden Schritte aus:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Falls dies nicht Ihr erstes Fehlerprotokoll ist, so löschen Sie bitte zunächst das bestehende Protokoll im Debug-Menü.\n2) Stellen Sie im Debug-Menü sicher, dass das Protokollieren eingeschaltet ist.\n3) Führen Sie die Schritte aus, um den Fehler erneut auszulösen.\n4) Schalten Sie das Protokollieren im Debug-Menü wieder aus.\n5) Wählen Sie im Debug-Menü den Eintrag Protokoll im Finder zeigen aus. Damit wird die Protokolldatei ausgewählt und kann einfach an mich gesendet werden. Bitte fügen Sie die Datei der E-Mail als Anhang bei und nutzen nicht die Copy-Paste-Funktion.\n\nDie Protokolldatei enthält keine persönlichen Daten, was Sie leicht in der Datei überprüfen können (die Datei ist eine einfache Textdatei). Falls Sie dennoch vertrauliche oder persönliche Daten entdecken, so ersetzen Sie diese bitte mit einem Platzhalter (z. B. XXXXXXXX) und teilen mir mit, das Sie die Protokolldatei modifiziert haben.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Das Fehlerprotokoll ist eine Textdatei, die einige technische Details über den Zustand von %@ im Hintergrund beinhaltet. Es ist sehr nützlich für mich, in das Protokoll zu schauen, um eine schnelle Analyse zu ermöglichen. Um mir das Fehlerprotokoll zu senden, führst Du bitte die folgenden Schritte aus:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Falls dies nicht Dein erstes Fehlerprotokoll ist, lösche bitte zunächst das bestehende Protokoll im Debug-Menü.\n2) Stelle im Debug-Menü sicher, dass das Protokollieren eingeschaltet ist.\n3) Führe die Schritte aus, um den Fehler erneut auszulösen.\n4) Schalte das Protokollieren im Debug-Menü wieder aus.\n5) Wähle im Debug-Menü den Eintrag „Protokoll im Finder“ zeigen aus. Damit wird die Protokolldatei ausgewählt und kann einfach an mich gesendet werden. Bitte füge die Datei der E-Mail als Anhang bei und nutzen nicht die Copy-Paste-Funktion.\n\nDie Protokolldatei enthält keine persönlichen Daten, was Du leicht in der Datei überprüfen kannst (die Datei ist eine einfache Textdatei). Falls Du dennoch vertrauliche oder persönliche Daten entdeckst, so ersetze diese bitte mit einem Platzhalter (z. B. XXXXXXXX) und teile mir mit, das Du die Protokolldatei modifiziert hast.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Das Dokument kann im Moment nicht heruntergeladen werden.";
@@ -97,7 +97,7 @@
 
 // Beta testing related.
 "This beta build will expire in less than an hour." = "Diese Beta-Version läuft in weniger als einer Stunde ab.";
-"Please update your copy of this beta build." = "Bitte aktualisieren Sie Ihre Kopie der Beta-Version.";
+"Please update your copy of this beta build." = "Bitte aktualisiere Deine Kopie der Beta-Version.";
 
 // Preferences.
 "All Preferences" = "Alle Einstellungen";
@@ -121,11 +121,11 @@
 "Copied" = "Kopiert";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ hatte ein Problem und wird abstürzen. Ein Fehlerberichtsdialog wird angezeigt. Bitte schick ihn ab oder schließe das Fenster, wenn Du den Absturz ignorieren willst.";
+"Send Anyway" = "Trotzdem versenden";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Es ist eine aktualisierte Version verfügbar.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Es ist möglich, dass die neueste Version diese Problem bereits behoben hat. Versuche, die Anwendung zu aktualisieren. Falls die Aktualisierungsfunktion dieser Anwendung nicht zugänglich ist, lade die Anwendung neu von der Webseite herunter!\n";
+"Download Update..." = "Aktualisierung herunterladen…\n";
 
-"Done" = "Done";
+"Done" = "Erledigt";

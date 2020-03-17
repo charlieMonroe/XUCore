@@ -788,6 +788,8 @@
 		07EBEA321CD8B3A600681651 /* he */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07EC4BC321E33DA800E6398B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07EC4BC421E33DA800E6398B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		07F70E3A2421420C002BC471 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		07F70E3B2421421C002BC471 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07FC1CDA1F0F4A2C00942FC4 /* hi */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUObjCProperty.swift; sourceTree = "<group>"; };
 		07FD4BD91C7CE5D800559CF0 /* XUJSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializer.swift; sourceTree = "<group>"; };
@@ -1875,6 +1877,8 @@
 				id,
 				Base,
 				af,
+				pl,
+				pt,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -2375,6 +2379,8 @@
 				07A7A04321B3C70A00F59DB9 /* uk */,
 				07EC4BC321E33DA800E6398B /* id */,
 				07BAC4B92284378B002E6F59 /* af */,
+				07F70E3A2421420C002BC471 /* pl */,
+				07F70E3B2421421C002BC471 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

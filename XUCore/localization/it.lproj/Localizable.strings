@@ -15,7 +15,7 @@
 "%AppName% has encountered a problem." = "%AppName% ha rilevato un problema.";
 "%AppName% will terminate after sending the report." = "%AppName% sarà chiusa dopo l'invio della segnalazione.";
 "Report to be sent:" = "Segnalazione da inviare:";
-"Your Email:" = "La tua email:";
+"Your Email:" = "La tua e-mail:";
 "Description:" = "Descrizione:";
 
 "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Descrivi dettagliatamente la circostanza in cui si è verificato il problema e se possibile descrivi i passaggi necessari a riprodurlo. Inserisci qui sotto il tuo indirizzo email: ti risponderemo quando ci occuperemo della tua segnalazione e se necessario ti chiederemo ulteriori dettagli. Il tuo indirizzo email non sarà salvato né archiviato in alcun database e non riceverai altre mail oltre a quelle relative alle tue segnalazioni.\n\nGrazie per aver contribuito a rendere migliore il nostro software!";
@@ -37,9 +37,9 @@
 "Thank you for the report!" = "Grazie per la segnalazione!";
 "We'll fix it as soon as possible!" = "Cercheremo di risolvere il problema nel più breve tempo possibile!";
 
-"Welcome to beta testing of %@." = "Benvenuto al beta testing di %@.";
+"Welcome to beta testing of %@." = "Benvenuto al Beta testing di %@.";
 "This is the first time you run a beta build %@." = "Questa è la prima volta che esegui la beta build di %@.";
-"This beta build of %@ has expired." = "Questa beta build di %@ è scaduta.";
+"This beta build of %@ has expired." = "Questa Beta build di %@ è scaduta.";
 
 "Working..." = "Elaborazione...";
 
@@ -58,10 +58,10 @@
 
 /// XUSyncEngine
 "Cannot find such document. Check back later, it might not have synced through." = "Documento non trovato. Ricontrolla più tardi, potrebbe non essere stato ancora sincronizzato.";
-"Cannot open document metadata file." = "Non è stato possibile aprire file con i metadati del documento.";
+"Cannot open document metadata file." = "Non è stato possibile aprire file coi metadati del documento.";
 "Metadata file doesn't contain required information." = "Il file dei metadati non contiene le informazioni necessarie.";
 "Synchronization is already in progress." = "La sincronizzazione è già in corso.";
-"An upload operation is already in progress." = "Un upload è già in corso.";
+"An upload operation is already in progress." = "Un caricamento è già in corso.";
 "Could not save upload metadata." = "Non è stato possibile salvare i metadati caricati.";
 "Cannot find entity named %@" = "Entità %@ non trovata";
 "Cannot find class named %@" = "Classe %@ non trovata";
@@ -97,7 +97,7 @@
 
 // Beta testing related.
 "This beta build will expire in less than an hour." = "Questa versione beta scadrà tra meno di un'ora.";
-"Please update your copy of this beta build." = "Per favore, aggiorna la beta all'ultima versione.";
+"Please update your copy of this beta build." = "Per favore, aggiorna la Beta all'ultima versione.";
 
 // Preferences.
 "All Preferences" = "Tutte le preferenze";
@@ -121,11 +121,11 @@
 "Copied" = "Copiato";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ ha riscontrato un problema e si arresterà in modo anomalo. Apparirà una finestra di dialogo con un Report. Per favore, invia il Report o chiudi la finestra nel caso in cui desideri ignorare l'incidente.";
+"Send Anyway" = "Invia comunque";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Aggiornamento disponibile";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "È possibile che la nuova versione abbia risolto questo problema. Prova ad aggiornare questa applicazione. Se non riesci ad accedere alla funzione di aggiornamento di questa applicazione, scarica nuovamente l'applicazione dalla sua pagina web.";
+"Download Update..." = "Download aggiornamento...";
 
-"Done" = "Done";
+"Done" = "Fatto";

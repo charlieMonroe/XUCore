@@ -71,3 +71,20 @@ public extension __XUBridgedView {
 	}
 	
 }
+
+extension NSLayoutConstraint {
+	
+	public convenience init(equalAttribute attribute: NSLayoutConstraint.Attribute, between first: Any, and second: Any, offset: CGFloat = 0.0) {
+		self.init(item: first, attribute: attribute, relatedBy: .equal, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
+	}
+	
+	public convenience init(greaterAttribute attribute: NSLayoutConstraint.Attribute, between first: Any, and second: Any, offset: CGFloat = 0.0) {
+		self.init(item: first, attribute: attribute, relatedBy: .greaterThanOrEqual, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
+	}
+	
+	public convenience init(attribute: NSLayoutConstraint.Attribute, item: Any, constant: CGFloat) {
+		self.init(item: item, attribute: attribute, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: constant)
+	}
+
+}
+

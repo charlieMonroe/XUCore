@@ -14,7 +14,7 @@ extension XUDebugLog {
 	/// Menu that contains all the necessary menu items to deal with the debug
 	/// log. Use XUDebugLog.installDebugMenu() to install this menu into the
 	/// menu bar next to the Help menu.
-	public static let debugMenu: NSMenu = XUDebugLog._createDebugMenu()
+	public static let debugMenu: NSMenu = XUDebugLog.createDebugMenu()
 	
 	/// Installs the debug menu in the menu bar.
 	public class func installDebugMenu() {
@@ -114,7 +114,8 @@ private final class _XUDebugLogActionHandler: NSObject {
 
 extension XUDebugLog {
 	
-	fileprivate class func _createDebugMenu() -> NSMenu {
+	/// Creates a new debug menu.
+	public static func createDebugMenu() -> NSMenu {
 		let menu = NSMenu(title: XULocalizedString("Debug", inBundle: .core))
 		menu.addItem(withTitle: XULocalizedString("About Debug Log...", inBundle: .core), action: #selector(_XUDebugLogActionHandler._showAboutDialog), keyEquivalent: "").target = _actionHandler
 		menu.addItem(NSMenuItem.separator())

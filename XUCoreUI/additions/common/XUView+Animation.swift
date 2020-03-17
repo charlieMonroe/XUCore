@@ -155,7 +155,8 @@ public extension XUViewAnimation {
 	}
 	
 	/// Hides the views by fading them out and then setting isHidden to true.
-	func hideWithFadeOut() {
+	func hideWithFadeOut(completionHandler: @escaping () -> Void = {}) {
+		print("Hide - \(self.views)")
 		#if os(macOS)
 			self._animateAlphaUsingTimer(from: 1.0, to: 0.0, completion: {
 				self.views.forEach({
@@ -165,6 +166,8 @@ public extension XUViewAnimation {
 					
 					$0.isHidden = true
 				})
+				
+				completionHandler()
 			})
 		#else
 			UIView.animate(withDuration: XUViewAnimationDuration.fadeAnimationDuration, animations: {
@@ -177,6 +180,8 @@ public extension XUViewAnimation {
 					
 					$0.isHidden = true
 				})
+				
+				completionHandler()
 			})
 		#endif
 	}
@@ -200,14 +205,15 @@ public extension XUViewAnimation {
 	}
 	
 	/// Shows the views by fading them in and then setting isHidden to false.
-	func showWithFadeIn() {
+	func showWithFadeIn(completionHandler: @escaping () -> Void = {}) {
+		print("Show - \(self.views)")
 		#if os(macOS)
 			self.views.forEach({
 				$0.alphaValue = 0.0
 				$0.isHidden = false
 			})
 			
-			self._animateAlphaUsingTimer(from: 0.0, to: 1.0)
+			self._animateAlphaUsingTimer(from: 0.0, to: 1.0, completion: completionHandler)
 		#else
 			self.views.forEach({
 				$0.alpha = 0.0
@@ -216,6 +222,8 @@ public extension XUViewAnimation {
 		
 			UIView.animate(withDuration: XUViewAnimationDuration.fadeAnimationDuration, animations: {
 				self.views.forEach({ $0.alpha = 1.0 })
+			}, completion: { (_) in
+				completionHandler()
 			})
 		#endif
 	}
@@ -302,6 +310,19 @@ public extension XUViewAnimation {
 		/// that act as labels.
 		func setStringValueAnimated(_ stringValue: String) {
 			for field in self.views {
+				if let targetValue = _textFieldValues[field] {
+					if targetValue == stringValue {
+						// It's the same value, skip.
+						continue
+					}
+				} else {
+					// We're not animating.
+					if field.stringValue == stringValue {
+						// It's the same value, skip.
+						continue
+					}
+				}
+				
 				_textFieldValues[field] = stringValue
 				
 				NSAnimationContext.runAnimationGroup({ (context) in

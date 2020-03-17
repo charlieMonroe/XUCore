@@ -1,0 +1,131 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 godzina";
+"1 minute" = "1 minuta";
+"1 second" = "1 sekunda";
+"Unknown error." = "Niezidentyfikowany błąd.";
+
+"OK" = "OK";
+"Cancel" = "Anuluj";
+
+"Failed to parse CSV file." = "Failed to parse CSV file.";
+
+"Send Report" = "Wyślij raport";
+"Privacy Information..." = "Informacja o prywatności…";
+"%AppName% has encountered a problem." = "%AppName% has encountered a problem.";
+"%AppName% will terminate after sending the report." = "Aplikacja %AppName% zakończy działanie po wysłaniu raportu.";
+"Report to be sent:" = "Raport do wysłania:";
+"Your Email:" = "Twój adres e-mail:";
+"Description:" = "Opis:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!";
+
+"Report Problem" = "Zgłośc problem";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Wysłana będzie tylko następująca informacja:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).";
+
+"Could not post your report." = "Nie mogę wysłać Twojego raportu.";
+"Check your Internet connection and try again." = "Check your Internet connection and try again.";
+"Heh, nice try. Please, enter a valid email address." = "Hmm, nieźle... Wpisz prawidłowy adres e-mail.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Do rozwiązania tego problemu możemy potrzebować kontaktu z Tobą. Nie gryziemy, nie handlujemy adresami e-mail naszych użytkowników, nie wykorzystujemy ich także w innych celach. Obiecujemy!";
+"You need to enter a valid email address." = "Musisz podać prawidłowy adres e-mail";
+"We may need to get in touch with you in order to fix this." = "Możemy potrzebować kontaktu z Tobą, aby móc rozwiązać ten problem.";
+"Please, provide some details as to when this exception happened." = "Please, provide some details as to when this exception happened.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Dołącz informację o zadaniach oczekujących w aplikacji, to, czy aplikacja działała w tle, czy w coś klikano. Próba rozwiązania problemu jedynie na podstawie treści zgłoszenia może być trudne, a nawet niemożliwe bez tych dodatkowych informacji.";
+"Thank you for the report!" = "Dziękujemy za wysłanie raportu!";
+"We'll fix it as soon as possible!" = "Postaramy się naprawić to jak najszybciej!";
+
+"Welcome to beta testing of %@." = "Witaj w testowej wersji beta aplikacji %@.";
+"This is the first time you run a beta build %@." = "This is the first time you run a beta build %@.";
+"This beta build of %@ has expired." = "Ta kompilacja beta aplikacji %@ utraciła ważność.";
+
+"Working..." = "Pracuję...";
+
+"Progress" = "Postęp";
+"Posted successfully" = "Posted successfully";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.";
+"Please download a new build." = "Proszę pobrać nową kompilację.";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.";
+"%li hours" = "godzin: %li";
+"%li minutes" = "minut: %li";
+"%li seconds" = "sekund: %li";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
+"Cannot open document metadata file." = "Cannot open document metadata file.";
+"Metadata file doesn't contain required information." = "Plik metadanych nie zawiera wymaganych informacji.";
+"Synchronization is already in progress." = "Synchronization is already in progress.";
+"An upload operation is already in progress." = "An upload operation is already in progress.";
+"Could not save upload metadata." = "Could not save upload metadata.";
+"Cannot find entity named %@" = "Cannot find entity named %@";
+"Cannot find class named %@" = "Cannot find class named %@";
+"Cannot find entity with ID %@" = "Nie mogę odneleźć wpisu o ID %@";
+"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
+"%@ couldn't finish synchronization in the background." = "%@ nie może dokończyć synchronizacji w tle.";
+"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+
+/// XUOAuth2
+"Authentication" = "Uwierzytelnianie";
+"Server responded with unknown token type." = "Server responded with unknown token type.";
+"Server provided invalid authorization response." = "Serwer dostarczył błędną odpowiedź autentykacyjną.";
+"Server has redirected with invalid URL." = "Serwer dokonał przekierowania na nieprawidłowy adres URL.";
+"User cancelled the authorization." = "User cancelled the authorization.";
+
+/// Debug Log Menu
+"Debug" = "Debug";
+"About Debug Log..." = "About Debug Log...";
+"Debug Logging" = "Debug Logging";
+"On" = "Wł.";
+"Off" = "Wył.";
+"Clear Debug Log" = "Wyczyść dziennik debugowania";
+"Show Log in Finder" = "Show Log in Finder";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
+"Log Current Application State" = "Log Current Application State";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "Ta kompilacja wersji beta przestanie działać w mniej niż godzinę.";
+"Please update your copy of this beta build." = "Zaktualizuj swoją kopię tej komilacji wersji beta.";
+
+// Preferences.
+"All Preferences" = "Wszystkie preferencje";
+"Show All" = "Pokaż wszystkie";
+"Preferences" = "Preferencje";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "Brak rezultatów wyszukiwania";
+"%li search results" = "Ilość wyników wyszukiwania: %li";
+
+// Certificate view.
+"Select..." = "Wybierz…";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "Pobierane są dane synchronizacyjne.";
+"Copy Current Application State" = "Copy Current Application State";
+
+/// 11/12/2017+
+"Copied" = "Skopiowano";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
+"Send Anyway" = "Wyślij pomimo tego";
+
+"There is an update available." = "Dostępna jest aktualizacja.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Możliwe, że nowa wersja rozwiązyje ten problem. Spróbuj pobrać tą aplikację. Jeśli nie masz dosępu do funkcji aktualizacji, pobierz aplikację ponownie ze strony internetowej.";
+"Download Update..." = "Pobierz aktualizację...";
+
+"Done" = "Zrobione";

@@ -281,9 +281,9 @@ open class XUDownloadCenter {
 //		request.httpShouldHandleCookies = false // We're setting them manually below.
 		
 		self._setupCookieField(forRequest: &request)
-		self._applyAutomaticHeaderFields(to: &request)
-		
 		request.acceptType = acceptType
+		
+		self._applyAutomaticHeaderFields(to: &request)
 		modifier?(&request)
 		
 		if XUDebugLog.isLoggingEnabled && self.logTraffic {

@@ -209,15 +209,15 @@ extension String {
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func value(of name: String, inRegexes regexStrings: String...) -> String? {
-		return self.value(of: name, inRegexes: regexStrings)
+	public func value(of name: String, inRegexes regexStrings: String..., options: XURegexOptions = .caseless) -> String? {
+		return self.value(of: name, inRegexes: regexStrings, options: options)
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
 	/// "data=(?P<DATA>.*)" has a named variable "DATA".
-	public func value(of name: String, inRegexes regexStrings: [String]) -> String? {
+	public func value(of name: String, inRegexes regexStrings: [String], options: XURegexOptions = .caseless) -> String? {
 		for regexString in regexStrings {
-			if let match = self.value(of: name, inRegex: regexString) {
+			if let match = self.value(of: name, inRegex: regexString, options: options) {
 				return match
 			}
 		}

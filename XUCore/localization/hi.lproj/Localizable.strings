@@ -114,18 +114,18 @@
 "Select..." = "चुने...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "सिंक्रनाइज़ेशन डेटा डाउनलोड किया जा रहा है।";
+"Copy Current Application State" = "वर्तमान एप्लिकेशन स्थिति को कॉपी करे";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "कॉपी सफल";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ को एक समस्या का सामना करना पड़ा है और यह क्रैश हो जाएगा। एक रिपोर्ट संवाद प्रस्तुत किया जाएगा। कृपया, इसे भरें और सबमिट करें, या यदि आप क्रैश को अनदेखा करना चाहते हैं तो विंडो बंद कर दें।";
+"Send Anyway" = "फिर भी भेजें";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "अपडेट उपलब्ध है।";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "यह संभव है कि नए संस्करण में यह समस्या ठीक कर दी गयी हो। इस एप्लिकेशन को अपडेट करने का प्रयास करें। यदि आप इस एप्लिकेशन की अपडेट सुविधा तक नहीं पहुंच सकते हैं, तो इसके वेबपृष्ठ से एप्लिकेशन को फिर से डाउनलोड करें।";
+"Download Update..." = "अपडेट डाउनलोड करे...";
 
-"Done" = "Done";
+"Done" = "सफलता";

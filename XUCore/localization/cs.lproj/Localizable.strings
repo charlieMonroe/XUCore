@@ -108,7 +108,7 @@
 
 // Search field with results.
 "No search results" = "Žádné výsledky vyhledávání";
-"%li search results" = "%li search results";
+"%li search results" = "%li výsledků hledání";
 
 // Certificate view.
 "Select..." = "Vybrat...";
@@ -121,11 +121,11 @@
 "Copied" = "Zkopírováno";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ narazil na problém a bude ukončen. Bude zobrazen dialog s hlášením. Prosím, odešlete hlášení, nebo zavřete okno a pád ignorujte.";
+"Send Anyway" = "Poslat i tak";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Je k dispozici aktualizace.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Je možné, že nová verze má tento problém odstraněný. Pokud se nemůžete dostat k aktualizační funkci aplikace, stáhněte si aplikaci znovu z webových stránek.";
+"Download Update..." = "Stáhnout aktualizaci...";
 
-"Done" = "Done";
+"Done" = "Hotovo";
