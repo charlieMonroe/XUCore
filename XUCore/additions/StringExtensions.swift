@@ -200,15 +200,9 @@ extension String {
 	/// but it will also find occurrences of entities such as &#32;, etc.
 	public var htmlUnescapedString: String {
 		var string = self
-		string = string.replacingOccurrences(of: "&nbsp;", with: " ", options: .literal)
-		string = string.replacingOccurrences(of: "&amp;", with: "&", options: .literal)
-		string = string.replacingOccurrences(of: "&quot;", with: "\"", options: .literal)
-		string = string.replacingOccurrences(of: "&gt;", with: ">", options: .literal)
-		string = string.replacingOccurrences(of: "&lt;", with: "<", options: .literal)
-		string = string.replacingOccurrences(of: "&apos;", with: "'", options: .literal)
-		string = string.replacingOccurrences(of: "&reg;", with: "®", options: .literal)
-		string = string.replacingOccurrences(of: "&comma;", with: ",", options: .literal)
-		string = string.replacingOccurrences(of: "&trade;", with: "™", options: .literal)
+		for (entity, replacement) in htmlEntityNameMapping {
+			string = string.replacingOccurrences(of: entity, with: replacement, options: .literal)
+		}
 
 		let hexRegex = XURegex(pattern: "&#(?P<C>x?[0-9a-f]+);", andOptions: .caseless)
 		for occurrence in self.allValues(of: "C", forRegex: hexRegex).distinct() {
@@ -224,9 +218,12 @@ extension String {
 		}
 		
 		let accentedCharacterMapping: [(htmlName: String, combiningUnicodeSequence: String)] = [
-			("acute", "\u{0341}"), ("caron", "\u{030C}"), ("grave", "\u{0302}")
+			("acute", "\u{0341}"), ("caron", "\u{030C}"), ("grave", "\u{0302}"),
+			("dot", "\u{0307}"), ("uml", "\u{0308}"), ("tilde", "\u{0303}"),
+			("slash", "\u{0337}"), ("circ", "\u{0302}"), ("ring", "\u{030A}"),
+			("breve", "\u{0306}"), ("macr", "\u{0304}"), ("ogon", "\u{0328}")
 		]
-		
+
 		for (htmlName, combiningUnicodeSequence) in accentedCharacterMapping {
 			let accentRegex = XURegex(pattern: "&(?P<C>[a-zA-Z])\(htmlName);", andOptions: [])
 			for occurrence in self.allValues(of: "C", forRegex: accentRegex).distinct() {

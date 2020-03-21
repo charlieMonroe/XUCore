@@ -426,6 +426,8 @@
 		07D263791E4AFDB5009BAFAA /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D263781E4AFDB5009BAFAA /* URLTests.swift */; };
 		07D6EBFD22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */; };
 		07D6EBFE22955BEB00F6B7DF /* XUPreferences+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */; };
+		07D7CEDC2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */; };
+		07D7CEDD2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */; };
 		07D8A4161E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07D8A4171E5219AD009B1C71 /* XUJSONDeserializationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */; };
 		07DEDF69210716BF008A06C3 /* RangeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DEDF68210716BF008A06C3 /* RangeAdditions.swift */; };
@@ -770,6 +772,7 @@
 		07D3330D1D378DBA0040B1D1 /* XUBezierPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBezierPathAdditions.swift; sourceTree = "<group>"; };
 		07D57DFC1EE1A88300B5101F /* XUView+LayoutConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XUView+LayoutConstraints.swift"; sourceTree = "<group>"; };
 		07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferences+Basic.swift"; sourceTree = "<group>"; };
+		07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringExtensions+HTMLEntitiesList.swift"; sourceTree = "<group>"; };
 		07D8A4151E5219AD009B1C71 /* XUJSONDeserializationLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializationLog.swift; sourceTree = "<group>"; };
 		07DA882B1D1BE09B00989595 /* XUOAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUOAuth2.swift; sourceTree = "<group>"; };
 		07DA882E1D1BE0A900989595 /* XUAuthorizationWebViewWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAuthorizationWebViewWindowController.swift; sourceTree = "<group>"; };
@@ -1477,6 +1480,7 @@
 				0784480A1D12A4C000E8467B /* OptionalAdditions.swift */,
 				07DEDF68210716BF008A06C3 /* RangeAdditions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
+				07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */,
 				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
 				0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */,
 				073E6B3C1BE1FA2700706283 /* URLExtensions.swift */,
@@ -2145,6 +2149,7 @@
 				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
 				07B153C31E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */,
 				07FD4BD41C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */,
+				07D7CEDC2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift in Sources */,
 				073E6AF11BE1F86D00706283 /* unicode_groups.cc in Sources */,
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0749DCE41C00C3E00075CC9B /* XUMath.swift in Sources */,
@@ -2290,6 +2295,7 @@
 				073E6B181BE1F86D00706283 /* strutil.cc in Sources */,
 				0784480C1D12A4C000E8467B /* OptionalAdditions.swift in Sources */,
 				077AFF8D1BBD101400872A48 /* XUFatalError.swift in Sources */,
+				07D7CEDD2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift in Sources */,
 				0763C15F1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */,
 				0749DCDC1C00BBF00075CC9B /* iOSCommon.swift in Sources */,
 				073E6ACA1BE1F86D00706283 /* onepass.cc in Sources */,
