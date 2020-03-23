@@ -77,6 +77,13 @@ extension NSLayoutConstraint {
 	public convenience init(equalAttribute attribute: NSLayoutConstraint.Attribute, between first: Any, and second: Any, offset: CGFloat = 0.0) {
 		self.init(item: first, attribute: attribute, relatedBy: .equal, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
 	}
+
+	public static func equalAttributes(_ attributes: [NSLayoutConstraint.Attribute], between first: Any, and second: Any, offset: CGFloat = 0.0) -> [NSLayoutConstraint] {
+		return attributes.map { (attribute) -> NSLayoutConstraint in
+			self.init(item: first, attribute: attribute, relatedBy: .equal, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
+		}
+	}
+
 	
 	public convenience init(greaterAttribute attribute: NSLayoutConstraint.Attribute, between first: Any, and second: Any, offset: CGFloat = 0.0) {
 		self.init(item: first, attribute: attribute, relatedBy: .greaterThanOrEqual, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
