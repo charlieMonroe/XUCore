@@ -3,24 +3,24 @@
 "1 hour" = "1 uur";
 "1 minute" = "1 minuut";
 "1 second" = "1 seconde";
-"Unknown error." = "Onbekende error.";
+"Unknown error." = "Onbekende fout.";
 
-"OK" = "OK";
-"Cancel" = "Annuleren";
+"OK" = "Oké";
+"Cancel" = "Annuleer";
 
 "Failed to parse CSV file." = "Kan de inhoud van het CSV-bestand niet ontleden.";
 
-"Send Report" = "Rapport Verzenden";
-"Privacy Information..." = "Privacy Informatie...";
+"Send Report" = "Rapport verzenden";
+"Privacy Information..." = "Privacyinformatie...";
 "%AppName% has encountered a problem." = "%AppName% is een probleem tegengekomen";
 "%AppName% will terminate after sending the report." = "%AppName% zal afsluiten na het verzenden van het rapport.";
 "Report to be sent:" = "Te verzenden rapport:";
-"Your Email:" = "Je Email:";
+"Your Email:" = "Uw e-mail:";
 "Description:" = "Omschrijving:";
 
 "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Beschrijf de situatie wanneer deze storing zich heeft voorgedaan en geef de nodige stappen voor het reproduceren van het probleem, indien mogelijk. Geef hieronder je e-mailadres op - we laten je weten wanneer dit probleem wordt verholpen of vragen je mogelijk enkele details met betrekking tot deze storing. Jouw e-mailadres wordt niet in een database verzameld en je zal geen ongewenste e-mails ontvangen. \n\nMet het indienen van dit rapport help je ons met het verbeteren van deze software. Dank je!";
 
-"Report Problem" = "Probleem Rapport";
+"Report Problem" = "Probleemrapport";
 
 "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "We waarderen jouw feedback! Je e-mailadres wordt nergens opgeslagen en zal alleen gebruikt worden om jouw te informeren wanneer dit probleem kan worden opgelost of wanneer we meer informatie nodig hebben om dit probleem op te lossen.";
 
@@ -29,17 +29,17 @@
 "Could not post your report." = "Kon het rapport niet verzenden.";
 "Check your Internet connection and try again." = "Controleer uw internetverbinding en probeer het opnieuw.";
 "Heh, nice try. Please, enter a valid email address." = "Hey, goed geprobeerd. Gelieve een geldig email adres in te vullen.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Mogelijk moeten we contact met je opnemen om dit op te lossen. We bijten niet, we verkopen het e-mailadres niet aan anderen en gebruiken het ook niet op een andere manier. Belooft.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Mogelijk moeten we contact met u opnemen om dit op te lossen. We bijten niet, we verkopen het e-mailadres niet aan anderen en gebruiken het ook niet op een andere manier. Belooft.";
 "You need to enter a valid email address." = "Vul een geldig email adres in.";
 "We may need to get in touch with you in order to fix this." = "Mogelijk moeten we contact met je opnemen om dit op te lossen.";
 "Please, provide some details as to when this exception happened." = "Geef alsjeblieft enkele details over wanneer deze storing plaatsvond.";
 "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Geef informatie over de lopende taken in de applicatie, bevond de applicatie zich in de voorgrond of achtergrond; was het toen je ergens op klikte, enzovoort. De bug uit het rapport proberen te achterhalen kan moeilijk zijn, en zonder aanvullende informatie vaak onmogelijk.";
-"Thank you for the report!" = "Dank je voor dit rapport!";
+"Thank you for the report!" = "Dank je voor de melding!";
 "We'll fix it as soon as possible!" = "We proberen het zo snel mogelijk te fixen!";
 
 "Welcome to beta testing of %@." = "Welkom bij de beta test van %@.";
-"This is the first time you run a beta build %@." = "Dit is de eerste keer dat je deze beta test start met build %@.";
-"This beta build of %@ has expired." = "Deze beta build van %@ is vervallen.";
+"This is the first time you run a beta build %@." = "Dit is de eerste keer dat je deze bèta test start met versie %@.";
+"This beta build of %@ has expired." = "Deze bèta-versie van %@ is vervallen.";
 
 "Working..." = "We verwerken bits...";
 
@@ -47,10 +47,10 @@
 "Posted successfully" = "Succesvol geplaatst";
 
 "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ blijft de komende 24 uur nog werken, waarna de functionaliteit wordt geblokkeerd. Gelieve %@ te updaten om verder te kunnen blijven werken.";
-"Please download a new build." = "Gelieve een nieuwe build te downloaden.";
+"Please download a new build." = "Gelieve een nieuwe versie te downloaden.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Wij spreken enkel Engels ... Je kan steeds dit rapport naar ons versturen, maar als je bericht niet in het Engels is, kan ik jouw helaas geen volledige ondersteuning bieden.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Wij spreken enkel Engels. Je kan steeds dit rapport naar ons versturen, maar als je bericht niet in het Engels is, kan ik u helaas geen volledige ondersteuning bieden.";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Je bericht bevat speciale karakters wat meestal wil zeggen dat je bericht niet in het Engels is geschreven. Gelieve op te merken dat %@ vertaald werd in verschillende talen, wij jouw enkel in het Engels kunnen helpen. Dank voor je begrip.";
 "%li hours" = "%li uren";
 "%li minutes" = "%li minuten";
@@ -58,14 +58,14 @@
 
 /// XUSyncEngine
 "Cannot find such document. Check back later, it might not have synced through." = "Kan het document niet vinden. Controleer later opnieuw, het werd mogelijk nog niet gesynchroniseerd.";
-"Cannot open document metadata file." = "Kan het document metadata file niet openen.";
+"Cannot open document metadata file." = "Kan het document metadata bestand niet openen.";
 "Metadata file doesn't contain required information." = "Metadata file bevat niet de vereiste informatie.";
-"Synchronization is already in progress." = "Synchronisatie is reeds bezig.";
-"An upload operation is already in progress." = "Er is reeds een upload actie bezig.";
+"Synchronization is already in progress." = "Synchronisatie is al bezig.";
+"An upload operation is already in progress." = "Er is al een upload actie bezig.";
 "Could not save upload metadata." = "Kon de upload metadata niet opslaan.";
 "Cannot find entity named %@" = "Kan 'entity' met volgende naam niet vinden: %@";
 "Cannot find class named %@" = "Kan 'class' met volgende naam niet vinden: %@";
-"Cannot find entity with ID %@" = "Kan 'entity' met volgende ID nit vinden: %@";
+"Cannot find entity with ID %@" = "Kan 'entity' met volgende ID niet vinden: %@";
 "Can't find synchronization folder for document %@." = "Kan de synchronisatie folder voor het volgende document niet vinden: %@.";
 "%@ couldn't finish synchronization in the background." = "%@ kon de synchronisatie in de achtergrond niet beëindigen.";
 "Please switch back to %@ so that the synchronization can finish." = "Gelieve terug te gaan naar %@ om de synchronisatie te kunnen beëindigen.";
@@ -78,15 +78,15 @@
 "User cancelled the authorization." = "Gebruiker onderbrak de authenticatie.";
 
 /// Debug Log Menu
-"Debug" = "Debug";
-"About Debug Log..." = "About Debug Log...";
-"Debug Logging" = "Debug Logging";
+"Debug" = "Foutopsporing";
+"About Debug Log..." = "Over Foutenopsporing log...";
+"Debug Logging" = "Foutopsporing Loggen";
 "On" = "Aan";
 "Off" = "Uit";
-"Clear Debug Log" = "Clear Debug Log";
-"Show Log in Finder" = "Toon Log in Finder";
+"Clear Debug Log" = "Leeg de foutopsproring log";
+"Show Log in Finder" = "Too log in Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is een text bestand dat technische informatie bevat over wat %@ in de achtergrond uitvoert. Om dingen snel op te lossen is dit redelijk nuttig, omdat ik daardoor kan zien wat er aan de hand is. Volg deze eenvoudige stappen om het debug log te krijgen:";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Foutopsporing log is een text bestand dat technische informatie bevat over wat %@ in de achtergrond uitvoert. Om dingen snel op te lossen is dit redelijk nuttig, omdat ik daardoor kan zien wat er aan de hand is. Volg deze eenvoudige stappen om het debug log te krijgen:";
 "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Wanneer dit niet je eerste debug log is die je ons verstuurd, gelieve Clear Debug Log in het Debug menu te klikken.\n2) Zorg ervoor dat Debug Logging op Aan staat in het Debug menu.\n3) Voer eender welke taak uit waar je problemen mee hebt.\n4) Zet Debug Logging Uit in het Debug menu.\n5) Selecteer Toon Log in Finder in het Debug menu. Dit zal de betreffende log bestand in Finder selecteren dat je eenvoudig aan mij kan doorsturen. Gelieve het log bestand in attachment per email te versturen.\n\nDit log bestand bevat geen enkele persoonlijke informatie gegevens, dat kan je eenvoudig zelf nagaan door het log bestand te openen (het is een eenvoudig tekst bestand). Stel je vast dat bepaalde gegevens confidentieel zijn in uw ogen, gelieve dit dan te vervangen door een gemakkelijk te erkennen reeks van tekens (ea. XXXXXXXX) en laat mij weten dat je het log bestand hebt aangepast.";
 
 /// 8/23/2016+
@@ -96,11 +96,11 @@
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "Deze beta build zal binnen minder dan een uur vervallen.";
-"Please update your copy of this beta build." = "Gelieve je beta build te updaten.";
+"This beta build will expire in less than an hour." = "Deze bèta-versie zal binnen minder dan een uur vervallen.";
+"Please update your copy of this beta build." = "Gelieve uw beta versienummer te updaten.";
 
 // Preferences.
-"All Preferences" = "Alle Voorkeuren";
+"All Preferences" = "Alle voorkeuren";
 "Show All" = "Toon Alles";
 "Preferences" = "Voorkeuren";
 
@@ -115,17 +115,17 @@
 
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Synchronisatie gegevens zijn gedownload.";
-"Copy Current Application State" = "Kopieer huidige applicatie staat";
+"Copy Current Application State" = "Staat van het kopiëren van het huidige programma";
 
 /// 11/12/2017+
 "Copied" = "Gekopieerd";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ heeft een fout gevonden en gaat crashen. Een crashrapport komt eraan. Gelieve te verzenden of sluit het venster om de crash te negeren.";
+"Send Anyway" = "Verzend toch";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
+"There is an update available." = "Er is een update beschikbaar.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Het is mogelijk dat een nieuwe versie deze fout heeft opgelost. Probeer om dit programma te updaten. Als je niet de update mogelijkheid kan bereiken, download dit programma dan opnieuw via de site.";
 "Download Update..." = "Download Update...";
 
-"Done" = "Done";
+"Done" = "Klaar";

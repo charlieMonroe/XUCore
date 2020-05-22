@@ -36,7 +36,9 @@ public class XUScrollViewKeyboardInsetManager {
 		if keyboardNotification.name == UIResponder.keyboardDidHideNotification {
 			self.scrollView.contentInset.bottom = 0.0
 		} else {
-			self.scrollView.contentInset.bottom = keyboardFrame.height
+			if self.scrollView.contentInset.bottom != keyboardFrame.height {
+				self.scrollView.contentInset.bottom = keyboardFrame.height
+			}
 		}
 	}
 	

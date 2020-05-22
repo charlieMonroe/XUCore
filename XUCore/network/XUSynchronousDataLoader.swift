@@ -12,6 +12,12 @@ import Foundation
 /// request using the session.
 public final class XUSynchronousDataLoader {
 	
+	private var data: Data?
+	private let lock = NSConditionLock(condition: 0)
+	private var response: URLResponse?
+	private var error: Error?
+
+	
 	/// Request to be loaded.
 	public let request: URLRequest
 	
@@ -34,34 +40,29 @@ public final class XUSynchronousDataLoader {
 	public func loadData() throws -> (data: Data, response: URLResponse?) {
 		XUAssert(OperationQueue.current != self.session.delegateQueue,
 			   "Can't be loading data on the same queue as is the session's delegate queue!")
-		
-		var data: Data?
-		var response: URLResponse?
-		var error: Error?
-		
-		let lock = NSConditionLock(condition: 0)
-		
-		self.session.dataTask(with: self.request, completionHandler: {
-			data = $0
-			response = $1
-			error = $2
+				
+		self.session.dataTask(with: self.request, completionHandler: { [weak self] in
+			self?.data = $0
+			self?.response = $1
+			self?.error = $2
 			
-			lock.lock(whenCondition: 0)
-			lock.unlock(withCondition: 1)
+			self?.lock.lock(whenCondition: 0)
+			self?.lock.unlock(withCondition: 1)
 		}).resume()
 		
-		lock.lock(whenCondition: 1)
-		lock.unlock(withCondition: 0)
+		self.lock.lock(whenCondition: 1)
+		self.lock.unlock(withCondition: 0)
 		
-		if error != nil {
-			throw error!
+		if let error = self.error {
+			throw error
 		}
-		if data == nil {
+		
+		guard let data = self.data, let response = self.response else {
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedString("Unknown error.")
 			])
 		}
-		return (data!, response!)
+		return (data, response)
 	}
 	
 	/// Loads just the data. Useful in case we're not interested in any errors.

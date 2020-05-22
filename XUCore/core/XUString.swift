@@ -51,6 +51,14 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 		return lhs._buffer == rhs._buffer
 	}
 	
+	public static func ==(lhs: XUString, rhs: String) -> Bool {
+		return lhs.stringValue == rhs
+	}
+	
+	public static func ==(lhs: String, rhs: XUString) -> Bool {
+		return rhs == lhs
+	}
+	
 	/// A typealias for the char. We're using UInt8.
 	public typealias Character = UInt8
 	

@@ -55,8 +55,7 @@ public struct XUSubclassCollector {
 		let result: [AnyClass] = (0 ..< Int(numClasses)).compactMap {
 			// Go through the classes, find out if the class is kind of aClass
 			// and then add it to the list
-			let cl: AnyClass = classes[$0]
-			guard filter(cl) else {
+			guard let cl: AnyClass = classesPtr[$0], filter(cl) else {
 				return nil
 			}
 			

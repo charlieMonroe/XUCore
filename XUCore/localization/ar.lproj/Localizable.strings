@@ -1,8 +1,8 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"1 hour" = "1 ساعة";
-"1 minute" = "1 دقيقة";
-"1 second" = "1 ثانية";
+"1 hour" = "ساعة واحدة";
+"1 minute" = "دقيقة واحدة";
+"1 second" = "ثانية واحدة";
 "Unknown error." = "خطأ غير معروف.";
 
 "OK" = "موافق";
@@ -100,9 +100,9 @@
 "Please update your copy of this beta build." = "الرجاء تحديث نسختك التجريبية.";
 
 // Preferences.
-"All Preferences" = "جميع الخيارات";
+"All Preferences" = "جميع التفضيلات";
 "Show All" = "عرض الكل";
-"Preferences" = "الخيارات";
+"Preferences" = "التفضيلات";
 
 /// 12/21/2016+
 
@@ -121,11 +121,11 @@
 "Copied" = "تم النسخ";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ واجه مشكلة وسوف ت/يتعطل. سيتم عرض مربع حوار التقرير. يرجى إرساله أو إغلاق النافذة في حال كنت ترغب في تجاهل التعطل.";
+"Send Anyway" = "أرسل على أي حال";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "يوجد تحديث متوفر";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "من المحتمل أن تكون هناك مشكلة في الإصدار الجديد. حاول تحديث التطبيق. إذا لم تتمكن من الوصول إلى ميزة التحديث لهذا التطبيق ، فقم بإعادة تنزيل التطبيق من صفحة الويب الخاصة به.";
+"Download Update..." = "تحميل التحديث...";
 
-"Done" = "Done";
+"Done" = "تم";

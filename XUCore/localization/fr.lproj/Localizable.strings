@@ -13,7 +13,7 @@
 "Send Report" = "Envoyer un rapport";
 "Privacy Information..." = "Information sur la vie privée…";
 "%AppName% has encountered a problem." = "%AppName% a rencontré un problème.";
-"%AppName% will terminate after sending the report." = "%AppName% se terminera après l’envoi du rapport.";
+"%AppName% will terminate after sending the report." = "%AppName% se fermera après l’envoi du rapport.";
 "Report to be sent:" = "Rapport à envoyer  :";
 "Your Email:" = "Votre e-mail  :";
 "Description:" = "Description  :";
@@ -22,17 +22,17 @@
 
 "Report Problem" = "Signaler un problème";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Nous apprécions vos commentaires et nous ne voudrions pas récolter des informations indésirable. Votre adresse e-mail ne sera conservée nulle-part et ne sera utilisée que pour vous informer qu’u souci pourra avoir été corrigé ou que nous avons besoin de plus d’informations pour ce faire.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Nous apprécions vos commentaires et ne collecterions pas d'informations indésirables. Votre adresse e-mail ne sera stockée nulle part et ne sera utilisée que pour vous informer lorsque ce problème pourrait être résolu ou lorsque nous aurions besoin de plus d'informations pour le résoudre";
 
 "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Seuls les renseignements suivants seront envoyés  :\n• Le message que vous rédigez.\n• La version de l'application.\n• La version de votre système (OS).\n• Le modèle de votre ordinateur (aucune adresse MAC ni renseignement similaire qui permettrait d'identifier votre ordinateur).";
 
 "Could not post your report." = "Impossible de poster votre rapport.";
 "Check your Internet connection and try again." = "Vérifiez votre connexion à Internet et réessayez.";
-"Heh, nice try. Please, enter a valid email address." = "Hé, bien essayé. Veuillez entrer une adresse e-mail valable.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Nous pourrions avoir besoin de vous contacter pour résoudre ce problème. Nous ne mordons pas, nous ne vendrons l'adresse e-mail à personne et ne l'utiliserons pas d'une autre manière. On promet.";
-"You need to enter a valid email address." = "Vous devez entrer une adresse e-mail valable";
+"Heh, nice try. Please, enter a valid email address." = "Hé, bien essayé. Veuillez entrer une adresse e-mail valide.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Nous devrons peut-être vous contacter afin de résoudre ce problème. Nous ne mordons pas, nous ne vendrons l'adresse e-mail à personne et ne l'utiliserons d'aucune autre manière. On promet.";
+"You need to enter a valid email address." = "Vous devez entrer une adresse e-mail valide";
 "We may need to get in touch with you in order to fix this." = "Nous pourrions avoir besoin de vous contacter pour résoudre ce problème.";
-"Please, provide some details as to when this exception happened." = "Veuillez fournir quelques détails quant à quand cette exception s'est produite.";
+"Please, provide some details as to when this exception happened." = "Veuillez fournir des détails lorsque cette exception s'est produite.";
 "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Inclure des informations sur les tâches en cours dans l'application, si l'application était au premier plan ou en arrière-plan; si vous avez cliqué sur quelque chose, etc. Essayer de comprendre le bug juste à partir du rapport peut être difficile et sans information supplémentaire impossible.";
 "Thank you for the report!" = "Merci pour votre rapport";
 "We'll fix it as soon as possible!" = "Nous allons le résoudre dès que possible !";
@@ -46,7 +46,7 @@
 "Progress" = "Progression";
 "Posted successfully" = "Publié avec succès";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera à travailler pendant les prochaines 24 heures, après quoi sa fonctionnalité sera bloquée. Veuillez mettre à jour% @ afin de continuer à travailler.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera de fonctionner pendant les prochaines 24 heures, après quoi sa fonctionnalité sera bloquée. Veuillez mettre à jour %@ afin de le faire fonctionner.";
 "Please download a new build." = "Veuillez télécharger une nouvelle version.";
 
 /// Added on 4/26/2016
@@ -96,7 +96,7 @@
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "Cette version bêta expirera en moins d'une heure.";
+"This beta build will expire in less than an hour." = "Cette version bêta expirera dans moins d'une heure.";
 "Please update your copy of this beta build." = "Veuillez mettre à jour votre copie de cette version bêta.";
 
 // Preferences.
@@ -115,17 +115,17 @@
 
 /// 9/8/2017+
 "Synchronization data is being downloaded." = "Les données de synchronisation sont en cours de téléchargement.";
-"Copy Current Application State" = "Copier l'état actuel de l'application";
+"Copy Current Application State" = "Copiez l'état actuel de l'application";
 
 /// 11/12/2017+
 "Copied" = "Copié";
 
 /// 3/28/2019+
 "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ a rencontré un problème et va planter. Un rapport de plantage va s'ouvrir. Soumettez-le ou fermez la fenêtre au cas où vous voudriez ignorer le plantage.";
-"Send Anyway" = "Envoyer tout de même";
+"Send Anyway" = "Envoyer quand même";
 
 "There is an update available." = "Une mise à jour est disponible";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Il est possible que le souci soit corrigé dans la nouvelle version. Essayez de mettre à jour l’application, SI vous ne pouvez accéder à l’outils de mise à jour de cette application, retéléchargez la depuis sa page Web.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Il est possible que ce problème soit résolu dans la nouvelle version. Essayez de mettre à jour cette application. Si vous ne pouvez pas accéder à la fonction de mise à jour de cette application, téléchargez à nouveau l'application à partir de sa page Web.";
 "Download Update..." = "Téléchargement de la mise à jour…";
 
 "Done" = "Terminé";

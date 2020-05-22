@@ -116,7 +116,7 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 			// configured.
 			return true
 		}
-		
+				
 		if let reason = exception.reason, reason.contains("rdar://problem/20935868") {
 			// This is an issue with some background layer processing.
 			return true
@@ -143,6 +143,11 @@ public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 		}
 		
 		stackTraceString += XUStacktraceString()
+		
+		if exceptionStackTrace.contains("_ZN3WTF6Detail15CallableWrapperIZN26WebViewLayerFlushSchedulerC1EP20LayerFlushControllerE3") {
+			// WebKit crash introduced in 10.15.3
+			return true
+		}
 		
 		XUExceptionReporter.showReporter(for: exception, thread: Thread.current, queue: OperationQueue.current, andStackTrace: stackTraceString)
 		return true

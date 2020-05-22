@@ -45,11 +45,7 @@ extension XUDebugLog {
 		
 		NSWorkspace.shared.activateFileViewerSelecting([self.logFileURL])
 	}
-	
-	
-	fileprivate static var _debugLoggingOn: NSMenuItem!
-	fileprivate static var _debugLoggingOff: NSMenuItem!
-	
+		
 }
 
 
@@ -94,18 +90,18 @@ private final class _XUDebugLogActionHandler: NSObject {
 		XUDebugLog.selectDebugLogInFileViewer()
 	}
 	
-	@objc fileprivate func _turnLoggingOn() {
-		XUDebugLog._debugLoggingOn.state = .on
-		XUDebugLog._debugLoggingOff.state = .off
+	@objc fileprivate func _turnLoggingOn(_ sender: NSMenuItem) {
+		sender.menu!.items[0].state = .on
+		sender.menu!.items[1].state = .off
 		
 		XUDebugLog.isLoggingEnabled = true
 		
 		self._logAppState()
 	}
 	
-	@objc fileprivate func _turnLoggingOff() {
-		XUDebugLog._debugLoggingOn.state = .off
-		XUDebugLog._debugLoggingOff.state = .on
+	@objc fileprivate func _turnLoggingOff(_ sender: NSMenuItem) {
+		sender.menu!.items[0].state = .off
+		sender.menu!.items[1].state = .on
 		
 		XUDebugLog.isLoggingEnabled = false
 	}
@@ -121,14 +117,14 @@ extension XUDebugLog {
 		menu.addItem(NSMenuItem.separator())
 		
 		let loggingMenu = NSMenu(title: XULocalizedString("Debug Logging", inBundle: .core))
-		XUDebugLog._debugLoggingOn = loggingMenu.addItem(withTitle: XULocalizedString("On", inBundle: .core), action: #selector(_XUDebugLogActionHandler._turnLoggingOn), keyEquivalent: "")
-		XUDebugLog._debugLoggingOff = loggingMenu.addItem(withTitle: XULocalizedString("Off", inBundle: .core), action: #selector(_XUDebugLogActionHandler._turnLoggingOff), keyEquivalent: "")
+		let debugLoggingOn = loggingMenu.addItem(withTitle: XULocalizedString("On", inBundle: .core), action: #selector(_XUDebugLogActionHandler._turnLoggingOn), keyEquivalent: "")
+		let debugLoggingOff = loggingMenu.addItem(withTitle: XULocalizedString("Off", inBundle: .core), action: #selector(_XUDebugLogActionHandler._turnLoggingOff), keyEquivalent: "")
 		
-		XUDebugLog._debugLoggingOn.target = _actionHandler
-		XUDebugLog._debugLoggingOff.target = _actionHandler
+		debugLoggingOn.target = _actionHandler
+		debugLoggingOff.target = _actionHandler
 		
-		XUDebugLog._debugLoggingOn.state = self.isLoggingEnabled ? .on : .off
-		XUDebugLog._debugLoggingOff.state = self.isLoggingEnabled ? .off : .on
+		debugLoggingOn.state = self.isLoggingEnabled ? .on : .off
+		debugLoggingOff.state = self.isLoggingEnabled ? .off : .on
 		
 		let loggingItem = menu.addItem(withTitle: XULocalizedString("Debug Logging", inBundle: .core), action: nil, keyEquivalent: "")
 		loggingItem.submenu = loggingMenu

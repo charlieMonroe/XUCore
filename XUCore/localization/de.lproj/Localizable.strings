@@ -125,7 +125,7 @@
 "Send Anyway" = "Trotzdem versenden";
 
 "There is an update available." = "Es ist eine aktualisierte Version verfügbar.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Es ist möglich, dass die neueste Version diese Problem bereits behoben hat. Versuche, die Anwendung zu aktualisieren. Falls die Aktualisierungsfunktion dieser Anwendung nicht zugänglich ist, lade die Anwendung neu von der Webseite herunter!\n";
-"Download Update..." = "Aktualisierung herunterladen…\n";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Es ist möglich, dass die neueste Version diese Problem bereits behoben hat. Versuche, die Anwendung zu aktualisieren. Falls die Aktualisierungsfunktion dieser Anwendung nicht zugänglich ist, lade die Anwendung neu von der Webseite herunter!";
+"Download Update..." = "Aktualisierung herunterladen…";
 
 "Done" = "Erledigt";
