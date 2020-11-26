@@ -549,7 +549,7 @@ open class XUManagedObject: NSManagedObject {
 	///			-initWithEntity:insertIntoManagedObjectContext:
  	open func awakeFromNonSyncInsert() {
 		// Sets a new TICDS Sync ID
-		self.ticdsSyncID = NSUUID().uuidString
+		self.ticdsSyncID = UUID().uuidString
 	}
 
 	/// This method will create sync change if necessary for this object.

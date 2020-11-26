@@ -30,12 +30,14 @@ public struct XUJSONHelper {
 	/// Converts json data to a JSON object.
 	public static func object<T>(from data: Data) -> T? {
 		guard let genericObj = try? JSONSerialization.jsonObject(with: data, options: []) else {
-			XULog("Failed to parse JSON \(String(data: data).descriptionWithDefaultValue())")
+			let sender = Thread.callStackSymbols.first(where: { !$0.contains(caseInsensitive: "XUJSONHelper") }) ?? "unknown"
+			XULog("Failed to parse JSON. Sender: \(sender), value: \(String(data: data).descriptionWithDefaultValue())")
 			return nil
 		}
 		
 		guard let obj = genericObj as? T else {
-			XULog("Failed to cast JSON of type \(type(of: genericObj)) to \(T.self): \(genericObj).")
+			let sender = Thread.callStackSymbols.first(where: { !$0.contains(caseInsensitive: "XUJSONHelper") }) ?? "unknown"
+			XULog("Failed to cast JSON of type \(type(of: genericObj)) to \(T.self). Sender: \(sender), value: \(genericObj).")
 			return nil
 		}
 		

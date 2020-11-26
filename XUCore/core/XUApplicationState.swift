@@ -104,6 +104,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	open var stateItems: [XUApplicationStateItem] {
 		var stateItems: [XUApplicationStateItem] = [
 			XUApplicationStateItem(name: "Version", value: "\(XUAppSetup.applicationVersionNumber) (\(XUAppSetup.applicationBuildNumber))"),
+			XUApplicationStateItem(name: "OS Version", value: ProcessInfo().operatingSystemVersion.versionString),
 			XUApplicationStateItem(name: "Locale", value: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", value: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "Build Type", value: XUAppSetup.buildType.rawValue),

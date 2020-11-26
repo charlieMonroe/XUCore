@@ -15,12 +15,22 @@ import XUCore
 
 public final class XUOAuth2Configuration {
 	
+	/// Payload format - by default, wwwForm is used, but if set to JSON, the payload
+	/// for the token renewal is sent as JSON.
+	public enum PayloadFormat: String {
+		case wwwForm
+		case json
+	}
+	
 	private struct ConfigurationKeys {
 		static let additionalHTTPHeaders = "additionalHTTPHeaders"
 		static let authorizationBaseURLStringKey = "authorizationBaseURLString"
 		static let clientIDKey = "clientID"
+		static let customRedirectionURLKey = "redirectionURL"
 		static let nameKey = "name"
+		static let payloadFormatKey = "payloadFormat"
 		static let redirectionSchemeKey = "redirectionScheme"
+		static let scope = "scope"
 		static let secretKey = "secret"
 		static let tokenEndpointURLStringKey = "tokenEndpointURLString"
 		static let tokenNeverExpiresKey = "tokenNeverExpires"
@@ -44,15 +54,25 @@ public final class XUOAuth2Configuration {
 			"redirect_uri": self.redirectionURLString
 		]
 		
+		queryDict["scope"] = self.scope
+		
 		return self.authorizationBaseURL.updatingQuery(to: queryDict)
 	}
 	
 	/// ID of the client.
 	public let clientID: String
 	
+	/// Custom redirection URL - this can be an HTTP request which then redirects
+	/// back into the app.
+	public let customRedirectionURL: URL?
+	
 	/// Name of the client. Used for saving the accounts, etc. It should be unique
 	/// as initing two clients with the same name will cause fatalError.
 	public let name: String
+	
+	/// Payload format - by default, wwwForm is used, but if set to JSON, the payload
+	/// for the token renewal is sent as JSON.
+	public let payloadFormat: PayloadFormat
 	
 	/// URL scheme that the app must be capable of opening. This is used for
 	/// redirection within the WebView displayed.
@@ -60,8 +80,15 @@ public final class XUOAuth2Configuration {
 	
 	/// The redirection URL passed to the OAuth2 authority.
 	public var redirectionURLString: String {
+		if let url = self.customRedirectionURL {
+			return url.absoluteString
+		}
+		
 		return "\(self.redirectionScheme)://approve"
 	}
+	
+	/// Optional scope.
+	public let scope: String?
 	
 	/// Client secret.
 	public let secret: String
@@ -74,26 +101,34 @@ public final class XUOAuth2Configuration {
 	public let tokenNeverExpires: Bool
 	
 	public var dictionaryRepresentation: [String : Any] {
-		return [
+		var dict: [String : Any] = [
 			ConfigurationKeys.additionalHTTPHeaders: self.additionalHTTPHeaders,
 			ConfigurationKeys.authorizationBaseURLStringKey: self.authorizationBaseURL.absoluteString,
 			ConfigurationKeys.clientIDKey: self.clientID,
 			ConfigurationKeys.nameKey: self.name,
+			ConfigurationKeys.payloadFormatKey: self.payloadFormat.rawValue,
 			ConfigurationKeys.redirectionSchemeKey: self.redirectionScheme,
 			ConfigurationKeys.secretKey: self.secret,
 			ConfigurationKeys.tokenEndpointURLStringKey: self.tokenEndpointURL.absoluteString,
 			ConfigurationKeys.tokenNeverExpiresKey: self.tokenNeverExpires
 		]
+		
+		dict[ConfigurationKeys.scope] = self.scope
+		dict[ConfigurationKeys.customRedirectionURLKey] = self.customRedirectionURL?.absoluteString
+		
+		return dict
 	}
 	
 	/// Designated initializer.
-	public init(authorizationBaseURL: URL, clientID: String, name: String, redirectionScheme: String, secret: String, tokenEndpointURL: URL, tokenNeverExpires: Bool = false) {
-		
+	public init(authorizationBaseURL: URL, clientID: String, name: String, redirectionScheme: String, customRedirectionURL: URL? = nil, secret: String, tokenEndpointURL: URL, payloadFormat: PayloadFormat = .wwwForm, scope: String? = nil, tokenNeverExpires: Bool = false) {
 		self.authorizationBaseURL = authorizationBaseURL
 		self.clientID = clientID
+		self.customRedirectionURL = customRedirectionURL
 		self.name = name
+		self.payloadFormat = payloadFormat
 		self.redirectionScheme = redirectionScheme
 		self.secret = secret
+		self.scope = scope
 		self.tokenEndpointURL = tokenEndpointURL
 		self.tokenNeverExpires = tokenNeverExpires
 	}
@@ -116,7 +151,10 @@ public final class XUOAuth2Configuration {
 		
 		self.init(authorizationBaseURL: authorizationBaseURL, clientID: clientID,
 		          name: name, redirectionScheme: redirectionScheme,
+				  customRedirectionURL: (dict[ConfigurationKeys.customRedirectionURLKey] as? String).flatMap(URL.init(_:)),
 		          secret: secret, tokenEndpointURL: tokenEndpointURL,
+				  payloadFormat: (dict[ConfigurationKeys.payloadFormatKey] as? String).flatMap(PayloadFormat.init(rawValue:)) ?? .wwwForm,
+				  scope: dict[ConfigurationKeys.scope] as? String,
 		          tokenNeverExpires: dict.boolean(forKey: ConfigurationKeys.tokenNeverExpiresKey))
 		
 		if let additionalHeaders = dict[ConfigurationKeys.additionalHTTPHeaders] as? [String : String] {
@@ -238,7 +276,7 @@ public final class XUOAuth2Client {
 		}
 		
 		/// Refresh token.
-		public let refreshToken: String?
+		public var refreshToken: String?
 		
 		/// Expiration date of the token.
 		public private(set) var tokenExpirationDate: Date
@@ -254,7 +292,7 @@ public final class XUOAuth2Client {
 		public init(client: XUOAuth2Client, accessToken: String, refreshToken: String?, andExpirationDate expirationDate: Date) {
 			self.client = client
 			self.accessToken = accessToken
-			self.identifier = NSUUID().uuidString
+			self.identifier = UUID().uuidString
 			self.refreshToken = refreshToken
 			self.tokenExpirationDate = expirationDate
 
@@ -310,10 +348,18 @@ public final class XUOAuth2Client {
 			guard let obj = try? self.client.downloadCenter.downloadJSONDictionaryThrow(at: self.client.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 				request.setBasicAuthentication(user: self.client.configuration.clientID, password: self.client.configuration.secret)
 				request.acceptType = URLRequest.ContentType.json
-				request.contentType = URLRequest.ContentType.wwwForm
+				
+				switch self.client.configuration.payloadFormat {
+				case .wwwForm:
+					request.contentType = .wwwForm
+					request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+				case .json:
+					request.contentType = .json
+					request.setJSONBody(postDict)
+				}
+
 				request["Cookie"] = nil
 				request.httpMethod = "POST"
-				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
 				
 				for (key, value) in self.client.configuration.additionalHTTPHeaders {
 					request[key] = value
@@ -324,6 +370,10 @@ public final class XUOAuth2Client {
 			
 			guard let accessToken = obj["access_token"] as? String else {
 				return false
+			}
+			
+			if let refreshToken = obj["refresh_token"] as? String {
+				self.refreshToken = refreshToken
 			}
 			
 			let expiresInSeconds: TimeInterval = obj.double(forKey: "expires_in")
@@ -393,7 +443,7 @@ public final class XUOAuth2Client {
 	/// be registered, call unregister client.
 	public class func registerClientWithConfiguration(_ configuration: XUOAuth2Configuration) -> XUOAuth2Client {
 		if XUOAuth2Client.registeredClients.contains(where: { $0.configuration.name == configuration.name }) {
-			fatalError("A client with the name \(configuration.name) is already registered. The configuration name must be unique amongst clients.")
+			XUFatalError("A client with the name \(configuration.name) is already registered. The configuration name must be unique amongst clients.")
 		}
 		
 		let client = XUOAuth2Client(configuration: configuration)
@@ -458,11 +508,19 @@ public final class XUOAuth2Client {
 		
 		guard let obj = try? self.downloadCenter.downloadJSONDictionaryThrow(at: self.configuration.tokenEndpointURL, withRequestModifier: { (request) in
 			request.setBasicAuthentication(user: self.configuration.clientID, password: self.configuration.secret)
+			
+			switch self.configuration.payloadFormat {
+			case .wwwForm:
+				request.contentType = .wwwForm
+				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+			case .json:
+				request.contentType = .json
+				request.setJSONBody(postDict)
+			}
+			
 			request.acceptType = URLRequest.ContentType.json
-			request.contentType = URLRequest.ContentType.wwwForm
 			request["Cookie"] = nil
 			request.httpMethod = "POST"
-			request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
 			
 			for (key, value) in self.configuration.additionalHTTPHeaders {
 				request[key] = value
@@ -533,10 +591,10 @@ public final class XUOAuth2Client {
 	/// On iOS, call this method from your app delegate's application(_:openURL:...).
 	/// On OS X, refrain from calling this method directly, XUOAuth2Client handles
 	/// this automatically for you via XUURLHandlingCenter.
-	public func handleRedirectURL(_ URL: URL) {
+	public func handleRedirectURL(_ url: URL) {
 		XUAssert(_authorizationController != nil, "Handling an authorization call while no controller is being displayed!")
 		
-		guard let query = URL.query else {
+		guard let query = url.query else {
 			_authorizationController!.close(withResult: .error(.invalidRedirectionURL))
 			_authorizationController = nil
 			return

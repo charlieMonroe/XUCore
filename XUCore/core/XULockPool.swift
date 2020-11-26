@@ -25,7 +25,10 @@ public final class XULockPool {
 	private let _lockCreatingLock: NSLock
 	
 	/// Locks - lazily created.
-	private var _locks: [NSLock?]
+	private var _locks: [Lock?]
+	
+	/// Whether the locks are recursive or not.
+	public let isRecursive: Bool
 	
 	/// Name of the pool. The pool uses this name to name the locks.
 	public let name: String
@@ -39,10 +42,13 @@ public final class XULockPool {
 	///
 	/// - Parameter poolSize: Size of the pool.
 	/// - Parameter name: Name of the pool.
-	public init(poolSize: Int, name: String) {
-		_locks = Array<NSLock?>(repeating: nil, count: poolSize)
+	/// - Parameter recursive: False by default. If set to true, NSRecursiveLock
+	///							is used.
+	public init(poolSize: Int, name: String, recursive: Bool = false) {
+		_locks = Array<Lock?>(repeating: nil, count: poolSize)
 		_lockCreatingLock = NSLock(name: name + "_lock_creation")
 		
+		self.isRecursive = recursive
 		self.poolSize = poolSize
 		self.name = name
 	}
@@ -53,18 +59,18 @@ public final class XULockPool {
 	///
 	/// - Parameter object: Object for the lock.
 	/// - Returns: Lock associated with the object.
-	public func lock(for object: AnyObject) -> NSLock {
+	public func lock(for object: AnyObject) -> Lock {
 		let hash = ObjectIdentifier(object).hashValue
+		
+		_lockCreatingLock.lock()
+		defer {
+			_lockCreatingLock.unlock()
+		}
 		
 		// The hash can be negative -> the index would be negative as well.
 		let index = abs(hash % self.poolSize)
 		if let lock = _locks[index] {
 			return lock
-		}
-		
-		_lockCreatingLock.lock()
-		defer {
-			_lockCreatingLock.unlock()
 		}
 		
 		// Check if someone else didn't create a lock while we were locking
@@ -73,7 +79,13 @@ public final class XULockPool {
 			return lock
 		}
 		
-		let lock = NSLock(name: self.name + "_\(index)")
+		let lock: Lock
+		if self.isRecursive {
+			lock = NSRecursiveLock(name: self.name + "_\(index)")
+		} else {
+			lock = NSLock(name: self.name + "_\(index)")
+		}
+		
 		_locks[index] = lock
 		return lock
 	}

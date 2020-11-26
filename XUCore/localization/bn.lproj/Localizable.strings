@@ -1,0 +1,131 @@
+/// XUCore localization file. This contains strings within the XUCore framework.
+
+"1 hour" = "1 hour";
+"1 minute" = "1 minute";
+"1 second" = "1 second";
+"Unknown error." = "অজানা ভুল। ";
+
+"OK" = "ঠিক আছে ";
+"Cancel" = "বাতিল করুন ";
+
+"Failed to parse CSV file." = "CSV ফাইল পার্স করতে ব্যর্থ।";
+
+"Send Report" = "রিপোর্ট পাঠান ";
+"Privacy Information..." = "Privacy Information...";
+"%AppName% has encountered a problem." = "%AppName% একটি সমস্যা সম্মুখীন হয়েছে। ";
+"%AppName% will terminate after sending the report." = "%AppName% will terminate after sending the report.";
+"Report to be sent:" = "রিপোর্ট টি পাঠানো হবেঃ ";
+"Your Email:" = "আপনার ইমেইলঃ ";
+"Description:" = "Description:";
+
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "দয়া করে, যখন এই ব্যতিক্রমটি ঘটেছে তখন পরিস্থিতিটি বর্ণনা করুন এবং সম্ভব হলে কীভাবে সমস্যাটি পুনরুত্পাদন করবেন সেই পদক্ষেপ সরবরাহ করুন। নীচে আপনার ইমেল ঠিকানা লিখুন - আমরা কখন এই সমস্যাটি স্থির হবে তা আপনাকে জানাতে দেব বা এই ব্যতিক্রম সম্পর্কিত কিছু বিশদ সম্পর্কে আপনাকে জিজ্ঞাসা করব। আপনার ইমেল ঠিকানা কোনও ডাটাবেসে সংগ্রহ করা হবে না এবং আপনি কোনও অযাচিত ইমেল পাবেন না।\nএই প্রতিবেদন জমা দেওয়ার মাধ্যমে আপনি আমাদের এই সফ্টওয়্যারটি উন্নত করতে সহায়তা করবেন। ধন্যবাদ!";
+
+"Report Problem" = "রিপোর্ট সমস্যা";
+
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "আপনার মূল্যবান মতামতকে আমারা সম্মান করি এবং অবাঞ্ছিত কোন তথ্য আমরা সংরক্ষণ করি না। আপনার ইমেইল এড্রেস কথাও সংরক্ষণ করা হবে না এবং যখন সমস্যাটি ঠিক করার জন্য আমাদের আরো তথ্যের প্রয়োজন হবে তখন আপনাকে জানানোর জন্য ব্যবহার করা হবে। \nআপনার মূল্যবান মতামতকে আমারা সম্মান করি এবং অবাঞ্ছিত কোন তথ্য আমরা সংরক্ষণ করি না। আপনার ইমেইল এড্রেস কথাও সংরক্ষণ করা হবে না এবং যখন সমস্যাটি ঠিক করার জন্য আমাদের আরো তথ্যের প্রয়োজন হবে তখন আপনাকে জানানোর জন্য ব্যবহার করা হবে। ";
+
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "শুধুমাত্র নিচের তথ্য গুলো পাঠানো হবেঃ\n\n• আপনি যে বর্ণনা দিবেন। \n• নীচে ব্যতিক্রম তথ্য। \n• আপ্লিকেশন এর তথ্য। \n• আপনার ওএস এর তথ্য। \n• আপনার কম্পিউটার এর মডেল ( ম্যাক ঠিকানা বা এমন কোনও তথ্য নয় যেটা আপানার কম্পিউটার কে চিহ্নিত করতে পারে)। ";
+
+"Could not post your report." = "আপনার প্রতিবেদন পোস্ট করতে পারেনি।";
+"Check your Internet connection and try again." = "আপনার ইন্টারনেট সংযোগটি পুনরায় চেক করুন এবং আবার চেষ্টা করুন।  ";
+"Heh, nice try. Please, enter a valid email address." = "হেই, দুর্দান্ত চেষ্টা। একটি বৈধ ইমেইল ঠিকানা লিখুন.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "এটি ঠিক করার জন্য আমাদের আপনার সাথে যোগাযোগের প্রয়োজন হতে পারে। আমরা কামড় দিই না, আমরা কারও কাছে ইমেল ঠিকানা বিক্রয় করব না বা এটি অন্য কোনও উপায়ে ব্যবহার করব না। আমরা কথা দিচ্ছি.";
+"You need to enter a valid email address." = "আপনাকে একটি বৈধ ইমেল ঠিকানা প্রবেশ করতে হবে।";
+"We may need to get in touch with you in order to fix this." = "এটা ঠিক করতে আমাদের কে আপনার সাথে যোগাযোগ করতে হতে পারে। ";
+"Please, provide some details as to when this exception happened." = "দয়াকরে বর্ণনা করুন কখন এই এক্সেপ্সন হয়েছে। ";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "অ্যাপ্লিকেশনটিতে চলমান কাজগুলি সম্পর্কিত তথ্য অন্তর্ভুক্ত করুন, যদি অ্যাপ্লিকেশনটি অগ্রভাগে বা পটভূমিতে থাকে; আপনি যদি কোনও কিছুর উপর ক্লিক করে থাকেন, ঠিক রিপোর্ট থেকে বাগ বের করার চেষ্টা করা শক্ত এবং অতিরিক্ত তথ্য ব্যতীত অসম্ভব।";
+"Thank you for the report!" = "Thank you for the report!";
+"We'll fix it as soon as possible!" = "We'll fix it as soon as possible!";
+
+"Welcome to beta testing of %@." = " %@ তে বেটা পরীক্ষা করার জন্য আপনাকে স্বাগতম। ";
+"This is the first time you run a beta build %@." = "এটাই আপনার প্রথম বার %@ বেটা সংস্করণ চালু করলেন। ";
+"This beta build of %@ has expired." = "This beta build of %@ has expired.";
+
+"Working..." = "কাজ চলছে...";
+
+"Progress" = "অগ্রগতি ";
+"Posted successfully" = "Posted successfully";
+
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ পরবর্তী 24 ঘন্টা কাজ চালিয়ে যাবে, এর পরে এর কার্যকারিতা ব্লক হয়ে যাবে। এটি চালু রাখার জন্য দয়া করে %@ আপডেট করুন।";
+"Please download a new build." = "দয়া করে একটি নতুন বিল্ড ডাউনলোড করুন।";
+
+/// Added on 4/26/2016
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "আপনি যেভাবেই প্রতিবেদনটি প্রেরণ করতে পারেন, তবে বার্তাটি যদি সত্যিই ইংরেজিতে না থাকে তবে আমি আপনাকে সম্পূর্ণ সমর্থন সরবরাহ করতে সক্ষম হব না।";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "আপনার বার্তাতে স্পেশাল ছিন্ন রয়েছে যেটা ইংরেজি ভাষায় লিখা নয়। দয়াকরে মনে রাখবেন %@ অনেক গুলো ভাষাতে অনুবাদ করা আছে কিন্তু সাহায্য শুধু ইংরেজি ভাষাতেই দেওয়া হয়। আমাদের বুঝতে পারার জন্য আপনাকে ধন্যবাদ। ";
+"%li hours" = "%li ঘণ্টা";
+"%li minutes" = "%li মিনিট ";
+"%li seconds" = "%li সেকেন্ড";
+
+/// XUSyncEngine
+"Cannot find such document. Check back later, it might not have synced through." = "এই জাতীয় দস্তাবেজ খুঁজে পাওয়া যায় না। পরে আবার চেক করুন, এটি দিয়ে সিঙ্ক নাও হতে পারে।";
+"Cannot open document metadata file." = "Cannot open document metadata file.";
+"Metadata file doesn't contain required information." = "মেটাডাটাতে প্রয়োজনীয় তথ্য নেই। ";
+"Synchronization is already in progress." = "সিঙ্ক্রোনাইজেশন ইতিমধ্যে চলছে।";
+"An upload operation is already in progress." = "একটি আপলোড অপারেশন ইতিমধ্যে চলছে।";
+"Could not save upload metadata." = "আপলোড করা মেটাডাটা সংরক্ষণ করা যায়নি। ";
+"Cannot find entity named %@" = "%@ নামের সত্তাটি খুঁজে পাওয়া যায় না";
+"Cannot find class named %@" = " %@ নামের ক্লাসটি খুঁজে পাওয়া যায়নি। ";
+"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
+"Can't find synchronization folder for document %@." = "%@ ডকুমেন্ট এর জন্য সিঙ্ক্রনাইজেসন ফোল্ডারটি পাওয়া যায়নি। ";
+"%@ couldn't finish synchronization in the background." = "%@ বেকগ্রাউন্ডে সিঙ্ক্রনাইজেশন শেষ হয়নি।  \t";
+"Please switch back to %@ so that the synchronization can finish." = " %@ তে ফিরে যান যেন সিঙ্ক্রনাইজেশন শেষ হতে পারে। ";
+
+/// XUOAuth2
+"Authentication" = "অনুমোদন ";
+"Server responded with unknown token type." = "সার্ভার অজানা টোকেন প্রকারের সাথে প্রতিক্রিয়া জানিয়েছে।";
+"Server provided invalid authorization response." = "সার্ভার অবৈধ অনুমোদন প্রেরণ করেছে। ";
+"Server has redirected with invalid URL." = "সার্ভারটি অবৈধ ইউআরএল দিয়ে পুনর্নির্দেশ করেছে।";
+"User cancelled the authorization." = "ব্যবহারকারি অনুমোদনটি বাতিল করেছেন। ";
+
+/// Debug Log Menu
+"Debug" = "দিবাগ";
+"About Debug Log..." = "ডিবাগ লগ সম্পর্কে...";
+"Debug Logging" = "ডিবাগ লগইন";
+"On" = "চালু ";
+"Off" = "বন্ধ";
+"Clear Debug Log" = "সাফ ডিবাগ লগ করুন";
+"Show Log in Finder" = "ফাইন্ডারে লগ দেখুন ";
+
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "ডিবাগ লগ হ'ল একটি পাঠ্য ফাইল যা পটভূমিতে% @ কী সম্পাদন করে সে সম্পর্কে কিছু প্রযুক্তিগত বিবরণ ধারণ করে। জিনিসগুলি দ্রুত ঠিক করার জন্য এটি আমার পক্ষে যথেষ্ট কার্যকর যেহেতু এটি আমাকে কী চলছে তা দেখার অনুমতি দেয়। ডিবাগ লগ পেতে, এই সাধারণ পদক্ষেপগুলি অনুসরণ করুন:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) আপনি যদি এটি পাঠাচ্ছেন এটি যদি আপনার প্রথম ডিবাগ লগ না হয় তবে দয়া করে, ডিবাগ মেনু থেকে ডিবাগ লগ সাফ করুন নির্বাচন করুন।\n2) ডিবাগ মেনুতে, নিশ্চিত হয়ে নিন যে ডিবাগ লগিং চালু আছে।\n3) আপনার যে সমস্যা নিয়ে সমস্যা রয়েছে তা সম্পাদন করুন।\n4) ডিবাগ মেনুতে, ডিবাগ লগিং বন্ধ করুন।\n5) ডিবাগ মেনুতে, অনুসন্ধান লগ ইন ফাইন্ডার নির্বাচন করুন। এটি ফাইন্ডারে লগ ফাইলটি নির্বাচন করে এবং আপনি এটি সহজেই আমার কাছে প্রেরণ করতে পারেন। দয়া করে তথ্যটি কপি-পেস্ট করার চেয়ে ইমেলটিতে ফাইলটি সংযুক্ত করুন।\n\nলগ ফাইলটিতে এমন কোনও ব্যক্তিগত ডেটা থাকে না যা লগ ফাইলটি খোলার মাধ্যমে যাচাই করা যেতে পারে (এটি একটি সাধারণ পাঠ্য ফাইল)। আপনি যদি কিছু গোপনীয় বা ব্যক্তিগত বিবেচনা করেন তবে দয়া করে তাদের এমন কিছু দিয়ে প্রতিস্থাপন করুন যা সহজেই স্থানধারক হিসাবে চিহ্নিত করা যায় (উদাঃ XXXXXXXXX) এবং আমাকে জানিয়ে দিন যে আপনি লগ ফাইলটি পরিবর্তন করেছেন।";
+
+/// 8/23/2016+
+"The document could not be downloaded at this moment." = "এই মুহুর্তে ডকুমেন্ট ডাউনলোড করা যায়নি।";
+"Log Current Application State" = "বর্তমান আপ্লিকেনশন এর অবস্থা লগ করুন";
+
+/// 9/28/2016+
+
+// Beta testing related.
+"This beta build will expire in less than an hour." = "এই বেটা নির্মান ১ ঘণ্টার মধ্যে মেয়াদ উত্তীর্ণ হবে। ";
+"Please update your copy of this beta build." = "দয়া করে এই বিটা বিল্ডের অনুলিপিটি আপডেট করুন।";
+
+// Preferences.
+"All Preferences" = "All Preferences";
+"Show All" = "সব দেখাও";
+"Preferences" = "প্রিফারেন্স ";
+
+/// 12/21/2016+
+
+// Search field with results.
+"No search results" = "অনুসন্ধানে কোন ফলাফল পাওয়া যায়নি ";
+"%li search results" = "%li search results";
+
+// Certificate view.
+"Select..." = "নির্বাচন করুন...";
+
+/// 9/8/2017+
+"Synchronization data is being downloaded." = "সিঙ্ক্রোনাইজেশন ডেটা ডাউনলোড হচ্ছে।";
+"Copy Current Application State" = "বর্তমান অ্যাপ্লিকেশন রাজ্যের অনুলিপি করুন";
+
+/// 11/12/2017+
+"Copied" = "অনুলিপি করা";
+
+/// 3/28/2019+
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ একটি সমস্যার মুখোমুখি হয়েছে এবং ক্রাশ হবে। একটি প্রতিবেদন সংলাপ উপস্থাপন করা হবে। দয়া করে, এটি জমা দিন বা আপনি ক্র্যাশটিকে অগ্রাহ্য করতে চান এমন উইন্ডোটি বন্ধ করুন।";
+"Send Anyway" = "যেকোনভাবে পাঠান";
+
+"There is an update available." = "There is an update available.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "সম্ভবত নতুন সংস্করণে সমস্যাটি ঠিক করা হয়েছে। আপ্লিকেশনটি হালনাগাদ করে চেষ্টা করুন। যদি আপনি নতুন ফিচারগুলো ব্যবহার করতে না পারেন, তবে ওয়েব পেইজ থেকে পুনরায় নামিয়ে নিন। ";
+"Download Update..." = "হালনাগাদ করুন...";
+
+"Done" = "হয়ে গেছে";

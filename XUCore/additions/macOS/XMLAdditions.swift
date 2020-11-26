@@ -115,7 +115,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 					continue
 				}
 				element.addChild(val.xmlElement(withName: key))
-			} else if let val = value as? [Dictionary] {
+			} else if let val = value as? [[String : Any]] {
 				if val.isEmpty {
 					continue
 				}

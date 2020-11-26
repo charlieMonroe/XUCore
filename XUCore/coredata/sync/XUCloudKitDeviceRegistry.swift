@@ -153,12 +153,7 @@ internal class XUCloudKitDeviceRegistry {
 	private func _subscribeToChanges() {
 		let predicate = NSPredicate(format: "documentID = %@ AND deviceID != %@", self.documentID, XUSyncManagerPathUtilities.currentDeviceIdentifier)
 		
-		let subscription: CKSubscription
-		if #available(macOS 10.12, iOS 10.0, *) {
-			subscription = CKQuerySubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: CKQuerySubscription.Options.firesOnRecordCreation)
-		} else {
-			subscription = CKSubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: .firesOnRecordCreation)
-		}
+		let subscription = CKQuerySubscription(recordType: XUCloudKitSynchronization.ChangeSet.recordType, predicate: predicate, subscriptionID: self.subscriptionID, options: CKQuerySubscription.Options.firesOnRecordCreation)
 		
 		let info = CKSubscription.NotificationInfo()
 		subscription.notificationInfo = info

@@ -121,11 +121,11 @@
 "Copied" = "Скопійовано";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ виникла проблема та можливо вийде з ладу. Буде представлено діалог звітів. Надішліть звіт, або закрийте вікно, якщо ви хочете ігнорувати збій.";
+"Send Anyway" = "Надіслати все одно";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Доступне оновлення.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Цілком можливо, що в новій версії виправлено це питання. Спробуйте оновити програму. Якщо ви не можете отримати доступ до функції оновлення, перезавантажте програму з офіційної веб-сторінки.";
+"Download Update..." = "Завантажити оновлення…";
 
-"Done" = "Done";
+"Done" = "Готово";

@@ -46,8 +46,11 @@ public final class XUAppScopeBookmarksManager {
 		#else
 			_ = newURL.startAccessingSecurityScopedResource()
 			
-			guard let bookmarkData = try? newURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil) else {
-				XULog("Failed to create bookmark data for URL \(newURL)")
+			let bookmarkData: Data
+			do {
+				bookmarkData = try newURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil)
+			} catch {
+				XULog("Failed to create bookmark data for URL \(newURL) - \(error)")
 				return false
 			}
 			

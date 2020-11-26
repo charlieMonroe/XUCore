@@ -39,6 +39,34 @@ extension Lock {
 
 }
 
+@propertyWrapper
+public struct LockedAccessProperty<T> {
+	
+	private var _wrappedValue: T
+	
+	public let lock: Lock
+	
+	public init(wrappedValue: T, lock: Lock) {
+		_wrappedValue = wrappedValue
+		
+		self.lock = lock
+	}
+	
+	public var wrappedValue: T {
+		get {
+			self.lock.perform {
+				_wrappedValue
+			}
+		}
+		set {
+			self.lock.perform {
+				_wrappedValue = newValue
+			}
+		}
+	}
+	
+}
+
 public protocol NamedLock: Lock {
 	
 	var name: String? { get set }

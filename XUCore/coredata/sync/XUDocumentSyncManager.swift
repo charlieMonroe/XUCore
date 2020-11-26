@@ -437,7 +437,7 @@ open class XUDocumentSyncManager {
 	
 		// Copy the document somewhere else, since the upload may take some time 
 		// and changes may be made.
-		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString)
+		let tempFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)
 		
 		FileManager.default.createDirectory(at: tempFolderURL)
 	

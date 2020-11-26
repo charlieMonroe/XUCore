@@ -200,6 +200,28 @@ public final class XULocalizationCenter {
 			return value
 		}
 		
+		/// Handle a common scenario where the keys only differ with '...'.
+		if key.hasSuffix("...") || key.hasSuffix("…") {
+			let updatedKey = key.deleting(suffix: "...").deleting(suffix: "…")
+			if let value = _cachedLanguageDicts[bundle]?[language]?[updatedKey] {
+				// Update the dictionary.
+				_lock.lock()
+				defer {
+					_lock.unlock()
+				}
+
+				let updatedValue: String
+				if key.hasSuffix("...") {
+					updatedValue = value + "..."
+				} else {
+					updatedValue = value + "…"
+				}
+				
+				_cachedLanguageDicts[bundle]?[language]?[updatedKey] = updatedValue
+				return updatedValue
+			}
+		}
+		
 		/// Now, we know that the string isn't in the localization. There are two
 		/// options. Either the localization doesn't contain this phrase, or it
 		/// hasn't been loaded yet.

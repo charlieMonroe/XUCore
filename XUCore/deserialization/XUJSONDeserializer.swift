@@ -390,8 +390,8 @@ public final class XUJSONDeserializer {
 		}
 		
 		/// The value may be a date mapping on NSTimeInterval.
-		if object.date(from:forKey:) != nil {
-			if let date = object.date!(from: str, forKey: key) {
+		if let function = object.date(from:forKey:) {
+			if let date = function(str, key) {
 				return (value: date, error: .none)
 			}
 		} else {

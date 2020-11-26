@@ -100,6 +100,8 @@ open class XUDownloadCenter {
 	
 	
 	
+	private let _invalidationLock: NSRecursiveLock
+	
 	/// These values are automatically applied to all requests. This can be an
 	/// authorization header field, or some other additional header fields required
 	/// by the server. These are applied before the requestModifier is called.
@@ -116,13 +118,15 @@ open class XUDownloadCenter {
 	public final var identifier: String
 	
 	/// Marked true when invalidateSession() is called.
-	public private(set) final var isInvalidated: Bool = false
+	@LockedAccessProperty
+	public private(set) final var isInvalidated: Bool
 	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
 	public final private(set) var lastError: Swift.Error?
 	
 	/// Returns the last URL response. Nil, if this download center didn't download
 	/// anything yet.
+	@LockedAccessProperty
 	public final private(set) var lastHTTPURLResponse: HTTPURLResponse?
 	
 	/// If true, logs all traffic via XULog.
@@ -154,6 +158,11 @@ open class XUDownloadCenter {
 	/// mostly if you are setting the proxy configurations since that modifies
 	/// the session configuration which may lead to app-wide behavior changes.
 	public init(identifier: String, session: URLSession = URLSession.shared) {
+		let invalidationLock = NSRecursiveLock(name: "com.charliemonroe.download.center.invalidation")
+		_invalidationLock = invalidationLock
+		_isInvalidated = LockedAccessProperty(wrappedValue: false, lock: invalidationLock)
+		_lastHTTPURLResponse = LockedAccessProperty(wrappedValue: nil, lock: invalidationLock)
+		
 		self.identifier = identifier
 		self.session = session
 	}
@@ -295,8 +304,19 @@ open class XUDownloadCenter {
 			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referringFunction)
 		}
 		
+		_invalidationLock.lock()
+		defer {
+			_invalidationLock.unlock()
+		}
+		
+		if self.isInvalidated {
+			throw Error.invalidated
+		}
+		
+		let loader = XUSynchronousDataLoader(request: request, session: self.session)
+		
 		do {
-			let (data, response) = try XUSynchronousDataLoader(request: request as URLRequest, session: self.session).loadData()
+			let (data, response) = try loader.loadData()
 			self.lastHTTPURLResponse = response as? HTTPURLResponse
 			
 			if self.logTraffic {
@@ -363,7 +383,7 @@ open class XUDownloadCenter {
 		let data = try self.downloadDataThrow(at: url, withRequestModifier: modifier)
 			
 		if let responseString = String(data: data, encoding: preferredEncoding ?? self.defaultStringEncoding) {
-			return responseString
+			return String(Array(responseString))
 		}
 		
 		/* Fallback */
@@ -465,10 +485,14 @@ open class XUDownloadCenter {
 	/// download center to know if the session is invalidated and can cause exceptions
 	/// if calls have been made after the session was invalidated.
 	public func invalidateSession() {
+		_invalidationLock.lock()
+		
 		XULog("Invalidating download center \(self.identifier).")
 		
 		self.isInvalidated = true
 		self.session.invalidateAndCancel()
+		
+		_invalidationLock.unlock()
 	}
 	
 	/// Returns last HTTP status code or 0.

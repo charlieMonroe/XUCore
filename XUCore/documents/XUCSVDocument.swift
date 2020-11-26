@@ -159,7 +159,7 @@ public final class XUCSVDocument {
 				
 				if !firstLine {
 					self.content.append(dict as [String : Any])
-					dict = [ : ]
+					dict = [:]
 				}
 				
 				firstLine = false
@@ -228,7 +228,12 @@ public final class XUCSVDocument {
 	public init(string: String, columnSeparator: Character = Character(",")) throws {
 		self.columnSeparator = columnSeparator
 		
-		if !self._parseString(string) {
+		var source = string
+		if !source.hasSuffix("\n") {
+			source += "\n" // Make sure we end with a newline.
+		}
+		
+		if !self._parseString(source) {
 			// Could not parse string
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.", inBundle: .core)

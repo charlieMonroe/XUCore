@@ -11,13 +11,7 @@ import Foundation
 extension Sequence {
 	
 	public typealias Filter = (Self.Element) throws -> Bool
-	
-	/// Returns true if all of the elements in self match the filter
-	@available(*, deprecated, renamed: "allSatisfy(_:)")
-	public func all(matching filter: Filter) rethrows -> Bool {
-		return try self.allSatisfy(filter)
-	}
-	
+		
 	/// Returns a compacted sequence - removing nil values.
 	public func compacted<T>() -> [T] where Element == Optional<T> {
 		return self.compactMap({ $0 })
@@ -36,12 +30,7 @@ extension Sequence {
 		})
 		return count
 	}
-	
-	@available(*, deprecated, renamed: "firstNonNilValue(using:)")
-	public func findMapped<U>(_ filter: (Self.Element) -> U?) -> U? {
-		return self.firstNonNilValue(using: filter)
-	}
-	
+		
 	/// Finds a mapped value. When `transformation` returns a non-nil value, that value
 	/// is returned. This way you can do some computation in the block and return
 	/// the value without the need of doing the computation again
@@ -204,29 +193,7 @@ extension Array {
 			}
 		}
 	}
-	
-	/// Similar to compactMap, but provides an index.
-	@available(*, deprecated, message: "Use array.enumerated()")
-	public func compactMapIndexed<U>(_ mapper: (Int, Iterator.Element) -> U?) -> [U] {
-		var result: [U] = []
-		for i in 0 ..< self.count {
-			if let obj = mapper(i, self[i]) {
-				result.append(obj)
-			}
-		}
-		return result
-	}
 		
-	/// Similar to map(), but provides the index of the element.
-	@available(*, deprecated, message: "Use array.enumerated()")
-	public func mapIndexed<U>(_ mapper: (Iterator.Element, Int) -> U) -> [U] {
-		var result: [U] = [ ]
-		for i in 0 ..< self.count {
-			result.append(mapper(self[i], i))
-		}
-		return result
-	}
-	
 	/// Moves object from one index to another.
 	public mutating func move(at fromIndex: Int, to toIndex: Int) {
 		if toIndex == fromIndex {
@@ -289,6 +256,13 @@ extension Collection {
 	public func sorted<T: Comparable>(using keyPath: KeyPath<Self.Element, T>) -> [Self.Element] {
 		return self.sorted {
 			$0[keyPath: keyPath] < $1[keyPath: keyPath]
+		}
+	}
+	
+	/// Sorts the collection using a keyPath.
+	public func sorted(using keyPath: KeyPath<Self.Element, String>, options: String.CompareOptions) -> [Self.Element] {
+		return self.sorted {
+			$0[keyPath: keyPath].compare($1[keyPath: keyPath], options: options) == .orderedAscending
 		}
 	}
 	
