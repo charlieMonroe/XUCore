@@ -27,8 +27,10 @@ import XUCore
 		// Launch the message center.
 		_ = XUMessageCenter.shared
 		
-		// Start catching exceptions.
-		XUExceptionHandler.startExceptionHandler()
+		// Start catching exceptions - this is being moved to DownmuteUI.
+		if XUAppSetup.exceptionHandlerReportURL != nil, NSClassFromString("DownmuteUI.DMExceptionHandler") == nil {
+			XUExceptionHandler.startExceptionHandler()
+		}
 		
 		// Launch the beta expiration handler if supported.
 		if XUAppSetup.isBetaBuild {

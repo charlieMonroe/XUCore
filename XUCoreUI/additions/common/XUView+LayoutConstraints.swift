@@ -89,8 +89,8 @@ extension NSLayoutConstraint {
 		self.init(item: first, attribute: attribute, relatedBy: .greaterThanOrEqual, toItem: second, attribute: attribute, multiplier: 1.0, constant: offset)
 	}
 	
-	public convenience init(attribute: NSLayoutConstraint.Attribute, item: Any, constant: CGFloat) {
-		self.init(item: item, attribute: attribute, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: constant)
+	public convenience init(attribute: NSLayoutConstraint.Attribute, item: Any, constant: CGFloat, relation: Relation = .equal) {
+		self.init(item: item, attribute: attribute, relatedBy: relation, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: constant)
 	}
 
 }

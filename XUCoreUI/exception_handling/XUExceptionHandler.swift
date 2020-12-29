@@ -64,6 +64,7 @@ public extension XUPreferences {
 /// about the exception, allowing the user to send a report. See XUApplicationStateProvider
 /// for information on how to extend the exception handler and reporter, providing
 /// additional information about your app's state.
+@available(*, deprecated, message: "Use DownmuteUI version of this class.")
 public final class XUExceptionHandler: NSObject, XUFatalErrorObserver {
 	
 	/// Contains the shared handler. You should not call this, unless the exception

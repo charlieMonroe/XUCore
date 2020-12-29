@@ -316,16 +316,16 @@ open class XUDownloadCenter {
 		let loader = XUSynchronousDataLoader(request: request, session: self.session)
 		
 		do {
-			let (data, response) = try loader.loadData()
-			self.lastHTTPURLResponse = response as? HTTPURLResponse
+			let response = try loader.loadData()
+			self.lastHTTPURLResponse = response.response as? HTTPURLResponse
 			
 			if self.logTraffic {
 				XULog("[\(self.identifier)] - downloaded web site source from \(url), response: \(self.lastHTTPURLResponse.descriptionWithDefaultValue())")
 			}
 			
-			self.observer?.downloadCenter(self, didDownloadContentFrom: url, response: response as? HTTPURLResponse, data: data)
+			self.observer?.downloadCenter(self, didDownloadContentFrom: url, response: response.response as? HTTPURLResponse, data: response.data)
 			
-			return data
+			return response.data
 		} catch {
 			if self.logTraffic {
 				XULog("[\(self.identifier)] - Failed to load URL connection to URL \(url) - \(error)")
@@ -527,7 +527,7 @@ open class XUDownloadCenter {
 		modifier?(&request)
 		
 		do {
-			let (_, response) = try XUSynchronousDataLoader(request: request, session: self.session).loadData()
+			let response = try XUSynchronousDataLoader(request: request, session: self.session).loadData().response
 			
 			guard let httpResponse = response as? HTTPURLResponse else {
 				if self.logTraffic {

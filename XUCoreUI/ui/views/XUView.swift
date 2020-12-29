@@ -40,6 +40,12 @@ import Cocoa
 		}
 	}
 	
+	/// Masked corners in case of corner radius.
+	public var maskedCorners: CACornerMask = [
+		.layerMaxXMaxYCorner, .layerMinXMinYCorner,
+		.layerMaxXMinYCorner, .layerMinXMaxYCorner
+	]
+	
 	private func _updateLayer() {
 		self.wantsLayer = true
 		
@@ -51,6 +57,10 @@ import Cocoa
 		self.layer!.borderColor = self.borderColor.cgColor
 		self.layer!.borderWidth = CGFloat(self.borderWidth)
 		self.layer!.cornerRadius = CGFloat(self.cornerRadius)
+		
+		if #available(macOS 10.13, *) {
+			self.layer!.maskedCorners = self.maskedCorners
+		}
 	}
 	
 	open override func awakeFromNib() {

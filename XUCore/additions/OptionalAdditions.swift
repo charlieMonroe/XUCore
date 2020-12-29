@@ -11,6 +11,23 @@ import Foundation
 private protocol _XUOptional {}
 extension Optional: _XUOptional {}
 
+infix operator ?=
+
+/// Nil coalescing infix operator. Usage:
+///
+/// var x: Int? = nil
+/// x ?= 9
+///
+/// x == 9
+///
+public func ?=<T>(_ lhs: inout T?, _ rhs: T?) {
+	if lhs != nil {
+		return
+	}
+	
+	lhs = rhs
+}
+
 /// Returns true if anyValue represents an optional.
 public func isOptional(_ anyValue: Any) -> Bool {
 	return anyValue is _XUOptional

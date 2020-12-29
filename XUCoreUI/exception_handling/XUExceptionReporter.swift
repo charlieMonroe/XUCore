@@ -26,6 +26,7 @@ import XUCore
 ///				operatingSystemVersion values combined using a dot.
 /// stacktrace - stack trace string.
 /// version - version of the app
+@available(*, deprecated, message: "Use DownmuteUI version of this class.")
 final class XUExceptionReporter: NSObject, NSWindowDelegate {
 	
 	/// Contains a list of reporters being currently displayed.
@@ -120,7 +121,7 @@ final class XUExceptionReporter: NSObject, NSWindowDelegate {
 		
 		let loader = XUSynchronousDataLoader(request: request)
 		let result = try? loader.loadData()
-		guard let response = result?.1 as? HTTPURLResponse else {
+		guard let response = result?.response as? HTTPURLResponse else {
 			self._reportFailedReportSend()
 			return
 		}

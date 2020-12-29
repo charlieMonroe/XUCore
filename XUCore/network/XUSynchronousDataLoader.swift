@@ -12,6 +12,12 @@ import Foundation
 /// request using the session.
 public final class XUSynchronousDataLoader {
 	
+	/// Response that contains data and a response.
+	public struct Response {
+		public let data: Data
+		public let response: URLResponse?
+	}
+	
 	private var data: Data?
 	private let lock = NSConditionLock(condition: 0)
 	private var response: URLResponse?
@@ -37,7 +43,7 @@ public final class XUSynchronousDataLoader {
 	/// IMPORTANT: This method asserts that the current queue != delegateQueue of
 	/// self.session, which usually is the main queue. It is important not to
 	/// invoke this method in such manner since it would lead to a deadlock.
-	public func loadData() throws -> (data: Data, response: URLResponse?) {
+	public func loadData() throws -> Response {
 		XUAssert(OperationQueue.current != self.session.delegateQueue,
 			   "Can't be loading data on the same queue as is the session's delegate queue!")
 				
@@ -62,7 +68,7 @@ public final class XUSynchronousDataLoader {
 				NSLocalizedFailureReasonErrorKey: XULocalizedString("Unknown error.")
 			])
 		}
-		return (data, response)
+		return Response(data: data, response: response)
 	}
 	
 	/// Loads just the data. Useful in case we're not interested in any errors.

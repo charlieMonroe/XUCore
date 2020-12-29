@@ -217,7 +217,7 @@ public final class XULocalizationCenter {
 					updatedValue = value + "…"
 				}
 				
-				_cachedLanguageDicts[bundle]?[language]?[updatedKey] = updatedValue
+				_cachedLanguageDicts[bundle]?[language]?[key] = updatedValue
 				return updatedValue
 			}
 		}

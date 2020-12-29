@@ -1,131 +1,131 @@
 /// XUCore localization file. This contains strings within the XUCore framework.
 
-"1 hour" = "1 hour";
-"1 minute" = "1 minute";
-"1 second" = "1 second";
-"Unknown error." = "Unknown error.";
+"1 hour" = "1時間";
+"1 minute" = "1分";
+"1 second" = "1秒";
+"Unknown error." = "未知のエラー";
 
 "OK" = "OK";
 "Cancel" = "キャンセル";
 
-"Failed to parse CSV file." = "Failed to parse CSV file.";
+"Failed to parse CSV file." = "CSVファイルの作成に失敗しました。";
 
-"Send Report" = "Send Report";
-"Privacy Information..." = "Privacy Information...";
-"%AppName% has encountered a problem." = "%AppName% has encountered a problem.";
-"%AppName% will terminate after sending the report." = "%AppName% will terminate after sending the report.";
-"Report to be sent:" = "Report to be sent:";
-"Your Email:" = "Your Email:";
-"Description:" = "Description:";
+"Send Report" = "レポートを送信する";
+"Privacy Information..." = "プライバシー情報";
+"%AppName% has encountered a problem." = "%AppName% に問題が発生しました";
+"%AppName% will terminate after sending the report." = "%AppName% は、レポートの送信後に終了します";
+"Report to be sent:" = "送信するレポート：";
+"Your Email:" = "メールアドレス:";
+"Description:" = "説明:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "このエラーが発生したときの状況を説明し、可能であれば問題を再現する方法を説明してください。 以下にメールアドレスを入力してください。この問題が修正される時期をお知らせするか、このエラーに関する詳細についてお尋ねする場合があります。 あなたのメールアドレスはどのデータベースにも収集されず、不要なメールを受信することもありません。\nこのレポートを送信することにより、このソフトウェアの改善に役立ちます。 ありがとうございました！";
 
-"Report Problem" = "Report Problem";
+"Report Problem" = "問題の報告";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "私たちはあなたのフィードバックを大切にし、不要な情報を収集することを敢えてしません。 あなたのメールアドレスはどこにも保存されず、この問題が修正される可能性がある場合、またはこの問題を修正するためにさらに情報が必要な場合にのみ通知するために使用されます";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "次の情報のみが送信されます。\n•提供された説明\n•以下の例外情報\n•このアプリケーションのバージョン\n•システムのバージョン（OS）\n•コンピューターのモデル（コンピューターを識別できるMACアドレスまたは同様の情報は送信されません）";
 
-"Could not post your report." = "Could not post your report.";
-"Check your Internet connection and try again." = "Check your Internet connection and try again.";
-"Heh, nice try. Please, enter a valid email address." = "Heh, nice try. Please, enter a valid email address.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise.";
-"You need to enter a valid email address." = "You need to enter a valid email address.";
-"We may need to get in touch with you in order to fix this." = "We may need to get in touch with you in order to fix this.";
-"Please, provide some details as to when this exception happened." = "Please, provide some details as to when this exception happened.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible.";
-"Thank you for the report!" = "Thank you for the report!";
-"We'll fix it as soon as possible!" = "We'll fix it as soon as possible!";
+"Could not post your report." = "レポートを投稿できませんでした";
+"Check your Internet connection and try again." = "インターネット接続を確認して、再試行してください";
+"Heh, nice try. Please, enter a valid email address." = "有効なメールアドレスを入力してください";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "これを修正するために、お客様に連絡する必要がある場合があります。 メールアドレスを他人に販売したり、他の方法で使用したりすることはありません。 お約束いたします。";
+"You need to enter a valid email address." = "有効なメールアドレスを入力する必要があります";
+"We may need to get in touch with you in order to fix this." = "これを修正するために、お客様に連絡する必要がある場合があります。";
+"Please, provide some details as to when this exception happened." = "このエラーがいつ発生したかについて、詳細を入力してください。";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "アプリケーションがフォアグラウンドまたはバックグラウンドにある場合は、進行中のタスクに関する情報を記入してください（他のアプリケーションをクリックした場合など）レポートだけからバグを特定しようとするのは困難であり、追加情報なしでは不可能です";
+"Thank you for the report!" = "ご報告ありがとうございます！";
+"We'll fix it as soon as possible!" = "できるだけ早く修正します！";
 
-"Welcome to beta testing of %@." = "Welcome to beta testing of %@.";
-"This is the first time you run a beta build %@." = "This is the first time you run a beta build %@.";
-"This beta build of %@ has expired." = "This beta build of %@ has expired.";
+"Welcome to beta testing of %@." = "%@ のベータテストへようこそ";
+"This is the first time you run a beta build %@." = "ベータビルド %@ を実行するのはこれが初めてです";
+"This beta build of %@ has expired." = "この %@ のベータビルドは期限切れです";
 
-"Working..." = "Working...";
+"Working..." = "準備中...";
 
-"Progress" = "Progress";
-"Posted successfully" = "Posted successfully";
+"Progress" = "進捗";
+"Posted successfully" = "正常に投稿されました";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.";
-"Please download a new build." = "Please download a new build.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ は次の24時間動作し続け、その後その機能はブロックされます。 動作を維持するには、%@を更新してください。";
+"Please download a new build." = "新しいバージョンをダウンロードしてください";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support.";
-"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding.";
-"%li hours" = "%li hours";
-"%li minutes" = "%li minutes";
-"%li seconds" = "%li seconds";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "レポートを送ることはできますが、メッセージが英語でない場合、的確なサポートができない場合がございます";
+"Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "メッセージには、通常、メッセージが英語で書かれていないことを示す特殊文字が含まれています。 %@ はさまざまな言語に翻訳されていますが、サポートは英語でのみ提供されていることに注意してください。 理解していただきありがとうございます。";
+"%li hours" = "%li 時間";
+"%li minutes" = "%li 分";
+"%li seconds" = "%li 秒";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
-"Cannot open document metadata file." = "Cannot open document metadata file.";
-"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
-"Synchronization is already in progress." = "Synchronization is already in progress.";
-"An upload operation is already in progress." = "An upload operation is already in progress.";
-"Could not save upload metadata." = "Could not save upload metadata.";
-"Cannot find entity named %@" = "Cannot find entity named %@";
-"Cannot find class named %@" = "Cannot find class named %@";
-"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
-"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
-"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
-"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+"Cannot find such document. Check back later, it might not have synced through." = "そのようなドキュメントが見つかりません。 後でもう一度確認してください。同期されていない可能性があります";
+"Cannot open document metadata file." = "ドキュメントメタデータファイルが開けません";
+"Metadata file doesn't contain required information." = "メタデータファイルに必要な情報が含まれていません。";
+"Synchronization is already in progress." = "同期はすでに進行中です";
+"An upload operation is already in progress." = "アップロード操作はすでに進行中です";
+"Could not save upload metadata." = "アップロードメタデータを保存できませんでした";
+"Cannot find entity named %@" = "%@という名前の項目が見つかりませんでした";
+"Cannot find class named %@" = "%@という名前のクラスが見つかりません";
+"Cannot find entity with ID %@" = "ID %@ に該当するものがありませんでした";
+"Can't find synchronization folder for document %@." = "ドキュメント %@ の同期フォルダが見つかりません";
+"%@ couldn't finish synchronization in the background." = "%@ はバックグラウンドで同期を終了できませんでした。";
+"Please switch back to %@ so that the synchronization can finish." = "同期を終了できるように、%@ に戻してください。";
 
 /// XUOAuth2
-"Authentication" = "Authentication";
-"Server responded with unknown token type." = "Server responded with unknown token type.";
-"Server provided invalid authorization response." = "Server provided invalid authorization response.";
-"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
-"User cancelled the authorization." = "User cancelled the authorization.";
+"Authentication" = "認証";
+"Server responded with unknown token type." = "サーバーは不明なTokenタイプで応答しました";
+"Server provided invalid authorization response." = "サーバーが無効な認証応答をしました";
+"Server has redirected with invalid URL." = "サーバーが無効なURLにリダイレクトしました。";
+"User cancelled the authorization." = "ユーザーが認証をキャンセルしました";
 
 /// Debug Log Menu
-"Debug" = "Debug";
-"About Debug Log..." = "About Debug Log...";
-"Debug Logging" = "Debug Logging";
+"Debug" = "デバッグ";
+"About Debug Log..." = "デバッグログについて...";
+"Debug Logging" = "デバッグログ";
 "On" = "On";
 "Off" = "Off";
-"Clear Debug Log" = "Clear Debug Log";
-"Show Log in Finder" = "Show Log in Finder";
+"Clear Debug Log" = "デバッグログをクリアする";
+"Show Log in Finder" = "Finderでログを表示";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "デバッグログは、%@ がバックグラウンドで実行する内容に関する技術的な詳細を含むテキストファイルです。 何が起こっているのかを確認できるので、問題をすばやく修正するのに非常に役立ちます。 デバッグログを取得するには、次の簡単な手順に従います";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1）これが送信する最初のデバッグログでない場合は、[デバッグ]メニューから[デバッグログのクリア]を選択してください。\n2）[デバッグ]メニューで、[デバッグログ]がオンになっていることを確認します。\n3）問題が発生しているタスクを実行します。\n4）[デバッグ]メニューで、[デバッグログ]をオフにします。\n5）[デバッグ]メニューで、[Finderにログを表示]を選択します。 これにより、Finderでログファイルが選択され、簡単に送信できます。 情報をコピーして貼り付けるのではなく、ファイルをメールに添付してください。\n\nログファイルには、ログファイル（単純なテキストファイル）を開いて確認できる個人データは含まれていません。 一部のデータを機密または個人的なものと見なす場合は、プレースホルダーとして簡単に識別できるもの（XXXXXXXXなど）に置き換えて、ログファイルを変更したことをお知らせください。";
 
 /// 8/23/2016+
-"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
-"Log Current Application State" = "Log Current Application State";
+"The document could not be downloaded at this moment." = "現在このドキュメントはダウンロードできません";
+"Log Current Application State" = "現在のアプリケーション状態をログに記録する";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
-"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+"This beta build will expire in less than an hour." = "このベータビルドは1時間以内に期限切れになります。";
+"Please update your copy of this beta build." = "このベータビルドを更新してください";
 
 // Preferences.
-"All Preferences" = "All Preferences";
-"Show All" = "Show All";
-"Preferences" = "Preferences";
+"All Preferences" = "すべての設定";
+"Show All" = "全部表示";
+"Preferences" = "環境設定";
 
 /// 12/21/2016+
 
 // Search field with results.
-"No search results" = "No search results";
-"%li search results" = "%li search results";
+"No search results" = "検索結果がありません";
+"%li search results" = "%li 件";
 
 // Certificate view.
-"Select..." = "Select...";
+"Select..." = "選択...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "同期データをダウンロードしています";
+"Copy Current Application State" = "現在のアプリケーション状態をコピーする";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "コピーしました";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ で問題が発生したため、クラッシュします。 レポートダイアログが表示されます。 クラッシュを無視したい場合は、送信するか、ウィンドウを閉じてください";
+"Send Anyway" = "とりあえず送る";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "利用可能なアップデートがあります";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "新しいバージョンでこの問題が修正されている可能性があります。 このアプリケーションを更新してみてください。 このアプリケーションの更新機能にアクセスできない場合は、そのサイトからアプリケーションを再ダウンロードしてください。";
+"Download Update..." = "アップデートをダウンロード...";
 
-"Done" = "Done";
+"Done" = "完了";
