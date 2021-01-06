@@ -334,11 +334,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 			self.visualEffectView.material = .dark
 			self.messageField.textColor = .white
 		} else {
-			if #available(macOS 10.11, *) {
-			    self.visualEffectView.material = .mediumLight
-			} else {
-			    self.visualEffectView.material = .light
-			}
+			self.visualEffectView.material = .mediumLight
 			
 			self.messageField.textColor = NSColor.black
 		}

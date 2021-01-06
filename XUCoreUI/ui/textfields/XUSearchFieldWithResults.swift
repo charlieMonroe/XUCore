@@ -39,7 +39,7 @@ public protocol XUSearchFieldWithResultsDelegate: AnyObject {
 	func searchField(_ field: XUSearchFieldWithResults, tableView: NSTableView, rowViewFor searchResult: Any) -> NSTableRowView
 	
 	/// Return a view for a search result.
-	func searchField(_ field: XUSearchFieldWithResults, tableView: NSTableView, viewForColumn tableColumn: NSTableColumn?, andResult searchResult: Any) -> NSView
+	func searchField(_ field: XUSearchFieldWithResults, tableView: NSTableView, viewForColumn tableColumn: NSTableColumn?, andResult searchResult: Any) -> NSView?
 	
 }
 
@@ -125,6 +125,13 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	private lazy var searchResultsPanel: NSPanel = {
 		let panel = NSPanel(contentRect: CGRect(x: 0.0, y: 0.0, width: self.searchResultsWidth, height: 200.0), styleMask: [.borderless], backing: .buffered, defer: true)
 		panel.contentView = self.searchResultsScrollView
+		
+		if #available(macOS 11.0, *) {
+			panel.contentView!.wantsLayer = true
+			let layer = panel.contentView!.layer
+			layer!.cornerRadius = 5.0
+		}
+		
 		panel.hasShadow = true
 		panel.hidesOnDeactivate = false
 		return panel
@@ -138,6 +145,11 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		tableView.doubleAction = #selector(_selectSearchResult(_:))
 		tableView.headerView = nil
 		tableView.usesAlternatingRowBackgroundColors = true
+		
+		if #available(macOS 11.0, *) {
+			tableView.style = .fullWidth
+		}
+		
 		tableView.addTableColumn(NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "com.charliemonroe.XUSearchFieldWithResults")))
 		tableView.columnAutoresizingStyle = .firstColumnOnlyAutoresizingStyle
 		return tableView
@@ -159,9 +171,15 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			rows = 1
 		}
 		
-		windowFrame.size.height = CGFloat(rows) * self.searchResultsTableView.intercellSpacing.height + (0 ..< rows).sum({
+		var height = CGFloat(rows) * self.searchResultsTableView.intercellSpacing.height + (0 ..< rows).sum({
 			self.resultsDelegate?.searchField(self, heightOfRowFor: $0) ?? 0.0
 		}) - 1.0
+		
+		if #available(macOS 11.0, *) {
+			height += 1.0
+		}
+			
+		windowFrame.size.height = height
 		windowFrame.size.width = self.searchResultsWidth
 		windowFrame.origin.x = fieldFrame.maxX - windowFrame.width
 		windowFrame.origin.y = fieldFrame.minY - windowFrame.height
@@ -263,6 +281,10 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	/// Hides search window.
 	public func hideSearchWindow() {
+		guard self.window!.isVisible else {
+			return
+		}
+		
 		self.window!.removeChildWindow(self.searchResultsPanel)
 		self.searchResultsPanel.orderOut(nil)
 		
@@ -272,21 +294,18 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	public override func layout() {
 		super.layout()
 		
-		if #available(macOS 10.11, *) {
-			self.progressIndicator.frame = self.rectForCancelButton(whenCentered: false)
-		} else {
-			var frame = self.progressIndicator.frame
-			frame = self.frame.centeringRectInSelf(frame)
-			frame.origin.x = self.bounds.width - frame.width - 5.0
-			self.progressIndicator.frame = frame
-		}
+		self.progressIndicator.frame = self.rectForCancelButton(whenCentered: false)
 	}
 	
 	/// This is self.action - this gets called when the search changes the query.
 	@objc private func search(_ sender: Any?) {
 		_lock.perform { () -> Void in
 			_delayedSearchTimer?.invalidate()
-			_delayedSearchTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(_search), userInfo: nil, repeats: false)
+			let timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(_search), userInfo: nil, repeats: false)
+			if XUApp.isRunningInModalMode {
+				RunLoop.current.add(timer, forMode: .modalPanel)
+			}
+			_delayedSearchTimer = timer
 		}
 	}
 	
@@ -302,8 +321,12 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	/// Force-displays the search window.
 	public func showSearchWindow() {
-		if XUApp.isRunningInModalMode {
+		if XUApp.isRunningInModalMode, NSApp.modalWindow != self.window {
 			return
+		}
+		
+		if !self.searchResultsPanel.isVisible {
+			self.searchResultsTableView.reloadData()
 		}
 		
 		self._repositionSearchWindow()
@@ -318,6 +341,8 @@ public final class XUSearchFieldWithResults: NSSearchField {
 	
 	public override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
+		
+		XUAssert(XUApp != nil, "Requires app to be XUApplication.")
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(_repositionSearchWindow), name: NSWindow.didResizeNotification, object: self.window)
 	}
@@ -354,7 +379,9 @@ extension XUSearchFieldWithResults: NSTableViewDataSource, NSTableViewDelegate {
 			return
 		}
 		if let mainWindow = self.window {
-			NSAccessibility.post(element: mainWindow, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement: resultName])
+			NSAccessibility.post(element: mainWindow, notification: NSAccessibility.Notification.announcementRequested, userInfo: [
+									NSAccessibility.NotificationUserInfoKey.announcement: resultName
+			])
 		}
 	}
 }

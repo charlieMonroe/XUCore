@@ -77,6 +77,24 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 		return info.resident_size
 	}
 	
+	private func _architectureName(for architecture: Int) -> String {
+		let armArchitecture: Int
+		if #available(macOS 11.0, *) {
+			armArchitecture = NSBundleExecutableArchitectureARM64
+		} else {
+			armArchitecture = -1
+		}
+
+		switch architecture {
+		case NSBundleExecutableArchitectureX86_64:
+			return "x64"
+		case armArchitecture:
+			return "ARM"
+		default:
+			return "Unknown"
+		}
+	}
+	
 	private class func _calculateBinaryMD5(for bundle: Bundle) -> String {
 		guard let executableURL = bundle.executableURL else {
 			return "nil"
@@ -104,7 +122,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	open var stateItems: [XUApplicationStateItem] {
 		var stateItems: [XUApplicationStateItem] = [
 			XUApplicationStateItem(name: "Version", value: "\(XUAppSetup.applicationVersionNumber) (\(XUAppSetup.applicationBuildNumber))"),
-			XUApplicationStateItem(name: "OS Version", value: ProcessInfo().operatingSystemVersion.versionString),
+			XUApplicationStateItem(name: "OS Version", value: ProcessInfo().operatingSystemVersion.versionString + " - " + self._architectureName(for: NSRunningApplication.current.executableArchitecture)),
 			XUApplicationStateItem(name: "Locale", value: Locale.current.identifier),
 			XUApplicationStateItem(name: "Beta", value: "\(XUAppSetup.isBetaBuild)"),
 			XUApplicationStateItem(name: "Build Type", value: XUAppSetup.buildType.rawValue),

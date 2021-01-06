@@ -20,6 +20,37 @@ import XUCore
 /// - savePreferences
 open class XUPreferencePaneViewController: NSViewController {
 
+	/// Cached searchable phrases.
+	private var _cachedPhrases: [String]?
+	
+	private func _createHeuristicalSearchablePhrases() -> [String] {
+		let view = self.view
+		
+		var phrases = [self.paneName]
+		let crawler = XUViewCrawler(view: view)
+		for view in crawler where !view.isHidden {
+			if let button = view as? NSButton, !button.title.isEmpty {
+				if button is NSPopUpButton {
+					continue
+				}
+				
+				phrases.append(button.title)
+			}
+			if let label = view as? NSTextField, !label.isEditable {
+				let value = label.stringValue
+				if value.isEmpty || value.containsCharacter(from: .punctuationCharacters) {
+					// It's a sentence.
+					continue
+				}
+				
+				phrases.append(value)
+			}
+		}
+		
+		return phrases
+	}
+	
+	
 	/// Icon of the pane. Should be 32x32px. This must be overridden by subclasses
 	/// since the default implementation ends in fatalError.
 	open var paneIcon: NSImage {
@@ -58,6 +89,20 @@ open class XUPreferencePaneViewController: NSViewController {
 	/// Save the preferences from the UI.
 	open func savePreferences() {
 		
+	}
+	
+	/// Returns a list of searchable phrases. This is used for search within the
+	/// main window. By default, this loads the UI, crawls it a lists phrases
+	/// that are heuristically likely to be options (checkboxes, labels that do
+	/// not contain a sentence, etc.).
+	open func searchablePhrases() -> [String] {
+		if let phrases = _cachedPhrases {
+			return phrases
+		}
+		
+		let phrases = self._createHeuristicalSearchablePhrases()
+		_cachedPhrases = phrases
+		return phrases
 	}
 	
 	/// You can optionally validate any editing here. The window controller will

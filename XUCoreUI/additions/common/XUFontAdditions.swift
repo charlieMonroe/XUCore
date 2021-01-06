@@ -61,48 +61,25 @@ public enum XUFontWeight: Int {
 				return UIFont.Weight.black.rawValue
 			}
 		#elseif os(macOS)
-			if #available(macOS 10.11, *) {
-				switch self {
-				case .ultraLight:
-					return NSFont.Weight.ultraLight.rawValue
-				case .thin:
-					return NSFont.Weight.thin.rawValue
-				case .light:
-					return NSFont.Weight.light.rawValue
-				case .regular:
-					return NSFont.Weight.regular.rawValue
-				case .medium:
-					return NSFont.Weight.medium.rawValue
-				case .semibold:
-					return NSFont.Weight.semibold.rawValue
-				case .bold:
-					return NSFont.Weight.bold.rawValue
-				case .heavy:
-					return NSFont.Weight.heavy.rawValue
-				case .black:
-					return NSFont.Weight.black.rawValue
-				}
-			} else {
-				switch self {
-				case .ultraLight:
-					return -0.800000011920929
-				case .thin:
-					return -0.600000023841858
-				case .light:
-					return -0.400000005960464
-				case .regular:
-					return 0.0
-				case .medium:
-					return 0.230000004172325
-				case .semibold:
-					return 0.300000011920929
-				case .bold:
-					return 0.400000005960464
-				case .heavy:
-					return 0.560000002384186
-				case .black:
-					return 0.620000004768372
-				}
+			switch self {
+			case .ultraLight:
+				return NSFont.Weight.ultraLight.rawValue
+			case .thin:
+				return NSFont.Weight.thin.rawValue
+			case .light:
+				return NSFont.Weight.light.rawValue
+			case .regular:
+				return NSFont.Weight.regular.rawValue
+			case .medium:
+				return NSFont.Weight.medium.rawValue
+			case .semibold:
+				return NSFont.Weight.semibold.rawValue
+			case .bold:
+				return NSFont.Weight.bold.rawValue
+			case .heavy:
+				return NSFont.Weight.heavy.rawValue
+			case .black:
+				return NSFont.Weight.black.rawValue
 			}
 		#endif
 	}
@@ -114,16 +91,9 @@ public extension XUFont {
 	/// Returns system font of size with a particular weight. Since the system font
 	/// should include all weights, the returned value is IUO, instead of a pure
 	/// optional.
+	@available(*, deprecated, message: "Use regular methods.")
 	class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
-		if #available(macOS 10.11, *) {
-			return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
-		} else {
-			if weight.rawValue <= XUFontWeight.regular.rawValue {
-				return self.systemFont(ofSize: pointSize)
-			} else {
-				return self.boldSystemFont(ofSize: pointSize)
-			}
-		}
+		return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
 	}
 	
 	/// Returns the same font with bold trait.

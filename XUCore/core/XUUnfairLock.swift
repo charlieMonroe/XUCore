@@ -10,7 +10,6 @@ import Foundation
 
 /// A simple wrapper arount `os_unfair_lock`. This is a class, hence an instance
 /// can be passed around and locked without having a mutating context.
-@available(macOS 10.12, *)
 public final class XUUnfairLock: Lock {
 	
 	private var _lock: os_unfair_lock = os_unfair_lock()

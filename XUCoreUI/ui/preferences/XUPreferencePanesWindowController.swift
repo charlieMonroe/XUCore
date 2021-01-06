@@ -66,6 +66,9 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// Current view being displayed.
 	private var _currentView: NSView!
 	
+	/// Search field.
+	private weak var _searchField: XUSearchFieldWithResults!
+	
 	/// Controller that shows the title.
 	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
 	
@@ -77,7 +80,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	public final private(set) var currentPaneController: XUPreferencePaneViewController?
 	
 	/// Sections.
-	public final private(set) var sections: [XUPreferencePanesSection]!
+	public final private(set) var sections: [XUPreferencePanesSection] = []
 	
 	
 	/// Sets the current view to view and changes the window size. We're forcing
@@ -112,8 +115,29 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 	}
 	
+	open override func keyDown(with event: NSEvent) {
+		guard let characters = event.charactersIgnoringModifiers, event.modifierFlags == .command else {
+			super.keyDown(with: event)
+			return
+		}
+		
+		switch characters {
+		case "l":
+			self.showAllPanes()
+		case "f":
+			self.search(nil)
+		default:
+			super.keyDown(with: event)
+		}
+	}
+	
 	func preferencePaneView(didSelectPane paneController: XUPreferencePaneViewController) {
 		self.selectPane(paneController)
+	}
+	
+	/// An action that selects the search field.
+	@objc open func search(_ sender: Any?) {
+		self.window!.makeFirstResponder(_searchField)
 	}
 	
 	/// Selects a pane with identifier. The identifier is taken from 
@@ -173,6 +197,12 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
     open override func windowDidLoad() {
         super.windowDidLoad()
+		
+		if let searchField = self.window!.toolbar?.items.last?.view as? XUSearchFieldWithResults {
+			_searchField = searchField
+			searchField.resultsDelegate = self
+			searchField.searchResultsWidth = 350.0
+		}
 
 		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: .core)
 		
@@ -180,9 +210,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self.window!.title = XULocalizedString("Preferences", inBundle: .core)
 		self.window!.titleVisibility = .hidden
         self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
-		if #available(macOS 10.11, *) {
-			self.window!.addTitlebarAccessoryViewController(_titleViewController)
-		}
+		self.window!.addTitlebarAccessoryViewController(_titleViewController)
 		
 		self.window!.setContentSize(self.allPanesView.frame.size)
 		self.window!.contentView!.addSubview(self.allPanesView)
@@ -278,11 +306,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		super.init(nibName: "_XUAllPanesButtonViewController", bundle: .coreUI)
 		
 		self.fullScreenMinHeight = 48.0
-		if #available(macOS 10.11, *) {
-			self.layoutAttribute = .left
-		} else {
-			self.layoutAttribute = .right
-		}
+		self.layoutAttribute = .left
 		
 		self.loadView()
 		
@@ -340,18 +364,9 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: .coreUI)
 		
-		if #available(macOS 10.11, *) {
-			self.layoutAttribute = .left
-		} else {
-			self.layoutAttribute = .right
-		}
+		self.layoutAttribute = .left
 		
-		self.loadView() // Required so that _titleLabel is available
-		
-		if #available(macOS 10.11, *) {
-		} else {
-			_titleLabel.alignment = .right
-		}
+		self.loadView() // Required so that _titleLabel is available		
 	}
 	
 	required init?(coder: NSCoder) {

@@ -76,21 +76,11 @@ public extension NSAlert {
 		let frame = CGRect(x: 0.0, y: 0.0, width: 290.0, height: 22.0)
 		let accessory: NSTextField
 		if secure {
-			if #available(macOS 10.12, *) {
-				accessory = NSSecureTextField(string: initialValue)
-				accessory.frame = frame
-			} else {
-				accessory = NSSecureTextField(frame: frame)
-				accessory.stringValue = initialValue
-			}
+			accessory = NSSecureTextField(string: initialValue)
+			accessory.frame = frame
 		} else {
-			if #available(macOS 10.12, *) {
-				accessory = NSTextField(string: initialValue)
-				accessory.frame = frame
-			} else {
-				accessory = NSTextField(frame: frame)
-				accessory.stringValue = initialValue
-			}
+			accessory = NSTextField(string: initialValue)
+			accessory.frame = frame
 		}
 		
 		self.accessoryView = accessory
