@@ -268,7 +268,6 @@
 		0772E806224248700014CDC4 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A0E2420131CB80087DCF6 /* UIViewController+Additions.swift */; };
 		0772E807224248700014CDC4 /* UITextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B153AC1E534C4B003A5263 /* UITextFieldAdditions.swift */; };
 		0772E80A224248AC0014CDC4 /* XUApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E16F1BF07E3B00832858 /* XUApplication.swift */; };
-		0772E80C224248AC0014CDC4 /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 		0772E80E224248AC0014CDC4 /* XUPowerAssertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCD51C0056450075CC9B /* XUPowerAssertion.swift */; };
 		0772E810224248EA0014CDC4 /* XUAppScopeBookmarksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */; };
 		0772E811224248EA0014CDC4 /* XUAppScopeBookmarksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */; };
@@ -436,6 +435,8 @@
 		07E38A341C061B2700AE6EAB /* XULocalizationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A321C061B2700AE6EAB /* XULocalizationSupport.swift */; };
 		07E38A401C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
 		07E38A411C07105100AE6EAB /* XUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E38A3F1C07105100AE6EAB /* XUString.swift */; };
+		07ED3D8425C0312F0093B93D /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
+		07ED3D8525C0312F0093B93D /* XUHardwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E35B9B1C024387007D31BE /* XUHardwareInfo.swift */; };
 		07F0D45F25A4CA310011C551 /* XUPreferencePanesWindowController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D45E25A4CA310011C551 /* XUPreferencePanesWindowController+SearchDelegate.swift */; };
 		07FD4BD41C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */; };
 		07FD4BD51C7CDF8700559CF0 /* XUObjCProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD4BD31C7CDF8700559CF0 /* XUObjCProperty.swift */; };
@@ -711,6 +712,7 @@
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
 		07A5940A20D126EB00429374 /* NumericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtensions.swift; sourceTree = "<group>"; };
+		07A5CF4825AEE7E300121E02 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A7A04321B3C70A00F59DB9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A7A04421B3C70A00F59DB9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
@@ -1888,6 +1890,7 @@
 				pl,
 				pt,
 				bn,
+				ko,
 			);
 			mainGroup = 077AFD851BBD0E5300872A48;
 			productRefGroup = 077AFD901BBD0E5300872A48 /* Products */;
@@ -2042,7 +2045,6 @@
 				0772E7E3224248580014CDC4 /* XUBezierPathAdditions.swift in Sources */,
 				0772E7F9224248630014CDC4 /* XUUpdateChecker.swift in Sources */,
 				0772E7D52242464B0014CDC4 /* NSColorAdditions.swift in Sources */,
-				0772E80C224248AC0014CDC4 /* XUHardwareInfo.swift in Sources */,
 				0772E820224249F90014CDC4 /* XUURLHandlingCenter.swift in Sources */,
 				0772E83C22424B660014CDC4 /* XUArrowKeysObservingWindow.swift in Sources */,
 				0772E7E5224248580014CDC4 /* XUFontAdditions.swift in Sources */,
@@ -2151,6 +2153,7 @@
 				073E6B451BE1FD7E00706283 /* InputStream+Reading.swift in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
+				07ED3D8425C0312F0093B93D /* XUHardwareInfo.swift in Sources */,
 				077AFEBA1BBD101400872A48 /* DictionaryExtensions.swift in Sources */,
 				07C3FA101BEBA63D008A4200 /* XURandomGenerator.swift in Sources */,
 				07B153C31E5369A6003A5263 /* XUExceptionCatcher+Swift.swift in Sources */,
@@ -2252,6 +2255,7 @@
 				077DE4931D61C52400FD6639 /* XUApplicationState.swift in Sources */,
 				0779E17A1BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				078D070A224CF64C005D0C51 /* XUSyncEngineModel.xcdatamodeld in Sources */,
+				07ED3D8525C0312F0093B93D /* XUHardwareInfo.swift in Sources */,
 				073E6B461BE1FD7E00706283 /* InputStream+Reading.swift in Sources */,
 				07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
@@ -2394,6 +2398,7 @@
 				07F70E3A2421420C002BC471 /* pl */,
 				07F70E3B2421421C002BC471 /* pt */,
 				07CA2425251084DB0054D2D5 /* bn */,
+				07A5CF4825AEE7E300121E02 /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2493,7 +2498,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2510,7 +2515,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2537,7 +2542,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2554,7 +2559,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2578,7 +2583,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2593,7 +2598,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2620,7 +2625,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2635,7 +2640,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_MODULE_NAME = XUCoreUI;
@@ -2765,7 +2770,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 143;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2781,7 +2786,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2799,7 +2804,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 143;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2815,7 +2820,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2834,7 +2839,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 143;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2848,7 +2853,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
@@ -2869,7 +2874,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 143;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2883,7 +2888,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;

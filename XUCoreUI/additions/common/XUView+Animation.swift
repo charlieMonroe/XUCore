@@ -103,7 +103,7 @@ public extension XUViewAnimation {
 		let alphaStep = (targetAlpha - sourceAlpha) /  CGFloat(numberOfSteps)
 		
 		var stepCounter = 0
-		let timer = Timer.scheduledTimer(timeInterval: step, repeats: true) { (timer) in
+		let timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { (timer) in
 			stepCounter += 1
 			
 			self.views.forEach({ $0.alphaValue += alphaStep })
@@ -236,11 +236,12 @@ public extension XUViewAnimation {
 				continue // Already pulsating.
 			}
 			
-			let timer = Timer.scheduledTimer(timeInterval: _pulsatingViewsFPS, repeats: true, usingBlock: { (_) in
+			let timer = Timer(timeInterval: _pulsatingViewsFPS, repeats: true, block: { (_) in
 				self._updatePulsating(for: view)
 			})
 			
 			#if os(macOS)
+				RunLoop.current.add(timer, forMode: RunLoop.Mode.default)
 				RunLoop.current.add(timer, forMode: RunLoop.Mode.eventTracking)
 				RunLoop.current.add(timer, forMode: RunLoop.Mode.modalPanel)
 			#endif

@@ -1,5 +1,5 @@
 //
-//  NSDataAdditions.swift
+//  DateAdditions.swift
 //  XUCore
 //
 //  Created by Charlie Monroe on 11/8/15.
@@ -13,7 +13,7 @@ private var __today: Date?
 private var __validUntil: TimeInterval = 0
 
 /// Contains time intervals, like hour, minute, day, week. Ideally, this would
-/// be NSTimeInterval extension. Unfortunately, NSTimeInterval is only a typealias
+/// be TimeInterval extension. Unfortunately, TimeInterval is only a typealias
 /// for Double, so Double.day would be valid as well, which we don't want.
 public struct XUTimeInterval {
 	
@@ -141,14 +141,12 @@ public extension Date {
 	
 	var day: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.day, from: self)
-		return components.day!
+		return calendar.component(.day, from: self)
 	}
 	
 	var hour: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.hour, from: self)
-		return components.hour!
+		return calendar.component(.hour, from: self)
 	}
 	
 	/// Returns date with day/month/year/hour/minute/second values, if valid.
@@ -205,35 +203,27 @@ public extension Date {
 	}
 	
 	func isWithin(months: XUMonth) -> Bool {
-		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.month, from: self)
-		
-		let month = XUMonth(rawValue: (1 << (components.month! - 1)))
+		let month = XUMonth(rawValue: (1 << (self.month - 1)))
 		return months.contains(month)
 	}
 	
 	func isWithin(year: Int) -> Bool {
-		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.year, from: self)
-		return components.year == year
+		return self.year == year
 	}
 	
 	var minute: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.minute, from: self)
-		return components.minute!
+		return calendar.component(.minute, from: self)
 	}
 	
 	var month: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.month, from: self)
-		return components.month!
+		return calendar.component(.month, from: self)
 	}
 	
 	var second: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.second, from: self)
-		return components.second!
+		return calendar.component(.second, from: self)
 	}
 	
 	var shortDescription: String {
@@ -244,8 +234,7 @@ public extension Date {
 	}
 	
 	var shortEuropeanDescription: String {
-		let components = (Calendar.current as NSCalendar).components([ .day, .month, .year ], from: self)
-		return String(format: "%02i.%02i.%04i", components.day!, components.month!, components.year!)
+		return String(format: "%02i.%02i.%04i", self.day, self.month, self.year)
 	}
 	
 	/// Returns a date that is within the same day as self, but has 0 hours,
@@ -256,8 +245,7 @@ public extension Date {
 	
 	var year: Int {
 		let calendar = Calendar.current
-		let components = (calendar as NSCalendar).components(.year, from: self)
-		return components.year!
+		return calendar.component(.year, from: self)
 		
 	}
 	

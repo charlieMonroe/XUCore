@@ -333,6 +333,10 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		
 		_button.setAccessibilityTitle(XULocalizedString("Show All", inBundle: .core))
 		_button.setAccessibilityLabel(XULocalizedString("Show All", inBundle: .core))
+		
+		if #available(macOS 11.0, *) {
+			_button.showsBorderOnlyWhileMouseInside = true
+		}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -366,7 +370,11 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		self.layoutAttribute = .left
 		
-		self.loadView() // Required so that _titleLabel is available		
+		self.loadView() // Required so that _titleLabel is available
+		
+		if #available(macOS 11.0, *) {
+			_titleLabel.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
+		}
 	}
 	
 	required init?(coder: NSCoder) {

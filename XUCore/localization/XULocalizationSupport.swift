@@ -222,6 +222,26 @@ public final class XULocalizationCenter {
 			}
 		}
 		
+		/// Try it the other way.
+		if
+			let updatedKeyValue = ["...", "…"].firstNonNilValue(using: { (suffix) -> (key: String, value: String)? in
+				if let value = _cachedLanguageDicts[bundle]?[language]?[key + suffix] {
+					return (key: key + suffix, value: value)
+				} else {
+					return nil
+				}
+			})
+		{
+			// Update the dictionary.
+			_lock.lock()
+			defer {
+				_lock.unlock()
+			}
+
+			_cachedLanguageDicts[bundle]?[language]?[updatedKeyValue.key] = updatedKeyValue.value
+			return updatedKeyValue.value
+		}
+		
 		/// Now, we know that the string isn't in the localization. There are two
 		/// options. Either the localization doesn't contain this phrase, or it
 		/// hasn't been loaded yet.

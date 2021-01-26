@@ -189,7 +189,7 @@ extension URL {
 		urlComponents.percentEncodedQuery = query.urlQueryString
 		
 		guard let result = urlComponents.url else {
-			fatalError("Setting query from dictionary rendered invalid. This should not happen.")
+			XUFatalError("Setting query from dictionary rendered invalid. This should not happen.")
 		}
 		
 		return result

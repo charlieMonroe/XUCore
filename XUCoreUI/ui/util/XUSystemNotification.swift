@@ -181,7 +181,7 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 		override init(frame frameRect: NSRect) {
 			super.init(frame: frameRect)
 			
-			_timer = Timer.scheduledTimer(timeInterval: 0.05, repeats: true, usingBlock: { [weak self] (_) in
+			_timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] (_) in
 				guard let strongSelf = self else {
 					return
 				}

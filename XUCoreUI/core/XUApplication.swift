@@ -98,8 +98,6 @@ open class XUApplication: NSApplication {
 	public func unregisterArrowKeyEventsObserver() {
 		if let observer = _arrowKeyEventObserver {
 			XULog("Unregistering instance of \(type(of: observer)) <\(Unmanaged<AnyObject>.passUnretained(observer).toOpaque())> as arrow key event observer.")
-		} else {
-			XULogStacktrace("Unregistering arrow key events observer when there is none.")
 		}
 		
 		_arrowKeyEventObserver = nil
