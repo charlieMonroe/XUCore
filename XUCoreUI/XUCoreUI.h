@@ -6,7 +6,7 @@
 //  Copyright © 2019 Charlie Monroe Software. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Foundation;
 
 //! Project version number for XUCoreUI.
 FOUNDATION_EXPORT double XUCoreUIVersionNumber;

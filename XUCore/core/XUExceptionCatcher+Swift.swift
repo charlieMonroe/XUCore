@@ -20,13 +20,18 @@ extension XUExceptionCatcher {
 	
 	/// This performs a block - if the block throws an exception, this exception
 	/// is wrapped in ExceptionError and thrown.
-	public class func performBlock(_ block: () -> Void) throws {
+	public class func performBlock<T>(_ block: () -> T) throws -> T {
 		var exception: NSException?
-		self.perform(block) { exception = $0 }
+		var result: T?
+		self.perform({
+			result = block()
+		}) { exception = $0 }
 		
 		if let exc = exception {
 			throw ExceptionError(exception: exc)
 		}
+		
+		return result!
 	}
 	
 }

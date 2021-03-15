@@ -6,6 +6,7 @@
 //  Copyright © 2019 Charlie Monroe Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 import XUCore
 

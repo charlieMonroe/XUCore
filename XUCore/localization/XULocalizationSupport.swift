@@ -201,8 +201,8 @@ public final class XULocalizationCenter {
 		}
 		
 		/// Handle a common scenario where the keys only differ with '...'.
-		if key.hasSuffix("...") || key.hasSuffix("…") {
-			let updatedKey = key.deleting(suffix: "...").deleting(suffix: "…")
+		for suffix in ["...", "…", ":"] where key.hasSuffix(suffix) {
+			let updatedKey = key.deleting(suffix: suffix)
 			if let value = _cachedLanguageDicts[bundle]?[language]?[updatedKey] {
 				// Update the dictionary.
 				_lock.lock()
@@ -210,13 +210,7 @@ public final class XULocalizationCenter {
 					_lock.unlock()
 				}
 
-				let updatedValue: String
-				if key.hasSuffix("...") {
-					updatedValue = value + "..."
-				} else {
-					updatedValue = value + "…"
-				}
-				
+				let updatedValue = value + suffix
 				_cachedLanguageDicts[bundle]?[language]?[key] = updatedValue
 				return updatedValue
 			}
@@ -224,7 +218,7 @@ public final class XULocalizationCenter {
 		
 		/// Try it the other way.
 		if
-			let updatedKeyValue = ["...", "…"].firstNonNilValue(using: { (suffix) -> (key: String, value: String)? in
+			let updatedKeyValue = ["...", "…", ":"].firstNonNilValue(using: { (suffix) -> (key: String, value: String)? in
 				if let value = _cachedLanguageDicts[bundle]?[language]?[key + suffix] {
 					return (key: key + suffix, value: value)
 				} else {

@@ -309,7 +309,7 @@ public extension XUViewAnimation {
 		
 		/// Animates text change in a text field. Should only be used on text fields
 		/// that act as labels.
-		func setStringValueAnimated(_ stringValue: String) {
+		func setStringValueAnimated(_ stringValue: String, duration: TimeInterval = 0.5) {
 			for field in self.views {
 				if let targetValue = _textFieldValues[field] {
 					if targetValue == stringValue {
@@ -327,7 +327,7 @@ public extension XUViewAnimation {
 				_textFieldValues[field] = stringValue
 				
 				NSAnimationContext.runAnimationGroup({ (context) in
-					context.duration = 0.5
+					context.duration = duration
 					context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 					field.animator().alphaValue = 0.0
 				}, completionHandler: {
@@ -337,7 +337,7 @@ public extension XUViewAnimation {
 					}
 					
 					NSAnimationContext.runAnimationGroup({ (context) in
-						context.duration = 0.5
+						context.duration = duration
 						context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 						field.animator().alphaValue = 1.0
 					}, completionHandler: nil)

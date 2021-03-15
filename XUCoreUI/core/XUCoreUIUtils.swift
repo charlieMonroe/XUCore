@@ -19,7 +19,7 @@ import XUCore
 	
 	@objc public final class func loadSingletons() {
 		guard !_didLoad else {
-			fatalError("Calling _XUSwiftCoreUILoader for the second time.")
+			XUFatalError("Calling _XUSwiftCoreUILoader for the second time.")
 		}
 		
 		_didLoad = true
@@ -29,7 +29,10 @@ import XUCore
 		
 		// Start catching exceptions - this is being moved to DownmuteUI.
 		if XUAppSetup.exceptionHandlerReportURL != nil, NSClassFromString("DownmuteUI.DMExceptionHandler") == nil {
-			XUExceptionHandler.startExceptionHandler()
+			XULog("**************************************")
+			XULog("Attempting to start deprecated exception handler!")
+			XULog("Migrate to DownmuteUI.")
+			XULog("**************************************")
 		}
 		
 		// Launch the beta expiration handler if supported.

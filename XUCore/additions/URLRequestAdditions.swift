@@ -117,6 +117,9 @@ public extension URLRequest {
 			
 			/// Chrome 69 on macOS 10.15.1.
 			public static let Chrome79: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.16 Safari/537.36")
+			
+			/// Chrome 89 on macOS 11.2.2.
+			public static let Chrome89: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36")
 
 			
 			/// Firefox 54 on macOS 10.12.
@@ -130,6 +133,9 @@ public extension URLRequest {
 
 			/// Safari on macOS 10.14 (12.0)
 			public static let Safari12: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15")
+			
+			/// Safari 14.0.3 on macOS 10.15.6.
+			public static let Safari14: UserAgent = UserAgent("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15")
 			
 		}
 		

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 
 /// This class is for labels used in controls, where they need to be click-through.

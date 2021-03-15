@@ -6,6 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 
 /// Set this variable to a speed-up or slow down the effect

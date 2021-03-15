@@ -6,6 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
+import CommonCrypto
 import Foundation
 
 private func _hexValueOfChar(_ c: Character) -> UInt8 {
@@ -137,6 +138,13 @@ extension Data {
 	public var md5Digest: String {
 		return self.withUnsafeBytes({ (ptr: UnsafeRawBufferPointer) in
 			return NSData.md5Digest(ofBytes: UnsafeRawPointer(ptr.baseAddress!), ofLength: self.count)
+			
+//			var result = Array<UInt8>(repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+//			_ = result.withUnsafeMutableBufferPointer { resultPointer in
+//				CC_MD5(ptr.baseAddress, UInt32(self.count), resultPointer.baseAddress)
+//			}
+//			
+//			return Data(result).hexEncodedString
 		})
 	}
 	

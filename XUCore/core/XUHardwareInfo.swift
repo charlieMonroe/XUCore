@@ -84,7 +84,7 @@ public struct XUHardwareInfo {
 	/// UIDevice.current.identifierForVendor.
 	public let serialNumber: String = {
 		#if os(iOS)
-			return UIDevice.current.identifierForVendor ?? XUHardwareInfo._generatedUUID()
+			return UIDevice.current.identifierForVendor?.uuidString ?? XUHardwareInfo._generatedUUID()
 		#else
 			let serviceName = "IOPlatformExpertDevice"
 			let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(serviceName))

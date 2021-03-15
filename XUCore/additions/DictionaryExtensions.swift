@@ -28,6 +28,20 @@ public func += <KeyType, ValueType> (left: inout Dictionary<KeyType, ValueType>,
 	}
 }
 
+extension Dictionary where Key == String {
+	
+	/// This allows to define an enum Key: String and use it for the assignment.
+	public subscript<T: RawRepresentable>(field: T) -> Value? where T.RawValue == String {
+		get {
+			return self[field.rawValue]
+		}
+		set {
+			self[field.rawValue] = newValue
+		}
+	}
+	
+}
+
 
 extension Dictionary {
 	

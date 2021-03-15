@@ -145,13 +145,13 @@ internal class XUPreferencePanesView: NSView {
 				button.action = #selector(_didSelectPane(_:))
 				
 				
-				let size = button.sizeThatFits(CGSize(width: XUPreferencePanesView.buttonWidth, height: XUPreferencePanesView.sectionHeight))
+				let size = CGSize(width: XUPreferencePanesView.buttonWidth, height: XUPreferencePanesView.sectionHeight)
 				
 				button.frame = CGRect(x: x + (XUPreferencePanesView.buttonWidth - size.width) / 2.0, y: y - XUPreferencePanesView.sectionHeight + 16.0, width: size.width, height: size.height).integral
 				
 				button.addConstraints([
-					NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.width),
-					NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: size.height)
+					NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding),
+					NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: XUPreferencePanesView.sectionHeight - XUPreferencePanesView.buttonPadding)
 				])
 				
 				self.addSubview(button)

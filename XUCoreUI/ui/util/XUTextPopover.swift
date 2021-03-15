@@ -13,6 +13,21 @@ import AppKit
 /// as needed.
 final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	
+	public struct Action {
+		public let name: String
+		public let action: () -> Void
+		
+		public init(name: String, action: @escaping () -> Void) {
+			self.name = name
+			self.action = action
+		}
+		
+	}
+	
+	private class ActionButton: NSButton {
+		var popoverAction: Action?
+	}
+	
 	public enum Text {
 		case plain(String)
 		case attributed(NSAttributedString)
@@ -25,9 +40,11 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	/// Popover backing.
 	let _popover: NSPopover = NSPopover()
 	
+	/// Optional action. If not empty, buttons will be displayed below the text.
+	public var actions: [Action] = []
 	
 	/// Padding of the text field in the popover.
-	public var padding: CGFloat = 10.0
+	public var padding: CGFloat = 20.0
 	
 	/// Preferred edge of the view.
 	public let preferredEdge: NSRectEdge
@@ -50,6 +67,9 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 	/// View.
 	public let view: NSView
 	
+	@objc private func _performAction(_ sender: ActionButton) {
+		sender.popoverAction?.action()
+	}
 	
 	public convenience init(text: String, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
 		self.init(text: .plain(text), from: view, relativeTo: rect, preferredEdge: preferredEdge)
@@ -97,7 +117,37 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 		textField.translatesAutoresizingMaskIntoConstraints = false
 		
 		view.addSubview(textField)
-		view.addConstraints(pinningViewOnAllSides: textField, leftPadding: 20.0, rightPadding: 20.0, topPadding: 20.0, bottomPadding: 20.0)
+		if self.actions.isEmpty {
+			view.addConstraints(pinningViewOnAllSides: textField, leftPadding: self.padding, rightPadding: self.padding, topPadding: self.padding, bottomPadding: self.padding)
+		} else {
+			view.addConstraints(pinningViewHorizontally: textField, leftPadding: self.padding, rightPadding: self.padding)
+			view.addConstraint(NSLayoutConstraint(equalAttribute: .top, between: view, and: textField, offset: -self.padding))
+			
+			var previousView: NSView = textField
+			
+			for (index, action) in self.actions.enumerated() {
+				let button = ActionButton(title: action.name, target: self, action: #selector(_performAction))
+				button.popoverAction = action
+				button.translatesAutoresizingMaskIntoConstraints = false
+				
+				if index == 0 {
+					button.keyEquivalent = "\n"
+					button.isHighlighted = true
+				}
+				
+				view.addSubview(button)
+				
+				view.addConstraints(pinningViewHorizontally: button, leftPadding: self.padding, rightPadding: self.padding)
+				view.addConstraint(
+					NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: previousView, attribute: .bottom, multiplier: 1.0, constant: index == 0 ? 16.0 : 8.0)
+				)
+				
+				previousView = button
+			}
+			
+			view.addConstraint(NSLayoutConstraint(equalAttribute: .bottom, between: view, and: previousView, offset: self.padding))
+		}
+		
 		textField.addConstraints([
 			NSLayoutConstraint(item: textField, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.preferredWidth)
 		])

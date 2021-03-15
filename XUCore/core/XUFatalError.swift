@@ -45,3 +45,8 @@ public func XUAssert(_ assertion: @autoclosure () -> Bool, _ additionalInformati
 	}
 }
 
+/// Asserts that this is invoked on main thread. See XUAssert.
+public func XUAssertMainThread(_ additionalInformation: String = "undefined", file: String = #file, line: Int = #line, method: String = #function) {
+	XUAssert(Thread.isMainThread, additionalInformation, file: file, line: line, method: method)
+}
+

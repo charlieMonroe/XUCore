@@ -164,7 +164,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self.willSelectPane(paneController)
 		
 		self._setMainWindowContentView(paneController.view)
-		_titleViewController._titleLabel.stringValue = paneController.paneName
+		_titleViewController.title = paneController.paneName
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = paneController
@@ -175,7 +175,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// This will cause the controller to display the icon view of all the panes.
 	open func showAllPanes() {
 		self._setMainWindowContentView(self.allPanesView)
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: .core)
+		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = nil
@@ -204,7 +204,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			searchField.searchResultsWidth = 350.0
 		}
 
-		_titleViewController._titleLabel.stringValue = XULocalizedString("All Preferences", inBundle: .core)
+		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
 		
 		self.window!.delegate = self
 		self.window!.title = XULocalizedString("Preferences", inBundle: .core)
@@ -359,7 +359,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 
 private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryViewController {
 	
-	@IBOutlet weak var _titleLabel: NSTextField!
+	@IBOutlet private weak var _titleLabel: NSTextField!
 	@IBOutlet weak var _iconImageView: NSImageView! // Currently unused.
 	private weak var _prefController: XUPreferencePanesWindowController!
 	
@@ -379,6 +379,21 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override var title: String? {
+		didSet {
+			if oldValue == nil {
+				_titleLabel?.stringValue = self.title ?? ""
+				return
+			}
+			
+			guard let label = _titleLabel else {
+				return
+			}
+			
+			XUViewAnimation(view: label).setStringValueAnimated(self.title ?? "", duration: 0.25)
+		}
 	}
 	
 }

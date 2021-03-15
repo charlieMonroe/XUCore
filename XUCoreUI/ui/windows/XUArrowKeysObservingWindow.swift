@@ -6,6 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 
 /// The window only overrides the sendEvent(_) method and distributes arrow

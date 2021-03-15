@@ -34,11 +34,11 @@ open class XUPreferencePaneViewController: NSViewController {
 					continue
 				}
 				
-				phrases.append(button.title)
+				phrases.append(button.title.replacingOccurrences(of: "\n", with: " "))
 			}
 			if let label = view as? NSTextField, !label.isEditable {
 				let value = label.stringValue
-				if value.isEmpty || value.containsCharacter(from: .punctuationCharacters) {
+				if value.isEmpty || value.containsCharacter(from: .punctuationCharacters) || value.containsCharacter(from: .newlines) {
 					// It's a sentence.
 					continue
 				}

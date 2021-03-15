@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
 	s.name     = 'XUCore'
-	s.version  = '1.3.4'
+	s.version  = '1.4.2'
 	s.license  = 'MIT License'
 	s.summary  = 'A core library used by Charlie Monroe Software.'
 	s.homepage = 'http://github.com/charlieMonroe/XUCore/'
 	s.author   = 'Charlie Monroe'
-	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'core_1.3.4' }
+	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'core_1.4.2' }
 	
 	s.swift_version = '5'
 
@@ -21,8 +21,8 @@ Pod::Spec.new do |s|
 
 	s.frameworks = 'Foundation', 'CoreData'
 	
-	s.ios.deployment_target = '10.0'
-	s.osx.deployment_target = '10.11'
+	s.ios.deployment_target = '12.0'
+	s.osx.deployment_target = '10.12'
 	
 	s.requires_arc = true
 	

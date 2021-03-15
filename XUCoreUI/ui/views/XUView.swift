@@ -13,14 +13,14 @@ import Cocoa
 @IBDesignable open class XUView: NSView {
 	
 	/// Background color.
-	@IBInspectable public var backgroundColor: NSColor = NSColor.clear {
+	@IBInspectable public var backgroundColor: NSColor = .clear {
 		didSet {
 			self._updateLayer()
 		}
 	}
 	
 	/// Border color.
-	@IBInspectable public var borderColor: NSColor = NSColor.clear {
+	@IBInspectable public var borderColor: NSColor = .clear {
 		didSet {
 			self._updateLayer()
 		}

@@ -81,7 +81,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 	
 	private func _osVersion() -> String {
 		var version = ProcessInfo().operatingSystemVersion.versionString
-		version += XUHardwareInfo.shared.architectureName
+		version += " - " + XUHardwareInfo.shared.architectureName
 		
 		return version
 	}

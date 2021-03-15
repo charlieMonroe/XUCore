@@ -6,6 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 import XUCore
 
@@ -150,21 +151,17 @@ public extension NSImage {
 	/// removes those. May fail if the image is of zero size, has no image reps,
 	/// or if some of the underlying calls fails.
 	func imageWithSingleImageRepresentation(ofSize size: CGSize) -> XUImage? {
-		var result: XUImage? = nil
-		DispatchQueue.main.syncOrNow { () -> Void in
-			result = self._imageWithSingleImageRepOfSize(size)
-		}
-		return result
+		return self._imageWithSingleImageRepOfSize(size)
 	}
 	
 	/// Returns NSData with a bitmap image file type representation.
-	func representation(forFileType fileType: NSBitmapImageRep.FileType, properties: [String : AnyObject] = [:]) -> Data? {
+	func representation(forFileType fileType: NSBitmapImageRep.FileType, properties: [NSBitmapImageRep.PropertyKey : Any] = [:]) -> Data? {
 		guard let temp = self.tiffRepresentation else {
 			return nil
 		}
 		
 		let bitmap = NSBitmapImageRep(data: temp)
-		let imgData = bitmap?.representation(using: fileType, properties: [:])
+		let imgData = bitmap?.representation(using: fileType, properties: properties)
 		return imgData
 	}
 	
@@ -180,7 +177,7 @@ public extension NSImage {
 	
 	/// Returns a GIF image representation
 	func gifRepresentation(withDitheredTransparency dither: Bool) -> Data? {
-		return self.representation(forFileType: .gif, properties: [NSBitmapImageRep.PropertyKey.ditherTransparency.rawValue: dither as AnyObject])
+		return self.representation(forFileType: .gif, properties: [.ditherTransparency: dither])
 	}
 	
 	/// Returns a basic JPEG image representation.
@@ -190,11 +187,10 @@ public extension NSImage {
 	
 	/// Returns a JPEG image representation with specified quality.
 	func jpegRepresentation(usingCompressionFactor compressionFactor: Int, progressive: Bool) -> Data? {
-		let properties: [String : AnyObject] = [
-			NSBitmapImageRep.PropertyKey.compressionFactor.rawValue: compressionFactor as AnyObject,
-			NSBitmapImageRep.PropertyKey.progressive.rawValue: progressive as AnyObject
-		]
-		return self.representation(forFileType: .jpeg, properties: properties)
+		return self.representation(forFileType: .jpeg, properties: [
+			.compressionFactor: compressionFactor,
+			.progressive: progressive
+		])
 	}
 	
 	/// Returns a basic JPEG 2000 image representation.
@@ -209,12 +205,12 @@ public extension NSImage {
 	
 	/// Returns a PNG image representation with interlace as defined.
 	func pngRepresentation(interlaced interlace: Bool) -> Data? {
-		return self.representation(forFileType: .png, properties: [NSBitmapImageRep.PropertyKey.interlaced.rawValue : interlace as AnyObject])
+		return self.representation(forFileType: .png, properties: [.interlaced : interlace])
 	}
 	
 	/// Returns a TIFF image representation with defined compression.
 	func tiffRepresentation(usingCompression compression: NSBitmapImageRep.TIFFCompression) -> Data? {
-		return self.representation(forFileType: .tiff, properties: [NSBitmapImageRep.PropertyKey.compressionMethod.rawValue: compression.rawValue as AnyObject])
+		return self.representation(forFileType: .tiff, properties: [.compressionMethod: compression.rawValue])
 	}
 	
 	/// Draws the image as tile in specified rect.

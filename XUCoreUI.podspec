@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
 	s.name     = 'XUCoreUI'
-	s.version  = '1.0.4'
+	s.version  = '1.1.2'
 	s.license  = 'MIT License'
 	s.summary  = 'A core library used by Charlie Monroe Software.'
 	s.homepage = 'http://github.com/charlieMonroe/XUCore/'
 	s.author   = 'Charlie Monroe'
-	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'ui_1.0.4' }
+	s.source   = { :git => 'https://github.com/charlieMonroe/XUCore.git', :tag => 'ui_1.1.2' }
 	
 	s.swift_version = '5'
 
