@@ -383,7 +383,7 @@ open class XUDownloadCenter {
 		let data = try self.downloadDataThrow(at: url, withRequestModifier: modifier)
 			
 		if let responseString = String(data: data, encoding: preferredEncoding ?? self.defaultStringEncoding) {
-			return String(Array(responseString))
+			return responseString
 		}
 		
 		/* Fallback */
