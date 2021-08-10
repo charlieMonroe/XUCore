@@ -20,6 +20,46 @@ public final class XULockPool {
 	/// competing for the pool, consider creating your own larger pool.
 	public static let shared: XULockPool = XULockPool(poolSize: 16, name: "XULockPool.shared")
 	
+	/// If set to true, when locking a stacktrace is saved for debugging deadlocks.
+	public static let isStacktraceDebuggingEnabled: Bool = false
+	
+	/// A simple lock-wrapping class that conforms to the Lock protocol and rembers
+	/// stacktrace of the last time it was locked.
+	private final class __Lock: CustomStringConvertible, Lock {
+			
+		var _lastLockStacktrace: String?
+		
+		let _lock: Lock
+		
+		var description: String {
+			return "__Lock \(_lock) - \(_lastLockStacktrace ?? "nil")"
+		}
+		
+		init() {
+			XUFatalError()
+		}
+		
+		init(lock: Lock) {
+			_lock = lock
+		}
+		
+		func lock() {
+			_lock.lock()
+			
+			if XUAppSetup.isRunningInDebugMode, XULockPool.isStacktraceDebuggingEnabled {
+				_lastLockStacktrace = XUStacktraceString()
+			}
+		}
+		
+		func unlock() {
+			_lastLockStacktrace = nil
+			
+			_lock.unlock()
+		}
+		
+	}
+	
+	
 	
 	/// A lock for modifying the _locks array.
 	private let _lockCreatingLock: NSLock
@@ -79,13 +119,14 @@ public final class XULockPool {
 			return lock
 		}
 		
-		let lock: Lock
+		let internalLock: Lock
 		if self.isRecursive {
-			lock = NSRecursiveLock(name: self.name + "_\(index)")
+			internalLock = NSRecursiveLock(name: self.name + "_\(index)")
 		} else {
-			lock = NSLock(name: self.name + "_\(index)")
+			internalLock = NSLock(name: self.name + "_\(index)")
 		}
 		
+		let lock = __Lock(lock: internalLock)
 		_locks[index] = lock
 		return lock
 	}

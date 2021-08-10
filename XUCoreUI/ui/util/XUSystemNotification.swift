@@ -54,7 +54,8 @@ public final class XUSystemNotificationCenter {
 	private var _queue: [Notification] = []
 	
 	@objc private func _hideNotification() {
-		_currentController.window?.close()
+		self._hideController(_currentController)
+		
 		_currentController = nil
 		_currentNotification = nil
 		
@@ -62,6 +63,17 @@ public final class XUSystemNotificationCenter {
 		
 		if !_queue.isEmpty {
 			self._show()
+		}
+	}
+	
+	private func _hideController(_ controller: XUSystemNotificationWindowController) {
+		guard let window = controller.window else {
+			return
+		}
+		
+		window.animator().alphaValue = 0.0
+		DispatchQueue.main.asyncAfter(deadline: .seconds(CATransaction.animationDuration())) {
+			controller.window?.close()
 		}
 	}
 	
@@ -80,7 +92,7 @@ public final class XUSystemNotificationCenter {
 	
 	/// Hides currently displayed progress indicator. See showProgressIndicator(with:).
 	public func hideProgressIndicator() {
-		_progressController?.window?.close()
+		_progressController.flatMap(self._hideController(_:))
 		_progressController = nil
 	}
 	
@@ -277,6 +289,9 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 			
 			progressIndicator.appearance = NSAppearance(named: .vibrantDark)
 		}
+		
+		window.alphaValue = 0.0
+		window.animator().alphaValue = 1.0
 	}
 	
 	func windowWillClose(_ notification: Notification) {

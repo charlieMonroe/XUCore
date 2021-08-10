@@ -457,11 +457,13 @@ extension String {
 		return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 	}
 	
+	private static let urlQueryDictionaryRegex: XURegex = XURegex(pattern: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+|)(&|$)", andOptions: .caseless)
+	
 	/// This method decodes the string as a URL query. E.g. arg1=val1&arg2=val2
 	/// will become [ "arg1": "val1", ... ]. This is the opposite of URLQueryString()
 	/// method on Dictionary
 	public var urlQueryDictionary: [String : String] {
-		let variablePairs = self.allVariablePairs(forRegex: "&?(?P<VARNAME>[^=]+)=(?P<VARVALUE>[^&]+|)(&|$)")
+		let variablePairs = self.allVariablePairs(forRegex: Self.urlQueryDictionaryRegex)
 		var dict: [String: String] = [:]
 		for (key, value) in variablePairs {
 			guard

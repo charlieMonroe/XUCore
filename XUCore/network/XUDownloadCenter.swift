@@ -110,6 +110,9 @@ open class XUDownloadCenter {
 	/// Default encoding used by self.downloadWebPage(at:...).
 	public final var defaultStringEncoding: String.Encoding = .utf8
 	
+	/// If this is set to true, then the download center does not insert the cookies field.
+	public final var disableAutomaticCookieHandling: Bool = false
+	
 	/// Handler called when an error is encountered. This can be used for additional
 	/// logging. This is softly deprecated.
 	public final var errorHandler: ((XUDownloadCenter.Error) -> Void)?
@@ -287,15 +290,19 @@ open class XUDownloadCenter {
 		}
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
-//		request.httpShouldHandleCookies = false // We're setting them manually below.
 		
-		self._setupCookieField(forRequest: &request)
+		if self.disableAutomaticCookieHandling {
+			request.httpShouldHandleCookies = false // We're setting them manually below.
+		} else {
+			self._setupCookieField(forRequest: &request)
+		}
+		
 		request.acceptType = acceptType
 		
 		self._applyAutomaticHeaderFields(to: &request)
 		modifier?(&request)
 		
-		if XUDebugLog.isLoggingEnabled && self.logTraffic {
+		if XUDebugLog.isLoggingEnabled, self.logTraffic {
 			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
 			if request.httpBody != nil && request.httpBody!.count > 0 {
 				logString += "\nHTTP Body: \(request.httpBody.flatMap(String.init(data:)) ?? "")"
@@ -357,7 +364,7 @@ open class XUDownloadCenter {
 	/// Downloads a website source, parses it as JSON and returns it.
 	public func downloadJSONThrow<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> T {
 		let data = try self.downloadDataThrow(at: url, withRequestModifier: { (request: inout URLRequest) in
-			request.acceptType = URLRequest.ContentType.json
+			request.acceptType = .json
 			
 			modifier?(&request)
 		})

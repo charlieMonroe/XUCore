@@ -24,7 +24,7 @@
 
 "We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "我们非常重视您的反馈，且承诺绝对不会收集任何不相关信息。我们不会在任何位置保存您的电子邮件地址，您提供的电子邮件仅用于在问题得到修复时我们能及时予以告知， 或是当我们需要联系您获取更多具体信息来解决您反馈的问题。";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅限以下信息会被发送：\n• 您提供的问题描述；\n• 下方所列的程序异常信息；\n• 当前应用版本；\n• 您所用操作系统 (OS) 的版本；\n• 您所用电脑的型号 (不包括您电脑的物理地址 (MAC), 及其他类似的可用于识别您电脑的信息)。";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "仅以下信息会被发送：\n• 您提供的问题描述；\n• 下方所列的程序异常信息；\n• 当前应用版本；\n• 您所用操作系统 (OS) 的版本；\n• 您所用电脑的型号 (不包括您电脑的物理地址 (MAC), 及其他类似的可用于识别您电脑的信息)。";
 
 "Could not post your report." = "无法提交您的报告";
 "Check your Internet connection and try again." = "请检查您的网络连接, 然后重试。";
@@ -53,7 +53,7 @@
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "您可以继续发送该报告，但如果报告中的使用语言不是英语，我们恐怕无法为您提供完整的技术支持。";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "您的消息中含有特殊字符，通常意味着您的消息不是用英语叙述。 %@ 虽然已经提供了中文版以及其他多种语言支持，但我们的官方技术支持目前仅提供基于英语的服务。感谢您的理解与支持。";
 "%li hours" = "%li 小时";
-"%li minutes" = "%li 分";
+"%li minutes" = "%li 分钟";
 "%li seconds" = "%li 秒";
 
 /// XUSyncEngine

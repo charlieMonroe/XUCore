@@ -37,14 +37,14 @@ public protocol XULocalizableUIElement {
 
 /// Returns a localized string.
 @inline(__always)
-public func XULocalizedString(_ key: String, inBundle bundle: Bundle = Bundle.main, withLocale language: String? = nil) -> String {
+public func XULocalizedString(_ key: String, inBundle bundle: Bundle = .main, withLocale language: String? = nil) -> String {
 	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XULocalizationCenter.shared.localizationIdentifier(for: bundle), inBundle: bundle)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
 @inline(__always)
-public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = Bundle.main) -> String {
+public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = .main) -> String {
 	return String(format: XULocalizedString(format, inBundle: bundle, withLocale: language), arguments: arguments)
 }
 
@@ -79,7 +79,7 @@ public final class XULocalizationCenter {
 	private var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [ : ]
 	
 	/// Lock for modifying _cachedLanguageDicts
-	private let _lock: NSLock = NSLock(name: "com.charliemonroe.XULocalization")
+	private let _lock: NSRecursiveLock = NSRecursiveLock(name: "com.charliemonroe.XULocalization")
 	
 	/// The language is often e.g. en-US - we need to find the language identifier
 	/// that is in that particular bundle.
@@ -128,7 +128,7 @@ public final class XULocalizationCenter {
 	/// may be different for each bundle. E.g. one bundle may contain en-US, while
 	/// the other just en.
 	public func localizationIdentifier(for bundle: Bundle) -> String {
-		if let identifier = _cachedLanguageIdentifiers[bundle] {
+		if let identifier = _lock.perform(locked: { _cachedLanguageIdentifiers[bundle] }) {
 			return identifier
 		}
 		
@@ -139,7 +139,9 @@ public final class XULocalizationCenter {
 			return identifier
 		}
 		
-		if let languages = UserDefaults.standard.array(forKey: "AppleLanguages") as? [String] {
+		let languageArrays = [Locale.preferredLanguages, UserDefaults.standard.array(forKey: "AppleLanguages") as? [String]].compacted()
+		
+		for languages in languageArrays {
 			for language in languages {
 				if let identifier = self._identifierFromComposedIdentifier(language, inBundle: bundle) {
 					_lock.perform {
@@ -195,6 +197,12 @@ public final class XULocalizationCenter {
 			return key
 		}
 		
+		
+		_lock.lock()
+		defer {
+			_lock.unlock()
+		}
+		
 		/// Perhaps, it's already loaded.
 		if let value = _cachedLanguageDicts[bundle]?[language]?[key] {
 			return value
@@ -205,11 +213,6 @@ public final class XULocalizationCenter {
 			let updatedKey = key.deleting(suffix: suffix)
 			if let value = _cachedLanguageDicts[bundle]?[language]?[updatedKey] {
 				// Update the dictionary.
-				_lock.lock()
-				defer {
-					_lock.unlock()
-				}
-
 				let updatedValue = value + suffix
 				_cachedLanguageDicts[bundle]?[language]?[key] = updatedValue
 				return updatedValue
@@ -227,11 +230,6 @@ public final class XULocalizationCenter {
 			})
 		{
 			// Update the dictionary.
-			_lock.lock()
-			defer {
-				_lock.unlock()
-			}
-
 			_cachedLanguageDicts[bundle]?[language]?[updatedKeyValue.key] = updatedKeyValue.value
 			return updatedKeyValue.value
 		}
@@ -242,11 +240,6 @@ public final class XULocalizationCenter {
 		if let languageDict = _cachedLanguageDicts[bundle]?[language], !languageDict.isEmpty {
 			/// The language has already been loaded -> no point in reloading it.
 			return key
-		}
-		
-		_lock.lock()
-		defer {
-			_lock.unlock()
 		}
 		
 		if _cachedLanguageDicts[bundle] == nil {
