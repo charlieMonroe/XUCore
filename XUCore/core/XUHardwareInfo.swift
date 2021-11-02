@@ -36,6 +36,14 @@ private extension XUPreferences {
 /// about the underlying hardware.
 public struct XUHardwareInfo {
 	
+	/// Architecture of the CPU.
+	public enum Architecture: String {
+		case arm64 = "ARM64"
+		case x64 = "x64"
+		case unknown = "Unknown"
+	}
+	
+	
 	/// Shared hardware info object.
 	public static let shared: XUHardwareInfo = XUHardwareInfo()
 	
@@ -56,11 +64,11 @@ public struct XUHardwareInfo {
 		return generatedSerial
 	}
 	
-	/// Returns architecture name (e.g. x64, ARM64, etc.).
-	public let architectureName: String = {
+	/// Returns architecture (e.g. x64, ARM64, etc.).
+	public var architecture: Architecture = {
 		#if os(iOS)
 			// We're not running anything else on iOS at this moment.
-			return "ARM64"
+			return .arm64
 		#else
 			let armArchitecture: Int
 			if #available(macOS 11.0, macCatalyst 14.0, iOS 14.0, *) {
@@ -71,14 +79,19 @@ public struct XUHardwareInfo {
 
 			switch NSRunningApplication.current.executableArchitecture {
 			case NSBundleExecutableArchitectureX86_64:
-				return "x64"
+				return .x64
 			case armArchitecture:
-				return "ARM64"
+				return .arm64
 			default:
-				return "Unknown"
+				return .unknown
 			}
 		#endif
 	}()
+	
+	/// Returns architecture name (e.g. x64, ARM64, etc.).
+	public var architectureName: String {
+		return self.architecture.rawValue
+	}
 	
 	/// Returns the serial number of the device. On iOS this is
 	/// UIDevice.current.identifierForVendor.

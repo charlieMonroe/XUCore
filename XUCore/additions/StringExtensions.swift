@@ -313,7 +313,7 @@ extension String {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
 		
-		return data.md5Digest
+		return data.md5Digest.hexEncodedString
 	}
 	
 	/// Returns self as octal value - i.e. interpret the number as in octal
@@ -595,7 +595,7 @@ extension String {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
 		
-		return data.sha1Digest
+		return data.sha1Digest.hexEncodedString
 	}
 	
 	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
@@ -606,7 +606,7 @@ extension String {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
 		
-		return data.sha256Digest
+		return data.sha256Digest.hexEncodedString
 	}
 	
 	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
@@ -617,7 +617,7 @@ extension String {
 			fatalError("Can't represent string as UTF8 - \(self).")
 		}
 		
-		return data.sha512Digest
+		return data.sha512Digest.hexEncodedString
 	}
 	
 }

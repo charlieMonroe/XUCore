@@ -20,14 +20,6 @@
 
 @end
 
-@implementation NSXMLDocument (XUAdditions)
-
--(instancetype)initWithXMLString:(NSString *)string andOptions:(NSInteger)mask {
-	return [self initWithXMLString:string options:mask error:NULL];
-}
-
-@end
-
 @implementation NSDictionary (XMLAdditions)
 
 -(NSXMLElement *)XMLElementWithName:(NSString *)elementName{

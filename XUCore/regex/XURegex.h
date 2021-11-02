@@ -20,6 +20,8 @@ typedef NS_OPTIONS(NSUInteger, XURegexOptions) {
 +(nonnull instancetype)regexWithPattern:(nonnull NSString *)pattern andOptions:(XURegexOptions)options;
 
 -(nonnull NSArray<NSString *> *)allOccurrencesInString:(nonnull NSString *)string;
+-(nonnull NSArray<NSString *> *)allOccurrencesInString:(nonnull NSString *)string resultsCappedAtCount:(NSUInteger)count;
+
 -(nonnull NSArray<NSString *> *)allOccurrencesOfVariableNamed:(nonnull NSString *)varName inString:(nonnull NSString *)string;
 -(nonnull NSDictionary<NSString *, NSString *> *)allVariablePairsInString:(nonnull NSString *)string;
 

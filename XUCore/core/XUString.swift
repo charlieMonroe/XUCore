@@ -191,7 +191,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 	
 	/// Returns MD5 digest of the data.
 	public var md5Digest: String {
-		return self.data.md5Digest
+		return self.data.md5Digest.hexEncodedString
 	}
 	
 	/// Removes character at index by shifting the remainder of the string left.

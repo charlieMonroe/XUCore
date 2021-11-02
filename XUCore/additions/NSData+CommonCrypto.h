@@ -40,6 +40,8 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonHMAC.h>
 
+// Deprecation notice - use pure Swift methods on Data.
+
 extern NSString * const kCommonCryptoErrorDomain;
 
 @interface NSError (CommonCryptoErrorDomain)
@@ -48,28 +50,28 @@ extern NSString * const kCommonCryptoErrorDomain;
 
 @interface NSData (CommonDigest)
 
-- (NSData *) MD2Sum;
-- (NSData *) MD4Sum;
-- (NSData *) MD5Sum;
+- (NSData *) MD2Sum DEPRECATED_ATTRIBUTE;
+- (NSData *) MD4Sum DEPRECATED_ATTRIBUTE;
+- (NSData *) MD5Sum DEPRECATED_ATTRIBUTE;
 
-- (NSData *) SHA1Hash;
-- (NSData *) SHA224Hash;
-- (NSData *) SHA256Hash;
-- (NSData *) SHA384Hash;
-- (NSData *) SHA512Hash;
+- (NSData *) SHA1Hash DEPRECATED_ATTRIBUTE;
+- (NSData *) SHA224Hash DEPRECATED_ATTRIBUTE;
+- (NSData *) SHA256Hash DEPRECATED_ATTRIBUTE;
+- (NSData *) SHA384Hash DEPRECATED_ATTRIBUTE;
+- (NSData *) SHA512Hash DEPRECATED_ATTRIBUTE;
 
 @end
 
 @interface NSData (CommonCryptor)
 
-- (NSData *) AES256EncryptedDataUsingKey: (id) key error: (NSError **) error;
-- (NSData *) decryptedAES256DataUsingKey: (id) key error: (NSError **) error;
+- (NSData *) AES256EncryptedDataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
+- (NSData *) decryptedAES256DataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
 
-- (NSData *) DESEncryptedDataUsingKey: (id) key error: (NSError **) error;
-- (NSData *) decryptedDESDataUsingKey: (id) key error: (NSError **) error;
+- (NSData *) DESEncryptedDataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
+- (NSData *) decryptedDESDataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
 
-- (NSData *) CASTEncryptedDataUsingKey: (id) key error: (NSError **) error;
-- (NSData *) decryptedCASTDataUsingKey: (id) key error: (NSError **) error;
+- (NSData *) CASTEncryptedDataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
+- (NSData *) decryptedCASTDataUsingKey: (id) key error: (NSError **) error DEPRECATED_ATTRIBUTE;
 
 @end
 
@@ -77,42 +79,42 @@ extern NSString * const kCommonCryptoErrorDomain;
 
 - (NSData *) dataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 - (NSData *) dataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
                                  options: (CCOptions) options
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 - (NSData *) dataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
 					initializationVector: (id) iv		// data or string
 								 options: (CCOptions) options
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 - (NSData *) dataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
 				     key: (id) key		// data or string
 		    initializationVector: (id) iv		// data or string
 				    mode:(CCMode)mode
 				 padding:(CCPadding)padding
 				 options: (CCOptions) options
-				   error: (CCCryptorStatus *) error;
+				   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 
 - (NSData *) decryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 - (NSData *) decryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
                                  options: (CCOptions) options
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 - (NSData *) decryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
 									 key: (id) key		// data or string
 					initializationVector: (id) iv		// data or string
 								 options: (CCOptions) options
-								   error: (CCCryptorStatus *) error;
+								   error: (CCCryptorStatus *) error DEPRECATED_ATTRIBUTE;
 
 @end
 
 @interface NSData (CommonHMAC)
 
-- (NSData *) HMACWithAlgorithm: (CCHmacAlgorithm) algorithm;
-- (NSData *) HMACWithAlgorithm: (CCHmacAlgorithm) algorithm key: (id) key;
+- (NSData *) HMACWithAlgorithm: (CCHmacAlgorithm) algorithm DEPRECATED_ATTRIBUTE;
+- (NSData *) HMACWithAlgorithm: (CCHmacAlgorithm) algorithm key: (id) key DEPRECATED_ATTRIBUTE;
 
 @end

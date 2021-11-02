@@ -23,6 +23,14 @@ extension Sequence {
 		return self.compactMap({ $0 as? T })
 	}
 	
+	/// Returns if there is an element that has a value under keyPath equal to value. The following statements are equivalent:
+	///
+	/// - contains(where: { $0.uuid == someUUID })
+	/// - containsElement(with: \.uuid, equalTo: someUUID)
+	public func containsElement<T: Equatable>(with keyPath: KeyPath<Element, T>, equalTo value: T?) -> Bool {
+		return self.first(with: keyPath, equalTo: value) != nil
+	}
+	
 	/// Counts elements that match the filter
 	public func count(where filter: Filter) rethrows -> Int {
 		let count = try self.sum({ (obj) -> Int in
@@ -41,6 +49,14 @@ extension Sequence {
 			}
 		}
 		return nil
+	}
+	
+	/// Returns first element that has a value under keyPath equal to value. The following statements are equivalent:
+	///
+	/// - first(where: { $0.uuid == someUUID })
+	/// - first(with: \.uuid, equalTo: someUUID)
+	public func first<T: Equatable>(with keyPath: KeyPath<Element, T>, equalTo value: T?) -> Element? {
+		return self.first(where: { $0[keyPath: keyPath] == value })
 	}
 	
 	/// Finds a maximum value within self. For non-empty arrays, always returns
@@ -226,6 +242,69 @@ extension Array {
 			let endIndex = Swift.min(self.count, $0.advanced(by: chunkSize))
 			return Array(self[$0 ..< endIndex])
 		})
+	}
+	
+}
+
+extension Array where Element: Hashable {
+	
+	/// An optimized version of the distinct function for hashable elements that uses Set for ensuring the
+	/// uniqueness.
+	public func distinct() -> [Self.Element] {
+		var result: [Self.Element] = []
+		result.reserveCapacity(self.count)
+		
+		var set: Set<Self.Element> = Set()
+		
+		for value in self {
+			if set.insert(value).inserted {
+				result.append(value)
+			}
+		}
+				
+		return result
+	}
+	
+}
+
+extension Collection where Element: Hashable {
+	
+	/// An optimized version of the distinct function for hashable elements that uses Set for ensuring the
+	/// uniqueness.
+	public func distinct() -> [Self.Element] {
+		var result: [Self.Element] = []
+		result.reserveCapacity(self.count)
+		
+		var set: Set<Self.Element> = Set()
+		
+		for value in self {
+			if set.insert(value).inserted {
+				result.append(value)
+			}
+		}
+				
+		return result
+	}
+	
+}
+
+extension Sequence where Element: Hashable {
+	
+	/// An optimized version of the distinct function for hashable elements that uses Set for ensuring the
+	/// uniqueness.
+	public func distinct() -> [Self.Element] {
+		var result: [Self.Element] = []
+		result.reserveCapacity(self.underestimatedCount)
+		
+		var set: Set<Self.Element> = Set()
+		
+		for value in self {
+			if set.insert(value).inserted {
+				result.append(value)
+			}
+		}
+				
+		return result
 	}
 	
 }

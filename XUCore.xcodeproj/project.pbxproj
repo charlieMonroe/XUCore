@@ -18,6 +18,7 @@
 		0726FA4420625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */; };
 		0726FA4620625A9000A5BD17 /* XUSynchronousDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4520625A9000A5BD17 /* XUSynchronousDataLoader.swift */; };
 		0726FA4720625A9000A5BD17 /* XUSynchronousDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4520625A9000A5BD17 /* XUSynchronousDataLoader.swift */; };
+		073351A926CD5E7900D36809 /* HelpBookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073351A826CD5E7900D36809 /* HelpBookManager.swift */; };
 		073391AE1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */; };
 		073391AF1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */; };
 		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
@@ -173,6 +174,7 @@
 		0749DCFB1C00D5060075CC9B /* _XUCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0749DCF71C00D5060075CC9B /* _XUCoreLoader.m */; };
 		0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
 		0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749DD061C0207BE0075CC9B /* XUCoreUtils.swift */; };
+		0756DD8B270DB09500A6AD01 /* Data+CommonCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */; };
 		07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077093811CC1296C0093830B /* DataAdditions.swift */; };
 		075DC7781CF069470043EBD0 /* XUManagedDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075DC7771CF069470043EBD0 /* XUManagedDataContext.swift */; };
 		075DC7791CF069470043EBD0 /* XUManagedDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075DC7771CF069470043EBD0 /* XUManagedDataContext.swift */; };
@@ -499,6 +501,7 @@
 		07311DCA1C0C5E3B001B95AC /* MKPolygonAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKPolygonAdditions.swift; sourceTree = "<group>"; };
 		07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NSImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07311DD61C0C77E3001B95AC /* UIImageAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIImageAdditions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		073351A826CD5E7900D36809 /* HelpBookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBookManager.swift; sourceTree = "<group>"; };
 		073391AD1E1CF83F00A9AD66 /* HTTPCookieAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookieAdditions.swift; sourceTree = "<group>"; };
 		0734D8FE1CE35BD8008E2B31 /* MKGeometryAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGeometryAdditions.swift; sourceTree = "<group>"; };
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -601,6 +604,7 @@
 		074EBDE42110667E0055444B /* XUView+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUView+Array.swift"; sourceTree = "<group>"; };
 		074F22C12060189E00A19601 /* XUUpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUUpdateChecker.swift; sourceTree = "<group>"; };
 		0751A4761F6FB930006C4BEE /* fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+CommonCrypto.swift"; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUUIBridge.swift; sourceTree = "<group>"; };
 		075D9CC823335E8500E90000 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -1457,6 +1461,7 @@
 				071BC28F1C4701810097FCEC /* BoolAdditions.swift */,
 				073E6B391BE1F9D500706283 /* CharacterExtensions.swift */,
 				077093811CC1296C0093830B /* DataAdditions.swift */,
+				0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */,
 				07758A241BEFBB2B004B29A8 /* DateAdditions.swift */,
 				07FD4BDF1C7DC2E900559CF0 /* DateFormatterISO8601.swift */,
 				077AFDA91BBD101400872A48 /* DictionaryExtensions.swift */,
@@ -1598,6 +1603,7 @@
 			isa = PBXGroup;
 			children = (
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
+				073351A826CD5E7900D36809 /* HelpBookManager.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -2142,6 +2148,7 @@
 				07AEC10F1D01E55400C8E127 /* XUiCloudSyncManager.swift in Sources */,
 				073E6AFF1BE1F86D00706283 /* hash.cc in Sources */,
 				073E6B451BE1FD7E00706283 /* InputStream+Reading.swift in Sources */,
+				0756DD8B270DB09500A6AD01 /* Data+CommonCrypto.swift in Sources */,
 				07E38A401C07105100AE6EAB /* XUString.swift in Sources */,
 				073E6AE71BE1F86D00706283 /* simplify.cc in Sources */,
 				07ED3D8425C0312F0093B93D /* XUHardwareInfo.swift in Sources */,
@@ -2193,6 +2200,7 @@
 				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
 				075DC79F1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
+				073351A926CD5E7900D36809 /* HelpBookManager.swift in Sources */,
 				0749DCDE1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B521BE2026600706283 /* XULog.swift in Sources */,
 				073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */,
@@ -2490,7 +2498,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 115;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2507,7 +2515,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2534,7 +2542,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 115;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2551,7 +2559,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.5;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2575,7 +2583,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 115;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2590,7 +2598,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2617,7 +2625,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 115;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2632,7 +2640,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.5;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_MODULE_NAME = XUCoreUI;
@@ -2659,6 +2667,7 @@
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMPLETION_HANDLER_MISUSE = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2717,6 +2726,7 @@
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMPLETION_HANDLER_MISUSE = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2762,7 +2772,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2778,7 +2788,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2796,7 +2806,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2812,7 +2822,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2831,7 +2841,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2845,7 +2855,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
@@ -2866,7 +2876,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2880,7 +2890,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;

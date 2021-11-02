@@ -26,30 +26,38 @@ static NSLock *_evaluationLock;
 	return [[self alloc] initWithPattern:pattern andOptions:options];
 }
 
+-(NSArray<NSString *> *)allOccurrencesInString:(NSString *)string resultsCappedAtCount:(NSUInteger)count {
+    [_evaluationLock lock];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    /* For some reasons, the RE2 has issues with multiline, if CRLF is used... */
+    if (([self options] & XURegexOptionMultiline) != 0 && [string rangeOfString:@"\r\n"].location != NSNotFound){
+        /* Removing \n works. */
+        string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    }
+    
+    re2::StringPiece input([string UTF8String]);
+    re2::RE2 tempRegex("(" + _regex->pattern() + ")");
+    std::string match;
+    while (re2::RE2::FindAndConsume(&input, tempRegex, &match)) {
+        if (match.empty()) {
+            break; // If the regex returns an empty match, it's inifite -> break
+        }
+        [result addObject:[NSString stringWithUTF8String:match.c_str()]];
+        
+        if ([result count] >= count) {
+            break; // We've hit max requested results.
+        }
+    }
+    
+    [_evaluationLock unlock];
+    
+    return result;
+}
+
 -(NSArray *)allOccurrencesInString:(NSString *)string{
-	[_evaluationLock lock];
-	
-	NSMutableArray *result = [NSMutableArray array];
-	
-	/* For some reasons, the RE2 has issues with multiline, if CRLF is used... */
-	if (([self options] & XURegexOptionMultiline) != 0 && [string rangeOfString:@"\r\n"].location != NSNotFound){
-		/* Removing \n works. */
-		string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-	}
-	
-	re2::StringPiece input([string UTF8String]);
-	re2::RE2 tempRegex("(" + _regex->pattern() + ")");
-	std::string match;
-	while (re2::RE2::FindAndConsume(&input, tempRegex, &match)) {
-		if (match.empty()) {
-			break; // If the regex returns an empty match, it's inifite -> break
-		}
-		[result addObject:[NSString stringWithUTF8String:match.c_str()]];
-	}
-	
-	[_evaluationLock unlock];
-	
-	return result;
+    return [self allOccurrencesInString:string resultsCappedAtCount:NSUIntegerMax];
 }
 -(NSArray *)allOccurrencesOfVariableNamed:(NSString *)varName inString:(NSString *)string {
 	NSMutableArray *result = [NSMutableArray array];
@@ -192,7 +200,7 @@ static NSLock *_evaluationLock;
 		[_evaluationLock unlock];
 		
 		if (!_regex->ok()){
-			@throw [NSException exceptionWithName:NSGenericException reason:@"Regex compilation failed!" userInfo:nil];
+			@throw [NSException exceptionWithName:NSGenericException reason:[NSString stringWithFormat:@"Regex compilation failed - %@", modifiedPattern] userInfo:nil];
 		}
 	}
 	return self;

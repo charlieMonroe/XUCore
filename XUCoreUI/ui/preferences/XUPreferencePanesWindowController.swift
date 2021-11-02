@@ -144,13 +144,15 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// XUPreferencePaneViewController.paneIdentifier.
 	///
 	/// This method asserts that a pane with this identifier exists.
-	public func selectPane(withIdentifier identifier: String) {
+	@discardableResult
+	public func selectPane(withIdentifier identifier: String) -> XUPreferencePaneViewController? {
 		guard let pane = self.sections.map({ $0.paneControllers }).joined().first(where: { $0.paneIdentifier == identifier }) else {
 			fatalError("There is no preference pane with identifier \(identifier)!")
 		}
 		
 		self.window?.makeKeyAndOrderFront(nil)
 		self.selectPane(pane)
+		return pane
 	}
 	
 	/// Selects a pane. This method assets that this pane is contained in 

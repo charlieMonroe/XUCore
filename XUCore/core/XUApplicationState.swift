@@ -95,7 +95,7 @@ open class XUBasicApplicationStateProvider: XUApplicationStateProvider {
 			return "nil"
 		}
 		
-		return data.md5Digest
+		return data.md5Digest.hexEncodedString
 	}
 	
 	/// Creates an application state that contains MD5s of the main binary and

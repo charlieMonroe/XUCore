@@ -129,4 +129,31 @@ public struct XUTime {
 		return String(format: "%02li:%02li:%02li", hours, minutes, seconds)
 	}
 	
+	private static let _timeRegex: XURegex = XURegex(pattern: "^(((?P<H>\\d+):)?((?P<M>\\d+):))?(?P<S>\\d+)(\\.(?P<MS>\\d+))?$", andOptions: .caseless)
+	
+	/// This is the invert function of timeString(from:). Assuming that the string matches the regex
+	/// \d+:\d+:\d+.\d+ (hours and minutes can be omitted), this method will convert the time to a time
+	/// interval. If it doesn't match, 0 is returned.
+	public static func time(from timeString: String) -> TimeInterval {
+		guard let variables = _timeRegex.allVariables(in: timeString) else {
+			return 0.0
+		}
+		
+		var time = 0.0
+		if let hours = variables["H"]?.doubleValue {
+			time += hours * 3600.0
+		}
+		if let minutes = variables["M"]?.doubleValue {
+			time += minutes * 60.0
+		}
+		if let seconds = variables["S"]?.doubleValue {
+			time += seconds
+		}
+		if let miliseconds = variables["MS"]?.doubleValue {
+			time += (miliseconds / 1000.0)
+		}
+		
+		return time
+	}
+	
 }

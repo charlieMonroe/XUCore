@@ -163,7 +163,7 @@ internal class XUPreferencePanesView: NSView {
 				
 				
 				x += XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding
-				if x + XUPreferencePanesView.buttonPadding > XUPreferencePanesView.viewWidth {
+				if (x + XUPreferencePanesView.buttonPadding + XUPreferencePanesView.buttonWidth) > XUPreferencePanesView.viewWidth {
 					x = XUPreferencePanesView.buttonPadding
 					y += XUPreferencePanesView.sectionHeight
 				}

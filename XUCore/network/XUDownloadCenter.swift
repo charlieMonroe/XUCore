@@ -210,34 +210,8 @@ open class XUDownloadCenter {
 		
 		let host = url.host ?? "nil"
 		
-		let baseURL: URL!
-		if originalBaseURL != nil {
-			baseURL = originalBaseURL
-		} else {
-			var components = URLComponents()
-			components.scheme = url.scheme
-			components.host = url.host
-			components.path = "/"
-			baseURL = components.url
-			if baseURL == nil {
-				XULog("Not setting cookies, because can't determine baseURL: \(host)")
-				return
-			}
-		}
-		
-		let storage = HTTPCookieStorage.shared
-		guard let cookies = storage.cookies(for: baseURL) else {
-			XULog("Not setting cookies, because there are no cookies for: \(host)")
+		guard var cookieString = self.cookiesHTTPHeaderValue(for: url, withBaseURL: originalBaseURL) else {
 			return
-		}
-		
-		var cookieString = cookies.compactMap({ (obj: HTTPCookie) -> String? in
-			return "\(obj.name)=\(obj.value)"
-		}).joined(separator: "; ")
-		
-		if cookieString.isEmpty {
-			XULog("Not setting cookies, because there are no cookies for: \(host)")
-			return // There's not point of setting the cookie field is there are no cookies
 		}
 		
 		if let originalCookie = request.value(forHTTPHeaderField: "Cookie") {
@@ -273,6 +247,43 @@ open class XUDownloadCenter {
 		cookies.forEach({ storage.deleteCookie($0) })
 	}
 	
+	/// Returns a cookies field value for a URL.
+	public func cookiesHTTPHeaderValue(for url: URL, withBaseURL originalBaseURL: URL? = nil) -> String? {
+		let host = url.host ?? "nil"
+		
+		let baseURL: URL!
+		if originalBaseURL != nil {
+			baseURL = originalBaseURL
+		} else {
+			var components = URLComponents()
+			components.scheme = url.scheme
+			components.host = url.host
+			components.path = "/"
+			baseURL = components.url
+			if baseURL == nil {
+				XULog("Not setting cookies, because can't determine baseURL: \(host)")
+				return nil
+			}
+		}
+		
+		// DOWNIE-45289 - some sites require more specific cookies.
+		let storage = HTTPCookieStorage.shared
+		let cookies = ((storage.cookies(for: baseURL) ?? []) + (storage.cookies(for: url) ?? [])).distinct()
+		guard !cookies.isEmpty else {
+			XULog("Not setting cookies, because there are no cookies for: \(host)")
+			return nil
+		}
+		
+		let cookieString = cookies.compactMap({ (obj: HTTPCookie) -> String? in
+			return "\(obj.name)=\(obj.value)"
+		}).joined(separator: "; ")
+		
+		if cookieString.isEmpty {
+			XULog("Not setting cookies, because there are no cookies for: \(host)")
+			return nil // There's not point of setting the cookie field is there are no cookies
+		}
+		return cookieString
+	}
 	
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
@@ -497,7 +508,9 @@ open class XUDownloadCenter {
 		XULog("Invalidating download center \(self.identifier).")
 		
 		self.isInvalidated = true
-		self.session.invalidateAndCancel()
+		if self.session != URLSession.shared {
+			self.session.invalidateAndCancel()
+		}
 		
 		_invalidationLock.unlock()
 	}

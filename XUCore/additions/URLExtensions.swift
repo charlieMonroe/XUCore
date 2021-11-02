@@ -68,6 +68,16 @@ extension URL {
 			}
 		}
 	}
+	
+	/// Deletes a `count` of path components. Is equivalent to calling `deletingLastPathComponent()`
+	/// `count` times.
+	public func deletingLastPathComponents(count: Int) -> URL {
+		var result = self
+		for _ in 0 ..< count {
+			result = result.deletingLastPathComponent()
+		}
+		return result
+	}
 
 	/// Returns the file size.
 	public var fileSize: Int64 {

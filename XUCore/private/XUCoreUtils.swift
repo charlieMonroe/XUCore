@@ -24,21 +24,18 @@ extension Bundle {
 /// anymore.
 @objc(_XUSwiftCoreLoader) public class _XUSwiftCoreLoader: NSObject {
 	
-	private static var _didLoad: Bool = false
-	
-	@objc public final class func loadSingletons() {
-		guard !_didLoad else {
-			fatalError("Calling _XUSwiftCoreLoader for the second time.")
-		}
-		
-		_didLoad = true
-		
+	private static var _load: Void = {
 		// First, load the application setup.
 		_ = XUApplicationSetup.shared
+		_ = HelpBookManager.shared
 		
 		XUPreferences.shared.perform { (prefs) in
 			prefs.launchCount += 1
 		}
+	}()
+	
+	@objc public final class func loadSingletons() {
+		_ = _load
 	}
 	
 }

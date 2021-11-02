@@ -74,7 +74,7 @@ public final class XUImageCache {
 		
 		/// Identifier used withing the cache.
 		var cacheIdentifier: String {
-			return self.url.absoluteString.utf8Data.sha256Digest
+			return self.url.absoluteString.utf8Data.sha256Digest.hexEncodedString
 		}
 		
 	}
@@ -84,7 +84,7 @@ public final class XUImageCache {
 		let identifier: String
 		
 		var cacheIdentifier: String {
-			return self.identifier.utf8Data.sha256Digest
+			return self.identifier.utf8Data.sha256Digest.hexEncodedString
 		}
 		
 	}

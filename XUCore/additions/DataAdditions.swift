@@ -6,7 +6,6 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
-import CommonCrypto
 import Foundation
 
 private func _hexValueOfChar(_ c: Character) -> UInt8 {
@@ -41,6 +40,32 @@ extension Data {
 		})
 	}
 	
+	/// Returns true if it contains subdata. Will return true, if subdata is empty.
+	public func contains(_ subdata: Data) -> Bool {
+		if subdata.isEmpty {
+			return true
+		}
+		if subdata.count > self.count {
+			return false
+		}
+		
+		guard
+			let index = self.firstIndex(of: subdata[0]),
+			index + subdata.count <= self.count
+		else {
+			return false
+		}
+		
+		for (offset, byte) in subdata.enumerated() {
+			guard self[index + offset] == byte else {
+				// We know that subdata is not empty, so we can use index + 1.
+				return self.suffix(from: index + 1).contains(subdata)
+			}
+		}
+		
+		return true // We've enumerated all bytes and found the subsequence.
+	}
+	
 	/// Returns true if self has a prefix that is defined by the bytes in `prefix`.
 	///
 	/// - Parameter prefix: Prefix bytes this data is tested against.
@@ -60,17 +85,18 @@ extension Data {
 	
 	/// Returns data from a string such as 194736ca92698d0282b76e979f32b17b9b6d.
 	public init<T: StringProtocol>(hexEncodedString hexString: T) {
-		if hexString.count % 2 != 0 {
-			self.init()
-			return
-		}
-		
 		self.init()
 		
 		var i = hexString.startIndex
 		while i < hexString.endIndex {
 			let byte1 = _hexValueOfChar(hexString[i]) << 4
-			let byte2 = _hexValueOfChar(hexString[hexString.index(after: i)])
+			let byte2: UInt8
+			let nextIndex = hexString.index(after: i)
+			if nextIndex < hexString.endIndex {
+				byte2 = _hexValueOfChar(hexString[nextIndex])
+			} else {
+				byte2 = 0
+			}
 			
 			var byte = byte1 | byte2
 			self.append(&byte, count: 1)
@@ -116,57 +142,12 @@ extension Data {
 		return hexString
 	}
 	
-	public func hmacSHA265(with key: Data) -> Data? {
-		let cocoaData = (self as NSData)
-		return cocoaData.hmacsha256(withKey: key)
-	}
-	
-	public func hmacSHA265(with key: String) -> Data? {
-		let data = NSData(bytes: (self as NSData).bytes, length: self.count)
-		let cocoaKey = NSString(format: "%@", key as NSString)
-		return data.hmacsha256(withKey: cocoaKey)
-	}
-	
 	/// Returns first occurrence of bytes within `self`. If it doesn't contain
 	/// the data, nil is returned since this method is based on
 	/// self.rangeOfData(_:options:range:).
 	public func indexOfFirstOccurrence(of bytes: UnsafeMutableRawPointer, ofLength length: Int) -> Int? {
 		let byteData = Data(bytesNoCopy: bytes, count: length, deallocator: .none)
 		return self.range(of: byteData)?.lowerBound
-	}
-	
-	public var md5Digest: String {
-		return self.withUnsafeBytes({ (ptr: UnsafeRawBufferPointer) in
-			return NSData.md5Digest(ofBytes: UnsafeRawPointer(ptr.baseAddress!), ofLength: self.count)
-			
-//			var result = Array<UInt8>(repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-//			_ = result.withUnsafeMutableBufferPointer { resultPointer in
-//				CC_MD5(ptr.baseAddress, UInt32(self.count), resultPointer.baseAddress)
-//			}
-//			
-//			return Data(result).hexEncodedString
-		})
-	}
-	
-	/// SHA-1 digest.
-	public var sha1Digest: String {
-		let data = (self as NSData).sha1Digest()
-		let bytes = data.map { String(format: "%02x", $0) }
-		return bytes.joined()
-	}
-	
-	/// SHA-256 digest.
-	public var sha256Digest: String {
-		let data = (self as NSData).sha256Digest()
-		let bytes = data.map { String(format: "%02x", $0) }
-		return bytes.joined()
-	}
-	
-	/// SHA-512 digest.
-	public var sha512Digest: String {
-		let data = (self as NSData).sha512Digest()
-		let bytes = data.map { String(format: "%02x", $0) }
-		return bytes.joined()
 	}
 	
 	/// Reads Int-typed value from stream.
