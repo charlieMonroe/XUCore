@@ -110,6 +110,30 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		}
 	}
 	
+	@IBAction private func _resetPreferences(_ sender: Any) {
+		let alert = NSAlert()
+		alert.messageText = XULocalizedString("Do you want to reset settings handled by this preference pane to default values?", inBundle: .core)
+		alert.informativeText = XULocalizedString("This action cannot be undone.", inBundle: .core)
+		alert.addCancelButton()
+		alert.addButton(withTitle: XULocalizedString("Reset", inBundle: .core))
+
+		alert.beginSheetModal(for: self.window!) { response in
+			guard response == .alertSecondButtonReturn else {
+				return
+			}
+			
+			self.currentPaneController?._resetPreferences()
+		}
+	}
+	
+	private func _setResetButtonHidden(_ hidden: Bool) {
+		guard let items = self.window?.toolbar?.items else {
+			return
+		}
+		
+		items[items.count - 2].view?.isHidden = hidden
+	}
+	
 	/// Called when the preference panes window controller did select a pane.
 	open func didSelectPane(_ paneController: XUPreferencePaneViewController) {
 		
@@ -168,6 +192,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self._setMainWindowContentView(paneController.view)
 		_titleViewController.title = paneController.paneName
 		
+		self._setResetButtonHidden(!paneController.supportsReset)
+		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = paneController
 		
@@ -178,6 +204,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	open func showAllPanes() {
 		self._setMainWindowContentView(self.allPanesView)
 		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
+		
+		self._setResetButtonHidden(true)
 		
 		self.currentPaneController?.savePreferences()
 		self.currentPaneController = nil
@@ -207,6 +235,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		}
 
 		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
+		self._setResetButtonHidden(true)
 		
 		self.window!.delegate = self
 		self.window!.title = XULocalizedString("Preferences", inBundle: .core)

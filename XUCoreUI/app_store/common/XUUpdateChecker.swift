@@ -47,6 +47,12 @@ public final class XUUpdateChecker {
 		/// Returns version of the current app.
 		public static let current: Version = Version(versionString: XUAppSetup.applicationVersionNumber)
 		
+		/// Returns current version of the OS.
+		public static var currentOSVersion: Version {
+			let version = ProcessInfo().operatingSystemVersion
+			return Version(major: version.majorVersion, minor: version.minorVersion, patch: version.patchVersion)
+		}
+		
 		
 		/// Major: [1].2.3
 		public let major: Int

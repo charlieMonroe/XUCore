@@ -86,6 +86,20 @@ open class XUPreferencePaneViewController: NSViewController {
 		// no-op
 	}
 	
+	internal func _resetPreferences() {
+		self.resetPreferences()
+		self.loadPreferences()
+	}
+	
+	/// If you return true for supportsReset, implement this method to reset
+	/// settings handled by this preference pane. There is usually no need to update
+	/// the UI as loadPreferences() is then called.
+	///
+	/// Default implementation calls XUFatalError as it needs to be overridden.
+	open func resetPreferences() {
+		XUFatalError()
+	}
+	
 	/// Save the preferences from the UI.
 	open func savePreferences() {
 		
@@ -103,6 +117,12 @@ open class XUPreferencePaneViewController: NSViewController {
 		let phrases = self._createHeuristicalSearchablePhrases()
 		_cachedPhrases = phrases
 		return phrases
+	}
+	
+	/// If you support resetting settings in this pane, return true. The window will include a reset
+	/// button in the toolbar and if the user confirms the reset, the resetPreferences() function will be called.
+	open var supportsReset: Bool {
+		return false
 	}
 	
 	/// You can optionally validate any editing here. The window controller will

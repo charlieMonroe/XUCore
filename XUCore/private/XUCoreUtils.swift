@@ -27,7 +27,10 @@ extension Bundle {
 	private static var _load: Void = {
 		// First, load the application setup.
 		_ = XUApplicationSetup.shared
-		_ = HelpBookManager.shared
+		
+		#if os(macOS)
+			_ = HelpBookManager.shared
+		#endif
 		
 		XUPreferences.shared.perform { (prefs) in
 			prefs.launchCount += 1

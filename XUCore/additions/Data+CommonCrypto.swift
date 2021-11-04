@@ -82,23 +82,18 @@ extension Data {
 	}
 	
 	public func decryptedAES128Data(with key: Crypto.KeyValue, initialVector: Crypto.KeyValue? = nil) -> Data? {
-		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmAES128), key: key.dataValue, initialVector: initialVector?.dataValue)
+		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmAES128), key: key, initialVector: initialVector?.dataValue)
 	}
 	
 	public func decryptedAES256Data(with key: Crypto.KeyValue, initialVector: Crypto.KeyValue? = nil) -> Data? {
-		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmAES), key: key.dataValue, initialVector: initialVector?.dataValue)
+		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmAES), key: key, initialVector: initialVector?.dataValue)
 	}
 	
 	/// Returns data decrypted using algorithm and key.
-	public func decryptedData(using algorithm: CCAlgorithm, key: String, initialVector: Data? = nil) -> Data? {
-		return self.decryptedData(using: algorithm, key: key.utf8Data, initialVector: initialVector)
-	}
-	
-	/// Returns data decrypted using algorithm and key.
-	public func decryptedData(using algorithm: CCAlgorithm, key: Data, initialVector: Data? = nil) -> Data? {
+	public func decryptedData(using algorithm: CCAlgorithm, key: Crypto.KeyValue, initialVector: Data? = nil) -> Data? {
 		var status: CCCryptorStatus = CCCryptorStatus(kCCSuccess)
 		
-		var keyData = key
+		var keyData = key.dataValue
 		var ivData = initialVector
 		self._fixKeyLengths(for: algorithm, key: &keyData, initialVector: &ivData)
 		
@@ -106,7 +101,7 @@ extension Data {
 		return self.withUnsafeBytes	{ dataPtr -> Data? in
 			keyData.withUnsafeBytes { keyPtr -> Data? in
 				(ivData ?? Data()).withUnsafeBytes { ivPtr -> Data? in
-					status = CCCryptorCreate(CCOperation(kCCDecrypt), algorithm, 0, keyPtr.baseAddress, key.count, initialVector == nil ? nil : ivPtr.baseAddress, &cryptor)
+					status = CCCryptorCreate(CCOperation(kCCDecrypt), algorithm, 0, keyPtr.baseAddress, keyData.count, initialVector == nil ? nil : ivPtr.baseAddress, &cryptor)
 					
 					guard status == CCCryptorStatus(kCCSuccess), cryptor != nil else {
 						return nil
@@ -138,13 +133,64 @@ extension Data {
 				}
 			}
 		}
+	}
+	
+	/// Returns data encrypted using algorithm and key.
+	public func encryptedData(using algorithm: CCAlgorithm, key: Crypto.KeyValue, initialVector: Data? = nil) -> Data? {
+		var status: CCCryptorStatus = CCCryptorStatus(kCCSuccess)
 		
+		var keyData = key.dataValue
+		var ivData = initialVector
+		self._fixKeyLengths(for: algorithm, key: &keyData, initialVector: &ivData)
+		
+		var cryptor: CCCryptorRef!
+		return self.withUnsafeBytes	{ dataPtr -> Data? in
+			keyData.withUnsafeBytes { keyPtr -> Data? in
+				(ivData ?? Data()).withUnsafeBytes { ivPtr -> Data? in
+					status = CCCryptorCreate(CCOperation(kCCEncrypt), algorithm, 0, keyPtr.baseAddress, keyData.count, initialVector == nil ? nil : ivPtr.baseAddress, &cryptor)
+					
+					guard status == CCCryptorStatus(kCCSuccess), cryptor != nil else {
+						return nil
+					}
+					
+					let bufferSize = CCCryptorGetOutputLength(cryptor, self.count, true)
+					guard bufferSize != 0, let buffer = malloc(bufferSize) else {
+						return nil
+					}
+					
+					var bufferUsed = 0
+					var bytesTotal = 0
+					
+					status = CCCryptorUpdate(cryptor, dataPtr.baseAddress, self.count, buffer, bufferSize, &bufferUsed)
+					guard status == CCCryptorStatus(kCCSuccess) else {
+						free(buffer)
+						return nil
+					}
+					
+					bytesTotal += bufferUsed
+					status = CCCryptorFinal(cryptor, buffer.advanced(by: bufferUsed), bufferSize - bufferUsed, &bufferUsed)
+					guard status == CCCryptorStatus(kCCSuccess) else {
+						free(buffer)
+						return nil
+					}
+					
+					bytesTotal += bufferUsed
+					return Data(bytesNoCopy: buffer, count: bytesTotal, deallocator: .free)
+				}
+			}
+		}
 	}
 	
 	/// Decrypts data with RC4 using an encryption key.
 	public func decryptedRC4Data(with key: Crypto.KeyValue) -> Data? {
-		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmRC4), key: key.dataValue)
+		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmRC4), key: key)
 	}
+	
+	/// Encrypts data with RC4 using an encryption key.
+	public func encryptedRC4Data(with key: Crypto.KeyValue) -> Data? {
+		return self.encryptedData(using: CCAlgorithm(kCCAlgorithmRC4), key: key, initialVector: nil)
+	}
+	
 	
 	private func _hmacHash(with key: Data, algorithm: CCHmacAlgorithm, length: Int32) -> Data {
 		return self.withUnsafeBytes({ dataPtr in

@@ -18,18 +18,18 @@ import XUCore
 private extension XUPreferences.Key {
 
 	/// Key for XUPreferences which contains a date when the block occurred.
-	static let AppBlockedDate = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedDate")
+	static let appBlockedDate = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedDate")
 	
 	/// Key for XUPreferences which contains a boolean denoting whether the app is
 	/// blocked.
-	static let AppBlocked = XUPreferences.Key(rawValue: "XUMessageCenterAppBlocked")
+	static let appBlocked = XUPreferences.Key(rawValue: "XUMessageCenterAppBlocked")
 	
 	/// Key for XUPreferences which contains an integer with the build number which
 	/// is the maximum blocked app version.
-	static let AppBlockedMaxVersion = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedMaxVersion")
+	static let appBlockedMaxVersion = XUPreferences.Key(rawValue: "XUMessageCenterAppBlockedMaxVersion")
 	
 	/// Contains a NSNumber with the ID of the last message seen.
-	static let LastMessageID = XUPreferences.Key(rawValue: "XUMessageCenterLastID")
+	static let lastMessageID = XUPreferences.Key(rawValue: "XUMessageCenterLastID")
 	
 }
 
@@ -37,37 +37,37 @@ private extension XUPreferences {
 	
 	var appBlockedDate: Date? {
 		get {
-			return self.value(for: .AppBlockedDate)
+			return self.value(for: .appBlockedDate)
 		}
 		nonmutating set {
-			self.set(value: newValue, forKey: .AppBlockedDate)
+			self.set(value: newValue, forKey: .appBlockedDate)
 		}
 	}
 	
 	var appBlockedMaxVersion: Int {
 		get {
-			return self.integer(for: .AppBlockedMaxVersion)
+			return self.integer(for: .appBlockedMaxVersion)
 		}
 		nonmutating set {
-			self.set(integer: newValue, forKey: .AppBlockedMaxVersion)
+			self.set(integer: newValue, forKey: .appBlockedMaxVersion)
 		}
 	}
 	
 	var isAppBlocked: Bool {
 		get {
-			return self.boolean(for: .AppBlocked)
+			return self.boolean(for: .appBlocked)
 		}
 		nonmutating set {
-			self.set(boolean: newValue, forKey: .AppBlocked)
+			self.set(boolean: newValue, forKey: .appBlocked)
 		}
 	}
 	
 	var lastMessageID: Int {
 		get {
-			return self.integer(for: .LastMessageID)
+			return self.integer(for: .lastMessageID)
 		}
 		nonmutating set {
-			self.set(integer: newValue, forKey: .LastMessageID)
+			self.set(integer: newValue, forKey: .lastMessageID)
 		}
 	}
 	
