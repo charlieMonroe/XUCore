@@ -331,7 +331,7 @@ public class XUMessageCenter {
 			self.isAppBlocked = XUPreferences.shared.isAppBlocked
 			let appBuildNumber = XUAppSetup.applicationBuildNumber.integerValue
 			let maxVersion = XUPreferences.shared.appBlockedMaxVersion
-			if self.isAppBlocked && maxVersion < appBuildNumber {
+			if self.isAppBlocked, maxVersion < appBuildNumber {
 				self.isAppBlocked = false
 				
 				XUPreferences.shared.perform(andSynchronize: { (prefs) in

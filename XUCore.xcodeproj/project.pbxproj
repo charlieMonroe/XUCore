@@ -395,6 +395,7 @@
 		07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
 		07A5940B20D126EB00429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
 		07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
+		07A5F21727478C9700A639F3 /* Data+CommonCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */; };
 		07AAE86522E9857E0075567A /* XUObjectPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAE86422E9857E0075567A /* XUObjectPool.swift */; };
 		07AAE86622E9857E0075567A /* XUObjectPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAE86422E9857E0075567A /* XUObjectPool.swift */; };
 		07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
@@ -2259,6 +2260,7 @@
 				07580D981CC5231E0022D183 /* DataAdditions.swift in Sources */,
 				073E6AC01BE1F86D00706283 /* dfa.cc in Sources */,
 				0779E17F1BF2316700832858 /* DateAdditions.swift in Sources */,
+				07A5F21727478C9700A639F3 /* Data+CommonCrypto.swift in Sources */,
 				073E6B0A1BE1F86D00706283 /* random.cc in Sources */,
 				073E6AD81BE1F86D00706283 /* prog.cc in Sources */,
 				0749DD081C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,

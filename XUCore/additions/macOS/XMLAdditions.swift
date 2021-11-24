@@ -105,9 +105,13 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 			if let val =  value as? String {
 				element.addChild(XMLElement(name: key, stringValue: val))
 			} else if let val = value as? NSDecimalNumber {
-				element.addChild(XMLElement(name: key, stringValue: String(format: "%0.4f", val)))
+				element.addChild(XMLElement(name: key, stringValue: val.stringValue))
 			} else if let val = value as? NSNumber {
-				element.addChild(XMLElement(name: key, stringValue: "\(val.stringValue)"))
+				if val.doubleValue.isIntegral {
+					element.addChild(XMLElement(name: key, stringValue: "\(val.intValue)"))
+				} else {
+					element.addChild(XMLElement(name: key, stringValue: String(format: "%0.4f", val.doubleValue)))
+				}
 			} else if let val = value as? Date {
 				element.addChild(XMLElement(name: key, stringValue: formatter.string(from: val)))
 			} else if let val = value as? XUJSONDictionary {

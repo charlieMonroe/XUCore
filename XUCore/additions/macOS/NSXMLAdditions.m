@@ -20,6 +20,14 @@
 
 @end
 
+@implementation NSXMLDocument (XUAdditions)
+
+-(NSData *)prettyPrintedXMLData {
+	return [self XMLDataWithOptions:NSXMLNodePrettyPrint];
+}
+
+@end
+
 @implementation NSDictionary (XMLAdditions)
 
 -(NSXMLElement *)XMLElementWithName:(NSString *)elementName{

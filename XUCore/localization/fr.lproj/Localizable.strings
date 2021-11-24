@@ -11,18 +11,18 @@
 "Failed to parse CSV file." = "Impossible d’analyser le fichier CSV.";
 
 "Send Report" = "Envoyer un rapport";
-"Privacy Information..." = "Information sur la vie privée…";
+"Privacy Information..." = "Informations sur la confidentialité...";
 "%AppName% has encountered a problem." = "%AppName% a rencontré un problème.";
 "%AppName% will terminate after sending the report." = "%AppName% se fermera après l’envoi du rapport.";
 "Report to be sent:" = "Rapport à envoyer  :";
-"Your Email:" = "Votre e-mail  :";
+"Your Email:" = "Votre adresse e-mail :";
 "Description:" = "Description  :";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Veuillez décrire la situation dans laquelle le bug s’est produit et indiquer comment le reproduire. Entrez votre adresse e-mail ci-dessous - nous vous ferons savoir quand il sera résolu ou nous pourrions vous demander quelques détails. Votre adresse e-mail ne sera pas collectée dans une base de données et vous ne recevrez aucun e-mail indésirable.\n\nEn soumettant ce rapport, vous nous aiderez à améliorer ce logiciel. Je vous remercie !";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Veuillez décrire la situation dans laquelle le bug s’est produit et indiquer comment le reproduire. Entrez votre adresse e-mail ci-dessous - nous vous informerons lorsqu’il sera résolu. Nous pourrions également vous demander quelques détails suplémentaires. Votre adresse e-mail ne sera pas collectée dans une base de données et vous ne recevrez aucun e-mail indésirable.\n\nEn soumettant ce rapport, vous nous aiderez à améliorer ce logiciel. Je vous remercie !";
 
 "Report Problem" = "Signaler un problème";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Nous apprécions vos commentaires et ne collecterions pas d’informations indésirables. Votre adresse e-mail ne sera stockée nulle part et ne sera utilisée que pour vous informer lorsque ce problème pourrait être résolu ou lorsque nous aurions besoin de plus d’informations pour le résoudre";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Nous apprécions vos commentaires et ne collecterons pas d’informations indésirables. Votre adresse e-mail ne sera stockée nulle part et ne sera utilisée que pour vous informer lorsque ce problème pourrait être résolu ou lorsque nous aurions besoin de plus d’informations pour le résoudre";
 
 "Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Seuls les renseignements suivants seront envoyés  :\n• Le message que vous rédigez.\n• La version de l’application.\n• La version de votre système (OS).\n• Le modèle de votre ordinateur (aucune adresse MAC ni renseignement similaire qui permettrait d’identifier votre ordinateur).";
 
@@ -37,7 +37,7 @@
 "Thank you for the report!" = "Merci pour votre rapport";
 "We'll fix it as soon as possible!" = "Nous allons le résoudre dès que possible !";
 
-"Welcome to beta testing of %@." = "Bienvenue aux tests bêta de %@.";
+"Welcome to beta testing of %@." = "Bienvenue dans le tests bêta de %@.";
 "This is the first time you run a beta build %@." = "C'est la première fois que vous exécutez une version bêta de %@.";
 "This beta build of %@ has expired." = "Cette version bêta de %@ a expiré.";
 
@@ -46,7 +46,7 @@
 "Progress" = "Progression";
 "Posted successfully" = "Publié avec succès";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera de fonctionner pendant les prochaines 24 heures, après quoi sa fonctionnalité sera bloquée. Veuillez mettre à jour %@ afin de le faire fonctionner.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ continuera de fonctionner pendant les prochaines 24 heures, après quoi l’application sera bloquée. Veuillez mettre à jour %@ afin de le faire fonctionner.";
 "Please download a new build." = "Veuillez télécharger une nouvelle version.";
 
 /// Added on 4/26/2016
@@ -86,12 +86,12 @@
 "Clear Debug Log" = "Effacer le journal de débogage";
 "Show Log in Finder" = "Afficher le journal dans le Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Le journal de débogage est un fichier texte contenant des détails techniques sur ce que %@ exécute en arrière-plan. C'est assez utile pour régler les choses rapidement car cela me permet de voir ce qui se passe. Pour obtenir le journal de débogage, procédez comme suit  :";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Si ce n'est pas votre premier journal de débogage que vous envoyez, veuillez sélectionner Effacer le journal de débogage dans le menu Déboguer.\n2) Dans le menu Déboguer, assurez-vous que la journalisation du débogage est activée.\n3) Effectuez toute tâche avec laquelle vous rencontrez des problèmes.\n4) Dans le menu Déboguer, désactivez la journalisation du débogage.\n5) Dans le menu Déboguer, sélectionnez Afficher le journal dans le Finder. Cela sélectionne le fichier journal dans Finder et vous pouvez facilement me l'envoyer. Veuillez joindre le fichier à l'e-mail plutôt que copier-coller les informations.\n\nLe fichier journal ne contient aucune donnée personnelle qui peut être vérifiée en ouvrant le fichier journal (il s'agit d'un simple fichier texte). Si vous considérez certaines données comme confidentielles ou personnelles, veuillez les remplacer par quelque chose qui peut être facilement identifié comme un espace réservé (par exemple XXXXXXXX) et faites-moi savoir que vous avez modifié le fichier journal.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Le journal de débogage est un fichier texte contenant des détails techniques sur ce que %@ exécute en arrière-plan. C'est assez utile pour régler les choses rapidement car cela me permet de voir ce qu’il se passe. Pour obtenir le journal de débogage, procédez comme suit  :";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Si ce n'est pas votre premier journal de débogage que vous envoyez, veuillez sélectionner Effacer le journal de débogage dans le menu Déboguer.\n2) Dans le menu Déboguer, assurez-vous que la journalisation du débogage est activée.\n3) Effectuez toute tâche avec laquelle vous rencontrez des problèmes.\n4) Dans le menu Déboguer, désactivez la journalisation du débogage.\n5) Dans le menu Déboguer, sélectionnez Afficher le journal dans le Finder. Cela sélectionne le fichier journal dans Finder et vous pouvez facilement me l'envoyer. Veuillez joindre le fichier à l'e-mail plutôt que copier-coller les informations.\n\nLe fichier journal ne contient aucune donnée personnelle qui peut être vérifiée en l’ouvrant (il s'agit d'un simple fichier texte). Si vous considérez certaines données comme confidentielles ou personnelles, veuillez les remplacer par quelque chose qui peut être facilement identifié comme un espace réservé (par exemple XXXXXXXX) et faites-moi savoir que vous l’avez modifié.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Le document n'a pas pu être téléchargé pour le moment.";
-"Log Current Application State" = "État actuel de l’application";
+"Log Current Application State" = "Logger l'état actuel de l'application";
 
 /// 9/28/2016+
 
@@ -121,7 +121,7 @@
 "Copied" = "Copié";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ a rencontré un problème et va planter. Un rapport de plantage va s’ouvrir. Soumettez-le ou fermez la fenêtre au cas où vous voudriez ignorer le plantage.";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ a rencontré un problème et va planter. Une boîte de dialogue de rapport sera présentée. Veuillez le soumettre ou fermer la fenêtre au cas où vous voudriez ignorer le plantage.";
 "Send Anyway" = "Envoyer quand même";
 
 "There is an update available." = "Une mise à jour est disponible";

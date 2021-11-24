@@ -191,6 +191,9 @@ public final class XUCSVDocument {
 	/// Array of header/column names.
 	public var headerNames: [String] = []
 	
+	/// If true, headers are not included in the string representation.
+	public var isHeaderless: Bool = false
+	
 	public init(dictionaries: [[String : Any]]) {
 		self.content = dictionaries
 
@@ -223,6 +226,8 @@ public final class XUCSVDocument {
 		}
 		
 		try self.init(string: csv, columnSeparator: columnSeparator)
+		
+		self.isHeaderless = headerless
 	}
 	
 	public init(string: String, columnSeparator: Character = Character(",")) throws {
@@ -245,10 +250,16 @@ public final class XUCSVDocument {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
 		
-		var string = self.headerNames.joined(separator: String(self.columnSeparator))
+		var string: String
+		
+		if !self.isHeaderless {
+			string = self.headerNames.joined(separator: String(self.columnSeparator))
 
-		// New line
-		string += "\n"
+			// New line
+			string += "\n"
+		} else {
+			string = ""
+		}
 		
 		// Add all items in content
 		string += self.content.map({ (item) -> String in

@@ -21,6 +21,13 @@
 
 @end
 
+@interface NSXMLDocument (XUAdditions)
+
+/// As there is a bug in Swift preventing from calling xmlData(with:), this is a workaround.
+-(nonnull NSData *)prettyPrintedXMLData;
+
+@end
+
 @interface NSDictionary (XMLAdditions)
 
 /** This creates a NSXMLElement instance from the contents of the dictionary.
