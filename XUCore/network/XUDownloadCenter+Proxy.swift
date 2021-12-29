@@ -144,7 +144,7 @@ public extension XUDownloadCenter {
 			
 			let credentials: Credentials?
 			if let username = hostDict[DictionaryKeys.Username] as? String {
-				if let password = XUKeychainAccess.sharedAccess.password(forUsername: username, inAccount: host.fullAddress) {
+				if let password = XUKeychainAccess.shared.password(forUsername: username, inAccount: host.fullAddress) {
 					credentials = Credentials(username: username, andPassword: password)
 				} else {
 					credentials = nil
@@ -163,7 +163,7 @@ public extension XUDownloadCenter {
 				return
 			}
 			
-			XUKeychainAccess.sharedAccess.save(password: credentials.password, forUsername: credentials.password, inAccount: self.host.fullAddress)
+			XUKeychainAccess.shared.save(password: credentials.password, forUsername: credentials.password, inAccount: self.host.fullAddress)
 		}
 		
 		/// Returns a dictionary to be used with

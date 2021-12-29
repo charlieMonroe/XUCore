@@ -307,7 +307,7 @@ public final class XUOAuth2Client {
 				return nil
 			}
 			
-			let keychain = XUKeychainAccess.sharedAccess
+			let keychain = XUKeychainAccess.shared
 			guard let accessToken = keychain.password(forUsername: identifier + "_access", inAccount: client.configuration.name) else {
 				return nil
 			}
@@ -389,10 +389,10 @@ public final class XUOAuth2Client {
 		
 		/// Force-saves the token and refresh token. Currently a private method.
 		private func save() {
-			XUKeychainAccess.sharedAccess.save(password: self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
+			XUKeychainAccess.shared.save(password: self.accessToken, forUsername: self.identifier + "_access", inAccount: self.client.configuration.name)
 			
 			if let refreshToken = self.refreshToken {
-				XUKeychainAccess.sharedAccess.save(password: refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
+				XUKeychainAccess.shared.save(password: refreshToken, forUsername: self.identifier + "_refresh", inAccount: self.client.configuration.name)
 			}
 			
 			XUOAuth2Client.save()

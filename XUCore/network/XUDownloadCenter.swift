@@ -248,6 +248,10 @@ open class XUDownloadCenter {
 	}
 	
 	/// Returns a cookies field value for a URL.
+	///
+	/// - parameter url - if originalBaseURL is nil, then this method constructs a base URL based on
+	/// 					the host of `url`.
+	/// - parameter originalBaseURL - if non-nil, it's taken as the URL for the cookies.
 	public func cookiesHTTPHeaderValue(for url: URL, withBaseURL originalBaseURL: URL? = nil) -> String? {
 		let host = url.host ?? "nil"
 		

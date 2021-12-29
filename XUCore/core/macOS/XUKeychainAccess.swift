@@ -11,7 +11,7 @@ import Security
 
 public struct XUKeychainAccess {
 	
-	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
+	public static let shared: XUKeychainAccess = XUKeychainAccess()
 	
 	
 	/// Fetches a password for username in account from Keychain.

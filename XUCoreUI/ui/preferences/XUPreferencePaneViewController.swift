@@ -26,7 +26,7 @@ open class XUPreferencePaneViewController: NSViewController {
 	private func _createHeuristicalSearchablePhrases() -> [String] {
 		let view = self.view
 		
-		var phrases = [self.paneName]
+		var phrases: Set<String> = [self.paneName]
 		let crawler = XUViewCrawler(view: view)
 		for view in crawler where !view.isHidden {
 			if let button = view as? NSButton, !button.title.isEmpty {
@@ -34,7 +34,7 @@ open class XUPreferencePaneViewController: NSViewController {
 					continue
 				}
 				
-				phrases.append(button.title.replacingOccurrences(of: "\n", with: " "))
+				phrases.insert(button.title.replacingOccurrences(of: "\n", with: " "))
 			}
 			if let label = view as? NSTextField, !label.isEditable {
 				let value = label.stringValue
@@ -43,11 +43,11 @@ open class XUPreferencePaneViewController: NSViewController {
 					continue
 				}
 				
-				phrases.append(value)
+				phrases.insert(value)
 			}
 		}
 		
-		return phrases
+		return Array(phrases)
 	}
 	
 	

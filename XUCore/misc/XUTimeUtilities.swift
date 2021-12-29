@@ -121,7 +121,7 @@ public struct XUTime {
 		
 		hours = timeCp / 3600
 		
-		if hours == 0 && skipHours{
+		if hours == 0, skipHours {
 			// Skip hours
 			return String(format: "%02li:%02li", minutes, seconds)
 		}

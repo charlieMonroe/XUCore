@@ -440,8 +440,8 @@ public class XUMessageCenter {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(XUMessageCenter._launchMessageCenter), name: notificationName, object: nil)
 		
-		// Repeat this every hour.
-		_ = Timer.scheduledTimer(withTimeInterval: XUTimeInterval.hour, repeats: true) { (_) -> Void in
+		// Repeat this every 3 hours.
+		_ = Timer.scheduledTimer(withTimeInterval: XUTimeInterval.hour * 3.0, repeats: true) { (_) -> Void in
 			DispatchQueue.global(qos: .default).async(execute: { () -> Void in
 				self.checkForMessages()
 			})

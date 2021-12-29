@@ -25,7 +25,7 @@ extension UIAlertController {
 	/// Creates a new alert controller with information from the error. By default,
 	/// also adds an OK button. If you want all buttons of the alert to be custom,
 	/// remove the existing action on the controller.
-	@objc public convenience init(error: Error, completionHandler: (() -> Void)? = nil) {
+	public convenience init(error: Error, completionHandler: (() -> Void)? = nil) {
 		self.init(title: (error as NSError).localizedFailureReason, message: (error as NSError).localizedDescription, preferredStyle: .alert)
 		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: { (_) in
 			if let handler = completionHandler {

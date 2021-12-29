@@ -47,7 +47,7 @@ extension Dictionary {
 	
 	/// A convenience method for retrieving an array of dictionaries
 	public func arrayOfDictionaries(forKeyPath keyPath: String) -> [XUJSONDictionary]? {
-		return self.firstNonNilValue(forKeyPaths: keyPath)
+		return self.firstNonNilValue(ofType: [XUJSONDictionary].self, forKeyPaths: keyPath)
 	}
 	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
@@ -134,49 +134,58 @@ extension Dictionary {
 	
 	/// See value(forKeyPath:) - this method attempts to find the first
 	/// non-nil value of T.
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
-		return self.firstNonNilValue(forKeyPaths: keyPaths)
+	public func firstNonNilValue<T>(ofType type: T.Type, forKeyPaths keyPaths: String...) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPaths)
 	}
 	
 	/// See value(forKeyPath:) - this method attempts to find the first
 	/// non-nil value of T.
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
+	public func firstNonNilValue<T>(ofType type: T.Type, forKeyPaths keyPaths: [String]) -> T? {
 		return keyPaths.firstNonNilValue(using: { self.value(forKeyPath: $0) as? T })
 	}
 	
 	/// A convenience method for firstNonNilValue(forKeyPaths:) defaulting to Any.
 	public func firstNonNilValue(forKeyPaths keyPaths: String...) -> Any? {
-		return self.firstNonNilValue(forKeyPaths: keyPaths)
+		return self.firstNonNilValue(ofType: Any.self, forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
-		return self.firstNonNilValue(forKeys: keys)
+	public func firstNonNilValue<T>(ofType type: T.Type, forKeys keys: Key...) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeys: keys)
 	}
 	
 	/// Returns first non-nil value of a certain class under one of the keys.
-	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
-		return keys.firstNonNilValue(using: { self[$0] as? T })
+	public func firstNonNilValue<T>(ofType type: T.Type, forKeys keys: [Key]) -> T? {
+		return keys.firstNonNilValue(using: {
+			// If T is Any, then even nil values will be infact non-nil... Which
+			// is not correct as we'll return nonnil value for any key...
+			let value = self[$0]
+			guard value != nil else {
+				return nil
+			}
+			
+			return value as? T
+		})
 	}
 
 	/// Returns first non-nil string value for key paths.
 	public func firstNonNilString(forKeyPaths keyPaths: [String]) -> String? {
-		return self.firstNonNilValue(forKeyPaths: keyPaths)
+		return self.firstNonNilValue(ofType: String.self, forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil string value for key paths.
 	public func firstNonNilString(forKeyPaths keyPaths: String...) -> String? {
-		return self.firstNonNilValue(forKeyPaths: keyPaths)
+		return self.firstNonNilValue(ofType: String.self, forKeyPaths: keyPaths)
 	}
 	
 	/// Returns first non-nil string value for keys.
 	public func firstNonNilString(forKeys keys: [Key]) -> String? {
-		return self.firstNonNilValue(forKeys: keys)
+		return self.firstNonNilValue(ofType: String.self, forKeys: keys)
 	}
 	
 	/// Returns first non-nil string value for keys.
 	public func firstNonNilString(forKeys keys: Key...) -> String? {
-		return self.firstNonNilValue(forKeys: keys)
+		return self.firstNonNilValue(ofType: String.self, forKeys: keys)
 	}
 	
 	/// In a lot of cases, currently we need to get an int from whatever is under
@@ -257,27 +266,50 @@ extension Dictionary {
 	/// The keyPath isn't like in the rest of Cocoa dot-separated, but has the
 	/// following format: [key1][0][key2][key3]. XUCore will parse this and will
 	/// apply the keys on arrays and dictionaries seemlessly.
+	///
+	/// You can also add key variations - example: [key1][(0|1)][(key2|key3)] will
+	/// return [key1][0][key2] or [key1][1][key3], whichever is non-nil.
+	///
+	/// For array indexes, you can use -1 for the last index.
 	public func value(forKeyPath keyPath: String) -> Any? {
 		let components = keyPath.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: "][")
 		
 		var obj: Any? = self
-		for key in components {
+		for originalKey in components {
+			var keys: [String]
+			if originalKey.first == Character("("), originalKey.last == Character(")") {
+				keys = originalKey.dropFirst().dropLast().components(separatedBy: "|")
+			} else {
+				keys = [originalKey]
+			}
+			
+			
 			if let dict = obj as? XUJSONDictionary {
-				obj = dict[key]
+				if keys.count == 1 {
+					obj = dict[keys[0]]
+				} else {
+					obj = dict.firstNonNilValue(ofType: Any.self, forKeys: keys)
+				}
 			} else if let arr = obj as? [Any] {
-				guard let index = Int(key) else {
-					XULog("Dictionary.objectForKeyPath(): Index \(key) cannot be applied on an array!")
-					return nil
+				let indexes = keys.compactMap(Int.init(_:))
+				guard indexes.count == keys.count else {
+					XULog("Dictionary.objectForKeyPath(): Indexes \(keys) cannot be applied on an array!")
+					continue
+				}
+				
+				guard let index = indexes.first(where: { $0 == -1 || $0 < arr.count }) else {
+					XULog("None of the indexes \(indexes) can be applied on array of \(arr.count) elements.")
+					continue
 				}
 				
 				if index == -1 {
-					return arr.last
+					obj = arr.last
 				} else if index < arr.count {
 					obj = arr[index]
-				}else{
+				} else {
 					return nil
 				}
-			}else{
+			} else {
 				return nil
 			}
 		}
@@ -286,3 +318,30 @@ extension Dictionary {
 	}
 	
 }
+
+
+/// Deprecated extensions.
+extension Dictionary {
+	
+	@available(*, deprecated, message: "Use method with explicit type.")
+	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeys: keys)
+	}
+	
+	@available(*, deprecated, message: "Use method with explicit type.")
+	public func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPaths)
+	}
+	
+	@available(*, deprecated, message: "Use method with explicit type.")
+	public func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPaths)
+	}
+	
+	@available(*, deprecated, message: "Use method with explicit type.")
+	public func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
+		return self.firstNonNilValue(ofType: T.self, forKeys: keys)
+	}
+	
+}
+

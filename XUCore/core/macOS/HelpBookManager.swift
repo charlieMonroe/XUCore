@@ -78,6 +78,11 @@ public final class HelpBookManager {
 	private init() {
 		self.anchorHandlingURLScheme = Bundle.main.infoDictionary?[HelpBookManager.anchorHandlingURLSchemeKey] as? String
 		
+		if Bundle.main.infoDictionary?["CFBundleHelpBookName"] == nil {
+			// Do not register help books if there are none.
+			return
+		}
+		
 		if !NSHelpManager.shared.registerBooks(in: .main) {
 			XULog("Failed to register books in main bundle.")
 		}

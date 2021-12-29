@@ -10,7 +10,7 @@ import Foundation
 
 public struct XUKeychainAccess {
 	
-	public static let sharedAccess: XUKeychainAccess = XUKeychainAccess()
+	public static let shared: XUKeychainAccess = XUKeychainAccess()
 	
 	private func _dictionaryForUsername(username: String, inAccount account: String, accessGroup: String?) -> [String : Any]? {
 		var genericPasswordQuery: [String : Any] = [:]
