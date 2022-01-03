@@ -41,6 +41,7 @@ open class XUDownloadCenter {
 		
 		/// This is a specific case which can be used by downloadWebSiteSourceByPostingFormOnPage(*)
 		/// methods. It means that there are no input fields available in the source.
+		@available(*, deprecated, message: "Deprecated along with methods posting forms in source.")
 		case noInputFields
 		
 		/// The download center did load some data, but it cannot be parsed as JSON.
@@ -291,13 +292,7 @@ open class XUDownloadCenter {
 	
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
-	public func downloadData(at url: URL, referingFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) -> Data? {
-		return try? self.downloadDataThrow(at: url, referringFunction: referingFunction, acceptType: acceptType, withRequestModifier: modifier)
-	}
-	
-	/// Downloads data from `url`, applies request modifier. `referingFunction`
-	/// is for logging purposes, use it with the default value instead.
-	public func downloadDataThrow(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) throws -> Data {
+	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) throws -> Data {
 		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
 		if self.isInvalidated {
@@ -315,7 +310,7 @@ open class XUDownloadCenter {
 		request.acceptType = acceptType
 		
 		self._applyAutomaticHeaderFields(to: &request)
-		modifier?(&request)
+		requestModifier?(&request)
 		
 		if XUDebugLog.isLoggingEnabled, self.logTraffic {
 			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
@@ -362,26 +357,16 @@ open class XUDownloadCenter {
 	}
 	
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionary(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XUJSONDictionary? {
-		return try? self.downloadJSONThrow(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
-	}
-	
-	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionaryThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XUJSONDictionary {
-		return try self.downloadJSONThrow(ofType: XUJSONDictionary.self, at: url, withRequestModifier: modifier)
+	public func downloadJSONDictionary(at url: URL, requestModifier: URLRequestModifier? = nil) throws -> XUJSONDictionary {
+		return try self.downloadJSON(ofType: XUJSONDictionary.self, at: url, requestModifier: requestModifier)
 	}
 	
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSON<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> T? {
-		return try? self.downloadJSONThrow(ofType: type, at: url, withRequestModifier: modifier)
-	}
-	
-	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSONThrow<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> T {
-		let data = try self.downloadDataThrow(at: url, withRequestModifier: { (request: inout URLRequest) in
+	public func downloadJSON<T>(ofType type: T.Type, at url: URL, requestModifier: URLRequestModifier? = nil) throws -> T {
+		let data = try self.downloadData(at: url, requestModifier: { request in
 			request.acceptType = .json
 			
-			modifier?(&request)
+			requestModifier?(&request)
 		})
 		
 		guard let obj: T = XUJSONHelper.object(from: data) else {
@@ -394,15 +379,8 @@ open class XUDownloadCenter {
 	/// Downloads a pure website source. The download center will try to interpret
 	/// the data with preferredEncoding. If that fails, it will fall back to any
 	/// other encoding.
-	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) -> String? {
-		return try? self.downloadWebPageThrow(at: url, preferredEncoding: preferredEncoding, withRequestModifier: modifier)
-	}
-	
-	/// Downloads a pure website source. The download center will try to interpret
-	/// the data with preferredEncoding. If that fails, it will fall back to any
-	/// other encoding.
-	public func downloadWebPageThrow(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) throws -> String {
-		let data = try self.downloadDataThrow(at: url, withRequestModifier: modifier)
+	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, requestModifier: URLRequestModifier? = nil) throws -> String {
+		let data = try self.downloadData(at: url, requestModifier: requestModifier)
 			
 		if let responseString = String(data: data, encoding: preferredEncoding ?? self.defaultStringEncoding) {
 			return responseString
@@ -416,77 +394,12 @@ open class XUDownloadCenter {
 		return string
 	}
 	
-	/// Does the same as the varian without the `fields` argument, but adds or
-	/// replaces some field values.
-	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		return try? self.downloadWebPageThrow(postingFormIn: source, toURL: url, withAdditionalValues: fields, withRequestModifier: requestModifier)
-	}
-	
-	/// Does the same as the varian without the `fields` argument, but adds or
-	/// replaces some field values.
-	public func downloadWebPageThrow(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) throws -> String {
-		return try self.downloadWebPageThrow(postingFormIn: source, to: url, fieldsModifier: { (inputFields: inout [String : String]) in
-			inputFields += fields
-		}, requestModifier: requestModifier)
-	}
-
-	
-	/// Sends a POST request to `URL` and automatically gathers <input name="..."
-	/// value="..."> pairs in `source` and posts them as WWW form.
-	public func downloadWebPage(postingFormIn source: String, toURL url: URL, withFieldsModifier modifier: POSTFieldsModifier? = nil, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		return try? self.downloadWebPageThrow(postingFormIn: source, to: url, fieldsModifier: modifier, requestModifier: requestModifier)
-	}
-	
-	/// Sends a POST request to `URL` and automatically gathers <input name="..."
-	/// value="..."> pairs in `source` and posts them as WWW form.
-	public func downloadWebPageThrow(postingFormIn source: String, to url: URL, fieldsModifier: POSTFieldsModifier? = nil, requestModifier: URLRequestModifier? = nil) throws -> String {
-		var inputFields = source.allVariablePairs(forRegex: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
-		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
-		if inputFields.count == 0 {
-			if self.logTraffic {
-				XULog("[\(self.identifier)] - no input fields in \(source)")
-			}
-			throw Error.noInputFields
-		}
-		
-		fieldsModifier?(&inputFields)
-	
-		return try self.downloadWebPageThrow(postingFormWithValues: inputFields, to: url, requestModifier: requestModifier)
-	}
-	
-	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
-	/// invoke this method that posts the specific values to URL.
-	public func downloadWebPage(postingFormWithValues values: [String : String], toURL url: URL, withRequestModifier requestModifier: URLRequestModifier? = nil) -> String? {
-		return try? self.downloadWebPageThrow(postingFormWithValues: values, to: url, requestModifier: requestModifier)
-	}
-	
-	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
-	/// invoke this method that posts the specific values to URL.
-	public func downloadWebPageThrow(postingFormWithValues values: [String : String], to url: URL, requestModifier: URLRequestModifier? = nil) throws -> String {
-		return try self.downloadWebPageThrow(at: url, withRequestModifier: { (request) in
-			request.httpMethod = "POST"
-			
-			if self.logTraffic {
-				XULog("[\(self.self.identifier)] POST fields: \(values)")
-			}
-			
-			let bodyString = values.urlQueryString
-			request.httpBody = bodyString.data(using: .utf8)
-			
-			requestModifier?(&request)
-		})
-	}
 	
 	#if os(macOS)
 	
 	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocument(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> XMLDocument? {
-		return try? self.downloadXMLDocumentThrow(at: url, withRequestModifier: modifier)
-	}
-	
-	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocumentThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XMLDocument {
-		let source = try self.downloadWebPageThrow(at: url, withRequestModifier: modifier)
+	public func downloadXMLDocument(at url: URL, requestModifier: URLRequestModifier? = nil) throws -> XMLDocument {
+		let source = try self.downloadWebPage(at: url, requestModifier: requestModifier)
 	
 		do {
 			return try XMLDocument(xmlString: source, options: .documentTidyXML)
@@ -527,7 +440,7 @@ open class XUDownloadCenter {
 	
 	/// Based on the request's URL, the Cookie field is filled with cookies from
 	/// the default storage.
-	public func setupCookieField(forRequest request: inout URLRequest, withBaseURL baseURL: URL? = nil) {
+	public func setupCookieField(for request: inout URLRequest, baseURL: URL? = nil) {
 		self._setupCookieField(forRequest: &request, withBaseURL: baseURL)
 	}
 	
@@ -537,7 +450,7 @@ open class XUDownloadCenter {
 	}
 	
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequest(to url: URL, withRequestModifier modifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
+	public func sendHeadRequest(to url: URL, requestModifier: URLRequestModifier? = nil) -> HTTPURLResponse? {
 		if self.isInvalidated {
 			return nil
 		}
@@ -548,7 +461,7 @@ open class XUDownloadCenter {
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
 		
-		modifier?(&request)
+		requestModifier?(&request)
 		
 		do {
 			let response = try XUSynchronousDataLoader(request: request, session: self.session).loadData().response
@@ -577,3 +490,94 @@ open class XUDownloadCenter {
 	}
 	
 }
+
+
+/// Deprecated methods - will be removed soon - 2-step migration from methods returning optionals
+/// to throwing methods. And once we can support async/wait in our software, another migration is ahead.
+extension XUDownloadCenter {
+	
+	
+	@available(*, deprecated, renamed: "downloadData(at:referringFunction:acceptType:requestModifier:)")
+	public func downloadDataThrow(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, withRequestModifier modifier: URLRequestModifier? = nil) throws -> Data {
+		return try self.downloadData(at: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: modifier)
+	}
+	
+	/// Downloads the JSON and attempts to cast it to dictionary.
+	@available(*, deprecated, renamed: "downloadJSONDictionary(at:requestModifier:)")
+	public func downloadJSONDictionaryThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XUJSONDictionary {
+		return try self.downloadJSONDictionary(at: url, requestModifier: modifier)
+	}
+
+	@available(*, deprecated, renamed: "downloadJSON(ofType:at:requestModifier:)")
+	public func downloadJSONThrow<T>(ofType type: T.Type, at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> T {
+		return try self.downloadJSON(ofType: T.self, at: url, requestModifier: modifier)
+	}
+
+	@available(*, deprecated, renamed: "downloadWebPage(at:preferredEncoding:requestModifier:)")
+	public func downloadWebPageThrow(at url: URL, preferredEncoding: String.Encoding? = nil, withRequestModifier modifier: URLRequestModifier? = nil) throws -> String {
+		return try self.downloadWebPage(at: url, preferredEncoding: preferredEncoding, requestModifier: modifier)
+	}
+	
+	/// Does the same as the varian without the `fields` argument, but adds or
+	/// replaces some field values.
+	@available(*, deprecated, message: "Post the values manually. This method doesn't distinguish between multiple forms on a single webpage.")
+	public func downloadWebPageThrow(postingFormIn source: String, toURL url: URL, withAdditionalValues fields: [String : String], withRequestModifier requestModifier: URLRequestModifier? = nil) throws -> String {
+		return try self.downloadWebPageThrow(postingFormIn: source, to: url, fieldsModifier: { (inputFields: inout [String : String]) in
+			inputFields += fields
+		}, requestModifier: requestModifier)
+	}
+	
+	/// Sends a POST request to `URL` and automatically gathers <input name="..."
+	/// value="..."> pairs in `source` and posts them as WWW form.
+	@available(*, deprecated, message: "Post the values manually. This method doesn't distinguish between multiple forms on a single webpage.")
+	public func downloadWebPageThrow(postingFormIn source: String, to url: URL, fieldsModifier: POSTFieldsModifier? = nil, requestModifier: URLRequestModifier? = nil) throws -> String {
+		var inputFields = source.allVariablePairs(forRegex: "<input[^>]+name=\"(?P<VARNAME>[^\"]+)\"[^>]+value=\"(?P<VARVALUE>[^\"]*)\"")
+		inputFields += source.allVariablePairs(forRegex: "<input[^>]+value=\"(?P<VARVALUE>[^\"]*)\"[^>]+name=\"(?P<VARNAME>[^\"]+)\"")
+		if inputFields.count == 0 {
+			if self.logTraffic {
+				XULog("[\(self.identifier)] - no input fields in \(source)")
+			}
+			throw Error.noInputFields
+		}
+		
+		fieldsModifier?(&inputFields)
+	
+		return try self.downloadWebPageThrow(postingFormWithValues: inputFields, to: url, requestModifier: requestModifier)
+	}
+	
+	/// The previous methods (downloadWebSiteSourceByPostingFormOnPage(*)) eventually
+	/// invoke this method that posts the specific values to URL.
+	@available(*, deprecated, message: "Post the values manually - this is pretty much just adding a modifier that sets method to POST and body to values.urlQueryString.utf8Data.")
+	public func downloadWebPageThrow(postingFormWithValues values: [String : String], to url: URL, requestModifier: URLRequestModifier? = nil) throws -> String {
+		return try self.downloadWebPageThrow(at: url, withRequestModifier: { (request) in
+			request.httpMethod = "POST"
+			
+			if self.logTraffic {
+				XULog("[\(self.self.identifier)] POST fields: \(values)")
+			}
+			
+			let bodyString = values.urlQueryString
+			request.httpBody = bodyString.data(using: .utf8)
+			
+			requestModifier?(&request)
+		})
+	}
+	
+	#if os(macOS)
+		
+	/// Attempts to download content at `URL` and parse it as XML.
+	@available(*, deprecated, renamed: "downloadXMLDocument(at:requestModifier:)")
+	public func downloadXMLDocumentThrow(at url: URL, withRequestModifier modifier: URLRequestModifier? = nil) throws -> XMLDocument {
+		return try self.downloadXMLDocument(at: url, requestModifier: modifier)
+	}
+
+	#endif
+	
+	@available(*, deprecated, renamed: "setupCookieField(for:baseURL:)")
+	public func setupCookieField(forRequest request: inout URLRequest, withBaseURL baseURL: URL? = nil) {
+		return self.setupCookieField(for: &request, baseURL: baseURL)
+	}
+		
+}
+
+

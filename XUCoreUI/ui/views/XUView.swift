@@ -46,7 +46,7 @@ import Cocoa
 		.layerMaxXMinYCorner, .layerMinXMaxYCorner
 	]
 	
-	private func _updateLayer() {
+	@objc private func _updateLayer() {
 		self.wantsLayer = true
 		
 		if self.layer == nil {
@@ -69,19 +69,12 @@ import Cocoa
 		self._updateLayer()
 	}
 	
-//	open override func draw(_ dirtyRect: CGRect) {
-//		self.backgroundColor.setFill()
-//		self.borderColor.setStroke()
-//
-//		let bPath: NSBezierPath
-//		if self.cornerRadius == 0.0 {
-//			bPath = NSBezierPath(rect: self.bounds)
-//		} else {
-//			bPath = NSBezierPath(roundedRect: self.bounds, xRadius: CGFloat(self.cornerRadius), yRadius: CGFloat(self.cornerRadius))
-//		}
-//		bPath.lineWidth = CGFloat(self.borderWidth)
-//		bPath.fill()
-//		bPath.stroke()
-//	}
+	open override func updateLayer() {
+		super.updateLayer()
+		
+		// This is generally done to support dynamic colors on
+		// macOS 10.15 and later.		
+		self._updateLayer()
+	}
 	
 }

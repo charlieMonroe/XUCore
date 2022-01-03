@@ -30,12 +30,6 @@ internal class XUPreferencePanesView: NSView {
 	/// Height of each section.
 	internal static let sectionHeight: CGFloat = 92.0
 
-	/// Attributes of the title.
-	internal static let titleAttributes: [NSAttributedString.Key : Any] = [
-		.foregroundColor: NSColor.textColor,
-		.font: XUPreferencePanesView.titleFont
-	]
-
 	/// Font used for button titles.
 	internal static let titleFont: NSFont = NSFont.systemFont(ofSize: 12.0)
 
@@ -149,6 +143,12 @@ internal class XUPreferencePanesView: NSView {
 				
 				button.frame = CGRect(x: x + (XUPreferencePanesView.buttonWidth - size.width) / 2.0, y: y - XUPreferencePanesView.sectionHeight + 16.0, width: size.width, height: size.height).integral
 				
+				let intrinsicSize = button.sizeThatFits(CGSize(width: size.width, height: .infinity))
+				if intrinsicSize.height > (XUPreferencePanesView.sectionHeight - XUPreferencePanesView.buttonPadding) {
+					// Try to use smaller font.
+					button.font = NSFont.systemFont(ofSize: 10.0)
+				}
+				
 				button.addConstraints([
 					NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: XUPreferencePanesView.buttonWidth + XUPreferencePanesView.buttonPadding),
 					NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: XUPreferencePanesView.sectionHeight - XUPreferencePanesView.buttonPadding)
@@ -187,7 +187,7 @@ private class XUPreferencePaneButtonCell: NSButtonCell {
 	
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var attributes: [NSAttributedString.Key : Any] = [
-			.font: XUPreferencePanesView.titleFont,
+			.font: self.font ?? XUPreferencePanesView.titleFont,
 			.foregroundColor: NSColor.textColor
 		]
 		let parts: [String] = title.string.components(separatedBy: " ")
@@ -273,7 +273,7 @@ private class XUPreferencePaneButton: NSButton {
 	}
 	
 	fileprivate override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var attributes: [NSAttributedString.Key : Any] = [.font: XUPreferencePanesView.titleFont]
+		var attributes: [NSAttributedString.Key : Any] = [.font: self.font ?? XUPreferencePanesView.titleFont]
 		let parts: [String] = self.title.components(separatedBy: " ")
 		var lineParts: [String] = []
 		
@@ -314,7 +314,7 @@ private class XUPreferencePaneButton: NSButton {
 		
 		attributes[.paragraphStyle] = paragraphStyle
 		
-		let textSize = lineParts.joined(separator: "\n").size(withAttributes: attributes)
+		let textSize = lineParts.joined(separator: "\n").size(withAttributes: attributes, maximumWidth: size.width)
 		var result = textSize
 		result.width += 2.0
 		result.width = max(result.width, XUPreferencePanesView.iconSize)
