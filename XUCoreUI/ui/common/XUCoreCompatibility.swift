@@ -28,7 +28,7 @@ private func _printInformation(for view: __XUBridgedView) {
 	XULog("Enclosing cell: \(view.enclosingTableViewCell.descriptionWithDefaultValue())")
 	#endif
 	
-	XULogStacktrace("")
+	XUFatalError()
 }
 
 

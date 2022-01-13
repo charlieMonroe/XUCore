@@ -81,6 +81,11 @@ extension Data {
 		})
 	}
 	
+	
+	public func encryptedAES128Data(with key: Crypto.KeyValue, initialVector: Crypto.KeyValue? = nil, options: CCOptions = CCOptions(kCCOptionPKCS7Padding)) -> Data? {
+		return self.encryptedData(using: CCAlgorithm(kCCAlgorithmAES), key: key, initialVector: initialVector?.dataValue, options: options)
+	}
+	
 	public func decryptedAES128Data(with key: Crypto.KeyValue, initialVector: Crypto.KeyValue? = nil) -> Data? {
 		return self.decryptedData(using: CCAlgorithm(kCCAlgorithmAES128), key: key, initialVector: initialVector?.dataValue)
 	}
@@ -136,7 +141,7 @@ extension Data {
 	}
 	
 	/// Returns data encrypted using algorithm and key.
-	public func encryptedData(using algorithm: CCAlgorithm, key: Crypto.KeyValue, initialVector: Data? = nil) -> Data? {
+	public func encryptedData(using algorithm: CCAlgorithm, key: Crypto.KeyValue, initialVector: Data? = nil, options: CCOptions = 0) -> Data? {
 		var status: CCCryptorStatus = CCCryptorStatus(kCCSuccess)
 		
 		var keyData = key.dataValue
@@ -147,7 +152,7 @@ extension Data {
 		return self.withUnsafeBytes	{ dataPtr -> Data? in
 			keyData.withUnsafeBytes { keyPtr -> Data? in
 				(ivData ?? Data()).withUnsafeBytes { ivPtr -> Data? in
-					status = CCCryptorCreate(CCOperation(kCCEncrypt), algorithm, 0, keyPtr.baseAddress, keyData.count, initialVector == nil ? nil : ivPtr.baseAddress, &cryptor)
+					status = CCCryptorCreate(CCOperation(kCCEncrypt), algorithm, options, keyPtr.baseAddress, keyData.count, initialVector == nil ? nil : ivPtr.baseAddress, &cryptor)
 					
 					guard status == CCCryptorStatus(kCCSuccess), cryptor != nil else {
 						return nil
