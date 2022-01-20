@@ -324,11 +324,11 @@ internal class XUSystemNotificationWindow: NSWindow {
 	fileprivate func _updateWindowFrame() {
 		var windowFrame = self.frame
 		
-		let screen = self.screen ?? NSScreen.main!
+		let screen = NSApp.keyWindow?.screen ?? NSScreen.screens[0]
 		let screenFrame = screen.frame
 
-		windowFrame.origin.x = (screenFrame.width / 2.0) - (windowFrame.width / 2.0)
-		windowFrame.origin.y = screenFrame.height / 4.0
+		windowFrame.origin.x = screenFrame.minX + (screenFrame.width / 2.0) - (windowFrame.width / 2.0)
+		windowFrame.origin.y = screenFrame.minY + screenFrame.height / 4.0
 		
 		self.setFrameOrigin(windowFrame.origin)
 		

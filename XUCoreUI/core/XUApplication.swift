@@ -195,6 +195,10 @@ open class XUApplication: NSApplication {
 		super.sendEvent(theEvent)
 	}
 	
+	open override func showHelp(_ sender: Any?) {
+		HelpBookManager.shared.openHelp()
+	}
+	
 	open override func stopModal() {
 		_isModal = false
 		super.stopModal()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,16 +17,16 @@
             <windowStyleMask key="styleMask" resizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="200" height="217"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2137"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3200" height="1775"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="210"/>
+                <rect key="frame" x="0.0" y="0.0" width="200" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="toolTip" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="VXb-jv-Sej">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="210"/>
+                    <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="HUDWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="VXb-jv-Sej">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="209"/>
                         <subviews>
                             <imageView translatesAutoresizingMaskIntoConstraints="NO" id="14">
-                                <rect key="frame" x="17" y="56" width="166" height="134"/>
+                                <rect key="frame" x="17" y="55" width="166" height="134"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="166" id="40"/>
                                     <constraint firstAttribute="height" constant="134" id="58"/>
@@ -34,10 +34,10 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="15"/>
                             </imageView>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                                <rect key="frame" x="18" y="29" width="164" height="19"/>
+                                <rect key="frame" x="18" y="28" width="164" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="50"/>
-                                    <constraint firstAttribute="width" constant="160" id="54"/>
+                                    <constraint firstAttribute="width" priority="750" constant="160" id="54"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Posted successfully" id="4">
                                     <font key="font" metaFont="systemBold" size="16"/>
@@ -46,7 +46,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="miP-lD-csv">
-                                <rect key="frame" x="18" y="12" width="164" height="17"/>
+                                <rect key="frame" x="18" y="12" width="164" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Posted successfully" id="rpw-9W-dht">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,7 +80,7 @@
                 <outlet property="subtitleField" destination="miP-lD-csv" id="bXH-WE-jnc"/>
                 <outlet property="visualEffectView" destination="VXb-jv-Sej" id="RGr-ag-JOB"/>
             </connections>
-            <point key="canvasLocation" x="440" y="344.5"/>
+            <point key="canvasLocation" x="-8" y="284"/>
         </window>
     </objects>
 </document>

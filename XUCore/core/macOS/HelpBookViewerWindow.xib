@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment version="101202" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="19529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="HelpBookViewerWindowController" customModule="XUCore" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="Vg7-PG-094" id="xTf-MY-zJG"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="compact" titleVisibility="hidden" id="Vg7-PG-094" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <rect key="contentRect" x="3526" y="323" width="952" height="664"/>
+            <rect key="screenRect" x="3200" y="108" width="3008" height="1667"/>
+            <view key="contentView" id="OsP-aG-0eB">
+                <rect key="frame" x="0.0" y="0.0" width="952" height="664"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6r-kv-adA">
+                        <rect key="frame" x="0.0" y="0.0" width="952" height="664"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="H6r-kv-adA" firstAttribute="leading" secondItem="OsP-aG-0eB" secondAttribute="leading" id="0d5-Gk-3x8"/>
+                    <constraint firstAttribute="trailing" secondItem="H6r-kv-adA" secondAttribute="trailing" id="0w3-lf-xob"/>
+                    <constraint firstItem="H6r-kv-adA" firstAttribute="top" secondItem="OsP-aG-0eB" secondAttribute="top" id="8ve-EY-aAT"/>
+                    <constraint firstAttribute="bottom" secondItem="H6r-kv-adA" secondAttribute="bottom" id="Dxe-Bj-M0k"/>
+                </constraints>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="FC757202-DE1B-4F36-81AD-5FFB6146264A" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="yJ1-3e-UuT">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="cug-5x-LTm"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="piN-QW-Ese"/>
+                    <toolbarItem implicitItemIdentifier="445D10A8-C933-4A5A-9D99-E45CD343ECBE" label="Title" paletteLabel="Title" sizingBehavior="auto" id="Bed-Ln-Cbx">
+                        <nil key="toolTip"/>
+                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-SV-v6h">
+                            <rect key="frame" x="0.0" y="14" width="38" height="16"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Help" id="Cd0-ac-pCG">
+                                <font key="font" metaFont="systemBold"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="7AB5C4B0-6C11-42A6-81B4-9F0F94132BED" label="Back" paletteLabel="Back" image="NSGoBackTemplate" title="Back" sizingBehavior="auto" id="gw1-RO-92j">
+                        <nil key="toolTip"/>
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-T2-O0E">
+                            <rect key="frame" x="0.0" y="14" width="40" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="Iw8-t8-Avd"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" image="NSGoBackTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sjx-MF-B5b">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="goBack:" target="H6r-kv-adA" id="Fmc-6M-sNw"/>
+                            <binding destination="-2" name="enabled" keyPath="self.webView.canGoBack" id="Fwy-fu-cZG"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="4F7EDB24-E89B-4FB7-B6AD-0730ABFBE7B1" label="Forward" paletteLabel="Forward" image="NSGoForwardTemplate" bordered="YES" title="Forward" sizingBehavior="auto" id="u14-0n-nJq">
+                        <nil key="toolTip"/>
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-xk-NsK">
+                            <rect key="frame" x="5" y="14" width="40" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="l9J-5R-Z5M"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Forward" bezelStyle="rounded" image="NSGoForwardTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VXZ-Og-i9i">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="goForward:" target="H6r-kv-adA" id="Z14-oY-flu"/>
+                            <binding destination="-2" name="enabled" keyPath="self.webView.canGoForward" id="G1e-vA-ZuZ"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="Bed-Ln-Cbx"/>
+                    <toolbarItem reference="cug-5x-LTm"/>
+                    <toolbarItem reference="gw1-RO-92j"/>
+                    <toolbarItem reference="u14-0n-nJq"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <point key="canvasLocation" x="171" y="108"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="NSGoBackTemplate" width="10" height="14"/>
+        <image name="NSGoForwardTemplate" width="10" height="14"/>
+    </resources>
+</document>

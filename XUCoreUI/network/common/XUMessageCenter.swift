@@ -432,6 +432,10 @@ public class XUMessageCenter {
 	}
 		
 	private init() {
+		if ProcessInfo().arguments.contains("--disable-messages") {
+			return
+		}
+		
 		#if canImport(UIKit)
 			let notificationName = UIApplication.didFinishLaunchingNotification
 		#else

@@ -12,6 +12,8 @@
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		07156FD01C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
+		0721ABCC279020D4001AA7EF /* HelpBookViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721ABCB279020D4001AA7EF /* HelpBookViewerWindowController.swift */; };
+		0721ABCE2790210C001AA7EF /* HelpBookViewerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0721ABCD2790210C001AA7EF /* HelpBookViewerWindow.xib */; };
 		07241D3B1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		07241D3C1D17D57300206E27 /* XUCompoundError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07241D3A1D17D57300206E27 /* XUCompoundError.swift */; };
 		0726FA4320625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */; };
@@ -492,6 +494,8 @@
 		071A74A31C54DA3600EEA7FC /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		071A74A41C54DA7000EEA7FC /* cs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
+		0721ABCB279020D4001AA7EF /* HelpBookViewerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBookViewerWindowController.swift; sourceTree = "<group>"; };
+		0721ABCD2790210C001AA7EF /* HelpBookViewerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpBookViewerWindow.xib; sourceTree = "<group>"; };
 		07241D2D1D17B16700206E27 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07241D3A1D17D57300206E27 /* XUCompoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCompoundError.swift; sourceTree = "<group>"; };
 		0725C2382147976900511B63 /* XUOneShotPopoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUOneShotPopoverManager.swift; sourceTree = "<group>"; };
@@ -1605,6 +1609,8 @@
 			children = (
 				07EA8E8C1C58B69F00B6F77C /* XUKeychainAccess.swift */,
 				073351A826CD5E7900D36809 /* HelpBookManager.swift */,
+				0721ABCB279020D4001AA7EF /* HelpBookViewerWindowController.swift */,
+				0721ABCD2790210C001AA7EF /* HelpBookViewerWindow.xib */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1940,6 +1946,7 @@
 			files = (
 				07C184F321997B670017A539 /* MainMenu.strings in Resources */,
 				0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */,
+				0721ABCE2790210C001AA7EF /* HelpBookViewerWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2137,6 +2144,7 @@
 				073E6AEB1BE1F86D00706283 /* tostring.cc in Sources */,
 				0779E1971BF23B6000832858 /* URLRequestAdditions.swift in Sources */,
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
+				0721ABCC279020D4001AA7EF /* HelpBookViewerWindowController.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
 				075DC79B1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,

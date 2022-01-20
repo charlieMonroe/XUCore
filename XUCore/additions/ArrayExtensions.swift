@@ -59,6 +59,13 @@ extension Sequence {
 		return self.first(where: { $0[keyPath: keyPath] == value })
 	}
 	
+	/// Returns first element of type T.
+	///
+	/// Note: equivalent to self.firstNonNilValue(using: { $0 as? T })
+	public func first<T>(ofType type: T.Type) -> T? {
+		return self.firstNonNilValue(using: { $0 as? T })
+	}
+	
 	/// Finds a maximum value within self. For non-empty arrays, always returns
 	/// a non-nil value.
 	public func findMax<T: Comparable>(_ valuator: (Self.Element) -> T) -> Self.Element? {

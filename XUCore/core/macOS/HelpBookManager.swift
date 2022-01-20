@@ -33,7 +33,18 @@ public final class HelpBookManager {
 		return Bundle.main.infoDictionary?["CFBundleHelpBookName"] as? String
 	}()
 	
+	/// Default book bundle name. Loads CFBundleHelpBookFolder value from app's Info.plist.
+	public private(set) lazy var defaultBookBundleName: String? = {
+		return Bundle.main.infoDictionary?["CFBundleHelpBookFolder"] as? String
+	}()
 	
+	/// Returns a bundle of the help book.
+	public private(set) lazy var defaultBookBundle: Bundle? = {
+		guard let bundleName = self.defaultBookBundleName else {
+			return nil
+		}
+		return Bundle.main.url(forResource: bundleName, withExtension: nil).flatMap(Bundle.init(url:))
+	}()
 	
 	
 	/// Returns whether it can handle a particular URL. This URL needs to have the scheme specified
@@ -60,6 +71,12 @@ public final class HelpBookManager {
 		return self.openPage(named: host)
 	}
 	
+	
+	/// Opens help root.
+	public func openHelp() {
+		self.openPage(named: "index")
+	}
+	
 	/// Opens a page with a name in a particular help book. The book identifiier is by default taken
 	/// from main bundle's help book name. The page name should not include the extension, `.html`
 	/// is used automatically. If you need to specify a different extension, override the pathExtension
@@ -71,6 +88,18 @@ public final class HelpBookManager {
 		guard let identifier = bookIdentifier ?? self.defaultBookIdentifier else {
 			return false
 		}
+		
+		// Prefer directly opening the file with Help Viewer. It bypasses potential
+		// help cache issues that have been encountered.
+		
+		if
+			let bundle = self.defaultBookBundle,
+			let url = bundle.url(forResource: pageName, withExtension: pathExtension)
+		{
+			HelpBookViewerWindowController.shared.openHTML(at: url)
+			return true
+		}
+		
 		
 		return AHGotoPage(identifier as CFString, (pageName + ".html") as CFString, nil) == 0
 	}
