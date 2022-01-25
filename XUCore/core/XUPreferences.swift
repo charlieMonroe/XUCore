@@ -208,6 +208,8 @@ public struct XUPreferences {
 		return _shared!
 	}
 	
+	/// See XUPreferences+Combine.
+	internal let _changeObservationObjectWrapper: ChangeObservationWrapper
 	
 	/// Key modifier. For example, if you need to store per-document preferences,
 	/// you may init them with a `keyModifier` that adds document UUID to the key.
@@ -223,6 +225,8 @@ public struct XUPreferences {
 	public init(userDefaults: UserDefaults = .standard, keyModifier: @escaping (String) -> String = { $0 }) {
 		self.keyModifier = keyModifier
 		self.userDefaults = userDefaults
+		
+		_changeObservationObjectWrapper = ChangeObservationWrapper()
 	}
 	
 	/// Executes the block and calls synchronize on UserDefaults. This is the
@@ -316,20 +320,36 @@ public extension XUPreferences {
 		let payload = try encoder.encode(obj)
 		
 		self.set(value: payload, forKey: key)
+		
+		if #available(macOS 10.15, *) {
+			self.changeObservation.objectWillChange.send(key)
+		}
 	}
 	
 	/// Sets boolean for key.
 	func set(boolean value: Bool, forKey key: Key) {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
+		
+		if #available(macOS 10.15, *) {
+			self.changeObservation.objectWillChange.send(key)
+		}
 	}
 	
 	/// Sets integer for key.
 	func set(integer value: Int, forKey key: Key) {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
+		
+		if #available(macOS 10.15, *) {
+			self.changeObservation.objectWillChange.send(key)
+		}
 	}
 	
 	func set<T: RawRepresentable>(rawRepresentable: T, for key: Key) {
-		return self.set(value: rawRepresentable.rawValue, forKey: key)
+		self.set(value: rawRepresentable.rawValue, forKey: key)
+		
+		if #available(macOS 10.15, *) {
+			self.changeObservation.objectWillChange.send(key)
+		}
 	}
 
 	/// Sets a value for key. Note that the value is passed to UserDefaults,
@@ -339,6 +359,10 @@ public extension XUPreferences {
 			self.userDefaults.removeObject(forKey: self.keyModifier(key.rawValue))
 		} else {
 			self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
+		}
+		
+		if #available(macOS 10.15, *) {
+			self.changeObservation.objectWillChange.send(key)
 		}
 	}
 	

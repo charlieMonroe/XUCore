@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070103F0279EFF4E00BEC0D9 /* XUPreferences+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070103EF279EFF4E00BEC0D9 /* XUPreferences+Combine.swift */; };
+		070103F1279EFF4E00BEC0D9 /* XUPreferences+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070103EF279EFF4E00BEC0D9 /* XUPreferences+Combine.swift */; };
 		070AAD841E75400500224644 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AAD831E75400500224644 /* CharacterTests.swift */; };
 		070C040B1BFC7649001373B1 /* XUExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */; };
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
@@ -477,6 +479,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070103EF279EFF4E00BEC0D9 /* XUPreferences+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferences+Combine.swift"; sourceTree = "<group>"; };
 		0703290B2021A2ED0074A8B6 /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUDockIconProgress.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
@@ -1516,6 +1519,7 @@
 				074228761E3CE296003A485A /* XUPointerEquality.swift */,
 				07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */,
 				07D6EBFC22955BEB00F6B7DF /* XUPreferences+Basic.swift */,
+				070103EF279EFF4E00BEC0D9 /* XUPreferences+Combine.swift */,
 				07E38A3F1C07105100AE6EAB /* XUString.swift */,
 				0779E1781BF20FA000832858 /* XUSubclassCollector.swift */,
 				07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */,
@@ -2170,6 +2174,7 @@
 				077AFF581BBD101400872A48 /* StringExtensions.swift in Sources */,
 				0749DCE41C00C3E00075CC9B /* XUMath.swift in Sources */,
 				073E6B151BE1F86D00706283 /* stringprintf.cc in Sources */,
+				070103F0279EFF4E00BEC0D9 /* XUPreferences+Combine.swift in Sources */,
 				075DC78C1CF1E1BB0043EBD0 /* XUInsertionSyncChange.swift in Sources */,
 				0763C15E1C7C872A0086D1F7 /* XUDownloadCenter.swift in Sources */,
 				07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */,
@@ -2305,6 +2310,7 @@
 				073E6AEE1BE1F86D00706283 /* unicode_casefold.cc in Sources */,
 				073E6B0E1BE1F86D00706283 /* rune.cc in Sources */,
 				0749DCFB1C00D5060075CC9B /* _XUCoreLoader.m in Sources */,
+				070103F1279EFF4E00BEC0D9 /* XUPreferences+Combine.swift in Sources */,
 				0779E1841BF2321B00832858 /* XURandomGenerator.swift in Sources */,
 				07E38A411C07105100AE6EAB /* XUString.swift in Sources */,
 				073E6ABC1BE1F86D00706283 /* bitstate.cc in Sources */,
