@@ -9,7 +9,6 @@
 import Foundation
 import Combine
 
-
 extension XUPreferences {
 	
 	/// An additional wrapper layer.
@@ -18,6 +17,7 @@ extension XUPreferences {
 		private var _observation: AnyObject?
 		
 		@available(macOS 10.15, *)
+		@available(iOS 13.0, *)
 		func observation(for preferences: XUPreferences) -> ChangeObservation {
 			if let observation = _observation as? ChangeObservation {
 				return observation
@@ -31,6 +31,7 @@ extension XUPreferences {
 	}
 	
 	@available(macOS 10.15, *)
+	@available(iOS 13.0, *)
 	public final class ChangeObservation: ObservableObject {
 		
 		/// You can observe changes to XUPreferences via this subject. The value passed is the key that changed.
@@ -45,7 +46,6 @@ extension XUPreferences {
 		
 	}
 	
-	@available(macOS 10.15, *)
 	/// ObservableObject for changes to the preferences. Subscribe to the objectWillChange subject.
 	///  Here is how to use it:
 	///
@@ -57,6 +57,8 @@ extension XUPreferences {
 	///
 	/// Picker(selection: $preferencesObservation.preferences.mySetting) [...]
 	/// ```
+	@available(macOS 10.15, *)
+	@available(iOS 13.0, *)
 	public var changeObservation: ChangeObservation {
 		return self._changeObservationObjectWrapper.observation(for: self)
 	}

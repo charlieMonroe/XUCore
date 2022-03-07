@@ -128,6 +128,16 @@ open class XUApplication: NSApplication {
 			
 			let keyCode = theEvent.keyCode
 			if keyCode == XUKeyCode.escape.rawValue || keyCode == XUKeyCode.enter.rawValue || keyCode == XUKeyCode.return.rawValue {
+				// If the first responder is a text view that is not in a text field,
+				// then let the text view handle this.
+				if
+					let textView = w.firstResponder as? NSTextView,
+					textView.enclosingView(ofType: NSTextField.self) == nil
+				{
+					super.sendEvent(theEvent)
+					return
+				}
+				
 				w.makeFirstResponder(w.nextResponder)
 				w.keyDown(with: theEvent)
 			} else if keyCode == 9 && theEvent.modifierFlags.contains(.command) {

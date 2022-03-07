@@ -36,7 +36,36 @@ extension Lock {
 		
 		return returnValue!
 	}
-
+	
+	/// Performs a block while locking itself. It also installs an XUExceptionCatcher
+	/// that catches potential ObjC exceptions, which it raises again, but unlocks
+	/// self, thus potentially avoiding a deadlock.
+	public func perform<T>(locked block: () throws -> T) throws -> T {
+		self.lock()
+		
+		var returnValue: T? = nil
+		var thrownError: Error?
+		XUExceptionCatcher.perform({
+			do {
+				returnValue = try block()
+			} catch {
+				thrownError = error
+			}
+			self.unlock()
+		}, withCatchHandler: { (exception) -> Void in
+			// We only unlock self if an exception was raised. If no exception
+			// occurs, the lock is unlocked within performing the block.
+			self.unlock()
+			exception.raise() // Rethrow the exception
+		})
+		
+		if let thrownError = thrownError {
+			throw thrownError
+		}
+		
+		return returnValue!
+	}
+	
 }
 
 @propertyWrapper

@@ -28,6 +28,9 @@
 		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
+		073E54D727BC0D1B0004115B /* Thread+Cleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */; };
+		073E54D827BC0D1B0004115B /* Thread+Cleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */; };
+		073E551D27BD10810004115B /* XUDownloadCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E551C27BD10810004115B /* XUDownloadCenter+Async.swift */; };
 		073E6A6E1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
 		073E6A6F1BE1F63700706283 /* XUBlockThreading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */; };
 		073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = 073E6A7E1BE1F86D00706283 /* bitstate.cc */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -515,6 +518,8 @@
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
 		073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUClickThroughTextField.swift; sourceTree = "<group>"; };
+		073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Cleanup.swift"; sourceTree = "<group>"; };
+		073E551C27BD10810004115B /* XUDownloadCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUDownloadCenter+Async.swift"; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
 		073E6A7E1BE1F86D00706283 /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
 		073E6A7F1BE1F86D00706283 /* compile.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compile.cc; sourceTree = "<group>"; };
@@ -730,6 +735,7 @@
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
 		07AAE86422E9857E0075567A /* XUObjectPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUObjectPool.swift; sourceTree = "<group>"; };
 		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
+		07ADDD9527C3E67900902DE7 /* libswift_Concurrency.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswift_Concurrency.tbd; path = usr/lib/swift/libswift_Concurrency.tbd; sourceTree = SDKROOT; };
 		07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUJSONDeserializable.swift; sourceTree = "<group>"; };
 		07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUiCloudSyncManager.swift; sourceTree = "<group>"; };
 		07AEC1101D01E8BF00C8E127 /* FileManagerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerAdditions.swift; sourceTree = "<group>"; };
@@ -1397,6 +1403,7 @@
 		0772E871224250CB0014CDC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07ADDD9527C3E67900902DE7 /* libswift_Concurrency.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1489,6 +1496,7 @@
 				07DEDF68210716BF008A06C3 /* RangeAdditions.swift */,
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
 				07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */,
+				073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */,
 				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
 				0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */,
 				073E6B3C1BE1FA2700706283 /* URLExtensions.swift */,
@@ -1567,6 +1575,7 @@
 			isa = PBXGroup;
 			children = (
 				0763C15D1C7C872A0086D1F7 /* XUDownloadCenter.swift */,
+				073E551C27BD10810004115B /* XUDownloadCenter+Async.swift */,
 				0726FA4220625A4900A5BD17 /* XUDownloadCenter+Proxy.swift */,
 				0726FA4520625A9000A5BD17 /* XUSynchronousDataLoader.swift */,
 			);
@@ -2150,6 +2159,7 @@
 				0779E1791BF20FA000832858 /* XUSubclassCollector.swift in Sources */,
 				0721ABCC279020D4001AA7EF /* HelpBookViewerWindowController.swift in Sources */,
 				07C3FA291BECB703008A4200 /* XUZeroBasedIndexTransformer.swift in Sources */,
+				073E54D727BC0D1B0004115B /* Thread+Cleanup.swift in Sources */,
 				075DC79B1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift in Sources */,
 				0749DD071C0207BE0075CC9B /* XUCoreUtils.swift in Sources */,
 				073E6B491BE1FD7E00706283 /* NSData+CommonCryptoSwift.m in Sources */,
@@ -2200,6 +2210,7 @@
 				07AAE86522E9857E0075567A /* XUObjectPool.swift in Sources */,
 				073E6AD71BE1F86D00706283 /* prog.cc in Sources */,
 				073E6ABB1BE1F86D00706283 /* bitstate.cc in Sources */,
+				073E551D27BD10810004115B /* XUDownloadCenter+Async.swift in Sources */,
 				07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */,
 				07BF1241237B0DE1002E3780 /* XUUnfairLock.swift in Sources */,
 				073E6B171BE1F86D00706283 /* strutil.cc in Sources */,
@@ -2288,6 +2299,7 @@
 				0772E811224248EA0014CDC4 /* XUAppScopeBookmarksManager.swift in Sources */,
 				0763AE891F94752C00EED10B /* OperatingSystemVersionExtensions.swift in Sources */,
 				0749DCE51C00C3E00075CC9B /* XUMath.swift in Sources */,
+				073E54D827BC0D1B0004115B /* Thread+Cleanup.swift in Sources */,
 				07AE251E1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */,
 				07AEC1121D01E8BF00C8E127 /* FileManagerAdditions.swift in Sources */,
 				07A015552052A8F70070D0DD /* XUCloudKitSynchronization.swift in Sources */,

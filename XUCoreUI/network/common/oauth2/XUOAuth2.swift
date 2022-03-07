@@ -18,8 +18,14 @@ public final class XUOAuth2Configuration {
 	/// Payload format - by default, wwwForm is used, but if set to JSON, the payload
 	/// for the token renewal is sent as JSON.
 	public enum PayloadFormat: String {
+		/// WWW form.
 		case wwwForm
+		
+		/// JSON body.
 		case json
+		
+		/// The payload is set as URL query.
+		case urlQuery
 	}
 	
 	private struct ConfigurationKeys {
@@ -345,7 +351,15 @@ public final class XUOAuth2Client {
 				"refresh_token": refreshToken
 			]
 			
-			guard let obj = try? self.client.downloadCenter.downloadJSONDictionary(at: self.client.configuration.tokenEndpointURL, requestModifier: { (request) in
+			var url = self.client.configuration.tokenEndpointURL
+			if self.client.configuration.payloadFormat == .urlQuery {
+				var query = url.queryDictionary
+				query += postDict
+				
+				url = url.updatingQuery(to: query)
+			}
+			
+			guard let obj = try? self.client.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { (request) in
 				request.setBasicAuthentication(user: self.client.configuration.clientID, password: self.client.configuration.secret)
 				request.acceptType = URLRequest.ContentType.json
 				
@@ -356,6 +370,8 @@ public final class XUOAuth2Client {
 				case .json:
 					request.contentType = .json
 					request.setJSONBody(postDict)
+				case .urlQuery:
+					break // It's in the URL query.
 				}
 
 				request["Cookie"] = nil
@@ -506,16 +522,26 @@ public final class XUOAuth2Client {
 			"redirect_uri": self.configuration.redirectionURLString
 		]
 		
-		guard let obj = try? self.downloadCenter.downloadJSONDictionary(at: self.configuration.tokenEndpointURL, requestModifier: { (request) in
+		var url = self.configuration.tokenEndpointURL
+		if self.configuration.payloadFormat == .urlQuery {
+			var query = url.queryDictionary
+			query += postDict
+			
+			url = url.updatingQuery(to: query)
+		}
+		
+		guard let obj = try? self.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { (request) in
 			request.setBasicAuthentication(user: self.configuration.clientID, password: self.configuration.secret)
 			
 			switch self.configuration.payloadFormat {
 			case .wwwForm:
 				request.contentType = .wwwForm
-				request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+				request.httpBody = postDict.urlQueryString.data(using: .utf8)
 			case .json:
 				request.contentType = .json
 				request.setJSONBody(postDict)
+			case .urlQuery:
+				break
 			}
 			
 			request.acceptType = URLRequest.ContentType.json
@@ -555,7 +581,7 @@ public final class XUOAuth2Client {
 		}
 		
 		let refreshToken = obj["refresh_token"] as? String
-		if !self.configuration.tokenNeverExpires && refreshToken == nil {
+		if !self.configuration.tokenNeverExpires, refreshToken == nil {
 			XULog("No refresh token in \(obj).")
 			
 			DispatchQueue.main.syncOrNow {

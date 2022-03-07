@@ -10,6 +10,9 @@ import Foundation
 
 extension Character {
 	
+	/// Null character (0).
+	public static let null: Character = Character(0)
+	
 	/// Returns a random character from a range. The range represents UTF8 codes.
 	public static func randomCharacter(in range: Range<Int>) -> Character {
 		let convertedRange: Range<UInt32> = range.converted(to: UInt32.self)
@@ -94,7 +97,10 @@ extension Character {
 	
 	/// Returns true if the character is a member of character set.
 	public func isMember(of characterSet: CharacterSet) -> Bool {
-		return characterSet.contains(UnicodeScalar(String(self).utf16.first!)!)
+		guard let scalar = UnicodeScalar(String(self).utf16.first!) else {
+			return false
+		}
+		return characterSet.contains(scalar)
 	}
 	
 	/// Returns true iff `self` is A-Z.

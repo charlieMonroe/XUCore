@@ -321,7 +321,7 @@ public extension XUPreferences {
 		
 		self.set(value: payload, forKey: key)
 		
-		if #available(macOS 10.15, *) {
+		if #available(macOS 10.15, iOS 13.0, *) {
 			self.changeObservation.objectWillChange.send(key)
 		}
 	}
@@ -330,7 +330,7 @@ public extension XUPreferences {
 	func set(boolean value: Bool, forKey key: Key) {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		
-		if #available(macOS 10.15, *) {
+		if #available(macOS 10.15, iOS 13.0, *) {
 			self.changeObservation.objectWillChange.send(key)
 		}
 	}
@@ -339,7 +339,7 @@ public extension XUPreferences {
 	func set(integer value: Int, forKey key: Key) {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		
-		if #available(macOS 10.15, *) {
+		if #available(macOS 10.15, iOS 13.0, *) {
 			self.changeObservation.objectWillChange.send(key)
 		}
 	}
@@ -347,7 +347,7 @@ public extension XUPreferences {
 	func set<T: RawRepresentable>(rawRepresentable: T, for key: Key) {
 		self.set(value: rawRepresentable.rawValue, forKey: key)
 		
-		if #available(macOS 10.15, *) {
+		if #available(macOS 10.15, iOS 13.0, *) {
 			self.changeObservation.objectWillChange.send(key)
 		}
 	}
@@ -361,7 +361,7 @@ public extension XUPreferences {
 			self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		}
 		
-		if #available(macOS 10.15, *) {
+		if #available(macOS 10.15, iOS 13.0, *) {
 			self.changeObservation.objectWillChange.send(key)
 		}
 	}

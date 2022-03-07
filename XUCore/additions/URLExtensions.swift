@@ -12,6 +12,9 @@ import Foundation
 #endif
 
 extension URL {
+	
+	/// Invalid URL.
+	public static let invalidURL: URL = URL("invalid://")!
 
 	private func _booleanResourceValue(forKey key: URLResourceKey, defaultValue: Bool = false) -> Bool {
 		guard let values = try? self.resourceValues(forKeys: Set<URLResourceKey>(arrayLiteral: key)) else {
@@ -93,6 +96,20 @@ extension URL {
 
 	public init?(_ urlString: String) {
 		self.init(string: urlString)
+	}
+	
+	/// Creates a URL from a string. If the string is not a valid URL, returns
+	/// an "invalid URL" and logs the occurrence.
+	public init(safely urlString: String) {
+		guard let url = URL(urlString) else {
+			XULogStacktrace("Cannot create URL from: \(urlString)")
+			var url = URL.invalidURL
+			url = url.updatingQuery(to: ["original": urlString])
+			self = url
+			return
+		}
+		
+		self = url
 	}
 	
 	/// Returns true if the current URL is a directory.

@@ -126,12 +126,12 @@ open class XUDownloadCenter {
 	public private(set) final var isInvalidated: Bool
 	
 	/// Returns the last error that occurred. Nil, if no error occurred yet.
-	public final private(set) var lastError: Swift.Error?
+	public final internal(set) var lastError: Swift.Error?
 	
 	/// Returns the last URL response. Nil, if this download center didn't download
 	/// anything yet.
 	@LockedAccessProperty
-	public final private(set) var lastHTTPURLResponse: HTTPURLResponse?
+	public final internal(set) var lastHTTPURLResponse: HTTPURLResponse?
 	
 	/// If true, logs all traffic via XULog.
 	public final var logTraffic: Bool = true
@@ -173,12 +173,12 @@ open class XUDownloadCenter {
 	
 	
 	/// Applies self.automaticHeaderFieldValues to a request.
-	private func _applyAutomaticHeaderFields(to request: inout URLRequest) {
+	internal func _applyAutomaticHeaderFields(to request: inout URLRequest) {
 		self.automaticHeaderFieldValues.requestModifier(&request)
 	}
 	
 	/// Imports cookies from response to NSHTTPCookieStorage.
-	private func _importCookies(from response: HTTPURLResponse) {
+	internal func _importCookies(from response: HTTPURLResponse) {
 		guard
 			let url = response.url,
 			let fields = response.allHeaderFields as? [String : String]
@@ -203,8 +203,40 @@ open class XUDownloadCenter {
 		storage.setCookies(cookies, for: url, mainDocumentURL: nil)
 	}
 	
+	internal func _prepareRequest(for url: URL, referringFunction: String, acceptType: URLRequest.ContentType?, requestModifier: URLRequestModifier?) throws -> URLRequest {
+		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
+		
+		if self.isInvalidated {
+			throw Error.invalidated
+		}
+		
+		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
+		
+		if self.disableAutomaticCookieHandling {
+			request.httpShouldHandleCookies = false // We're setting them manually below.
+		} else {
+			self._setupCookieField(forRequest: &request)
+		}
+		
+		request.acceptType = acceptType
+		
+		self._applyAutomaticHeaderFields(to: &request)
+		requestModifier?(&request)
+		
+		if XUDebugLog.isLoggingEnabled, self.logTraffic {
+			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
+			if request.httpBody != nil && request.httpBody!.count > 0 {
+				logString += "\nHTTP Body: \(request.httpBody.flatMap(String.init(data:)) ?? "")"
+			}
+			
+			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referringFunction)
+		}
+		
+		return request
+	}
+	
 	/// Sets the Cookie HTTP header field on request.
-	private func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
+	internal func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
 		guard let url = request.url, url.scheme != nil else {
 			return
 		}
@@ -293,33 +325,8 @@ open class XUDownloadCenter {
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
 	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) throws -> Data {
-		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
-		if self.isInvalidated {
-			throw Error.invalidated
-		}
-		
-		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
-		
-		if self.disableAutomaticCookieHandling {
-			request.httpShouldHandleCookies = false // We're setting them manually below.
-		} else {
-			self._setupCookieField(forRequest: &request)
-		}
-		
-		request.acceptType = acceptType
-		
-		self._applyAutomaticHeaderFields(to: &request)
-		requestModifier?(&request)
-		
-		if XUDebugLog.isLoggingEnabled, self.logTraffic {
-			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
-			if request.httpBody != nil && request.httpBody!.count > 0 {
-				logString += "\nHTTP Body: \(request.httpBody.flatMap(String.init(data:)) ?? "")"
-			}
-			
-			XULog("[\(self.identifier)] Will be downloading URL \(url):\n\(logString)", method: referringFunction)
-		}
+		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier)
 		
 		_invalidationLock.lock()
 		defer {
@@ -579,5 +586,4 @@ extension XUDownloadCenter {
 	}
 		
 }
-
 

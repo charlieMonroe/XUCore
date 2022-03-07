@@ -17,6 +17,12 @@ open class XUDockIconProgress {
 
 	public static let shared: XUDockIconProgress = XUDockIconProgress()
 	
+	/// Override this in order to have createProgressImage() called
+	/// even in case there is no progress to display.
+	open var providesCustomIconEvenWithNoProgress: Bool {
+		return false
+	}
+	
 	/// Create an image for the Dock icon. It should include the application icon.
 	open func createProgressImage() -> NSImage {
 		let im: NSImage = NSImage(named: NSImage.applicationIconName)!.copy() as! NSImage
@@ -80,7 +86,7 @@ open class XUDockIconProgress {
 		let progress = self.progressValue
 		
 		
-		if progress > 0.0 && progress < 1.0 {
+		if self.providesCustomIconEvenWithNoProgress || (progress > 0.0 && progress < 1.0) {
 			let image = self.createProgressImage()
 			NSApplication.shared.applicationIconImage = image
 		} else {
