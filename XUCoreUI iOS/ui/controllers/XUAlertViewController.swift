@@ -118,10 +118,20 @@ private final class _XUAlertViewController: UIViewController {
 	/// This needs to be strong so that the alert reference is kept alive while
 	/// the controller is being presented. This does indeed create a reference
 	/// cycle, but we prevent it from leaking by setting the alert property to
-	/// nil in viewDidDisapear, which eventually leads to deallocation of both
+	/// nil in `_didDismiss`, which eventually leads to deallocation of both
 	/// this controller and the XUAlert isntance.
+	///
+	/// History note: This was originally done in `viewDidDisappear(_:)`
+	/// but this turned out to be wrong. If the inner controller invoked e.g.
+	/// SFSafariViewController, then `viewDidDisappear(_:)` would
+	/// get called as the alert was hidden from the view and then got re-presented.
 	var alert: XUAlert!
 
+	fileprivate func _didDismiss() {
+		self.alert.completionHandler?()
+		self.alert = nil
+	}
+	
 	init(alert: XUAlert) {
 		self.alert = alert
 
@@ -143,13 +153,6 @@ private final class _XUAlertViewController: UIViewController {
 	
 	fileprivate override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
-	}
-	
-	fileprivate override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-
-		self.alert.completionHandler?()
-		self.alert = nil
 	}
 
 }
@@ -175,7 +178,9 @@ private final class _XUAlertModalTransitionAnimator: NSObject, UIViewControllerA
 		
 		UIView.animate(withDuration: 0.5, animations: {
 			source.view.alpha = 0.0
-		}, completion: { (finished: Bool) in
+		}, completion: { finished in
+			(source as! _XUAlertViewController)._didDismiss()
+			
 			source.view.removeFromSuperview()
 			transitionContext.completeTransition(finished)
 		})
