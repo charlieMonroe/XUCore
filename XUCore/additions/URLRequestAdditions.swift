@@ -100,11 +100,18 @@ public extension URLRequest {
 	/// Structure representing a User Agent.
 	struct UserAgent: RawRepresentable, Equatable, Codable {
 		
-		/// Default user agent.
-		public static let `default`: UserAgent = macOS.Safari12
+		/// Default user agent. On macOS 11 and later, this is Safari 14, on previous macOS versions,
+		/// it's Safari 12.
+		public static let `default`: UserAgent = {
+			if #available(macOS 11.0, *) {
+				return macOS.Safari14
+			} else {
+				return macOS.Safari12
+			}
+		}()
 		
 		/// Default user agent for mobile.
-		public static let defaultMobile: UserAgent = iOS.Safari11
+		public static let defaultMobile: UserAgent = iOS.Safari14
 		
 		/// Contains macOS user agents.
 		public struct macOS {
@@ -135,7 +142,7 @@ public extension URLRequest {
 			public static let Safari12: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15")
 			
 			/// Safari 14.0.3 on macOS 10.15.6.
-			public static let Safari14: UserAgent = UserAgent("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15")
+			public static let Safari14: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15")
 			
 		}
 		
@@ -146,6 +153,10 @@ public extension URLRequest {
 			
 			/// Safari on iOS 11.3
 			public static let Safari11: UserAgent = UserAgent("Mozilla/5.0 (iPad; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1")
+			
+			/// Safari on iOS 14
+			public static let Safari14: UserAgent = UserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1")
+
 		}
 		
 		

@@ -232,6 +232,10 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 		return Bundle.coreUI.path(forResource: "SystemNotification", ofType: "nib")
 	}
 	
+	func windowDidResize(_ notification: Notification) {
+		let window = self.window as! XUSystemNotificationWindow
+		window._updateVisualEffectViewMask()
+	}
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -351,7 +355,7 @@ internal class XUSystemNotificationWindow: NSWindow {
 		} else {
 			self.visualEffectView.material = .mediumLight
 			
-			self.messageField.textColor = NSColor.black
+			self.messageField.textColor = .black
 		}
 		
 		self.level = NSWindow.Level.screenSaver
