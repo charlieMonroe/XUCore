@@ -88,6 +88,23 @@ public final class XUJSONDeserializer {
 	
 
 	private static let XUJSONDeserializerThreadKey = "XUJSONDeserializerThreadKey"
+	
+	private static let _fullDateFormatter: ISO8601DateFormatter = {
+		let formatter = ISO8601DateFormatter()
+		formatter.formatOptions = [.withFullDate, .withFullTime]
+		return formatter
+	}()
+	
+	private static let _dateOnlyFormatter: ISO8601DateFormatter = {
+		let formatter = ISO8601DateFormatter()
+		formatter.formatOptions = [.withFullDate]
+		return formatter
+	}()
+	
+	private static func _date(from string: String) -> Date? {
+		return _fullDateFormatter.date(from: string) ?? _dateOnlyFormatter.date(from: string)
+	}
+	
 
 	/// Returns the default deserializer. Each thread has its own instance that
 	/// is lazily created.
@@ -394,10 +411,8 @@ public final class XUJSONDeserializer {
 			if let date = function(str, key) {
 				return (value: date, error: .none)
 			}
-		} else {
-			if let date = Date.date(withISO8601: str, andReturnError: nil) {
-				return (value: date, error: .none)
-			}
+		} else if let date = Self._date(from: str) {
+			return (value: date, error: .none)
 		}
 		
 		let doubleValue = str.doubleValue
@@ -428,7 +443,7 @@ public final class XUJSONDeserializer {
 		if object.date(from:forKey:) != nil {
 			dateOptional = object.date!(from: str, forKey: key)
 		} else {
-			dateOptional = Date.date(withISO8601: str, andReturnError: nil)
+			dateOptional = Self._date(from: str)
 		}
 
 		guard let date = dateOptional else {

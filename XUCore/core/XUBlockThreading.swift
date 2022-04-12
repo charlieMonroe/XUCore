@@ -33,11 +33,15 @@ extension DispatchQueue {
 	
 	/// Performs the closure synchronously or now in case the current thread is
 	/// main and it is called on a main thread. This prevents deadlocks.
-	public func syncOrNow(execute closure: () -> Void) {
+	public func syncOrNow<T>(execute closure: () -> T) -> T {
 		if Thread.isMainThread && self == .main {
-			closure()
+			return closure()
 		} else {
-			self.sync(execute: closure)
+			var result: T!
+			self.sync(execute: {
+				result = closure()
+			})
+			return result
 		}
 	}
 	

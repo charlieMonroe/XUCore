@@ -102,11 +102,20 @@ public struct XUTime {
 	/// - Parameter seconds - The time in seconds.
 	/// - Parameter skipHours - If the time is < 1 hour, only includes minutes 
 	///							and seconds. True by default.
- 	public static func timeString(from seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true) -> String {
+	/// - Parameter includeMilliseconds - if true, then milliseconds will be included - 00:00:00.00
+	/// - Parameter millisecondsBase - by default 100, you can also use 1000, other values are ignored.
+	public static func timeString(from seconds: TimeInterval, skipHoursWhenZero skipHours: Bool = true, includeMilliseconds: Bool = false, millisecondsBase: Int = 100) -> String {
 		if seconds < 0 || !seconds.isFinite || TimeInterval(Int64.max) < seconds {
 			return "00:00"
 		}
 		
+		var trueBase = millisecondsBase
+		if trueBase != 100, trueBase != 1000 {
+			trueBase = 100
+		}
+		
+		let milliseconds = Int64(seconds.remainder(dividingBy: 1.0) * TimeInterval(trueBase))
+
 		var timeCp = Int64(seconds)
 		
 		var hours: Int64 = 0
@@ -123,10 +132,18 @@ public struct XUTime {
 		
 		if hours == 0, skipHours {
 			// Skip hours
-			return String(format: "%02li:%02li", minutes, seconds)
+			if includeMilliseconds {
+				return String(format: "%02li:%02li.%\(trueBase == 100 ? "02" : "03")li", minutes, seconds, milliseconds)
+			} else {
+				return String(format: "%02li:%02li", minutes, seconds)
+			}
 		}
 		
-		return String(format: "%02li:%02li:%02li", hours, minutes, seconds)
+		if includeMilliseconds {
+			return String(format: "%02li:%02li:%02li.%\(trueBase == 100 ? "02" : "03")li", hours, minutes, seconds, milliseconds)
+		} else {
+			return String(format: "%02li:%02li:%02li", hours, minutes, seconds)
+		}
 	}
 	
 	private static let _timeRegex: XURegex = XURegex(pattern: "^(((?P<H>\\d+):)?((?P<M>\\d+):))?(?P<S>\\d+)(\\.(?P<MS>\\d+))?$", andOptions: .caseless)

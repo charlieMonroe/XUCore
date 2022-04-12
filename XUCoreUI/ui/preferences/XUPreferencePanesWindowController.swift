@@ -310,6 +310,15 @@ internal class XULongPressButton: NSButton {
 		self.sendAction(self.action, to: self.target)
 	}
 	
+	override func pressureChange(with event: NSEvent) {
+		guard event.stage == 2 else {
+			super.pressureChange(with: event)
+			return
+		}
+		
+		self._showMenu()
+	}
+	
 	override func rightMouseDown(with theEvent: NSEvent) {
 		self._showMenu()
 	}

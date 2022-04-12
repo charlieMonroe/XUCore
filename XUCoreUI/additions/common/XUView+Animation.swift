@@ -165,6 +165,7 @@ public extension XUViewAnimation {
 					}
 					
 					$0.isHidden = true
+					$0.alphaValue = 1.0 // Restore the alpha afterwards.
 				})
 				
 				completionHandler()
@@ -179,6 +180,7 @@ public extension XUViewAnimation {
 					}
 					
 					$0.isHidden = true
+					$0.alpha = 1.0 // Restore the alpha afterwards.
 				})
 				
 				completionHandler()

@@ -25,7 +25,17 @@ public struct XUSystemNotification {
 	
 	/// Uses a checkmark image that is bundled with XUCore.
 	public init(confirmationMessage: String, subtitle: String? = nil) {
-		self.init(icon: Bundle.coreUI.image(forResource: "Checkmark")!, message: confirmationMessage, subtitle: subtitle)
+		let icon: NSImage
+		if #available(macOS 11, *) {
+			let image = NSImage(systemSymbolName: "checkmark.circle", accessibilityDescription: nil)!
+			
+			let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
+			icon = image.withSymbolConfiguration(configuration)!
+		} else {
+			icon = Bundle.coreUI.image(forResource: "Checkmark")!
+		}
+		
+		self.init(icon: icon, message: confirmationMessage, subtitle: subtitle)
 	}
 	
 }
@@ -46,6 +56,24 @@ public final class XUSystemNotificationCenter {
 		
 		/// Progress indicator with a message.
 		case progress(message: String?)
+		
+		var isCapsule: Bool {
+			switch self {
+			case .system(_):
+				if #available(macOS 11, *) {
+					return true
+				}
+				return false
+			case .custom(_):
+				return false
+			case .progress(message: _):
+				if #available(macOS 11, *) {
+					return true
+				}
+				return false
+			}
+		}
+		
 	}
 	
 	private var _currentController: XUSystemNotificationWindowController!
@@ -217,7 +245,7 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 	var notification: XUSystemNotificationCenter.Notification!
 	
 	convenience init(notification: XUSystemNotificationCenter.Notification) {
-		self.init(windowNibName: "SystemNotification")
+		self.init(windowNibName: notification.isCapsule ? "SystemCapsuleNotification" : "SystemNotification")
 		
 		self.notification = notification
 	}
@@ -229,7 +257,8 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 	}
 	
 	override var windowNibPath: String? {
-		return Bundle.coreUI.path(forResource: "SystemNotification", ofType: "nib")
+		let nibName = notification.isCapsule ? "SystemCapsuleNotification" : "SystemNotification"
+		return Bundle.coreUI.path(forResource: nibName, ofType: "nib")
 	}
 	
 	func windowDidResize(_ notification: Notification) {
@@ -252,11 +281,15 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 			} else {
 				window.iconView.image = notification.icon.applying(tint: .black)
 			}
-				
+			
+			if self.notification.isCapsule {
+				window.subtitleField.isHidden = notification.subtitle.isNilOrEmpty
+			}
+			
 			window.subtitleField.stringValue = notification.subtitle ?? ""
 			
 			if notification.subtitle == nil {
-				window.bottomLayoutConstraint.constant = 0.0
+				window.bottomLayoutConstraint?.constant = 0.0
 			}
 		case .custom(let view):
 			window.iconView.removeFromSuperview()
@@ -275,23 +308,45 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 			window.messageField.stringValue = message ?? ""
 			window.iconView.image = nil
 			window.subtitleField.stringValue = ""
-			window.bottomLayoutConstraint.constant = 0.0
 
-			let size: CGFloat = 96.0
-			let progressIndicatorWrapper = NSView(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
-			progressIndicatorWrapper.translatesAutoresizingMaskIntoConstraints = false
+			if self.notification.isCapsule {
+				window.subtitleField.isHidden = true
+			}
 
-			window.visualEffectView.addSubview(progressIndicatorWrapper)
-			window.visualEffectView.addConstraints(centeringView: progressIndicatorWrapper, verticalOffset: -10.0)
-			progressIndicatorWrapper.addConstraints(forWidth: size, height: size)
-			
-			let progressIndicator = ProgressIndicator(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
-			progressIndicator.translatesAutoresizingMaskIntoConstraints = false
-			
-			progressIndicatorWrapper.addSubview(progressIndicator)
-			progressIndicatorWrapper.addConstraints(pinningViewOnAllSides: progressIndicator)
-			
-			progressIndicator.appearance = NSAppearance(named: .vibrantDark)
+			window.bottomLayoutConstraint?.constant = 0.0
+
+			if self.notification.isCapsule, #available(macOS 11.0, *) {
+				let indicator = NSProgressIndicator()
+				indicator.style = .spinning
+				indicator.controlSize = .regular
+				indicator.translatesAutoresizingMaskIntoConstraints = false
+				
+				window.iconView.addSubview(indicator)
+				window.iconView.addConstraints(pinningViewOnAllSides: indicator)
+				
+				indicator.startAnimation(nil)
+			} else {
+				let size: CGFloat = 96.0
+				let progressIndicatorWrapper = NSView(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
+				progressIndicatorWrapper.translatesAutoresizingMaskIntoConstraints = false
+
+				window.visualEffectView.addSubview(progressIndicatorWrapper)
+				window.visualEffectView.addConstraints(centeringView: progressIndicatorWrapper, verticalOffset: -10.0)
+				progressIndicatorWrapper.addConstraints(forWidth: size, height: size)
+				
+				let progressIndicator = ProgressIndicator(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
+				progressIndicator.translatesAutoresizingMaskIntoConstraints = false
+				
+				progressIndicatorWrapper.addSubview(progressIndicator)
+				progressIndicatorWrapper.addConstraints(pinningViewOnAllSides: progressIndicator)
+				
+				progressIndicator.appearance = NSAppearance(named: .vibrantDark)
+			}
+		}
+		
+		if self.notification.isCapsule {
+			window.setContentSize(window.contentView!.fittingSize)
+			window._updateWindowFrame()
 		}
 		
 		window.alphaValue = 0.0
@@ -304,11 +359,12 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 	
 }
 
-// Ideally, this class would be private - unfortunately, that causes the name to
-// be slightly randomized, causing issues with Interface Builder.
-internal class XUSystemNotificationWindow: NSWindow {
+@objc(XUSystemNotificationWindow)
+private class XUSystemNotificationWindow: NSWindow {
 	
-	@IBOutlet fileprivate weak var bottomLayoutConstraint: NSLayoutConstraint!
+	@IBInspectable var isCapsule: Bool = false
+	
+	@IBOutlet fileprivate weak var bottomLayoutConstraint: NSLayoutConstraint?
 	@IBOutlet fileprivate weak var iconView: NSImageView!
 	@IBOutlet fileprivate weak var messageField: NSTextField!
 	@IBOutlet fileprivate weak var subtitleField: NSTextField!
@@ -319,7 +375,10 @@ internal class XUSystemNotificationWindow: NSWindow {
 		image.lockFocus()
 		
 		NSColor.black.set()
-		NSBezierPath(roundedRect: CGRect(origin: .zero, size: self.frame.size), xRadius: 15.0, yRadius: 15.0).fill()
+		
+		let radius = self.isCapsule ? self.frame.height / 2.0 : 15.0
+		
+		NSBezierPath(roundedRect: CGRect(origin: .zero, size: self.frame.size), xRadius: radius, yRadius: radius).fill()
 		
 		image.unlockFocus()
 		self.visualEffectView.maskImage = image
@@ -347,7 +406,11 @@ internal class XUSystemNotificationWindow: NSWindow {
 		self._updateVisualEffectViewMask()
 		
 		if #available(macOS 10.14, *) {
-			self.visualEffectView.material = .hudWindow
+			if self.isCapsule {
+				self.visualEffectView.material = .sidebar
+			} else {
+				self.visualEffectView.material = .hudWindow
+			}
 			self.messageField.textColor = .textColor
 		} else if XUAppSetup.isDarkModeEnabled {
 			self.visualEffectView.material = .dark
@@ -358,9 +421,11 @@ internal class XUSystemNotificationWindow: NSWindow {
 			self.messageField.textColor = .black
 		}
 		
-		self.level = NSWindow.Level.screenSaver
-		self.backgroundColor = NSColor.clear
+		self.level = .screenSaver
+		self.backgroundColor = .clear
 		self.isReleasedWhenClosed = true
+		
+		self.collectionBehavior = [.stationary, .ignoresCycle, .transient, .canJoinAllSpaces]
 		
 		self._updateWindowFrame()
 	}
