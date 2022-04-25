@@ -114,7 +114,7 @@ public struct XUTime {
 			trueBase = 100
 		}
 		
-		let milliseconds = Int64(seconds.remainder(dividingBy: 1.0) * TimeInterval(trueBase))
+		let milliseconds = Int64(seconds.truncatingRemainder(dividingBy: 1.0) * TimeInterval(trueBase))
 
 		var timeCp = Int64(seconds)
 		

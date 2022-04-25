@@ -7,26 +7,74 @@
 //
 
 import Cocoa
+import UserNotifications
 import XUCore
 
-/// This class represents a notification similar to the window that OS X uses
+@available(macOS 10.14, *)
+extension UNUserNotificationCenter {
+	
+	/// This is very much the same as `add(_:)`, but when
+	/// `allowCustomNotification` is true, then this method checks if the notifications
+	/// are enabled. If not, this method transfers the notification into XUSystemNotification.
+	///
+	/// Note: This is only true on macOS 11 or later as the check requires UNUserNotificationCenter.
+	public func add(_ request: UNNotificationRequest, allowCustomNotification: Bool) {
+		guard allowCustomNotification else {
+			self.add(request)
+			return
+		}
+		
+		self.getNotificationSettings { settings in
+			DispatchQueue.main.async {
+				switch settings.authorizationStatus {
+				case .authorized, .provisional:
+					self.add(request)
+				case .notDetermined, .denied: fallthrough
+				@unknown default:
+					XUSystemNotificationCenter.shared.showNotification(XUSystemNotification(request: request))
+				}
+			}
+		}
+	}
+	
+}
+
+
+
+/// This class represents a notification similar to the window that macOS uses
 /// for volume/brightness changes, or Xcode uses them as well.
+///
+/// Identifier is optional, by default UUID is generated. If the identifier is supplied and
+/// it matches currently displayed or queued notification, the notification gets replaced
+/// instead of getting queued.
 public struct XUSystemNotification {
 	
 	public let icon: NSImage
+	public let identifier: String
 	public let message: String
 	public let subtitle: String?
 	
-	public init(icon: NSImage, message: String, subtitle: String? = nil) {
-		self.icon = icon
+	public init(icon: NSImage, message: String, subtitle: String? = nil, identifier: String = UUID().uuidString) {
+		if #available(macOS 11.0, *) {
+			let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
+			if let image = icon.withSymbolConfiguration(configuration) {
+				self.icon = image
+			} else {
+				self.icon = icon
+			}
+		} else {
+			self.icon = icon
+		}
+		
+		self.identifier = identifier
 		self.message = message
 		self.subtitle = subtitle
 	}
 	
 	/// Uses a checkmark image that is bundled with XUCore.
-	public init(confirmationMessage: String, subtitle: String? = nil) {
+	public init(confirmationMessage: String, subtitle: String? = nil, identifier: String = UUID().uuidString) {
 		let icon: NSImage
-		if #available(macOS 11, *) {
+		if #available(macOS 11.0, *) {
 			let image = NSImage(systemSymbolName: "checkmark.circle", accessibilityDescription: nil)!
 			
 			let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
@@ -35,7 +83,12 @@ public struct XUSystemNotification {
 			icon = Bundle.coreUI.image(forResource: "Checkmark")!
 		}
 		
-		self.init(icon: icon, message: confirmationMessage, subtitle: subtitle)
+		self.init(icon: icon, message: confirmationMessage, subtitle: subtitle, identifier: identifier)
+	}
+	
+	@available(macOS 10.14, *)
+	fileprivate init(request: UNNotificationRequest) {
+		self.init(icon: NSApp.applicationIconImage, message: request.content.title, subtitle: request.content.subtitle, identifier: request.identifier)
 	}
 	
 }
@@ -56,6 +109,17 @@ public final class XUSystemNotificationCenter {
 		
 		/// Progress indicator with a message.
 		case progress(message: String?)
+		
+		var identifier: String {
+			switch self {
+			case .custom(let view):
+				return String(view.hash)
+			case .progress(message: _):
+				return "XU_SYSTEM_PROGRESS"
+			case .system(let notification):
+				return notification.identifier
+			}
+		}
 		
 		var isCapsule: Bool {
 			switch self {
@@ -80,6 +144,7 @@ public final class XUSystemNotificationCenter {
 	private var _currentNotification: Notification!
 	private var _progressController: XUSystemNotificationWindowController?
 	private var _queue: [Notification] = []
+	private var _timer: Timer?
 	
 	@objc private func _hideNotification() {
 		self._hideController(_currentController)
@@ -115,7 +180,7 @@ public final class XUSystemNotificationCenter {
 			NSAccessibility.post(element: _currentController!, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : notification.message])
 		}
 		
-		Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
+		_timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(XUSystemNotificationCenter._hideNotification), userInfo: nil, repeats: false)
 	}
 	
 	/// Hides currently displayed progress indicator. See showProgressIndicator(with:).
@@ -135,8 +200,23 @@ public final class XUSystemNotificationCenter {
 		}
 	}
 	/// Displays the notification. If another notification is already being 
-	/// displayed, this notification gets queued.
+	/// displayed, this notification gets queued (unless it matches existing
+	/// one with the same identifier).
 	public func showNotification(_ notification: XUSystemNotification) {
+		// The notification is in the queue even when currently displayed.
+		if let index = _queue.firstIndex(where: { $0.identifier == notification.identifier }), index != 0 {
+			_queue[index] = .system(notification)
+			return
+		}
+		
+		if _currentNotification?.identifier == notification.identifier {
+			// The notification is in the queue even when currently displayed.
+			_queue.insert(.system(notification), at: 1)
+			_timer?.invalidate()
+			self._hideNotification()
+			return
+		}
+		
 		_queue.append(.system(notification))
 		
 		if _queue.count == 1 {
