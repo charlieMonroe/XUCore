@@ -12,7 +12,9 @@ extension Sequence {
 
 	/// Sums up values of elements in self.
 	public func sum<T: Numeric>(_ numerator: (Self.Iterator.Element) throws -> T) rethrows -> T {
-		return try self.map(numerator).sum()
+		return try self.reduce(into: 0, { partialResult, element in
+			partialResult += try numerator(element)
+		})
 	}
 	
 	/// Sums up values of elements in self.

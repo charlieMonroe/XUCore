@@ -119,6 +119,14 @@ open class XUPreferencePaneViewController: NSViewController {
 		return phrases
 	}
 	
+	/// On Big Sur we use a bigger window with a fixed size in a scroll view. If this returns false
+	/// (default), we pin the view in its current size to the top. If true is returned, the view is resized
+	/// to the scroll view size.
+	open var supportsDynamicSize: Bool {
+		return false
+	}
+	
+	
 	/// If you support resetting settings in this pane, return true. The window will include a reset
 	/// button in the toolbar and if the user confirms the reset, the resetPreferences() function will be called.
 	open var supportsReset: Bool {

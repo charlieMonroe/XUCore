@@ -8,16 +8,28 @@
 
 import AppKit
 
-public extension NSControl.StateValue {
+extension NSControl.StateValue {
 	
 	/// Returns true if self == .off.
-	var isOff: Bool {
+	public var isOff: Bool {
 		return self == .off
 	}
 	
 	/// Returns true if self == .on.
-	var isOn: Bool {
+	public var isOn: Bool {
 		return self == .on
+	}
+	
+	/// Reverses its state - i.e. on -> off, off -> on. If mixed, it stays mixed.
+	public func reversed() -> NSControl.StateValue {
+		switch self {
+		case .on:
+			return .off
+		case .off:
+			return .on
+		default:
+			return self
+		}
 	}
 	
 }

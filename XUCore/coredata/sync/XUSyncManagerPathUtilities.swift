@@ -14,19 +14,10 @@ import Foundation
 #if os(macOS)
 	import IOKit
 	private let _cachedID: String = {
-		let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
-		XUAssert(platformExpert != 0, "Failed to obtain computer UUID.")
-		
-		var serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, "IOPlatformSerialNumber" as CFString, kCFAllocatorDefault, 0).takeRetainedValue()
-		
-		IOObjectRelease(platformExpert)
-		
-		guard let uuidString = serialNumberAsCFString as? String else {
-			fatalError("Can't get computer UUID.")
-		}
+		let serialNumber = XUHardwareInfo.shared.serialNumber
 		
 		// Put in the user salt as well - we may have two users on the same computer
-		let deviceID = uuidString + NSUserName()
+		let deviceID = serialNumber + NSUserName()
 		return deviceID.md5Digest.uppercased()
 	}()
 #endif

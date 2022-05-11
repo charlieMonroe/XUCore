@@ -29,6 +29,8 @@
 		0733AC411D0709DD00B3D5BC /* XUiCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC10E1D01E55400C8E127 /* XUiCloudSyncManager.swift */; };
 		0737DC651C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
 		0737DC661C5381B9004F5D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0737DC631C5381B9004F5D84 /* Localizable.strings */; };
+		073E3E5E282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073E3E5D282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib */; };
+		073E3F62282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E3F61282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift */; };
 		073E54D727BC0D1B0004115B /* Thread+Cleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */; };
 		073E54D827BC0D1B0004115B /* Thread+Cleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */; };
 		073E551D27BD10810004115B /* XUDownloadCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E551C27BD10810004115B /* XUDownloadCenter+Async.swift */; };
@@ -404,6 +406,7 @@
 		07A5940B20D126EB00429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
 		07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
 		07A5F21727478C9700A639F3 /* Data+CommonCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */; };
+		07AAA0D82816DB08008E619B /* NSScreenAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAA0D72816DB08008E619B /* NSScreenAdditions.swift */; };
 		07AAE86522E9857E0075567A /* XUObjectPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAE86422E9857E0075567A /* XUObjectPool.swift */; };
 		07AAE86622E9857E0075567A /* XUObjectPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AAE86422E9857E0075567A /* XUObjectPool.swift */; };
 		07AE251D1E51FD0800224570 /* XUJSONDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AE251C1E51FD0800224570 /* XUJSONDeserializable.swift */; };
@@ -520,6 +523,8 @@
 		0737DC641C5381B9004F5D84 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRunningApplicationAdditions.swift; sourceTree = "<group>"; };
 		073B7EC91C49371900020B3A /* XUClickThroughTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUClickThroughTextField.swift; sourceTree = "<group>"; };
+		073E3E5D282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XUPreferencePanesWindowControllerBigSur.xib; sourceTree = "<group>"; };
+		073E3F61282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUPreferencePanesWindowController+PrivateViews.swift"; sourceTree = "<group>"; };
 		073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Cleanup.swift"; sourceTree = "<group>"; };
 		073E551C27BD10810004115B /* XUDownloadCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUDownloadCenter+Async.swift"; sourceTree = "<group>"; };
 		073E6A6D1BE1F63700706283 /* XUBlockThreading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUBlockThreading.swift; sourceTree = "<group>"; };
@@ -735,6 +740,7 @@
 		07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUOperationProgressWindowController.swift; sourceTree = "<group>"; };
 		07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XUOperationProgressWindowController.xib; sourceTree = "<group>"; };
 		07A7BE901C1C8CC9004BCDAF /* XUFontAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFontAdditions.swift; sourceTree = "<group>"; };
+		07AAA0D72816DB08008E619B /* NSScreenAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScreenAdditions.swift; sourceTree = "<group>"; };
 		07AAE86422E9857E0075567A /* XUObjectPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUObjectPool.swift; sourceTree = "<group>"; };
 		07AAF71F1DE58AF6001962DB /* XUCertificateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUCertificateView.swift; sourceTree = "<group>"; };
 		07ADDD9527C3E67900902DE7 /* libswift_Concurrency.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswift_Concurrency.tbd; path = usr/lib/swift/libswift_Concurrency.tbd; sourceTree = SDKROOT; };
@@ -1092,6 +1098,7 @@
 				07311DD41C0C77D2001B95AC /* NSImageAdditions.swift */,
 				077DE48F1D61BDA600FD6639 /* NSMenu+Additions.swift */,
 				073A6A2F1C46220E00A23AAF /* NSRunningApplicationAdditions.swift */,
+				07AAA0D72816DB08008E619B /* NSScreenAdditions.swift */,
 				07758A281BEFC500004B29A8 /* NSTabViewAdditions.swift */,
 				0779E19E1BF243E000832858 /* NSTextFieldAdditions.swift */,
 				07758A2E1BEFC640004B29A8 /* NSToolbarAdditions.swift */,
@@ -1276,8 +1283,10 @@
 				0716A12C1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib */,
 				0716A1201D7D706E003423B1 /* XUPreferencePanesView.swift */,
 				0716A1141D7D6668003423B1 /* XUPreferencePanesWindowController.swift */,
+				073E3F61282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift */,
 				07F0D45E25A4CA310011C551 /* XUPreferencePanesWindowController+SearchDelegate.swift */,
 				0716A1151D7D6668003423B1 /* XUPreferencePanesWindowController.xib */,
+				073E3E5D282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib */,
 				0716A1181D7D66CA003423B1 /* XUPreferencePaneViewController.swift */,
 			);
 			path = preferences;
@@ -1938,6 +1947,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				073E3E5E282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib in Resources */,
 				0772E83922424B300014CDC4 /* SystemNotification.xib in Resources */,
 				0772E85722424C210014CDC4 /* Media.xcassets in Resources */,
 				0772E82C22424AF10014CDC4 /* XUOperationProgressWindowController.xib in Resources */,
@@ -2029,6 +2039,7 @@
 				0772E7D22242464B0014CDC4 /* NSControl+Additions.swift in Sources */,
 				0772E84322424B880014CDC4 /* XUCertificateView.swift in Sources */,
 				0772E82222424A9E0014CDC4 /* XUBetaExpirationHandler.swift in Sources */,
+				073E3F62282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift in Sources */,
 				0772E84422424B880014CDC4 /* XUFlippedView.swift in Sources */,
 				0772E7CB2242464B0014CDC4 /* NSImageAdditions.swift in Sources */,
 				0772E7C92242464B0014CDC4 /* NSEventAdditions.swift in Sources */,
@@ -2037,6 +2048,7 @@
 				0772E84022424B880014CDC4 /* XUAppNameTextField.swift in Sources */,
 				0772E7E2224248580014CDC4 /* StringExtensions.swift in Sources */,
 				0772E7D32242464B0014CDC4 /* NSArrayControllerAdditions.swift in Sources */,
+				07AAA0D82816DB08008E619B /* NSScreenAdditions.swift in Sources */,
 				0772E7F8224248630014CDC4 /* XUInAppPurchaseManager.swift in Sources */,
 				0772E87C224259F50014CDC4 /* _XUCoreUILoader.m in Sources */,
 				0772E83122424B160014CDC4 /* XUPreferencePanesWindowController.swift in Sources */,
@@ -2530,7 +2542,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 122;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2547,7 +2559,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2574,7 +2586,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 122;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2591,7 +2603,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2615,7 +2627,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 115;
+				CURRENT_PROJECT_VERSION = 120;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2630,7 +2642,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
@@ -2657,7 +2669,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 115;
+				CURRENT_PROJECT_VERSION = 120;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = D43XN356JM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2672,7 +2684,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreUI;
 				PRODUCT_MODULE_NAME = XUCoreUI;
@@ -2804,7 +2816,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 153;
+				CURRENT_PROJECT_VERSION = 160;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2820,7 +2832,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2838,7 +2850,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 153;
+				CURRENT_PROJECT_VERSION = 160;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2854,7 +2866,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2873,7 +2885,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 153;
+				CURRENT_PROJECT_VERSION = 160;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2887,7 +2899,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;
@@ -2908,7 +2920,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 153;
+				CURRENT_PROJECT_VERSION = 160;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2922,7 +2934,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliemonroe.XUCoreMobile;
 				PRODUCT_NAME = XUCore;
 				SDKROOT = iphoneos;

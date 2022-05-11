@@ -30,13 +30,39 @@ public struct XUPreferencePanesSection {
 }
 
 open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelegate, XUPreferencePanesViewDelegate {
-
+	
+	private class _Pane: NSObject {
+		
+		let controller: XUPreferencePaneViewController
+		
+		@objc dynamic var icon: NSImage {
+			return self.controller.paneIcon
+		}
+		
+		@objc dynamic var name: String {
+			return self.controller.paneName
+		}
+		
+		init(controller: XUPreferencePaneViewController) {
+			self.controller = controller
+			
+			super.init()
+		}
+		
+	}
+	
 	private static var _sharedController: XUPreferencePanesWindowController? = nil
 	
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
 	open class func controller(withSections sections: [XUPreferencePanesSection]) -> Self {
-		let controller = self.init(windowNibName: "XUPreferencePanesWindowController")
+		let name: String
+		if #available(macOS 11, *) {
+			name = "XUPreferencePanesWindowControllerBigSur"
+		} else {
+			name = "XUPreferencePanesWindowController"
+		}
+		let controller = self.init(windowNibName: name)
 		controller.sections = sections
 		return controller
 	}
@@ -59,6 +85,15 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		return _sharedController
 	}
 	
+	
+	/// Array controller - only on Big Sur.
+	@IBOutlet private weak var _arrayController: NSArrayController!
+	
+	/// Big Sur content view.
+	@IBOutlet private weak var _scrollView: NSScrollView!
+	
+	/// Constraints used on Big Sur.
+	private var _layoutConstraints: [NSLayoutConstraint] = []
 	
 	/// Controller that shows the button for accessing all panes.
 	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
@@ -85,29 +120,51 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	/// Sets the current view to view and changes the window size. We're forcing
 	/// the 660px width here, though.
-	private func _setMainWindowContentView(_ view: NSView) {
+	private func _setMainWindowContentView(_ view: NSView, supportsDynamicSize: Bool) {
 		let preferencesWindow = self.window!
-		if _currentView != view {
-			var winFrame = preferencesWindow.frame
-			let contSize = preferencesWindow.contentView!.bounds.size
+		
+		if #available(macOS 11.0, *) {
+			view.translatesAutoresizingMaskIntoConstraints = false
+			view.frame.size.width = _scrollView.frame.width
 			
-			winFrame.size.width = XUPreferencePanesView.viewWidth
+			NSLayoutConstraint.deactivate(_layoutConstraints)
 			
-			let yDelta = contSize.height - view.bounds.size.height
-			winFrame.origin.y += yDelta
-			winFrame.size.height -= yDelta
+			var height = supportsDynamicSize ? (_scrollView.frame.height - _scrollView.contentInsets.top) : view.frame.height
+			if height < view.frame.height {
+				height = view.frame.height
+			}
 			
-			NSAnimationContext.beginGrouping()
-			preferencesWindow.animator().contentView = view
-			preferencesWindow.animator().setFrame(winFrame, display: false)
-			NSAnimationContext.endGrouping()
+			let widthConstraint = NSLayoutConstraint(attribute: .width, item: view, constant: _scrollView.frame.width)
+			let heightConstraint = NSLayoutConstraint(attribute: .height, item: view, constant: height, relation: .greaterThanOrEqual)
 			
-			_currentView = view
+			_layoutConstraints = [widthConstraint, heightConstraint]
+			view.addConstraints(_layoutConstraints)
 			
-			DispatchQueue.main.asyncAfter(deadline: .seconds(0.5), execute: {
-				preferencesWindow.recalculateKeyViewLoop()
-			})
+			_scrollView.documentView = view
+			_scrollView.contentView.scroll(to: CGPoint(x: 0.0, y: -_scrollView.contentInsets.top))
+		} else {
+			if _currentView != view {
+				var winFrame = preferencesWindow.frame
+				let contSize = preferencesWindow.contentView!.bounds.size
+				
+				winFrame.size.width = XUPreferencePanesView.viewWidth
+				
+				let yDelta = contSize.height - view.bounds.size.height
+				winFrame.origin.y += yDelta
+				winFrame.size.height -= yDelta
+				
+				NSAnimationContext.beginGrouping()
+				preferencesWindow.animator().contentView = view
+				preferencesWindow.animator().setFrame(winFrame, display: false)
+				NSAnimationContext.endGrouping()
+			}
 		}
+		
+		_currentView = view
+		
+		DispatchQueue.main.asyncAfter(deadline: .seconds(0.5), execute: {
+			preferencesWindow.recalculateKeyViewLoop()
+		})
 	}
 	
 	@IBAction private func _resetPreferences(_ sender: Any) {
@@ -189,8 +246,13 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 		self.willSelectPane(paneController)
 		
-		self._setMainWindowContentView(paneController.view)
-		_titleViewController.title = paneController.paneName
+		self._setMainWindowContentView(paneController.view, supportsDynamicSize: paneController.supportsDynamicSize)
+		
+		if #available(macOS 11.0, *) {
+			self.window?.subtitle = paneController.paneName
+		} else {
+			_titleViewController.title = paneController.paneName
+		}
 		
 		self._setResetButtonHidden(!paneController.supportsReset)
 		
@@ -202,13 +264,18 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	/// This will cause the controller to display the icon view of all the panes.
 	open func showAllPanes() {
-		self._setMainWindowContentView(self.allPanesView)
-		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
+		if #unavailable(macOS 11.0) {
+			self._setMainWindowContentView(self.allPanesView, supportsDynamicSize: false)
+			_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
 		
-		self._setResetButtonHidden(true)
+			self._setResetButtonHidden(true)
+		}
 		
 		self.currentPaneController?.savePreferences()
-		self.currentPaneController = nil
+		
+		if #unavailable(macOS 11.0) {
+			self.currentPaneController = nil
+		}
 		
 		UserDefaults.standard.synchronize()
 	}
@@ -239,22 +306,34 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 		self.window!.delegate = self
 		self.window!.title = XULocalizedString("Preferences", inBundle: .core)
-		self.window!.titleVisibility = .hidden
-        self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
-		self.window!.addTitlebarAccessoryViewController(_titleViewController)
 		
-		self.window!.setContentSize(self.allPanesView.frame.size)
-		self.window!.contentView!.addSubview(self.allPanesView)
+		if #available(macOS 11.0, *) {
+			_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
+			
+			self.window!.toolbar?.insertItem(withItemIdentifier: .sidebarTrackingSeparator, at: 0)
+		} else {
+			self.window!.titleVisibility = .hidden
+			self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
+			self.window!.addTitlebarAccessoryViewController(_titleViewController)
+			self.window!.setContentSize(self.allPanesView.frame.size)
+			self.window!.contentView!.addSubview(self.allPanesView)
+		}
 		
 		_currentView = self.allPanesView
     }
 	
 	public final override var windowNibPath: String? {
-		return Bundle.coreUI.path(forResource: "XUPreferencePanesWindowController", ofType: "nib")
+		let name: String
+		if #available(macOS 11, *) {
+			name = "XUPreferencePanesWindowControllerBigSur"
+		} else {
+			name = "XUPreferencePanesWindowController"
+		}
+		return Bundle.coreUI.path(forResource: name, ofType: "nib")
 	}
 	
 	public func windowShouldClose(_ sender: NSWindow) -> Bool {
-		if let currentController = self.currentPaneController, !currentController.validateEditing() {
+		if let currentController = self.currentPaneController, !currentController.commitEditing() {
 			return false
 		}
 		
@@ -271,6 +350,25 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	}
     
 }
+
+
+extension XUPreferencePanesWindowController: NSTableViewDelegate {
+	
+	public func tableViewSelectionDidChange(_ notification: Notification) {
+		guard
+			let index = (notification.object as? NSTableView)?.selectedRow,
+			let panes = _arrayController.content as? [_Pane],
+			index < panes.count, index >= 0
+		else {
+			return
+		}
+		
+		let selection = panes[index]
+		self.selectPane(selection.controller)
+	}
+	
+}
+
 
 /// Button that after a long press shows a menu instead of sending the action.
 internal class XULongPressButton: NSButton {
