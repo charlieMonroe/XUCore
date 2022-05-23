@@ -11,7 +11,7 @@ import Foundation
 private var _cachedUbiquityURL: URL?
 private var _cachedUbiquityToken: (NSObjectProtocol & NSCopying & NSCoding)?
 
-private func _rootURLForManager(named name: String) -> URL? {
+private func _rootURLForManager(named name: String, ubiquityContainerIdentifier: String?) -> URL? {
 	let token = FileManager.default.ubiquityIdentityToken
 	if let cachedToken = _cachedUbiquityToken, cachedToken.isEqual(token) {
 		return _cachedUbiquityURL
@@ -19,7 +19,7 @@ private func _rootURLForManager(named name: String) -> URL? {
 	
 	_cachedUbiquityToken = token
 	
-	guard let ubiquityURL = FileManager.default.url(forUbiquityContainerIdentifier: nil) else {
+	guard let ubiquityURL = FileManager.default.url(forUbiquityContainerIdentifier: ubiquityContainerIdentifier) else {
 		_cachedUbiquityURL = nil
 		return nil
 	}
@@ -32,9 +32,11 @@ private func _rootURLForManager(named name: String) -> URL? {
 @available(iOSApplicationExtension, unavailable)
 public final class XUiCloudSyncManager: XUApplicationSyncManager {
 	
+	/// This value gets passed to `FileManger.url(forUbiquityContainerIdentifier:)`.
+	public let ubiquityContainerIdentifier: String?
 	
 	private var _rootURL: URL? {
-		return _rootURLForManager(named: self.name)
+		return _rootURLForManager(named: self.name, ubiquityContainerIdentifier: ubiquityContainerIdentifier)
 	}
 	
 	private func _startDownloadingUbiquitousItem(at url: URL) {
@@ -56,9 +58,11 @@ public final class XUiCloudSyncManager: XUApplicationSyncManager {
 		}
 	}
 	
-	public init(name: String, andDelegate delegate: XUApplicationSyncManagerDelegate) {
+	public init(name: String, ubiquityContainerIdentifier: String? = nil, delegate: XUApplicationSyncManagerDelegate) {
+		self.ubiquityContainerIdentifier = ubiquityContainerIdentifier
+		
 		/// The first time the iCloud gets set up
-		super.init(name: name, rootFolder: _rootURLForManager(named: name), andDelegate: delegate)
+		super.init(name: name, rootFolder: _rootURLForManager(named: name, ubiquityContainerIdentifier: ubiquityContainerIdentifier), andDelegate: delegate)
 		
 		XULog("Initialized iCloud sync manager \(self) with name \(name) rooted in \(self.syncRootFolderURL.descriptionWithDefaultValue()).")
 		
