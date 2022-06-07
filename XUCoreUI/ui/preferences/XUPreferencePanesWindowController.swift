@@ -169,10 +169,10 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	@IBAction private func _resetPreferences(_ sender: Any) {
 		let alert = NSAlert()
-		alert.messageText = XULocalizedString("Do you want to reset settings handled by this preference pane to default values?", inBundle: .core)
-		alert.informativeText = XULocalizedString("This action cannot be undone.", inBundle: .core)
+		alert.messageText = Localized("Do you want to reset settings handled by this preference pane to default values?", in: .core)
+		alert.informativeText = Localized("This action cannot be undone.", in: .core)
 		alert.addCancelButton()
-		alert.addButton(withTitle: XULocalizedString("Reset", inBundle: .core))
+		alert.addButton(withTitle: Localized("Reset", in: .core))
 
 		alert.beginSheetModal(for: self.window!) { response in
 			guard response == .alertSecondButtonReturn else {
@@ -266,7 +266,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	open func showAllPanes() {
 		if #unavailable(macOS 11.0) {
 			self._setMainWindowContentView(self.allPanesView, supportsDynamicSize: false)
-			_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
+			_titleViewController.title = Localized("All Preferences", in: .core)
 		
 			self._setResetButtonHidden(true)
 		}
@@ -301,11 +301,11 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			searchField.searchResultsWidth = 350.0
 		}
 
-		_titleViewController.title = XULocalizedString("All Preferences", inBundle: .core)
+		_titleViewController.title = Localized("All Preferences", in: .core)
 		self._setResetButtonHidden(true)
 		
 		self.window!.delegate = self
-		self.window!.title = XULocalizedString("Preferences", inBundle: .core)
+		self.window!.title = Localized("Preferences", in: .core)
 		
 		if #available(macOS 11.0, *) {
 			_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
@@ -452,7 +452,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		let panes = preferencePanesWindowController.sections.map({ $0.paneControllers }).joined().sorted(by: { $0.paneName < $1.paneName })
 		
 		let menuItem = { () -> NSMenuItem in
-			let item = NSMenuItem(title: XULocalizedString("Show All", inBundle: .core), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
+			let item = NSMenuItem(title: Localized("Show All", in: .core), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
 			item.target = self
 			item.image = NSImage(named: NSImage.preferencesGeneralName)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
 			return item
@@ -469,8 +469,8 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		
 		_button.menu = menu
 		
-		_button.setAccessibilityTitle(XULocalizedString("Show All", inBundle: .core))
-		_button.setAccessibilityLabel(XULocalizedString("Show All", inBundle: .core))
+		_button.setAccessibilityTitle(Localized("Show All", in: .core))
+		_button.setAccessibilityLabel(Localized("Show All", in: .core))
 		
 		if #available(macOS 11.0, *) {
 			_button.showsBorderOnlyWhileMouseInside = true

@@ -35,17 +35,36 @@ public protocol XULocalizableUIElement {
 }
 
 
-/// Returns a localized string.
+/// Returns a localized string. This should be used instead of Localized.
 @inline(__always)
-public func XULocalizedString(_ key: String, inBundle bundle: Bundle = .main, withLocale language: String? = nil) -> String {
+public func Localized(_ key: String, in bundle: Bundle = .main, locale language: String? = nil) -> String {
 	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XULocalizationCenter.shared.localizationIdentifier(for: bundle), inBundle: bundle)
+}
+
+/// Returns a formatted string, just like `String(format:)` would return,
+/// but the format string gets localized first.
+///
+/// This should be used instead of Localized.
+@inline(__always)
+public func Localized(_ format: String, _ arguments: CVarArg..., in bundle: Bundle = .main, locale language: String? = nil) -> String {
+	return String(format: Localized(format, in: bundle, locale: language), arguments: arguments)
+}
+
+/// Returns a localized string. Soft-deprecated. Use `Localized(_:)` instead.
+@inline(__always)
+@available(*, deprecated)
+public func XULocalizedString(_ key: String, inBundle bundle: Bundle = .main, withLocale language: String? = nil) -> String {
+	return Localized(key, in: bundle, locale: language)
 }
 
 /// Returns a formatted string, just like [NSString stringWithFormat:] would return,
 /// but the format string gets localized first.
+///
+/// Soft-deprecated. Use `Localized(_:)` instead.
 @inline(__always)
+@available(*, deprecated, renamed: "Localized(_:_:in:locale:)")
 public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg..., withLocale language: String? = nil, inBundle bundle: Bundle = .main) -> String {
-	return String(format: XULocalizedString(format, inBundle: bundle, withLocale: language), arguments: arguments)
+	return String(format: Localized(format, in: bundle, locale: language), arguments: arguments)
 }
 
 /// A new format function which takes `values` and replaces placeholders within `key`
@@ -60,7 +79,10 @@ public func XULocalizedFormattedString(_ format: String, _ arguments: CVarArg...
 ///
 /// @note `values` can have values other than NSString - -description is called
 ///            on the values.
-public func XULocalizedString(_ key: String, withFormatValues values: [String : Any]) -> String {
+///
+/// As this is not being used anywhere, it is being deprecated.
+@available(*, deprecated)
+public func Localized(_ key: String, withFormatValues values: [String : Any]) -> String {
 	return XULocalizationCenter.shared.localizedString(key, withValues: values)
 }
 

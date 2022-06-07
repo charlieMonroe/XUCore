@@ -65,7 +65,7 @@ public final class XUSynchronousDataLoader {
 		
 		guard let data = self.data, let response = self.response else {
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Unknown error.")
+				NSLocalizedFailureReasonErrorKey: Localized("Unknown error.")
 			])
 		}
 		return Response(data: data, response: response)

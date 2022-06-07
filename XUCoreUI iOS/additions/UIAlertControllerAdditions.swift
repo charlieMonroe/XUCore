@@ -19,7 +19,7 @@ extension UIAlertController {
 	
 	/// Adds an action with localized "OK" title.
 	public func addOKAction(completionHandler: ((UIAlertAction) -> Void)? = nil) {
-		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: completionHandler))
+		self.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: completionHandler))
 	}
 	
 	/// Creates a new alert controller with information from the error. By default,
@@ -27,7 +27,7 @@ extension UIAlertController {
 	/// remove the existing action on the controller.
 	public convenience init(error: Error, completionHandler: (() -> Void)? = nil) {
 		self.init(title: (error as NSError).localizedFailureReason, message: (error as NSError).localizedDescription, preferredStyle: .alert)
-		self.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: { (_) in
+		self.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: { (_) in
 			if let handler = completionHandler {
 				handler()
 			}
@@ -50,7 +50,7 @@ extension UIAlertAction {
 	
 	/// A conveniece for a Cancel action.
 	public convenience init(cancelWithCompletionHandler completionHandler: ((UIAlertAction) -> Void)?) {
-		self.init(title: XULocalizedString("Cancel", inBundle: .core), style: .cancel, handler: completionHandler)
+		self.init(title: Localized("Cancel", in: .core), style: .cancel, handler: completionHandler)
 	}
 	
 }

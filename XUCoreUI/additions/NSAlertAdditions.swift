@@ -91,12 +91,12 @@ public extension NSAlert {
 	
 	/// Adds a button with title "Cancel".
 	func addCancelButton() {
-		self.addButton(withTitle: XULocalizedString("Cancel", inBundle: .core))
+		self.addButton(withTitle: Localized("Cancel", in: .core))
 	}
 	
 	/// Adds a button with title "OK".
 	func addOKButton() {
-		self.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
+		self.addButton(withTitle: Localized("OK", in: .core))
 	}
 		
 	/// Begins the alert as sheet from window with a text field as accessory view,

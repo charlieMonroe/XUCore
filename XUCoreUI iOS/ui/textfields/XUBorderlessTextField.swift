@@ -70,7 +70,7 @@ import XUCore
 		_placeholderLabel.textColor = self.placeholderTextColor
 		
 		if let placeholder = super.placeholder {
-			_placeholderLabel.text = XULocalizedString(placeholder)
+			_placeholderLabel.text = Localized(placeholder)
 		}
 		
 		_placeholderLabel.sizeToFit()

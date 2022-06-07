@@ -13,13 +13,13 @@ import XUCore
 extension NSWindow: XULocalizableUIElement {
 	
 	public func localize(from bundle: Bundle = Bundle.main) {
-		self.title = XULocalizedString(self.title, inBundle: bundle)
+		self.title = Localized(self.title, in: bundle)
 		
 		self.contentView?.localize(from: bundle)
 		
 		if let toolbar = self.toolbar {
 			for item in toolbar.items {
-				item.label = XULocalizedString(item.label, inBundle: bundle)
+				item.label = Localized(item.label, in: bundle)
 			}
 		}
 	}

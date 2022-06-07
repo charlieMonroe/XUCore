@@ -84,13 +84,13 @@ internal final class XUCloudKitSynchronization {
 			XULog("Applying insertion change [\(change.insertedEntityName)]")
 			
 			guard let entityDescription = NSEntityDescription.entity(forEntityName: change.insertedEntityName, in: self.documentManager.managedObjectContext) else {
-				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: XULocalizedFormattedString("Cannot find entity named %@", change.insertedEntityName))
+				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: Localized("Cannot find entity named %@", change.insertedEntityName))
 				errors.append(synchronizationError)
 				continue
 			}
 			
 			guard let cl = NSClassFromString(entityDescription.managedObjectClassName) as? XUManagedObject.Type else {
-				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: XULocalizedFormattedString("Cannot find class named %@", entityDescription.managedObjectClassName))
+				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: Localized("Cannot find class named %@", entityDescription.managedObjectClassName))
 				errors.append(synchronizationError)
 				continue
 			}
@@ -143,7 +143,7 @@ internal final class XUCloudKitSynchronization {
 			}
 			
 			if obj == nil {
-				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: XULocalizedFormattedString("Cannot find entity with ID %@", change.objectSyncID))
+				let synchronizationError = SynchronizationError(errorCode: .failedToApplyChange, failureReason: Localized("Cannot find entity with ID %@", change.objectSyncID))
 				errors.append(synchronizationError)
 				continue
 			}

@@ -74,7 +74,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			self.searchResultsTableView.scrollRowToVisible(0)
 			
 			if let mainWindow = self.window {
-				let resultText = self.results.isEmpty ? XULocalizedString("No search results", inBundle: .core) : XULocalizedFormattedString("%li search results", self.results.count, inBundle: .core)
+				let resultText = self.results.isEmpty ? Localized("No search results", in: .core) : Localized("%li search results", self.results.count, in: .core)
 				NSAccessibility.post(element: mainWindow, notification: NSAccessibility.Notification.announcementRequested, userInfo: [
 					NSAccessibility.NotificationUserInfoKey.announcement: resultText
 				])

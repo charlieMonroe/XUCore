@@ -15,7 +15,7 @@ extension NSApplication {
 	/// Localizes main menu and takes localizations from the MainMenu.strings
 	/// table within XUCore. The localizations use an <AppName> placeholder for
 	/// the name of the app as well. Values that are not contained in this localization
-	/// are attempted to be localized using XULocalizedString from the main bundle.
+	/// are attempted to be localized using Localized from the main bundle.
 	public func localizeMainMenu() {
 		// TODO: move the localization files into CoreUI
 		let bundle = Bundle.core
@@ -37,7 +37,7 @@ extension NSApplication {
 			dict = [:]
 		}
 		
-		self.mainMenu?._localize(using: { dict[$0] ?? XULocalizedString($0) })
+		self.mainMenu?._localize(using: { dict[$0] ?? Localized($0) })
 	}
 	
 }
@@ -63,7 +63,7 @@ extension NSMenu: XULocalizableUIElement {
 	}
 	
 	public func localize(from bundle: Bundle = Bundle.main) {
-		self._localize(using: { XULocalizedString($0, inBundle: bundle) })
+		self._localize(using: { Localized($0, in: bundle) })
 	}
 		
 }

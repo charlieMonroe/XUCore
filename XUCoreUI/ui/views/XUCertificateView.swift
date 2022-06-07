@@ -42,7 +42,7 @@ public class XUCertificateView: NSView {
 	
 	private lazy var _selectButton: NSButton = {
 		let button = NSButton()
-		button.title = XULocalizedString("Select...", inBundle: .core)
+		button.title = Localized("Select...", in: .core)
 		button.target = self
 		button.action = #selector(_selectCertificate)
 		return button

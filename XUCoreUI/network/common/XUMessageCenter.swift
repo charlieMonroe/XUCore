@@ -144,12 +144,12 @@ public class XUMessageCenter {
 			})
 			
 			let appName = ProcessInfo.processInfo.processName
-			let title = XULocalizedFormattedString("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, inBundle: .core)
+			let title = Localized("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, in: .core)
 			
 			DispatchQueue.main.syncOrNow {
 				#if canImport(UIKit)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-					controller.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: nil))
+					controller.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: nil))
 					UIApplication.shared.windows.first!.rootViewController?.present(controller, animated: true, completion: nil)
 				#else
 					let alert = NSAlert()
@@ -199,7 +199,7 @@ public class XUMessageCenter {
 		/// Asserts that ignore button is allowed.
 		var ignoreButtonTitle: String {
 			XUAssert(self.allowsIgnoringMessage)
-			return self.customIgnoreButtonTitle ?? XULocalizedString("Cancel", inBundle: .core)
+			return self.customIgnoreButtonTitle ?? Localized("Cancel", in: .core)
 		}
 		
 		init?(dictionary: XUJSONDictionary) {
@@ -404,7 +404,7 @@ public class XUMessageCenter {
 		// We should display this message!
 		#if canImport(UIKit)
 			let alert = UIAlertController(title: message.message, message: message.informativeText, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: XULocalizedString("OK", inBundle: .core), style: .default, handler: { (_) -> Void in
+			alert.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: { (_) -> Void in
 				self._processActions(from: message)
 			}))
 			if message.allowsIgnoringMessage {
@@ -418,7 +418,7 @@ public class XUMessageCenter {
 			let alert = NSAlert()
 			alert.messageText = message.message
 			alert.informativeText = message.informativeText ?? ""
-			alert.addButton(withTitle: XULocalizedString("OK", inBundle: .core))
+			alert.addButton(withTitle: Localized("OK", in: .core))
 			if message.allowsIgnoringMessage {
 				alert.addButton(withTitle: message.ignoreButtonTitle)
 			}

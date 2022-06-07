@@ -13,7 +13,7 @@ import XUCore
 extension UIButton {
 	public override func localize(from bundle: Bundle = Bundle.main) {
 		if let title = self.title(for: .normal) {
-			self.setTitle(XULocalizedString(title, inBundle: bundle), for: .normal)
+			self.setTitle(Localized(title, in: bundle), for: .normal)
 		}
 	}
 }
@@ -21,7 +21,7 @@ extension UIButton {
 extension UILabel {
 	public override func localize(from bundle: Bundle = Bundle.main) {
 		if let text = self.text {
-			self.text = XULocalizedString(text, inBundle: bundle)
+			self.text = Localized(text, in: bundle)
 		}
 	}
 }
@@ -30,11 +30,11 @@ extension UITextField {
 	public override func localize(from bundle: Bundle = Bundle.main) {
 		if let originalPlaceholder = self.attributedPlaceholder {
 			let attributes = originalPlaceholder.attributes(at: 0, effectiveRange: nil)
-			self.attributedPlaceholder = NSAttributedString(string: XULocalizedString(originalPlaceholder.string, inBundle: bundle), attributes: attributes)
+			self.attributedPlaceholder = NSAttributedString(string: Localized(originalPlaceholder.string, in: bundle), attributes: attributes)
 		} else {
 			// No attributed placeholder
 			if let placeholder = self.placeholder {
-				self.placeholder = XULocalizedString(placeholder, inBundle: bundle)
+				self.placeholder = Localized(placeholder, in: bundle)
 			}
 		}
 	}

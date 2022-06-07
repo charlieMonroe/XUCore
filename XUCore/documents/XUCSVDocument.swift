@@ -241,7 +241,7 @@ public final class XUCSVDocument {
 		if !self._parseString(source) {
 			// Could not parse string
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
-				NSLocalizedFailureReasonErrorKey: XULocalizedString("Failed to parse CSV file.", inBundle: .core)
+				NSLocalizedFailureReasonErrorKey: Localized("Failed to parse CSV file.", in: .core)
 			])
 		}
 	}
