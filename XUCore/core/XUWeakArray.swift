@@ -8,6 +8,51 @@
 
 import Foundation
 
+/// A structure that will use either strong or weak reference, depending on the system version
+/// running.
+///
+/// This is used e.g. for URLSessionDownloadTask which is retained on macOS 12 or earlier,
+/// but not retained on macOS 13, causing crashes due to the task being deallocated.
+public struct ConditionalWeakReference<T: AnyObject> {
+	
+	var strongReference: T!
+	
+	weak var weakReference: T!
+	
+	/// Returns the object - either the strong or weak reference.
+	public var object: T! {
+		if let strongReference = self.strongReference {
+			return strongReference
+		}
+		return self.weakReference
+	}
+	
+	/// Creates a new wrapper that will will use strong reference on macOS versions later than
+	/// `version`.
+	public init(object: T, requiresStrongReferenceSince version: OperatingSystemVersion) {
+		if ProcessInfo().isOperatingSystemAtLeast(version) {
+			self.strongReference = object
+			self.weakReference = nil
+		} else {
+			self.strongReference = nil
+			self.weakReference = object
+		}
+	}
+	
+	/// Creates a new wrapper that will will use weak reference on macOS versions later than
+	/// `version`.
+	public init(object: T, requiresWeakReferenceSince version: OperatingSystemVersion) {
+		if ProcessInfo().isOperatingSystemAtLeast(version) {
+			self.strongReference = nil
+			self.weakReference = object
+		} else {
+			self.strongReference = object
+			self.weakReference = nil
+		}
+	}
+	
+}
+
 /// A class that contains a weak reference to an object. Useful for array and
 /// dictionary entries.
 public final class XUWeakReference<T: AnyObject> {

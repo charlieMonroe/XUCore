@@ -70,6 +70,23 @@ extension Data {
 	///
 	/// - Parameter prefix: Prefix bytes this data is tested against.
 	/// - Returns: True if `self` has this prefix.
+	public func hasPrefix(_ prefix: Data) -> Bool {
+		if self.count < prefix.count {
+			return false
+		}
+		
+		return self.withUnsafeBytes { (ptr: UnsafeRawBufferPointer) -> Bool in
+			return prefix.enumerated().allSatisfy({ (arg0) -> Bool in
+				return ptr.bindMemory(to: UInt8.self)[arg0.offset] == arg0.element
+			})
+			
+		}
+	}
+	
+	/// Returns true if self has a prefix that is defined by the bytes in `prefix`.
+	///
+	/// - Parameter prefix: Prefix bytes this data is tested against.
+	/// - Returns: True if `self` has this prefix.
 	public func hasPrefix(_ prefix: [UInt8]) -> Bool {
 		if self.count < prefix.count {
 			return false
@@ -153,7 +170,7 @@ extension Data {
 	/// Reads Int-typed value from stream.
 	public func readInteger<T: FixedWidthInteger>(startingAtByte index: Int) -> T {
 		// If we don't make subdata, we'll get a read from non-aligned pointer.
-		let subdata = self[index ..< index + T.bitWidth / 8]
+		let subdata = self.subdata(in: index ..< index + T.bitWidth / 8)
 		return subdata.withUnsafeBytes { (rawBytes: UnsafeRawBufferPointer) -> T in
 			return rawBytes.bindMemory(to: T.self)[0]
 		}

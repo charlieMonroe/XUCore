@@ -9,7 +9,8 @@
 import Foundation
 
 private extension XUPreferences.Key {
-	static let launchCount: XUPreferences.Key = XUPreferences.Key(rawValue: "XULaunchCount")
+	static let firstInstallationDate = XUPreferences.Key(rawValue: "XUFirstInstallationDate")
+	static let launchCount = XUPreferences.Key(rawValue: "XULaunchCount")
 }
 
 extension XUPreferences {
@@ -23,6 +24,16 @@ extension XUPreferences {
 		}
 		nonmutating set {
 			self.set(integer: newValue, forKey: .launchCount)
+		}
+	}
+	
+	/// Returns first installation date.
+	public internal(set) var firstInstallationDate: Date? {
+		get {
+			return self.value(for: .firstInstallationDate)
+		}
+		nonmutating set {
+			self.set(value: newValue, forKey: .firstInstallationDate)
 		}
 	}
 	

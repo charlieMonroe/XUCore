@@ -6,6 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
 import XUCore
 

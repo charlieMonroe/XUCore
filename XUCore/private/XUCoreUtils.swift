@@ -34,6 +34,10 @@ extension Bundle {
 		
 		XUPreferences.shared.perform { (prefs) in
 			prefs.launchCount += 1
+			
+			if prefs.firstInstallationDate == nil {
+				prefs.firstInstallationDate = Date()
+			}
 		}
 	}()
 	

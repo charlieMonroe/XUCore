@@ -34,20 +34,18 @@ public protocol XULocalizableUIElement {
 	
 }
 
-
-/// Returns a localized string. This should be used instead of Localized.
-@inline(__always)
-public func Localized(_ key: String, in bundle: Bundle = .main, locale language: String? = nil) -> String {
-	return XULocalizationCenter.shared.localizedString(key, withLocale: language ?? XULocalizationCenter.shared.localizationIdentifier(for: bundle), inBundle: bundle)
-}
-
-/// Returns a formatted string, just like `String(format:)` would return,
-/// but the format string gets localized first.
+/// Returns a localized string.
 ///
-/// This should be used instead of Localized.
+/// If there are any arguments, then it returns a formatted string, just like `String(format:)` would return,
+/// but the format string gets localized first.
 @inline(__always)
-public func Localized(_ format: String, _ arguments: CVarArg..., in bundle: Bundle = .main, locale language: String? = nil) -> String {
-	return String(format: Localized(format, in: bundle, locale: language), arguments: arguments)
+public func Localized(_ key: String, _ arguments: CVarArg..., in bundle: Bundle = .main, locale language: String? = nil) -> String {
+	let locale = language ?? XULocalizationCenter.shared.localizationIdentifier(for: bundle)
+	let localized = XULocalizationCenter.shared.localizedString(key, withLocale: locale, inBundle: bundle)
+	if arguments.count == 0 {
+		return localized
+	}
+	return String(format: localized, arguments: arguments)
 }
 
 /// Returns a localized string. Soft-deprecated. Use `Localized(_:)` instead.
