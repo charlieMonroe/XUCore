@@ -329,13 +329,12 @@ open class XUDownloadCenter {
 		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier)
 		
 		_invalidationLock.lock()
-		defer {
-			_invalidationLock.unlock()
-		}
 		
 		if self.isInvalidated {
 			throw Error.invalidated
 		}
+		
+		_invalidationLock.unlock()
 		
 		let loader = XUSynchronousDataLoader(request: request, session: self.session)
 		
