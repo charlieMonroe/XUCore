@@ -11,7 +11,7 @@ import Foundation
 extension XUExceptionCatcher {
 	
 	/// An error that encapsulates an error.
-	public struct ExceptionError: Error {
+	public struct ExceptionError: Error, @unchecked Sendable {
 		
 		/// Exception this error was created with.
 		public let exception: NSException

@@ -15,13 +15,15 @@ public final class XUSynchronousDataLoader {
 	/// Response that contains data and a response.
 	public struct Response {
 		public let data: Data
-		public let response: URLResponse?
+		public let response: URLResponse
 	}
 	
-	private var data: Data?
-	private let lock = NSConditionLock(condition: 0)
-	private var response: URLResponse?
-	private var error: Error?
+	private var _task: URLSessionDataTask!
+	
+	private var _data: Data?
+	private let _lock: NSConditionLock = NSConditionLock(condition: 0)
+	private var _response: URLResponse?
+	private var _error: Error?
 
 	
 	/// Request to be loaded.
@@ -30,10 +32,23 @@ public final class XUSynchronousDataLoader {
 	/// Session to be used for the data load.
 	public let session: URLSession
 	
+	private func _processResponse(_ data: Data?, response: URLResponse?, error: Error?) {
+		_data = data
+		_response = response
+		_error = error
+		
+		_lock.lock(whenCondition: 0)
+		_lock.unlock(withCondition: 1)
+	}
+	
 	/// Designated initializer. Session defaults to NSURLSession.sharedSession().
 	public init(request: URLRequest, session: URLSession = URLSession.shared) {
 		self.request = request
 		self.session = session
+		
+		_task = self.session.dataTask(with: request, completionHandler: { [weak self] in
+			self?._processResponse($0, response: $1, error: $2)
+		})
 	}
 	
 	/// Loads data from self.request and either throws, or returns a tuple of
@@ -47,27 +62,21 @@ public final class XUSynchronousDataLoader {
 		XUAssert(OperationQueue.current != self.session.delegateQueue,
 			   "Can't be loading data on the same queue as is the session's delegate queue!")
 				
-		self.session.dataTask(with: self.request, completionHandler: { [weak self] in
-			self?.data = $0
-			self?.response = $1
-			self?.error = $2
-			
-			self?.lock.lock(whenCondition: 0)
-			self?.lock.unlock(withCondition: 1)
-		}).resume()
+		_task.resume()
 		
-		self.lock.lock(whenCondition: 1)
-		self.lock.unlock(withCondition: 0)
+		_lock.lock(whenCondition: 1)
+		_lock.unlock(withCondition: 0)
 		
-		if let error = self.error {
+		if let error = _error {
 			throw error
 		}
 		
-		guard let data = self.data, let response = self.response else {
+		guard let data = _data, let response = _response else {
 			throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [
 				NSLocalizedFailureReasonErrorKey: Localized("Unknown error.")
 			])
 		}
+		
 		return Response(data: data, response: response)
 	}
 	

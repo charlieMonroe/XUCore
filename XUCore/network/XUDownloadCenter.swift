@@ -334,9 +334,9 @@ open class XUDownloadCenter {
 			throw Error.invalidated
 		}
 		
-		_invalidationLock.unlock()
-		
 		let loader = XUSynchronousDataLoader(request: request, session: self.session)
+		
+		_invalidationLock.unlock()
 		
 		do {
 			let response = try loader.loadData()
@@ -474,7 +474,7 @@ open class XUDownloadCenter {
 			
 			guard let httpResponse = response as? HTTPURLResponse else {
 				if self.logTraffic {
-					XULog("-[\(self)[\(self.identifier)] \(#function)] - invalid response (non-HTTP): \(response.descriptionWithDefaultValue())")
+					XULog("-[\(self)[\(self.identifier)] \(#function)] - invalid response (non-HTTP): \(response)")
 				}
 				return nil
 			}
