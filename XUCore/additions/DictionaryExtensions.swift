@@ -260,6 +260,48 @@ extension Dictionary {
 		return keyValuePairs.joined(separator: "&")
 	}
 	
+	private enum KeyPathPart {
+		case optional([String])
+		case required([String])
+	}
+	
+	private func _parseKeyPath(_ originalKeyPath: String) -> [KeyPathPart] {
+		guard originalKeyPath.hasPrefix("[") else {
+			// Consider the whole thing a key.
+			return [.required([originalKeyPath])]
+		}
+		
+		var keyPath = Substring(originalKeyPath)
+		
+		var components: [KeyPathPart] = []
+		while let index = keyPath.firstIndex(of: Character("]")) {
+			let part = keyPath[keyPath.startIndex ... index].dropFirst().dropLast()
+			let isOptional: Bool
+			if index != keyPath.index(keyPath.endIndex, offsetBy: -1) {
+				isOptional = keyPath[keyPath.index(index, offsetBy: 1)] == Character("?")
+			} else {
+				isOptional = false
+			}
+			
+			if isOptional {
+				keyPath = keyPath[keyPath.index(index, offsetBy: 2)...]
+			} else {
+				keyPath = keyPath[keyPath.index(index, offsetBy: 1)...]
+			}
+			
+			var keys: [String]
+			if part.first == Character("("), part.last == Character(")") {
+				keys = part.dropFirst().dropLast().components(separatedBy: "|")
+			} else {
+				keys = [String(part)]
+			}
+			
+			components.append(isOptional ? .optional(keys) : .required(keys))
+		}
+		
+		return components
+	}
+	
 	/// This method returns an object at keyPath, safely, by casting and doing
 	/// bounds checking.
 	///
@@ -272,23 +314,34 @@ extension Dictionary {
 	///
 	/// For array indexes, you can use -1 for the last index.
 	public func value(forKeyPath keyPath: String) -> Any? {
-		let components = keyPath.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: "][")
+		let components = self._parseKeyPath(keyPath)
 		
 		var obj: Any? = self
 		for originalKey in components {
-			var keys: [String]
-			if originalKey.first == Character("("), originalKey.last == Character(")") {
-				keys = originalKey.dropFirst().dropLast().components(separatedBy: "|")
-			} else {
-				keys = [originalKey]
+			let isOptional: Bool
+			let keys: [String]
+			
+			switch originalKey {
+			case .optional(let array):
+				isOptional = true
+				keys = array
+			case .required(let array):
+				isOptional = false
+				keys = array
 			}
-			
-			
+						
 			if let dict = obj as? XUJSONDictionary {
+				let value: Any?
 				if keys.count == 1 {
-					obj = dict[keys[0]]
+					value = dict[keys[0]]
 				} else {
-					obj = dict.firstNonNilValue(ofType: Any.self, forKeys: keys)
+					value = dict.firstNonNilValue(ofType: Any.self, forKeys: keys)
+				}
+				
+				if value == nil, isOptional {
+					continue
+				} else {
+					obj = value
 				}
 			} else if let arr = obj as? [Any] {
 				let indexes = keys.compactMap(Int.init(_:))
@@ -302,14 +355,28 @@ extension Dictionary {
 					continue
 				}
 				
+				let value: Any?
 				if index == -1 {
-					obj = arr.last
+					value = arr.last
 				} else if index < arr.count {
-					obj = arr[index]
+					value = arr[index]
 				} else {
-					return nil
+					value = nil
+				}
+				
+				if value == nil, isOptional {
+					continue
+				} else {
+					obj = value
 				}
 			} else {
+				if let obj = obj {
+					XULog("Key \(originalKey) cannot be applied on \(type(of: obj))")
+					
+					if isOptional {
+						continue
+					}
+				}
 				return nil
 			}
 		}
