@@ -228,6 +228,17 @@ public final class XUDebugLog {
 		
 		self._cachePreferences()
 		
+		// Log file is above 50MB, someone likely forgot to turn off logging.
+		if self.isLoggingEnabled, self.logFileURL.fileSize > 50_000_000 {
+			_cachedPreferences = false
+			
+			XUPreferences.shared.perform { (prefs) in
+				prefs.isLoggingEnabled = false
+			}
+			
+			try? FileManager.default.removeItem(at: self.logFileURL)
+		}
+		
 		if _cachedPreferences {
 			self._redirectToLogFile()
 			self._startNewSession()
