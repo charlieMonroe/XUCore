@@ -74,9 +74,12 @@ extension URL {
 	
 	/// Deletes a `count` of path components. Is equivalent to calling `deletingLastPathComponent()`
 	/// `count` times.
-	public func deletingLastPathComponents(count: Int) -> URL {
+	public func deletingLastPathComponents(count: Int = .max) -> URL {
 		var result = self
 		for _ in 0 ..< count {
+			if result.path == "/" {
+				break
+			}
 			result = result.deletingLastPathComponent()
 		}
 		return result
