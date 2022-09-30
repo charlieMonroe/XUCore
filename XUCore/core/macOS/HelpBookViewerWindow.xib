@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment version="101202" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="19529"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21503.1"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="21503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -45,7 +45,7 @@
                         <nil key="toolTip"/>
                         <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-SV-v6h">
                             <rect key="frame" x="0.0" y="14" width="38" height="16"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Help" id="Cd0-ac-pCG">
                                 <font key="font" metaFont="systemBold"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +56,7 @@
                     <toolbarItem implicitItemIdentifier="7AB5C4B0-6C11-42A6-81B4-9F0F94132BED" label="Back" paletteLabel="Back" image="NSGoBackTemplate" title="Back" sizingBehavior="auto" id="gw1-RO-92j">
                         <nil key="toolTip"/>
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-T2-O0E">
-                            <rect key="frame" x="0.0" y="14" width="40" height="32"/>
+                            <rect key="frame" x="-7" y="-7" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="18" id="Iw8-t8-Avd"/>
                             </constraints>
@@ -73,7 +73,7 @@
                     <toolbarItem implicitItemIdentifier="4F7EDB24-E89B-4FB7-B6AD-0730ABFBE7B1" label="Forward" paletteLabel="Forward" image="NSGoForwardTemplate" bordered="YES" title="Forward" sizingBehavior="auto" id="u14-0n-nJq">
                         <nil key="toolTip"/>
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-xk-NsK">
-                            <rect key="frame" x="5" y="14" width="40" height="32"/>
+                            <rect key="frame" x="-7" y="-7" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="18" id="l9J-5R-Z5M"/>
                             </constraints>
