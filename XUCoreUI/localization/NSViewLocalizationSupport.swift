@@ -52,6 +52,7 @@ public extension NSTableView {
 	}
 
 }
+
 public extension NSSegmentedControl {
 	
 	override func localize(from bundle: Bundle = Bundle.main) {
@@ -59,6 +60,16 @@ public extension NSSegmentedControl {
 			if let label = self.label(forSegment: i) {
 				self.setLabel(Localized(label, in: bundle), forSegment: i)
 			}
+		}
+	}
+	
+}
+
+public extension NSPathControl {
+	
+	override func localize(from bundle: Bundle = Bundle.main) {
+		if let placeholder = self.placeholderString {
+			self.placeholderString = Localized(placeholder, in: bundle)
 		}
 	}
 	

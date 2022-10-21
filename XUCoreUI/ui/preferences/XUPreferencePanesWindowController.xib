@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
                     <toolbarItem implicitItemIdentifier="268BE9F6-0103-4BD7-B2D3-50EECC32CCB5" label="" paletteLabel="" title="Reset..." sizingBehavior="auto" id="5RS-CU-5hp">
                         <nil key="toolTip"/>
                         <button key="view" verticalHuggingPriority="750" id="N2p-rM-3CA">
-                            <rect key="frame" x="0.0" y="14" width="82" height="32"/>
+                            <rect key="frame" x="0.0" y="14" width="80" height="32"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <buttonCell key="cell" type="push" title="Reset..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qaD-U5-xFX">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

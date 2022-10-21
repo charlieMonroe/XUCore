@@ -307,6 +307,8 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self.window!.delegate = self
 		self.window!.title = Localized("Preferences", in: .core)
 		
+		self.window?.toolbar?.items.compactMap(\.view).forEach({ $0.localize(from: .core) })
+		
 		if #available(macOS 11.0, *) {
 			_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
 			
