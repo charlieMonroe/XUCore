@@ -34,6 +34,15 @@ extension String {
 		return s
 	}
 	
+	/// Calls `replacingOccurrences(of:with:)` for each key-value pair.
+	public func replacingOccurrences(with mapping: [String : String]) -> String {
+		var result = self
+		for (key, value) in mapping {
+			result = result.replacingOccurrences(of: key, with: value)
+		}
+		return result
+	}
+	
 	/// Returns size with attributes, limited to width.
 	public func size(withAttributes attrs: [NSAttributedString.Key : Any], maximumWidth width: CGFloat) -> CGSize {
 		let constraintSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
