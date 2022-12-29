@@ -186,6 +186,15 @@ public protocol XUHTTPHeaderFields {
 
 extension XUHTTPHeaderFields {
 	
+	public var authorization: String? {
+		get {
+			return self["Authorization"]
+		}
+		set {
+			self["Authorization"] = newValue
+		}
+	}
+	
 	public var acceptType: URLRequest.ContentType? {
 		get {
 			return self["Accept"].flatMap(URLRequest.ContentType.init(rawValue:))
@@ -245,11 +254,11 @@ extension XUHTTPHeaderFields {
 			XULog("Failed to set name and password - cannot create a base64-encoded string!")
 			return
 		}
-		self["Authorization"] = "Basic \(b64)"
+		self.authorization = "Basic \(b64)"
 	}
 	
 	public mutating func setBearerAuthorization(with token: String) {
-		self["Authorization"] = "Bearer " + token
+		self.authorization = "Bearer " + token
 	}
 	
 	/// User agent.
