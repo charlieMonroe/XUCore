@@ -1,0 +1,60 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
+"About <AppName>" = "<AppName> के बारे में";
+"Bring <AppName> Window to Front" = "<AppName> विंडो को सामने लाएं";
+"Bring All to Front" = "सबको सामने लाओ";
+"Capitalize" = "कैपिटलाइज़ करें";
+"Check Document Now" = "दस्तावेज़ अभी जांचें";
+"Check Grammar With Spelling" = "शब्द रचना के साथ व्याकरण की जाँच करें";
+"Check Spelling While Typing" = "टाइपिंग करते समय शब्द रचना चेक करें";
+"Close" = "बंद करे";
+"Copy" = "कॉपी";
+"Correct Spelling Automatically" = "शब्द रचना स्वचालित रूप से सुधारे";
+"Cut" = "कट";
+"Delete" = "मिटाएं";
+"Edit" = "बदले";
+"File" = "फ़ाइल";
+"Find and Replace…" = "ढूँढें और बदलें…";
+"Find Next" = "अगला तलाशें";
+"Find Previous" = "पिछला खोजें";
+"Find" = "खोजे";
+"Find…" = "तलाशें…";
+"Help" = "मदद";
+"Hide <AppName>" = "<AppName> को छुपाएं";
+"Hide Others" = "दूसरों को छुपाएं";
+"Jump to Selection" = "चयन पर जाएं";
+"Make Lower Case" = "लोअर कैस बनाएं";
+"Make Upper Case" = "अपर केस बनाएं";
+"Minimize" = "छोटा करे";
+"Open…" = "खोले…";
+"Paste and Match Style" = "पेस्ट और शैली मिलाये";
+"Paste" = "पेस्ट करें";
+"Preferences…" = "प्रेफरेंस…";
+"Quit <AppName>" = "<AppName> छोड़े";
+"Redo" = "फिर से करें";
+"Select All" = "सबका चयन करें";
+"Services" = "सेवाएं";
+"Show All" = "सब दिखाए";
+"Show Spelling and Grammar" = "शब्द रचना और व्याकरण दिखाएं";
+"Show Substitutions" = "प्रतिस्थापन दिखाएँ";
+"Smart Copy/Paste" = "स्मार्ट कॉपी/पेस्ट";
+"Smart Dashes" = "स्मार्ट डैश";
+"Smart Links" = "स्मार्ट लिंक्स";
+"Smart Quotes" = "स्मार्ट उद्धरण";
+"Speech" = "वाणी";
+"Spelling and Grammar" = "शब्द रचना और व्याकरण";
+"Spelling" = "शब्द रचना";
+"Start Speaking" = "बोलना शुरू करें";
+"Stop Speaking" = "बोलना बंद करें";
+"Substitutions" = "प्रतिस्थापन";
+"Text Replacement" = "पाठ प्रतिस्थापन";
+"Transformations" = "परिवर्तने";
+"Undo" = "पूर्ववत करे";
+"Use Selection for Find" = "खोजने के लिए चयन का प्रयोग करें";
+"Use Selection for Replace" = "बदलने के लिए चयन का प्रयोग करें";
+"Window" = "विंडो";
+"Zoom" = "बड़ा करे";

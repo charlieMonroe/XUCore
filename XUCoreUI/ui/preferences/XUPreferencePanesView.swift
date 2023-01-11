@@ -56,7 +56,7 @@ internal class XUPreferencePanesView: NSView {
 		var y: CGFloat = 0.0
 		for (index, height) in _sectionHeights.enumerated() {
 			if index % 2 != 0 {
-				if #available(macOS 10.16, *) {
+				if #available(macOS 11, *) {
 					if XUAppSetup.isRunningMojaveWithDarkMode {
 						NSColor(white: 0.27, alpha: 0.25).set()
 					} else {
@@ -78,7 +78,7 @@ internal class XUPreferencePanesView: NSView {
 				break
 			}
 
-			if #available(macOS 10.16, *) {
+			if #available(macOS 11, *) {
 				if XUAppSetup.isRunningMojaveWithDarkMode {
 					NSColor(white: 0.33, alpha: 0.8).set()
 				} else {

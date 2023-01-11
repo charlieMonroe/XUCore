@@ -654,6 +654,7 @@
 		076ACE811E37D707001BA622 /* DataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		076C2E34203FEC7300377FE0 /* XUTextPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUTextPopover.swift; sourceTree = "<group>"; };
 		077093811CC1296C0093830B /* DataAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAdditions.swift; sourceTree = "<group>"; };
+		0771B453296EC29E0000009F /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		0772E7B1224245170014CDC4 /* XUCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XUCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0772E7B3224245170014CDC4 /* XUCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XUCoreUI.h; sourceTree = "<group>"; };
 		0772E7B4224245170014CDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2472,6 +2473,7 @@
 				07A7A04421B3C70A00F59DB9 /* uk */,
 				07EC4BC421E33DA800E6398B /* id */,
 				075D9CC823335E8500E90000 /* nb */,
+				0771B453296EC29E0000009F /* hi */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";

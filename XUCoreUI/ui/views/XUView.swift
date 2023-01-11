@@ -57,10 +57,7 @@ import Cocoa
 		self.layer!.borderColor = self.borderColor.cgColor
 		self.layer!.borderWidth = CGFloat(self.borderWidth)
 		self.layer!.cornerRadius = CGFloat(self.cornerRadius)
-		
-		if #available(macOS 10.13, *) {
-			self.layer!.maskedCorners = self.maskedCorners
-		}
+		self.layer!.maskedCorners = self.maskedCorners
 	}
 	
 	open override func awakeFromNib() {

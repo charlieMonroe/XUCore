@@ -354,13 +354,8 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 		
 		switch self.notification! {
 		case .system(let notification):
-			window.messageField.stringValue = notification.message
-			
-			if #available(macOS 10.13, *) {
-				window.iconView.image = notification.icon
-			} else {
-				window.iconView.image = notification.icon.applying(tint: .black)
-			}
+			window.messageField.stringValue = notification.message			
+			window.iconView.image = notification.icon
 			
 			if self.notification.isCapsule {
 				window.subtitleField.isHidden = notification.subtitle.isNilOrEmpty
