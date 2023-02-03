@@ -41,29 +41,33 @@ extension Data {
 	}
 	
 	/// Returns true if it contains subdata. Will return true, if subdata is empty.
-	public func contains(_ subdata: Data) -> Bool {
+	public func contains<D: DataProtocol>(_ subdata: D) -> Bool {
+		return self.firstIndex(of: subdata) != nil
+	}
+	
+	public func firstIndex<D: DataProtocol>(of subdata: D) -> Index? {
 		if subdata.isEmpty {
-			return true
+			return self.startIndex
 		}
 		if subdata.count > self.count {
-			return false
+			return nil
 		}
 		
 		guard
-			let index = self.firstIndex(of: subdata[0]),
+			let index = self.firstIndex(of: subdata.first!),
 			index + subdata.count <= self.count
 		else {
-			return false
+			return nil
 		}
 		
 		for (offset, byte) in subdata.enumerated() {
 			guard self[index + offset] == byte else {
 				// We know that subdata is not empty, so we can use index + 1.
-				return self.suffix(from: index + 1).contains(subdata)
+				return self.suffix(from: index + 1).firstIndex(of: subdata)
 			}
 		}
 		
-		return true // We've enumerated all bytes and found the subsequence.
+		return index // We've enumerated all bytes and found the subsequence.
 	}
 	
 	/// Returns true if self has a prefix that is defined by the bytes in `prefix`.

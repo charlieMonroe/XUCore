@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "Über <AppName>";
 "Bring <AppName> Window to Front" = "<AppName> nach vorne bringen";
 "Bring All to Front" = "Alle nach vorne bringen";
@@ -12,10 +18,10 @@
 "Delete" = "Löschen";
 "Edit" = "Bearbeiten";
 "File" = "Ablage";
-"Find" = "Suchen";
+"Find and Replace…" = "Suchen und Ersetzen…";
 "Find Next" = "Nächstes suchen";
 "Find Previous" = "Vorheriges suchen";
-"Find and Replace…" = "Suchen und Ersetzen…";
+"Find" = "Suchen";
 "Find…" = "Suchen…";
 "Help" = "Hilfe";
 "Hide <AppName>" = "<AppName> ausblenden";
@@ -25,15 +31,14 @@
 "Make Upper Case" = "Großschreiben";
 "Minimize" = "Im Dock ablegen";
 "Open…" = "Öffnen…";
-"Paste" = "Einsetzen";
 "Paste and Match Style" = "Einsetzen und Stil anpassen";
+"Paste" = "Einsetzen";
 "Preferences…" = "Einstellungen…";
 "Quit <AppName>" = "<AppName> beenden";
 "Redo" = "Wiederholen";
-"Reset" = "Zurücksetzen";
 "Select All" = "Alles auswählen";
 "Services" = "Dienste";
-"Show All" = "Alle einblenden";
+"Show All" = "Alles anzeigen";
 "Show Spelling and Grammar" = "Rechtschreibung und Grammatik anzeigen";
 "Show Substitutions" = "Änderungen anzeigen";
 "Smart Copy/Paste" = "Intelligentes Kopieren/Einfügen";
@@ -41,8 +46,8 @@
 "Smart Links" = "Intelligente Links";
 "Smart Quotes" = "Typografische Anführungszeichen";
 "Speech" = "Sprachausgabe";
-"Spelling" = "Rechtschreibung";
 "Spelling and Grammar" = "Rechtschreibung und Grammatik";
+"Spelling" = "Rechtschreibung";
 "Start Speaking" = "Sprachausgabe beginnen";
 "Stop Speaking" = "Sprachausgabe beenden";
 "Substitutions" = "Ersetzungen";

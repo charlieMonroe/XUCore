@@ -76,7 +76,7 @@ extension URL {
 	/// `count` times.
 	public func deletingLastPathComponents(count: Int = .max) -> URL {
 		var result = self
-		for _ in 0 ..< count {
+		for _ in 0 ..< (count == .max ? self.pathComponents.count : count) {
 			if result.path == "/" {
 				break
 			}
