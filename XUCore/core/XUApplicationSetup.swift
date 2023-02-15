@@ -177,7 +177,7 @@ open class XUApplicationSetup {
 	@available(macCatalyst, unavailable)
 	public var isDarkModeEnabled: Bool {
 		if #available(macOS 10.14, *) {
-			let bestMatch = NSAppearance.current.bestMatch(from: [.darkAqua, .vibrantDark])
+			let bestMatch = (NSApp?.effectiveAppearance ?? NSAppearance.current).bestMatch(from: [.darkAqua, .vibrantDark])
 			return bestMatch != nil
  		}
 		return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
