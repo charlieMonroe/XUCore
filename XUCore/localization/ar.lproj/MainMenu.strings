@@ -1,5 +1,11 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "حول <AppName>";
-"Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
+"Bring <AppName> Window to Front" = "إحضار نافذة <AppName> إلى المقدمة";
 "Bring All to Front" = "إحضار الكل إلى الأمام";
 "Capitalize" = "البدء بأحرف كبيرة";
 "Check Document Now" = "تدقيق المستند الآن";
@@ -12,10 +18,10 @@
 "Delete" = "حذف";
 "Edit" = "تحرير";
 "File" = "ملف";
-"Find" = "بحث";
+"Find and Replace…" = "بحث واستبدال...";
 "Find Next" = "بحث عن التالي";
 "Find Previous" = "بحث عن السابق";
-"Find and Replace…" = "بحث واستبدال...";
+"Find" = "بحث";
 "Find…" = "بحث…";
 "Help" = "مساعدة";
 "Hide <AppName>" = "إخفاء <AppName>";
@@ -25,14 +31,14 @@
 "Make Upper Case" = "استخدام الأحرف الكبيرة";
 "Minimize" = "تصغير";
 "Open…" = "فتح…";
-"Paste" = "لصق";
 "Paste and Match Style" = "لصق ومطابقة النمط";
+"Paste" = "لصق";
 "Preferences…" = "تفضيلات…";
 "Quit <AppName>" = "إنهاء <AppName>";
 "Redo" = "إعادة";
 "Select All" = "تحديد الكل";
 "Services" = "خدمات";
-"Show All" = "إظهار الكل";
+"Show All" = "عرض الكل";
 "Show Spelling and Grammar" = "إظهار التدقيق الإملائي والتدقيق النحوي";
 "Show Substitutions" = "إظهار البدائل";
 "Smart Copy/Paste" = "النسخ/اللصق الذكي";
@@ -40,8 +46,8 @@
 "Smart Links" = "الروابط الذكية";
 "Smart Quotes" = "علامات الاقتباس الذكية";
 "Speech" = "محادثة";
-"Spelling" = "تدقيق إملائي";
 "Spelling and Grammar" = "التدقيق الإملائي والتدقيق النحوي";
+"Spelling" = "تدقيق إملائي";
 "Start Speaking" = "بدء التكلم";
 "Stop Speaking" = "إيقاف التكلم";
 "Substitutions" = "البدائل";
