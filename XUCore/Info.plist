@@ -21,8 +21,6 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015-2022 Charlie Monroe Software. All rights reserved.</string>
-	<key>NSPrincipalClass</key>
-	<string></string>
+	<string>Copyright © 2015-2023 Charlie Monroe Software. All rights reserved.</string>
 </dict>
 </plist>

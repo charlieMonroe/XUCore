@@ -52,7 +52,8 @@ public enum XUEmailFormatValidity {
 		}
 		
 		let regexMatchs = [
-			"1+@1+.com"
+			"^1+@(1+|qq|16\\d)\\.com$",
+			"^test@\\w+\\.com$"
 		]
 		if regexMatchs.contains(where: { email.matches(regex: $0) }) {
 			self = .phony
