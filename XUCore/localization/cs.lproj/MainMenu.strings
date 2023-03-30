@@ -1,5 +1,11 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "O aplikaci <AppName>";
-"Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
+"Bring <AppName> Window to Front" = "Přenést okno <AppName> do popředí";
 "Bring All to Front" = "Převést vše do popředí";
 "Capitalize" = "Velká počáteční písmena";
 "Check Document Now" = "Zkontrolovat dokument";
@@ -12,10 +18,10 @@
 "Delete" = "Smazat";
 "Edit" = "Úpravy";
 "File" = "Soubor";
-"Find" = "Hledat";
+"Find and Replace…" = "Hledat a nahradit…";
 "Find Next" = "Hledat další";
 "Find Previous" = "Hledat předchozí";
-"Find and Replace…" = "Hledat a nahradit…";
+"Find" = "Hledat";
 "Find…" = "Hledat…";
 "Help" = "Nápověda";
 "Hide <AppName>" = "Skrýt Utilitu VoiceOver";
@@ -25,14 +31,14 @@
 "Make Upper Case" = "Převést na velká písmena";
 "Minimize" = "Minimalizovat";
 "Open…" = "Otevřít…";
-"Paste" = "Vložit";
 "Paste and Match Style" = "Vložit a použít styl";
+"Paste" = "Vložit";
 "Preferences…" = "Předvolby…";
 "Quit <AppName>" = "Ukončit Utilitu VoiceOver";
 "Redo" = "Opakovat akci";
 "Select All" = "Vybrat vše";
 "Services" = "Služby";
-"Show All" = "Zobrazit vše";
+"Show All" = "Ukázat vše";
 "Show Spelling and Grammar" = "Zobrazit pravopis a gramatiku";
 "Show Substitutions" = "Zobrazit záměny";
 "Smart Copy/Paste" = "Inteligentní kopírování/vkládání";
@@ -40,8 +46,8 @@
 "Smart Links" = "Inteligentní odkazy";
 "Smart Quotes" = "Inteligentní uvozovky";
 "Speech" = "Řeč";
-"Spelling" = "Pravopis";
 "Spelling and Grammar" = "Pravopis a gramatika";
+"Spelling" = "Pravopis";
 "Start Speaking" = "Spustit předčítání";
 "Stop Speaking" = "Zastavit předčítání";
 "Substitutions" = "Záměny";
