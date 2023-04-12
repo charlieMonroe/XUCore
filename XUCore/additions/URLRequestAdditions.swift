@@ -103,7 +103,9 @@ public extension URLRequest {
 		/// Default user agent. On macOS 11 and later, this is Safari 14, on previous macOS versions,
 		/// it's Safari 12.
 		public static let `default`: UserAgent = {
-			if #available(macOS 11.0, *) {
+			if #available(macOS 13.0, *) {
+				return macOS.Safari16
+			} else if #available(macOS 11.0, *) {
 				return macOS.Safari14
 			} else {
 				return macOS.Safari12
@@ -143,6 +145,9 @@ public extension URLRequest {
 			
 			/// Safari 14.0.3 on macOS 10.15.6.
 			public static let Safari14: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15")
+			
+			/// Safari 16.4 or macOS 13.
+			public static let Safari16: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15")
 			
 		}
 		
