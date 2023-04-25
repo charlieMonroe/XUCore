@@ -113,7 +113,13 @@ public extension URLRequest {
 		}()
 		
 		/// Default user agent for mobile.
-		public static let defaultMobile: UserAgent = iOS.Safari14
+		public static let defaultMobile: UserAgent = {
+			if #available(macOS 13.0, *) {
+				return iOS.Safari16
+			} else {
+				return iOS.Safari14
+			}
+		}()
 		
 		/// Contains macOS user agents.
 		public struct macOS {
@@ -129,6 +135,10 @@ public extension URLRequest {
 			
 			/// Chrome 89 on macOS 11.2.2.
 			public static let Chrome89: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36")
+			
+			/// Chrome 113 on macOS 13.
+			public static let Chrome113: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36")
+
 
 			
 			/// Firefox 54 on macOS 10.12.
@@ -136,6 +146,10 @@ public extension URLRequest {
 			
 			/// Firefox 62 on macOS 10.14.
 			public static let Firefox62: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:62.0) Gecko/20100101 Firefox/62.0")
+
+			/// Firefox 109 on macOS 13.
+			public static let Firefox109: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0")
+
 			
 			/// Safari on macOS 10.12 (10.0)
 			public static let Safari10: UserAgent = UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50")
@@ -153,6 +167,7 @@ public extension URLRequest {
 		
 		/// Contains iOS user agents.
 		public struct iOS {
+			
 			/// Safari on iOS 8.1
 			public static let Safari8: UserAgent = UserAgent("Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B410 Safari/600.1.4")
 			
@@ -162,6 +177,8 @@ public extension URLRequest {
 			/// Safari on iOS 14
 			public static let Safari14: UserAgent = UserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1")
 
+			/// Safari on iOS 16
+			public static let Safari16: UserAgent = UserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1")
 		}
 		
 		
