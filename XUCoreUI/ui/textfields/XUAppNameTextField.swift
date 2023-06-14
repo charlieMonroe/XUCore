@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 /// Text field that replaces %AppName% with the app's name. Used in XIB files
 /// that are used in multiple apps.

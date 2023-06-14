@@ -6,7 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 /// This is a specialized menu item subclass that allows using closures for handling
 /// menu item actions.

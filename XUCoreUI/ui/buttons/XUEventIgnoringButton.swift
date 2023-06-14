@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 /// This is a button that does literally nothing. It is used for padding between
 /// buttons of the same appearance.

@@ -12,7 +12,7 @@
 	import UIKit
 	public typealias __XUBridgedView = UIView
 #else
-	import Cocoa
+	import AppKit
 	public typealias __XUBridgedView = NSView
 #endif
 

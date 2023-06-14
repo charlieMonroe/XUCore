@@ -13,7 +13,7 @@ import Foundation
 	
 	public typealias __XUBezierPath = UIBezierPath
 #else
-	import Cocoa
+	import AppKit
 	
 	public typealias __XUBezierPath = NSBezierPath
 #endif

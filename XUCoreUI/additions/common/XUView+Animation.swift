@@ -11,7 +11,7 @@ import Foundation
 #if os(iOS)
 	import UIKit
 #else
-	import Cocoa
+	import AppKit
 #endif
 
 
@@ -56,7 +56,7 @@ public extension __XUBridgedView {
 }
 
 #if os(macOS)
-public extension NSAnimatablePropertyContainer {
+extension NSAnimatablePropertyContainer {
 	
 	/// Returns either self.animator() or self depending on the `animate`
 	/// parameter. This is useful if you need to layout some UI and sometimes
@@ -64,7 +64,7 @@ public extension NSAnimatablePropertyContainer {
 	///
 	/// - Parameter animate: Whether to animate.
 	/// - Returns: Self or a animator proxy.
-	func conditionalAnimator(_ animate: Bool) -> Self {
+	public func conditionalAnimator(_ animate: Bool) -> Self {
 		if animate {
 			return self.animator()
 		} else {

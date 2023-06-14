@@ -22,7 +22,7 @@ import Foundation
 	}
 	
 #else
-	import Cocoa
+	import AppKit
 	
 	public typealias XUImage = NSImage
 #endif

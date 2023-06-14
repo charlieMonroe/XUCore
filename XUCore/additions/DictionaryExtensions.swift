@@ -228,36 +228,12 @@ extension Dictionary {
 		
 		return 0
 	}
-	
+		
 	/// Most of the time, you need to use value(forKeyPath:) for getting end nodes
 	/// in JSON dictionaries, which are strings. This method allows is
 	/// a convenience method that allows you to get the string without casting.
 	public func string(forKeyPath keyPath: String) -> String? {
 		return self.value(forKeyPath: keyPath) as? String
-	}
-	
-	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
-	/// percent encoding the value. If the value is not a String - description
-	/// is called on that object.
-	public var urlQueryString: String {
-		var keyValuePairs: [String] = []
-		for (key, value) in self {
-			let stringKey = (key as? String) ?? "INVALID KEY-\(key)"
-			let encodedKey = stringKey.encodingIllegalURLCharacters
-			if let array = value as? [CustomStringConvertible] {
-				for v in array {
-					let encodedValue = v.description.encodingIllegalURLCharacters
-					keyValuePairs.append("\(encodedKey)[]=\(encodedValue)")
-				}
-			} else {
-				let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE-\(value)"
-				let encodedValue = valueObject.description.encodingIllegalURLCharacters
-				
-				keyValuePairs.append("\(encodedKey)=\(encodedValue)")
-			}
-		}
-		
-		return keyValuePairs.joined(separator: "&")
 	}
 	
 	private enum KeyPathPart {
@@ -382,6 +358,47 @@ extension Dictionary {
 		}
 		
 		return obj
+	}
+	
+}
+
+extension Dictionary where Key == String {
+	
+	private func _urlQueryDictionary(sorted: Bool) -> String {
+		var keyValuePairs: [String] = []
+		for (key, value) in sorted ? self.sorted(by: { $0.key < $1.key }) : Array(self) {
+			let stringKey = key
+			let encodedKey = stringKey.encodingIllegalURLCharacters
+			if let array = value as? [CustomStringConvertible] {
+				for v in array {
+					let encodedValue = v.description.encodingIllegalURLCharacters
+					keyValuePairs.append("\(encodedKey)[]=\(encodedValue)")
+				}
+			} else {
+				let valueObject: CustomStringConvertible = (value as? CustomStringConvertible) ?? "INVALID VALUE-\(value)"
+				let encodedValue = valueObject.description.encodingIllegalURLCharacters
+				
+				keyValuePairs.append("\(encodedKey)=\(encodedValue)")
+			}
+		}
+		
+		return keyValuePairs.joined(separator: "&")
+	}
+	
+	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
+	/// percent encoding the value. If the value is not a String - description
+	/// is called on that object.
+	///
+	/// Unlike urlQueryString, this sorts the parameters by name.
+	public var sortedURLQueryString: String {
+		return self._urlQueryDictionary(sorted: true)
+	}
+	
+	/// This will put together all key-value pairs as key1=value1&key2=value2&...,
+	/// percent encoding the value. If the value is not a String - description
+	/// is called on that object.
+	public var urlQueryString: String {
+		return self._urlQueryDictionary(sorted: false)
 	}
 	
 }

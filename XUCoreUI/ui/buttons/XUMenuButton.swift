@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 /// Alignment of the menu towards to the button.
 @objc public enum XUMenuAlignment: Int {

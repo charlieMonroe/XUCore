@@ -6,7 +6,7 @@
 //  Copyright © 2016 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 import XUCore
 
 /// This provides the search field with results. See the methods for more 

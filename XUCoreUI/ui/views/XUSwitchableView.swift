@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 /// This is a view that manages switching between screens. An example usage is
 /// in a tutorial, where you slide one screen after another.

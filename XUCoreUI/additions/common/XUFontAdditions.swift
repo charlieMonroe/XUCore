@@ -13,7 +13,7 @@ import Foundation
 	
 	public typealias XUFont = UIFont
 #else
-	import Cocoa
+	import AppKit
 	
 	public typealias XUFont = NSFont
 #endif
