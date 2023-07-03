@@ -11,11 +11,11 @@
 "Failed to parse CSV file." = "CSV dosyası ayrıştırılamadı.";
 
 "Send Report" = "Rapor gönder";
-"Privacy Information..." = "Gizlilik Bilgileri ...";
-"%AppName% has encountered a problem." = "%AppName% bir sorunla karşı karşıya.";
+"Privacy Information..." = "Gizlilik Bilgileri...";
+"%AppName% has encountered a problem." = "%AppName% bir sorunla karşılaştı.";
 "%AppName% will terminate after sending the report." = "%AppName% rapor gönderildikten sonra sonlandırılıcaktır.";
 "Report to be sent:" = "Gönderilecek rapor:";
-"Your Email:" = "E-posta adresiniz:";
+"Your Email:" = "E-posta Adresiniz:";
 "Description:" = "Açıklama:";
 
 "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Lütfen, bu durum oluştuğundaki durumu açıklayın ve mümkünse sorunu yeniden üretmek için gerekli adımları sağlayın. E-posta adresinizi aşağıya giriniz - bu sorun ne zaman giderileceğini size bildiririz veya bu istisna durum ile ilgili bazı ayrıntıları size sorabiliriz. E-posta adresiniz hiçbir veritabanına dahil edilmez ve istenmeyen e-postalar almazsınız.\n\nBu raporu gönderirseniz, bu programı geliştirmemize yardım edeceksiniz. Teşekkür ederim!";
@@ -28,13 +28,13 @@
 
 "Could not post your report." = "Raporunuzu gönderemedik.";
 "Check your Internet connection and try again." = "İnternet bağlantınızı kontrol edin ve tekrar deneyin.";
-"Heh, nice try. Please, enter a valid email address." = "Hah, iyi deneme. Lütfen geçerli bir e-posta adresi girin.";
+"Heh, nice try. Please, enter a valid email address." = "Vay, iyi deneme. Lütfen geçerli bir e-posta adresi girin.";
 "We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Bunu düzeltmek için sizinle iletişime geçmemiz gerekebilir. Isırmayız, e-posta adresinizi satmayacağız ya da başka bir şekilde kullanmayacağız. Söz veriyoruz.";
 "You need to enter a valid email address." = "Geçerli bir e-posta adresi girmeniz gerekiyor.";
 "We may need to get in touch with you in order to fix this." = "Bunu düzeltmek için sizinle iletişime geçmemiz gerekebilir.";
 "Please, provide some details as to when this exception happened." = "Lütfen, bunun ne zaman gerçekleştiğine dair bazı ayrıntılar verin.";
 "Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Uygulamanın ön planda veya arka planda olması durumunda, devam eden görevler hakkında bilgi ekleyin; herhangi bir şeyi tıkladıysanız vb. Sadece rapordan gelen hatayı anlamaya çalışmak zor olabilir ve ek bilgi olmadan imkansız.";
-"Thank you for the report!" = "Rapor için teşekkür ederim!";
+"Thank you for the report!" = "Gönderdiğiniz rapor için teşekkürler!";
 "We'll fix it as soon as possible!" = "Mümkün olan en kısa sürede düzelteceğiz!";
 
 "Welcome to beta testing of %@." = "%@ beta testine hoş geldiniz..";
@@ -47,7 +47,7 @@
 "Posted successfully" = "Başarıyla gönderildi";
 
 "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ önümüzdeki 24 saatte çalışmaya devam edecek ve sonrasında işlevselliği engellenecektir. Lütfen %@ 'yi güncel tutmak için güncelleyin..";
-"Please download a new build." = "Lütfen yeni yapıyı indirin.";
+"Please download a new build." = "Lütfen yeni sürümü indirin.";
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Raporu yine de gönderebilirsiniz, ancak mesaj İngilizce değilse, tam destek sağlayamam.";
@@ -79,7 +79,7 @@
 
 /// Debug Log Menu
 "Debug" = "Hata Ayıklama";
-"About Debug Log..." = "Hata Ayıklama Günlüğü Hakkında ...";
+"About Debug Log..." = "Hata Ayıklama Günlüğü Hakkında...";
 "Debug Logging" = "Hata Ayıklama Günlüğü";
 "On" = "Açık";
 "Off" = "Kapalı";
@@ -87,7 +87,7 @@
 "Show Log in Finder" = "Finder'da Göster";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Hata ayıklama günlüğü, %@ 'nin arka planda ne yaptığıyla ilgili bazı teknik ayrıntıları içeren bir metin dosyasıdır. Neler olup bittiğini görmemi sağladığı için işleri hızla düzeltmek için oldukça yararlıdır. Hata ayıklama günlüğünü almak için aşağıdaki basit adımları uygulayın:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) 1) Gönderdiğiniz ilk hata ayıklama günlüğünüz bu değilse, Hata Ayıklama menüsünden Hata Ayıkla Günlüğünü Temizle'yi seçin.\n2) Hata Ayıklama menüsünde, Hata Ayıklama Günlüğünün Açık olduğundan emin olun.\n3) Sorun yaşadığınız şeyi gerçekleştirin.\n4) Hata Ayıkla menüsünde Hata Ayıklama Günlüğü Kapat seçeneğini açın.\n5) Hata Ayıklama menüsünde Günlüğü Finder'da Göster'i seçin. Bu, Finder'da günlük dosyasını seçer ve kolayca bana gönderebilirsiniz. Lütfen, dosyayı kopyalayıp yapıştırmak yerine e-postaya ekleyin.\n\n Günlük dosyası, günlük dosyasını açarak doğrulanabilecek kişisel verileri içermez (basit bir metin dosyasıdır). Bazı verilerin gizli veya kişisel olduğunu düşünüyorsanız, lütfen yerine kolaylıkla tanımlanabilen bir şeyle (ör. XXXXXXXX) değiştirin ve günlük dosyasını değiştirdiğinizi bildirin.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Gönderdiğiniz ilk hata ayıklama günlüğünüz bu değilse, Hata Ayıklama menüsünden Hata Ayıkla Günlüğünü Temizle'yi seçin.\n2) Hata Ayıklama menüsünde, Hata Ayıklama Günlüğünün Açık olduğundan emin olun.\n3) Sorun yaşadığınız şeyi gerçekleştirin.\n4) Hata Ayıkla menüsünde Hata Ayıklama Günlüğü Kapat seçeneğini açın.\n5) Hata Ayıklama menüsünde Günlüğü Finder'da Göster'i seçin. Bu, Finder'da günlük dosyasını seçer ve kolayca bana gönderebilirsiniz. Lütfen, dosyayı kopyalayıp yapıştırmak yerine e-postaya ekleyin.\n\n Günlük dosyası, günlük dosyasını açarak doğrulanabilecek kişisel verileri içermez (basit bir metin dosyasıdır). Bazı verilerin gizli veya kişisel olduğunu düşünüyorsanız, lütfen yerine kolaylıkla tanımlanabilen bir şeyle (ör. XXXXXXXX) değiştirin ve günlük dosyasını değiştirdiğinizi bildirin.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Doküman şu an indirilemedi.";
@@ -101,8 +101,8 @@
 
 // Preferences.
 "All Preferences" = "Tüm Tercihler";
-"Show All" = "Tümünü göster";
-"Preferences" = "Terichler";
+"Show All" = "Tümünü Göster";
+"Preferences" = "Tercihler";
 
 /// 12/21/2016+
 
@@ -121,11 +121,16 @@
 "Copied" = "Kopyalandı";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ bir sorunla karşılaştığı için maalesef çalışmayı durdurdu. Karşınıza, hatayı bildirmek için iletişim kutusu çıkacak. Lütfen bize hatayı açıklayın veya çökme olayını görmezden gelmek isterseniz, pencereyi kapatabilirsiniz.";
+"Send Anyway" = "Yine de Yolla";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Yeni bir güncelleme mevcut.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Yeni çıkan sürüm ile karşılaştığınız hata(lar) düzeltilmiş olabilir. Lütfen uygulamayı güncellemeyi deneyin. Eğer güncelleyemiyorsanız, uygulamayı websitemiz üzerinden tekrar indiriniz.";
+"Download Update..." = "Güncellemeyi İndir";
 
-"Done" = "Done";
+"Done" = "Bitti";
+
+"Reset" = "Reset";
+"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
+"This action cannot be undone." = "This action cannot be undone.";
+

@@ -1,4 +1,10 @@
-"About <AppName>" = "<AppName> hakkında";
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
+"About <AppName>" = "<AppName> Hakkında";
 "Bring <AppName> Window to Front" = "<AppName> Penceresini Öne Getir";
 "Bring All to Front" = "Tümünü En Öne Getir";
 "Capitalize" = "Baş Harfleri Büyük Yap";
@@ -12,23 +18,23 @@
 "Delete" = "Sil";
 "Edit" = "Düzen";
 "File" = "Dosya";
-"Find" = "Bul";
+"Find and Replace…" = "Bul ve Değiştir…";
 "Find Next" = "Sonrakini Bul";
 "Find Previous" = "Öncekini Bul";
-"Find and Replace…" = "Bul ve Değiştir…";
+"Find" = "Bul";
 "Find…" = "Bul…";
 "Help" = "Yardım";
-"Hide <AppName>" = "<AppName>’i Gizle";
+"Hide <AppName>" = "<AppName> Uygulamasını Gizle";
 "Hide Others" = "Diğerlerini Gizle";
 "Jump to Selection" = "Seçime Git";
 "Make Lower Case" = "Küçuk Harf Yap";
 "Make Upper Case" = "Büyük Harf Yap";
 "Minimize" = "Simge Durumuna Küçült";
 "Open…" = "Aç…";
-"Paste" = "Yapıştır";
 "Paste and Match Style" = "Yapıştır ve Stili Eşleştir";
+"Paste" = "Yapıştır";
 "Preferences…" = "Tercihler…";
-"Quit <AppName>" = "<AppName>’dan Çık";
+"Quit <AppName>" = "<AppName> Uygulamasından Çık";
 "Redo" = "Yenile";
 "Select All" = "Tümünü Seç";
 "Services" = "Servisler";
@@ -40,8 +46,8 @@
 "Smart Links" = "Akıllı Bağlantılar";
 "Smart Quotes" = "Akıllı Tırnaklar";
 "Speech" = "Konuşma";
-"Spelling" = "Yazım";
 "Spelling and Grammar" = "Yazım ve Dilbigisi Denetimi";
+"Spelling" = "Yazım";
 "Start Speaking" = "Konuşmayı Başlat";
 "Stop Speaking" = "Konuşmayı Durdur";
 "Substitutions" = "Değişimler";
