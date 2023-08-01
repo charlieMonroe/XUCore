@@ -210,19 +210,35 @@ extension URL {
 		return urlComponents.url ?? self
 	}
 		
+	private func _updatingQuery(to query: XUJSONDictionary) -> URL {
+		return self.updatingQuery(to: query.urlQueryString)
+	}
+	
 	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
+	@available(*, deprecated, message: "Convert query to [String : String]")
 	public func updatingQuery(to query: XUJSONDictionary) -> URL {
+		return _updatingQuery(to: query)
+	}
+	
+	/// Returns URL with replaced query (i.e. the ? part). Note that the string passed must be
+	/// a valid query string - all special characters must be percent-encoded.
+	public func updatingQuery(to queryString: String) -> URL {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return self
 		}
 		
-		urlComponents.percentEncodedQuery = query.urlQueryString
+		urlComponents.percentEncodedQuery = queryString
 		
 		guard let result = urlComponents.url else {
 			XUFatalError("Setting query from dictionary rendered invalid. This should not happen.")
 		}
 		
 		return result
+	}
+	
+	/// Returns URL with replaced query (i.e. the ? part).
+	public func updatingQuery(to query: [String : String]) -> URL {
+		return _updatingQuery(to: query)
 	}
 }
 

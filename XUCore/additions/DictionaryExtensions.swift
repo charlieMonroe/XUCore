@@ -288,6 +288,10 @@ extension Dictionary {
 	/// You can also add key variations - example: [key1][(0|1)][(key2|key3)] will
 	/// return [key1][0][key2] or [key1][1][key3], whichever is non-nil.
 	///
+	/// Additionally, you can use regex for keys by prefixing it with "r'": [r'regex].
+	/// This can currently only be used as a single key, cannot be in a group
+	/// with variations (i.e. [(r'regex1|r'regex2)] will not be interpretted as regexes).
+	///
 	/// For array indexes, you can use -1 for the last index.
 	public func value(forKeyPath keyPath: String) -> Any? {
 		let components = self._parseKeyPath(keyPath)
@@ -309,7 +313,16 @@ extension Dictionary {
 			if let dict = obj as? XUJSONDictionary {
 				let value: Any?
 				if keys.count == 1 {
-					value = dict[keys[0]]
+					if keys[0].hasPrefix("r'") {
+						let regex = keys[0].deleting(prefix: "r'")
+						if let regexMatchedValue = dict.first(where: { $0.key.matches(regex: regex) })?.value {
+							value = regexMatchedValue
+						} else {
+							value = nil
+						}
+					} else {
+						value = dict[keys[0]]
+					}
 				} else {
 					value = dict.firstNonNilValue(ofType: Any.self, forKeys: keys)
 				}
