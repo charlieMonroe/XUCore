@@ -5,35 +5,35 @@
 "1 second" = "1 секунда";
 "Unknown error." = "Невідома помилка.";
 
-"OK" = "Гаразд";
+"OK" = "ОК";
 "Cancel" = "Відміна";
 
 "Failed to parse CSV file." = "Не вдалося проаналізувати файл CSV.";
 
 "Send Report" = "Надіслати звіт";
 "Privacy Information..." = "Конфіденційна інформація...";
-"%AppName% has encountered a problem." = "%AppName% виникла проблема.";
-"%AppName% will terminate after sending the report." = "%AppName% припиниться після надсилання звіту.";
+"%AppName% has encountered a problem." = "В %AppName% виникла проблема.";
+"%AppName% will terminate after sending the report." = "%AppName% завершиться після надсилання звіту.";
 "Report to be sent:" = "Звіт для надсилання:";
 "Your Email:" = "Ваша електронна пошта";
 "Description:" = "Опис:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Будь-ласка, опишіть ситуацію, коли відбулося це виключення, і вкажіть, як відтворити проблему, якщо це можливо. Введіть адресу електронної пошти нижче - ми повідомимо вас, коли ця проблема буде виправлена або може з'явитися запит щодо деяких деталей стосовно цього випадку. Вашу адресу електронної пошти не буде зібрано в жодну базу даних, і ви не отримаєте небажаних електронних листів.\n\n Запровадження цього звіту допоможе нам удосконалити це програмне забезпечення. Дякую!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Будь-ласка, опишіть ситуацію, коли відбулося це виключення, і вкажіть, як відтворити проблему, якщо це можливо. Введіть адресу електронної пошти нижче - ми повідомимо Вас, коли ця проблема буде виправлена або може з'явитися запит щодо деяких деталей стосовно цього випадку. Вашу адресу електронної пошти не буде зібрано в жодну базу даних, і Ви не отримаєте небажаних електронних листів.\n\n Запровадження цього звіту допоможе нам удосконалити це програмне забезпечення. Дякую!";
 
 "Report Problem" = "Повідомити про проблему";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Ми цінуємо ваш відгук і не ризикнемо зібрати будь-яку небажану інформацію. Ваша електронна адреса ніде не зберігатиметься, і вона буде використана лише для інформування вас, коли ця проблема може бути виправлена, або якщо нам потрібна додаткова інформація, щоб вирішити цю проблему..";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Ми цінуємо Ваш відгук і не ризикнемо зібрати будь-яку небажану інформацію. Ваша електронна адреса ніде не зберігатиметься, і вона буде використана лише для інформування Вас, коли ця проблема може бути виправлена, або якщо нам потрібна додаткова інформація, щоб вирішити цю проблему..";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Буде надіслано лише таку інформацію:\n• Опис, який ви надаєте.\n• Інформація про виключення нижче.\n• Версія цієї програми.\n• Версія вашої системи (ОС).\n• Модель вашого комп'ютера. (без MAC-адреси або подібної інформації, яка може ідентифікувати ваш комп'ютер).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "Буде надіслано лише таку інформацію:\n• Опис, який Ви надаєте.\n• Інформація про виключення нижче.\n• Версія цієї програми.\n• Версія Вашої системи (ОС).\n• Модель Вашого комп'ютера. (без MAC-адреси або подібної інформації, яка може ідентифікувати Ваш комп'ютер).";
 
-"Could not post your report." = "Не вдалося опублікувати ваш звіт.";
+"Could not post your report." = "Не вдалося опублікувати Ваш звіт.";
 "Check your Internet connection and try again." = "Перевірте підключення до Інтернету та повторіть спробу.";
 "Heh, nice try. Please, enter a valid email address." = "Хей, гарна спроба. Будь ласка, введіть дійсну адресу електронної пошти.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Можливо, нам доведеться зв'язатися з вами, щоб це виправити. Ми не кусаємось, ми не будемо продавати електронну адресу кому-небудь і не використовуватимемо її іншим способом. Ми обіцяємо.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Можливо, нам доведеться зв'язатися з Вами, щоб це виправити. Ми не кусаємось, ми не будемо продавати електронну адресу кому-небудь і не використовуватимемо її іншим способом. Ми обіцяємо.";
 "You need to enter a valid email address." = "Вам потрібно ввести дійсну адресу електронної пошти.";
-"We may need to get in touch with you in order to fix this." = "Можливо, нам доведеться зв'язатися з вами, щоб це виправити.";
+"We may need to get in touch with you in order to fix this." = "Можливо, нам доведеться зв'язатися з Вами, щоб це виправити.";
 "Please, provide some details as to when this exception happened." = "Будь ласка, надайте деякі подробиці про те, коли сталося це виключення.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включіть інформацію про поточні завдання в додатку, якщо програма була на передньому плані або фоні; якщо ви натиснули на що-небудь тощо. Намагатися з'ясувати помилку просто з доповіді може бути важко і без додаткової інформації неможливо.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включіть інформацію про поточні завдання в додатку, якщо програма була на передньому плані або фоні; якщо Ви натиснули на що-небудь тощо. Намагатися з'ясувати помилку просто з доповіді може бути важко і без додаткової інформації неможливо.";
 "Thank you for the report!" = "Дякуємо за звіт!";
 "We'll fix it as soon as possible!" = "Ми виправимо це якомога швидше!";
 
@@ -41,7 +41,7 @@
 "This is the first time you run a beta build %@." = "Це перший запуск бета-версії %@.";
 "This beta build of %@ has expired." = "Ця бета-версія %@ закінчилася.";
 
-"Working..." = "Робота...";
+"Working..." = "Виконання…";
 
 "Progress" = "Прогрес";
 "Posted successfully" = "Опубліковано успішно";
@@ -50,7 +50,7 @@
 "Please download a new build." = "Будь ласка, завантажте нову версію.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Ви можете надсилати звіт у будь-якому випадку, але якщо він не англійською мовою, я не зможу надати вам повну підтримку.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Ви можете надсилати звіт у будь-якому випадку, але якщо він не англійською мовою, я не зможу надати Вам повну підтримку.";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ваше повідомлення містить спеціальні символи, які зазвичай вказують на те, що повідомлення написано не англійською мовою. Зверніть увагу, що, хоча %@ перекладено різними мовами, підтримка надається лише англійською мовою. Дякуємо за розуміння.";
 "%li hours" = "%li годин";
 "%li minutes" = "%li хвилин";
@@ -78,25 +78,25 @@
 "User cancelled the authorization." = "Користувач скасував авторизацію.";
 
 /// Debug Log Menu
-"Debug" = "Налагоджування";
-"About Debug Log..." = "Про журнал виправлень ...";
+"Debug" = "Відладка";
+"About Debug Log..." = "Про журнал відладки ...";
 "Debug Logging" = "Запис відладки";
 "On" = "Увімкнено";
 "Off" = "Вимкнено";
 "Clear Debug Log" = "Очистити журнал відладки";
-"Show Log in Finder" = "Показати журнал пошуку";
+"Show Log in Finder" = "Показати журнал в Finder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журнал відладки - це текстовий файл, який містить деякі технічні подробиці про те, що виконує %@ у фоновому режимі. Це досить корисно для нас, щоб швидко виправити ситуацію, оскільки це дозволяє нам бачити, що відбувається. Щоб отримати журнал відладки, виконайте такі прості кроки:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Якщо це не ваш перший журнал наладки, який ви надсилаєте, оберіть пункт Очистити журнал відладки в меню «Наладка».\n2) У меню «Наладка» переконайтеся, що протокол наладки увімкнено.\n3) Виконайте будь-яке завдання, з яким виникає проблема.\n4) У меню \"Наладка\" вимкніть Запис Логування.\n5) У меню \"Виправлення\" виберіть \"Показати журнал пошуку\". Це вибирає файл журналу в Finder, і ви можете легко надіслати його мені. Будь-ласка, прикріпіть файл до електронної пошти, а не скопіюйте інформацію.\n\n Файл журналу не містить жодних особистих даних, які можна перевірити, відкривши файл журналу (це просто текстовий файл). Якщо ви вважаєте, що zrscm дані є конфіденційними або особистими, будь-ласка, замінити їх на щось, що можна легко ідентифікувати як заповнювач (наприклад, XXXXXXXX), і дайте мені знати, що ви змінили файл журналу.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Якщо це не Ваш перший журнал відладки, який Ви надсилаєте, оберіть пункт \"Очистити журнал відладки\" в меню \"Відладка\".\n2) У меню \"Відладка\" переконайтеся, що журнал відладки увімкнено.\n3) Виконайте будь-яке завдання, з яким виникає проблема.\n4) У меню \"Відладка\" вимкніть \"Запис відладки\".\n5) У меню \"Відладка\" виберіть \"Показати журнал в Finder\". Це вибирає файл журналу в Finder, і Ви можете легко надіслати його мені. Будь-ласка, прикріпіть файл до електронної пошти, а не скопіюйте інформацію.\n\n Файл журналу не містить жодних особистих даних, які можна перевірити, відкривши файл журналу (це просто текстовий файл). Якщо Ви вважаєте, що zrscm дані є конфіденційними або особистими, будь-ласка, замінити їх на щось, що можна легко ідентифікувати як заповнювач (наприклад, XXXXXXXX), і дайте мені знати, що Ви змінили файл журналу.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "На даний момент документ не можна завантажити.";
-"Log Current Application State" = "Журнал Поточний Стан Застосунку";
+"Log Current Application State" = "Журнал поточного стану застосунку";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "Ця бета-надбудова закінчиться менше, ніж через годину.";
+"This beta build will expire in less than an hour." = "Термін цієї бета-версії закінчиться менше, ніж через годину.";
 "Please update your copy of this beta build." = "Будь ласка, оновіть свою копію цієї бета-версії.";
 
 // Preferences.
@@ -121,11 +121,16 @@
 "Copied" = "Скопійовано";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ виникла проблема та можливо вийде з ладу. Буде представлено діалог звітів. Надішліть звіт, або закрийте вікно, якщо ви хочете ігнорувати збій.";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ виникла проблема та закінчить роботу. Буде представлено діалог звітів. Надішліть звіт, або закрийте вікно, якщо Ви хочете ігнорувати збій.";
 "Send Anyway" = "Надіслати все одно";
 
 "There is an update available." = "Доступне оновлення.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Цілком можливо, що в новій версії виправлено це питання. Спробуйте оновити програму. Якщо ви не можете отримати доступ до функції оновлення, перезавантажте програму з офіційної веб-сторінки.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Цілком можливо, що в новій версії виправлено це питання. Спробуйте оновити програму. Якщо Ви не можете отримати доступ до функції оновлення, перезавантажте програму з офіційної веб-сторінки.";
 "Download Update..." = "Завантажити оновлення…";
 
 "Done" = "Готово";
+
+"Reset" = "Reset";
+"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
+"This action cannot be undone." = "This action cannot be undone.";
+

@@ -1,5 +1,11 @@
-"About <AppName>" = "Об Утилите <AppName>";
-"Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
+"About <AppName>" = "О <AppName>";
+"Bring <AppName> Window to Front" = "Переместить <AppName> на передний план";
 "Bring All to Front" = "Все окна — на передний план";
 "Capitalize" = "С заглавной буквы";
 "Check Document Now" = "Проверить документ";
@@ -12,23 +18,23 @@
 "Delete" = "Удалить";
 "Edit" = "Правка";
 "File" = "Файл";
-"Find" = "Найти";
+"Find and Replace…" = "Найти и заменить…";
 "Find Next" = "Найти далее";
 "Find Previous" = "Найти ранее";
-"Find and Replace…" = "Найти и заменить…";
+"Find" = "Найти";
 "Find…" = "Найти…";
 "Help" = "Справка";
-"Hide <AppName>" = "Скрыть Утилиту VoiceOver";
+"Hide <AppName>" = "Скрыть <AppName>";
 "Hide Others" = "Скрыть остальные";
 "Jump to Selection" = "Перейти к выбранному";
 "Make Lower Case" = "Нижний регистр";
 "Make Upper Case" = "Верхний регистр";
 "Minimize" = "Убрать в Dock";
 "Open…" = "Открыть…";
-"Paste" = "Вставить";
 "Paste and Match Style" = "Вставить и согласовать стиль";
+"Paste" = "Вставить";
 "Preferences…" = "Настройки…";
-"Quit <AppName>" = "Завершить Утилиту VoiceOver";
+"Quit <AppName>" = "Завершить <AppName>";
 "Redo" = "Повторить";
 "Select All" = "Выбрать все";
 "Services" = "Службы";
@@ -40,13 +46,13 @@
 "Smart Links" = "Смарт-ссылки";
 "Smart Quotes" = "Смарт-кавычки";
 "Speech" = "Речь";
-"Spelling" = "Правописание";
 "Spelling and Grammar" = "Правописание и грамматика";
+"Spelling" = "Правописание";
 "Start Speaking" = "Начать";
 "Stop Speaking" = "Остановить";
 "Substitutions" = "Замены";
 "Text Replacement" = "Замена текста";
-"Transformations" = "Преобразования";
+"Transformations" = "Трансформации";
 "Undo" = "Отменить";
 "Use Selection for Find" = "Найти выбранное";
 "Use Selection for Replace" = "Использовать выделенное для замены";

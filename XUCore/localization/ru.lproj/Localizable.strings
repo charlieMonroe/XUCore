@@ -5,20 +5,20 @@
 "1 second" = "1 секунда";
 "Unknown error." = "Неизвестная ошибка.";
 
-"OK" = "OK";
+"OK" = "ОК";
 "Cancel" = "Отмена";
 
 "Failed to parse CSV file." = "Не удалось выполнить анализ файла CSV.";
 
 "Send Report" = "Отправить отчет";
 "Privacy Information..." = "Информация о конфиденциальности...";
-"%AppName% has encountered a problem." = "%AppName% столкнулся с проблемой.";
-"%AppName% will terminate after sending the report." = "%AppName% завершит работу после отправки Отчета.";
+"%AppName% has encountered a problem." = "В %AppName% возникла проблема.";
+"%AppName% will terminate after sending the report." = "%AppName% завершит работу после отправки отчета.";
 "Report to be sent:" = "Отчет будет отправлен:";
 "Your Email:" = "Ваш адрес эл.почты:";
 "Description:" = "Описание:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже Вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется Ваша помощь при её ликвидации. Ваш адрес электронной почты не будет собран в базе данных, и вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже Вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется Ваша помощь при её ликвидации. Ваш адрес электронной почты не будет собран в базе данных, и Вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
 
 "Report Problem" = "Сообщить о проблеме";
 
@@ -33,26 +33,26 @@
 "You need to enter a valid email address." = "Некорректный адрес электронной почты.";
 "We may need to get in touch with you in order to fix this." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы.";
 "Please, provide some details as to when this exception happened." = "Пожалуйста, предоставьте некоторые подробности о том, когда произошла эта ситуация.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включите информацию о текущих задачах в приложении, если приложение было на переднем или заднем плане; Если вы нажали на что угодно, и т.д. Определить ошибку только из отчета может быть сложно и без дополнительной информации невозможно.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включите информацию о текущих задачах в приложении, если приложение было на переднем или заднем плане; Если Вы нажали на что угодно, и т.д. Определить ошибку только из отчета может быть сложно и без дополнительной информации невозможно.";
 "Thank you for the report!" = "Спасибо за отчет!";
 "We'll fix it as soon as possible!" = "Мы исправим это как можно скорее!";
 
-"Welcome to beta testing of %@." = "Добро пожаловать на Бета-тестирование %@.";
-"This is the first time you run a beta build %@." = "Это первый раз, когда вы запускаете Сборку Бета-версии %@.";
-"This beta build of %@ has expired." = "Срок этой сборки Бета-версии %@ истек.";
+"Welcome to beta testing of %@." = "Добро пожаловать на бета-тестирование %@.";
+"This is the first time you run a beta build %@." = "Это первый раз, когда Вы запускаете сборку бета-версии %@.";
+"This beta build of %@ has expired." = "Срок этой сборки бета-версии %@ истек.";
 
-"Working..." = "Работа...";
+"Working..." = "Выполнение…";
 
 "Progress" = "Прогресс";
 "Posted successfully" = "Успешно добавлено";
 
 "%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ будет продолжать работать ближайшие 24 часа, после чего его функциональность будет заблокирована. Пожалуйста, обновите %@ для того, чтобы поддерживать работоспособность.";
-"Please download a new build." = "Пожалуйста, скачайте новую Сборку.";
+"Please download a new build." = "Пожалуйста, скачайте новую сборку.";
 
 /// Added on 4/26/2016
 "You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Вы можете отправить отчет так или иначе, но если сообщение написано не на английском языке, я не смогу предоставить Вам полную поддержку.";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ваше сообщение содержит специальные символы, которые обычно указывают на то, что сообщение написано не на английском языке. Обратите внимание, что, хотя %@ и переведен на различные языки, поддержка оказывается только на английском. Спасибо за понимание.";
-"%li hours" = "%li часа (ов)";
+"%li hours" = "%li час (ов)";
 "%li minutes" = "%li минут(ы)";
 "%li seconds" = "%li секунд (ы)";
 
@@ -71,33 +71,33 @@
 "Please switch back to %@ so that the synchronization can finish." = "Пожалуйста, перейдите обратно в %@ чтобы закончить синхронизацию.";
 
 /// XUOAuth2
-"Authentication" = "Проверка подлинности";
-"Server responded with unknown token type." = "Сервер ответил с неизвестного типа маркера.";
+"Authentication" = "Проверка подлиности";
+"Server responded with unknown token type." = "Сервер ответил с неизвестным типом токена.";
 "Server provided invalid authorization response." = "Неверный ответ авторизации сервера.";
 "Server has redirected with invalid URL." = "Сервер перенаправлен с недопустимого URL-адреса.";
-"User cancelled the authorization." = "Пользователь отменил разрешение.";
+"User cancelled the authorization." = "Пользователь отменил авторизацию.";
 
 /// Debug Log Menu
 "Debug" = "Отладка";
-"About Debug Log..." = "О Журнале Отладки...";
-"Debug Logging" = "Ведение Журнала Отладки";
+"About Debug Log..." = "О журнале отладки...";
+"Debug Logging" = "Ведение журнала отладки";
 "On" = "Вкл.";
 "Off" = "Выкл.";
-"Clear Debug Log" = "Очистить Журнал Отладки";
-"Show Log in Finder" = "Показать Журнал в Finder";
+"Clear Debug Log" = "Очистить журнал отладки";
+"Show Log in Finder" = "Показать журнал в Finder";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом Отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить Журнал Отладки, выполните следующие простые действия:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если вы отправляете журнал отладки не в первый раз, пожалуйста, выберите: «Очистить журнал отладки» в меню «Отладка».\n2) В меню «Отладка» убедитесь, что включено ведение журнала отладки.\n3) Выполните задачу, с которой у вас возникли проблемы.\n4) В меню «Отладка» отключите ведение журнала отладки.\n5) В меню «Отладка» выберите пункт «Показать журнал в Finder». Это позволит выбрать файл журнала в Finder, и вы можете легко отправить его мне. Пожалуйста, прикрепите файл к электронному письму, а не копируйте информацию из файла.\n\nФайл журнала не содержит никаких персональных данных, которые позволили бы идентифицировать вас. Вы можете открыть файл журнала (это простой текстовый файл) и если вы считаете некоторые данные конфиденциальными или личными, пожалуйста, замените их чем-то, что можно легко идентифицировать как заполнитель (например: XXXXXXXX), и сообщите мне, что вы изменили файл журнала.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить журнал отладки, выполните следующие простые действия:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если Вы отправляете журнал отладки не в первый раз, пожалуйста, выберите: \"Очистить журнал отладки\" в меню \"Отладка\".\n2) В меню \"Отладка\" убедитесь, что включено \"Ведение журнала отладки\".\n3) Выполните задачу, с которой у Вас возникли проблемы.\n4) В меню \"Отладка\" отключите \"Ведение журнала отладки\".\n5) В меню \"Отладка\" выберите пункт \"Показать журнал в Finder\". Это позволит выбрать файл журнала в Finder, и Вы можете легко отправить его разработчику. Пожалуйста, прикрепите файл к электронному письму, а не копируйте информацию из файла.\n\nФайл журнала не содержит никаких персональных данных, которые позволили бы идентифицировать Вас. Вы можете открыть файл журнала (это простой текстовый файл) и если Вы считаете некоторые данные конфиденциальными или личными, пожалуйста, замените их чем-то, что можно легко идентифицировать как заполнитель (например: XXXXXXXX), и сообщите мне, что Вы изменили файл журнала.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Документ не может быть загружен в данный момент.";
-"Log Current Application State" = "Состояние Журнала текущего приложения";
+"Log Current Application State" = "Журнал текущего состояния приложения";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "Эта Бета-версия истекает менее чем через час.";
-"Please update your copy of this beta build." = "Пожалуйста, обновите Вашу копию этой Бета-версии.";
+"This beta build will expire in less than an hour." = "Срок этой бета-версия истекает менее чем через час.";
+"Please update your copy of this beta build." = "Пожалуйста, обновите Вашу копию этой бета-версии.";
 
 // Preferences.
 "All Preferences" = "Все настройки";
@@ -114,14 +114,14 @@
 "Select..." = "Выбрать...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Загрузка синхронизации данных.";
+"Synchronization data is being downloaded." = "Загрузка данных синхронизации.";
 "Copy Current Application State" = "Копия текущего состояния приложения";
 
 /// 11/12/2017+
 "Copied" = "Скопировано";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ столкнулся с проблемой и закроется. Диалог Отчета будет представлен. Пожалуйста, отправьте его или закройте окно, если хотите игнорировать сбой.";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "В %@ возникла проблема, работа будет завершена. Будет выведено диалоговое окно отчета. Пожалуйста, отправьте его или закройте окно, если хотите проигнорировать сбой.";
 "Send Anyway" = "Отправить в любом случае.";
 
 "There is an update available." = "Доступно обновление.";
@@ -129,3 +129,8 @@
 "Download Update..." = "Скачивание обновления…";
 
 "Done" = "Сделано";
+
+"Reset" = "Reset";
+"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
+"This action cannot be undone." = "This action cannot be undone.";
+
