@@ -104,6 +104,9 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// Search field.
 	private weak var _searchField: XUSearchFieldWithResults!
 	
+	/// Array controller - only on Big Sur.
+	@IBOutlet private weak var _tableView: NSTableView!
+	
 	/// Controller that shows the title.
 	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
 	
@@ -249,6 +252,10 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self._setMainWindowContentView(paneController.view, supportsDynamicSize: paneController.supportsDynamicSize)
 		
 		if #available(macOS 11.0, *) {
+			if let selection = _arrayController.arrangedObjects_fix.firstIndex(where: { ($0 as? _Pane)?.controller == paneController }) {
+				_tableView.selectRowIndexes(.init(integer: selection), byExtendingSelection: false)
+				_tableView.scrollRowToVisible(selection)
+			}
 			self.window?.subtitle = paneController.paneName
 		} else {
 			_titleViewController.title = paneController.paneName

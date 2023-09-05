@@ -18,7 +18,7 @@
 "Your Email:" = "Ваш адрес эл.почты:";
 "Description:" = "Описание:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже Вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется Ваша помощь при её ликвидации. Ваш адрес электронной почты не будет собран в базе данных, и Вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже Вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется Ваша помощь при её ликвидации. Ваш адрес электронной почты не будет сохранен в базе данных, и Вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
 
 "Report Problem" = "Сообщить о проблеме";
 
@@ -28,8 +28,8 @@
 
 "Could not post your report." = "Не удалось отправить отчет.";
 "Check your Internet connection and try again." = "Проверьте подключение к Интернету и повторите попытку.";
-"Heh, nice try. Please, enter a valid email address." = "Хорошая попытка, но нет: нам нужен Ваш настоящий электронный адрес.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы. Ну, правда — мы не кусаемся и уж точно не передадим Ваш адрес никаким сторонним компаниям. Обещаем.";
+"Heh, nice try. Please, enter a valid email address." = "Хорошая попытка, но нет: нам нужен Ваш настоящий адрес электронной почты.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы. Ну, правда — мы не кусаемся и уж точно не передадим Ваш адрес электронной почты никаким сторонним компаниям. Обещаем.";
 "You need to enter a valid email address." = "Некорректный адрес электронной почты.";
 "We may need to get in touch with you in order to fix this." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы.";
 "Please, provide some details as to when this exception happened." = "Пожалуйста, предоставьте некоторые подробности о том, когда произошла эта ситуация.";
@@ -130,7 +130,7 @@
 
 "Done" = "Сделано";
 
-"Reset" = "Reset";
-"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
-"This action cannot be undone." = "This action cannot be undone.";
+"Reset" = "Сброс";
+"Do you want to reset settings handled by this preference pane to default values?" = "Вы хотите сбросить настройки, обрабатываемые этой панелью, до значений по умолчанию?";
+"This action cannot be undone." = "Это действие не может быть отменено.";
 

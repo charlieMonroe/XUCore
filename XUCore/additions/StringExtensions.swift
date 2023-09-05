@@ -40,7 +40,7 @@ public enum XUEmailFormatValidity {
 		
 		// It's about right, see for some obviously phony emails
 		let matches = [
-			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "1234", "annoying@problem.com",
+			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "annoying@problem.com",
 			"noname@nothing.com", "example.com", "sdsbgt@gmail.com", "me@you.com", "none@none.com",
 			"tembo@mac.com", "any@hotmail.com", "nowhere.us", "www@gmail.com", "john@mac.com",
 			"dasdsad", "noreply", "@abc.com", "123@123.com", "test@gmail.com", "anon@anon.com", "no@no.com"
@@ -53,7 +53,8 @@ public enum XUEmailFormatValidity {
 		
 		let regexMatchs = [
 			"^1+@(1+|qq|16\\d)\\.com$",
-			"^test@\\w+\\.com$"
+			"^test@\\w+\\.com$",
+			"^1234@"
 		]
 		if regexMatchs.contains(where: { email.matches(regex: $0) }) {
 			self = .phony

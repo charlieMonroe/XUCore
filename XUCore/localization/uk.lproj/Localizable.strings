@@ -15,7 +15,7 @@
 "%AppName% has encountered a problem." = "В %AppName% виникла проблема.";
 "%AppName% will terminate after sending the report." = "%AppName% завершиться після надсилання звіту.";
 "Report to be sent:" = "Звіт для надсилання:";
-"Your Email:" = "Ваша електронна пошта";
+"Your Email:" = "Ваша ел. пошта";
 "Description:" = "Опис:";
 
 "Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Будь-ласка, опишіть ситуацію, коли відбулося це виключення, і вкажіть, як відтворити проблему, якщо це можливо. Введіть адресу електронної пошти нижче - ми повідомимо Вас, коли ця проблема буде виправлена або може з'явитися запит щодо деяких деталей стосовно цього випадку. Вашу адресу електронної пошти не буде зібрано в жодну базу даних, і Ви не отримаєте небажаних електронних листів.\n\n Запровадження цього звіту допоможе нам удосконалити це програмне забезпечення. Дякую!";
@@ -130,7 +130,7 @@
 
 "Done" = "Готово";
 
-"Reset" = "Reset";
-"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
-"This action cannot be undone." = "This action cannot be undone.";
+"Reset" = "Скинути";
+"Do you want to reset settings handled by this preference pane to default values?" = "Бажаєте скинути налаштування, які обробляє ця панель, до значень за замовчуванням?";
+"This action cannot be undone." = "Цю дію не можна скасувати.";
 

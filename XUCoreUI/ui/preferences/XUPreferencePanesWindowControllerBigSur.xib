@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="_arrayController" destination="a1M-nD-NeZ" id="E1l-xV-Z0v"/>
                 <outlet property="_scrollView" destination="qTZ-ph-eML" id="Iox-Eo-fog"/>
+                <outlet property="_tableView" destination="Ub6-Je-Hjj" id="HLX-3F-JqF"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -26,13 +27,13 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="54" horizontalPageScroll="10" verticalLineScroll="54" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObI-CU-QnJ">
-                        <rect key="frame" x="0.0" y="0.0" width="260" height="5600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="260" height="5702"/>
                         <clipView key="contentView" drawsBackground="NO" id="m3Y-Rf-zfJ" customClass="XUPreferencePanesWindowController_FlippedClipView">
-                            <rect key="frame" x="1" y="1" width="258" height="5598"/>
+                            <rect key="frame" x="1" y="1" width="258" height="5700"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="sourceList" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" viewBased="YES" id="Ub6-Je-Hjj">
-                                    <rect key="frame" x="0.0" y="0.0" width="258" height="5598"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="258" height="5700"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="17" height="0.0"/>
                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -54,7 +55,7 @@
                                                     <rect key="frame" x="18" y="0.0" width="221" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Aw-8UG">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Aw-8UG">
                                                             <rect key="frame" x="41" y="19" width="180" height="16"/>
                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="H2t-aK-p2f">
                                                                 <font key="font" metaFont="systemBold"/>
@@ -116,13 +117,13 @@
                         </scroller>
                     </scrollView>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="qTZ-ph-eML">
-                        <rect key="frame" x="260" y="0.0" width="680" height="5600"/>
+                        <rect key="frame" x="260" y="0.0" width="680" height="5702"/>
                         <clipView key="contentView" drawsBackground="NO" id="Dvr-Pd-fDA" customClass="XUPreferencePanesWindowController_FlippedClipView">
-                            <rect key="frame" x="0.0" y="0.0" width="680" height="5600"/>
+                            <rect key="frame" x="0.0" y="0.0" width="680" height="5702"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U5v-Kf-gfT">
-                                    <rect key="frame" x="0.0" y="4388" width="652" height="1212"/>
+                                    <rect key="frame" x="0.0" y="4490" width="652" height="1212"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </customView>
                             </subviews>
@@ -156,7 +157,7 @@
                         </userDefinedRuntimeAttributes>
                     </customView>
                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xbv-F7-e1R" userLabel="Table View Top Shadow" customClass="XUPreferencePanesWindowController_ShadowView">
-                        <rect key="frame" x="0.0" y="5584" width="260" height="16"/>
+                        <rect key="frame" x="0.0" y="5686" width="260" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="sqk-pf-S6m"/>
                         </constraints>
@@ -212,7 +213,7 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="9191E501-E83C-4DCC-99E3-A524DB943630" label="" paletteLabel="" sizingBehavior="auto" id="Xi0-Rm-c4T">
                         <nil key="toolTip"/>
-                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="ecM-dw-oNO" customClass="XUSearchFieldWithResults" customModule="XUCoreUI" customModuleProvider="target">
+                        <searchField key="view" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" id="ecM-dw-oNO" customClass="XUSearchFieldWithResults" customModule="XUCoreUI" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="14" width="157" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="Vy8-Hf-gqs">
