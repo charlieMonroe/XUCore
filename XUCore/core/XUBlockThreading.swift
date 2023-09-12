@@ -31,8 +31,15 @@ extension DispatchTime {
 
 extension DispatchQueue {
 	
+	/// Equivalent to `DispatchQueue.main.syncOrNow`, but more expressive.
+	public static func onMain<T>(execute closure: () -> T) -> T {
+		DispatchQueue.main.syncOrNow(execute: closure)
+	}
+	
 	/// Performs the closure synchronously or now in case the current thread is
 	/// main and it is called on a main thread. This prevents deadlocks.
+	///
+	/// Deprecated.
 	public func syncOrNow<T>(execute closure: () -> T) -> T {
 		if Thread.isMainThread && self == .main {
 			return closure()

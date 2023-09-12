@@ -18,39 +18,39 @@
 "Your Email:" = "Ваш адрес эл.почты:";
 "Description:" = "Описание:";
 
-"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже Вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется Ваша помощь при её ликвидации. Ваш адрес электронной почты не будет сохранен в базе данных, и Вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
+"Please, describe the situation when this exception has occurred and provide steps how to reproduce the problem if possible. Enter your email address below - we'll let you know when this issue will be fixed or might ask you about some details regarding this exception. Your email address will not be collected into any database and you will not receive any unwanted emails.\n\nBy submitting this report you will help us improve this software. Thank you!" = "Пожалуйста, опишите ситуацию при которой произошла эта ошибка, а так же, если возможно, укажите шаги, которые мы можем повторить для воспроизведения этой ошибки у себя. Ниже вы можете указать адрес своей электронной почты: мы сообщим, как только данная проблема будет устранена, или если нам потребуется ваша помощь при её ликвидации. Ваш адрес электронной почты не будет сохранен в базе данных, и вы не получите каких-либо нежелательных сообщений.\n\nПредоставление настоящего отчета - помощь в улучшении этой программы. Спасибо!";
 
 "Report Problem" = "Сообщить о проблеме";
 
-"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Мы ценим Ваши отзывы и не собираем никакой нежелательной информации. Ваш адрес электронной почты будет использоваться только для информирования Вас о статусе исправления ошибки.";
+"We value your feedback and wouldn't dare to collect any unwanted information. Your email address will not be stored anywhere and will only be used to inform you when this issue might be fixed or when we need more information in order to fix this problem." = "Мы ценим ваши отзывы и не собираем никакой нежелательной информации. Ваш адрес электронной почты будет использоваться только для информирования вас о статусе исправления ошибки.";
 
-"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "К отчету будет прикреплена следующая информация:\n• Ваше описание проблемы.\n• Версия программы.\n• Версия Вашей системы (OС).\n• Модель Вашего компьютера (MAC-адрес или аналогичная информация, которая могла бы идентифицировать Ваш компьютер).";
+"Only the following information will be sent:\n• The description you provide.\n• The exception information below.\n• Version of this application.\n• Version of your system (OS).\n• Model of your computer (no MAC address or similar information that could identify your computer)." = "К отчету будет прикреплена следующая информация:\n• Ваше описание проблемы.\n• Версия программы.\n• Версия вашей системы (OС).\n• Модель вашего компьютера (MAC-адрес или аналогичная информация, которая могла бы идентифицировать ваш компьютер).";
 
 "Could not post your report." = "Не удалось отправить отчет.";
 "Check your Internet connection and try again." = "Проверьте подключение к Интернету и повторите попытку.";
-"Heh, nice try. Please, enter a valid email address." = "Хорошая попытка, но нет: нам нужен Ваш настоящий адрес электронной почты.";
-"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы. Ну, правда — мы не кусаемся и уж точно не передадим Ваш адрес электронной почты никаким сторонним компаниям. Обещаем.";
+"Heh, nice try. Please, enter a valid email address." = "Хорошая попытка, но нет: нам нужен ваш настоящий адрес электронной почты.";
+"We may need to get in touch with you in order to fix this. We don't bite, we won't sell the email address to anyone nor use it in any other way. We promise." = "Нам может потребоваться ваша дальнейшая помощь для разрешения данной проблемы. Ну, правда — мы не кусаемся и уж точно не передадим ваш адрес электронной почты никаким сторонним компаниям. Обещаем.";
 "You need to enter a valid email address." = "Некорректный адрес электронной почты.";
-"We may need to get in touch with you in order to fix this." = "Нам может потребоваться Ваша дальнейшая помощь для разрешения данной проблемы.";
+"We may need to get in touch with you in order to fix this." = "Нам может потребоваться ваша дальнейшая помощь для разрешения данной проблемы.";
 "Please, provide some details as to when this exception happened." = "Пожалуйста, предоставьте некоторые подробности о том, когда произошла эта ситуация.";
-"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включите информацию о текущих задачах в приложении, если приложение было на переднем или заднем плане; Если Вы нажали на что угодно, и т.д. Определить ошибку только из отчета может быть сложно и без дополнительной информации невозможно.";
+"Include information about ongoing tasks in the application, if the application was in the foreground, or background; if you have clicked on anything, etc. Trying to figure out the bug just from the report can be hard and without additional information impossible." = "Включите информацию о текущих задачах в приложении, если приложение было на переднем или заднем плане; если вы нажали на что угодно, и т.д. Определить ошибку только из отчета может быть сложно и без дополнительной информации невозможно.";
 "Thank you for the report!" = "Спасибо за отчет!";
 "We'll fix it as soon as possible!" = "Мы исправим это как можно скорее!";
 
 "Welcome to beta testing of %@." = "Добро пожаловать на бета-тестирование %@.";
-"This is the first time you run a beta build %@." = "Это первый раз, когда Вы запускаете сборку бета-версии %@.";
+"This is the first time you run a beta build %@." = "Это первый раз, когда вы запускаете сборку бета-версии %@.";
 "This beta build of %@ has expired." = "Срок этой сборки бета-версии %@ истек.";
 
-"Working..." = "Выполнение…";
+"Working..." = "Выполнение...";
 
 "Progress" = "Прогресс";
 "Posted successfully" = "Успешно добавлено";
 
-"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ будет продолжать работать ближайшие 24 часа, после чего его функциональность будет заблокирована. Пожалуйста, обновите %@ для того, чтобы поддерживать работоспособность.";
+"%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working." = "%@ будет продолжать работать ближайшие 24 часа, после чего функциональность будет заблокирована. Пожалуйста, обновите %@, чтобы приложение продолжало работать.";
 "Please download a new build." = "Пожалуйста, скачайте новую сборку.";
 
 /// Added on 4/26/2016
-"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Вы можете отправить отчет так или иначе, но если сообщение написано не на английском языке, я не смогу предоставить Вам полную поддержку.";
+"You can send the report anyway, but if the message indeed isn't in English, I won't be able to provide you with full support." = "Вы можете отправить отчет так или иначе, но если сообщение написано не на английском языке, я не смогу предоставить вам полную поддержку.";
 "Your message contains special characters which usually indicates that the message is not written in English. Please note that while %@ is translated into various languages, support is provided in English only. Thank you for understanding." = "Ваше сообщение содержит специальные символы, которые обычно указывают на то, что сообщение написано не на английском языке. Обратите внимание, что, хотя %@ и переведен на различные языки, поддержка оказывается только на английском. Спасибо за понимание.";
 "%li hours" = "%li час (ов)";
 "%li minutes" = "%li минут(ы)";
@@ -87,7 +87,7 @@
 "Show Log in Finder" = "Показать журнал в Finder";
 
 "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Журналом отладки является текстовый файл, содержащий некоторые технические детали, которые %@ выполняет в фоновом режиме. Это довольно полезно для меня для того, чтобы исправить вещи быстро, поскольку он позволяет видеть, что происходит. Чтобы получить журнал отладки, выполните следующие простые действия:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если Вы отправляете журнал отладки не в первый раз, пожалуйста, выберите: \"Очистить журнал отладки\" в меню \"Отладка\".\n2) В меню \"Отладка\" убедитесь, что включено \"Ведение журнала отладки\".\n3) Выполните задачу, с которой у Вас возникли проблемы.\n4) В меню \"Отладка\" отключите \"Ведение журнала отладки\".\n5) В меню \"Отладка\" выберите пункт \"Показать журнал в Finder\". Это позволит выбрать файл журнала в Finder, и Вы можете легко отправить его разработчику. Пожалуйста, прикрепите файл к электронному письму, а не копируйте информацию из файла.\n\nФайл журнала не содержит никаких персональных данных, которые позволили бы идентифицировать Вас. Вы можете открыть файл журнала (это простой текстовый файл) и если Вы считаете некоторые данные конфиденциальными или личными, пожалуйста, замените их чем-то, что можно легко идентифицировать как заполнитель (например: XXXXXXXX), и сообщите мне, что Вы изменили файл журнала.";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) Если вы отправляете журнал отладки не в первый раз, пожалуйста, выберите: \"Очистить журнал отладки\" в меню \"Отладка\".\n2) В меню \"Отладка\" убедитесь, что включено \"Ведение журнала отладки\".\n3) Выполните задачу, с которой у вас возникли проблемы.\n4) В меню \"Отладка\" отключите \"Ведение журнала отладки\".\n5) В меню \"Отладка\" выберите пункт \"Показать журнал в Finder\". Это позволит выбрать файл журнала в Finder, и вы можете легко отправить его разработчику. Пожалуйста, прикрепите файл к электронному письму, а не копируйте информацию из файла.\n\nФайл журнала не содержит никаких персональных данных, которые позволили бы идентифицировать вас. Вы можете открыть файл журнала (это простой текстовый файл) и если вы считаете некоторые данные конфиденциальными или личными, пожалуйста, замените их чем-то, что можно легко идентифицировать как заполнитель (например: XXXXXXXX), и сообщите мне, что вы изменили файл журнала.";
 
 /// 8/23/2016+
 "The document could not be downloaded at this moment." = "Документ не может быть загружен в данный момент.";
@@ -97,7 +97,7 @@
 
 // Beta testing related.
 "This beta build will expire in less than an hour." = "Срок этой бета-версия истекает менее чем через час.";
-"Please update your copy of this beta build." = "Пожалуйста, обновите Вашу копию этой бета-версии.";
+"Please update your copy of this beta build." = "Пожалуйста, обновите вашу копию этой бета-версии.";
 
 // Preferences.
 "All Preferences" = "Все настройки";
@@ -122,13 +122,13 @@
 
 /// 3/28/2019+
 "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "В %@ возникла проблема, работа будет завершена. Будет выведено диалоговое окно отчета. Пожалуйста, отправьте его или закройте окно, если хотите проигнорировать сбой.";
-"Send Anyway" = "Отправить в любом случае.";
+"Send Anyway" = "Отправить в любом случае";
 
 "There is an update available." = "Доступно обновление.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Возможно, в новой версии эта проблема исправлена. Попробуйте обновить приложение. Если Вы не можете получить доступ к функции обновления этого приложения, повторно загрузите приложение с его веб-страницы.";
-"Download Update..." = "Скачивание обновления…";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Возможно, в новой версии эта проблема исправлена. Попробуйте обновить это приложение. Если вы не можете получить доступ к функции обновления этого приложения, повторно загрузите приложение с его веб-страницы.";
+"Download Update..." = "Скачивание обновления...";
 
-"Done" = "Сделано";
+"Done" = "Готово";
 
 "Reset" = "Сброс";
 "Do you want to reset settings handled by this preference pane to default values?" = "Вы хотите сбросить настройки, обрабатываемые этой панелью, до значений по умолчанию?";
