@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "O aplikácii <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "Presunúť všetky do popredia";
@@ -12,10 +18,10 @@
 "Delete" = "Vymazať";
 "Edit" = "Upraviť";
 "File" = "Súbor";
-"Find" = "Nájsť";
+"Find and Replace…" = "Nájsť a nahradiť…";
 "Find Next" = "Nájsť ďalšie";
 "Find Previous" = "Nájsť predošlé";
-"Find and Replace…" = "Nájsť a nahradiť…";
+"Find" = "Nájsť";
 "Find…" = "Nájsť…";
 "Help" = "Pomocník";
 "Hide <AppName>" = "Skryť VoiceOver utilitu";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "Veľké písmená";
 "Minimize" = "Minimalizovať";
 "Open…" = "Otvoriť…";
-"Paste" = "Vložiť";
 "Paste and Match Style" = "Vložiť a prispôsobiť štýl";
+"Paste" = "Vložiť";
 "Preferences…" = "Nastavenia…";
 "Quit <AppName>" = "Ukončiť VoiceOver utilitu";
 "Redo" = "Obnoviť";
@@ -40,8 +46,8 @@
 "Smart Links" = "Dynamické odkazy";
 "Smart Quotes" = "Dynamické úvodzovky";
 "Speech" = "Reč";
-"Spelling" = "Pravopis";
 "Spelling and Grammar" = "Pravopis a gramatika";
+"Spelling" = "Pravopis";
 "Start Speaking" = "Spustiť rozprávanie";
 "Stop Speaking" = "Zastaviť rozprávanie";
 "Substitutions" = "Zámeny";

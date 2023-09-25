@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "Om <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "Lägg alla överst";
@@ -12,10 +18,10 @@
 "Delete" = "Radera";
 "Edit" = "Redigera";
 "File" = "Arkiv";
-"Find" = "Sök";
+"Find and Replace…" = "Sök och ersätt…";
 "Find Next" = "Sök nästa";
 "Find Previous" = "Sök föregående";
-"Find and Replace…" = "Sök och ersätt…";
+"Find" = "Sök";
 "Find…" = "Sök…";
 "Help" = "Hjälp";
 "Hide <AppName>" = "Göm <AppName>";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "Stora bokstäver";
 "Minimize" = "Minimera";
 "Open…" = "Öppna…";
-"Paste" = "Klistra in";
 "Paste and Match Style" = "Klistra in och matcha stilen";
+"Paste" = "Klistra in";
 "Preferences…" = "Inställningar…";
 "Quit <AppName>" = "Avsluta <AppName>";
 "Redo" = "Gör om";
@@ -40,8 +46,8 @@
 "Smart Links" = "Smarta länkar";
 "Smart Quotes" = "Smarta citationstecken";
 "Speech" = "Tal";
-"Spelling" = "Stavning";
 "Spelling and Grammar" = "Stavning och grammatik";
+"Spelling" = "Stavning";
 "Start Speaking" = "Börja tala";
 "Stop Speaking" = "Sluta tala";
 "Substitutions" = "Ersättningar";

@@ -18,11 +18,11 @@
 "Delete" = "Видалити";
 "Edit" = "Правка";
 "File" = "Файл";
-"Find and Replace…" = "Find and Replace…";
+"Find and Replace…" = "Пошук та заміна…";
 "Find Next" = "Знайти далі";
 "Find Previous" = "Знайти раніше";
 "Find" = "Пошук";
-"Find…" = "Find…";
+"Find…" = "Пошук…";
 "Help" = "Довідка";
 "Hide <AppName>" = "Приховати <AppName>";
 "Hide Others" = "Приховати інші";
@@ -30,10 +30,10 @@
 "Make Lower Case" = "Зробити нижній регістр";
 "Make Upper Case" = "Зробити верхній регістр";
 "Minimize" = "Прибрати в Dock";
-"Open…" = "Open…";
+"Open…" = "Відкрити…";
 "Paste and Match Style" = "Вставити та підібрати стиль";
 "Paste" = "Вставити";
-"Preferences…" = "Preferences…";
+"Preferences…" = "Налаштування…";
 "Quit <AppName>" = "Завершити <AppName>";
 "Redo" = "Повторити";
 "Select All" = "Вибрати все";

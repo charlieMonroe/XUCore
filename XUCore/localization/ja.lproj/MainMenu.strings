@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "<AppName>について";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "すべてを手前に移動";
@@ -12,10 +18,10 @@
 "Delete" = "削除";
 "Edit" = "編集";
 "File" = "ファイル";
-"Find" = "検索";
+"Find and Replace…" = "検索と置換...";
 "Find Next" = "次を検索";
 "Find Previous" = "前を検索";
-"Find and Replace…" = "検索と置換...";
+"Find" = "検索";
 "Find…" = "検索...";
 "Help" = "ヘルプ";
 "Hide <AppName>" = "<AppName>を隠す";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "大文字にする";
 "Minimize" = "しまう";
 "Open…" = "開く...";
-"Paste" = "ペースト";
 "Paste and Match Style" = "ペーストしてスタイルを合わせる";
+"Paste" = "ペースト";
 "Preferences…" = "環境設定...";
 "Quit <AppName>" = "<AppName>を終了";
 "Redo" = "やり直す";
@@ -40,8 +46,8 @@
 "Smart Links" = "スマートリンク";
 "Smart Quotes" = "スマート引用符";
 "Speech" = "スピーチ";
-"Spelling" = "スペル";
 "Spelling and Grammar" = "スペルと文法";
+"Spelling" = "スペル";
 "Start Speaking" = "読み上げを開始";
 "Stop Speaking" = "読み上げを停止";
 "Substitutions" = "自動置換";

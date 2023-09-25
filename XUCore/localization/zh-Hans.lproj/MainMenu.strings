@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "关于 <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "前置全部窗口";
@@ -12,10 +18,10 @@
 "Delete" = "删除";
 "Edit" = "编辑";
 "File" = "文件";
-"Find" = "查找";
+"Find and Replace…" = "查找与替换…";
 "Find Next" = "查找下一个";
 "Find Previous" = "查找上一个";
-"Find and Replace…" = "查找与替换…";
+"Find" = "查找";
 "Find…" = "查找…";
 "Help" = "帮助";
 "Hide <AppName>" = "隐藏 <AppName>";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "变为大写";
 "Minimize" = "最小化";
 "Open…" = "打开…";
-"Paste" = "粘贴";
 "Paste and Match Style" = "粘贴并匹配样式";
+"Paste" = "粘贴";
 "Preferences…" = "偏好设置…";
 "Quit <AppName>" = "退出 <AppName>";
 "Redo" = "重做";
@@ -40,8 +46,8 @@
 "Smart Links" = "智能链接";
 "Smart Quotes" = "智能引号";
 "Speech" = "语音";
-"Spelling" = "拼写";
 "Spelling and Grammar" = "拼写和语法";
+"Spelling" = "拼写";
 "Start Speaking" = "开始朗读";
 "Stop Speaking" = "停止朗读";
 "Substitutions" = "替换";

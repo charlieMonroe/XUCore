@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "Sobre o <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "Trazer Todas Para a Frente";
@@ -12,10 +18,10 @@
 "Delete" = "Apagar";
 "Edit" = "Editar";
 "File" = "Arquivo";
-"Find" = "Buscar";
+"Find and Replace…" = "Buscar e Substituir…";
 "Find Next" = "Buscar Seguinte";
 "Find Previous" = "Buscar Anterior";
-"Find and Replace…" = "Buscar e Substituir…";
+"Find" = "Buscar";
 "Find…" = "Buscar…";
 "Help" = "Ajuda";
 "Hide <AppName>" = "Ocultar <AppName>";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "Tudo em Maiúsculas";
 "Minimize" = "Minimizar";
 "Open…" = "Abrir…";
-"Paste" = "Colar";
 "Paste and Match Style" = "Colar com o Mesmo Estilo";
+"Paste" = "Colar";
 "Preferences…" = "Preferências…";
 "Quit <AppName>" = "Encerrar <AppName>";
 "Redo" = "Refazer";
@@ -40,8 +46,8 @@
 "Smart Links" = "Links Inteligentes";
 "Smart Quotes" = "Aspas Inteligentes";
 "Speech" = "Voz";
-"Spelling" = "Ortografia";
 "Spelling and Grammar" = "Ortografia e Gramática";
+"Spelling" = "Ortografia";
 "Start Speaking" = "Começar a Falar";
 "Stop Speaking" = "Parar de Falar";
 "Substitutions" = "Substituições";

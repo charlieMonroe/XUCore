@@ -129,3 +129,8 @@
 "Download Update..." = "アップデートをダウンロード...";
 
 "Done" = "完了";
+
+"Reset" = "Reset";
+"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
+"This action cannot be undone." = "This action cannot be undone.";
+

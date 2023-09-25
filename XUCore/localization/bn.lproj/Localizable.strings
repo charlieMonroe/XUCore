@@ -129,3 +129,8 @@
 "Download Update..." = "হালনাগাদ করুন...";
 
 "Done" = "হয়ে গেছে";
+
+"Reset" = "Reset";
+"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
+"This action cannot be undone." = "This action cannot be undone.";
+

@@ -1,3 +1,9 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
 "About <AppName>" = "Πληροφορίες για το <AppName>";
 "Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
 "Bring All to Front" = "Μεταφορά όλων σε πρώτο πλάνο";
@@ -12,10 +18,10 @@
 "Delete" = "Διαγραφή";
 "Edit" = "Επεξεργασία";
 "File" = "Αρχείο";
-"Find" = "Εύρεση";
+"Find and Replace…" = "Εύρεση και αντικατάσταση…";
 "Find Next" = "Εύρεση επόμενου";
 "Find Previous" = "Εύρεση προηγούμενου";
-"Find and Replace…" = "Εύρεση και αντικατάσταση…";
+"Find" = "Εύρεση";
 "Find…" = "Εύρεση…";
 "Help" = "Βοήθεια";
 "Hide <AppName>" = "Απόκρυψη Βοηθήματος VoiceOver";
@@ -25,8 +31,8 @@
 "Make Upper Case" = "Αλλαγή σε κεφαλαία";
 "Minimize" = "Ελαχιστοποίηση";
 "Open…" = "Άνοιγμα…";
-"Paste" = "Επικόλληση";
 "Paste and Match Style" = "Επικόλληση και αντιστοίχιση στιλ";
+"Paste" = "Επικόλληση";
 "Preferences…" = "Προτιμήσεις…";
 "Quit <AppName>" = "Τερματισμός Βοηθήματος VoiceOver";
 "Redo" = "Επανάληψη";
@@ -40,8 +46,8 @@
 "Smart Links" = "Έξυπνοι σύνδεσμοι";
 "Smart Quotes" = "Έξυπνα εισαγωγικά";
 "Speech" = "Εκφώνηση";
-"Spelling" = "Ορθογραφία";
 "Spelling and Grammar" = "Ορθογραφία και γραμματική";
+"Spelling" = "Ορθογραφία";
 "Start Speaking" = "Έναρξη εκφώνησης";
 "Stop Speaking" = "Διακοπή εκφώνησης";
 "Substitutions" = "Υποκαταστάσεις";
