@@ -85,8 +85,7 @@ public func Localized(_ key: String, withFormatValues values: [String : Any]) ->
 }
 
 /// This class contains all the necessary methods for localization. You should,
-/// however, use the global functions instead, this class is mostly for encapsulation
-/// as well as allowing access from Objective-C.
+/// however, use the global functions instead, this class is mostly for encapsulation.
 public final class XULocalizationCenter {
 	
 	/// Shared instance.
@@ -100,6 +99,9 @@ public final class XULocalizationCenter {
 	
 	/// Lock for modifying _cachedLanguageDicts
 	private let _lock: NSRecursiveLock = NSRecursiveLock(name: "com.charliemonroe.XULocalization")
+	
+	/// Set of localization tables the center should be using.
+	private var _registeredTableNames: [Bundle : [String]] = [:]
 	
 	/// The language is often e.g. en-US - we need to find the language identifier
 	/// that is in that particular bundle.
@@ -209,6 +211,44 @@ public final class XULocalizationCenter {
 		}
 	}
 	
+	private func _loadLocalizations(for language: String, in bundle: Bundle) {
+		guard let languageBundle = self._languageBundleForLanguage(language, inBundle: bundle) else {
+			/// In order to prevent loading for each key, enter a fake entry
+			/// into the localization.
+			_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
+			return // No such localization
+		}
+		
+		for table in _registeredTableNames[bundle, default: ["Localizable"]] {
+			guard
+				let url = languageBundle.url(forResource: table, withExtension: "strings", subdirectory: nil, localization: language),
+				let data = try? Data(contentsOf: url)
+			else {
+				XULog("No '\(language)' localizable strings for table \(table) in bundle \(bundle).")
+				continue
+			}
+			
+			do {
+				let object = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.MutabilityOptions(), format: nil)
+				guard let d = object as? [String : String] else {
+					XULog("Invalid localization loaded - '\(language)' \(type(of: object)) \(object).")
+					continue
+				}
+				
+				_cachedLanguageDicts[bundle]![language, default: [:]] += d
+			} catch let err as NSError {
+				XULog("Failed to read '\(language)' localizable strings \(err).")
+				continue
+			}
+		}
+		
+		if _cachedLanguageDicts[bundle]![language].isNilOrEmpty {
+			/// In order to prevent loading for each key, enter a fake entry
+			/// into the localization.
+			_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
+		}
+	}
+	
 	/// Returns a localized string.
 	public func localizedString(_ key: String, withLocale _language: String? = nil, inBundle bundle: Bundle = Bundle.main) -> String {
 		let language = _language ?? self.localizationIdentifier(for: bundle)
@@ -266,48 +306,8 @@ public final class XULocalizationCenter {
 			_cachedLanguageDicts[bundle] = [:]
 		}
 		
-		guard let languageBundle = self._languageBundleForLanguage(language, inBundle: bundle) else {
-			/// In order to prevent loading for each key, enter a fake entry
-			/// into the localization.
-			_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
-			
-			return key // No such localization
-		}
-		
-		guard let url = languageBundle.url(forResource: "Localizable", withExtension: "strings", subdirectory: nil, localization: language), let data = try? Data(contentsOf: url) else {
-			XULog("No '\(language)' localizable strings in bundle \(bundle).")
-			
-			/// In order to prevent loading for each key, enter a fake entry
-			/// into the localization.
-			_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
-			
-			return key
-		}
-		
-		do {
-			let object = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.MutabilityOptions(), format: nil)
-			guard let d = object as? [String : String] else {
-				XULog("Invalid localization loaded - '\(language)' \(type(of: object)) \(object).")
-				
-				/// In order to prevent loading for each key, enter a fake entry
-				/// into the localization.
-				_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
-				
-				return key // Invalid format
-			}
-			
-			_cachedLanguageDicts[bundle]![language] = d
-			
-			return d[key] ?? key
-		} catch let err as NSError {
-			XULog("Failed to read '\(language)' localizable strings \(err).")
-			
-			/// In order to prevent loading for each key, enter a fake entry
-			/// into the localization.
-			_cachedLanguageDicts[bundle]![language] = ["__XU_LOCALIZATION_PLACEHOLDER__" : ""]
-			
-			return key
-		}
+		self._loadLocalizations(for: language, in: bundle)
+		return _cachedLanguageDicts[bundle]![language]?[key] ?? key
 	}
 	
 	/// A new format function which takes `values` and replaces placeholders within `key`
@@ -335,5 +335,17 @@ public final class XULocalizationCenter {
 		return localizedString
 	}
 
+	/// Registers a table name containing localizations. This should be called before calling
+	/// any of the localization methods.
+	public func registerTableName(_ name: String, for bundle: Bundle) {
+		var names = _registeredTableNames[bundle] ?? ["Localizable"]
+		guard !names.contains(name) else {
+			return
+		}
+		
+		names.append(name)
+		_registeredTableNames[bundle] = names
+	}
+	
 }
 

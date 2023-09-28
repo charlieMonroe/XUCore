@@ -48,7 +48,7 @@ extension XUDownloadCenter {
 			return data
 		} catch {
 			if self.logTraffic {
-				XULog("[\(self.identifier)] - Failed to load URL connection to URL \(url) - \(error)")
+				XULog("[\(self.identifier)] - Failed to load URL \(url) - \(error)")
 			}
 
 			self.lastHTTPURLResponse = nil

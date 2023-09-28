@@ -39,6 +39,10 @@ extension Bundle {
 				prefs.firstInstallationDate = Date()
 			}
 		}
+		
+		#if os(macOS)
+			XULocalizationCenter.shared.registerTableName("MainMenu", for: .core)
+		#endif
 	}()
 	
 	@objc public final class func loadSingletons() {
