@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 /// Block that is called when catching an exception.
 typedef void(^XUExceptionCatchHandler)(NSException * _Nonnull exception);

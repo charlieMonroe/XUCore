@@ -14,7 +14,7 @@ internal extension XUPreferences {
 	func pendingSynchronizationChanges(for documentID: String) -> [(data: Data, changeSet: XUSyncChangeSet)] {
 		let dataArray: [Data] = self.value(for: XUPreferences.Key(rawValue: "XUPendingSynchronizationChanges_" + documentID), defaultValue: [])
 		return dataArray.compactMap {
-			guard let changeSet = NSKeyedUnarchiver.unarchiveObject(with: $0) as? XUSyncChangeSet else {
+			guard let changeSet = try? NSKeyedUnarchiver.unarchivedObject(ofClass: XUSyncChangeSet.self, from: $0) else {
 				return nil
 			}
 			return ($0, changeSet)

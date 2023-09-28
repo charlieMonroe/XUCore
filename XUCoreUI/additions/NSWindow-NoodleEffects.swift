@@ -29,10 +29,6 @@ public extension NSWindow {
 	/// no contentView, or the view fails to create the bitmap image representation.
 	private func _createZoomWindowWithRect(_ rect: CGRect) -> NSPanel? {
 		let frame = self.frame
-		let isOneShot = self.isOneShot
-		if isOneShot {
-			self.isOneShot = false
-		}
 		
 		if self.windowNumber <= 0 {
 			// Force window device. Kinda crufty but I don't see a visible flash
@@ -66,9 +62,6 @@ public extension NSWindow {
 		imageView.imageScaling = .scaleAxesIndependently
 		imageView.autoresizingMask = [.width, .height]
 		zoomWindow.contentView = imageView
-		
-		// Reset one shot flag
-		self.isOneShot = isOneShot
 		
 		NSWindow.__zoomWindow = zoomWindow
 		

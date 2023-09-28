@@ -72,17 +72,17 @@ extension XUCloudKitSynchronization {
 				}
 			}
 			
-			guard let object = NSKeyedUnarchiver.unarchiveObject(with: data) else {
-				XULog("Failed to deserialize sync change from data \(data.hexEncodedString): \(record)")
+			do {
+				guard let changeSet = try NSKeyedUnarchiver.unarchivedObject(ofClass: XUSyncChangeSet.self, from: data) else {
+					XULog("Failed to deserialize sync change from data \(data.hexEncodedString): \(record)")
+					return nil
+				}
+				
+				self.changeSet = changeSet
+			} catch {
+				XULog("Failed to deserialize sync change from data \(data.hexEncodedString): \(record) -> \(error)")
 				return nil
 			}
-			
-			guard let changeSet = object as? XUSyncChangeSet else {
-				XULog("Deserialized data is not an XUSyncChangeSet: \(type(of: object)) - \(object)")
-				return nil
-			}
-			
-			self.changeSet = changeSet
 		}
 		
 	}
