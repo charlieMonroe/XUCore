@@ -17,21 +17,21 @@ import UIKit
 	/// line to be drawn at the bottom, or right side instead.
 	@IBInspectable public var alternateAlignment: Bool = false {
 		didSet {
-			self.setNeedsDisplay()
+			self.needsDisplay = true
 		}
 	}
 
 	/// Color of the line.
 	@IBInspectable public var lineColor: UIColor = UIColor.clear {
 		didSet {
-			self.setNeedsDisplay()
+			self.needsDisplay = true
 		}
 	}
 
 	/// Width of the line.
 	@IBInspectable public var lineWidth: CGFloat = 0.0 {
 		didSet {
-			self.setNeedsDisplay()
+			self.needsDisplay = true
 		}
 	}
 

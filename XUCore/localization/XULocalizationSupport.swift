@@ -95,10 +95,19 @@ public final class XULocalizationCenter {
 	private var _cachedLanguageIdentifiers: [Bundle : String] = [:]
 	
 	/// Cached language dictionaries.
-	private var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [ : ]
+	private var _cachedLanguageDicts: [Bundle: [String : [String : String]]] = [:]
 	
-	/// Lock for modifying _cachedLanguageDicts
+	/// When running the app with a debuggable dicationary, this is nonnil and contains mapping of
+	/// identifier -> table.
+	private var _debuggingLanguageDict: [String : [String : String]]?
+	
+	/// Lock for modifying `_cachedLanguageDicts`
 	private let _lock: NSRecursiveLock = NSRecursiveLock(name: "com.charliemonroe.XULocalization")
+	
+	/// A mapping of bundle -> identifiers used when debugging localization.
+	private var _registeredIdentifiers: [Bundle : [String]] = [
+		.core: ["com.charliemonroe.xu.core"]
+	]
 	
 	/// Set of localization tables the center should be using.
 	private var _registeredTableNames: [Bundle : [String]] = [:]
@@ -257,6 +266,11 @@ public final class XULocalizationCenter {
 			return key
 		}
 		
+		/// Always prefer debug value when running localization debugging.
+		if let bundleIdentifiers = _registeredIdentifiers[bundle], let value = bundleIdentifiers.firstNonNilValue(using: { _debuggingLanguageDict?[$0]?[key] }) {
+			return value
+		}
+
 		
 		_lock.lock()
 		defer {
@@ -345,6 +359,61 @@ public final class XULocalizationCenter {
 		
 		names.append(name)
 		_registeredTableNames[bundle] = names
+	}
+	
+	/// This is for debugging purposes, when debugging the app with a custom `.cmloc` file. This
+	/// registers a bundle with a particular identifier so that the localization center knows what component
+	/// to look into.
+	public func registerBundle(_ bundle: Bundle, with identifier: String) {
+		_registeredIdentifiers[bundle, default: []].append(identifier)
+	}
+	
+	
+	private enum LocalizationDebuggingInitializationError: Error {
+		case invalidDictionary
+		case invalidPhrase([String : String])
+	}
+	
+	
+	private init() {
+		XULog("Intializing localization center.")
+		
+		guard
+			let index = CommandLine.arguments.firstIndex(of: "--debug-localization"),
+			CommandLine.arguments.count >= index
+		else {
+			XULog("Not debugging localization - \(CommandLine.arguments).")
+			return
+		}
+		
+		let url = URL(fileURLWithPath: CommandLine.arguments[index + 1])
+		XULog("Will debug localization from - \(url).")
+		
+		do {
+			let components = try NSArray(contentsOf: url, error: ())
+			var debuggingLanguageDict: [String : [String : String]] = [:]
+			for component in components {
+				guard
+					let componentDict = component as? [String : Any],
+					let identifier = componentDict["identifier"] as? String,
+					let phrases = componentDict["phrases"] as? [[String : String]]
+				else {
+					throw LocalizationDebuggingInitializationError.invalidDictionary
+				}
+				
+				for phrase in phrases {
+					guard let original = phrase["original"], let translation = phrase["translation"] else {
+						throw LocalizationDebuggingInitializationError.invalidPhrase(phrase)
+					}
+					
+					debuggingLanguageDict[identifier, default: [:]][original] = translation
+				}
+			}
+			
+			_debuggingLanguageDict = debuggingLanguageDict
+		} catch {
+			XUFatalError("Failed to launch with localization debugging due to an error: \(error)")
+		}
 	}
 	
 }

@@ -34,7 +34,7 @@ import UIKit
 	
 	public override var bounds: CGRect {
 		didSet {
-			self.setNeedsDisplay()
+			self.needsDisplay = true
 		}
 	}
 	

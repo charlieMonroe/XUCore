@@ -181,17 +181,17 @@ static NSLock *_evaluationLock;
 		
 		NSString *modifiers = @"";
 		NSString *modifiedPattern = pattern;
-		if (options & XURegexOptionCaseless){
+		if (options & XURegexOptionCaseless) {
 			modifiers = [modifiers stringByAppendingString:@"i"]; //[@"(?i)" stringByAppendingString:modifiedPattern];
 		}
-		if (options & XURegexOptionMultiline){
+		if (options & XURegexOptionMultiline) {
 			modifiers = [modifiers stringByAppendingString:@"m"]; //modifiedPattern = [@"(?m)" stringByAppendingString:modifiedPattern];
 		}
-		if (options & XURegexOptionNotGreedy){
+		if (options & XURegexOptionNotGreedy) {
 			modifiers = [modifiers stringByAppendingString:@"U"]; //modifiedPattern = [@"(?U)" stringByAppendingString:modifiedPattern];
 		}
 		
-		if ([modifiers length] > 0){
+		if ([modifiers length] > 0) {
 			modifiedPattern = [NSString stringWithFormat:@"(?%@)%@", modifiers, pattern];
 		}
 		
@@ -199,7 +199,7 @@ static NSLock *_evaluationLock;
 		_regex = new re2::RE2([modifiedPattern UTF8String]);
 		[_evaluationLock unlock];
 		
-		if (!_regex->ok()){
+		if (!_regex->ok()) {
 			@throw [NSException exceptionWithName:NSGenericException reason:[NSString stringWithFormat:@"Regex compilation failed - %@", modifiedPattern] userInfo:nil];
 		}
 	}
