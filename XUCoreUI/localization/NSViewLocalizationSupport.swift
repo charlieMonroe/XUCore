@@ -48,6 +48,9 @@ public extension NSTableView {
 	override func localize(from bundle: Bundle = Bundle.main) {
 		for column in self.tableColumns {
 			column.headerCell.title = Localized(column.headerCell.title, in: bundle)
+			if let toolTip = column.headerToolTip {
+				column.headerToolTip = Localized(toolTip, in: bundle)
+			}
 		}
 	}
 

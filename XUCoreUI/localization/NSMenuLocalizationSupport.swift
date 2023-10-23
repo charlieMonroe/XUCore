@@ -45,19 +45,19 @@ extension NSApplication {
 extension NSMenu: XULocalizableUIElement {
 	
 	/// Localizes the menu using a custom localization function.
-	fileprivate func _localize(using function: (String) -> String) {
-		self.title = function(self.title)
+	fileprivate func _localize(using localizator: (String) -> String) {
+		self.title = localizator(self.title)
 		for item in self.items {
 			if let attributedTitle = item.attributedTitle {
-				let localizedTitle = function(attributedTitle.string)
+				let localizedTitle = localizator(attributedTitle.string)
 				let localizedAttributedTitle = NSAttributedString(string: localizedTitle, attributes: attributedTitle.attributes(at: 0, effectiveRange: nil))
 				item.attributedTitle = localizedAttributedTitle
-			}else{
-				item.title = function(item.title)
+			} else {
+				item.title = localizator(item.title)
 			}
 			
 			if item.hasSubmenu {
-				item.submenu?._localize(using: function)
+				item.submenu?._localize(using: localizator)
 			}
 		}
 	}
