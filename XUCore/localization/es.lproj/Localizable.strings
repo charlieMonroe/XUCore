@@ -121,7 +121,7 @@
 "Copied" = "Copiado";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ ha encontrado un problema y se cerrará. Se abrirá una ventana para informar del error. Por favor, avísanos del problema o cierra la ventaan si quieres ignorar el cierre de la aplicación.";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ ha encontrado un problema y se cerrará. Se abrirá una ventana para informar del error. Por favor, avísanos del problema o cierra la ventana si quieres ignorar el cierre de la aplicación.";
 "Send Anyway" = "Enviar de todos formas";
 
 "There is an update available." = "Hay una actualización disponible.";
