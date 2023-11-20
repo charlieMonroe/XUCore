@@ -42,12 +42,44 @@ extension Dictionary where Key == String {
 	
 }
 
+public struct KeyPathOptions: OptionSet {
+	
+	public let rawValue: Int
+	
+	public static let notEmpty = KeyPathOptions(rawValue: 1 << 0)
+	
+	public static let all: [KeyPathOptions] = [.notEmpty]
+	
+	public init(rawValue: Int) {
+		self.rawValue = rawValue
+	}
+	
+}
 
 extension Dictionary {
 	
-	/// A convenience method for retrieving an array of dictionaries
+	private func _collection<T: Collection>(forKeyPath keyPath: String, options: KeyPathOptions) -> T? {
+		guard let value = self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPath) else {
+			return nil
+		}
+		
+		if options.contains(.notEmpty) {
+			guard !value.isEmpty else {
+				return nil
+			}
+		}
+		
+		return value
+	}
+	
+	
 	public func arrayOfDictionaries(forKeyPath keyPath: String) -> [XUJSONDictionary]? {
-		return self.firstNonNilValue(ofType: [XUJSONDictionary].self, forKeyPaths: keyPath)
+		return self.arrayOfDictionaries(forKeyPath: keyPath, options: [])
+	}
+	
+	/// A convenience method for retrieving an array of dictionaries
+	public func arrayOfDictionaries(forKeyPath keyPath: String, options: KeyPathOptions) -> [XUJSONDictionary]? {
+		return self._collection(forKeyPath: keyPath, options: options)
 	}
 	
 	/// Returns boolean value for key. If the value is Bool itself, it is returned.
@@ -82,9 +114,13 @@ extension Dictionary {
 		return false
 	}
 	
-	/// A convenience method for retrieving dictionaries.
 	public func dictionary(forKeyPath keyPath: String) -> XUJSONDictionary? {
-		return self.value(forKeyPath: keyPath) as? XUJSONDictionary
+		return self.dictionary(forKeyPath: keyPath, options: [])
+	}
+	
+	/// A convenience method for retrieving dictionaries.
+	public func dictionary(forKeyPath keyPath: String, options: KeyPathOptions) -> XUJSONDictionary? {
+		return self._collection(forKeyPath: keyPath, options: options)
 	}
 		
 	/// In a lot of cases, currently we need to get an int from whatever is under
@@ -228,12 +264,17 @@ extension Dictionary {
 		
 		return 0
 	}
-		
+	
+	
+	public func string(forKeyPath keyPath: String) -> String? {
+		return self.string(forKeyPath: keyPath, options: [])
+	}
+	
 	/// Most of the time, you need to use value(forKeyPath:) for getting end nodes
 	/// in JSON dictionaries, which are strings. This method allows is
 	/// a convenience method that allows you to get the string without casting.
-	public func string(forKeyPath keyPath: String) -> String? {
-		return self.value(forKeyPath: keyPath) as? String
+	public func string(forKeyPath keyPath: String, options: KeyPathOptions) -> String? {
+		return self._collection(forKeyPath: keyPath, options: options)
 	}
 	
 	private enum KeyPathPart {
@@ -415,30 +456,3 @@ extension Dictionary where Key == String {
 	}
 	
 }
-
-
-/// Deprecated extensions.
-extension Dictionary {
-	
-	@available(*, deprecated, message: "Use method with explicit type.")
-	public func firstNonNilValue<T>(forKeys keys: [Key]) -> T? {
-		return self.firstNonNilValue(ofType: T.self, forKeys: keys)
-	}
-	
-	@available(*, deprecated, message: "Use method with explicit type.")
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: String...) -> T? {
-		return self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPaths)
-	}
-	
-	@available(*, deprecated, message: "Use method with explicit type.")
-	public func firstNonNilValue<T>(forKeyPaths keyPaths: [String]) -> T? {
-		return self.firstNonNilValue(ofType: T.self, forKeyPaths: keyPaths)
-	}
-	
-	@available(*, deprecated, message: "Use method with explicit type.")
-	public func firstNonNilValue<T>(forKeys keys: Key...) -> T? {
-		return self.firstNonNilValue(ofType: T.self, forKeys: keys)
-	}
-	
-}
-
