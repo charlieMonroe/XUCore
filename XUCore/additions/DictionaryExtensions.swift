@@ -13,6 +13,11 @@ import Foundation
 /// rather than keep typing out the generics.
 public typealias XUJSONDictionary = Dictionary<String, Any>
 
+private enum KeyPathPart {
+	case optional([String])
+	case required([String])
+}
+
 public func + <KeyType, ValueType> (left: Dictionary<KeyType, ValueType>, right: Dictionary<KeyType, ValueType>) -> Dictionary<KeyType, ValueType> {
 	var dict = left
 	for (k, v) in right {
@@ -277,11 +282,6 @@ extension Dictionary {
 		return self._collection(forKeyPath: keyPath, options: options)
 	}
 	
-	private enum KeyPathPart {
-		case optional([String])
-		case required([String])
-	}
-	
 	private func _parseKeyPath(_ originalKeyPath: String) -> [KeyPathPart] {
 		guard originalKeyPath.hasPrefix("[") else {
 			// Consider the whole thing a key.
@@ -329,6 +329,10 @@ extension Dictionary {
 	/// You can also add key variations - example: [key1][(0|1)][(key2|key3)] will
 	/// return [key1][0][key2] or [key1][1][key3], whichever is non-nil.
 	///
+	/// For arrays, if you don't know the index, you can use `?` as a placeholder and
+	/// all values will be searched. E.g. `[key1][?][key2]` will search the entire
+	/// array under `key1` for a value that contains `key2`.
+	///
 	/// Additionally, you can use regex for keys by prefixing it with "r'": [r'regex].
 	/// This can currently only be used as a single key, cannot be in a group
 	/// with variations (i.e. [(r'regex1|r'regex2)] will not be interpretted as regexes).
@@ -336,9 +340,12 @@ extension Dictionary {
 	/// For array indexes, you can use -1 for the last index.
 	public func value(forKeyPath keyPath: String) -> Any? {
 		let components = self._parseKeyPath(keyPath)
-		
+		return self._value(for: components)
+	}
+	
+	private func _value<C: Collection>(for components: C) -> Any? where C.Element == KeyPathPart, C.Index == Int {
 		var obj: Any? = self
-		for originalKey in components {
+		for (index, originalKey) in components.enumerated() {
 			let isOptional: Bool
 			let keys: [String]
 			
@@ -374,7 +381,20 @@ extension Dictionary {
 					obj = value
 				}
 			} else if let arr = obj as? [Any] {
-				let indexes = keys.compactMap(Int.init(_:))
+				let indexes: [Int]
+				if keys.count == 1, keys[0] == "?" {
+					guard index + 1 < components.count else {
+						XULog("Dictionary.objectForKeyPath(): Wild card [?] array index cannot be used as the last component! Returning nil.")
+						return nil
+					}
+					
+					let dictionaries = arr.compactCast(to: [String : Any].self)
+					let pathSuffix = components.suffix(from: index + 1)
+					obj = dictionaries.first(where: { $0._value(for: pathSuffix) != nil })
+					continue
+				} else {
+					indexes = keys.compactMap(Int.init(_:))
+				}
 				guard indexes.count == keys.count else {
 					XULog("Dictionary.objectForKeyPath(): Indexes \(keys) cannot be applied on an array!")
 					continue

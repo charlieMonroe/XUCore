@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21503.1"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="21503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,7 +42,7 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="piN-QW-Ese"/>
                     <toolbarItem implicitItemIdentifier="445D10A8-C933-4A5A-9D99-E45CD343ECBE" label="Title" paletteLabel="Title" sizingBehavior="auto" id="Bed-Ln-Cbx">
                         <nil key="toolTip"/>
-                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-SV-v6h">
+                        <textField key="view" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JJK-SV-v6h">
                             <rect key="frame" x="0.0" y="14" width="38" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Help" id="Cd0-ac-pCG">
@@ -56,14 +55,14 @@
                     <toolbarItem implicitItemIdentifier="7AB5C4B0-6C11-42A6-81B4-9F0F94132BED" label="Back" paletteLabel="Back" image="NSGoBackTemplate" title="Back" sizingBehavior="auto" id="gw1-RO-92j">
                         <nil key="toolTip"/>
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-T2-O0E">
-                            <rect key="frame" x="-7" y="-7" width="32" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="18" id="Iw8-t8-Avd"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="14" width="40" height="32"/>
                             <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" image="NSGoBackTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sjx-MF-B5b">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="Iw8-t8-Avd"/>
+                            </constraints>
                         </button>
                         <connections>
                             <action selector="goBack:" target="H6r-kv-adA" id="Fmc-6M-sNw"/>
@@ -73,14 +72,14 @@
                     <toolbarItem implicitItemIdentifier="4F7EDB24-E89B-4FB7-B6AD-0730ABFBE7B1" label="Forward" paletteLabel="Forward" image="NSGoForwardTemplate" bordered="YES" title="Forward" sizingBehavior="auto" id="u14-0n-nJq">
                         <nil key="toolTip"/>
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-xk-NsK">
-                            <rect key="frame" x="-7" y="-7" width="32" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="18" id="l9J-5R-Z5M"/>
-                            </constraints>
+                            <rect key="frame" x="5" y="14" width="40" height="32"/>
                             <buttonCell key="cell" type="push" title="Forward" bezelStyle="rounded" image="NSGoForwardTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VXZ-Og-i9i">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="l9J-5R-Z5M"/>
+                            </constraints>
                         </button>
                         <connections>
                             <action selector="goForward:" target="H6r-kv-adA" id="Z14-oY-flu"/>
@@ -95,11 +94,11 @@
                     <toolbarItem reference="u14-0n-nJq"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="171" y="108"/>
+            <point key="canvasLocation" x="-64" y="104"/>
         </window>
     </objects>
     <resources>
-        <image name="NSGoBackTemplate" width="10" height="14"/>
-        <image name="NSGoForwardTemplate" width="10" height="14"/>
+        <image name="NSGoBackTemplate" width="12" height="17"/>
+        <image name="NSGoForwardTemplate" width="12" height="17"/>
     </resources>
 </document>

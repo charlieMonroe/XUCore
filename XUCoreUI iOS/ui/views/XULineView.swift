@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Draws a line at the top of the view.
-@IBDesignable public class XULineView: UIView {
+public class XULineView: UIView {
 
 	/// By default, the line is drawn at the top of the view for horizontal
 	/// and at the left of the view for vertical lines. This option allows the

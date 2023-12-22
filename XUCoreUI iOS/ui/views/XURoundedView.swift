@@ -9,7 +9,6 @@
 import UIKit
 
 /// This view automatically rounds its corners and makes sure it clips to bounds.
-@IBDesignable
 open class XURoundedView: UIView {
 	
 	@IBInspectable open var cornerRadius: CGFloat = 0.0 {

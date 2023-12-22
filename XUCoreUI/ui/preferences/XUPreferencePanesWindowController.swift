@@ -312,7 +312,12 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		self._setResetButtonHidden(true)
 		
 		self.window!.delegate = self
-		self.window!.title = Localized("Preferences", in: .core)
+		
+		if #available(macOS 13.0, *) {
+			self.window!.title = Localized("Settings", in: .core)
+		} else {
+			self.window!.title = Localized("Preferences", in: .core)
+		}
 		
 		self.window?.toolbar?.items.compactMap(\.view).forEach({ $0.localize(from: .core) })
 		
@@ -333,7 +338,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	public final override var windowNibPath: String? {
 		let name: String
-		if #available(macOS 11, *) {
+		if #available(macOS 11.0, *) {
 			name = "XUPreferencePanesWindowControllerBigSur"
 		} else {
 			name = "XUPreferencePanesWindowController"

@@ -11,7 +11,7 @@ import XUCore
 
 /// A borderless text field. Automatically moves the placeholder to the top and
 /// makes it font smaller. Similar to how Android text fields work.
-@IBDesignable open class XUBorderlessTextField: UITextField {
+open class XUBorderlessTextField: UITextField {
 	
 	/// Displays character counter, if maxium character length is non-zero.
 	@IBInspectable open var displayCharacterCounter: Bool = true {

@@ -10,7 +10,7 @@ import AppKit
 
 /// This is a simple NSView subclass that allows you to set the background and
 /// border colors in Interface Builder.
-@IBDesignable open class XUView: NSView {
+open class XUView: NSView {
 	
 	/// Background color.
 	@IBInspectable public var backgroundColor: NSColor = .clear {

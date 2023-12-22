@@ -19,7 +19,6 @@ import AppKit
 
 /// This is a button that displays self.menu on click as well as on rightMouseDown
 /// - positioned correctly.
-@IBDesignable
 open class XUMenuButton: NSButton {
 
 	/// Menu alignment.

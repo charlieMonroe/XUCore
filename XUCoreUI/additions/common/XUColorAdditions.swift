@@ -22,7 +22,7 @@ extension __XUBridgedColor {
 		
 		#if os(macOS)
 			let color: __XUBridgedColor
-			if !self.colorSpaceName.rawValue.contains("RGB") {
+			if self.type == .catalog || self.colorSpace.cgColorSpace?.model != .rgb {
 				guard let convertedColor = self.usingColorSpace(.deviceRGB) else {
 					return self
 				}

@@ -48,7 +48,6 @@ public protocol XUSearchFieldWithResultsDelegate: AnyObject {
 /// return. See the resultsDelegate property.
 ///
 /// Note: requires NSApp to be based on XUApplication.
-@IBDesignable
 public final class XUSearchFieldWithResults: NSSearchField {
 	
 	/// If true, and the user selects a search result, the search field hides

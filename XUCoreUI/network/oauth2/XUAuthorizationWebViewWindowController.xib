@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,7 +10,7 @@
             <connections>
                 <outlet property="_currentURLTextField" destination="ait-z6-Tqo" id="8VQ-en-C4s"/>
                 <outlet property="_progressIndicator" destination="22" id="25"/>
-                <outlet property="_webView" destination="9" id="18"/>
+                <outlet property="_webView" destination="JVq-L1-rrK" id="yes-WP-QiN"/>
                 <outlet property="window" destination="1" id="19"/>
             </connections>
         </customObject>
@@ -21,13 +20,13 @@
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="778" height="436"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3200" height="1777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3200" height="1775"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="778" height="436"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                        <rect key="frame" x="714" y="5" width="55" height="16"/>
+                        <rect key="frame" x="721" y="4" width="49" height="16"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="miniSystem"/>
@@ -39,20 +38,21 @@ Gw
                             <action selector="cancel:" target="-2" id="20"/>
                         </connections>
                     </button>
-                    <webView translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                        <rect key="frame" x="0.0" y="27" width="778" height="409"/>
-                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
-                            <nil key="identifier"/>
-                        </webPreferences>
+                    <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVq-L1-rrK">
+                        <rect key="frame" x="0.0" y="25" width="778" height="411"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
                         <connections>
-                            <outlet property="frameLoadDelegate" destination="-2" id="21"/>
+                            <outlet property="navigationDelegate" destination="-2" id="EK8-Eo-aLm"/>
                         </connections>
-                    </webView>
+                    </wkWebView>
                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="22">
-                        <rect key="frame" x="14" y="6" width="16" height="16"/>
+                        <rect key="frame" x="14" y="5" width="16" height="16"/>
                     </progressIndicator>
-                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ait-z6-Tqo">
-                        <rect key="frame" x="375" y="8" width="28" height="11"/>
+                    <textField focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ait-z6-Tqo">
+                        <rect key="frame" x="375" y="7" width="28" height="11"/>
                         <textFieldCell key="cell" controlSize="mini" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Label" id="LfX-G7-v9S">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -61,17 +61,17 @@ Gw
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="12"/>
-                    <constraint firstItem="9" firstAttribute="top" secondItem="2" secondAttribute="top" id="13"/>
-                    <constraint firstItem="9" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="15"/>
                     <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="10" id="16"/>
                     <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" constant="6" id="17"/>
                     <constraint firstItem="22" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="14" id="32"/>
+                    <constraint firstItem="JVq-L1-rrK" firstAttribute="top" secondItem="2" secondAttribute="top" id="2ao-kk-OeN"/>
+                    <constraint firstItem="5" firstAttribute="top" secondItem="JVq-L1-rrK" secondAttribute="bottom" constant="6" id="AV1-49-NxU"/>
                     <constraint firstItem="ait-z6-Tqo" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="Fmg-EH-soh"/>
-                    <constraint firstItem="5" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="6" id="Ulb-JF-RDe"/>
+                    <constraint firstAttribute="trailing" secondItem="JVq-L1-rrK" secondAttribute="trailing" id="Gyo-w1-e0r"/>
                     <constraint firstItem="ait-z6-Tqo" firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="Xyt-xk-8Fb"/>
                     <constraint firstItem="ait-z6-Tqo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="22" secondAttribute="trailing" constant="5" id="YZu-O3-Qwb"/>
                     <constraint firstItem="5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ait-z6-Tqo" secondAttribute="trailing" constant="5" id="j07-so-5O6"/>
+                    <constraint firstItem="JVq-L1-rrK" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="kA7-8i-9tV"/>
                     <constraint firstItem="22" firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="vcz-7S-SPE"/>
                 </constraints>
             </view>

@@ -11,7 +11,7 @@ import UIKit
 
 /// A text field whose layer is automatically set a corner radius of half the 
 /// frame height.
-@IBDesignable public class XURoundedTextField: UITextField {
+public class XURoundedTextField: UITextField {
 	
 	public override func awakeFromNib() {
 		super.awakeFromNib()

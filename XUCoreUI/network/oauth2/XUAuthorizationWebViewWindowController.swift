@@ -11,11 +11,11 @@ import WebKit
 
 /// This is used for OAuth 2.x authentication. It is automatically closed when
 /// the client receives a redirection.
-internal final class XUAuthorizationWebViewWindowController: NSWindowController, WebFrameLoadDelegate {
+internal final class XUAuthorizationWebViewWindowController: NSWindowController, WKNavigationDelegate {
 	
 	@IBOutlet private weak var _currentURLTextField: NSTextField!
 	@IBOutlet private weak var _progressIndicator: NSProgressIndicator!
-	@IBOutlet private weak var _webView: WebView!
+	@IBOutlet private weak var _webView: WKWebView!
 	
 	/// Completion handler
 	private(set) var completionHandler: ((XUOAuth2Client.AuthorizationResult) -> Void)?
@@ -39,7 +39,7 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 		self.url = url
 	}
 	
-	@IBAction @objc private func cancel(_ sender: AnyObject?) {
+	@IBAction private func cancel(_ sender: AnyObject?) {
 		self.close(withResult: .error(.userCancelled))
 	}
 	
@@ -54,22 +54,20 @@ internal final class XUAuthorizationWebViewWindowController: NSWindowController,
 		NSApp.runModal(for: self.window!)
 	}
 	
-	func webView(_ sender: WebView, didStartProvisionalLoadFor frame: WebFrame) {
+	func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
 		_progressIndicator.startAnimation(nil)
+	
+		_currentURLTextField.stringValue = webView.url?.absoluteString ?? ""
 	}
 	
-	func webView(_ sender: WebView!, didCommitLoadFor frame: WebFrame!) {
-		_currentURLTextField.stringValue = sender.mainFrameURL
-	}
-	
-	func webView(_ sender: WebView, didFinishLoadFor frame: WebFrame) {
+	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 		_progressIndicator.stopAnimation(nil)
 	}
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
-		_webView.mainFrameURL = self.url.absoluteString
+		_webView.load(URLRequest(url: self.url))
 		_currentURLTextField.stringValue = self.url.absoluteString
 	}
 	
