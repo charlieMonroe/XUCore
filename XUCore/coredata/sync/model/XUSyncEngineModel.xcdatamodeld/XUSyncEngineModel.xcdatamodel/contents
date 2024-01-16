@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="XUAttributeSyncChange" representedClassName="XUAttributeSyncChange" parentEntity="XUSyncChange" syncable="YES">
         <attribute name="attributeName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="attributeValue" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="attributeValue" optional="YES" attributeType="Transformable" valueTransformerName="XUAttributeSyncChangeValueTransformer" syncable="YES"/>
     </entity>
     <entity name="XUDeletionSyncChange" representedClassName="XUDeletionSyncChange" parentEntity="XUSyncChange" syncable="YES"/>
     <entity name="XUInsertionSyncChange" representedClassName="XUInsertionSyncChange" parentEntity="XUSyncChange" syncable="YES">
-        <attribute name="attributes" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="attributes" optional="YES" attributeType="Transformable" valueTransformerName="XUInsertionSyncChangeAtributesTransformer" syncable="YES"/>
         <attribute name="insertedEntityName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="XURelationshipSyncChange" representedClassName="XURelationshipSyncChange" isAbstract="YES" parentEntity="XUSyncChange" syncable="YES">
@@ -17,25 +17,14 @@
     <entity name="XUSyncChange" representedClassName="XUSyncChange" isAbstract="YES" syncable="YES">
         <attribute name="objectEntityName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objectSyncID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="changeSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XUSyncChangeSet" inverseName="changes" inverseEntity="XUSyncChangeSet" syncable="YES"/>
     </entity>
     <entity name="XUSyncChangeSet" representedClassName="XUSyncChangeSet" syncable="YES">
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="changes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="XUSyncChange" inverseName="changeSet" inverseEntity="XUSyncChange" syncable="YES"/>
     </entity>
     <entity name="XUToManyRelationshipAdditionSyncChange" representedClassName="XUToManyRelationshipAdditionSyncChange" parentEntity="XURelationshipSyncChange" syncable="YES"/>
     <entity name="XUToManyRelationshipDeletionSyncChange" representedClassName="XUToManyRelationshipDeletionSyncChange" parentEntity="XURelationshipSyncChange" syncable="YES"/>
     <entity name="XUToOneRelationshipSyncChange" representedClassName="XUToOneRelationshipSyncChange" parentEntity="XURelationshipSyncChange" syncable="YES"/>
-    <elements>
-        <element name="XUAttributeSyncChange" positionX="-36" positionY="27" width="128" height="75"/>
-        <element name="XUDeletionSyncChange" positionX="-27" positionY="45" width="128" height="45"/>
-        <element name="XUInsertionSyncChange" positionX="-18" positionY="54" width="128" height="75"/>
-        <element name="XURelationshipSyncChange" positionX="0" positionY="72" width="128" height="90"/>
-        <element name="XUSyncChange" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="XUSyncChangeSet" positionX="-54" positionY="-9" width="128" height="75"/>
-        <element name="XUToManyRelationshipAdditionSyncChange" positionX="18" positionY="99" width="128" height="45"/>
-        <element name="XUToManyRelationshipDeletionSyncChange" positionX="-27" positionY="45" width="128" height="45"/>
-        <element name="XUToOneRelationshipSyncChange" positionX="-18" positionY="54" width="128" height="45"/>
-    </elements>
 </model>

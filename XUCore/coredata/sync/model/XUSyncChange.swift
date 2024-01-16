@@ -11,12 +11,16 @@ import CoreData
 
 
 /// This is a base class for all sync changes.
-public class XUSyncChange: NSObject, NSCoding {
+public class XUSyncChange: NSObject, NSCoding, NSSecureCoding, Codable {
 	
-	private struct CodingKeys {
-		static let objectEntityName: String = "ObjectEntityName"
-		static let objectSyncID: String = "ObjectSyncID"
-		static let timestamp: String = "Timestamp"
+	private enum CodingKeys: String, CodingKey {
+		case objectEntityName = "ObjectEntityName"
+		case objectSyncID = "ObjectSyncID"
+		case timestamp = "Timestamp"
+	}
+	
+	public class var supportsSecureCoding: Bool {
+		return true
 	}
 
 	
@@ -41,17 +45,24 @@ public class XUSyncChange: NSObject, NSCoding {
 	
 	
 	public func encode(with coder: NSCoder) {
-		coder.encode(self.objectEntityName, forKey: CodingKeys.objectEntityName)
-		coder.encode(self.objectSyncID, forKey: CodingKeys.objectSyncID)
-		coder.encode(self.timestamp, forKey: CodingKeys.timestamp)
+		coder.encode(self.objectEntityName, forKey: CodingKeys.objectEntityName.rawValue)
+		coder.encode(self.objectSyncID, forKey: CodingKeys.objectSyncID.rawValue)
+		coder.encode(self.timestamp, forKey: CodingKeys.timestamp.rawValue)
+	}
+	
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(self.objectEntityName, forKey: .objectEntityName)
+		try container.encode(self.objectSyncID, forKey: .objectSyncID)
+		try container.encode(self.timestamp, forKey: .timestamp)
 	}
 	
 	public required init?(coder decoder: NSCoder) {
-		let timestamp = decoder.decodeDouble(forKey: CodingKeys.timestamp)
+		let timestamp = decoder.decodeDouble(forKey: CodingKeys.timestamp.rawValue)
 		
 		guard
-			let entityName = decoder.decodeObject(forKey: CodingKeys.objectEntityName) as? String,
-			let objectID = decoder.decodeObject(forKey: CodingKeys.objectSyncID) as? String,
+			let entityName = decoder.decodeObject(of: NSString.self, forKey: CodingKeys.objectEntityName.rawValue) as? String,
+			let objectID = decoder.decodeObject(of: NSString.self, forKey: CodingKeys.objectSyncID.rawValue) as? String,
 			timestamp != 0.0
 		else {
 			XULog("Sync Change cannot be decoded - missing value: \(decoder)")
@@ -65,4 +76,13 @@ public class XUSyncChange: NSObject, NSCoding {
 		super.init()
 	}
 
+	public required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.objectEntityName = try container.decode(String.self, forKey: .objectEntityName)
+		self.objectSyncID = try container.decode(String.self, forKey: .objectSyncID)
+		self.timestamp = try container.decode(TimeInterval.self, forKey: .timestamp)
+		
+		super.init()
+	}
+	
 }

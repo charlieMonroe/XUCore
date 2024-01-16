@@ -192,6 +192,10 @@ open class XUApplicationSyncManager {
 		self.delegate = delegate
 		self.syncRootFolderURL = rootFolder
 		
+		
+		XUInsertionSyncChangeAtributesTransformer.register()
+		XUAttributeSyncChangeValueTransformer.register()
+		
 		if let downloadedDocumentUUIDs = XUPreferences.shared.downloadedDocumentIDs {
 			_downloadedDocumentUUIDs += downloadedDocumentUUIDs
 			self.availableDocumentUUIDs += downloadedDocumentUUIDs

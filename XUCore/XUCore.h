@@ -23,3 +23,6 @@ FOUNDATION_EXPORT const unsigned char XUCoreVersionString[];
 
 /** Regex. */
 #import <XUCore/XURegex.h>
+
+// This is private, do not use.
+#import <XUCore/NSCoder+CloudSyncDecoding.h>

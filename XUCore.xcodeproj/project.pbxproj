@@ -401,6 +401,10 @@
 		07A0155E2052EB100070D0DD /* XUCloudKitDeviceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A0155C2052EB100070D0DD /* XUCloudKitDeviceRegistry.swift */; };
 		07A1DFC21D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
 		07A1DFC31D9D082A00A7AD6C /* XUPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */; };
+		07A43CDD2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A43CDC2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m */; };
+		07A43CDE2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A43CDC2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m */; };
+		07A43CE02B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A43CDF2B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A43CE12B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A43CDF2B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A48B651FE91ACC002F5DF1 /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
 		07A5940B20D126EB00429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
 		07A5940C20D12A8100429374 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5940A20D126EB00429374 /* NumericExtensions.swift */; };
@@ -732,6 +736,8 @@
 		07A0155C2052EB100070D0DD /* XUCloudKitDeviceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUCloudKitDeviceRegistry.swift; sourceTree = "<group>"; };
 		07A166291E87FAE400EAFCA1 /* ar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1DFC11D9D082A00A7AD6C /* XUPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferences.swift; sourceTree = "<group>"; };
+		07A43CDC2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCoder+CloudSyncDecoding.m"; sourceTree = "<group>"; };
+		07A43CDF2B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCoder+CloudSyncDecoding.h"; sourceTree = "<group>"; };
 		07A5940A20D126EB00429374 /* NumericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtensions.swift; sourceTree = "<group>"; };
 		07A5CF4825AEE7E300121E02 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A7A04321B3C70A00F59DB9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1019,6 +1025,8 @@
 				075DC79A1CF2EB780043EBD0 /* XUSyncManagerPathUtilities.swift */,
 				075DC77F1CF06ABE0043EBD0 /* XUManagedObject.swift */,
 				07A015502052748D0070D0DD /* XUPreferences+Sync.swift */,
+				07A43CDF2B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h */,
+				07A43CDC2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m */,
 			);
 			path = sync;
 			sourceTree = "<group>";
@@ -1680,6 +1688,7 @@
 				073E6AD51BE1F86D00706283 /* prefilter_tree.h in Headers */,
 				073E6B0B1BE1F86D00706283 /* random.h in Headers */,
 				073E6AE11BE1F86D00706283 /* regexp.h in Headers */,
+				07A43CE02B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h in Headers */,
 				073E6AEF1BE1F86D00706283 /* unicode_casefold.h in Headers */,
 				073E6AD91BE1F86D00706283 /* prog.h in Headers */,
 				073E6AFB1BE1F86D00706283 /* benchmark.h in Headers */,
@@ -1729,6 +1738,7 @@
 				077AFDA21BBD0ED200872A48 /* XUCore.h in Headers */,
 				073E6B1E1BE1F86D00706283 /* thread.h in Headers */,
 				073E6B1A1BE1F86D00706283 /* test.h in Headers */,
+				07A43CE12B552FBA008F7109 /* NSCoder+CloudSyncDecoding.h in Headers */,
 				073E6B221BE1F86D00706283 /* util.h in Headers */,
 				073E6B021BE1F86D00706283 /* logging.h in Headers */,
 				073E6B081BE1F86D00706283 /* pcre.h in Headers */,
@@ -2144,6 +2154,7 @@
 				071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */,
 				073E6ABD1BE1F86D00706283 /* compile.cc in Sources */,
 				073E6AC11BE1F86D00706283 /* filtered_re2.cc in Sources */,
+				07A43CDD2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m in Sources */,
 				073E6ABF1BE1F86D00706283 /* dfa.cc in Sources */,
 				073E6B1B1BE1F86D00706283 /* thread.cc in Sources */,
 				0772E810224248EA0014CDC4 /* XUAppScopeBookmarksManager.swift in Sources */,
@@ -2361,6 +2372,7 @@
 				073E6B2C1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,
 				0749DCDF1C00BD130075CC9B /* XUApplicationSetup.swift in Sources */,
 				073E6B531BE2026600706283 /* XULog.swift in Sources */,
+				07A43CDE2B552F87008F7109 /* NSCoder+CloudSyncDecoding.m in Sources */,
 				073E6AD01BE1F86D00706283 /* prefilter.cc in Sources */,
 				073E6B001BE1F86D00706283 /* hash.cc in Sources */,
 				07CB85F125C1743C002E69D1 /* AssertingSetter.swift in Sources */,

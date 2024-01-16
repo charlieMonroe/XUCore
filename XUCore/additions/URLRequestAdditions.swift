@@ -11,6 +11,45 @@ import Foundation
 
 public extension URLRequest {
 	
+	enum SecFetchDest: String {
+		case audio
+		case audioWorklet = "audioworklet"
+		case document
+		case embed
+		case empty
+		case font
+		case frame
+		case iframe
+		case image
+		case manifest
+		case object
+		case paintWorklet = "paintworklet"
+		case report
+		case script
+		case serviceWorker = "serviceworker"
+		case sharedWorker = "sharedworker"
+		case style
+		case track
+		case video
+		case worker
+		case xslt
+	}
+	
+	enum SecFetchMode: String {
+		case cors
+		case navigate
+		case noCors = "no-cors"
+		case sameOrigin = "same-origin"
+		case webSocket = "websocket"
+	}
+	
+	enum SecFetchSite: String {
+		case crossSite = "cross-site"
+		case sameOrigin = "same-origin"
+		case sameSite = "same-site"
+		case none
+	}
+	
 	struct ContentType: RawRepresentable {
 		
 		/// Returns a new content type that consists of lhs and rhs.
@@ -244,6 +283,33 @@ extension XUHTTPHeaderFields {
 		}
 	}
 	
+	public var fetchDestination: URLRequest.SecFetchDest? {
+		get {
+			return self["Sec-Fetch-Dest"].flatMap(URLRequest.SecFetchDest.init(rawValue:))
+		}
+		set {
+			self["Sec-Fetch-Dest"] = newValue?.rawValue
+		}
+	}
+	
+	public var fetchMode: URLRequest.SecFetchMode? {
+		get {
+			return self["Sec-Fetch-Mode"].flatMap(URLRequest.SecFetchMode.init(rawValue:))
+		}
+		set {
+			self["Sec-Fetch-Mode"] = newValue?.rawValue
+		}
+	}
+	
+	public var fetchSite: URLRequest.SecFetchSite? {
+		get {
+			return self["Sec-Fetch-Site"].flatMap(URLRequest.SecFetchSite.init(rawValue:))
+		}
+		set {
+			self["Sec-Fetch-Site"] = newValue?.rawValue
+		}
+	}
+	
 	public var forwardedForIP: String? {
 		get {
 			return self["X-Forwarded-For"]
@@ -281,6 +347,12 @@ extension XUHTTPHeaderFields {
 	
 	public mutating func setBearerAuthorization(with token: String) {
 		self.authorization = "Bearer " + token
+	}
+	
+	public mutating func setFetch(mode: URLRequest.SecFetchMode, site: URLRequest.SecFetchSite, destination: URLRequest.SecFetchDest) {
+		self.fetchMode = mode
+		self.fetchSite = site
+		self.fetchDestination = destination
 	}
 	
 	/// User agent.

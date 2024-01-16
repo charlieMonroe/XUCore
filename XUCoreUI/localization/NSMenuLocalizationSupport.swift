@@ -53,7 +53,11 @@ extension NSMenu: XULocalizableUIElement {
 				let localizedAttributedTitle = NSAttributedString(string: localizedTitle, attributes: attributedTitle.attributes(at: 0, effectiveRange: nil))
 				item.attributedTitle = localizedAttributedTitle
 			} else {
-				item.title = localizator(item.title)
+				if item.title == "Preferences…" || item.title == "Preferences...", #available(macOS 13.0, *) {
+					item.title = Localized("Settings...", in: .core)
+				} else {
+					item.title = localizator(item.title)
+				}
 			}
 			
 			if item.hasSubmenu {

@@ -14,10 +14,16 @@ internal extension XUPreferences {
 	func pendingSynchronizationChanges(for documentID: String) -> [(data: Data, changeSet: XUSyncChangeSet)] {
 		let dataArray: [Data] = self.value(for: XUPreferences.Key(rawValue: "XUPendingSynchronizationChanges_" + documentID), defaultValue: [])
 		return dataArray.compactMap {
-			guard let changeSet = try? NSKeyedUnarchiver.unarchivedObject(ofClass: XUSyncChangeSet.self, from: $0) else {
+			do {
+				guard let changeSet = try NSKeyedUnarchiver.unarchivedObject(ofClass: XUSyncChangeSet.self, from: $0) else {
+					XULog("Failed to unarchive change set with no particular error...")
+					return nil
+				}
+				return ($0, changeSet)
+			} catch {
+				XULog("Failed to unarchive change set: \(error)")
 				return nil
 			}
-			return ($0, changeSet)
 		}
 	}
 	

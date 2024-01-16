@@ -12,4 +12,8 @@ import Foundation
 /// information, since we have the syncID.
 public final class XUDeletionSyncChange: XUSyncChange {
 
+	public override class var supportsSecureCoding: Bool {
+		return true
+	}
+	
 }

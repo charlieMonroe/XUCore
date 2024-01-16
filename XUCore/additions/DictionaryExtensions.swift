@@ -390,19 +390,23 @@ extension Dictionary {
 					
 					let dictionaries = arr.compactCast(to: [String : Any].self)
 					let pathSuffix = components.suffix(from: index + 1)
-					obj = dictionaries.first(where: { $0._value(for: pathSuffix) != nil })
+					for dictionary in dictionaries {
+						if let value = dictionary._value(for: pathSuffix) {
+							return value
+						}
+					}
 					continue
 				} else {
 					indexes = keys.compactMap(Int.init(_:))
 				}
 				guard indexes.count == keys.count else {
 					XULog("Dictionary.objectForKeyPath(): Indexes \(keys) cannot be applied on an array!")
-					continue
+					return nil
 				}
 				
 				guard let index = indexes.first(where: { $0 == -1 || $0 < arr.count }) else {
 					XULog("None of the indexes \(indexes) can be applied on array of \(arr.count) elements.")
-					continue
+					return nil
 				}
 				
 				let value: Any?

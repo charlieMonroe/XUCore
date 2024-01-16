@@ -12,9 +12,14 @@ import CoreData
 /// To make the syncing more efficient, we group XUSyncChanges in to change sets.
 /// This allows XUSyncEngine to go just through a few change sets, instead of
 /// potentially hundreds or even thousands of actual changes.
-public final class XUSyncChangeSet: NSObject, NSCoding {
+public final class XUSyncChangeSet: NSObject, NSCoding, NSSecureCoding {
+
+	public static var supportsSecureCoding: Bool {
+		return true
+	}
 	
-	private struct CodingKeys {
+	
+	fileprivate struct CodingKeys {
 		static let changes: String = "Changes"
 		static let timestamp: String = "Timestamp"
 	}
@@ -42,8 +47,7 @@ public final class XUSyncChangeSet: NSObject, NSCoding {
 	
 	public init?(coder decoder: NSCoder) {
 		let timestamp = decoder.decodeDouble(forKey: CodingKeys.timestamp)
-		
-		guard let changes = decoder.decodeObject(forKey: CodingKeys.changes) as? [XUSyncChange], timestamp != 0.0 else {
+		guard let changes = decoder.decodedSyncChanges(), timestamp != 0.0 else {
 			XULog("Failing to decode XUSyncChangeSet as it's missing some value from coder: \(decoder)")
 			return nil
 		}
@@ -54,4 +58,12 @@ public final class XUSyncChangeSet: NSObject, NSCoding {
 		super.init()
 	}
 
+}
+
+private extension NSCoder {
+	
+	func decodedSyncChanges() -> [XUSyncChange]? {
+		return self.decodeChanges() as? [XUSyncChange]
+	}
+	
 }
