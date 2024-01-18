@@ -79,7 +79,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		_draggingSession = view.beginDraggingSession(with: [ colorItem ], event: event, source: _source)
 		
 		let pasteboard = _draggingSession!.draggingPasteboard
-		let data = NSKeyedArchiver.archivedData(withRootObject: self)
+		let data = try! NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: true)
 		pasteboard.setData(data, forType: .color)
 		pasteboard.writeObjects([self])
 		
@@ -95,7 +95,7 @@ extension NSColor: NSPasteboardItemDataProvider {
 		case .png:
 			pasteboard?.setData(self._imagePreview.pngRepresentation as Data?, forType: type)
 		case .color:
-			let data = NSKeyedArchiver.archivedData(withRootObject: self)
+			let data = try! NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: true)
 			pasteboard?.setData(data, forType: .color)
 			pasteboard?.writeObjects([self])
 		default:

@@ -296,7 +296,7 @@ open class XUDocumentSyncManager {
 		let set = XUSyncChangeSet(changes: changes)
 		XULog("\(self) - created change set \(set.timestamp) with \(changes.count) changes")
 	
-		let encodedSet = NSKeyedArchiver.archivedData(withRootObject: set)
+		let encodedSet = try! NSKeyedArchiver.archivedData(withRootObject: set, requiringSecureCoding: true)
 		XUPreferences.shared.perform { (prefs) in
 			var data = prefs.pendingSynchronizationChanges(for: self.documentID).map({ $0.data })
 			data.append(encodedSet)

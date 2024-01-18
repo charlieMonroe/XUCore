@@ -32,7 +32,7 @@
 					   NSClassFromString(@"XUCore.XUToManyRelationshipAdditionSyncChange"),
 					   NSClassFromString(@"XUCore.XUToManyRelationshipDeletionSyncChange"),
 					   NSClassFromString(@"XUCore.XUToOneRelationshipSyncChange"),
-					   [NSString class], [NSNumber class], [NSNull class], [NSData class],
+					   [NSString class], [NSNumber class], [NSNull class], [NSDate class],
 					   [NSDecimalNumber class], [NSData class],
 					   nil
 	];
