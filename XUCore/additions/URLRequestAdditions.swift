@@ -142,7 +142,7 @@ public extension URLRequest {
 		/// Default user agent. On macOS 11 and later, this is Safari 14, on previous macOS versions,
 		/// it's Safari 12.
 		public static let `default`: UserAgent = {
-			if #available(macOS 13.0, *) {
+			if #available(macOS 13.0, iOS 15.0, *) {
 				return macOS.Safari16
 			} else if #available(macOS 11.0, *) {
 				return macOS.Safari14
@@ -153,7 +153,7 @@ public extension URLRequest {
 		
 		/// Default user agent for mobile.
 		public static let defaultMobile: UserAgent = {
-			if #available(macOS 13.0, *) {
+			if #available(macOS 13.0, iOS 15.0, *) {
 				return iOS.Safari16
 			} else {
 				return iOS.Safari14

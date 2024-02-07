@@ -10,7 +10,6 @@ import AppKit
 import UserNotifications
 import XUCore
 
-@available(macOS 10.14, *)
 extension UNUserNotificationCenter {
 	
 	/// This is very much the same as `add(_:)`, but when
@@ -86,7 +85,6 @@ public struct XUSystemNotification {
 		self.init(icon: icon, message: confirmationMessage, subtitle: subtitle, identifier: identifier)
 	}
 	
-	@available(macOS 10.14, *)
 	fileprivate init(request: UNNotificationRequest) {
 		self.init(icon: NSApp.applicationIconImage, message: request.content.title, subtitle: request.content.subtitle, identifier: request.identifier)
 	}
@@ -241,7 +239,7 @@ public final class XUSystemNotificationCenter {
 			_progressController = controller
 			
 			if let message = message {
-				NSAccessibility.post(element: controller, notification: NSAccessibility.Notification.announcementRequested, userInfo: [NSAccessibility.NotificationUserInfoKey.announcement : message])
+				NSAccessibility.post(element: controller, notification: .announcementRequested, userInfo: [.announcement : message])
 			}
 		}
 	}

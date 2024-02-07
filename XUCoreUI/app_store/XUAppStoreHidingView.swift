@@ -6,11 +6,10 @@
 //  Copyright © 2015 Charlie Monroe Software. All rights reserved.
 //
 
-import AppKit
 import XUCore
 
 /// Hides itself if the current app configuration is an AppStore build.
-open class XUAppStoreHidingView: NSView {
+open class XUAppStoreHidingView: __XUBridgedView {
 	
 	open override func awakeFromNib() {
 		super.awakeFromNib()

@@ -176,12 +176,9 @@ open class XUApplicationSetup {
 	@available(iOS, unavailable)
 	@available(macCatalyst, unavailable)
 	public var isDarkModeEnabled: Bool {
-		if #available(macOS 10.14, *) {
-			let bestMatch = (NSApp?.effectiveAppearance ?? NSAppearance.current).bestMatch(from: [.darkAqua, .vibrantDark])
-			return bestMatch != nil
- 		}
-		return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
-	}
+		let bestMatch = (NSApp?.effectiveAppearance ?? NSAppearance.current).bestMatch(from: [.darkAqua, .vibrantDark])
+		return bestMatch != nil
+ 	}
 	#endif
 
 	/// Returns true, if the app is debugging in-app purchases. When true, the
@@ -205,12 +202,9 @@ open class XUApplicationSetup {
 	/// Returns true if we're running Mojave or later and dark mode is enabled.
 	@available(iOS, unavailable)
 	@available(macCatalyst, unavailable)
+	@available(*, deprecated, message: "We no longer support pre-Mojave systems. Use isDarkModeEnabled.")
 	public var isRunningMojaveWithDarkMode: Bool {
-		if #available(macOS 10.14, *) {
-			return self.isDarkModeEnabled
-		} else {
-			return false
-		}
+		return self.isDarkModeEnabled
 	}
 	#endif
 	

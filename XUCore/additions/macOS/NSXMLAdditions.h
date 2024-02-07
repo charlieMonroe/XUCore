@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
-	#import "NSXML.h"
-#endif
+#if !TARGET_OS_IPHONE
 
 @interface NSXMLNode (XUAdditions)
 
@@ -41,4 +39,4 @@
 
 @end
 
-
+#endif

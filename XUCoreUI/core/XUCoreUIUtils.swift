@@ -35,10 +35,12 @@ import XUCore
 			XULog("**************************************")
 		}
 		
+		#if os(macOS)
 		// Launch the beta expiration handler if supported.
 		if XUAppSetup.isBetaBuild {
 			_ = XUBetaExpirationHandler.shared
 		}
+		#endif
 	}
 	
 }

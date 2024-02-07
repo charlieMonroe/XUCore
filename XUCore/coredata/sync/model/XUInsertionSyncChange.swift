@@ -134,20 +134,3 @@ public final class XUInsertionSyncChange: XUSyncChange {
 	}
 	
 }
-
-//private extension NSCoder {
-//	
-//	func decodeAttributes() -> [String : Any]? {
-//		if let attributes = self.decodeObject(forKey: XUInsertionSyncChange.CodingKeys.attributes.rawValue) as? [String : Any] {
-//			return attributes
-//		}
-//		
-//		if #available(macOS 11.0, *) {
-//			return self.decodeDictionary(withKeysOfClasses: [NSString.self], objectsOfClasses: XUAttributeSyncChangeValueTransformer.allowedClasses, forKey: XUInsertionSyncChange.CodingKeys.attributes.rawValue) as? [String : Any]
-//		} else {
-//			return self.decodeObject(of: [NSDictionary.self] + XUAttributeSyncChangeValueTransformer.allowedClasses, forKey: XUInsertionSyncChange.CodingKeys.attributes.rawValue) as? [String : Any]
-//		}
-//		
-//	}
-//	
-//}
