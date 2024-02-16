@@ -478,21 +478,12 @@ private class XUSystemNotificationWindow: NSWindow {
 		
 		self._updateVisualEffectViewMask()
 		
-		if #available(macOS 10.14, *) {
-			if self.isCapsule {
-				self.visualEffectView.material = .sidebar
-			} else {
-				self.visualEffectView.material = .hudWindow
-			}
-			self.messageField.textColor = .textColor
-		} else if XUAppSetup.isDarkModeEnabled {
-			self.visualEffectView.material = .dark
-			self.messageField.textColor = .white
+		if self.isCapsule {
+			self.visualEffectView.material = .sidebar
 		} else {
-			self.visualEffectView.material = .mediumLight
-			
-			self.messageField.textColor = .black
+			self.visualEffectView.material = .hudWindow
 		}
+		self.messageField.textColor = .textColor
 		
 		self.level = .screenSaver
 		self.backgroundColor = .clear

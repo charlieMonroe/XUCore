@@ -57,13 +57,13 @@ internal class XUPreferencePanesView: NSView {
 		for (index, height) in _sectionHeights.enumerated() {
 			if index % 2 != 0 {
 				if #available(macOS 11, *) {
-					if XUAppSetup.isRunningMojaveWithDarkMode {
+					if XUAppSetup.isDarkModeEnabled {
 						NSColor(white: 0.27, alpha: 0.25).set()
 					} else {
 						NSColor(white: 0.8667, alpha: 0.25).set()
 					}
 				} else {
-					if XUAppSetup.isRunningMojaveWithDarkMode {
+					if XUAppSetup.isDarkModeEnabled {
 						NSColor(white: 0.27, alpha: 1.0).set()
 					} else {
 						NSColor(white: 0.8667, alpha: 1.0).set()
@@ -79,13 +79,13 @@ internal class XUPreferencePanesView: NSView {
 			}
 
 			if #available(macOS 11, *) {
-				if XUAppSetup.isRunningMojaveWithDarkMode {
+				if XUAppSetup.isDarkModeEnabled {
 					NSColor(white: 0.33, alpha: 0.8).set()
 				} else {
 					NSColor(white: 0.5, alpha: 0.2).set()
 				}
 			} else {
-				if XUAppSetup.isRunningMojaveWithDarkMode {
+				if XUAppSetup.isDarkModeEnabled {
 					NSColor(white: 0.33, alpha: 1.0).set()
 				} else {
 					NSColor(white: 0.0, alpha: 0.2).set()

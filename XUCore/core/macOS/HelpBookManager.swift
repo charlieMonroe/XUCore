@@ -86,6 +86,7 @@ public final class HelpBookManager {
 	@discardableResult
 	public func openPage(named pageName: String, pathExtension: String = "html", in bookIdentifier: String? = nil) -> Bool {
 		guard let identifier = bookIdentifier ?? self.defaultBookIdentifier else {
+			XULog("Cannot open help book page named '\(pageName)' as there is not book identifier set.")
 			return false
 		}
 		

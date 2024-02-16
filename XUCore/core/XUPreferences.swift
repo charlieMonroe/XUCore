@@ -44,7 +44,7 @@ public extension XUReflectablePreferences {
 	
 	/// State item.
 	var preferencesStateItem: XUApplicationStateItem {
-		return XUApplicationStateItem(name: "Preferences", value: "\n" + self.logString.lines.map({ "\t" + $0 }).joined(separator: "\n"), requiresAdditionalTrailingNewLine: true)
+		return XUApplicationStateItem(name: "Settings", value: "\n" + self.logString.lines.map({ "\t" + $0 }).joined(separator: "\n"), requiresAdditionalTrailingNewLine: true)
 	}
 	
 }
