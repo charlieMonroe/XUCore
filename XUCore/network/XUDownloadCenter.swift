@@ -325,8 +325,13 @@ open class XUDownloadCenter {
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
 	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) throws -> Data {
-		
 		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier)
+		return try self.downloadData(with: request)
+	}
+	
+	/// Downloads data with a request.
+	public func downloadData(with request: URLRequest) throws -> Data {
+		let url = request.url!
 		
 		_invalidationLock.lock()
 		
