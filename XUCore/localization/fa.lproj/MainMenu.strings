@@ -1,0 +1,61 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
+"About <AppName>" = "درباره <AppName>";
+"Bring <AppName> Window to Front" = "<AppName> را جلو بیاور";
+"Bring All to Front" = "جلوآوردن همه";
+"Capitalize" = "بزرگسازی حروف";
+"Check Document Now" = "بررسی سند";
+"Check Grammar With Spelling" = "بررسی گرامر و هجی";
+"Check Spelling While Typing" = "بررسی هجی هنگام نوشتن";
+"Close" = "بستن";
+"Copy" = "کپی";
+"Correct Spelling Automatically" = "تصحیح خودکار هجی";
+"Cut" = "برش";
+"Data Detectors" = "ردیاب‌های داده‌ها";
+"Delete" = "حذف";
+"Edit" = "ویرایش";
+"File" = "فایل";
+"Find and Replace…" = "یافتن و جای‌گذاری";
+"Find Next" = "یافتن بعدی";
+"Find Previous" = "پیداکردن قبلی";
+"Find" = "یافتن";
+"Help" = "راهنما";
+"Hide <AppName>" = "مخفی‌کردن <AppName>";
+"Hide Others" = "پنهان‌کردن بقیه";
+"Jump to Selection" = "پرش به ناحیه انتخابی";
+"Make Lower Case" = "کوچک کردن حروف";
+"Make Upper Case" = "بزرگ‌کردن حروف";
+"Minimize" = "کوچک‌کردن";
+"Open…" = "بازکردن...";
+"Paste and Match Style" = "چسباندن و یکی‌کردن قلم";
+"Paste" = "چسباندن";
+"Preferences…" = "ویژگی‌ها...";
+"Quit <AppName>" = "خروج از <AppName>";
+"Redo" = "انجام دوباره";
+"Select All" = "انتخاب همه";
+"Services" = "خدمات";
+"Show All" = "نمایش همه";
+"Show Spelling and Grammar" = "نمایش هجی و گرامر";
+"Show Substitutions" = "نمایش جایگزینی‌ها";
+"Smart Copy/Paste" = "کپی/چسباندن هوشمند";
+"Smart Dashes" = "خط تیره‌‌ هوشمند";
+"Smart Links" = "پیوندهای هوشمند";
+"Smart Quotes" = "نقل‌قول هوشمند";
+"Speech" = "سخن";
+"Spelling and Grammar" = "هجی و گرامر";
+"Spelling" = "هجی";
+"Start Speaking" = "شروع صحبت";
+"Stop Speaking" = "توقف صحبت";
+"Substitutions" = "جایگزینی‌ها";
+"Text Replacement" = "جای‌گذاری متن";
+"Transformations" = "تغییرات";
+"Undo" = "مرحله قبل";
+"Use Selection for Find" = "استفاده از ناحیه انتخابی برای یافتن";
+"Use Selection for Replace" = "استفاده از ناحیه انتخابی برای جای‌گذاری";
+"Window" = "پنجره";
+"Zoom" = "بزرگ‌نمایی";
+"Settings" = "تنظیمات";

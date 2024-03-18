@@ -443,6 +443,7 @@
 		074EBDE42110667E0055444B /* XUView+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XUView+Array.swift"; sourceTree = "<group>"; };
 		074F22C12060189E00A19601 /* XUUpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XUUpdateChecker.swift; sourceTree = "<group>"; };
 		0751A4761F6FB930006C4BEE /* fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0755D0792BA8293A002C7DA0 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		0756DD8A270DB09500A6AD01 /* Data+CommonCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+CommonCrypto.swift"; sourceTree = "<group>"; };
 		075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAutocollapsingView.swift; sourceTree = "<group>"; };
 		075A92A01C43D775006DD45B /* XUUIBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUUIBridge.swift; sourceTree = "<group>"; };
@@ -1960,6 +1961,7 @@
 				07EC4BC421E33DA800E6398B /* id */,
 				075D9CC823335E8500E90000 /* nb */,
 				0771B453296EC29E0000009F /* hi */,
+				0755D0792BA8293A002C7DA0 /* fa */,
 			);
 			name = MainMenu.strings;
 			sourceTree = "<group>";

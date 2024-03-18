@@ -322,7 +322,9 @@ public extension XUPreferences {
 		self.set(value: payload, forKey: key)
 		
 		if #available(macOS 10.15, iOS 13.0, *) {
-			self.changeObservation.objectWillChange.send(key)
+			DispatchQueue.main.async {
+				self.changeObservation.objectWillChange.send(key)
+			}
 		}
 	}
 	
@@ -331,7 +333,9 @@ public extension XUPreferences {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		
 		if #available(macOS 10.15, iOS 13.0, *) {
-			self.changeObservation.objectWillChange.send(key)
+			DispatchQueue.main.async {
+				self.changeObservation.objectWillChange.send(key)
+			}
 		}
 	}
 	
@@ -340,7 +344,9 @@ public extension XUPreferences {
 		self.userDefaults.set(value, forKey: self.keyModifier(key.rawValue))
 		
 		if #available(macOS 10.15, iOS 13.0, *) {
-			self.changeObservation.objectWillChange.send(key)
+			DispatchQueue.main.async {
+				self.changeObservation.objectWillChange.send(key)
+			}
 		}
 	}
 	
@@ -348,7 +354,9 @@ public extension XUPreferences {
 		self.set(value: rawRepresentable.rawValue, forKey: key)
 		
 		if #available(macOS 10.15, iOS 13.0, *) {
-			self.changeObservation.objectWillChange.send(key)
+			DispatchQueue.main.async {
+				self.changeObservation.objectWillChange.send(key)
+			}
 		}
 	}
 
@@ -362,7 +370,9 @@ public extension XUPreferences {
 		}
 		
 		if #available(macOS 10.15, iOS 13.0, *) {
-			self.changeObservation.objectWillChange.send(key)
+			DispatchQueue.main.async {
+				self.changeObservation.objectWillChange.send(key)
+			}
 		}
 	}
 	

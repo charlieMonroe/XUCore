@@ -103,7 +103,7 @@
 "All Preferences" = "همه ویژگی ها";
 "Show All" = "نمایش همه";
 "Preferences" = "ویژگی ها";
-"Settings" = "Settings";
+"Settings" = "تنظیمات";
 
 /// 12/21/2016+
 
@@ -131,7 +131,7 @@
 
 "Done" = "انجام شد.";
 
-"Reset" = "Reset";
-"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
-"This action cannot be undone." = "This action cannot be undone.";
+"Reset" = "بازنشانی";
+"Do you want to reset settings handled by this preference pane to default values?" = "آیا می‌خواهید تنظیماتی که توسط این صفحه مدیریت می‌شود را به مقادیر پیش‌فرض بازنشانی کنید؟";
+"This action cannot be undone." = "این عملگر نمی‌تواند خالی باشد.";
 
