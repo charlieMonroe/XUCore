@@ -74,8 +74,8 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			
 			if let mainWindow = self.window {
 				let resultText = self.results.isEmpty ? Localized("No search results", in: .core) : Localized("%li search results", self.results.count, in: .core)
-				NSAccessibility.post(element: mainWindow, notification: NSAccessibility.Notification.announcementRequested, userInfo: [
-					NSAccessibility.NotificationUserInfoKey.announcement: resultText
+				NSAccessibility.post(element: mainWindow, notification: .announcementRequested, userInfo: [
+					.announcement: resultText
 				])
 			}
 			
@@ -378,8 +378,8 @@ extension XUSearchFieldWithResults: NSTableViewDataSource, NSTableViewDelegate {
 			return
 		}
 		if let mainWindow = self.window {
-			NSAccessibility.post(element: mainWindow, notification: NSAccessibility.Notification.announcementRequested, userInfo: [
-									NSAccessibility.NotificationUserInfoKey.announcement: resultName
+			NSAccessibility.post(element: mainWindow, notification: .announcementRequested, userInfo: [
+				.announcement: resultName
 			])
 		}
 	}

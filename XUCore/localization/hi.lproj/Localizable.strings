@@ -6,7 +6,7 @@
 "Unknown error." = "अज्ञात एरर।";
 
 "OK" = "ठीक";
-"Cancel" = "रद्द";
+"Cancel" = "रद्द करें";
 
 "Failed to parse CSV file." = "सीएसवी फ़ाइल को पढ़ने में विफल।";
 
@@ -103,7 +103,7 @@
 "All Preferences" = "सभी वरीयताएं";
 "Show All" = "सब दिखाए";
 "Preferences" = "वरीयताएं";
-"Settings" = "Settings";
+"Settings" = "सेटिंग्स";
 
 /// 12/21/2016+
 
@@ -131,7 +131,7 @@
 
 "Done" = "सफलता";
 
-"Reset" = "Reset";
-"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
-"This action cannot be undone." = "This action cannot be undone.";
+"Reset" = "रीसेट";
+"Do you want to reset settings handled by this preference pane to default values?" = "क्या आप इस प्राथमिकता फलक द्वारा प्रबंधित सेटिंग्स को डिफ़ॉल्ट मानों पर रीसेट करना चाहते हैं?";
+"This action cannot be undone." = "इस एक्शन को वापस नहीं किया जा सकता ।";
 
