@@ -11,7 +11,7 @@ import Foundation
 extension Sequence {
 	
 	public typealias Filter = (Self.Element) throws -> Bool
-		
+	
 	/// Returns a compacted sequence - removing nil values.
 	public func compacted<T>() -> [T] where Element == Optional<T> {
 		return self.compactMap({ $0 })
@@ -38,7 +38,7 @@ extension Sequence {
 		})
 		return count
 	}
-		
+	
 	/// Finds a mapped value. When `transformation` returns a non-nil value, that value
 	/// is returned. This way you can do some computation in the block and return
 	/// the value without the need of doing the computation again
@@ -128,6 +128,18 @@ extension Sequence {
 		}
 		
 		return minValue
+	}
+	
+	/// This is a shortcut for `compactCast(to: T.Type).forEach({ ... })` and also
+	/// has performance advantage of not creating a new array.
+	public func forEach<T>(as type: T.Type, perform: (T) -> Void) {
+		self.forEach { element in
+			guard let t = element as? T else {
+				return
+			}
+			
+			perform(t)
+		}
 	}
 	
 	/// Maps a sequence to a result of a keyPath.
