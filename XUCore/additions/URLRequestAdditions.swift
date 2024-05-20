@@ -395,3 +395,14 @@ extension URLRequest: XUHTTPHeaderFields {
 	
 }
 
+
+extension HTTPURLResponse {
+	
+	/// You can subscript the URL request and get/set HTTP header fields.
+	public subscript(field: String) -> String? {
+		get {
+			return self.allHeaderFields[field] as? String
+		}
+	}
+	
+}
