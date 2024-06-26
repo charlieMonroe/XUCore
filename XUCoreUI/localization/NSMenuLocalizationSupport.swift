@@ -42,7 +42,7 @@ extension NSApplication {
 	
 }
 
-extension NSMenu: XULocalizableUIElement {
+extension NSMenu: @retroactive XULocalizableUIElement {
 	
 	/// Localizes the menu using a custom localization function.
 	fileprivate func _localize(using localizator: (String) -> String) {

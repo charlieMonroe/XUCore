@@ -27,7 +27,7 @@ private class _XU_NSColorDraggingSource: NSObject, NSDraggingSource {
 private let _source = _XU_NSColorDraggingSource()
 private var _draggingSession: NSDraggingSession?
 
-extension NSColor: NSPasteboardItemDataProvider {
+extension NSColor: @retroactive NSPasteboardItemDataProvider {
 	
 	private var _imagePreview: NSImage {
 		let image = NSImage(size: CGSize(width: kXUColorSampleItemWidth, height: kXUColorSampleItemHeight))

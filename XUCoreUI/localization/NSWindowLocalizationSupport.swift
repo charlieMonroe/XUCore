@@ -10,7 +10,7 @@ import AppKit
 import Foundation
 import XUCore
 
-extension NSWindow: XULocalizableUIElement {
+extension NSWindow: @retroactive XULocalizableUIElement {
 	
 	public func localize(from bundle: Bundle = Bundle.main) {
 		self.title = Localized(self.title, in: bundle)

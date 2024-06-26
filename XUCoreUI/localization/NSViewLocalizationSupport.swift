@@ -78,7 +78,7 @@ public extension NSPathControl {
 	
 }
 
-extension NSView: XULocalizableUIElement {
+extension NSView: @retroactive XULocalizableUIElement {
 	
 	@objc public func localize(from bundle: Bundle = Bundle.main) {
 		for view in self.subviews {

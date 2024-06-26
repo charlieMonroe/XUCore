@@ -355,6 +355,16 @@ extension XUHTTPHeaderFields {
 		self.fetchDestination = destination
 	}
 	
+	public mutating func setOriginAndReferer(to host: String) {
+		self.origin = "https://" + host
+		self.referer = "https://" + host + "/"
+	}
+	
+	public mutating func setOriginAndReferer(from url: URL) {
+		url.host.flatMap({ self.setOriginAndReferer(to: $0) })
+	}
+	
+	
 	/// User agent.
 	public var userAgent: URLRequest.UserAgent? {
 		get {

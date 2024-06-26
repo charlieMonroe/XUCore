@@ -55,6 +55,10 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	/// The operation.
 	public private(set) var operation: XUProgressableOperation!
 	
+	/// If you want information about the operation's progress, set a delegate here. The controller sets itself
+	/// as the operation's delegate, so you will not receive delegate callbacks from the operation itself.
+	public weak var delegate: XUProgressableOperationDelegate?
+	
 	/// By default true. If true, shows the textual progress such as 12/100.
 	public var showsTextualProgress: Bool = true {
 		didSet {
@@ -94,12 +98,16 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 				self.window!.sheetParent?.endSheet(self.window!)
 			}
 			self.window!.close()
+			
+			self.delegate?.progressableOperationDidFinish(operation)
 		}
 	}
 	
 	public func progressableOperationDidUpdateProgress(_ operation: XUProgressableOperation) {
 		DispatchQueue.main.syncOrNow {
 			self._update()
+			
+			self.delegate?.progressableOperationDidUpdateProgress(operation)
 		}
 	}
 	

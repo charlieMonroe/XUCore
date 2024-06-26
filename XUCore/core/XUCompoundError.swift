@@ -9,7 +9,7 @@
 import Foundation
 
 /// An error subclass that may contain multiple errors.
-public final class XUCompoundError: NSError {
+public final class XUCompoundError: NSError, @unchecked Sendable {
 	
 	/// Errors of the compound error.
 	public let errors: [NSError]

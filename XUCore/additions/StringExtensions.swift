@@ -43,7 +43,7 @@ public enum XUEmailFormatValidity {
 			"fuck", "shit", "qwert", "asdf", "mail@mail.com", "annoying@problem.com",
 			"noname@nothing.com", "example.com", "sdsbgt@gmail.com", "me@you.com", "none@none.com",
 			"tembo@mac.com", "any@hotmail.com", "nowhere.us", "www@gmail.com", "john@mac.com",
-			"dasdsad", "noreply", "@abc.com", "123@123.com", "test@gmail.com", "anon@anon.com", "no@no.com"
+			"dasdsad", "noreply", "@abc.com", "123@123.com", "anon@anon.com", "no@no.com"
 		]
 		
 		if matches.contains(where: email.contains(caseInsensitive:)) {
@@ -54,7 +54,8 @@ public enum XUEmailFormatValidity {
 		let regexMatchs = [
 			"^1+@(1+|qq|16\\d)\\.com$",
 			"^test@\\w+\\.com$",
-			"^1234@"
+			"^1234@",
+			"^test@gmail.com"
 		]
 		if regexMatchs.contains(where: { email.matches(regex: $0) }) {
 			self = .phony

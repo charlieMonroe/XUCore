@@ -47,7 +47,7 @@ extension XUCloudKitSynchronization {
 	}
 	
 	/// Synchronization error.
-	class SynchronizationError: NSError {
+	class SynchronizationError: NSError, @unchecked Sendable {
 		
 		/// Designated initializer. Automatically adds localized error failure
 		/// reason, etc.
