@@ -40,59 +40,13 @@ extension Character {
 		return Character(UnicodeScalar(UInt32(randomInt))!)
 	}
 	
-	#if swift(>=5.0)
-	#else
-	/// Returns true if `self` is < 128 and can be represented by a single UTF8
-	/// character.
-	public var isASCII: Bool {
-		return String(self).utf8.count == 1 && self.unicodeScalarValue < 128
-	}
-	#endif
-	
-	/// Returns true if `self` is < 128 or self.isMemberOfCharacterSet(NSCharacterSet.punctuationCharacterSet())
-	@available(*, deprecated, message: "Use c.isASCII || c.isPunctuation instead.")
-	public var isASCIIOrPunctuation: Bool {
-		#if swift(>=5.0)
-			return self.isASCII || self.isPunctuation
-		#else
-			return self.isASCII || self.isMember(of: CharacterSet.punctuationCharacters)
-		#endif
-	}
-	
-	/// Returns true iff `self` is a-z or A-Z.
-	@available(*, deprecated, message: "Use c.isASCII && c.isLetter instead.")
-	public var isASCIILetter: Bool {
-		#if swift(>=5.0)
-			return self.isASCII && self.isLetter
-		#else
-			return self.isLowercaseASCIILetter || self.isUppercaseASCIILetter
-		#endif
-	}
-	
-	/// Returns true iff `self` is 0-9.
-	@available(*, deprecated, message: "Use c.isASCII && c.isNumber instead.")
-	public var isASCIINumber: Bool {
-		#if swift(>=5.0)
-			return self.isASCII && self.isNumber
-		#else
-			if !self.isASCII {
-				return false
-			}
-			return self.unicodeScalarValue >= Character("0").unicodeScalarValue && self.unicodeScalarValue <= Character("9").unicodeScalarValue
-		#endif
-	}
-	
-	/// Returns true iff `self` is a-z.
-	@available(*, deprecated, message: "Use c.isASCII && c.isLetter && c.isLowercase instead.")
-	public var isLowercaseASCIILetter: Bool {
-		#if swift(>=5.0)
-			return self.isASCII && self.isLetter && self.isLowercase
-		#else
-			if !self.isASCII {
-				return false
-			}
-			return self.unicodeScalarValue >= Character("a").unicodeScalarValue && self.unicodeScalarValue <= Character("z").unicodeScalarValue
-		#endif
+	/// Returns a random letter character (a-Z).
+	public static var randomLetterOrNumberCharacter: Character {
+		if XURandomGenerator.shared.randomBoolean {
+			return self.randomLetterCharacter
+		}
+		
+		return self.randomCharacter(in: 0x30 ..< 0x3A)
 	}
 	
 	/// Returns true if the character is a member of character set.
@@ -103,32 +57,9 @@ extension Character {
 		return characterSet.contains(scalar)
 	}
 	
-	/// Returns true iff `self` is A-Z.
-	@available(*, deprecated, message: "Use c.isASCII && c.isLetter && c.isUppercase instead.")
-	public var isUppercaseASCIILetter: Bool {
-		#if swift(>=5.0)
-			return self.isASCII && self.isLetter && self.isUppercase
-		#else
-			if !self.isASCII {
-				return false
-			}
-			return self.unicodeScalarValue >= Character("A").unicodeScalarValue && self.unicodeScalarValue <= Character("Z").unicodeScalarValue
-		#endif
-	}
-	
 	public init(_ byte: UInt8) {
 		self.init(UnicodeScalar(UInt32(byte))!)
 	}
-	
-	#if swift(>=5.0)
-	#else
-	/// Returns the value of the first character when viewed in UTF8. Note that 
-	/// if the character requires multiple bytes for representation in UTF8, then
-	/// only the first byte is returned.
-	public var asciiValue: UInt8 {
-		return String(self).utf8.first!
-	}
-	#endif
 
 	/// Returns the value of the character as viewed in UTF16. Note that
 	/// if the character requires multiple UInt16 for representation in UTF16, then

@@ -125,11 +125,9 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		let panel = NSPanel(contentRect: CGRect(x: 0.0, y: 0.0, width: self.searchResultsWidth, height: 200.0), styleMask: [.borderless], backing: .buffered, defer: true)
 		panel.contentView = self.searchResultsScrollView
 		
-		if #available(macOS 11.0, *) {
-			panel.contentView!.wantsLayer = true
-			let layer = panel.contentView!.layer
-			layer!.cornerRadius = 5.0
-		}
+		panel.contentView!.wantsLayer = true
+		let layer = panel.contentView!.layer
+		layer!.cornerRadius = 5.0
 		
 		panel.hasShadow = true
 		panel.hidesOnDeactivate = false
@@ -145,9 +143,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 		tableView.headerView = nil
 		tableView.usesAlternatingRowBackgroundColors = true
 		
-		if #available(macOS 11.0, *) {
-			tableView.style = .fullWidth
-		}
+		tableView.style = .fullWidth
 		
 		tableView.addTableColumn(NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "com.charliemonroe.XUSearchFieldWithResults")))
 		tableView.columnAutoresizingStyle = .firstColumnOnlyAutoresizingStyle
@@ -174,9 +170,7 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			self.resultsDelegate?.searchField(self, heightOfRowFor: $0) ?? 0.0
 		}) - 1.0
 		
-		if #available(macOS 11.0, *) {
-			height += 1.0
-		}
+		height += 1.0
 			
 		windowFrame.size.height = height
 		windowFrame.size.width = self.searchResultsWidth
@@ -218,8 +212,8 @@ public final class XUSearchFieldWithResults: NSSearchField {
 			
 			self.progressIndicator.startAnimation(nil)
 			
-			self.resultsDelegate?.searchField(self, didChangeQuery: _searchString, completionHandler: { (results) in
-				DispatchQueue.main.syncOrNow {
+			self.resultsDelegate?.searchField(self, didChangeQuery: _searchString, completionHandler: { results in
+				DispatchQueue.onMain {
 					self.progressIndicator.stopAnimation(nil)
 					
 					if self._searchString != actualSearchString {

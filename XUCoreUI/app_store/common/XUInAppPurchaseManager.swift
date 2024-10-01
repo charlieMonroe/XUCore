@@ -188,9 +188,9 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			switch transaction.transactionState {
 				case SKPaymentTransactionState.failed:
 					if let error = transaction.error {
-						DispatchQueue.main.syncOrNow(execute: { () -> Void in
+						DispatchQueue.onMain {
 							self.delegate.inAppPurchaseManager(self, failedToPurchaseProductWithIdentifier: purchasedProductIdentifier, error: error)
-						})
+						}
 					}
 					SKPaymentQueue.default().finishTransaction(transaction)
 					break
@@ -207,7 +207,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 					
 					SKPaymentQueue.default().finishTransaction(transaction)
 					if transaction.transactionState != SKPaymentTransactionState.restored {
-						DispatchQueue.main.syncOrNow {
+						DispatchQueue.onMain {
 							self.delegate.inAppPurchaseManager(self, didPurchaseProductWithIdentifier: purchasedProductIdentifier)
 						}
 					}
@@ -219,7 +219,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		
 		self.save()
 		
-		DispatchQueue.main.syncOrNow {
+		DispatchQueue.onMain {
 			NotificationCenter.default.post(name: .purchasesDidChangeNotification, object: self)
 		}
 	}
@@ -228,7 +228,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
 		XULog("Restoration failed with an error \(error)")
 		
-		DispatchQueue.main.syncOrNow { () -> Void in
+		DispatchQueue.onMain {
 			self.delegate.inAppPurchaseManager(self, failedToRestorePurchasesWithError: error as NSError)
 		}
 	}
@@ -236,7 +236,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 	public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
 		XULog("Finished restoration.")
 		
-		DispatchQueue.main.syncOrNow { () -> Void in
+		DispatchQueue.onMain {
 			self.delegate.inAppPurchaseManagerDidRestorePurchases(self)
 		}
 	}
@@ -289,7 +289,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 		
 		isLoadingProducts = false
 		
-		DispatchQueue.main.syncOrNow {
+		DispatchQueue.onMain {
 			self.delegate.inAppPurchaseManager(self, failedToLoadInAppPurchasesWithError: error)
 		}
 	}
@@ -307,7 +307,7 @@ public final class XUInAppPurchaseManager: NSObject, SKPaymentTransactionObserve
 			return identifier + ProcessInfo.processInfo.processName.md5Digest.md5Digest
 		}
 		
-		XUPreferences.shared.perform { (prefs) in
+		XUPreferences.shared.perform { prefs in
 			prefs.inAppPurchaseIndentifiers = hashedIdentifiers
 		}
 		

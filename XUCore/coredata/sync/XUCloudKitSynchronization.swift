@@ -118,7 +118,7 @@ internal final class XUCloudKitSynchronization {
 				
 				XUExceptionCatcher.perform({
 					obj.setValue(finalValue, forKey: key)
-				}, withCatchHandler: { (exception) in
+				}, withCatchHandler: { exception in
 					XULog("Failed setting \(value) for key \(key) on \(change.insertedEntityName) - \(exception).")
 				}, andFinallyBlock: {
 					obj.isApplyingSyncChange = false
@@ -171,7 +171,7 @@ internal final class XUCloudKitSynchronization {
 		
 		for device in _devices {
 			if let change = changeSets.reversed().first(where: { $0.deviceID == device.uuid }) {
-				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+				XUPreferences.shared.perform(andSynchronize: { prefs in
 					prefs.setTimestampOfLastSynchronization(change.timestamp.timeIntervalSinceReferenceDate, with: device.uuid, ofDocumentWithIdentifier: self.documentManager.documentID)
 				})
 			}
@@ -253,7 +253,7 @@ internal final class XUCloudKitSynchronization {
 				self._downloadChangesFromDevice(at: index + 1)
 			}
 		}
-		operation.recordFetchedBlock = { (record) in
+		operation.recordFetchedBlock = { record in
 			fetchCount += 1
 			
 			if let change = ChangeSet(record: record) {
@@ -339,7 +339,7 @@ internal final class XUCloudKitSynchronization {
 			XULog("Uploaded pending change \(pendingChange.changeSet.timestamp) for \(self.documentManager.documentID)")
 			
 			let prefs = XUPreferences.shared
-			prefs.perform(andSynchronize: { (prefs) in
+			prefs.perform(andSynchronize: { prefs in
 				var dataList = prefs.pendingSynchronizationChanges(for: self.documentManager.documentID).map({ $0.data })
 				if let index = dataList.firstIndex(of: pendingChange.data) {
 					dataList.remove(at: index)

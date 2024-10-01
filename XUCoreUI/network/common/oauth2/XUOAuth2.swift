@@ -236,7 +236,7 @@ private extension XUPreferences.Key {
 public final class XUOAuth2Client {
 	
 	/// A particular account.
-	public final class Account: XUDownloadCenterObserver {
+	public final class Account: XUPointerEquatable, XUDownloadCenterObserver {
 		
 		private struct AccountKeys {
 			static let identifierKey: String = "identifier"
@@ -287,7 +287,6 @@ public final class XUOAuth2Client {
 		/// Expiration date of the token.
 		public private(set) var tokenExpirationDate: Date
 		
-		
 		public var dictionaryRepresentation: XUJSONDictionary {
 			return [
 				AccountKeys.identifierKey: self.identifier as AnyObject,
@@ -319,7 +318,7 @@ public final class XUOAuth2Client {
 			}
 			
 			let refreshToken = keychain.password(forUsername: identifier + "_refresh", inAccount: client.configuration.name)
-			if refreshToken == nil && !client.configuration.tokenNeverExpires {
+			if refreshToken == nil, !client.configuration.tokenNeverExpires {
 				return nil
 			}
 			
@@ -359,14 +358,14 @@ public final class XUOAuth2Client {
 				url = url.updatingQuery(to: query)
 			}
 			
-			guard let obj = try? self.client.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { (request) in
+			guard let obj = try? self.client.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { request in
 				request.setBasicAuthentication(user: self.client.configuration.clientID, password: self.client.configuration.secret)
-				request.acceptType = URLRequest.ContentType.json
+				request.acceptType = .json
 				
 				switch self.client.configuration.payloadFormat {
 				case .wwwForm:
 					request.contentType = .wwwForm
-					request.httpBody = postDict.urlQueryString.data(using: String.Encoding.utf8)
+					request.httpBody = postDict.urlQueryString.data(using: .utf8)
 				case .json:
 					request.contentType = .json
 					request.setJSONBody(postDict)
@@ -516,6 +515,7 @@ public final class XUOAuth2Client {
 	private func _finishAuthorization(withCode code: String) {
 		let postDict: [String : String] = [
 			"clientID": self.configuration.clientID,
+			"client_id": self.configuration.clientID,
 			"client_secret": self.configuration.secret,
 			"grant_type": "authorization_code",
 			"code": code,
@@ -530,7 +530,7 @@ public final class XUOAuth2Client {
 			url = url.updatingQuery(to: query)
 		}
 		
-		guard let obj = try? self.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { (request) in
+		guard let obj = try? self.downloadCenter.downloadJSONDictionary(at: url, requestModifier: { request in
 			request.setBasicAuthentication(user: self.configuration.clientID, password: self.configuration.secret)
 			
 			switch self.configuration.payloadFormat {
@@ -544,15 +544,16 @@ public final class XUOAuth2Client {
 				break
 			}
 			
-			request.acceptType = URLRequest.ContentType.json
-			request["Cookie"] = nil
+			request.acceptType = .json
+			request.httpShouldHandleCookies = false
+			request.cookies = nil
 			request.httpMethod = "POST"
 			
 			for (key, value) in self.configuration.additionalHTTPHeaders {
 				request[key] = value
 			}
 		}) else {
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -563,7 +564,7 @@ public final class XUOAuth2Client {
 		guard (obj["token_type"] as? String)?.lowercased() == "bearer" else {
 			XULog("Token type is not bearer \(obj).")
 			
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				self._authorizationController!.close(withResult: .error(.invalidTokenType))
 				self._authorizationController = nil
 			}
@@ -573,7 +574,7 @@ public final class XUOAuth2Client {
 		guard let accessToken = obj["access_token"] as? String else {
 			XULog("No access token in \(obj).")
 			
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -584,7 +585,7 @@ public final class XUOAuth2Client {
 		if !self.configuration.tokenNeverExpires, refreshToken == nil {
 			XULog("No refresh token in \(obj).")
 			
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				self._authorizationController!.close(withResult: .error(.invalidAuthorizationResponse))
 				self._authorizationController = nil
 			}
@@ -598,7 +599,7 @@ public final class XUOAuth2Client {
 			expiresInSeconds = XUTimeInterval.day * 14.0
 		}
 		
-		DispatchQueue.main.syncOrNow {
+		DispatchQueue.onMain {
 			let account = Account(client: self, accessToken: accessToken, refreshToken: refreshToken, andExpirationDate: Date(timeIntervalSinceNow: expiresInSeconds))
 			self.accounts.append(account)
 			

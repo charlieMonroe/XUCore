@@ -211,7 +211,7 @@ public final class XULocalizationCenter {
 		
 		defs.set(languages, forKey: "AppleLanguages")
 		
-		XUPreferences.shared.perform { (prefs) in
+		XUPreferences.shared.perform { prefs in
 			prefs.languageIdentifier = identifier
 		}
 		

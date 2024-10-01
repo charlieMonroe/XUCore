@@ -87,15 +87,7 @@ public enum XUFontWeight: Int {
 }
 
 public extension XUFont {
-	
-	/// Returns system font of size with a particular weight. Since the system font
-	/// should include all weights, the returned value is IUO, instead of a pure
-	/// optional.
-	@available(*, deprecated, message: "Use regular methods.")
-	class func systemFont(ofSize pointSize: CGFloat, withWeight weight: XUFontWeight) -> XUFont! {
-		return self.systemFont(ofSize: pointSize, weight: XUFont.Weight(rawValue: weight.value))
-	}
-	
+		
 	/// Returns the same font with bold trait.
 	var boldFont: XUFont? {
 		#if os(iOS)

@@ -55,7 +55,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 		UIView.animate(withDuration: 0.3, animations: {
 			self._backgroundControl.alpha = 0.0
 			self._pickerEnclosingView.frame.origin.y += self._pickerEnclosingView.frame.height
-		}) { (_) in
+		}) { _ in
 			self.removeFromParent()
 			self.view.removeFromSuperview()
 			

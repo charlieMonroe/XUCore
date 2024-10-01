@@ -40,7 +40,7 @@ extension UITextField {
 	}
 }
 
-extension UIView: XULocalizableUIElement {
+extension UIView: @retroactive XULocalizableUIElement {
 		
 	@objc public func localize(from bundle: Bundle = Bundle.main) {
 		for view in self.subviews {

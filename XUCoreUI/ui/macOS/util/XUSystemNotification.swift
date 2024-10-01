@@ -54,13 +54,9 @@ public struct XUSystemNotification {
 	public let subtitle: String?
 	
 	public init(icon: NSImage, message: String, subtitle: String? = nil, identifier: String = UUID().uuidString) {
-		if #available(macOS 11.0, *) {
-			let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
-			if let image = icon.withSymbolConfiguration(configuration) {
-				self.icon = image
-			} else {
-				self.icon = icon
-			}
+		let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
+		if let image = icon.withSymbolConfiguration(configuration) {
+			self.icon = image
 		} else {
 			self.icon = icon
 		}
@@ -73,14 +69,10 @@ public struct XUSystemNotification {
 	/// Uses a checkmark image that is bundled with XUCore.
 	public init(confirmationMessage: String, subtitle: String? = nil, identifier: String = UUID().uuidString) {
 		let icon: NSImage
-		if #available(macOS 11.0, *) {
-			let image = NSImage(systemSymbolName: "checkmark.circle", accessibilityDescription: nil)!
-			
-			let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
-			icon = image.withSymbolConfiguration(configuration)!
-		} else {
-			icon = Bundle.coreUI.image(forResource: "Checkmark")!
-		}
+		let image = NSImage(systemSymbolName: "checkmark.circle", accessibilityDescription: nil)!
+		
+		let configuration = NSImage.SymbolConfiguration(pointSize: 48.0, weight: .medium)
+		icon = image.withSymbolConfiguration(configuration)!
 		
 		self.init(icon: icon, message: confirmationMessage, subtitle: subtitle, identifier: identifier)
 	}
@@ -122,17 +114,11 @@ public final class XUSystemNotificationCenter {
 		var isCapsule: Bool {
 			switch self {
 			case .system(_):
-				if #available(macOS 11, *) {
-					return true
-				}
-				return false
+				return true
 			case .custom(_):
 				return false
 			case .progress(message: _):
-				if #available(macOS 11, *) {
-					return true
-				}
-				return false
+				return true
 			}
 		}
 		
@@ -390,7 +376,7 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 
 			window.bottomLayoutConstraint?.constant = 0.0
 
-			if self.notification.isCapsule, #available(macOS 11.0, *) {
+			if self.notification.isCapsule {
 				let indicator = NSProgressIndicator()
 				indicator.style = .spinning
 				indicator.controlSize = .regular

@@ -32,7 +32,7 @@ extension Bundle {
 			_ = HelpBookManager.shared
 		#endif
 		
-		XUPreferences.shared.perform { (prefs) in
+		XUPreferences.shared.perform { prefs in
 			prefs.launchCount += 1
 			
 			if prefs.firstInstallationDate == nil {

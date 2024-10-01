@@ -147,7 +147,7 @@ public final class XUBetaExpirationHandler {
 		}
 		
 		// First use with this build number.
-		XUPreferences.shared.perform { (prefs) in
+		XUPreferences.shared.perform { prefs in
 			prefs.betaDidShowExpirationWarning = false
 			prefs.lastBetaBuildNumber = currentBuildNumber
 			prefs.lastBetaTimestamp = XUAppSetup.buildDate ?? Date()

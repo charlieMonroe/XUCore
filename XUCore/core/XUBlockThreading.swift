@@ -8,18 +8,6 @@
 
 import Foundation
 
-
-/// Performs the block on main thread asynchronously. If the current thread already
-/// is main thread, the block is performed immediately, preventing dead-lock.
-@available(*, deprecated)
-public func XU_PERFORM_BLOCK_ON_MAIN_THREAD_ASYNC(_ block: @escaping () -> Void) {
-	if Thread.isMainThread {
-		block()
-	} else {
-		DispatchQueue.main.async(execute: block)
-	}
-}
-
 extension DispatchTime {
 	
 	/// Returns DispatchTime in seconds.
@@ -31,25 +19,23 @@ extension DispatchTime {
 
 extension DispatchQueue {
 	
-	/// Equivalent to `DispatchQueue.main.syncOrNow`, but more expressive.
+	/// Performs the closure synchronously or now in case the current thread is
+	/// main and it is called on a main thread. This prevents deadlocks.
 	public static func onMain<T>(execute closure: () -> T) -> T {
-		DispatchQueue.main.syncOrNow(execute: closure)
+		if Thread.isMainThread {
+			return closure()
+		} else {
+			return DispatchQueue.main.sync(execute: closure)
+		}
 	}
 	
 	/// Performs the closure synchronously or now in case the current thread is
 	/// main and it is called on a main thread. This prevents deadlocks.
 	///
 	/// Deprecated.
+	@available(*, deprecated, renamed: "onMain")
 	public func syncOrNow<T>(execute closure: () -> T) -> T {
-		if Thread.isMainThread && self == .main {
-			return closure()
-		} else {
-			var result: T!
-			self.sync(execute: {
-				result = closure()
-			})
-			return result
-		}
+		DispatchQueue.onMain(execute: closure)
 	}
 	
 }

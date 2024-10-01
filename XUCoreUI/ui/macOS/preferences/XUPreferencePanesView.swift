@@ -56,41 +56,26 @@ internal class XUPreferencePanesView: NSView {
 		var y: CGFloat = 0.0
 		for (index, height) in _sectionHeights.enumerated() {
 			if index % 2 != 0 {
-				if #available(macOS 11, *) {
-					if XUAppSetup.isDarkModeEnabled {
-						NSColor(white: 0.27, alpha: 0.25).set()
-					} else {
-						NSColor(white: 0.8667, alpha: 0.25).set()
-					}
+				if XUAppSetup.isDarkModeEnabled {
+					NSColor(white: 0.27, alpha: 0.25).set()
 				} else {
-					if XUAppSetup.isDarkModeEnabled {
-						NSColor(white: 0.27, alpha: 1.0).set()
-					} else {
-						NSColor(white: 0.8667, alpha: 1.0).set()
-					}
+					NSColor(white: 0.8667, alpha: 0.25).set()
 				}
 				NSBezierPath(rect: CGRect(x: 0.0, y: y, width: XUPreferencePanesView.viewWidth, height: height)).fill()
 			}
-
+			
 			y += height
-
+			
 			if index == _sectionHeights.count - 1 {
 				break
 			}
-
-			if #available(macOS 11, *) {
-				if XUAppSetup.isDarkModeEnabled {
-					NSColor(white: 0.33, alpha: 0.8).set()
-				} else {
-					NSColor(white: 0.5, alpha: 0.2).set()
-				}
+			
+			if XUAppSetup.isDarkModeEnabled {
+				NSColor(white: 0.33, alpha: 0.8).set()
 			} else {
-				if XUAppSetup.isDarkModeEnabled {
-					NSColor(white: 0.33, alpha: 1.0).set()
-				} else {
-					NSColor(white: 0.0, alpha: 0.2).set()
-				}
+				NSColor(white: 0.5, alpha: 0.2).set()
 			}
+			
 			NSBezierPath(rect: CGRect(x: 0.0, y: y - 1.0, width: XUPreferencePanesView.viewWidth, height: 1.0)).fill()
 		}
 	}

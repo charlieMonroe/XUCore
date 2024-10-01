@@ -153,13 +153,13 @@ extension String {
 	/// This converts string to UInt as a fourCharCode
 	public var fourCharCodeValue: Int {
 		var result: Int = 0
-		if let data = self.data(using: String.Encoding.macOSRoman) {
-			data.withUnsafeBytes({ (rawBytes) in
+		if let data = self.data(using: .macOSRoman) {
+			data.withUnsafeBytes { rawBytes in
 				let bytes = rawBytes.bindMemory(to: UInt8.self)
 				for i in 0 ..< data.count {
 					result = result << 8 + Int(bytes[i])
 				}
-			})
+			}
 		}
 		return result
 	}
@@ -558,69 +558,4 @@ extension String {
 
 		return Int(numberString) ?? 0
 	}
-}
-
-/// Deprecated.
-extension String {
-
-	/// Returns the first character or \0 if the string is empty.
-	@available(*, deprecated)
-	public var firstCharacter: Character {
-		return self.first ?? Character(UInt8(0))
-	}
-	
-	/// Returns first line of string. Always non-nil
-	@available(*, deprecated)
-	public var firstLine: String {
-		return self.components(separatedBy: CharacterSet.newlines)[0]
-	}
-	
-	@available(*, deprecated)
-	public init?(data: Data?) {
-		guard let data = data else {
-			return nil
-		}
-		
-		self.init(data: data)
-	}
-	
-	/// Returns the last character or \0 if the string is empty.
-	@available(*, deprecated)
-	public var lastCharacter: Character {
-		return self.last ?? Character(UInt8(0))
-	}
-
-	/// Computes SHA1 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	@available(*, deprecated, renamed: "utf8Data.sha1Digest")
-	public var sha1Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha1Digest.hexEncodedString
-	}
-	
-	/// Computes SHA256 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	@available(*, deprecated, renamed: "utf8Data.sha256Digest")
-	public var sha256Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha256Digest.hexEncodedString
-	}
-	
-	/// Computes SHA512 digest of self. Will call fatalError if the string can't be
-	/// represented in UTF8.
-	@available(*, deprecated, renamed: "utf8Data.sha512Digest")
-	public var sha512Digest: String {
-		guard let data = self.data(using: String.Encoding.utf8) else {
-			fatalError("Can't represent string as UTF8 - \(self).")
-		}
-		
-		return data.sha512Digest.hexEncodedString
-	}
-	
 }

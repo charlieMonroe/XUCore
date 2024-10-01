@@ -137,7 +137,7 @@ public class XUMessageCenter {
 			
 			// Not yet - it will be in 24 hours, though.
 			let maxVersion = message.maximumBuildNumber
-			XUPreferences.shared.perform(andSynchronize: { (prefs) in
+			XUPreferences.shared.perform(andSynchronize: { prefs in
 				prefs.isAppBlocked = true
 				prefs.appBlockedDate = Date()
 				prefs.appBlockedMaxVersion = maxVersion
@@ -146,7 +146,7 @@ public class XUMessageCenter {
 			let appName = ProcessInfo.processInfo.processName
 			let title = Localized("%@ will keep on working the next 24 hours, after which its functionality will be blocked. Please update %@ in order to keep it working.", appName, appName, in: .core)
 			
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				#if canImport(UIKit)
 					let controller = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 					controller.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: nil))
@@ -301,7 +301,7 @@ public class XUMessageCenter {
 	
 	private func _markMessageAsRead(_ message: Message) {
 		// Save the message ID
-		XUPreferences.shared.perform(andSynchronize: { (prefs) in
+		XUPreferences.shared.perform(andSynchronize: { prefs in
 			prefs.lastMessageID = message.id
 		})
 	}
@@ -334,7 +334,7 @@ public class XUMessageCenter {
 			if self.isAppBlocked, maxVersion < appBuildNumber {
 				self.isAppBlocked = false
 				
-				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+				XUPreferences.shared.perform(andSynchronize: { prefs in
 					prefs.isAppBlocked = false
 				})
 			}
@@ -389,7 +389,7 @@ public class XUMessageCenter {
 				continue
 			}
 			
-			DispatchQueue.main.syncOrNow {
+			DispatchQueue.onMain {
 				self._showMessage(with: message)
 			}
 			

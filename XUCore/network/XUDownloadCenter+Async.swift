@@ -8,11 +8,12 @@
 
 import Foundation
 
-@available(macOS 10.15, iOS 13.0, *)
+#if os(macOS)
+
+@available(macOS 10.15, *)
 private extension URLSession {
 
 	@available(macOS, deprecated: 12.0, message: "Use the built-in API instead")
-	@available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
 	func data(for request: URLRequest) async throws -> (Data, URLResponse) {
 		try await withCheckedThrowingContinuation { continuation in
 			let task = self.dataTask(with: request) { data, response, error in
@@ -30,7 +31,8 @@ private extension URLSession {
 
 }
 
-@available(macOS 10.15, iOS 13.0, *)
+#endif
+
 extension XUDownloadCenter {
 
 	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) async throws -> Data {

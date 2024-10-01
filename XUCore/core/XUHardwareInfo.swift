@@ -54,7 +54,7 @@ public struct XUHardwareInfo {
 		guard let generatedSerial = XUPreferences.shared.generatedSerialNumber else {
 			let newSerial = "XUGeneratedSerialNumber_" + UUID().uuidString.md5Digest
 			
-			XUPreferences.shared.perform { (prefs) in
+			XUPreferences.shared.perform { prefs in
 				prefs.generatedSerialNumber = newSerial
 			}
 			
@@ -70,17 +70,10 @@ public struct XUHardwareInfo {
 			// We're not running anything else on iOS at this moment.
 			return .arm64
 		#else
-			let armArchitecture: Int
-			if #available(macOS 11.0, macCatalyst 14.0, iOS 14.0, *) {
-				armArchitecture = NSBundleExecutableArchitectureARM64
-			} else {
-				armArchitecture = -1
-			}
-
 			switch NSRunningApplication.current.executableArchitecture {
 			case NSBundleExecutableArchitectureX86_64:
 				return .x64
-			case armArchitecture:
+			case NSBundleExecutableArchitectureARM64:
 				return .arm64
 			default:
 				return .unknown

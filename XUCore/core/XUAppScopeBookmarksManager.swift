@@ -26,7 +26,7 @@ public final class XUAppScopeBookmarksManager {
 	@discardableResult
 	public func setURL(_ url: URL, forKey defaultsKey: XUPreferences.Key, automaticallyManageSecurityScope: Bool = false) -> Bool {
 		var newURL = url
-
+		
 		// Make sure the path is different from the current one -> otherwise
 		// we probably haven't opened the open dialog -> will fail
 		if let savedURL = self.url(forKey: defaultsKey) {
@@ -39,38 +39,42 @@ public final class XUAppScopeBookmarksManager {
 			}
 		}
 		
-		#if os(iOS)
-			XUPreferences.shared.perform(andSynchronize: { (prefs) in
-				prefs.set(value: url.absoluteString, forKey: defaultsKey)
-			})
-		#else
-			_ = newURL.startAccessingSecurityScopedResource()
-			
-			let bookmarkData: Data
-			do {
-				bookmarkData = try newURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: [], relativeTo: nil)
-			} catch {
-				XULog("Failed to create bookmark data for URL \(newURL) - \(error)")
-				return false
-			}
-			
-			XULog("Saving bookmark data for path \(newURL.path) - bookmark data length = \(bookmarkData.count)")
-			
-			XUPreferences.shared.perform(andSynchronize: { (prefs) in
-				prefs.set(value: bookmarkData, forKey: defaultsKey)
-			})
-			
-			newURL.stopAccessingSecurityScopedResource()
-			
-			var isStale: Bool = false
-			do {
-				newURL = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-			} catch _ { }
+		_ = newURL.startAccessingSecurityScopedResource()
 		
-			if automaticallyManageSecurityScope {
-				_ = newURL.startAccessingSecurityScopedResource()
-			}
+		let creationOptions: URL.BookmarkCreationOptions
+		let resolutionOptions: URL.BookmarkResolutionOptions
+		#if os(macOS)
+		creationOptions = .withSecurityScope
+		resolutionOptions = .withSecurityScope
+		#else
+		creationOptions = []
+		resolutionOptions = []
 		#endif
+		
+		let bookmarkData: Data
+		do {
+			bookmarkData = try newURL.bookmarkData(options: creationOptions, includingResourceValuesForKeys: [], relativeTo: nil)
+		} catch {
+			XULog("Failed to create bookmark data for URL \(newURL) - \(error)")
+			return false
+		}
+		
+		XULog("Saving bookmark data for path \(newURL.path) - bookmark data length = \(bookmarkData.count)")
+		
+		XUPreferences.shared.perform(andSynchronize: { prefs in
+			prefs.set(value: bookmarkData, forKey: defaultsKey)
+		})
+		
+		newURL.stopAccessingSecurityScopedResource()
+		
+		var isStale: Bool = false
+		do {
+			newURL = try URL(resolvingBookmarkData: bookmarkData, options: resolutionOptions, relativeTo: nil, bookmarkDataIsStale: &isStale)
+		} catch _ { }
+		
+		if automaticallyManageSecurityScope {
+			_ = newURL.startAccessingSecurityScopedResource()
+		}
 		
 		_cache[defaultsKey] = newURL
 		return true
@@ -80,7 +84,7 @@ public final class XUAppScopeBookmarksManager {
 	public func removeURL(forKey defaultsKey: XUPreferences.Key) {
 		_cache.removeValue(forKey: defaultsKey)
 		
-		XUPreferences.shared.perform(andSynchronize: { (prefs) in
+		XUPreferences.shared.perform(andSynchronize: { prefs in
 			prefs.set(value: nil, forKey: defaultsKey)
 		})
 	}
@@ -93,28 +97,29 @@ public final class XUAppScopeBookmarksManager {
 		}
 		
 		let result: URL?
-		#if os(iOS)
-			guard let absoluteURLString: String = XUPreferences.shared.value(for: defaultsKey) else {
-				return nil
-			}
-			result = URL(string: absoluteURLString)
+		guard let bookmarkData: Data = XUPreferences.shared.value(for: defaultsKey) else {
+			return nil
+		}
+		
+		let creationOptions: URL.BookmarkCreationOptions
+		let resolutionOptions: URL.BookmarkResolutionOptions
+		#if os(macOS)
+		resolutionOptions = [.withSecurityScope, .withoutMounting]
 		#else
-			guard let bookmarkData: Data = XUPreferences.shared.value(for: defaultsKey) else {
-				return nil
-			}
-		
-			do {
-				var isStale: Bool = false
-				result = try URL(resolvingBookmarkData: bookmarkData, options: [.withSecurityScope, .withoutMounting], relativeTo: nil, bookmarkDataIsStale: &isStale)
-			} catch let error {
-				XULog("Failed to resolve bookmark data for \(defaultsKey) - error \(error).")
-				result = nil
-			}
-		
-			_ = result?.startAccessingSecurityScopedResource()
-			
-			XULog("Resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
+		resolutionOptions = [.withoutMounting]
 		#endif
+		
+		do {
+			var isStale: Bool = false
+			result = try URL(resolvingBookmarkData: bookmarkData, options: resolutionOptions, relativeTo: nil, bookmarkDataIsStale: &isStale)
+		} catch let error {
+			XULog("Failed to resolve bookmark data for \(defaultsKey) - error \(error).")
+			result = nil
+		}
+		
+		_ = result?.startAccessingSecurityScopedResource()
+		
+		XULog("Resolved bookmark data (length: \(bookmarkData.count)) to \(result.descriptionWithDefaultValue())")
 		
 		if result != nil {
 			_cache[defaultsKey] = result

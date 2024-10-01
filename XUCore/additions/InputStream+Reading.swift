@@ -13,7 +13,7 @@ public extension InputStream {
 	/// Reads Int-typed value from stream.
 	func read<T : FixedWidthInteger>() -> T? {
 		var buffer: T = 0
-		let n = withUnsafeMutablePointer(to: &buffer) { (p) in
+		let n = withUnsafeMutablePointer(to: &buffer) { p in
 			p.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size, { (ptr) -> Int in
 				self.read(ptr, maxLength: MemoryLayout<T>.size)
 			})

@@ -56,12 +56,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// Factory method. Since the NSWindowController's nib-based initializer
 	/// is not designated, this is a workaround.
 	open class func controller(withSections sections: [XUPreferencePanesSection]) -> Self {
-		let name: String
-		if #available(macOS 11, *) {
-			name = "XUPreferencePanesWindowControllerBigSur"
-		} else {
-			name = "XUPreferencePanesWindowController"
-		}
+		let name = "XUPreferencePanesWindowControllerBigSur"
 		let controller = self.init(windowNibName: name)
 		controller.sections = sections
 		return controller
@@ -126,42 +121,24 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	private func _setMainWindowContentView(_ view: NSView, supportsDynamicSize: Bool) {
 		let preferencesWindow = self.window!
 		
-		if #available(macOS 11.0, *) {
-			view.translatesAutoresizingMaskIntoConstraints = false
-			view.frame.size.width = _scrollView.frame.width
-			
-			NSLayoutConstraint.deactivate(_layoutConstraints)
-			
-			var height = supportsDynamicSize ? (_scrollView.frame.height - _scrollView.contentInsets.top) : view.frame.height
-			if height < view.frame.height {
-				height = view.frame.height
-			}
-			
-			let widthConstraint = NSLayoutConstraint(attribute: .width, item: view, constant: _scrollView.frame.width)
-			let heightConstraint = NSLayoutConstraint(attribute: .height, item: view, constant: height, relation: .greaterThanOrEqual)
-			
-			_layoutConstraints = [widthConstraint, heightConstraint]
-			view.addConstraints(_layoutConstraints)
-			
-			_scrollView.documentView = view
-			_scrollView.contentView.scroll(to: CGPoint(x: 0.0, y: -_scrollView.contentInsets.top))
-		} else {
-			if _currentView != view {
-				var winFrame = preferencesWindow.frame
-				let contSize = preferencesWindow.contentView!.bounds.size
-				
-				winFrame.size.width = XUPreferencePanesView.viewWidth
-				
-				let yDelta = contSize.height - view.bounds.size.height
-				winFrame.origin.y += yDelta
-				winFrame.size.height -= yDelta
-				
-				NSAnimationContext.beginGrouping()
-				preferencesWindow.animator().contentView = view
-				preferencesWindow.animator().setFrame(winFrame, display: false)
-				NSAnimationContext.endGrouping()
-			}
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.frame.size.width = _scrollView.frame.width
+		
+		NSLayoutConstraint.deactivate(_layoutConstraints)
+		
+		var height = supportsDynamicSize ? (_scrollView.frame.height - _scrollView.contentInsets.top) : view.frame.height
+		if height < view.frame.height {
+			height = view.frame.height
 		}
+		
+		let widthConstraint = NSLayoutConstraint(attribute: .width, item: view, constant: _scrollView.frame.width)
+		let heightConstraint = NSLayoutConstraint(attribute: .height, item: view, constant: height, relation: .greaterThanOrEqual)
+		
+		_layoutConstraints = [widthConstraint, heightConstraint]
+		view.addConstraints(_layoutConstraints)
+		
+		_scrollView.documentView = view
+		_scrollView.contentView.scroll(to: CGPoint(x: 0.0, y: -_scrollView.contentInsets.top))
 		
 		_currentView = view
 		
@@ -251,15 +228,11 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 		self._setMainWindowContentView(paneController.view, supportsDynamicSize: paneController.supportsDynamicSize)
 		
-		if #available(macOS 11.0, *) {
-			if let selection = _arrayController.arrangedObjects_fix.firstIndex(where: { ($0 as? _Pane)?.controller == paneController }) {
-				_tableView.selectRowIndexes(.init(integer: selection), byExtendingSelection: false)
-				_tableView.scrollRowToVisible(selection)
-			}
-			self.window?.subtitle = paneController.paneName
-		} else {
-			_titleViewController.title = paneController.paneName
+		if let selection = _arrayController.arrangedObjects_fix.firstIndex(where: { ($0 as? _Pane)?.controller == paneController }) {
+			_tableView.selectRowIndexes(.init(integer: selection), byExtendingSelection: false)
+			_tableView.scrollRowToVisible(selection)
 		}
+		self.window?.subtitle = paneController.paneName
 		
 		self._setResetButtonHidden(!paneController.supportsReset)
 		
@@ -271,18 +244,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	/// This will cause the controller to display the icon view of all the panes.
 	open func showAllPanes() {
-		if #unavailable(macOS 11.0) {
-			self._setMainWindowContentView(self.allPanesView, supportsDynamicSize: false)
-			_titleViewController.title = Localized("All Preferences", in: .core)
-		
-			self._setResetButtonHidden(true)
-		}
-		
 		self.currentPaneController?.savePreferences()
-		
-		if #unavailable(macOS 11.0) {
-			self.currentPaneController = nil
-		}
 		
 		UserDefaults.standard.synchronize()
 	}
@@ -321,28 +283,15 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 		self.window?.toolbar?.items.compactMap(\.view).forEach({ $0.localize(from: .core) })
 		
-		if #available(macOS 11.0, *) {
-			_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
-			
-			self.window!.toolbar?.insertItem(withItemIdentifier: .sidebarTrackingSeparator, at: 0)
-		} else {
-			self.window!.titleVisibility = .hidden
-			self.window!.addTitlebarAccessoryViewController(_allPanesButtonViewController)
-			self.window!.addTitlebarAccessoryViewController(_titleViewController)
-			self.window!.setContentSize(self.allPanesView.frame.size)
-			self.window!.contentView!.addSubview(self.allPanesView)
-		}
+		_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
+		
+		self.window!.toolbar?.insertItem(withItemIdentifier: .sidebarTrackingSeparator, at: 0)
 		
 		_currentView = self.allPanesView
     }
 	
 	public final override var windowNibPath: String? {
-		let name: String
-		if #available(macOS 11.0, *) {
-			name = "XUPreferencePanesWindowControllerBigSur"
-		} else {
-			name = "XUPreferencePanesWindowController"
-		}
+		let name = "XUPreferencePanesWindowControllerBigSur"
 		return Bundle.coreUI.path(forResource: name, ofType: "nib")
 	}
 	
@@ -486,9 +435,7 @@ private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController
 		_button.setAccessibilityTitle(Localized("Show All", in: .core))
 		_button.setAccessibilityLabel(Localized("Show All", in: .core))
 		
-		if #available(macOS 11.0, *) {
-			_button.showsBorderOnlyWhileMouseInside = true
-		}
+		_button.showsBorderOnlyWhileMouseInside = true
 	}
 	
 	required init?(coder: NSCoder) {
@@ -524,9 +471,7 @@ private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryVi
 		
 		self.loadView() // Required so that _titleLabel is available
 		
-		if #available(macOS 11.0, *) {
-			_titleLabel.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
-		}
+		_titleLabel.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 	}
 	
 	required init?(coder: NSCoder) {

@@ -94,7 +94,7 @@ public class XUCertificateView: NSView {
 	@objc private func _selectCertificate() {
 		let openPanel = NSOpenPanel()
 		openPanel.allowedFileTypes = ["cert"]
-		openPanel.beginSheetModal(for: self.window!, completionHandler: { (response) in
+		openPanel.beginSheetModal(for: self.window!, completionHandler: { response in
 			if response == .cancel {
 				return
 			}

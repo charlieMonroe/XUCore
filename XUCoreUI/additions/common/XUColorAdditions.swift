@@ -94,7 +94,7 @@ extension __XUBridgedColor {
 	/// Creates an image with size that is a swatch of the color.
 	public func swatchImage(with size: CGSize) -> UIImage {
 		let renderer = UIGraphicsImageRenderer(size: size)
-		return renderer.image { (ctx) in
+		return renderer.image { ctx in
 			self.setFill()
 			
 			let bounds = CGRect(origin: .zero, size: size)

@@ -177,7 +177,7 @@ public final class XUDebugLog {
 				NotificationCenter.default.post(name: XUDebugLog.StatusDidChangeNotification, object: nil)
 			}
 			
-			XUPreferences.shared.perform { (prefs) in
+			XUPreferences.shared.perform { prefs in
 				prefs.isLoggingEnabled = newValue
 			}
 		}
@@ -232,7 +232,7 @@ public final class XUDebugLog {
 		if self.isLoggingEnabled, self.logFileURL.fileSize > 50_000_000 {
 			_cachedPreferences = false
 			
-			XUPreferences.shared.perform { (prefs) in
+			XUPreferences.shared.perform { prefs in
 				prefs.isLoggingEnabled = false
 			}
 			

@@ -1,0 +1,61 @@
+/// Phrases that are used in macOS's main menu. These are usually common
+/// to all apps, but they don't localize automatically. Use NSApp.localizeMainMenu()
+/// to use this.
+///
+/// Taken from https://github.com/martnst/localize-mainmenu/
+
+"About <AppName>" = "About <AppName>";
+"Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
+"Bring All to Front" = "Bring All to Front";
+"Capitalize" = "Capitalize";
+"Check Document Now" = "Check Document Now";
+"Check Grammar With Spelling" = "Check Grammar With Spelling";
+"Check Spelling While Typing" = "Check Spelling While Typing";
+"Close" = "Close";
+"Copy" = "Copy";
+"Correct Spelling Automatically" = "Correct Spelling Automatically";
+"Cut" = "Cut";
+"Data Detectors" = "Data Detectors";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"File" = "File";
+"Find and Replace…" = "Find and Replace…";
+"Find Next" = "Find Next";
+"Find Previous" = "Find Previous";
+"Find" = "Find";
+"Help" = "Help";
+"Hide <AppName>" = "Hide <AppName>";
+"Hide Others" = "Hide Others";
+"Jump to Selection" = "Jump to Selection";
+"Make Lower Case" = "Make Lower Case";
+"Make Upper Case" = "Make Upper Case";
+"Minimize" = "Minimize";
+"Open…" = "Open…";
+"Paste and Match Style" = "Paste and Match Style";
+"Paste" = "Paste";
+"Preferences…" = "Preferences…";
+"Quit <AppName>" = "Quit <AppName>";
+"Redo" = "Redo";
+"Select All" = "Select All";
+"Services" = "Services";
+"Show All" = "Show All";
+"Show Spelling and Grammar" = "Show Spelling and Grammar";
+"Show Substitutions" = "Show Substitutions";
+"Smart Copy/Paste" = "Smart Copy/Paste";
+"Smart Dashes" = "Smart Dashes";
+"Smart Links" = "Smart Links";
+"Smart Quotes" = "Smart Quotes";
+"Speech" = "Speech";
+"Spelling and Grammar" = "Spelling and Grammar";
+"Spelling" = "Spelling";
+"Start Speaking" = "Start Speaking";
+"Stop Speaking" = "Stop Speaking";
+"Substitutions" = "Substitutions";
+"Text Replacement" = "Text Replacement";
+"Transformations" = "Transformations";
+"Undo" = "Undo";
+"Use Selection for Find" = "Use Selection for Find";
+"Use Selection for Replace" = "Use Selection for Replace";
+"Window" = "Window";
+"Zoom" = "Zoom";
+"Settings" = "Settings";

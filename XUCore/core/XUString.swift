@@ -138,7 +138,7 @@ public final class XUString: Equatable, CustomDebugStringConvertible, CustomStri
 		let count = data.count
 		
 		var chars = Array<Character>(repeating: 0, count: count)
-		data.withUnsafeBytes { (rawBytes) in
+		data.withUnsafeBytes { rawBytes in
 			let bytes = rawBytes.bindMemory(to: Character.self)
 			for i in 0 ..< count {
 				chars[i] = bytes[i]

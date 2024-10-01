@@ -71,13 +71,13 @@ final public class XUTextPopover: NSObject, NSPopoverDelegate {
 		sender.popoverAction?.action()
 	}
 	
-	public convenience init(text: String, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
+	public convenience init(text: String, from view: NSView, relativeTo rect: CGRect? = nil, preferredEdge: NSRectEdge = .minY) {
 		self.init(text: .plain(text), from: view, relativeTo: rect, preferredEdge: preferredEdge)
 	}
 	
-	public init(text: Text, from view: NSView, relativeTo rect: CGRect, preferredEdge: NSRectEdge) {
+	public init(text: Text, from view: NSView, relativeTo rect: CGRect? = nil, preferredEdge: NSRectEdge = .minY) {
 		self.preferredEdge = preferredEdge
-		self.relativeRect = rect
+		self.relativeRect = rect ?? view.bounds
 		self.text = text
 		self.view = view
 		

@@ -256,7 +256,7 @@ public final class XUJSONDeserializer {
 			}
 			
 			response = .deserializedValue(property: property, value: localResponse.value, error: localResponse.error)
-		}, withCatchHandler: { (exception) in
+		}, withCatchHandler: { exception in
 			self._addLogEntry(.error, objectClass: type(of: object), key: key, additionalInformation: "Failed setting value for key \(key) to property \(property.name) on class \(type(of: object)), exception \(exception)")
 			
 			response = .error

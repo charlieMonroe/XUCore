@@ -144,10 +144,8 @@ public extension URLRequest {
 		public static let `default`: UserAgent = {
 			if #available(macOS 13.0, iOS 15.0, *) {
 				return macOS.Safari16
-			} else if #available(macOS 11.0, *) {
-				return macOS.Safari14
 			} else {
-				return macOS.Safari12
+				return macOS.Safari14
 			}
 		}()
 		

@@ -12,11 +12,7 @@ import Foundation
 extension NSAppearance {
 	
 	public var isDark: Bool {
-		if #available(macOS 10.14, *) {
-			return self.bestMatch(from: [.darkAqua, .vibrantDark]) != nil
-		} else {
-			return self.name == .vibrantDark
-		}
+		return self.bestMatch(from: [.darkAqua, .vibrantDark]) != nil
 	}
 	
 }

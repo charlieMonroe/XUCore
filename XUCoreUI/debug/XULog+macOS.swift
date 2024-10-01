@@ -37,7 +37,12 @@ extension XUDebugLog {
 	public class func openDebugLogInConsole() {
 		self.flushLog()
 		
-		NSWorkspace.shared.open([self.logFileURL], withAppBundleIdentifier: "com.apple.Console", options: .default, additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+		guard let consoleURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Console") else {
+			XULog("Cannot locate Console!")
+			return
+		}
+		
+		NSWorkspace.shared.open([self.logFileURL], withApplicationAt: consoleURL, configuration: NSWorkspace.OpenConfiguration())
 	}
 	
 	/// Activates Finder and selects the debug log file.

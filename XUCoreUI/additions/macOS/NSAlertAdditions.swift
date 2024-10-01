@@ -107,7 +107,7 @@ public extension NSAlert {
 	/// NSAlertFirstButtonReturn button is pressed.
 	func beginSheetModal(withTextField initialValue: String, isSecure: Bool = false, forWindow window: NSWindow, completionHandler: @escaping (StringModalResponse) -> Void) {
 		self._prepareAccessoryTextField(withInitialValue: initialValue, secure: isSecure)
-		self.beginSheetModal(for: window, completionHandler: { (response) in
+		self.beginSheetModal(for: window, completionHandler: { response in
 			if response == NSApplication.ModalResponse.alertFirstButtonReturn {
 				completionHandler(.confirmed((self.accessoryView as! NSTextField).stringValue, response))
 			} else {

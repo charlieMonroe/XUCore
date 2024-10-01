@@ -98,7 +98,7 @@ open class XUDocumentSyncManager {
 		var innerError: NSError?
 		
 		let coordinator = NSFileCoordinator(filePresenter: nil)
-		coordinator.coordinate(readingItemAt: config.accountURL, options: .withoutChanges, error: &error, byAccessor: { (newURL) in
+		coordinator.coordinate(readingItemAt: config.accountURL, options: .withoutChanges, error: &error, byAccessor: { newURL in
 			let infoFileURL = config.accountURL.deletingLastPathComponent().appendingPathComponent("Info.plist")
 			
 			guard let accountDict = NSDictionary(contentsOf: infoFileURL) as? XUJSONDictionary else {
@@ -125,7 +125,7 @@ open class XUDocumentSyncManager {
 				
 				documentURL = localDocumentURL
 				
-				XUPreferences.shared.perform(andSynchronize: { (prefs) in
+				XUPreferences.shared.perform(andSynchronize: { prefs in
 					prefs.setTimestampOfImport(config.lastSync, for: documentID)
 				})
 			} catch let localError as NSError {
@@ -191,7 +191,7 @@ open class XUDocumentSyncManager {
 		var newestComputerID: String?
 		var lastSync: TimeInterval = 0.0
 		
-		coordinator.coordinate(readingItemAt: folderURL, options: .withoutChanges, error:nil, byAccessor: { (newURL) in
+		coordinator.coordinate(readingItemAt: folderURL, options: .withoutChanges, error:nil, byAccessor: { newURL in
 			let contents = FileManager.default.contentsOfDirectory(at: newURL)
 			for computerURL in contents {
 				let computerID = computerURL.lastPathComponent
@@ -275,7 +275,7 @@ open class XUDocumentSyncManager {
 	/// This method is an observer for NSManagedObjectContextWillSaveNotification.
 	@objc private func _createSyncChanges(_ aNotif: Notification) {
 		if !Thread.isMainThread {
-			DispatchQueue.main.syncOrNow { self._createSyncChanges(aNotif) }
+			DispatchQueue.onMain { self._createSyncChanges(aNotif) }
 			return
 		}
 	
@@ -297,7 +297,7 @@ open class XUDocumentSyncManager {
 		XULog("\(self) - created change set \(set.timestamp) with \(changes.count) changes")
 	
 		let encodedSet = try! NSKeyedArchiver.archivedData(withRootObject: set, requiringSecureCoding: true)
-		XUPreferences.shared.perform { (prefs) in
+		XUPreferences.shared.perform { prefs in
 			var data = prefs.pendingSynchronizationChanges(for: self.documentID).map({ $0.data })
 			data.append(encodedSet)
 			prefs.setPendingSynchronizationChanges(data, for: self.documentID)
@@ -401,7 +401,7 @@ open class XUDocumentSyncManager {
 			})
 		#endif
 		
-		let synchronization = XUCloudKitSynchronization(documentManager: self) { (error) in
+		let synchronization = XUCloudKitSynchronization(documentManager: self) { error in
 			self._synchronizationLock.lock()
 			self._isSyncing = false
 			self._synchronizationLock.unlock()
@@ -463,7 +463,7 @@ open class XUDocumentSyncManager {
 			var err: NSError?
 			var innerError: NSError?
 			var success: Bool = true
-			coordinator.coordinate(writingItemAt: entireDocumentFolderURL, options: .forReplacing, error: &err, byAccessor: { (newURL) in
+			coordinator.coordinate(writingItemAt: entireDocumentFolderURL, options: .forReplacing, error: &err, byAccessor: { newURL in
 				let docURL = newURL.appendingPathComponent("Document")
 				
 				_ = try? self.applicationSyncManager.createDirectory(at: docURL)
@@ -505,10 +505,10 @@ open class XUDocumentSyncManager {
 			
 			err = err ?? innerError
 	
-			DispatchQueue.main.syncOrNow(execute: { 
+			DispatchQueue.onMain {
 				completionHandler(success, err)
 				self._isUploadingEntireDocument = false
-			})
+			}
 		}
 	}
 	

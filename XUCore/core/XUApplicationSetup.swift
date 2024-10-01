@@ -197,17 +197,7 @@ open class XUApplicationSetup {
 	/// complicated - edit the scheme of your project and add "--debug" to the
 	/// arguments list to enable it.
 	public let isRunningInDebugMode: Bool
-	
-	#if os(macOS)
-	/// Returns true if we're running Mojave or later and dark mode is enabled.
-	@available(iOS, unavailable)
-	@available(macCatalyst, unavailable)
-	@available(*, deprecated, message: "We no longer support pre-Mojave systems. Use isDarkModeEnabled.")
-	public var isRunningMojaveWithDarkMode: Bool {
-		return self.isDarkModeEnabled
-	}
-	#endif
-	
+		
 	/// An identifier of the app for message center. By default, 
 	/// self.applicationIdentifier is used, but can be customized by defining
 	/// XUMessageCenterAppIdentifier in Info.plist.

@@ -93,7 +93,7 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	public func progressableOperationDidFinish(_ operation: XUProgressableOperation) {
-		DispatchQueue.main.syncOrNow {
+		DispatchQueue.onMain {
 			if self.window!.isSheet {
 				self.window!.sheetParent?.endSheet(self.window!)
 			}
@@ -104,7 +104,7 @@ public final class XUOperationProgressWindowController: NSWindowController, XUPr
 	}
 	
 	public func progressableOperationDidUpdateProgress(_ operation: XUProgressableOperation) {
-		DispatchQueue.main.syncOrNow {
+		DispatchQueue.onMain {
 			self._update()
 			
 			self.delegate?.progressableOperationDidUpdateProgress(operation)

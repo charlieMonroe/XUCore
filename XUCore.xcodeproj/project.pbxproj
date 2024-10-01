@@ -264,7 +264,6 @@
 		07B908281BF3B908008D254A /* NSXMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 077AFDF61BBD101400872A48 /* NSXMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B908291BF3B908008D254A /* NSXMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AFDF71BBD101400872A48 /* NSXMLAdditions.m */; platformFilters = (macos, ); };
 		07B9082A1BF3BB62008D254A /* XMLAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779E1911BF2362B00832858 /* XMLAdditions.swift */; platformFilters = (macos, ); };
-		07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9082B1BF3BC84008D254A /* TimerAdditions.swift */; };
 		07BF1241237B0DE1002E3780 /* XUUnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF1240237B0DE1002E3780 /* XUUnfairLock.swift */; };
 		07C184F321997B670017A539 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07C184F121997B670017A539 /* MainMenu.strings */; };
 		07C3FA0E1BEBA494008A4200 /* XUTimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FA0D1BEBA494008A4200 /* XUTimeUtilities.swift */; };
@@ -572,7 +571,6 @@
 		07B821111C86395B0079868F /* CGGraphicsAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGGraphicsAdditions.swift; sourceTree = "<group>"; };
 		07B9081D1BF39EEF008D254A /* XUExceptionCatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUExceptionCatcher.h; sourceTree = "<group>"; };
 		07B9081E1BF39EF0008D254A /* XUExceptionCatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUExceptionCatcher.m; sourceTree = "<group>"; };
-		07B9082B1BF3BC84008D254A /* TimerAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAdditions.swift; sourceTree = "<group>"; };
 		07B9082E1BF3BF73008D254A /* XUAppScopeBookmarksManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUAppScopeBookmarksManager.swift; sourceTree = "<group>"; };
 		07B908321BF3C602008D254A /* XUMouseTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUMouseTracker.swift; sourceTree = "<group>"; };
 		07BAC4B92284378B002E6F59 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1196,7 +1194,6 @@
 				077AFDF81BBD101400872A48 /* StringExtensions.swift */,
 				07D7CEDB2425F4D100535F0A /* StringExtensions+HTMLEntitiesList.swift */,
 				073E54D627BC0D1B0004115B /* Thread+Cleanup.swift */,
-				07B9082B1BF3BC84008D254A /* TimerAdditions.swift */,
 				0774AA2420049F3D008E7200 /* TimeZoneAdditions.swift */,
 				073E6B3C1BE1FA2700706283 /* URLExtensions.swift */,
 				0779E1961BF23B6000832858 /* URLRequestAdditions.swift */,
@@ -1855,7 +1852,6 @@
 				07A0155D2052EB100070D0DD /* XUCloudKitDeviceRegistry.swift in Sources */,
 				073E6AC51BE1F86D00706283 /* mimics_pcre.cc in Sources */,
 				073E6B091BE1F86D00706283 /* random.cc in Sources */,
-				07B9082C1BF3BC84008D254A /* TimerAdditions.swift in Sources */,
 				07B344392B72910C0081C86B /* XUKeychainAccess_iOS.swift in Sources */,
 				075DC79F1CF31FAE0043EBD0 /* XUApplicationSyncManager.swift in Sources */,
 				073E6B2B1BE1F86D00706283 /* String+XURegexAdditions.swift in Sources */,

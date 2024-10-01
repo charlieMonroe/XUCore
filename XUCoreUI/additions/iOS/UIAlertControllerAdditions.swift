@@ -27,7 +27,7 @@ extension UIAlertController {
 	/// remove the existing action on the controller.
 	public convenience init(error: Error, completionHandler: (() -> Void)? = nil) {
 		self.init(title: (error as NSError).localizedFailureReason, message: (error as NSError).localizedDescription, preferredStyle: .alert)
-		self.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: { (_) in
+		self.addAction(UIAlertAction(title: Localized("OK", in: .core), style: .default, handler: { _ in
 			if let handler = completionHandler {
 				handler()
 			}

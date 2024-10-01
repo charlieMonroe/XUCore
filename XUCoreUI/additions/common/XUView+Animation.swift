@@ -103,7 +103,7 @@ public extension XUViewAnimation {
 		let alphaStep = (targetAlpha - sourceAlpha) /  CGFloat(numberOfSteps)
 		
 		var stepCounter = 0
-		let timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { (timer) in
+		let timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { timer in
 			stepCounter += 1
 			
 			self.views.forEach({ $0.alphaValue += alphaStep })
@@ -224,7 +224,7 @@ public extension XUViewAnimation {
 		
 			UIView.animate(withDuration: XUViewAnimationDuration.fadeAnimationDuration, animations: {
 				self.views.forEach({ $0.alpha = 1.0 })
-			}, completion: { (_) in
+			}, completion: { _ in
 				completionHandler()
 			})
 		#endif
@@ -238,7 +238,7 @@ public extension XUViewAnimation {
 				continue // Already pulsating.
 			}
 			
-			let timer = Timer(timeInterval: _pulsatingViewsFPS, repeats: true, block: { (_) in
+			let timer = Timer(timeInterval: _pulsatingViewsFPS, repeats: true, block: { _ in
 				self._updatePulsating(for: view)
 			})
 			
@@ -328,7 +328,7 @@ public extension XUViewAnimation {
 				
 				_textFieldValues[field] = stringValue
 				
-				NSAnimationContext.runAnimationGroup({ (context) in
+				NSAnimationContext.runAnimationGroup({ context in
 					context.duration = duration
 					context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 					field.animator().alphaValue = 0.0
@@ -338,7 +338,7 @@ public extension XUViewAnimation {
 						_textFieldValues[field] = nil
 					}
 					
-					NSAnimationContext.runAnimationGroup({ (context) in
+					NSAnimationContext.runAnimationGroup({ context in
 						context.duration = duration
 						context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 						field.animator().alphaValue = 1.0

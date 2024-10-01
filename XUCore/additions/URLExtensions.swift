@@ -214,12 +214,6 @@ extension URL {
 		return self.updatingQuery(to: query.urlQueryString)
 	}
 	
-	/// Returns URL with replaced query (i.e. the ? part). Fallbacks to self.
-	@available(*, deprecated, message: "Convert query to [String : String]")
-	public func updatingQuery(to query: XUJSONDictionary) -> URL {
-		return _updatingQuery(to: query)
-	}
-	
 	/// Returns URL with replaced query (i.e. the ? part). Note that the string passed must be
 	/// a valid query string - all special characters must be percent-encoded.
 	public func updatingQuery(to queryString: String) -> URL {
