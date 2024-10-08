@@ -74,7 +74,7 @@
 "Authentication" = "التحقق";
 "Server responded with unknown token type." = "السيرفر يستجيب برمز غير معرف.";
 "Server provided invalid authorization response." = "قام السيرفر بتزويد استجابة تفويض غير صالحة.";
-"Server has redirected with invalid URL." = "تم إعادة توجية السيرفر برابط غير صالح.";
+"Server has redirected with invalid URL." = "تم إعادة توجية السيرفر برابط غير صالح.\nالرابط غير صالح.";
 "User cancelled the authorization." = "تم إلغاء عملية التحقيق من قبل المستخدم.";
 
 /// Debug Log Menu

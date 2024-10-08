@@ -46,7 +46,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 	
 	
 	/// An action from _backgroundControl that causes cancellation.
-	@IBAction private func _cancel(_ sender: Any?) {
+	@IBAction private func _cancelPicker(_ sender: Any?) {
 		self._dismiss(with: nil)
 	}
 	
@@ -65,7 +65,7 @@ public class XUPickerBaseViewController<Item, ItemControl: UIView & XUPickerCont
 	}
 	
 	/// An action from the Done button.
-	@IBAction private func _done(_ sender: Any?) {
+	@IBAction private func _doneWithPicker(_ sender: Any?) {
 		self._dismiss(with: picker.selectedItem)
 	}
 	
