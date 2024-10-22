@@ -346,7 +346,7 @@ public class XUMessageCenter {
 	}
 	
 	/// Checks for messages with the server. Must not be called from main thread.
-	private func checkForMessages() {
+	public func checkForMessages() {
 		guard let feedURL = XUAppSetup.messageCenterFeedURL else {
 			XULog("Missing feed URL.")
 			return

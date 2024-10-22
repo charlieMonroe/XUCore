@@ -101,7 +101,6 @@ public final class XUAppScopeBookmarksManager {
 			return nil
 		}
 		
-		let creationOptions: URL.BookmarkCreationOptions
 		let resolutionOptions: URL.BookmarkResolutionOptions
 		#if os(macOS)
 		resolutionOptions = [.withSecurityScope, .withoutMounting]

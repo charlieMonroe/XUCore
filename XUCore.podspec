@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 	
 	s.swift_version = '5'
 
-	s.source_files = 'XUCore/additions/*.{h,m,swift}', 'XUCore/core/*.{h,m,swift}', 'XUCore/coredata/*.swift', 'XUCore/coredata/sync/*.swift', 'XUCore/coredata/sync/model/*.swift', 'XUCore/debug/*.swift', 'XUCore/deserialization/*.swift', 'XUCore/documents/*.swift', 'XUCore/localization/*.swift', 'XUCore/localization/*.lproj/*.strings', 'XUCore/misc/*.swift', 'XUCore/network/*.swift', 'XUCore/private/*.{h,m,swift}', 'XUCore/regex/*.{h,m,mm,swift}', 'XUCore/regex/re2/*.{h,cc}', 'XUCore/regex/re2/util/*.{h,cc}', 'XUCore/transformers/*.swift'
+	s.source_files = 'XUCore/additions/*.{h,m,swift}', 'XUCore/core/*.{h,m,swift}', 'XUCore/coredata/*.swift', 'XUCore/coredata/sync/*.{h,m,swift}', 'XUCore/coredata/sync/model/*.swift', 'XUCore/debug/*.swift', 'XUCore/deserialization/*.swift', 'XUCore/documents/*.swift', 'XUCore/localization/*.swift', 'XUCore/localization/*.lproj/*.strings', 'XUCore/misc/*.swift', 'XUCore/network/*.swift', 'XUCore/private/*.{h,m,swift}', 'XUCore/regex/*.{h,m,mm,swift}', 'XUCore/regex/re2/*.{h,cc}', 'XUCore/regex/re2/util/*.{h,cc}', 'XUCore/transformers/*.swift'
 	s.ios.source_files = 'XUCoreMobile/XUCore.h', 'XUCore/core/iOS/*.swift', 'XUCore/localization/iOS/*.swift'
 	s.osx.source_files = 'XUCore/XUCore.h', 'XUCore/additions/macOS/*.{h,m,swift}', 'XUCore/core/macOS/*.swift'
 	
