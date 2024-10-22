@@ -10,13 +10,13 @@ Pod::Spec.new do |s|
 	s.swift_version = '5'
 
 	s.source_files = 'XUCoreUI/additions/common/*.swift', 'XUCoreUI/app_store/common/*.swift', 'XUCoreUI/network/common/*.swift', 'XUCoreUI/network/common/oauth2/*.swift', 'XUCoreUI/ui/common/*.swift', 'XUCoreUI/ui/common/views/*.swift'
-	s.ios.source_files = 'XUCoreUI iOS/XUCoreUI.h', 'XUCoreUI iOS/additions/*.swift', 'XUCoreUI iOS/core/*.swift', 'XUCoreUI iOS/debug/*.swift', 'XUCoreUI iOS/localization/*.swift', 'XUCoreUI iOS/network/oauth2/*.swift', 'XUCoreUI iOS/ui/*/*.swift'
+	s.ios.source_files = 'XUCoreUI/additions/iOS/*.swift', 'XUCoreUI/core/iOSCommon.swift', 'XUCoreUI/debug/XULog+iOS.swift', 'XUCoreUI/localization/UIViewLocalizationSupport.swift', 'XUCoreUI/network/oauth2/XUAuthorizationWebViewController.swift', 'XUCoreUI/ui/iOS/*/*.swift'
 	s.osx.source_files = 'XUCoreUI/XUCoreUI.h', 'XUCoreUI/additions/*.swift', 'XUCoreUI/app_store/*.swift', 'XUCoreUI/core/*.{swift,m}', 'XUCoreUI/debug/*.swift', 'XUCoreUI/exception_handling/*.swift', 'XUCoreUI/localization/*.swift', 'XUCoreUI/network/*.swift', 'XUCoreUI/network/oauth2/*.swift', 'XUCoreUI/ui/*/*.swift'
 	
 	s.dependency 'XUCore'
 	
 	s.resources = ''
-	s.ios.resources = 'XUCoreUI iOS/ui/*/*.xib'
+	s.ios.resources = 'XUCoreUI/ui/iOS/*/*.xib'
 	s.osx.resources = 'XUCoreUI/exception_handling/*.xib', 'XUCoreUI/network/oauth2/*.xib', 'XUCoreUI/ui/*/*.xib', 'XUCoreUI/Media.xcassets'
 
 	s.frameworks = 'Foundation', 'CoreData'
