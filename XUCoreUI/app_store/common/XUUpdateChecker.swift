@@ -224,6 +224,15 @@ public final class XUUpdateChecker {
 		let remoteVersion = Version(versionString: versionString)
 		let currentVersion = Version.current
 		if remoteVersion <= currentVersion {
+			// Check build number. Requires both remote and current to be integral values.
+			if
+				let remoteBuildNumber = newestNode.stringValue(ofAttributeNamed: "sparkle:version").flatMap(Int.init(_:)),
+				let currentBuildNumber = Int(XUAppSetup.applicationBuildNumber),
+				remoteBuildNumber > currentBuildNumber
+			{
+				return .minorUpdateAvailable(version: remoteVersion)
+			}
+			
 			return .noUpdateAvailable
 		}
 		

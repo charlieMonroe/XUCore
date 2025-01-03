@@ -80,7 +80,7 @@ public struct LockedAccessProperty<T> {
 		
 		self.lock = lock
 	}
-	
+    
 	public var wrappedValue: T {
 		get {
 			self.lock.perform {

@@ -57,81 +57,81 @@
 "%li seconds" = "%li sekúnd";
 
 /// XUSyncEngine
-"Cannot find such document. Check back later, it might not have synced through." = "Cannot find such document. Check back later, it might not have synced through.";
-"Cannot open document metadata file." = "Cannot open document metadata file.";
-"Metadata file doesn't contain required information." = "Metadata file doesn't contain required information.";
-"Synchronization is already in progress." = "Synchronization is already in progress.";
-"An upload operation is already in progress." = "An upload operation is already in progress.";
-"Could not save upload metadata." = "Could not save upload metadata.";
-"Cannot find entity named %@" = "Cannot find entity named %@";
-"Cannot find class named %@" = "Cannot find class named %@";
-"Cannot find entity with ID %@" = "Cannot find entity with ID %@";
-"Can't find synchronization folder for document %@." = "Can't find synchronization folder for document %@.";
-"%@ couldn't finish synchronization in the background." = "%@ couldn't finish synchronization in the background.";
-"Please switch back to %@ so that the synchronization can finish." = "Please switch back to %@ so that the synchronization can finish.";
+"Cannot find such document. Check back later, it might not have synced through." = "Nemožno nájsť takýto dokument. Skúste to neskôr, možno sa ešte nesynchronizoval.";
+"Cannot open document metadata file." = "Nepodarilo sa otvoriť súbor metadát dokumentu.";
+"Metadata file doesn't contain required information." = "Súbor metadát neobsahuje požadované informácie.";
+"Synchronization is already in progress." = "Synchronizácia už prebieha.";
+"An upload operation is already in progress." = "Operácia nahrávania už prebieha.";
+"Could not save upload metadata." = "Nepodarilo sa uložiť metadáta nahrávania.";
+"Cannot find entity named %@" = "Nepodarilo sa nájsť entitu s názvom %@";
+"Cannot find class named %@" = "Nemožno nájsť triedu s názvom %@.";
+"Cannot find entity with ID %@" = "Nepodarilo sa nájsť entitu s ID %@";
+"Can't find synchronization folder for document %@." = "Nepodarilo sa nájsť priečinok pre synchronizáciu dokumentu.";
+"%@ couldn't finish synchronization in the background." = "%@ sa nepodarilo dokončiť synchronizáciu na pozadí.";
+"Please switch back to %@ so that the synchronization can finish." = "Prosím, prepnite späť na %@, aby sa synchronizácia mohla dokončiť.";
 
 /// XUOAuth2
-"Authentication" = "Authentication";
-"Server responded with unknown token type." = "Server responded with unknown token type.";
-"Server provided invalid authorization response." = "Server provided invalid authorization response.";
-"Server has redirected with invalid URL." = "Server has redirected with invalid URL.";
-"User cancelled the authorization." = "User cancelled the authorization.";
+"Authentication" = "Autentifikácia";
+"Server responded with unknown token type." = "Server odpovedal neznámym typom tokenu.";
+"Server provided invalid authorization response." = "Server poskytol neplatnú autorizáciu.";
+"Server has redirected with invalid URL." = "Server presmeroval s neplatnou URL adresou.";
+"User cancelled the authorization." = "Používateľ zrušil autorizáciu.";
 
 /// Debug Log Menu
-"Debug" = "Debug";
-"About Debug Log..." = "About Debug Log...";
-"Debug Logging" = "Debug Logging";
-"On" = "On";
-"Off" = "Off";
-"Clear Debug Log" = "Clear Debug Log";
-"Show Log in Finder" = "Show Log in Finder";
+"Debug" = "Debugovať";
+"About Debug Log..." = "O Debug Log...";
+"Debug Logging" = "Ladenie logu";
+"On" = "Zapnuté";
+"Off" = "Vypnuté";
+"Clear Debug Log" = "Vyčistiť Debug Log";
+"Show Log in Finder" = "Zobraziť Log v Prieskumníkovi";
 
-"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:";
-"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file.";
+"Debug log is a text file that contains some technical details about what %@ performs in the background. It is fairly useful to me in order to fix things quickly since it allows me to see what's going on. To get the debug log, follow these simple steps:" = "Debugovací log je textový súbor, ktorý obsahuje technické detaily o tom, čo %@ vykonáva na pozadí. Je to veľmi užitočné pre rýchle opravy, pretože nám umožňuje vidieť, čo sa deje. Ak chcete získať debugovací log, postupujte podľa týchto jednoduchých krokov:";
+"1) If this isn't your first debug log you are sending, please, select Clear Debug Log from the Debug menu.\n2) In the Debug menu, make sure that Debug Logging is On.\n3) Perform whatever task you are having issues with.\n4) In the Debug menu, turn Debug Logging Off.\n5) In the Debug menu, select Show Log in Finder. This selects the log file in Finder and you can easily send it to me. Please, attach the file to the email rather than copy-pasting the information.\n\nThe log file doesn't contain any personal data which can be verified by opening the log file (it is a simple text file). If you consider some of the data confidential or personal, please, replace them with something that can be easily identified as a placeholder (e.g. XXXXXXXX) and let me know that you've modified the log file." = "1. Ak je toto váš druhý a ďalší debugovací log, ktorý posielate, prosím, vyberte Vymazať debugovací log v Debug menu.\n2. V menu Debug sa uistite, že je zapnuté Ladenie logu.\n3. Vykonajte úlohu, s ktorou máte problémy.\n4. V menu Debug vypnite Ladenie logu.\n5. V menu Debug vyberte Zobraziť log v Prieskumníkovi súborov. Toto vyberie súbor logu v Prieskumníkovi súborov a môžete ho ľahko poslať. Prosím, pripojte súbor k e-mailu, namiesto toho, aby ste informácie skopírovali a vložili.\n\nSúbor logu neobsahuje žiadne osobné údaje, čo si môžete overiť otvorením súboru logu (je to obyčajný textový súbor). Ak považujete niektoré údaje za dôverné alebo osobné, prosím, nahraďte ich niečím, čo môže byť ľahko identifikované ako zástupný symbol (napr. XXXXXXXX) a dajte nám vedieť, že ste súbor logu upravili.";
 
 /// 8/23/2016+
-"The document could not be downloaded at this moment." = "The document could not be downloaded at this moment.";
-"Log Current Application State" = "Log Current Application State";
+"The document could not be downloaded at this moment." = "Dokument sa momentálne nepodarilo stiahnuť.\n\n\n\n\n\n\n";
+"Log Current Application State" = "Záznam aktuálneho stavu aplikácie";
 
 /// 9/28/2016+
 
 // Beta testing related.
-"This beta build will expire in less than an hour." = "This beta build will expire in less than an hour.";
-"Please update your copy of this beta build." = "Please update your copy of this beta build.";
+"This beta build will expire in less than an hour." = "Táto beta verzia vyprší za menej ako hodinu.";
+"Please update your copy of this beta build." = "Prosím, aktualizujte svoju kópiu tejto beta verzie.";
 
 // Preferences.
-"All Preferences" = "All Preferences";
-"Show All" = "Show All";
-"Preferences" = "Preferences";
-"Settings" = "Settings";
+"All Preferences" = "Všetky nastavenia";
+"Show All" = "Zobraziť všetko";
+"Preferences" = "Nastavenia";
+"Settings" = "Nastavenia";
 
 /// 12/21/2016+
 
 // Search field with results.
-"No search results" = "No search results";
-"%li search results" = "%li search results";
+"No search results" = "Žiadne výsledky vyhľadávania";
+"%li search results" = "%li výsledky vyhľadávania\n\n\n\n\n\n";
 
 // Certificate view.
-"Select..." = "Select...";
+"Select..." = "Vybrať...";
 
 /// 9/8/2017+
-"Synchronization data is being downloaded." = "Synchronization data is being downloaded.";
-"Copy Current Application State" = "Copy Current Application State";
+"Synchronization data is being downloaded." = "Údaje synchronizácie sa aktuálne stiahujú.";
+"Copy Current Application State" = "Skopírovať aktuálny stav aplikácie";
 
 /// 11/12/2017+
-"Copied" = "Copied";
+"Copied" = "Skopírované";
 
 /// 3/28/2019+
-"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash.";
-"Send Anyway" = "Send Anyway";
+"%@ has encountered an issue and will crash. A report dialog will be presented. Please, submit it, or close the window in case you want to ignore the crash." = "%@ narazil na problém a aplikácia sa zrúti. Bude zobrazené dialógové okno s reportom. Prosím, odošlite ho, alebo zavrite okno, ak chcete ignorovať zlyhanie.";
+"Send Anyway" = "Odoslať aj tak";
 
-"There is an update available." = "There is an update available.";
-"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage.";
-"Download Update..." = "Download Update...";
+"There is an update available." = "Je k dispozícii aktualizácia.";
+"It is possible that the new version has this issue fixed. Try to updating this application. If you can't access the update feature of this application, redownload the application from its webpage." = "Je možné, že nová verzia tento problém opravila. Skúste aktualizovať túto aplikáciu. Ak nemôžete získať prístup k funkcii aktualizácie, znova si stiahnite aplikáciu z jej webovej stránky.";
+"Download Update..." = "Stiahnuť aktualizáciu...";
 
-"Done" = "Done";
+"Done" = "Hotovo";
 
 "Reset" = "Reset";
-"Do you want to reset settings handled by this preference pane to default values?" = "Do you want to reset settings handled by this preference pane to default values?";
-"This action cannot be undone." = "This action cannot be undone.";
+"Do you want to reset settings handled by this preference pane to default values?" = "Chcete obnoviť nastavenia spravované týmto panelom preferencií na predvolené hodnoty?";
+"This action cannot be undone." = "Túto akciu nemožno vrátiť späť.";
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		070103F0279EFF4E00BEC0D9 /* XUPreferences+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070103EF279EFF4E00BEC0D9 /* XUPreferences+Combine.swift */; };
 		070AAD841E75400500224644 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AAD831E75400500224644 /* CharacterTests.swift */; };
+		070BC3C02D030988006F2716 /* XURegexCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070BC3BF2D030988006F2716 /* XURegexCache.swift */; };
 		07156FCF1C3923C6006D3616 /* XUCSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */; };
 		071BC2901C4701810097FCEC /* BoolAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BC28F1C4701810097FCEC /* BoolAdditions.swift */; };
 		0721ABCC279020D4001AA7EF /* HelpBookViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721ABCB279020D4001AA7EF /* HelpBookViewerWindowController.swift */; platformFilters = (macos, ); };
@@ -309,6 +310,7 @@
 		070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUDockIconProgress.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0703A8FD1C26F23F00C6FD3D /* XUFlippedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUFlippedView.swift; sourceTree = "<group>"; };
 		070AAD831E75400500224644 /* CharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
+		070BC3BF2D030988006F2716 /* XURegexCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = XURegexCache.swift; path = regex/XURegexCache.swift; sourceTree = "<group>"; };
 		070FEF7D1C106BD300C1B62E /* XURoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURoundedTextField.swift; sourceTree = "<group>"; };
 		0710EDCD1F32155A00A697FA /* Process+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Additions.swift"; sourceTree = "<group>"; };
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -696,6 +698,7 @@
 				073E6AB71BE1F86D00706283 /* String+XURegexAdditions.swift */,
 				073E6AB81BE1F86D00706283 /* XURegex.h */,
 				073E6AB91BE1F86D00706283 /* XURegex.mm */,
+				070BC3BF2D030988006F2716 /* XURegexCache.swift */,
 			);
 			name = regex;
 			sourceTree = "<group>";
@@ -1772,6 +1775,7 @@
 				0726FA4320625A4900A5BD17 /* XUDownloadCenter+Proxy.swift in Sources */,
 				073E6AC91BE1F86D00706283 /* onepass.cc in Sources */,
 				073E6AE31BE1F86D00706283 /* set.cc in Sources */,
+				070BC3C02D030988006F2716 /* XURegexCache.swift in Sources */,
 				073E6B051BE1F86D00706283 /* pcre.cc in Sources */,
 				07FD4BE01C7DC2E900559CF0 /* DateFormatterISO8601.swift in Sources */,
 				073E6B0D1BE1F86D00706283 /* rune.cc in Sources */,

@@ -5,7 +5,7 @@
 /// Taken from https://github.com/martnst/localize-mainmenu/
 
 "About <AppName>" = "O aplikácii <AppName>";
-"Bring <AppName> Window to Front" = "Bring <AppName> Window to Front";
+"Bring <AppName> Window to Front" = "Preniesť okno <AppName> dopredu";
 "Bring All to Front" = "Presunúť všetky do popredia";
 "Capitalize" = "Začať veľkým písmenom";
 "Check Document Now" = "Skontrolovať dokument";
@@ -15,7 +15,7 @@
 "Copy" = "Kopírovať";
 "Correct Spelling Automatically" = "Automaticky opravovať pravopis";
 "Cut" = "Vystrihnúť";
-"Data Detectors" = "Data Detectors";
+"Data Detectors" = "Detektory údajov";
 "Delete" = "Vymazať";
 "Edit" = "Upraviť";
 "File" = "Súbor";
@@ -38,7 +38,7 @@
 "Redo" = "Obnoviť";
 "Select All" = "Označiť všetko";
 "Services" = "Služby";
-"Show All" = "Zobraziť všetky";
+"Show All" = "Zobraziť všetko";
 "Show Spelling and Grammar" = "Zobraziť pravopis a gramatiku";
 "Show Substitutions" = "Zobraziť zámeny";
 "Smart Copy/Paste" = "Dynamické kopírovanie";
@@ -55,7 +55,7 @@
 "Transformations" = "Prevody";
 "Undo" = "Odvolať";
 "Use Selection for Find" = "Použiť výber pri hľadaní";
-"Use Selection for Replace" = "Use Selection for Replace";
+"Use Selection for Replace" = "Použitie výberu na nahradenie";
 "Window" = "Okno";
 "Zoom" = "Zmeniť veľkosť";
-"Settings" = "Nastavenie";
+"Settings" = "Nastavenia";

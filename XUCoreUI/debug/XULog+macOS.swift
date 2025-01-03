@@ -57,9 +57,7 @@ extension XUDebugLog {
 
 private let _actionHandler = _XUDebugLogActionHandler()
 
-/// Needs to be NSObject subclass due to OS X 10.11 - calling setTarget: on
-/// NSMenuItem calls methodForSelector: which is implemented by NSObject.
-private final class _XUDebugLogActionHandler: NSObject {
+private final class _XUDebugLogActionHandler {
 	
 	@objc fileprivate func _clearLog() {
 		XUDebugLog.clearLog()
@@ -80,7 +78,15 @@ private final class _XUDebugLogActionHandler: NSObject {
 	@objc fileprivate func _logAppState() {
 		if let provider = XUAppSetup.applicationStateProvider {
 			XULog(provider.provideApplicationState())
+			
+			if CommandLine.arguments.contains("--debug-regex-cache") {
+				XURegexCache.shared.printStatistics()
+			}
 		}
+	}
+	
+	@objc fileprivate func _purgeRegexCache() {
+		XURegexCache.shared.purge()
 	}
 	
 	@objc fileprivate func _showAboutDialog() {
@@ -144,6 +150,12 @@ extension XUDebugLog {
 		menu.addItem(withTitle: Localized("Clear Debug Log", in: .core), action: #selector(_XUDebugLogActionHandler._clearLog), keyEquivalent: "").target = _actionHandler
 		
 		menu.addItem(NSMenuItem.separator())
+		
+		if CommandLine.arguments.contains("--debug-regex-cache") {
+			menu.addItem(withTitle: "Purge Regex Cache", action: #selector(_XUDebugLogActionHandler._purgeRegexCache), keyEquivalent: "").target = _actionHandler
+			
+			menu.addItem(NSMenuItem.separator())
+		}
 		
 		menu.addItem(withTitle: Localized("Show Log in Finder", in: .core), action: #selector(_XUDebugLogActionHandler._showLog), keyEquivalent: "").target = _actionHandler
 		

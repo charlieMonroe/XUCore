@@ -11,6 +11,15 @@ import Foundation
 	import AppKit
 #else
 	import UIKit
+
+private extension NSLayoutConstraint {
+	
+	func conditionalAnimator(_ animated: Bool) -> Self {
+		return self
+	}
+	
+}
+
 #endif
 
 /// This view will automatically find its height constraint (will throw 
@@ -28,7 +37,7 @@ open class XUAutocollapsingView: __XUBridgedView {
 	private var _inCoderInit: Bool = true
 	
 	/// Called from -setHidden: to perform hide or unhide.
-	private func _performHide(_ hidden: Bool) {
+	private func _performHide(_ hidden: Bool, animated: Bool) {
 		guard let constraint = self.collapsibleContstraint else {
 			return
 		}
@@ -39,27 +48,37 @@ open class XUAutocollapsingView: __XUBridgedView {
 			}
 			
 			self.originalHeight = constraint.constant
-			constraint.constant = 0.0
+			constraint.conditionalAnimator(animated).constant = 0.0
 		} else {
 			if constraint.constant == self.originalHeight {
 				return
 			}
 			
-			constraint.constant = self.originalHeight
+			constraint.conditionalAnimator(animated).constant = self.originalHeight
 		}
 		
+		if animated {
+			#if os(iOS)
+			UIView.animate(withDuration: CATransaction.animationDuration()) {
+				self.superview?.layoutSubviews()
+			}
+			#else
+			self.superview?.animator().layout()
+			#endif
+		} else {
 		#if os(iOS)
 			self.superview?.setNeedsLayout()
 		#else
 			self.superview?.needsLayout = true
 		#endif
+		}
 	}
 	
 	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		if self.isHidden {
-			self._performHide(true)
+			self._performHide(true, animated: false)
 		}
 	}
 	
@@ -94,10 +113,37 @@ open class XUAutocollapsingView: __XUBridgedView {
 				return
 			}
 			
-			self._performHide(newValue)
+			self._performHide(newValue, animated: false)
 			super.isHidden = newValue
 		}
 	}
+	
+	#if os(macOS)
+	public func animateHidden(_ hidden: Bool, animateAlpha: Bool = false) {
+		if self.isHidden {
+			super.isHidden = false
+			
+			if animateAlpha {
+				self.alphaValue = 0.0
+				self.animator().alphaValue = 1.0
+			}
+			self._performHide(hidden, animated: true)
+		} else {
+			if animateAlpha {
+				self.animator().alphaValue = 0.0
+			}
+			self._performHide(hidden, animated: true)
+			
+			DispatchQueue.main.asyncAfter(deadline: .seconds(CATransaction.animationDuration())) {
+				super.isHidden = false
+				
+				if animateAlpha {
+					self.alphaValue = 1.0
+				}
+			}
+		}
+	}
+	#endif
 	
 }
 

@@ -21,7 +21,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func allOccurrences(ofRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
-		return self.allOccurrences(ofRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.allOccurrences(ofRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 	
 	/// Returns all values of what getRegexVariableNamed would return in self.
@@ -35,7 +35,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func allValues(of varName: String, forRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
-		return self.allValues(of: varName, forRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.allValues(of: varName, forRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 	
 	/// Returns a dictionary of keys and values. This dictionary is created by
@@ -63,7 +63,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func allVariablePairs(forRegex regexString: String, options: XURegexOptions = .caseless) -> [String : String] {
-		return self.allVariablePairs(forRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.allVariablePairs(forRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 	
 	/// Returns components separated by regex. Works pretty much like separating
@@ -92,7 +92,7 @@ extension String {
 	/// @see components(separatedByRegex:) - this is a convenience method that 
 	/// takes in a regex string.
 	public func components(separatedByRegex regexString: String, options: XURegexOptions = .caseless) -> [String] {
-		return self.components(separatedByRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.components(separatedByRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 
 	/// The most basic usage - first regex match.
@@ -106,7 +106,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func firstOccurrence(ofRegex regexString: String, options: XURegexOptions = .caseless) -> String? {
-		return self.firstOccurrence(ofRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.firstOccurrence(ofRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 	
 	/// Iterates regex strings and returns the first one to return a nonnull match.
@@ -154,7 +154,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func matches(regex: String, options: XURegexOptions = .caseless) -> Bool {
-		return self.matches(regex: XURegex(pattern: regex, andOptions: options))
+		return self.matches(regex: XURegexCache.regex(for: regex, options: options))
 	}
 	
 	/// Replaces occurrences of `regex` with `replacement`. Note that `replacement`
@@ -188,7 +188,7 @@ extension String {
 	/// Convenience method that takes a regex string instead. See the XURegex
 	/// variant for more information.
 	public func replacingOccurrences(ofRegex regex: String, with replacement: String, options: XURegexOptions = .caseless) -> String {
-		return self.replacingOccurrences(ofRegex: XURegex(pattern: regex, andOptions: options), with: replacement)
+		return self.replacingOccurrences(ofRegex: XURegexCache.regex(for: regex, options: options), with: replacement)
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
@@ -204,7 +204,7 @@ extension String {
 	/// Note that as the rest of these functions, all regex strings are compiled
 	/// as caseless by default.
 	public func value(of name: String, inRegex regexString: String, options: XURegexOptions = .caseless) -> String? {
-		return self.value(of: name, inRegex: XURegex(pattern: regexString, andOptions: options))
+		return self.value(of: name, inRegex: XURegexCache.regex(for: regexString, options: options))
 	}
 	
 	/// Returns the value of a variable with name in the regexes. For example:
