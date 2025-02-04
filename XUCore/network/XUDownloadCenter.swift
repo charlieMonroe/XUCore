@@ -198,7 +198,7 @@ open class XUDownloadCenter {
 		storage.setCookies(cookies, for: url, mainDocumentURL: nil)
 	}
 	
-	internal func _prepareRequest(for url: URL, referringFunction: String, acceptType: URLRequest.ContentType?, requestModifier: URLRequestModifier?) throws -> URLRequest {
+	internal func _prepareRequest(for url: URL, referringFunction: String, acceptType: URLRequest.ContentType?, requestModifier: URLRequestModifier = { _ in }) throws -> URLRequest {
 		self.observer?.downloadCenter(self, willDownloadContentFrom: url)
 		
 		if self.isInvalidated {
@@ -216,7 +216,7 @@ open class XUDownloadCenter {
 		request.acceptType = acceptType
 		
 		self._applyAutomaticHeaderFields(to: &request)
-		requestModifier?(&request)
+		requestModifier(&request)
 		
 		if XUDebugLog.isLoggingEnabled, self.logTraffic {
 			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
@@ -320,7 +320,7 @@ open class XUDownloadCenter {
 	/// Downloads data from `url`, applies request modifier. `referingFunction`
 	/// is for logging purposes, use it with the default value instead.
 	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) throws -> Data {
-		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier)
+		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier ?? { _ in })
 		return try self.downloadData(with: request)
 	}
 	

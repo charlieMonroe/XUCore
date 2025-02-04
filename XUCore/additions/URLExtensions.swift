@@ -209,6 +209,19 @@ extension URL {
 		urlComponents.query = nil
 		return urlComponents.url ?? self
 	}
+	
+	public func updatingName(with namer: (String) -> String) -> URL {
+		let name = self.deletingPathExtension().lastPathComponent
+		let newName = namer(name)
+		return self.deletingLastPathComponent().appendingPathComponent(newName).appendingPathExtension(self.pathExtension)
+	}
+	
+	/// See `updatingName(with:)` - this method ignores the input parameter and uses a constant string.
+	public func updatingName(to name: String) -> URL {
+		self.updatingName { _ in
+			name
+		}
+	}
 		
 	private func _updatingQuery(to query: XUJSONDictionary) -> URL {
 		return self.updatingQuery(to: query.urlQueryString)

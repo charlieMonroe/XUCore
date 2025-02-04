@@ -21,9 +21,9 @@ extension DispatchQueue {
 	
 	/// Performs the closure synchronously or now in case the current thread is
 	/// main and it is called on a main thread. This prevents deadlocks.
-	public static func onMain<T>(execute closure: () -> T) -> T {
+	public static func onMain<T: Sendable>(execute closure: @MainActor () -> T) -> T {
 		if Thread.isMainThread {
-			return closure()
+			return MainActor.assumeIsolated(closure)
 		} else {
 			return DispatchQueue.main.sync(execute: closure)
 		}

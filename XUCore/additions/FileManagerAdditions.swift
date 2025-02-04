@@ -37,7 +37,8 @@ public extension FileManager {
 		do {
 			try self.createDirectory(at: url, withIntermediateDirectories: intermediate, attributes: nil)
 			return true
-		} catch _ {
+		} catch {
+			XULogStacktrace("Failed to create directory at URL: \(url) - \(error)")
 			return false
 		}
 	}

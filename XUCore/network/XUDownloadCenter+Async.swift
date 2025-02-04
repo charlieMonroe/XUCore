@@ -8,34 +8,9 @@
 
 import Foundation
 
-#if os(macOS)
-
-@available(macOS 10.15, *)
-private extension URLSession {
-
-	@available(macOS, deprecated: 12.0, message: "Use the built-in API instead")
-	func data(for request: URLRequest) async throws -> (Data, URLResponse) {
-		try await withCheckedThrowingContinuation { continuation in
-			let task = self.dataTask(with: request) { data, response, error in
-				guard let data = data, let response = response else {
-					let error = error ?? URLError(.badServerResponse)
-					return continuation.resume(throwing: error)
-				}
-
-				continuation.resume(returning: (data, response))
-			}
-
-			task.resume()
-		}
-	}
-
-}
-
-#endif
-
 extension XUDownloadCenter {
 
-	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier? = nil) async throws -> Data {
+	public func downloadData(at url: URL, referringFunction: String = #function, acceptType: URLRequest.ContentType? = .defaultBrowser, requestModifier: URLRequestModifier = { _ in }) async throws -> Data {
 		let request = try self._prepareRequest(for: url, referringFunction: referringFunction, acceptType: acceptType, requestModifier: requestModifier)
 		do {
 			let (data, response) = try await self.session.data(for: request)
@@ -62,16 +37,16 @@ extension XUDownloadCenter {
 	}
 
 	/// Downloads the JSON and attempts to cast it to dictionary.
-	public func downloadJSONDictionary(at url: URL, requestModifier: URLRequestModifier? = nil) async throws -> XUJSONDictionary {
+	public func downloadJSONDictionary(at url: URL, requestModifier: URLRequestModifier = { _ in }) async throws -> XUJSONDictionary {
 		return try await self.downloadJSON(ofType: XUJSONDictionary.self, at: url, requestModifier: requestModifier)
 	}
 
 	/// Downloads a website source, parses it as JSON and returns it.
-	public func downloadJSON<T>(ofType type: T.Type, at url: URL, requestModifier: URLRequestModifier? = nil) async throws -> T {
+	public func downloadJSON<T>(ofType type: T.Type, at url: URL, requestModifier: URLRequestModifier = { _ in }) async throws -> T {
 		let data = try await self.downloadData(at: url, requestModifier: { request in
 			request.acceptType = .json
 
-			requestModifier?(&request)
+			requestModifier(&request)
 		})
 
 		guard let obj: T = XUJSONHelper.object(from: data) else {
@@ -84,7 +59,7 @@ extension XUDownloadCenter {
 	/// Downloads a pure website source. The download center will try to interpret
 	/// the data with preferredEncoding. If that fails, it will fall back to any
 	/// other encoding.
-	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, requestModifier: URLRequestModifier? = nil) async throws -> String {
+	public func downloadWebPage(at url: URL, preferredEncoding: String.Encoding? = nil, requestModifier: URLRequestModifier = { _ in }) async throws -> String {
 		let data = try await self.downloadData(at: url, requestModifier: requestModifier)
 
 		if let responseString = String(data: data, encoding: preferredEncoding ?? self.defaultStringEncoding) {
@@ -103,7 +78,7 @@ extension XUDownloadCenter {
 	#if os(macOS)
 
 	/// Attempts to download content at `URL` and parse it as XML.
-	public func downloadXMLDocument(at url: URL, requestModifier: URLRequestModifier? = nil) async throws -> XMLDocument {
+	public func downloadXMLDocument(at url: URL, requestModifier: URLRequestModifier = { _ in }) async throws -> XMLDocument {
 		let source = try await self.downloadWebPage(at: url, requestModifier: requestModifier)
 
 		do {
@@ -121,7 +96,7 @@ extension XUDownloadCenter {
 	#endif
 
 	/// Sends a HEAD request to `URL`.
-	public func sendHeadRequest(to url: URL, requestModifier: URLRequestModifier? = nil) async throws -> HTTPURLResponse? {
+	public func sendHeadRequest(to url: URL, requestModifier: URLRequestModifier = { _ in }) async throws -> HTTPURLResponse? {
 		if self.isInvalidated {
 			return nil
 		}
@@ -132,7 +107,7 @@ extension XUDownloadCenter {
 		self._setupCookieField(forRequest: &request)
 		self._applyAutomaticHeaderFields(to: &request)
 
-		requestModifier?(&request)
+		requestModifier(&request)
 
 		do {
 			let (_, response) = try await self.session.data(for: request)
