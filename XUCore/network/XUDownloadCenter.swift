@@ -206,17 +206,17 @@ open class XUDownloadCenter {
 		}
 		
 		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15.0)
+		request.acceptType = acceptType
+		self._applyAutomaticHeaderFields(to: &request)
+		requestModifier(&request)
 		
+		// Only set up cookies after the request modifier which can disable automatic
+		// cookie handling for the request.
 		if self.disableAutomaticCookieHandling {
 			request.httpShouldHandleCookies = false // We're setting them manually below.
 		} else {
 			self._setupCookieField(forRequest: &request)
 		}
-		
-		request.acceptType = acceptType
-		
-		self._applyAutomaticHeaderFields(to: &request)
-		requestModifier(&request)
 		
 		if XUDebugLog.isLoggingEnabled, self.logTraffic {
 			var logString = "Method: \(request.httpMethod.descriptionWithDefaultValue())\nHeaders: \(request.allHTTPHeaderFields ?? [ : ])"
@@ -232,6 +232,10 @@ open class XUDownloadCenter {
 	
 	/// Sets the Cookie HTTP header field on request.
 	internal func _setupCookieField(forRequest request: inout URLRequest, withBaseURL originalBaseURL: URL? = nil) {
+		guard request.httpShouldHandleCookies else {
+			return
+		}
+		
 		guard let url = request.url, url.scheme != nil else {
 			return
 		}

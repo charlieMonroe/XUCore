@@ -109,12 +109,11 @@ open class XUApplication: NSApplication {
 		
 		_isModal = true
 		
-		var firstResp: NSResponder? = theWindow.firstResponder
-		if firstResp == theWindow {
-			firstResp = theWindow.contentView?.suitableFirstResponder
-		}
-		
-		theWindow.makeFirstResponder(firstResp)
+//		var firstResp = theWindow.firstResponder
+//		if firstResp == theWindow {
+//			firstResp = theWindow.contentView?.suitableFirstResponder
+//			theWindow.makeFirstResponder(firstResp)
+//		}
 		
 		return super.runModal(for: theWindow)
 	}

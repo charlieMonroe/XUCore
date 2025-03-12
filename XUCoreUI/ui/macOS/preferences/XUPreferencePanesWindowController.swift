@@ -29,7 +29,7 @@ public struct XUPreferencePanesSection {
 	
 }
 
-open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelegate, XUPreferencePanesViewDelegate {
+open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelegate {
 	
 	private class _Pane: NSObject {
 		
@@ -90,9 +90,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	/// Constraints used on Big Sur.
 	private var _layoutConstraints: [NSLayoutConstraint] = []
 	
-	/// Controller that shows the button for accessing all panes.
-	private lazy var _allPanesButtonViewController: _XUAllPanesButtonViewController = _XUAllPanesButtonViewController(preferencePanesWindowController: self)
-	
 	/// Current view being displayed.
 	private var _currentView: NSView!
 	
@@ -101,13 +98,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 	
 	/// Array controller - only on Big Sur.
 	@IBOutlet private weak var _tableView: NSTableView!
-	
-	/// Controller that shows the title.
-	private lazy var _titleViewController: _XUPreferencePanesWindowTitleViewController = _XUPreferencePanesWindowTitleViewController(preferencePanesWindowController: self)
-	
-	/// View that displays all the panes. It's currently private, but it may be
-	/// exposed in the future to allow customizations.
-	private lazy var allPanesView: XUPreferencePanesView = XUPreferencePanesView(sections: self.sections, andDelegate: self)
 	
 	/// Current pane.
 	public final private(set) var currentPaneController: XUPreferencePaneViewController?
@@ -131,7 +121,11 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			height = view.frame.height
 		}
 		
-		let widthConstraint = NSLayoutConstraint(attribute: .width, item: view, constant: _scrollView.frame.width)
+		var widthAdjustment: CGFloat = 0.0
+		if NSScroller.preferredScrollerStyle == .legacy, !supportsDynamicSize {
+			widthAdjustment = NSScroller.scrollerWidth(for: .regular, scrollerStyle: .legacy)
+		}
+		let widthConstraint = NSLayoutConstraint(attribute: .width, item: view, constant: _scrollView.frame.width - widthAdjustment)
 		let heightConstraint = NSLayoutConstraint(attribute: .height, item: view, constant: height, relation: .greaterThanOrEqual)
 		
 		_layoutConstraints = [widthConstraint, heightConstraint]
@@ -183,8 +177,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		}
 		
 		switch characters {
-		case "l":
-			self.showAllPanes()
 		case "f":
 			self.search(nil)
 		default:
@@ -241,14 +233,7 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		
 		self.didSelectPane(paneController)
 	}
-	
-	/// This will cause the controller to display the icon view of all the panes.
-	open func showAllPanes() {
-		self.currentPaneController?.savePreferences()
 		
-		UserDefaults.standard.synchronize()
-	}
-	
 	open override func showWindow(_ sender: Any?) {
 		if !self.isWindowLoaded || !self.window!.isVisible {
 			self.window!.center()
@@ -270,7 +255,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 			searchField.searchResultsWidth = 350.0
 		}
 
-		_titleViewController.title = Localized("All Preferences", in: .core)
 		self._setResetButtonHidden(true)
 		
 		self.window!.delegate = self
@@ -286,8 +270,6 @@ open class XUPreferencePanesWindowController: NSWindowController, NSWindowDelega
 		_arrayController.content = self.sections.map(\.paneControllers).joined().map(_Pane.init(controller:))
 		
 		self.window!.toolbar?.insertItem(withItemIdentifier: .sidebarTrackingSeparator, at: 0)
-		
-		_currentView = self.allPanesView
     }
 	
 	public final override var windowNibPath: String? {
@@ -382,115 +364,6 @@ internal class XULongPressButton: NSButton {
 	
 	override func rightMouseDown(with theEvent: NSEvent) {
 		self._showMenu()
-	}
-	
-}
-
-private class _XUAllPanesButtonViewController: NSTitlebarAccessoryViewController {
-	
-	@IBOutlet private weak var _button: NSButton!
-	
-	private weak var _prefController: XUPreferencePanesWindowController!
-	
-	@objc private func _showPane(_ menuItem: NSMenuItem) {
-		if let currentController = _prefController.currentPaneController, !currentController.validateEditing() {
-			return
-		}
-		
-		let pane = menuItem.representedObject as! XUPreferencePaneViewController
-		_prefController.preferencePaneView(didSelectPane: pane)
-	}
-	
-	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
-		self._prefController = preferencePanesWindowController
-		
-		super.init(nibName: "_XUAllPanesButtonViewController", bundle: .coreUI)
-		
-		self.fullScreenMinHeight = 48.0
-		self.layoutAttribute = .left
-		
-		self.loadView()
-		
-		let menu = NSMenu()
-		let panes = preferencePanesWindowController.sections.map({ $0.paneControllers }).joined().sorted(by: { $0.paneName < $1.paneName })
-		
-		let menuItem = { () -> NSMenuItem in
-			let item = NSMenuItem(title: Localized("Show All", in: .core), action: #selector(_XUAllPanesButtonViewController.showAll(_:)), keyEquivalent: "")
-			item.target = self
-			item.image = NSImage(named: NSImage.preferencesGeneralName)!.imageWithSingleImageRepresentation(ofSize: CGSize(width: 16.0, height: 16.0))
-			return item
-		}()
-		menu.addItems([menuItem, NSMenuItem.separator()])
-		
-		menu.addItems(panes.map({
-			let item = NSMenuItem(title: $0.paneName, action: #selector(_showPane(_:)), keyEquivalent: "")
-			item.target = self
-			item.image = $0.paneSmallIcon
-			item.representedObject = $0
-			return item
-		}))
-		
-		_button.menu = menu
-		
-		_button.setAccessibilityTitle(Localized("Show All", in: .core))
-		_button.setAccessibilityLabel(Localized("Show All", in: .core))
-		
-		_button.showsBorderOnlyWhileMouseInside = true
-	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	@IBAction @objc func showAll(_ sender: AnyObject) {
-		if let currentController = _prefController.currentPaneController, !currentController.validateEditing() {
-			return
-		}
-		
-		_prefController.showAllPanes()
-	}
-	
-	@objc var worksWhenModal: Bool {
-		return true
-	}
-	
-}
-
-private class _XUPreferencePanesWindowTitleViewController: NSTitlebarAccessoryViewController {
-	
-	@IBOutlet private weak var _titleLabel: NSTextField!
-	@IBOutlet weak var _iconImageView: NSImageView! // Currently unused.
-	private weak var _prefController: XUPreferencePanesWindowController!
-	
-	init(preferencePanesWindowController: XUPreferencePanesWindowController) {
-		self._prefController = preferencePanesWindowController
-		
-		super.init(nibName: "_XUPreferencePanesWindowTitleViewController", bundle: .coreUI)
-		
-		self.layoutAttribute = .left
-		
-		self.loadView() // Required so that _titleLabel is available
-		
-		_titleLabel.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
-	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	override var title: String? {
-		didSet {
-			if oldValue == nil {
-				_titleLabel?.stringValue = self.title ?? ""
-				return
-			}
-			
-			guard let label = _titleLabel else {
-				return
-			}
-			
-			XUViewAnimation(view: label).setStringValueAnimated(self.title ?? "", duration: 0.25)
-		}
 	}
 	
 }

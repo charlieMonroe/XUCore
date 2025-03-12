@@ -92,16 +92,28 @@ public struct XUHardwareInfo {
 		#if os(iOS)
 			return UIDevice.current.identifierForVendor?.uuidString ?? XUHardwareInfo._generatedUUID()
 		#else
-			let serviceName = "IOPlatformExpertDevice"
-			let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(serviceName))
-			let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString, kCFAllocatorDefault, 0)
-			guard let serialNumber = serialNumberAsCFString?.takeUnretainedValue() as? String else {
-				return XUHardwareInfo._generatedUUID()
-			}
-			
-			IOObjectRelease(platformExpert);
-			return serialNumber
+            if let serialNumber = Self._getEntryValue(with: kIOPlatformSerialNumberKey) {
+                return serialNumber
+            } else if let uuid = Self._getEntryValue(with: kIOPlatformUUIDKey) {
+                return uuid
+            } else {
+                return XUHardwareInfo._generatedUUID()
+            }
 		#endif
 	}()
+    
+    #if os(macOS)
+    private static func _getEntryValue(with key: String) -> String? {
+        let serviceName = "IOPlatformExpertDevice"
+        let platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(serviceName))
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, key as CFString, kCFAllocatorDefault, 0)
+        guard let serialNumber = serialNumberAsCFString?.takeUnretainedValue() as? String else {
+            return nil
+        }
+        
+        IOObjectRelease(platformExpert)
+        return serialNumber
+    }
+    #endif
 	
 }

@@ -11,6 +11,8 @@ import Foundation
 /// An error subclass that may contain multiple errors.
 public final class XUCompoundError: NSError, @unchecked Sendable {
 	
+	private let _failureReason: String
+	
 	/// Errors of the compound error.
 	public let errors: [NSError]
 	
@@ -22,8 +24,10 @@ public final class XUCompoundError: NSError, @unchecked Sendable {
 		
 		self.errors = errors
 		
+		_failureReason = localizedFailureReason
+		
 		super.init(domain: domain, code: code, userInfo: [
-			NSLocalizedFailureReasonErrorKey: localizedFailureReason
+			NSLocalizedDescriptionKey: localizedFailureReason
 		])
 	}
 	
@@ -31,11 +35,39 @@ public final class XUCompoundError: NSError, @unchecked Sendable {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	public override var localizedFailureReason: String? {
+		_failureReason
+	}
+	
 	/// This class automatically provides a localized description by putting
 	/// together failure reasons of self.errors.
 	public override var localizedDescription: String {
-		let failureReasons = self.errors.map({ $0.localizedFailureReason }).compacted()
-		return failureReasons.joined(separator: "\n• ")
+		#if os(iOS)
+		// This is for iOS compatibility with UIAlertControllerAdditions.
+		_informativeText
+		#else
+		_failureReason
+		#endif
+	}
+	
+	public override var localizedRecoverySuggestion: String? {
+		return _informativeText
+	}
+	
+	private var _informativeText: String {
+		let maximum = 20
+		
+		let failureReasons = self.errors.prefix(maximum).map({ $0.localizedFailureReason ?? $0.localizedDescription }).compacted()
+		var result = "• " + failureReasons.joined(separator: "\n• ")
+		if self.errors.count > maximum {
+			let overlap = self.errors.count - maximum
+			if overlap == 1 {
+				result += "• " + (self.errors[maximum].localizedFailureReason ?? self.errors[maximum].localizedDescription)
+			} else {
+				result += "\n• " + Localized("... and %li other errors.", overlap)
+			}
+		}
+		return result
 	}
 	
 }

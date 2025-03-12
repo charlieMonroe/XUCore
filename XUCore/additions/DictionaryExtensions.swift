@@ -395,7 +395,9 @@ extension Dictionary {
 							return value
 						}
 					}
-					continue
+
+					// The wild card failed, we have no value, returning nil.
+					return nil
 				} else {
 					indexes = keys.compactMap(Int.init(_:))
 				}

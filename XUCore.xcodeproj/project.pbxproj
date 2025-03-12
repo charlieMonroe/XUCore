@@ -165,11 +165,7 @@
 		0772E82822424AD00014CDC4 /* XUAutocollapsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A929D1C43D72B006DD45B /* XUAutocollapsingView.swift */; };
 		0772E82B22424AF10014CDC4 /* XUOperationProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7BDFB1C199A70004BCDAF /* XUOperationProgressWindowController.swift */; platformFilters = (macos, ); };
 		0772E82C22424AF10014CDC4 /* XUOperationProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7BDFC1C199A70004BCDAF /* XUOperationProgressWindowController.xib */; platformFilters = (macos, ); };
-		0772E82E22424B160014CDC4 /* _XUAllPanesButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0716A11A1D7D6DF5003423B1 /* _XUAllPanesButtonViewController.xib */; platformFilters = (macos, ); };
-		0772E82F22424B160014CDC4 /* _XUPreferencePanesWindowTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0716A12C1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib */; platformFilters = (macos, ); };
-		0772E83022424B160014CDC4 /* XUPreferencePanesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716A1201D7D706E003423B1 /* XUPreferencePanesView.swift */; platformFilters = (macos, ); };
 		0772E83122424B160014CDC4 /* XUPreferencePanesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716A1141D7D6668003423B1 /* XUPreferencePanesWindowController.swift */; platformFilters = (macos, ); };
-		0772E83222424B160014CDC4 /* XUPreferencePanesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0716A1151D7D6668003423B1 /* XUPreferencePanesWindowController.xib */; platformFilters = (macos, ); };
 		0772E83322424B160014CDC4 /* XUPreferencePaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716A1181D7D66CA003423B1 /* XUPreferencePaneViewController.swift */; platformFilters = (macos, ); };
 		0772E83522424B300014CDC4 /* XUDockIconProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070329C41C3F8C8F0058F914 /* XUDockIconProgress.swift */; platformFilters = (macos, ); };
 		0772E83622424B300014CDC4 /* XUMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0742EFFD1D807D7800A3CE16 /* XUMenuItem.swift */; platformFilters = (macos, ); };
@@ -316,11 +312,7 @@
 		07156FCE1C3923C6006D3616 /* XUCSVDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUCSVDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07156FED1C396F82006D3616 /* XUBorderlessWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = XUBorderlessWindow.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0716A1141D7D6668003423B1 /* XUPreferencePanesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencePanesWindowController.swift; sourceTree = "<group>"; };
-		0716A1151D7D6668003423B1 /* XUPreferencePanesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XUPreferencePanesWindowController.xib; sourceTree = "<group>"; };
 		0716A1181D7D66CA003423B1 /* XUPreferencePaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencePaneViewController.swift; sourceTree = "<group>"; };
-		0716A11A1D7D6DF5003423B1 /* _XUAllPanesButtonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = _XUAllPanesButtonViewController.xib; sourceTree = "<group>"; };
-		0716A1201D7D706E003423B1 /* XUPreferencePanesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUPreferencePanesView.swift; sourceTree = "<group>"; };
-		0716A12C1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = _XUPreferencePanesWindowTitleViewController.xib; sourceTree = "<group>"; };
 		071A74A31C54DA3600EEA7FC /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		071A74A41C54DA7000EEA7FC /* cs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		071BC28F1C4701810097FCEC /* BoolAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolAdditions.swift; sourceTree = "<group>"; };
@@ -1014,13 +1006,9 @@
 		0772E82D22424AFB0014CDC4 /* preferences */ = {
 			isa = PBXGroup;
 			children = (
-				0716A11A1D7D6DF5003423B1 /* _XUAllPanesButtonViewController.xib */,
-				0716A12C1D7D8981003423B1 /* _XUPreferencePanesWindowTitleViewController.xib */,
-				0716A1201D7D706E003423B1 /* XUPreferencePanesView.swift */,
 				0716A1141D7D6668003423B1 /* XUPreferencePanesWindowController.swift */,
 				073E3F61282B75210002726E /* XUPreferencePanesWindowController+PrivateViews.swift */,
 				07F0D45E25A4CA310011C551 /* XUPreferencePanesWindowController+SearchDelegate.swift */,
-				0716A1151D7D6668003423B1 /* XUPreferencePanesWindowController.xib */,
 				073E3E5D282914B00002726E /* XUPreferencePanesWindowControllerBigSur.xib */,
 				0716A1181D7D66CA003423B1 /* XUPreferencePaneViewController.swift */,
 			);
@@ -1611,10 +1599,7 @@
 				0772E85722424C210014CDC4 /* Media.xcassets in Resources */,
 				07B344582B72B3E80081C86B /* XUPickerViewController.xib in Resources */,
 				0772E82C22424AF10014CDC4 /* XUOperationProgressWindowController.xib in Resources */,
-				0772E83222424B160014CDC4 /* XUPreferencePanesWindowController.xib in Resources */,
-				0772E82E22424B160014CDC4 /* _XUAllPanesButtonViewController.xib in Resources */,
 				0772E8662242500C0014CDC4 /* XUAuthorizationWebViewWindowController.xib in Resources */,
-				0772E82F22424B160014CDC4 /* _XUPreferencePanesWindowTitleViewController.xib in Resources */,
 				0727956D27FC250600353589 /* SystemCapsuleNotification.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1666,7 +1651,6 @@
 				0772E83D22424B660014CDC4 /* XUBorderlessWindow.swift in Sources */,
 				0772E7D02242464B0014CDC4 /* NSViewAdditions.swift in Sources */,
 				0772E7CD2242464B0014CDC4 /* NSToolbarAdditions.swift in Sources */,
-				0772E83022424B160014CDC4 /* XUPreferencePanesView.swift in Sources */,
 				0772E80E224248AC0014CDC4 /* XUPowerAssertion.swift in Sources */,
 				0772E86A224250550014CDC4 /* XUOAuth2.swift in Sources */,
 				0772E879224259950014CDC4 /* Bundle+CoreUI.swift in Sources */,

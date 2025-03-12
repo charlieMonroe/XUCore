@@ -372,6 +372,10 @@ private class XUSystemNotificationWindowController: NSWindowController, NSWindow
 
 			if self.notification.isCapsule {
 				window.subtitleField.isHidden = true
+				
+				if message.isNilOrEmpty {
+					window.stackView?.spacing = 0.0
+				}
 			}
 
 			window.bottomLayoutConstraint?.constant = 0.0
@@ -428,6 +432,7 @@ private class XUSystemNotificationWindow: NSWindow {
 	@IBOutlet fileprivate weak var bottomLayoutConstraint: NSLayoutConstraint?
 	@IBOutlet fileprivate weak var iconView: NSImageView!
 	@IBOutlet fileprivate weak var messageField: NSTextField!
+	@IBOutlet fileprivate weak var stackView: NSStackView?
 	@IBOutlet fileprivate weak var subtitleField: NSTextField!
 	@IBOutlet fileprivate weak var visualEffectView: NSVisualEffectView!
 	
@@ -458,7 +463,7 @@ private class XUSystemNotificationWindow: NSWindow {
 		
 		self.ignoresMouseEvents = true
 		
-		self.makeKeyAndOrderFront(nil)
+		self.orderFront(nil)
 	}
 	
 	override func awakeFromNib() {

@@ -217,7 +217,11 @@ extension String {
 				value = occurrence.integerValue
 			}
 			
-			string = string.replacingOccurrences(of: "&#\(occurrence);", with: String(Character(UnicodeScalar(value)!)))
+			guard let replacement = UnicodeScalar(value).flatMap({ String(Character($0)) }) else {
+				continue
+			}
+			
+			string = string.replacingOccurrences(of: "&#\(occurrence);", with: replacement)
 		}
 		
 		let accentedCharacterMapping: [(htmlName: String, combiningUnicodeSequence: String)] = [

@@ -20,6 +20,9 @@ import XUCore
 /// - savePreferences
 open class XUPreferencePaneViewController: NSViewController {
 
+	/// Width of the window. This is always the same.
+	internal static let viewWidth: CGFloat = 660.0
+	
 	/// Cached searchable phrases.
 	private var _cachedPhrases: [String]?
 	
@@ -145,7 +148,7 @@ open class XUPreferencePaneViewController: NSViewController {
 		super.viewDidLoad()
 		
 		self.view.localize(from: Bundle(for: type(of: self)))
-		self.view.frame.size.width = XUPreferencePanesView.viewWidth
+		self.view.frame.size.width = Self.viewWidth
 		self.loadPreferences()
 	}
 	

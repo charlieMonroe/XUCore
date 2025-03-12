@@ -63,7 +63,9 @@ public class XUDropboxSyncManager: XUApplicationSyncManager {
 		
 		let targetURL = self._rootFolder.appendingPathComponent(filePath)
 		_ = try? FileManager.default.removeItem(at: targetURL)
-		_ = self.client.files.download(path: filePath, destination: targetURL).response(completionHandler: { (response, error) in
+		_ = self.client.files.download(path: filePath, destination: { _, _ in
+			targetURL
+		}).response(completionHandler: { (response, error) in
 			defer {
 				self._syncCounter -= 1
 			}
